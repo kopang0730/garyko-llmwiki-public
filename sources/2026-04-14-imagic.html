@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Imagic（CVPR 2023）：基于扩散模型的文本真实图像编辑 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-imagic&quot;, &quot;title&quot;: &quot;Imagic（CVPR 2023）：基于扩散模型的文本真实图像编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-15</p>
+        <h1>Imagic（CVPR 2023）：基于扩散模型的文本真实图像编辑</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-editing">#image-editing</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="imagic-cvpr-2023-基于扩散模型的文本真实图像编辑">Imagic（CVPR 2023）：基于扩散模型的文本真实图像编辑</h1>
+<blockquote>会议：CVPR 2023</blockquote>
+<blockquote>发表日期：2022/10/17</blockquote>
+<blockquote>资料加入日期：2026-04-14</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作是扩散时代真实图像文本编辑路线的早期关键锚点，补上了 Imagic 这条主干历史节点。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>它要解决的是如何在真实图像上进行文本驱动编辑，同时尽量保住原图身份与结构。对当前知识库来说，它是 NULL-Text Inversion、Prompt Tuning Inversion、Effective Real Image Editing 这些后续机制线之前的重要前史。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>Imagic 通过对文本嵌入和生成过程进行适配，使扩散模型能够在真实图像上执行更可控的文本驱动编辑，强调保持内容一致性的同时完成语义修改。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>它说明真实图像编辑在扩散路线中很早就已经被单独确立为核心问题。</li>
+<li>它把 image-editing 主线中的“任务建立 → inversion/optimization 细化”演化链补得更完整。</li>
+<li>它有助于把后续的 inversion 改进看成一条连续方法线，而不是离散技巧。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>它更偏早期路线锚点，未必代表后期最佳性能。</li>
+<li>真实图像编辑仍然面临身份保持与编辑强度控制的矛盾。</li>
+<li>它没有直接回答统一多任务系统是否长期更优。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2210.09276</li>
+<li>https://arxiv.org/pdf/2210.09276</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/image-editing.html">topics/image-editing</a></li>
+<li><a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a></li>
+<li><a class="wikilink" href="../questions/question-data-vs-architecture-in-image-editing.html">questions/question-data-vs-architecture-in-image-editing</a></li>
+<li><a class="wikilink" href="../questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>Imagic 在这套库里的作用，是把扩散时代真实图像文本编辑的早期主线补成明确起点。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-14-imagic&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;Imagic（CVPR 2023）：基于扩散模型的文本真实图像编辑&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-14&quot;,
+  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;venue&quot;: &quot;CVPR 2023&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-editing&quot;,
+    &quot;diffusion&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Kawar, Bahjat&quot;,
+    &quot;Zada, Shiran&quot;,
+    &quot;Lang, Oran&quot;,
+    &quot;Tov, Omer&quot;,
+    &quot;Chang, Huiwen&quot;,
+    &quot;Dekel, Tali&quot;,
+    &quot;Mosseri, Inbar&quot;,
+    &quot;Irani, Michal&quot;
+  ],
+  &quot;published_at&quot;: &quot;2022/10/17&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2210.09276&quot;,
+    &quot;https://arxiv.org/pdf/2210.09276&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-imagic/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-editing&quot;,
+    &quot;topics/diffusion-models&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/unified-image-generation-editing&quot;
+  ],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: [
+    &quot;questions/question-data-vs-architecture-in-image-editing&quot;,
+    &quot;questions/question-will-unified-image-models-sustain-their-advantage&quot;
+  ]
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

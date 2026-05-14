@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DC-ControlNet（arXiv 2025）：把多元素条件控制拆成 inter-element / intra-element 两层接口 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-dc-controlnet&quot;, &quot;title&quot;: &quot;DC-ControlNet（arXiv 2025）：把多元素条件控制拆成 inter-element / intra-element 两层接口&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-16</p>
+        <h1>DC-ControlNet（arXiv 2025）：把多元素条件控制拆成 inter-element / intra-element 两层接口</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#efficiency">#efficiency</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="dc-controlnet-arxiv-2025-把多元素条件控制拆成-inter-element-intra-element-两层接口">DC-ControlNet（arXiv 2025）：把多元素条件控制拆成 inter-element / intra-element 两层接口</h1>
+<blockquote>会议：arXiv</blockquote>
+<blockquote>发表日期：2025/02/20</blockquote>
+<blockquote>资料加入日期：2026-04-16</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作把 ControlNet 路线继续做细：它把多条件控制拆成元素内部控制与元素之间关系控制两层，让复杂多元素生成的接口边界更清楚。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>原始 ControlNet 更适合全局条件控制。面对多元素、多关系、多遮挡的复杂图像时，单一全局条件会让不同对象之间的约束纠缠在一起，控制精度和灵活性都会下降。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>DC-ControlNet 引入 Intra-Element Controller 和 Inter-Element Controller。前者处理单个元素内部的内容与布局条件，后者处理元素之间的交互与遮挡关系，把复杂多元素控制显式分层。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>它是 batch-g 最直接的 consolidation 证据之一：interface 本身开始分层，说明控制体系正在向更明确的标准边界收敛。</li>
+<li>相比 <a class="wikilink" href="../sources/2026-04-16-c3net.html">sources/2026-04-16-c3net</a> 的多模态复合条件统一，DC-ControlNet 强调多元素关系的结构化解耦。</li>
+<li>它把 <a class="wikilink" href="../sources/2026-04-16-controlnet.html">sources/2026-04-16-controlnet</a> 这条线推进到更接近“control taxonomy”的状态。</li>
+<li>在本库里，这篇工作有助于判断 adapter-based control 的下一步演化方向：从单接口走向层次化接口。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>它当前还是 arXiv 新近证据，更适合作为趋势锚点。</li>
+<li>更细的接口分层会增加系统设计复杂度。</li>
+<li>长期来看，哪种层次拆分会成为主流标准还需要更多后续工作验证。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2502.14779</li>
+<li>https://arxiv.org/pdf/2502.14779.pdf</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
+<li><a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a></li>
+<li><a class="wikilink" href="../sources/2026-04-16-controlnet.html">sources/2026-04-16-controlnet</a></li>
+<li><a class="wikilink" href="../sources/2026-04-16-c3net.html">sources/2026-04-16-c3net</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>它在本库中的价值，是把 control interface consolidation 从“已有很多控制技巧”继续推进到“接口边界、层级分工和闭环控制是否开始成形”这个层面。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-16-dc-controlnet&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;DC-ControlNet（arXiv 2025）：把多元素条件控制拆成 inter-element / intra-element 两层接口&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-04-16&quot;,
+  &quot;venue&quot;: &quot;arXiv&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-generation&quot;,
+    &quot;diffusion&quot;,
+    &quot;efficiency&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Hongji Yang&quot;,
+    &quot;W. Y. Han&quot;,
+    &quot;Yucheng Zhou&quot;,
+    &quot;Jianbing Shen&quot;
+  ],
+  &quot;published_at&quot;: &quot;2025/02/20&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2502.14779&quot;,
+    &quot;https://arxiv.org/pdf/2502.14779.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-16-dc-controlnet/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-generation&quot;,
+    &quot;topics/diffusion-models&quot;,
+    &quot;topics/diffusion-efficiency-engineering&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

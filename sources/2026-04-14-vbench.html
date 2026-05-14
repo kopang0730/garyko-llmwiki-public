@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VBench（CVPR 2024）：面向视频生成模型的综合评测套件 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-vbench&quot;, &quot;title&quot;: &quot;VBench（CVPR 2024）：面向视频生成模型的综合评测套件&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-generation&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-15</p>
+        <h1>VBench（CVPR 2024）：面向视频生成模型的综合评测套件</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-generation">#video-generation</a><a class="tag" href="../tags.html#evaluation">#evaluation</a><a class="tag" href="../tags.html#benchmarking">#benchmarking</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="vbench-cvpr-2024-面向视频生成模型的综合评测套件">VBench（CVPR 2024）：面向视频生成模型的综合评测套件</h1>
+<blockquote>会议：CVPR 2024</blockquote>
+<blockquote>发表日期：2023/11/29</blockquote>
+<blockquote>资料加入日期：2026-04-14</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作把综合性视频生成评测套件补进库里，显著增强了 evaluation 页对标准化评测框架的覆盖。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>它要解决的是视频生成模型缺少统一、系统、可分解能力维度的 benchmark 套件问题。对当前知识库来说，它是 EvalCrafter、Video-Bench、AIGV-Assessor 之外非常关键的标准化评测节点。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>VBench 提供一个 comprehensive benchmark suite，对视频生成模型在多个能力维度上进行系统评估，以便更标准地比较模型表现。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>它让 generative-model-evaluation 页不再只依赖 evaluator 或 human-aligned 基准，而是有了更“套件化”的标准评测路线。</li>
+<li>它能帮助后续比较不同评测逻辑：标准化 suite、人类对齐 benchmark、LMM assessor、failure diagnosis。</li>
+<li>它也有助于把视频生成模型能力拆成更可讨论的子维度。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>标准化套件未必覆盖所有真实用户需求。</li>
+<li>它主要面向视频生成，不直接等于视频编辑理解 benchmark。</li>
+<li>它是评测体系的重要骨架，但仍需和更细粒度任务结合。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2311.17982</li>
+<li>https://arxiv.org/pdf/2311.17982</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/generative-model-evaluation.html">topics/generative-model-evaluation</a></li>
+<li><a class="wikilink" href="../topics/video-generation.html">topics/video-generation</a></li>
+<li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>VBench 在这套库里的作用，是把标准化视频生成评测套件这条线补成明确节点。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-14-vbench&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;VBench（CVPR 2024）：面向视频生成模型的综合评测套件&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-14&quot;,
+  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;venue&quot;: &quot;CVPR 2024&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-generation&quot;,
+    &quot;evaluation&quot;,
+    &quot;benchmarking&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Huang, Ziqi&quot;,
+    &quot;He, Yinan&quot;,
+    &quot;Yu, Jiashuo&quot;,
+    &quot;Zhang, Fan&quot;,
+    &quot;Si, Chenyang&quot;,
+    &quot;Jiang, Yuming&quot;,
+    &quot;Zhang, Yuanhan&quot;,
+    &quot;Wu, Tianxing&quot;,
+    &quot;Jin, Qingyang&quot;,
+    &quot;Chanpaisit, Nattapol&quot;,
+    &quot;Wang, Yaohui&quot;,
+    &quot;Chen, Xinyuan&quot;,
+    &quot;Wang, Limin&quot;,
+    &quot;Lin, Dahua&quot;,
+    &quot;Qiao, Yu&quot;,
+    &quot;Liu, Ziwei&quot;
+  ],
+  &quot;published_at&quot;: &quot;2023/11/29&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2311.17982&quot;,
+    &quot;https://arxiv.org/pdf/2311.17982&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-vbench/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/generative-model-evaluation&quot;,
+    &quot;topics/video-generation&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: [
+    &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
+  ]
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

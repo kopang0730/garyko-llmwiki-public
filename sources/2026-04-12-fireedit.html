@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FireEdit（CVPR 2025）：基于区域感知视觉语言模型的细粒度指令图像编辑 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-12-fireedit&quot;, &quot;title&quot;: &quot;FireEdit（CVPR 2025）：基于区域感知视觉语言模型的细粒度指令图像编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;image-generation&quot;, &quot;primary-source&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-17</p>
+        <h1>FireEdit（CVPR 2025）：基于区域感知视觉语言模型的细粒度指令图像编辑</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-editing">#image-editing</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="fireedit-cvpr-2025-基于区域感知视觉语言模型的细粒度指令图像编辑">FireEdit（CVPR 2025）：基于区域感知视觉语言模型的细粒度指令图像编辑</h1>
+<blockquote>会议：CVPR 2025</blockquote>
+<blockquote>发表日期：2025-03-25</blockquote>
+<blockquote>资料加入日期：2026-04-12</blockquote>
+<blockquote>深分析稿：<a class="wikilink missing" href="#missing-raw/ingest/2026-04-12-fireedit/analysis">raw/ingest/2026-04-12-fireedit/analysis</a></blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>FireEdit 把 instruction-based image editing 的竞争焦点推向“局部区域理解 + diffusion 过程控制”：当 region-aware VLM、Time-Aware Target Injection 和 Hybrid Visual Cross Attention 一起工作时，细粒度编辑会更准，非目标区域保留也会更稳。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这篇论文是细粒度编辑路线里的强代表作。它并不依赖统一大而全的多任务叙事，而是把精力集中在复杂场景、语义一致性和局部精准修改三件事上。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>FireEdit 认为当前 instruction-based image editing 的主要困难集中在：</p>
+<ul>
+<li>复杂场景中的指令理解</li>
+<li>编辑结果与源图之间的语义一致性</li>
+<li>细粒度局部修改的准确性</li>
+</ul>
+<p>也就是说，问题不只是“看懂文字”，还包括“定位对区域”和“保住不该改的部分”。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>论文主线有三层：</p>
+<ol>
+<li><strong>Region-aware VLM</strong></li>
+<p>   通过额外 region tokens 增强 VLM 的细粒度视觉感知能力。</p>
+</ol>
+<ol>
+<li><strong>Time-Aware Target Injection（TATI）</strong></li>
+<p>   把 timestep embeddings 与文本嵌入结合起来，让目标条件在不同 denoising 阶段以不同强度注入。</p>
+</ol>
+<ol>
+<li><strong>Hybrid Visual Cross Attention（HVCA）</strong></li>
+<p>   融合多尺度视觉特征，增强局部细节并帮助编辑结果保持与源图的语义一致性。</p>
+</ol>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>细粒度编辑越来越依赖视觉-语言 grounding，而不是单纯依赖文本条件。</li>
+<li>diffusion 编辑过程里的时间步控制，会直接影响局部编辑是否稳定。</li>
+<li>多尺度视觉信息对保持背景与未编辑区域细节很重要。</li>
+<li>FireEdit 很清楚地把“改对位置”和“保持原图语义”同时当作一级目标。</li>
+</ul>
+<h2 id="关键图示">关键图示</h2>
+<h3 id="方法总览图">方法总览图</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-12-fireedit/page-previews/page-4.png">900</a></p>
+<p>这张图展示 region-aware mixed-modal encoding、LLM / VLM 与 diffusion model 的关系，以及 TATI 与 HVCA 两个核心模块在整体管线中的位置，是最该保留的方法图。</p>
+<h3 id="定性对比结果">定性对比结果</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-12-fireedit/page-previews/page-7.png">900</a></p>
+<p>这一页与 IP2P、MagicBrush、MGIE、SmartEdit 等方法做定性对比，覆盖局部添加、删除、属性修改等任务，最适合展示 FireEdit 的细粒度控制优势。</p>
+<h3 id="消融与局限">消融与局限</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-12-fireedit/page-previews/page-8.png">900</a></p>
+<p>这一页给出 region / TATI / HVCA 的模块消融，并明确写出 limitations，非常适合支撑“这套机制为什么有效、边界在哪里”。</p>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<ul>
+<li>FireEdit 在复杂细粒度 instruction editing 任务上展示了更强的局部编辑能力。</li>
+<li>定性对比说明它在“改哪里、不改哪里”的控制上更稳定。</li>
+<li>消融实验说明 region-aware、TATI 与 HVCA 都不是可有可无的模块。</li>
+<li>论文承认其能力边界，这让它作为证据页更可信。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>当前不支持 reference images。</li>
+<li>对 enlarging、repositioning objects 等更复杂操作仍有不足。</li>
+<li>这条路线结构更复杂，工程成本与收益仍需继续权衡。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 wiki 判断的影响</h2>
+<ul>
+<li>它显著补强了 <a class="wikilink" href="../topics/image-editing.html">topics/image-editing</a> 中“更强的指令跟随越来越依赖多模态 grounding”这条判断。</li>
+<li>它也为 <a class="wikilink" href="../questions/question-data-vs-architecture-in-image-editing.html">questions/question-data-vs-architecture-in-image-editing</a> 提供了强支持证据：架构升级依然可以带来显著收益。</li>
+<li>它让 <a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a> 看到另一条并行路线：高质量编辑能力也可以通过更强局部控制机制建立，而不只靠统一大模型系统。</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/image-editing.html">topics/image-editing</a></li>
+<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
+<li><a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../questions/question-data-vs-architecture-in-image-editing.html">questions/question-data-vs-architecture-in-image-editing</a></li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2503.19839</li>
+<li>https://arxiv.org/pdf/2503.19839</li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-12-fireedit&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;FireEdit（CVPR 2025）：基于区域感知视觉语言模型的细粒度指令图像编辑&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-12&quot;,
+  &quot;updated&quot;: &quot;2026-04-17&quot;,
+  &quot;venue&quot;: &quot;CVPR 2025&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-12&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-editing&quot;,
+    &quot;image-generation&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Zhou Jun&quot;,
+    &quot;Li Jiahao&quot;,
+    &quot;Xu Zunnan&quot;,
+    &quot;Li Hanhui&quot;,
+    &quot;Cheng Yiji&quot;,
+    &quot;Hong Fa-Ting&quot;,
+    &quot;Lin Qin&quot;,
+    &quot;Lu Qinglin&quot;,
+    &quot;Liang Xiaodan&quot;
+  ],
+  &quot;published_at&quot;: &quot;2025-03-25&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2503.19839&quot;,
+    &quot;https://arxiv.org/pdf/2503.19839&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-12-fireedit/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-12-fireedit/analysis.md&quot;,
+  &quot;image_index&quot;: &quot;raw/ingest/2026-04-12-fireedit/images/index.md&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-editing&quot;,
+    &quot;topics/image-generation&quot;,
+    &quot;topics/diffusion-models&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: [
+    &quot;questions/question-data-vs-architecture-in-image-editing&quot;
+  ]
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

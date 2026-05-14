@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ACT-Diffusion（CVPR 2024）：用对抗一致性训练把一步扩散做得更省 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-15-act-diffusion&quot;, &quot;title&quot;: &quot;ACT-Diffusion（CVPR 2024）：用对抗一致性训练把一步扩散做得更省&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-15</p>
+        <h1>ACT-Diffusion（CVPR 2024）：用对抗一致性训练把一步扩散做得更省</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#efficiency">#efficiency</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="act-diffusion-cvpr-2024-用对抗一致性训练把一步扩散做得更省">ACT-Diffusion（CVPR 2024）：用对抗一致性训练把一步扩散做得更省</h1>
+<blockquote>会议：CVPR 2024</blockquote>
+<blockquote>发表日期：2024-06-17</blockquote>
+<blockquote>资料加入日期：2026-04-15</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作把 one-step diffusion 的质量—成本权衡推进了一步：它不是单纯追求更快采样，而是试图用对抗式分布匹配把一致性训练做得更省、更稳。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>它要解决的是扩散模型逐步去噪太慢，而现有 consistency training 虽然能把采样压到一步，却常常牺牲质量、同时又需要很大的 batch 和训练资源。对当前 wiki 来说，这篇论文补的是 diffusion efficiency 主线里非常重要的一段：如何让“一步扩散”不只是 demo，而更接近可用路线。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>ACT 的核心是在一致性训练框架里加入判别器，直接在每个时间步上最小化分布差异，从而避免单纯靠 consistency loss 累积造成的训练负担。论文从 Wasserstein / JS divergence 的角度解释为什么原始路线会越训越贵，并把改进落在一个更资源友好的训练目标上。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>它说明扩散效率路线不只是在推理时做缓存或蒸馏，也可以在训练目标层直接改写成本结构。</li>
+<li>它把 one-step diffusion 从“快但质量差”往前推进，补强了 <a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a> 里的一步式/少步式扩散分支。</li>
+<li>它和 <a class="wikilink" href="../sources/2026-04-15-deepcache.html">sources/2026-04-15-deepcache</a> 形成很好的对照：前者改训练，后者改推理，两者都说明效率问题正在从不同层被系统性拆解。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>它的主要证据还是标准图像生成 benchmark，对复杂编辑和长视频场景的迁移性还不清楚。</li>
+<li>判别器引入后是否会带来新的训练脆弱性，需要和更大规模设置一起看。</li>
+<li>一步扩散的速度优势能否在更高分辨率、更多控制条件下保持，仍需继续验证。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://openaccess.thecvf.com/content/CVPR2024/html/Kong_ACT-Diffusion_Efficient_Adversarial_Consistency_Training_for_One-step_Diffusion_Models_CVPR_2024_paper.html</li>
+<li>https://openaccess.thecvf.com/content/CVPR2024/papers/Kong_ACT-Diffusion_Efficient_Adversarial_Consistency_Training_for_One-step_Diffusion_Models_CVPR_2024_paper.pdf</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
+<li><a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../sources/2026-04-15-deepcache.html">sources/2026-04-15-deepcache</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>它在本库里的位置很像“训练侧效率路线”的代表点：如果以后要比较扩散系统为什么会变快，ACT-Diffusion 很适合和蒸馏、缓存、采样步长优化三类方法并读。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-15-act-diffusion&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;ACT-Diffusion（CVPR 2024）：用对抗一致性训练把一步扩散做得更省&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;venue&quot;: &quot;CVPR 2024&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-15&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-generation&quot;,
+    &quot;diffusion&quot;,
+    &quot;efficiency&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Fei Kong&quot;,
+    &quot;Jinhao Duan&quot;,
+    &quot;Lichao Sun&quot;,
+    &quot;Hao Cheng&quot;,
+    &quot;Renjing Xu&quot;,
+    &quot;Hengtao Shen&quot;,
+    &quot;Xiaofeng Zhu&quot;,
+    &quot;Xiaoshuang Shi&quot;
+  ],
+  &quot;published_at&quot;: &quot;2024-06-17&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/CVPR2024/html/Kong_ACT-Diffusion_Efficient_Adversarial_Consistency_Training_for_One-step_Diffusion_Models_CVPR_2024_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2024/papers/Kong_ACT-Diffusion_Efficient_Adversarial_Consistency_Training_for_One-step_Diffusion_Models_CVPR_2024_paper.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-15-act-diffusion/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-generation&quot;,
+    &quot;topics/diffusion-models&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>通过多模态大模型实现语言驱动视频修补（CVPR 2024） · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-language-driven-video-inpainting&quot;, &quot;title&quot;: &quot;通过多模态大模型实现语言驱动视频修补（CVPR 2024）&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;vision-language&quot;, &quot;video-understanding&quot;, &quot;primary-source&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-15</p>
+        <h1>通过多模态大模型实现语言驱动视频修补（CVPR 2024）</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-editing">#video-editing</a><a class="tag" href="../tags.html#vision-language">#vision-language</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="通过多模态大模型实现语言驱动视频修补-cvpr-2024">通过多模态大模型实现语言驱动视频修补（CVPR 2024）</h1>
+<blockquote>会议：CVPR 2024</blockquote>
+<blockquote>发表日期：2024/01/18</blockquote>
+<blockquote>资料加入日期：2026-04-14</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作把语言驱动视频修补和多模态大模型接到一起，补强了 video-editing 与 vision-language 的交界路线。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>它要解决的是视频修补如何真正听懂语言指令、而不是只做低层补洞的问题。对当前知识库来说，它补的是 video editing 更明显向理解驱动接口演化的信号。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>该工作利用 multimodal large language models 支撑 language-driven video inpainting，让视频修补更直接地接收语言条件与理解约束。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>它说明视频修补也开始不只是低层任务，而是在向 language-conditioned editing 转变。</li>
+<li>它把 video-editing、vision-language、video-understanding 三页更紧地连了起来。</li>
+<li>它为之后看“编辑是否真的依赖理解能力”提供了很好的桥梁样本。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>语言驱动修补的真实收益仍需和更传统视觉方法对照。</li>
+<li>MM-LLM 接入通常增加系统复杂度与不稳定性。</li>
+<li>它是接口演化信号，但还需要更多任务级证据。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2401.10226</li>
+<li>https://arxiv.org/pdf/2401.10226</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/video-editing.html">topics/video-editing</a></li>
+<li><a class="wikilink" href="../topics/vision-language.html">topics/vision-language</a></li>
+<li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
+<li><a class="wikilink" href="../entities/video-editing-understanding.html">entities/video-editing-understanding</a></li>
+<li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>这篇工作在库里的作用，是把语言驱动视频修补这条 vision-language 交叉路线补成明确节点。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-14-language-driven-video-inpainting&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;通过多模态大模型实现语言驱动视频修补（CVPR 2024）&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-14&quot;,
+  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;venue&quot;: &quot;CVPR 2024&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-editing&quot;,
+    &quot;vision-language&quot;,
+    &quot;video-understanding&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Wu, Jianzong&quot;,
+    &quot;Li, Xiangtai&quot;,
+    &quot;Si, Chenyang&quot;,
+    &quot;Zhou, Shangchen&quot;,
+    &quot;Yang, Jingkang&quot;,
+    &quot;Zhang, Jiangning&quot;,
+    &quot;Li, Yining&quot;,
+    &quot;Chen, Kai&quot;,
+    &quot;Tong, Yunhai&quot;,
+    &quot;Liu, Ziwei&quot;,
+    &quot;Loy, Chen Change&quot;
+  ],
+  &quot;published_at&quot;: &quot;2024/01/18&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2401.10226&quot;,
+    &quot;https://arxiv.org/pdf/2401.10226&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-language-driven-video-inpainting/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/video-editing&quot;,
+    &quot;topics/vision-language&quot;,
+    &quot;topics/video-understanding&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/video-editing-understanding&quot;
+  ],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: [
+    &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
+  ]
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

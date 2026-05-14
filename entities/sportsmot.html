@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SportsMOT · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;entities/sportsmot&quot;, &quot;title&quot;: &quot;SportsMOT&quot;, &quot;kind&quot;: &quot;entity&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;dataset&quot;, &quot;tracking&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a class="active" href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">entity · 2026-04-24</p>
+        <h1>SportsMOT</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#dataset">#dataset</a><a class="tag" href="../tags.html#tracking">#tracking</a></div>
+      </header>
+      <section class="article-content"><h1 id="sportsmot">SportsMOT</h1>
+<h2 id="概述">概述</h2>
+<p>SportsMOT 是一个面向团队运动多目标跟踪的基准数据集，用来测试球员在高速运动、频繁遮挡和外观相似条件下的轨迹维持能力。它对当前 vault 的价值在于：把“体育视频中的时序理解与目标关联”补成一个更具体的证据锚点。</p>
+<h2 id="关键事实">关键事实</h2>
+<ul>
+<li>数据集覆盖篮球、足球、排球三类团队运动视频。</li>
+<li><a class="wikilink" href="../sources/2026-04-24-sportsmot.html">sources/2026-04-24-sportsmot</a> 是 SportsMOT 的原始数据集论文，描述了 240 段视频、超过 150K 帧和超过 1.6M bounding boxes。</li>
+<li>它强调复杂非线性运动、尺度变化和严重遮挡，适合检验 tracking 系统在真实体育场景中的稳定性。</li>
+</ul>
+<h2 id="关系">关系</h2>
+<ul>
+<li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
+<li><a class="wikilink" href="../sources/2026-04-24-sportsmot.html">sources/2026-04-24-sportsmot</a></li>
+<li><a class="wikilink" href="../sources/2026-04-23-sportmamba.html">sources/2026-04-23-sportmamba</a></li>
+<li><a class="wikilink" href="../sources/2026-04-24-teamtrack.html">sources/2026-04-24-teamtrack</a></li>
+</ul>
+<h2 id="证据">证据</h2>
+<ul>
+<li><a class="wikilink" href="../sources/2026-04-24-sportsmot.html">sources/2026-04-24-sportsmot</a></li>
+<li><a class="wikilink" href="../sources/2026-04-23-sportmamba.html">sources/2026-04-23-sportmamba</a></li>
+<li><a class="wikilink" href="../sources/2026-04-24-teamtrack.html">sources/2026-04-24-teamtrack</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>SportsMOT 现在已经从单一 SportMamba 的评测背景，升级为 <a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 中的核心 tracking 数据锚点；TeamTrack 则补充 full-pitch 多运动场景，使体育 MOT 分支更完整。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;entity-sportsmot&quot;,
+  &quot;type&quot;: &quot;entity&quot;,
+  &quot;title&quot;: &quot;SportsMOT&quot;,
+  &quot;status&quot;: &quot;active&quot;,
+  &quot;created&quot;: &quot;2026-04-23&quot;,
+  &quot;updated&quot;: &quot;2026-04-24&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;dataset&quot;,
+    &quot;tracking&quot;
+  ],
+  &quot;entity_type&quot;: &quot;dataset&quot;,
+  &quot;aliases&quot;: [],
+  &quot;related_topics&quot;: [
+    &quot;topics/video-understanding&quot;
+  ],
+  &quot;source_notes&quot;: [
+    &quot;sources/2026-04-23-sportmamba&quot;,
+    &quot;sources/2026-04-24-sportsmot&quot;,
+    &quot;sources/2026-04-24-teamtrack&quot;
+  ]
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>InstructPix2Pix（CVPR 2023）：学习遵循图像编辑指令 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-instructpix2pix&quot;, &quot;title&quot;: &quot;InstructPix2Pix（CVPR 2023）：学习遵循图像编辑指令&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;primary-source&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-15</p>
+        <h1>InstructPix2Pix（CVPR 2023）：学习遵循图像编辑指令</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-editing">#image-editing</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="instructpix2pix-cvpr-2023-学习遵循图像编辑指令">InstructPix2Pix（CVPR 2023）：学习遵循图像编辑指令</h1>
+<blockquote>会议：CVPR 2023</blockquote>
+<blockquote>发表日期：2023-01-01</blockquote>
+<blockquote>资料加入日期：2026-04-14</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作把“按自然语言指令直接编辑图像”变成了一个清晰可训练的问题，是现代 instruction-based image editing 路线的重要起点。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>它要解决的是：用户希望用自然语言直接修改图像，但过去的图像编辑系统往往依赖更硬的条件形式、复杂反演或逐例调优，既慢也不够通用。InstructPix2Pix 的关键意义在于，它把图像编辑正式重写为“输入图像 + 指令 → 输出编辑结果”的统一任务。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>方法上，论文结合 GPT-3 与 Stable Diffusion 自动构造大规模图像编辑训练数据，再训练一个条件扩散模型，让它在前向推理时直接完成指令编辑。相比需要 inversion 或 per-example finetuning 的路线，它强调的是统一训练范式和快速执行能力。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>它为 instruction-based image editing 提供了非常有影响力的早期任务定义。</li>
+<li>它的收益高度依赖合成数据构造，这让它成为“数据设计决定上限”的关键证据。</li>
+<li>它也说明统一输入输出形式本身会改变后续方法演化。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>自动合成数据会把偏差与噪音一并带入模型。</li>
+<li>早期能力虽强，但复杂局部编辑与高保真保持仍有明显不足。</li>
+<li>它更像路线起点，不是当前性能上限。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2211.09800</li>
+<li>https://arxiv.org/pdf/2211.09800.pdf</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/image-editing.html">topics/image-editing</a></li>
+<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
+<li><a class="wikilink" href="../entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a></li>
+<li><a class="wikilink" href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">claims/claim-unified-models-may-outcompete-specialized-image-pipelines</a></li>
+<li><a class="wikilink" href="../questions/question-data-vs-architecture-in-image-editing.html">questions/question-data-vs-architecture-in-image-editing</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>在当前 wiki 里，InstructPix2Pix 的价值主要是历史定位：很多后续 instruction-based image editing 工作都可以视为在修补它留下的精度、保真度和数据质量问题。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-14-instructpix2pix&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;InstructPix2Pix（CVPR 2023）：学习遵循图像编辑指令&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-14&quot;,
+  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;venue&quot;: &quot;CVPR 2023&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-editing&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Tim Brooks&quot;,
+    &quot;Aleksander Holynski&quot;,
+    &quot;Alexei A. Efros&quot;
+  ],
+  &quot;published_at&quot;: &quot;2023-01-01&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2211.09800&quot;,
+    &quot;https://arxiv.org/pdf/2211.09800.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-instructpix2pix/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-editing&quot;,
+    &quot;topics/image-generation&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/unified-image-generation-editing&quot;
+  ],
+  &quot;claims&quot;: [
+    &quot;claims/claim-unified-models-may-outcompete-specialized-image-pipelines&quot;
+  ],
+  &quot;questions&quot;: [
+    &quot;questions/question-data-vs-architecture-in-image-editing&quot;
+  ]
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

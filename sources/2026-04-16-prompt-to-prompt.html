@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prompt-to-Prompt（arXiv 2022）：把 cross-attention 直接变成文本编辑控制面板 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-prompt-to-prompt&quot;, &quot;title&quot;: &quot;Prompt-to-Prompt（arXiv 2022）：把 cross-attention 直接变成文本编辑控制面板&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-16</p>
+        <h1>Prompt-to-Prompt（arXiv 2022）：把 cross-attention 直接变成文本编辑控制面板</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-editing">#image-editing</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="prompt-to-prompt-arxiv-2022-把-cross-attention-直接变成文本编辑控制面板">Prompt-to-Prompt（arXiv 2022）：把 cross-attention 直接变成文本编辑控制面板</h1>
+<blockquote>会议：arXiv</blockquote>
+<blockquote>发表日期：2022/08/03</blockquote>
+<blockquote>资料加入日期：2026-04-16</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作把图像编辑里的 prompt 改写问题，直接下沉到 cross-attention 控制：通过替换、精炼和重权重化注意力图，可以在尽量保留原图结构的同时完成文本驱动编辑。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>text-to-image diffusion 很擅长从零生成，但文本编辑真正困难的地方在于“改一部分、保留大部分”。只要 prompt 稍微变化，模型通常就会整张图一起漂移；而依赖人工 mask 的方法又会破坏原始结构与内容。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>作者深入分析 text-conditioned diffusion 的 cross-attention，指出它决定了词语和空间布局的对应关系。基于这一点，Prompt-to-Prompt 在推理时直接操控 cross-attention map，实现 word swap、prompt refinement 和 attention re-weighting，让文本编辑尽量沿着原始布局轨道前进。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>它为 <a class="wikilink" href="../topics/image-editing.html">topics/image-editing</a> 补上了一个非常关键的机制锚点：后续大量 attention-based editing / guidance 工作，基本都默认继承了“cross-attention 可以直接编程”的前提。</li>
+<li>这篇工作和 <a class="wikilink" href="../sources/2026-04-16-a-star.html">sources/2026-04-16-a-star</a>、<a class="wikilink" href="../sources/2026-04-14-video-p2p.html">sources/2026-04-14-video-p2p</a> 形成清晰谱系：先是把 attention 用作图像编辑控制接口，再扩到语义修复与视频编辑。</li>
+<li>它说明 controllability 不一定非要靠新训练分支，prompt 本身也可以通过 attention 注入方式获得更精细的编辑行为。</li>
+<li>在本库里，它把 batch-f 的 control / layout composition 主线与 image-editing 主线真正接上了。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>它更像一种推理期控制机制，而不是完整的统一编辑系统，因此对复杂编辑链条的覆盖有限。</li>
+<li>方法强依赖 cross-attention 的可解释性和可操作性，对非 attention 主干并不天然适配。</li>
+<li>当前证据主要强调语义与布局保留，对真实世界复杂遮挡、局部几何变化的鲁棒性仍有限。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2208.01626</li>
+<li>https://arxiv.org/pdf/2208.01626.pdf</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/image-editing.html">topics/image-editing</a></li>
+<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
+<li><a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../sources/2026-04-16-a-star.html">sources/2026-04-16-a-star</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-video-p2p.html">sources/2026-04-14-video-p2p</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>它在本库中的价值，是把 control / layout composition 这条长尾从“prompt 可以控制一点生成”推进到“attention、语义覆盖、布局建模和多路径组合都能成为独立接口设计问题”。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-16-prompt-to-prompt&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;Prompt-to-Prompt（arXiv 2022）：把 cross-attention 直接变成文本编辑控制面板&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-04-16&quot;,
+  &quot;venue&quot;: &quot;arXiv&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-editing&quot;,
+    &quot;diffusion&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Amir Hertz&quot;,
+    &quot;Ron Mokady&quot;,
+    &quot;Jay M. Tenenbaum&quot;,
+    &quot;Kfir Aberman&quot;,
+    &quot;Yael Pritch&quot;,
+    &quot;Daniel Cohen‐Or&quot;
+  ],
+  &quot;published_at&quot;: &quot;2022/08/03&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2208.01626&quot;,
+    &quot;https://arxiv.org/pdf/2208.01626.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-16-prompt-to-prompt/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-editing&quot;,
+    &quot;topics/image-generation&quot;,
+    &quot;topics/diffusion-models&quot;,
+    &quot;topics/diffusion-efficiency-engineering&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

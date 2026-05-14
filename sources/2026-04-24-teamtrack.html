@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TeamTrack（CVPRW 2024）：全场视角多运动多目标跟踪数据集 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-24-teamtrack&quot;, &quot;title&quot;: &quot;TeamTrack（CVPRW 2024）：全场视角多运动多目标跟踪数据集&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;tracking&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-24</p>
+        <h1>TeamTrack（CVPRW 2024）：全场视角多运动多目标跟踪数据集</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#tracking">#tracking</a><a class="tag" href="../tags.html#benchmarking">#benchmarking</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="teamtrack-cvprw-2024-全场视角多运动多目标跟踪数据集">TeamTrack（CVPRW 2024）：全场视角多运动多目标跟踪数据集</h1>
+<blockquote>会议：CVPR Workshop 2024</blockquote>
+<blockquote>发表日期：2024-04-22</blockquote>
+<blockquote>资料加入日期：2026-04-24</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>TeamTrack 把体育 MOT 的视角扩展到 full-pitch 场景，强调全场、多项目、多视角下的球员持续跟踪。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这篇论文属于体育 AI / 体育视频理解主线，和 <a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a> 的长时序理解、对象级关联与 benchmark 设计直接相关。它在 <a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 中承担的角色是：TeamTrack 强化了 <a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的“从球员轨迹到场地级理解”分支。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>SportsMOT 已经建立了团队运动 MOT 的核心困难，但很多真实分析场景需要全场视角：教练和分析系统关心队形、空间占用、攻防转换，而这类问题依赖完整场地中的持续定位。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>论文构建 TeamTrack 数据集，覆盖 soccer、basketball、handball 的 full-pitch 视频，包含顶视角和侧视角等不同观察条件，并围绕现有 tracker 做基准分析。它的重点在于把 MOT 放到完整比赛空间中。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>TeamTrack 补足了 SportsMOT 没有完全覆盖的 full-pitch 视角，让 tracking 更接近战术分析入口。</li>
+<li>多运动、多视角设置会进一步放大外观相似、尺度变化和遮挡问题。</li>
+<li>它和 SportsMOT 一起构成体育 MOT 数据层的两类锚点：局部高难 tracking 与全场空间 tracking。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>该论文是 CVPR Workshop 方向，更适合作为数据/任务补充证据。</li>
+<li>full-pitch tracking 到战术理解之间仍需要额外的事件、队形和语义建模层。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 wiki 判断的影响</h2>
+<p>TeamTrack 强化了 <a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的“从球员轨迹到场地级理解”分支。 它也让 <a class="wikilink" href="../entities/sportsmot.html">entities/sportsmot</a> 从单一数据集条目扩展成体育 MOT / 轨迹理解分支的导航锚点。</p>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2404.13868</li>
+<li>https://arxiv.org/pdf/2404.13868</li>
+<li>https://doi.org/10.1109/CVPRW63382.2024.00340</li>
+<li>https://atomscott.github.io/TeamTrack/</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
+<li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
+<li><a class="wikilink" href="../entities/sportsmot.html">entities/sportsmot</a></li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-24-teamtrack&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;TeamTrack（CVPRW 2024）：全场视角多运动多目标跟踪数据集&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-24&quot;,
+  &quot;updated&quot;: &quot;2026-04-24&quot;,
+  &quot;venue&quot;: &quot;CVPR Workshop 2024&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-24&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;tracking&quot;,
+    &quot;benchmarking&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Atom Scott&quot;,
+    &quot;Ikuma Uchida&quot;,
+    &quot;Ning Ding&quot;,
+    &quot;Rikuhei Umemoto&quot;,
+    &quot;Rory Bunker&quot;,
+    &quot;Ren Kobayashi&quot;,
+    &quot;Takeshi Koyama&quot;,
+    &quot;Masaki Onishi&quot;,
+    &quot;Yoshinari Kameda&quot;,
+    &quot;Keisuke Fujii&quot;
+  ],
+  &quot;published_at&quot;: &quot;2024-04-22&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2404.13868&quot;,
+    &quot;https://arxiv.org/pdf/2404.13868&quot;,
+    &quot;https://doi.org/10.1109/CVPRW63382.2024.00340&quot;,
+    &quot;https://atomscott.github.io/TeamTrack/&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-24-teamtrack/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/video-understanding&quot;,
+    &quot;topics/sports-ai-video-understanding&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/sportsmot&quot;
+  ],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

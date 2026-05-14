@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MotionStone（CVPR 2025）：用 DiT 解耦运动强度调制的图像到视频生成 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-motionstone&quot;, &quot;title&quot;: &quot;MotionStone（CVPR 2025）：用 DiT 解耦运动强度调制的图像到视频生成&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-generation&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-17</p>
+        <h1>MotionStone（CVPR 2025）：用 DiT 解耦运动强度调制的图像到视频生成</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-generation">#video-generation</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="motionstone-cvpr-2025-用-dit-解耦运动强度调制的图像到视频生成">MotionStone（CVPR 2025）：用 DiT 解耦运动强度调制的图像到视频生成</h1>
+<blockquote>会议：CVPR 2025</blockquote>
+<blockquote>发表日期：2025-06-11</blockquote>
+<blockquote>资料加入日期：2026-04-14</blockquote>
+<blockquote>深分析稿：<a class="wikilink missing" href="#missing-raw/ingest/2026-04-14-motionstone/analysis">raw/ingest/2026-04-14-motionstone/analysis</a></blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>MotionStone 把图生视频里的 motion control 推到了更细粒度层：通过将 object motion 与 camera motion 强度解耦，并分别注入 Diffusion Transformer，模型能更稳定、更可解释地控制视频动态。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这篇论文是“DiT 主干结构改造 + 运动控制解耦”路线里的代表作。它最重要的贡献不在于统一任务，而在于把 controllability 的增益明确地放在主干结构设计上。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>作者认为图生视频生成长期存在一个关键问题：</p>
+<ul>
+<li>运动强度控制过于粗糙，</li>
+<li>对象运动与相机运动混在一起，</li>
+<li>用户很难精确指定视频到底“谁在动、动多大”。</li>
+</ul>
+<h2 id="方法概述">方法概述</h2>
+<p>MotionStone 的关键设计有三层：</p>
+<ol>
+<li><strong>motion intensity estimation</strong></li>
+<p>   学习估计 object motion intensity 与 camera motion intensity。</p>
+</ol>
+<ol>
+<li><strong>decoupled motion embedding</strong></li>
+<p>   将对象和相机两类运动分别编码，而不是混成一个统一条件。</p>
+</ol>
+<ol>
+<li><strong>motion condition injection into DiT</strong></li>
+<p>   将解耦后的 motion embedding 分别注入 Diffusion Transformer，实现更稳定的 controllability。</p>
+</ol>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>运动控制需要结构化解耦，而不是单一粗糙条件。</li>
+<li>decoupled injection 是这篇论文最核心的结构设计。</li>
+<li>定量与定性结果都说明架构设计本身可以成为强增益来源。</li>
+<li>MotionStone 继续强化了 DiT 作为可扩展生成主干的地位。</li>
+</ul>
+<h2 id="关键图示">关键图示</h2>
+<h3 id="方法总览图">方法总览图</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-14-motionstone/page-previews/page-3.png">900</a></p>
+<p>这一页展示 object / camera 两类运动强度如何被估计、编码并注入 DiT，是理解 MotionStone 的关键主图。</p>
+<h3 id="主定性结果">主定性结果</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-14-motionstone/page-previews/page-5.png">900</a></p>
+<p>这一页与 I2VGen-XL、SVD、AnimateAnything、CogVideoX 等方法做定性对比，是说明其运动控制能力的关键结果页。</p>
+<h3 id="定量与消融">定量与消融</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-14-motionstone/page-previews/page-6.png">900</a></p>
+<p>这一页同时给出主结果定量比较、消融实验以及 motion condition injection design，是最适合作为证据页的页面。</p>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<ul>
+<li>MotionStone 显著提升了 object motion 与 camera motion 的可控性。</li>
+<li>主结果页显示它在多个场景里更能同时保持主体动作、镜头运动和视觉稳定性。</li>
+<li>消融说明 decoupled motion embedding 和 decoupled injection 都是有效设计。</li>
+<li>这篇论文清楚地把“性能增益来自架构改造”摆到了前台。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>它主要提供视频生成证据，不直接回答图像编辑任务。</li>
+<li>即便架构收益明显，也不能据此否定高质量监督数据的重要性。</li>
+<li>仍需要和更严格控制数据变量的研究做配套阅读。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 wiki 判断的影响</h2>
+<ul>
+<li>它显著补强了 <a class="wikilink" href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">claims/claim-dit-is-becoming-the-default-scalable-generation-backbone</a>：DiT 仍在持续被改造，并且仍是 controllability 的重要底座。</li>
+<li>它也补强了 <a class="wikilink" href="../questions/question-data-vs-architecture-in-image-editing.html">questions/question-data-vs-architecture-in-image-editing</a> 的反向证据侧：强增益完全可能来自结构改造。</li>
+<li>MotionStone 让 <code>topics/video-generation</code> 里的“架构改造是强杠杆”这条判断更具体。</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/video-generation.html">topics/video-generation</a></li>
+<li><a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../entities/diffusion-transformer.html">entities/diffusion-transformer</a></li>
+<li><a class="wikilink" href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">claims/claim-dit-is-becoming-the-default-scalable-generation-backbone</a></li>
+<li><a class="wikilink" href="../questions/question-data-vs-architecture-in-image-editing.html">questions/question-data-vs-architecture-in-image-editing</a></li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://openaccess.thecvf.com/content/CVPR2025/html/Shi_MotionStone_Decoupled_Motion_Intensity_Modulation_with_Diffusion_Transformer_for_Image-to-Video_CVPR_2025_paper.html</li>
+<li>https://openaccess.thecvf.com/content/CVPR2025/papers/Shi_MotionStone_Decoupled_Motion_Intensity_Modulation_with_Diffusion_Transformer_for_Image-to-Video_CVPR_2025_paper.pdf</li>
+<li>http://arxiv.org/abs/2412.05848</li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-14-motionstone&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;MotionStone（CVPR 2025）：用 DiT 解耦运动强度调制的图像到视频生成&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-14&quot;,
+  &quot;updated&quot;: &quot;2026-04-17&quot;,
+  &quot;venue&quot;: &quot;CVPR 2025&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-generation&quot;,
+    &quot;diffusion&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Shuwei Shi&quot;,
+    &quot;Biao Gong&quot;,
+    &quot;Xi Chen&quot;,
+    &quot;Dandan Zheng&quot;,
+    &quot;Shuai Tan&quot;,
+    &quot;Zizheng Yang&quot;,
+    &quot;Yuyuan Li&quot;,
+    &quot;Jingwen He&quot;,
+    &quot;Kecheng Zheng&quot;,
+    &quot;Jingdong Chen&quot;,
+    &quot;Ming Yang&quot;,
+    &quot;Yinqiang Zheng&quot;
+  ],
+  &quot;published_at&quot;: &quot;2025-06-11&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/CVPR2025/html/Shi_MotionStone_Decoupled_Motion_Intensity_Modulation_with_Diffusion_Transformer_for_Image-to-Video_CVPR_2025_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2025/papers/Shi_MotionStone_Decoupled_Motion_Intensity_Modulation_with_Diffusion_Transformer_for_Image-to-Video_CVPR_2025_paper.pdf&quot;,
+    &quot;http://arxiv.org/abs/2412.05848&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-motionstone/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-14-motionstone/analysis.md&quot;,
+  &quot;image_index&quot;: &quot;raw/ingest/2026-04-14-motionstone/images/index.md&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/video-generation&quot;,
+    &quot;topics/diffusion-models&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/diffusion-transformer&quot;
+  ],
+  &quot;claims&quot;: [
+    &quot;claims/claim-dit-is-becoming-the-default-scalable-generation-backbone&quot;
+  ],
+  &quot;questions&quot;: [
+    &quot;questions/question-data-vs-architecture-in-image-editing&quot;
+  ]
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Imagen Editor 与 EditBench（CVPR 2023）：推进并评测文本引导图像修补 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-imagen-editor-editbench&quot;, &quot;title&quot;: &quot;Imagen Editor 与 EditBench（CVPR 2023）：推进并评测文本引导图像修补&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-15</p>
+        <h1>Imagen Editor 与 EditBench（CVPR 2023）：推进并评测文本引导图像修补</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-editing">#image-editing</a><a class="tag" href="../tags.html#evaluation">#evaluation</a><a class="tag" href="../tags.html#benchmarking">#benchmarking</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="imagen-editor-与-editbench-cvpr-2023-推进并评测文本引导图像修补">Imagen Editor 与 EditBench（CVPR 2023）：推进并评测文本引导图像修补</h1>
+<blockquote>会议：CVPR 2023</blockquote>
+<blockquote>发表日期：2022-12-13</blockquote>
+<blockquote>资料加入日期：2026-04-14</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作把“编辑模型”和“编辑 benchmark”同时推进，说明图像编辑不只是方法问题，也已经进入系统化评测阶段。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>它要解决的是文本引导图像修补里两个核心问题：一是编辑结果如何既跟随文本又尽量保住原图细节；二是这类编辑能力到底应该如何稳定评测。对当前知识库来说，它同时补了 image-editing 方法线与 evaluation 评测线。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>作者在 Imagen 基础上微调出 Imagen Editor，用 object detector 产生训练时的修补 mask，并在级联扩散流程里继续保留原始高分辨率图像条件。同时提出 EditBench，用自然图像和生成图像上的对象、属性、场景编辑来系统评估文本引导图像修补。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>它说明高质量图像编辑早期就已经明显依赖“训练数据/训练协议 + 编辑评测设计”的联动，而不只是推理时的小技巧。</li>
+<li>它把 EditBench 作为显式 benchmark 推上台面，说明图像编辑能力评估本身已经是独立问题。</li>
+<li>它为后续统一生成-编辑系统提供了一个重要参照：不仅要会编辑，还要能被可重复地评测。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>它更偏向图像修补场景，不等于覆盖全部 instruction-based image editing。</li>
+<li>评测主要围绕 text-guided inpainting，和更开放的多类型编辑任务仍有距离。</li>
+<li>它是重要锚点，但还不能回答统一模型长期一定优于专用流水线。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2212.06909</li>
+<li>https://arxiv.org/pdf/2212.06909</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
+<li><a class="wikilink" href="../topics/image-editing.html">topics/image-editing</a></li>
+<li><a class="wikilink" href="../topics/generative-model-evaluation.html">topics/generative-model-evaluation</a></li>
+<li><a class="wikilink" href="../entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a></li>
+<li><a class="wikilink" href="../questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>Imagen Editor / EditBench 在这套库里的价值，是把图像编辑主线中的“方法推进”和“专门 benchmark 建立”接到同一历史节点上。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-14-imagen-editor-editbench&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;Imagen Editor 与 EditBench（CVPR 2023）：推进并评测文本引导图像修补&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-14&quot;,
+  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;venue&quot;: &quot;CVPR 2023&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-editing&quot;,
+    &quot;evaluation&quot;,
+    &quot;benchmarking&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Wang, Su&quot;,
+    &quot;Saharia, Chitwan&quot;,
+    &quot;Montgomery, Ceslee&quot;,
+    &quot;Pont-Tuset, Jordi&quot;,
+    &quot;Noy, Shai&quot;,
+    &quot;Pellegrini, Stefano&quot;,
+    &quot;Onoe, Yasumasa&quot;,
+    &quot;Laszlo, Sarah&quot;,
+    &quot;Fleet, David J.&quot;,
+    &quot;Soricut, Radu&quot;,
+    &quot;Baldridge, Jason&quot;,
+    &quot;Norouzi, Mohammad&quot;,
+    &quot;Anderson, Peter&quot;,
+    &quot;Chan, William&quot;
+  ],
+  &quot;published_at&quot;: &quot;2022-12-13&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2212.06909&quot;,
+    &quot;https://arxiv.org/pdf/2212.06909&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-imagen-editor-editbench/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-generation&quot;,
+    &quot;topics/image-editing&quot;,
+    &quot;topics/generative-model-evaluation&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/unified-image-generation-editing&quot;
+  ],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: [
+    &quot;questions/question-will-unified-image-models-sustain-their-advantage&quot;
+  ]
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

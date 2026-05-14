@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SketchVideo（CVPR 2025）：基于草图的视频生成与编辑 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-sketchvideo&quot;, &quot;title&quot;: &quot;SketchVideo（CVPR 2025）：基于草图的视频生成与编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-generation&quot;, &quot;video-editing&quot;, &quot;primary-source&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-17</p>
+        <h1>SketchVideo（CVPR 2025）：基于草图的视频生成与编辑</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-generation">#video-generation</a><a class="tag" href="../tags.html#video-editing">#video-editing</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="sketchvideo-cvpr-2025-基于草图的视频生成与编辑">SketchVideo（CVPR 2025）：基于草图的视频生成与编辑</h1>
+<blockquote>会议：CVPR 2025</blockquote>
+<blockquote>发表日期：2025-06-11</blockquote>
+<blockquote>资料加入日期：2026-04-14</blockquote>
+<blockquote>深分析稿：<a class="wikilink missing" href="#missing-raw/ingest/2026-04-14-sketchvideo/analysis">raw/ingest/2026-04-14-sketchvideo/analysis</a></blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>SketchVideo 说明专用控制接口仍然非常有生命力：围绕草图这一高强度结构控制模态构建系统，在视频生成与视频编辑场景里可以形成统一模型难以快速替代的真实交互优势。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这篇论文是“强控制接口优先”路线的代表作。它的重点不是统一一切任务，而是把草图这一结构化输入做成视频生成与编辑的核心入口。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>当用户能给出比文本更明确的结构信号时，系统如何：</p>
+<ul>
+<li>精确跟随草图结构</li>
+<li>保持结果外观真实</li>
+<li>维持跨帧时序一致性</li>
+</ul>
+<p>这篇论文的竞争点在于接口设计，而不是大而全的统一模型叙事。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>SketchVideo 的核心可概括为三点：</p>
+<ol>
+<li><strong>草图作为显式控制接口</strong></li>
+<p>   直接利用 sketch 约束视频中的对象结构和布局。</p>
+</ol>
+<ol>
+<li><strong>同时覆盖生成与编辑</strong></li>
+<p>   不只做 sketch-to-video，也覆盖 sketch-based video editing。</p>
+</ol>
+<ol>
+<li><strong>结构、外观与时序一致性协同</strong></li>
+<p>   方法设计不仅要求结果跟随草图，还要求视频在时间上稳定可看。</p>
+</ol>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>某些场景下，“更强的控制模态”本身就是核心竞争力。</li>
+<li>统一模型未必总是最佳接口，草图控制路线仍有很强现实价值。</li>
+<li>这篇论文为统一路线提供了重要反向证据：产品化竞争也可能来自控制接口深挖。</li>
+</ul>
+<h2 id="关键图示">关键图示</h2>
+<h3 id="首页总览图">首页总览图</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-14-sketchvideo/page-previews/page-1.png">900</a></p>
+<p>这一页最适合解释论文做什么：草图如何同时服务视频生成与视频编辑，并给出代表性案例。</p>
+<h3 id="方法总览图">方法总览图</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-14-sketchvideo/page-previews/page-4.png">900</a></p>
+<p>这一页是方法核心图，展示草图条件如何进入模型，以及结构控制、外观控制和时序一致性如何联合建模。</p>
+<h3 id="主结果页">主结果页</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-14-sketchvideo/page-previews/page-14.png">900</a></p>
+<p>这一页集中展示 sketch-based generation 与 controllable editing 结果，是说明其交互价值的关键证据页。</p>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<ul>
+<li>SketchVideo 在多个结果页上展示了草图驱动下稳定的视频生成与编辑效果。</li>
+<li>同一草图可以驱动多个不同但结构一致的结果，说明结构约束与多样性可以并存。</li>
+<li>论文还给出了消融、用户研究和失败案例，表明这条路线已经有相对成熟的验证链路。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>这条路线主要服务草图控制这一专门场景，不能直接外推到所有生成编辑任务。</li>
+<li>它提供的是“强交互控制接口”的证据，而不是对统一模型的全面否定。</li>
+<li>草图输入门槛更高，也可能限制更广泛用户群的采用。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 wiki 判断的影响</h2>
+<ul>
+<li>它显著补强了 <a class="wikilink" href="../questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a>：统一模型之外，强控制接口路线同样有很强竞争力。</li>
+<li>它也让 <code>topics/video-generation</code> 与 <code>topics/video-editing</code> 增加了一条更偏产品交互的分支。</li>
+<li>对 <code>entities/unified-image-generation-editing</code> 来说，它是一个很好的反向样本，提醒我们接口本身也是系统能力边界的一部分。</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/video-generation.html">topics/video-generation</a></li>
+<li><a class="wikilink" href="../topics/video-editing.html">topics/video-editing</a></li>
+<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
+<li><a class="wikilink" href="../entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a></li>
+<li><a class="wikilink" href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">claims/claim-unified-models-may-outcompete-specialized-image-pipelines</a></li>
+<li><a class="wikilink" href="../questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a></li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2503.23284</li>
+<li>https://arxiv.org/pdf/2503.23284.pdf</li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-14-sketchvideo&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;SketchVideo（CVPR 2025）：基于草图的视频生成与编辑&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-14&quot;,
+  &quot;updated&quot;: &quot;2026-04-17&quot;,
+  &quot;venue&quot;: &quot;CVPR 2025&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-generation&quot;,
+    &quot;video-editing&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Feng-Lin Liu&quot;,
+    &quot;Hongbo Fu&quot;,
+    &quot;Xintao Wang&quot;,
+    &quot;Weicai Ye&quot;,
+    &quot;Pengfei Wan&quot;,
+    &quot;Di Zhang&quot;,
+    &quot;Lin Gao&quot;
+  ],
+  &quot;published_at&quot;: &quot;2025-06-11&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2503.23284&quot;,
+    &quot;https://arxiv.org/pdf/2503.23284.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-sketchvideo/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-14-sketchvideo/analysis.md&quot;,
+  &quot;image_index&quot;: &quot;raw/ingest/2026-04-14-sketchvideo/images/index.md&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/video-generation&quot;,
+    &quot;topics/video-editing&quot;,
+    &quot;topics/image-generation&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/unified-image-generation-editing&quot;
+  ],
+  &quot;claims&quot;: [
+    &quot;claims/claim-unified-models-may-outcompete-specialized-image-pipelines&quot;
+  ],
+  &quot;questions&quot;: [
+    &quot;questions/question-will-unified-image-models-sustain-their-advantage&quot;
+  ]
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

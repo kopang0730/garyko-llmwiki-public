@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>图像编辑的进步主要来自数据扩展还是架构升级 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;questions/question-data-vs-architecture-in-image-editing&quot;, &quot;title&quot;: &quot;图像编辑的进步主要来自数据扩展还是架构升级&quot;, &quot;kind&quot;: &quot;question&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;image-generation&quot;, &quot;survey-needed&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a class="active" href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">question · 2026-04-17</p>
+        <h1>图像编辑的进步主要来自数据扩展还是架构升级</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-editing">#image-editing</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#survey-needed">#survey-needed</a></div>
+      </header>
+      <section class="article-content"><h1 id="图像编辑的进步主要来自数据扩展还是架构升级">图像编辑的进步主要来自数据扩展还是架构升级</h1>
+<h2 id="问题">问题</h2>
+<p>当前图像编辑方向里的性能提升，到底主要来自更大、更干净、覆盖更广的编辑数据，还是来自更强的架构设计、表示分配与多模态控制接口？这个问题并不只是技术归因；它会直接决定后续研究更应该押注数据工厂、主干改造、推理接口，还是这几者的协同设计。</p>
+<h2 id="这个问题现在为什么变得更重要">这个问题现在为什么变得更重要</h2>
+<p><a class="wikilink" href="../topics/image-editing.html">topics/image-editing</a> 已经不再是一条单线升级路线，而是同时出现了数据工厂、区域 grounding、统一接口、低时延编辑、视频化架构重写等多股力量。随着这几条路线都开始拿出看起来显著的提升，单纯说“又变好了”已经不够；更关键的是要判断改进到底来自哪一层，才能知道哪些增益具有可迁移性，哪些只是局部工程套利。</p>
+<h2 id="当前证据在说什么">当前证据在说什么</h2>
+<h3 id="更偏向-数据先打开上限">更偏向“数据先打开上限”</h3>
+<ul>
+<li><a class="wikilink" href="../sources/2026-04-14-instructpix2pix.html">sources/2026-04-14-instructpix2pix</a> 很早就说明，instruction-based image editing 能成立，本身就强依赖合成 supervision 与任务定义。</li>
+<li><a class="wikilink" href="../sources/2026-04-12-anyedit.html">sources/2026-04-12-anyedit</a> 把高质量多任务编辑数据和任务组织推到主线前台，说明数据覆盖面仍然是统一编辑系统最稳的杠杆。</li>
+<li><a class="wikilink" href="../sources/2026-04-12-insightedit.html">sources/2026-04-12-insightedit</a> 进一步证明，光有任务定义不够，数据质量、指令复杂度与背景保持监督都会显著影响最终表现。</li>
+</ul>
+<h3 id="更偏向-架构决定能不能把数据兑现出来">更偏向“架构决定能不能把数据兑现出来”</h3>
+<ul>
+<li><a class="wikilink" href="../sources/2026-04-12-fireedit.html">sources/2026-04-12-fireedit</a> 说明局部 grounding 与区域感知控制不是简单喂更多数据就能自然长出来，架构接口本身在决定编辑精度。</li>
+<li><a class="wikilink" href="../sources/2026-04-14-diffeditor.html">sources/2026-04-14-diffeditor</a> 代表的是通过编辑机制、采样设计与局部约束来提升效果的路线。</li>
+<li><a class="wikilink" href="../sources/2026-04-12-d2it.html">sources/2026-04-12-d2it</a> 与 <a class="wikilink" href="../sources/2026-04-14-motionstone.html">sources/2026-04-14-motionstone</a> 都说明，哪怕不改变任务定义，主干内部的表示分配与结构调制也能单独形成强增益。</li>
+<li><a class="wikilink" href="../sources/2026-04-14-pathways-image-manifold.html">sources/2026-04-14-pathways-image-manifold</a> 更激进：它不是优化原问题，而是把图像编辑直接重写成视频生成式的连续路径问题。</li>
+</ul>
+<h3 id="更像-数据与架构共同重写任务">更像“数据与架构共同重写任务”</h3>
+<ul>
+<li><a class="wikilink" href="../sources/2026-04-12-dreamomni.html">sources/2026-04-12-dreamomni</a> 说明统一训练与 synthetic data pipeline 往往是一起出现的，难以拆成纯数据或纯架构因素。</li>
+<li><a class="wikilink" href="../sources/2026-04-12-swiftedit.html">sources/2026-04-12-swiftedit</a> 说明当速度成为核心目标时，数据监督、蒸馏目标和一步式架构会紧密耦合，不能单独理解。</li>
+</ul>
+<h2 id="为什么还没有被真正解决">为什么还没有被真正解决</h2>
+<p>现在的大多数论文并不是在做干净的归因实验，而是在同时改：数据来源、任务拆分、模型主干、控制接口、训练损失和推理预算。也就是说，我们已经有很多“混合成功案例”，但还缺少足够多“同数据换架构”或“同架构换数据”的强对照证据。因此，当前更适合做结构化判断，而不适合下二选一结论。</p>
+<h2 id="阶段性综合判断">阶段性综合判断</h2>
+<p>基于当前已经编译进 wiki 的证据，这个问题最稳的阶段性答案是：<strong>数据扩展仍然是图像编辑进步最稳定的地基，但架构升级越来越决定这些数据能否转化成可见的编辑质量、控制精度与副作用治理。</strong></p>
+<p>换句话说，数据更像“决定上限有没有被打开”，架构更像“决定这些上限能否被兑现”。在早期任务建立阶段，数据和监督设计的重要性最突出；但到了当前这轮竞争里，真正拉开差距的已经不是简单多收一点数据，而是能否把编辑问题重写成模型更擅长学习的结构问题，例如区域 grounding、主干内部调制、甚至跨任务借用视频生成路径。</p>
+<h2 id="当前更倾向的结论">当前更倾向的结论</h2>
+<ul>
+<li>短期内，继续做高质量数据与任务构造，仍然是最稳的收益来源。</li>
+<li>但中期真正会把系统拉开差距的，往往是“能否把新增监督转成更强结构归纳”的架构设计。</li>
+<li>因此这条 question 目前不支持“数据胜出”或“架构胜出”的简单结论；更合理的说法是：<strong>图像编辑已经进入数据工程与架构改写强耦合的阶段。</strong></li>
+</ul>
+<h2 id="下一步最有价值的证据">下一步最有价值的证据</h2>
+<ul>
+<li>同一 benchmark 下的“同架构不同数据”对照。</li>
+<li>同一数据预算下的“同数据不同架构 / 不同控制接口”对照。</li>
+<li>同时报告指令跟随、背景保持、局部精度与推理成本的系统级评测。</li>
+<li>能明确回答“任务重写本身是不是比继续堆数据更值钱”的新工作。</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/image-editing.html">topics/image-editing</a></li>
+<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
+<li><a class="wikilink" href="../entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a></li>
+<li><a class="wikilink" href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">claims/claim-unified-models-may-outcompete-specialized-image-pipelines</a></li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;question-data-vs-architecture-in-image-editing&quot;,
+  &quot;type&quot;: &quot;question&quot;,
+  &quot;title&quot;: &quot;图像编辑的进步主要来自数据扩展还是架构升级&quot;,
+  &quot;status&quot;: &quot;open&quot;,
+  &quot;created&quot;: &quot;2026-04-14&quot;,
+  &quot;updated&quot;: &quot;2026-04-17&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-editing&quot;,
+    &quot;image-generation&quot;,
+    &quot;survey-needed&quot;
+  ],
+  &quot;question_status&quot;: &quot;open&quot;,
+  &quot;priority&quot;: &quot;high&quot;,
+  &quot;related_topics&quot;: [
+    &quot;topics/image-editing&quot;,
+    &quot;topics/image-generation&quot;
+  ],
+  &quot;related_entities&quot;: [
+    &quot;entities/unified-image-generation-editing&quot;
+  ],
+  &quot;candidate_sources&quot;: [
+    &quot;sources/2026-04-12-anyedit&quot;,
+    &quot;sources/2026-04-12-insightedit&quot;,
+    &quot;sources/2026-04-12-fireedit&quot;,
+    &quot;sources/2026-04-12-swiftedit&quot;,
+    &quot;sources/2026-04-12-dreamomni&quot;,
+    &quot;sources/2026-04-12-d2it&quot;,
+    &quot;sources/2026-04-14-pathways-image-manifold&quot;,
+    &quot;sources/2026-04-14-motionstone&quot;,
+    &quot;sources/2026-04-14-instructpix2pix&quot;,
+    &quot;sources/2026-04-14-diffeditor&quot;
+  ]
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

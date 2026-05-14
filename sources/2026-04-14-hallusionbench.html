@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HallusionBench（CVPR 2024）：大型视觉语言模型中的幻觉与视觉错觉诊断基准 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-hallusionbench&quot;, &quot;title&quot;: &quot;HallusionBench（CVPR 2024）：大型视觉语言模型中的幻觉与视觉错觉诊断基准&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;vision-language&quot;, &quot;primary-source&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-15</p>
+        <h1>HallusionBench（CVPR 2024）：大型视觉语言模型中的幻觉与视觉错觉诊断基准</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#evaluation">#evaluation</a><a class="tag" href="../tags.html#benchmarking">#benchmarking</a><a class="tag" href="../tags.html#vision-language">#vision-language</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="hallusionbench-cvpr-2024-大型视觉语言模型中的幻觉与视觉错觉诊断基准">HallusionBench（CVPR 2024）：大型视觉语言模型中的幻觉与视觉错觉诊断基准</h1>
+<blockquote>会议：CVPR 2024</blockquote>
+<blockquote>发表日期：2023-10-23</blockquote>
+<blockquote>资料加入日期：2026-04-14</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作把多模态模型里的 hallucination / illusion 诊断问题系统化，补强了理解与评测层的能力审计路线。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>它要解决的是大型视觉语言模型在复杂视觉推理中经常出现的纠缠式幻觉与视觉错觉问题。对当前知识库来说，它有助于填厚 video-understanding 与 evaluation 的诊断层。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>HallusionBench 构建一套高级诊断基准，用于分析大视觉语言模型中的 entangled language hallucination 和 visual illusion，强调能力失败模式的系统性刻画。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>它说明评测层不仅要给模型打分，还要专门审计失败模式。</li>
+<li>它为 video-understanding 页补入了“理解失败如何被诊断”的关键视角。</li>
+<li>它与现有 human-aligned / LMM evaluator 路线互补，因为它更强调模型理解偏差而不是纯生成质量。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>它更偏诊断与理解审计，不直接面向视频编辑任务本身。</li>
+<li>从 hallucination 诊断到实际编辑能力评价之间仍有距离。</li>
+<li>它更适合做理解与评测补层，而不是直接充当生成 benchmark。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2310.14566</li>
+<li>https://arxiv.org/pdf/2310.14566</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/generative-model-evaluation.html">topics/generative-model-evaluation</a></li>
+<li><a class="wikilink" href="../topics/vision-language.html">topics/vision-language</a></li>
+<li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
+<li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>HallusionBench 在这套库里的作用，是把多模态理解失败模式诊断这条评测线补成明确节点。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-14-hallusionbench&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;HallusionBench（CVPR 2024）：大型视觉语言模型中的幻觉与视觉错觉诊断基准&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-14&quot;,
+  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;venue&quot;: &quot;CVPR 2024&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;evaluation&quot;,
+    &quot;benchmarking&quot;,
+    &quot;vision-language&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Guan, Tianrui&quot;,
+    &quot;Liu, Fuxiao&quot;,
+    &quot;Wu, Xiyang&quot;,
+    &quot;Xian, Ruiqi&quot;,
+    &quot;Li, Zongxia&quot;,
+    &quot;Liu, Xiaoyu&quot;,
+    &quot;Wang, Xijun&quot;,
+    &quot;Chen, Lichang&quot;,
+    &quot;Huang, Furong&quot;,
+    &quot;Yacoob, Yaser&quot;,
+    &quot;Manocha, Dinesh&quot;,
+    &quot;Zhou, Tianyi&quot;
+  ],
+  &quot;published_at&quot;: &quot;2023-10-23&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2310.14566&quot;,
+    &quot;https://arxiv.org/pdf/2310.14566&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-hallusionbench/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/generative-model-evaluation&quot;,
+    &quot;topics/vision-language&quot;,
+    &quot;topics/video-understanding&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: [
+    &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
+  ]
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

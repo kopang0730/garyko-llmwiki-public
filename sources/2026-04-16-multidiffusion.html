@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MultiDiffusion（arXiv 2023）：把多条 diffusion 轨迹绑成统一的受控生成框架 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-multidiffusion&quot;, &quot;title&quot;: &quot;MultiDiffusion（arXiv 2023）：把多条 diffusion 轨迹绑成统一的受控生成框架&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-16</p>
+        <h1>MultiDiffusion（arXiv 2023）：把多条 diffusion 轨迹绑成统一的受控生成框架</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#efficiency">#efficiency</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="multidiffusion-arxiv-2023-把多条-diffusion-轨迹绑成统一的受控生成框架">MultiDiffusion（arXiv 2023）：把多条 diffusion 轨迹绑成统一的受控生成框架</h1>
+<blockquote>会议：arXiv</blockquote>
+<blockquote>发表日期：2023/02/16</blockquote>
+<blockquote>资料加入日期：2026-04-16</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作把 controlled generation 提升成一个更通用的组合框架：通过把多条 diffusion 过程绑到同一组共享变量或约束上，它能在不重训的前提下支持 panorama、box、mask 等多种控制。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>很多 controllable image generation 方法都依赖针对单一任务的新训练或新微调，导致每种控制信号都像一个独立插件，难以快速组合、迁移和复用。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>MultiDiffusion 的核心不是新增 backbone，而是把多个 diffusion generation path 放进一个统一优化问题里，让它们共享参数或约束并联合收敛。这样用户给出的 panorama、segmentation、bounding boxes 等控制条件，都可以通过多路径融合方式接入。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>它把 batch-f 的核心问题说得很清楚：控制接口能不能从一堆单任务技巧，升级成可组合的统一生成框架。</li>
+<li>相比 <a class="wikilink" href="../sources/2026-04-16-boxdiff.html">sources/2026-04-16-boxdiff</a> 的单类空间约束，MultiDiffusion 更强调多控制信号的统一绑定。</li>
+<li>它和 <a class="wikilink" href="../sources/2026-04-16-controlnet.html">sources/2026-04-16-controlnet</a> 互补：ControlNet 更像可训练侧支接口，MultiDiffusion 更像 training-free 的多路径组合引擎。</li>
+<li>在 <a class="wikilink" href="../topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a> 里，它补上了 compositional control 这条之前还不够明确的支线。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>它强调统一控制与任务迁移，但不一定在每个具体控制任务上都优于专门优化的方法。</li>
+<li>多路径融合虽然省去训练，却可能把复杂度转移到采样期优化。</li>
+<li>作为 arXiv 证据，它在本库里更适合作为方向节点而不是最终定论。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2302.08113</li>
+<li>https://arxiv.org/pdf/2302.08113.pdf</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
+<li><a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a></li>
+<li><a class="wikilink" href="../sources/2026-04-16-boxdiff.html">sources/2026-04-16-boxdiff</a></li>
+<li><a class="wikilink" href="../sources/2026-04-16-controlnet.html">sources/2026-04-16-controlnet</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>它在本库中的价值，是把 control / layout composition 这条长尾从“prompt 可以控制一点生成”推进到“attention、语义覆盖、布局建模和多路径组合都能成为独立接口设计问题”。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-16-multidiffusion&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;MultiDiffusion（arXiv 2023）：把多条 diffusion 轨迹绑成统一的受控生成框架&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-04-16&quot;,
+  &quot;venue&quot;: &quot;arXiv&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-generation&quot;,
+    &quot;diffusion&quot;,
+    &quot;efficiency&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Omer Bar-Tal&quot;,
+    &quot;Lior Yariv&quot;,
+    &quot;Yaron Lipman&quot;,
+    &quot;Tali Dekel&quot;
+  ],
+  &quot;published_at&quot;: &quot;2023/02/16&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2302.08113&quot;,
+    &quot;https://arxiv.org/pdf/2302.08113.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-16-multidiffusion/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-generation&quot;,
+    &quot;topics/diffusion-models&quot;,
+    &quot;topics/diffusion-efficiency-engineering&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

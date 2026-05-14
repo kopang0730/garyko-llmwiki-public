@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BoxDiff（ICCV 2023）：不用训练，直接把框约束压进 diffusion 采样过程 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-boxdiff&quot;, &quot;title&quot;: &quot;BoxDiff（ICCV 2023）：不用训练，直接把框约束压进 diffusion 采样过程&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-16</p>
+        <h1>BoxDiff（ICCV 2023）：不用训练，直接把框约束压进 diffusion 采样过程</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#efficiency">#efficiency</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="boxdiff-iccv-2023-不用训练-直接把框约束压进-diffusion-采样过程">BoxDiff（ICCV 2023）：不用训练，直接把框约束压进 diffusion 采样过程</h1>
+<blockquote>会议：ICCV 2023</blockquote>
+<blockquote>发表日期：2023/07/20</blockquote>
+<blockquote>资料加入日期：2026-04-16</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作把 spatial guidance 做到了 training-free：用户只给 box 或 scribble，它就在 denoising 中加入空间约束，让对象按指定位置出现，而不需要额外布局数据或微调。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>如果要让 diffusion 模型 obey box、mask、scribble 等简单空间条件，很多已有方法需要额外 paired layout data 和 fine-tuning，这会明显抬高控制成本，也限制开放世界场景下的快速使用。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>BoxDiff 直接在 diffusion denoising 过程中加入 Inner-Box、Outer-Box 和 Corner 三类空间约束。它不重训模型，也不依赖大量标注布局数据，而是把用户给定的 box/scribble 条件转成采样期的 training-free guidance。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>它把 <a class="wikilink" href="../topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a> 里的 guidance 层继续推进到 training-free spatial control：控制不一定靠新模型训练，也可以靠采样期约束直接实现。</li>
+<li>相比 <a class="wikilink" href="../sources/2026-04-16-controlnet.html">sources/2026-04-16-controlnet</a> 的侧支训练接口，BoxDiff 代表另一种低成本路线：不加新参数，直接在推理轨迹里施加约束。</li>
+<li>它也和 <a class="wikilink" href="../sources/2026-04-16-a-star.html">sources/2026-04-16-a-star</a>、<a class="wikilink" href="../sources/2026-04-16-rethinking-spatial-inconsistency-cfg.html">sources/2026-04-16-rethinking-spatial-inconsistency-cfg</a> 形成一组证据：guidance 问题已经细化到空间位置、概念冲突和局部布局一致性。</li>
+<li>在 <a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a> 语境里，这说明 controllability 的门槛已经从“能不能控制”转向“要用多少训练与标注成本控制”。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>training-free 约束虽然省去了训练，但会把一部分复杂度转移到推理阶段，因此速度与质量之间仍要权衡。</li>
+<li>它主要支持相对简单的空间条件；更复杂关系推理或长期一致性并不是这篇工作的重点。</li>
+<li>当前证据仍以图像为主，视频场景中的 box-guided 控制还需要更多材料。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2307.10816</li>
+<li>https://arxiv.org/pdf/2307.10816.pdf</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
+<li><a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a></li>
+<li><a class="wikilink" href="../sources/2026-04-16-controlnet.html">sources/2026-04-16-controlnet</a></li>
+<li><a class="wikilink" href="../sources/2026-04-16-a-star.html">sources/2026-04-16-a-star</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>它在本库中的价值，是把 diffusion guidance engineering 从“模块能否接入”继续推进到“空间控制、attention 治理与训练免费接口能否系统化成立”。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-16-boxdiff&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;BoxDiff（ICCV 2023）：不用训练，直接把框约束压进 diffusion 采样过程&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-04-16&quot;,
+  &quot;venue&quot;: &quot;ICCV 2023&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-generation&quot;,
+    &quot;diffusion&quot;,
+    &quot;efficiency&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Jinheng Xie&quot;,
+    &quot;Yuexiang Li&quot;,
+    &quot;Yawen Huang&quot;,
+    &quot;Haozhe Liu&quot;,
+    &quot;Wentian Zhang&quot;,
+    &quot;Yefeng Zheng&quot;,
+    &quot;Mike Zheng Shou&quot;
+  ],
+  &quot;published_at&quot;: &quot;2023/07/20&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2307.10816&quot;,
+    &quot;https://arxiv.org/pdf/2307.10816.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-16-boxdiff/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-generation&quot;,
+    &quot;topics/diffusion-models&quot;,
+    &quot;topics/diffusion-efficiency-engineering&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

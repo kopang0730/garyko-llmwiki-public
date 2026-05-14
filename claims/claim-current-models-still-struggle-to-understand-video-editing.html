@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>当前模型仍然难以真正理解视频编辑 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;claims/claim-current-models-still-struggle-to-understand-video-editing&quot;, &quot;title&quot;: &quot;当前模型仍然难以真正理解视频编辑&quot;, &quot;kind&quot;: &quot;claim&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;open-claim&quot;, &quot;video-editing&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a class="active" href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">claim · 2026-04-17</p>
+        <h1>当前模型仍然难以真正理解视频编辑</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#open-claim">#open-claim</a><a class="tag" href="../tags.html#video-editing">#video-editing</a></div>
+      </header>
+      <section class="article-content"><h1 id="当前模型仍然难以真正理解视频编辑">当前模型仍然难以真正理解视频编辑</h1>
+<h2 id="命题">命题</h2>
+<p>当前不少视频相关模型也许已经能生成或编辑视频，但在“理解视频编辑操作本身”这件事上仍然偏弱。这里的理解不只是看懂画面内容，而是要能识别编辑指令、推理编辑目标，并判断最终结果是否真的满足编辑要求。</p>
+<h2 id="为什么这条-claim-重要">为什么这条 claim 重要</h2>
+<p>如果这个判断成立，那么视频编辑系统的瓶颈就不只是生成质量，而是理解能力不足。这样一来，后续研究重点就不能只放在更会生成，还要补上更会判断、更会对齐编辑目标的评测与训练机制。</p>
+<h2 id="当前支持证据在说什么">当前支持证据在说什么</h2>
+<h3 id="视频编辑理解已经被迫单独-benchmark-化">视频编辑理解已经被迫单独 benchmark 化</h3>
+<ul>
+<li><a class="wikilink" href="../sources/2026-04-12-veu-bench.html">sources/2026-04-12-veu-bench</a> 把视频编辑理解提升成一个明确 benchmark 问题，说明社区已经意识到现有模型在这一层面存在明显空白。</li>
+<li><a class="wikilink" href="../sources/2026-04-14-five-bench.html">sources/2026-04-14-five-bench</a> 进一步把 video-editing benchmark 拆到细粒度能力层，说明“理解不足”不是抽象抱怨，而是可以被细分、被诊断的真实问题。</li>
+</ul>
+<h3 id="评测可信度路线也在侧面支持这条-claim">评测可信度路线也在侧面支持这条 claim</h3>
+<ul>
+<li><a class="wikilink" href="../sources/2026-04-14-neuro-symbolic-eval-t2v.html">sources/2026-04-14-neuro-symbolic-eval-t2v</a> 虽然不只针对视频编辑，但它说明评测体系本身已经需要走向形式化满足性与逻辑验证，这通常意味着现有“看起来不错”的结果并不足以证明模型真的理解了任务。</li>
+</ul>
+<h2 id="当前反证与缓冲证据在说什么">当前反证与缓冲证据在说什么</h2>
+<h3 id="一部分评测正在变强-但这不等于问题已解决">一部分评测正在变强，但这不等于问题已解决</h3>
+<ul>
+<li><a class="wikilink" href="../sources/2026-04-14-aigv-assessor.html">sources/2026-04-14-aigv-assessor</a> 说明我们正在拥有更接近人类感知质量的 evaluator。</li>
+<li><a class="wikilink" href="../sources/2026-04-14-video-bench.html">sources/2026-04-14-video-bench</a> 说明 human-aligned benchmark 也在快速补强。</li>
+</ul>
+<p>但这两类证据更多表明“评测工具在进步”，而不是“模型已经真正理解视频编辑”。它们是这条 claim 的缓冲证据：说明问题正在被更好地测量，但不构成对 claim 本身的直接推翻。</p>
+<h2 id="这条-claim-为什么还不能被视为定论">这条 claim 为什么还不能被视为定论</h2>
+<p>因为当前证据仍然主要来自 benchmark 与 evaluator 侧，而不是大规模、多体系、跨真实任务的重复验证。我们已经知道社区在认真地把视频编辑理解单独拿出来测，但仍然缺少足够多证据去证明：不同评测器、不同 benchmark、不同真实工作流，是否都在稳定指向同一个结论。</p>
+<h2 id="阶段性评估">阶段性评估</h2>
+<p>基于当前 vault 中的证据，最稳的阶段性判断是：<strong>“当前模型仍然难以真正理解视频编辑”依然是一条成立概率很高的强预警 claim，但它目前更像一个被持续加固中的判断，而不是已经完全坐实的铁律。</strong></p>
+<p>更具体地说，VEU-Bench 和 FiVE-Bench 说明问题本身足够真实，已经值得专门 benchmark 化；Neuro-Symbolic Evaluation 则说明评测社区甚至开始怀疑传统打分方式能否可靠反映真实能力。这些都在共同强化同一个方向：模型对视频编辑任务的“理解”目前仍然是薄弱层。</p>
+<h2 id="当前更倾向的结论">当前更倾向的结论</h2>
+<ul>
+<li>这条 claim 现在明显比最初只靠单一 benchmark 时更扎实。</li>
+<li>但它的证据主要还是“问题被持续暴露”，而不是“结论已被所有评测体系反复验证”。</li>
+<li>因此最合理的状态仍是 <code>monitored</code>：倾向支持，但继续要求更多跨评测体系的确认。</li>
+</ul>
+<h2 id="研究含义">研究含义</h2>
+<ul>
+<li>对视频编辑研究来说，光提升视觉质量已经不够，必须把“是否真正理解编辑目标”纳入主目标。</li>
+<li>对评测研究来说，最值钱的方向不只是继续造分数器，而是建立质量、偏好、形式化满足性与编辑理解之间的稳定映射。</li>
+<li>对选题来说，这条 claim 的价值在于它暴露了一个很可能还远未饱和的空白层。</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/video-editing.html">topics/video-editing</a></li>
+<li><a class="wikilink" href="../topics/generative-model-evaluation.html">topics/generative-model-evaluation</a></li>
+<li><a class="wikilink" href="../entities/video-editing-understanding.html">entities/video-editing-understanding</a></li>
+<li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a></li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;claim-current-models-still-struggle-to-understand-video-editing&quot;,
+  &quot;type&quot;: &quot;claim&quot;,
+  &quot;title&quot;: &quot;当前模型仍然难以真正理解视频编辑&quot;,
+  &quot;status&quot;: &quot;monitored&quot;,
+  &quot;created&quot;: &quot;2026-04-12&quot;,
+  &quot;updated&quot;: &quot;2026-04-17&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;open-claim&quot;,
+    &quot;video-editing&quot;
+  ],
+  &quot;claim_status&quot;: &quot;monitored&quot;,
+  &quot;claim_type&quot;: &quot;evaluation&quot;,
+  &quot;evidence_for&quot;: [
+    &quot;sources/2026-04-12-veu-bench&quot;,
+    &quot;sources/2026-04-14-five-bench&quot;,
+    &quot;sources/2026-04-14-neuro-symbolic-eval-t2v&quot;
+  ],
+  &quot;evidence_against&quot;: [
+    &quot;sources/2026-04-14-aigv-assessor&quot;,
+    &quot;sources/2026-04-14-video-bench&quot;
+  ],
+  &quot;related_topics&quot;: [
+    &quot;topics/video-editing&quot;,
+    &quot;topics/generative-model-evaluation&quot;
+  ],
+  &quot;related_entities&quot;: [
+    &quot;entities/video-editing-understanding&quot;
+  ]
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

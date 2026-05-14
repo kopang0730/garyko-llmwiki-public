@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FiVE-Bench（ICCV 2025）：细粒度视频编辑评测基准 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-five-bench&quot;, &quot;title&quot;: &quot;FiVE-Bench（ICCV 2025）：细粒度视频编辑评测基准&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-17</p>
+        <h1>FiVE-Bench（ICCV 2025）：细粒度视频编辑评测基准</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-editing">#video-editing</a><a class="tag" href="../tags.html#evaluation">#evaluation</a><a class="tag" href="../tags.html#benchmarking">#benchmarking</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="five-bench-iccv-2025-细粒度视频编辑评测基准">FiVE-Bench（ICCV 2025）：细粒度视频编辑评测基准</h1>
+<blockquote>会议：ICCV 2025</blockquote>
+<blockquote>发表日期：2025-01-01</blockquote>
+<blockquote>资料加入日期：2026-04-14</blockquote>
+<blockquote>深分析稿：<a class="wikilink missing" href="#missing-raw/ingest/2026-04-14-five-bench/analysis">raw/ingest/2026-04-14-five-bench/analysis</a></blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>FiVE-Bench 把视频编辑 benchmark 进一步细粒度化，说明 video-editing 的评测已经从“好不好”推进到“到底哪一类编辑能力强、哪一类弱”的剖面化阶段。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这篇论文是“fine-grained video editing benchmark”路线里的代表作。它的主要贡献不在于生成模型，而在于把评测精度推进到更细的能力拆解层。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>作者针对的是现有视频编辑评测过粗的问题：</p>
+<ul>
+<li>很难区分不同编辑能力的真实差异</li>
+<li>很难分析新一代 diffusion / RF 模型在哪一类编辑任务上失效</li>
+<li>只给整体印象，不足以形成能力画像</li>
+</ul>
+<h2 id="方法概述">方法概述</h2>
+<p>FiVE-Bench 有三层关键设计：</p>
+<ol>
+<li><strong>benchmark 任务组织</strong></li>
+<p>   用 source video、source prompt、target prompt 定义视频编辑任务。</p>
+</ol>
+<ol>
+<li><strong>六类细粒度编辑任务</strong></li>
+<p>   包括对象替换、非刚体形变、颜色编辑、材质编辑、对象添加和对象移除等。</p>
+</ol>
+<ol>
+<li><strong>FiVE-Acc 评测指标</strong></li>
+<p>   通过 VLM 问答式评估判断编辑是否成功完成，以补足粗糙指标的不足。</p>
+</ol>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>视频编辑模型在不同细粒度任务上的能力差异很大。</li>
+<li>benchmark 更细后，模型优劣会呈现更明确的能力剖面，而不只是一个总印象。</li>
+<li>FiVE-Acc 使 benchmark 具备更强自动化评估能力。</li>
+<li>这篇论文把 video-editing 评测推进到了更接近“能力画像”而不是“总分排名”的阶段。</li>
+</ul>
+<h2 id="关键图示">关键图示</h2>
+<h3 id="five-bench-总览图">FiVE-Bench 总览图</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-14-five-bench/page-previews/page-1.png">900</a></p>
+<p>这一页展示 benchmark 的整体设计、数据组织、编辑任务示例以及 FiVE-Acc 的角色，是 source note 最适合的首图。</p>
+<h3 id="five-acc-评测流程">FiVE-Acc 评测流程</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-14-five-bench/page-previews/page-4.png">900</a></p>
+<p>这一页解释 benchmark 如何定义任务，以及 FiVE-Acc 如何通过 VLM 的结构化问答来判断视频编辑是否真正成功。</p>
+<h3 id="六类编辑任务案例对比">六类编辑任务案例对比</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-14-five-bench/page-previews/page-8.png">900</a></p>
+<p>这一页集中展示六类细粒度编辑任务及多模型 qualitative comparison，是说明 benchmark 覆盖能力维度与案例分析的关键结果页。</p>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<ul>
+<li>FiVE-Bench 让不同视频编辑模型在更细粒度任务上的差异变得清晰可见。</li>
+<li>案例页说明对象替换、材质编辑、对象添加/移除等任务难度差异明显。</li>
+<li>这篇 benchmark 使 video-editing 的评测不再只依赖宽泛 benchmark 或人工直觉。</li>
+<li>它非常适合与 Video-Bench、AIGV-Assessor 和 Neuro-Symbolic Evaluation 一起构成更完整的评测矩阵。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>benchmark 更细并不自动等于更贴近真实用户价值。</li>
+<li>它补的是测量精度，而不直接提升模型能力。</li>
+<li>仍需要和其他评测路线配套阅读，才能理解“好 benchmark”到底该测什么。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 wiki 判断的影响</h2>
+<ul>
+<li>它显著补强了 <code>topics/generative-model-evaluation</code> 中“video-editing 已经开始拥有自己的细粒度 benchmark”这条判断。</li>
+<li>对 <code>topics/video-editing</code> 来说，它让我们能更具体讨论模型到底是哪种编辑能力弱。</li>
+<li>对 <code>questions/question-do-benchmarks-track-real-video-editing-understanding</code> 来说，它提供了“评测粒度细化”这一条重要证据线。</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/video-editing.html">topics/video-editing</a></li>
+<li><a class="wikilink" href="../topics/generative-model-evaluation.html">topics/generative-model-evaluation</a></li>
+<li><a class="wikilink" href="../entities/video-editing-understanding.html">entities/video-editing-understanding</a></li>
+<li><a class="wikilink" href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">claims/claim-current-models-still-struggle-to-understand-video-editing</a></li>
+<li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a></li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://openaccess.thecvf.com/content/ICCV2025/html/Li_FiVE-Bench_A_Fine-grained_Video_Editing_Benchmark_for_Evaluating_Emerging_Diffusion_ICCV_2025_paper.html</li>
+<li>https://openaccess.thecvf.com/content/ICCV2025/papers/Li_FiVE-Bench_A_Fine-grained_Video_Editing_Benchmark_for_Evaluating_Emerging_Diffusion_ICCV_2025_paper.pdf</li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-14-five-bench&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;FiVE-Bench（ICCV 2025）：细粒度视频编辑评测基准&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-14&quot;,
+  &quot;updated&quot;: &quot;2026-04-17&quot;,
+  &quot;venue&quot;: &quot;ICCV 2025&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-editing&quot;,
+    &quot;evaluation&quot;,
+    &quot;benchmarking&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Minghan Li&quot;,
+    &quot;Chenxi Xie&quot;,
+    &quot;Yichen Wu&quot;,
+    &quot;Lei Zhang&quot;,
+    &quot;Mengyu Wang&quot;
+  ],
+  &quot;published_at&quot;: &quot;2025-01-01&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/ICCV2025/html/Li_FiVE-Bench_A_Fine-grained_Video_Editing_Benchmark_for_Evaluating_Emerging_Diffusion_ICCV_2025_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/ICCV2025/papers/Li_FiVE-Bench_A_Fine-grained_Video_Editing_Benchmark_for_Evaluating_Emerging_Diffusion_ICCV_2025_paper.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-five-bench/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-14-five-bench/analysis.md&quot;,
+  &quot;image_index&quot;: &quot;raw/ingest/2026-04-14-five-bench/images/index.md&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/video-editing&quot;,
+    &quot;topics/generative-model-evaluation&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/video-editing-understanding&quot;
+  ],
+  &quot;claims&quot;: [
+    &quot;claims/claim-current-models-still-struggle-to-understand-video-editing&quot;
+  ],
+  &quot;questions&quot;: [
+    &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
+  ]
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

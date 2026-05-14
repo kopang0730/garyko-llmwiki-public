@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SportMamba（arXiv 2025）：用状态空间模型处理团队运动中的非线性多目标跟踪 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-23-sportmamba&quot;, &quot;title&quot;: &quot;SportMamba（arXiv 2025）：用状态空间模型处理团队运动中的非线性多目标跟踪&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;tracking&quot;, &quot;primary-source&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-23</p>
+        <h1>SportMamba（arXiv 2025）：用状态空间模型处理团队运动中的非线性多目标跟踪</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#tracking">#tracking</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="sportmamba-arxiv-2025-用状态空间模型处理团队运动中的非线性多目标跟踪">SportMamba（arXiv 2025）：用状态空间模型处理团队运动中的非线性多目标跟踪</h1>
+<blockquote>会议：arXiv</blockquote>
+<blockquote>发表日期：2025/06/03</blockquote>
+<blockquote>资料加入日期：2026-04-23</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇论文把团队运动场景下的多目标跟踪问题重新表述为“非线性时序建模 + 遮挡下稳健关联”的联合设计问题，并用 Mamba-attention 运动预测器加上高度自适应关联度量拿到 SportsMOT 上的强结果。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>团队运动中的多目标跟踪同时面临高速运动、频繁遮挡、运动模糊和外观相似这几类难点。传统 Kalman-filter 系方法更适合近线性运动，单纯依赖外观 ReID 的方案又容易在球衣相似、球员交叉掩挡时发生 identity switch。这使这篇工作更像是在解决一个“复杂时序动力学 + 稳健匹配”问题，而不是单独优化 detector 或 re-identification 模块。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>SportMamba 采用一个四阶段的 tracking-by-detection 管线。第一步用 sports-specific detector 产生球员检测框。第二步用 Mamba 与 self-attention 结合的运动预测器，根据过往 tracklet 预测下一个时刻的位置。第三步把外观特征与作者提出的 height-adaptive IoU + extended buffers 组合成混合匹配代价，用于把预测框与新检测做稳健关联。第四步再做 tracklet management，包括 update / create / delete，并通过动态 EMA 维护轨迹状态。作者报告推理速度约为 30 FPS。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>在 SportsMOT 测试集上，SportMamba 达到 77.3 HOTA、77.7 IDF1、66.8 AssA、96.9 MOTA、89.5 DetA，是文中列出的 learning-based 方法里最强结果。</li>
+<li>与 DiffMOT 相比，它在 SportsMOT 上提升 1.06 HOTA、1.6 IDF1、1.7 AssA，说明非线性运动建模和遮挡下的空间关联设计确实带来增益。</li>
+<li>在 VIP-HTD 冰球数据集零样本迁移上，SportMamba 取得 65.1 HOTA、80.1 IDF1、64.6 AssA、76.2 MOTA、65.9 DetA，显示它对更极端运动场景有一定泛化能力。</li>
+<li>消融结果表明，height-adaptive extended IoU 比普通 IoU 和普通 EIoU 更有效；作者报告该设计相对 EIoU 还能再带来约 0.9 HOTA 和约 1.1 IDF1 的提升。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>虽然它在 SportsMOT 上拿到最佳 HOTA，但在 IDF1 和 AssA 上仍落后于 Deep-EIoU，说明身份关联质量还有继续打磨空间。</li>
+<li>方法仍建立在 detector + appearance features + association pipeline 上，严重 motion blur 或 missed detection 发生时，轨迹仍可能断裂。</li>
+<li>这篇论文把 state space temporal modeling 带进了 sports MOT，但当前 vault 里相关证据还少，后续还需要更多体育视频分析、tracking benchmark 与 state-space 视觉论文共同支撑这条支线。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2506.03335</li>
+<li>https://arxiv.org/pdf/2506.03335</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
+<li><a class="wikilink" href="../entities/sportsmot.html">entities/sportsmot</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>这篇论文的价值有两层。第一层是给当前库补入了一个更接近体育视频分析的强样本，让 <code>video-understanding</code> 不只围绕 benchmark、视频语言推理和编辑理解展开。第二层是它和 <a class="wikilink" href="../sources/2026-04-15-diffusion-models-without-attention.html">sources/2026-04-15-diffusion-models-without-attention</a> 一样，都提醒我们 state space 路线在视觉时序建模里仍有继续扩展的空间，只是这里的落点从生成 backbone 换成了 team sports MOT。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-23-sportmamba&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;SportMamba（arXiv 2025）：用状态空间模型处理团队运动中的非线性多目标跟踪&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-23&quot;,
+  &quot;updated&quot;: &quot;2026-04-23&quot;,
+  &quot;venue&quot;: &quot;arXiv&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-23&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;tracking&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Khanna, Dheeraj&quot;,
+    &quot;Bright, Jerrin&quot;,
+    &quot;Chen, Yuhao&quot;,
+    &quot;Zelek, John S.&quot;
+  ],
+  &quot;published_at&quot;: &quot;2025/06/03&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2506.03335&quot;,
+    &quot;https://arxiv.org/pdf/2506.03335&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-23-sportmamba/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/video-understanding&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/sportsmot&quot;
+  ],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

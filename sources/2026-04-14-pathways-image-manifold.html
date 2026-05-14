@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pathways on the Image Manifold（CVPR 2025）：通过视频生成做图像编辑 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-pathways-image-manifold&quot;, &quot;title&quot;: &quot;Pathways on the Image Manifold（CVPR 2025）：通过视频生成做图像编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;image-generation&quot;, &quot;primary-source&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-17</p>
+        <h1>Pathways on the Image Manifold（CVPR 2025）：通过视频生成做图像编辑</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-editing">#image-editing</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="pathways-on-the-image-manifold-cvpr-2025-通过视频生成做图像编辑">Pathways on the Image Manifold（CVPR 2025）：通过视频生成做图像编辑</h1>
+<blockquote>会议：CVPR 2025</blockquote>
+<blockquote>发表日期：2025-06-11</blockquote>
+<blockquote>资料加入日期：2026-04-14</blockquote>
+<blockquote>深分析稿：<a class="wikilink missing" href="#missing-raw/ingest/2026-04-14-pathways-image-manifold/analysis">raw/ingest/2026-04-14-pathways-image-manifold/analysis</a></blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>Pathways 把图像编辑重写成一条视频生成路径：它不再直接从 source image 跳到 edited image，而是先生成一段连续过渡视频，再从中选出最合适的一帧作为最终编辑结果，从而更好兼顾编辑准确性与原图保真。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这篇论文是“架构重写型图像编辑”路线里的强代表作。它最有价值的地方不是又做了一个新编辑器，而是把图像编辑任务彻底改写进视频生成框架里。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>作者认为传统图像编辑模型经常在两端失守：</p>
+<ul>
+<li>复杂指令跟随不够稳</li>
+<li>原图关键内容保真不足</li>
+</ul>
+<p>论文的核心判断是：如果把编辑看成连续过程而不是瞬时跳变，模型会更容易学习正确变化与正确保留之间的平衡。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>Pathways 有三层关键设计：</p>
+<ol>
+<li><strong>图像编辑的视频化重写</strong></li>
+<p>   把 source image 到 target edit 的变化看作一条连续视频轨迹。</p>
+</ol>
+<ol>
+<li><strong>temporal caption creation</strong></li>
+<p>   将静态编辑 prompt 展开成时间序列描述，让视频模型面对一条编辑路径而不是单点目标。</p>
+</ol>
+<ol>
+<li><strong>frame selection</strong></li>
+<p>   从生成出的过渡视频里选出最符合目标编辑要求的帧，作为最终编辑结果。</p>
+</ol>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>架构重写本身就可能显著提升编辑质量和保真度。</li>
+<li>视频生成模型已经可以反向成为图像编辑器。</li>
+<li>这篇论文把“生成与编辑边界继续变薄”讲得非常具体。</li>
+<li>它提供了强反证：编辑性能提升不一定都来自数据扩展。</li>
+</ul>
+<h2 id="关键图示">关键图示</h2>
+<h3 id="核心概念图">核心概念图</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-14-pathways-image-manifold/page-previews/page-1.png">900</a></p>
+<p>这一页用最直观的方式说明：图像编辑可以被看成在 image manifold 上的一条连续路径，而不是从原图直接跳到目标图。</p>
+<h3 id="方法总览图">方法总览图</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-14-pathways-image-manifold/page-previews/page-4.png">900</a></p>
+<p>这一页展示 temporal caption、video generation 与 frame selection 的完整 pipeline，是理解方法落地方式的关键页面。</p>
+<h3 id="主结果对比">主结果对比</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-14-pathways-image-manifold/page-previews/page-6.png">900</a></p>
+<p>这一页与 SDEdit、Pix2Pix Zero、Imagic、LEDITS++、FlowEdit 等方法做定性对比，最能体现它在保真与编辑准确性上的优势。</p>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<ul>
+<li>论文声称通过视频路径式编辑，在文本驱动图像编辑上实现了更好的编辑准确性与图像保真度。</li>
+<li>主结果页说明它不只是概念新颖，而是真正能和现有图像编辑基线拉开差距。</li>
+<li>用户研究和后续页面也进一步支持“路径式编辑”在人类偏好和额外视觉任务上的潜力。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>这条路线更像强架构思路证据，还不能单独回答数据因素到底贡献了多少。</li>
+<li>方法跨越图像编辑与视频生成两层系统，部署复杂度仍需更多证据。</li>
+<li>是否在所有图像编辑场景里都优于专用编辑框架，还需要继续观察。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 wiki 判断的影响</h2>
+<ul>
+<li>它显著补强了 <a class="wikilink" href="../questions/question-data-vs-architecture-in-image-editing.html">questions/question-data-vs-architecture-in-image-editing</a>：架构重写可以是强增益来源。</li>
+<li>它也补强了 <a class="wikilink" href="../questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a>：统一路线未必只意味着单体模型，也可能是跨任务框架融合。</li>
+<li>这篇论文让 <code>topics/image-editing</code> 与 <code>topics/video-generation</code> 之间的边界明显变薄。</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/image-editing.html">topics/image-editing</a></li>
+<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
+<li><a class="wikilink" href="../topics/video-generation.html">topics/video-generation</a></li>
+<li><a class="wikilink" href="../entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a></li>
+<li><a class="wikilink" href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">claims/claim-unified-models-may-outcompete-specialized-image-pipelines</a></li>
+<li><a class="wikilink" href="../questions/question-data-vs-architecture-in-image-editing.html">questions/question-data-vs-architecture-in-image-editing</a></li>
+<li><a class="wikilink" href="../questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a></li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://openaccess.thecvf.com/content/CVPR2025/html/Rotstein_Pathways_on_the_Image_Manifold_Image_Editing_via_Video_Generation_CVPR_2025_paper.html</li>
+<li>https://openaccess.thecvf.com/content/CVPR2025/papers/Rotstein_Pathways_on_the_Image_Manifold_Image_Editing_via_Video_Generation_CVPR_2025_paper.pdf</li>
+<li>http://arxiv.org/abs/2411.16819</li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-14-pathways-image-manifold&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;Pathways on the Image Manifold（CVPR 2025）：通过视频生成做图像编辑&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-14&quot;,
+  &quot;updated&quot;: &quot;2026-04-17&quot;,
+  &quot;venue&quot;: &quot;CVPR 2025&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-editing&quot;,
+    &quot;image-generation&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Noam Rotstein&quot;,
+    &quot;Gal Yona&quot;,
+    &quot;Daniel Silver&quot;,
+    &quot;Roy Velich&quot;,
+    &quot;David Bensaid&quot;,
+    &quot;Ron Kimmel&quot;
+  ],
+  &quot;published_at&quot;: &quot;2025-06-11&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/CVPR2025/html/Rotstein_Pathways_on_the_Image_Manifold_Image_Editing_via_Video_Generation_CVPR_2025_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2025/papers/Rotstein_Pathways_on_the_Image_Manifold_Image_Editing_via_Video_Generation_CVPR_2025_paper.pdf&quot;,
+    &quot;http://arxiv.org/abs/2411.16819&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-pathways-image-manifold/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-14-pathways-image-manifold/analysis.md&quot;,
+  &quot;image_index&quot;: &quot;raw/ingest/2026-04-14-pathways-image-manifold/images/index.md&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-editing&quot;,
+    &quot;topics/image-generation&quot;,
+    &quot;topics/video-generation&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/unified-image-generation-editing&quot;
+  ],
+  &quot;claims&quot;: [
+    &quot;claims/claim-unified-models-may-outcompete-specialized-image-pipelines&quot;
+  ],
+  &quot;questions&quot;: [
+    &quot;questions/question-data-vs-architecture-in-image-editing&quot;,
+    &quot;questions/question-will-unified-image-models-sustain-their-advantage&quot;
+  ]
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

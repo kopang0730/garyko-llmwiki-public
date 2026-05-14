@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Post-Training Quantization on Diffusion Models（CVPR 2023）：把扩散模型推理进一步压到低比特部署 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-post-training-quantization-on-diffusion-models&quot;, &quot;title&quot;: &quot;Post-Training Quantization on Diffusion Models（CVPR 2023）：把扩散模型推理进一步压到低比特部署&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-16</p>
+        <h1>Post-Training Quantization on Diffusion Models（CVPR 2023）：把扩散模型推理进一步压到低比特部署</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#efficiency">#efficiency</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="post-training-quantization-on-diffusion-models-cvpr-2023-把扩散模型推理进一步压到低比特部署">Post-Training Quantization on Diffusion Models（CVPR 2023）：把扩散模型推理进一步压到低比特部署</h1>
+<blockquote>会议：CVPR 2023</blockquote>
+<blockquote>发表日期：2022/11/28</blockquote>
+<blockquote>资料加入日期：2026-04-16</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作把 diffusion efficiency 主线推进到部署层：它用 training-free 的 PTQ 方法直接把扩散模型压到 8-bit，同时尽量保住生成质量，并且能叠加到已有的 fast-sampling 路线上。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>扩散模型的慢，来自两层成本同时累加：一层是去噪步数很多，另一层是每一步都要调用很重的噪声估计网络。已有很多工作集中在缩短采样轨迹，这篇论文则聚焦另一半问题——如何压缩每一步的网络计算成本，让 diffusion 更接近可部署系统。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>作者选择 post-training quantization 这条训练后压缩路线，避免重新训练 diffusion model。难点在于 diffusion 的噪声估计网络输出会随着 time-step 变化，传统面向单时间步场景的 PTQ 方法很难直接迁移。论文围绕 quantized operations、calibration dataset、calibration metric 三个维度做 diffusion-specific 设计，让校准过程能够覆盖 multi-time-step 结构，并把 full-precision 模型直接转成低比特版本。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>它把 <a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a> 中的 efficiency 叙事继续往部署端推进：现在这条线已经覆盖 scheduler、solver、guidance、cache、free lunch reweighting 和 low-bit quantization。</li>
+<li>论文报告可在 training-free 条件下把 diffusion model 量化到 8-bit，同时维持甚至提升部分生成表现，说明量化在 diffusion 上开始具备实用可行性。</li>
+<li>它和 <a class="wikilink" href="../sources/2026-04-16-on-distillation-of-guided-diffusion-models.html">sources/2026-04-16-on-distillation-of-guided-diffusion-models</a>、<a class="wikilink" href="../sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">sources/2026-04-15-distilling-ode-solvers-diffusion-models</a> 形成很好的互补：前两者压缩采样行为和轨迹，这篇压缩每一步的网络计算。</li>
+<li>论文明确指出该方法可 plug into DDIM 等 fast-sampling 方法，因此它更像 deployment multiplier，而不是单独存在的一条提速技巧。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>这篇工作主要证明 8-bit PTQ 的可行性，更低比特设置下的质量边界与稳定性仍值得继续跟踪。</li>
+<li>它聚焦图像生成侧的噪声估计网络压缩，视频 diffusion、统一生成编辑模型和更大规模多模态系统中的收益还需要后续证据。</li>
+<li>量化改善了单步成本，整体系统延迟仍会受到采样步数与内存访问模式影响，因此它更适合和其他 few-step 技术组合看。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2211.15736</li>
+<li>https://arxiv.org/pdf/2211.15736.pdf</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
+<li><a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../sources/2026-04-16-on-distillation-of-guided-diffusion-models.html">sources/2026-04-16-on-distillation-of-guided-diffusion-models</a></li>
+<li><a class="wikilink" href="../sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">sources/2026-04-15-distilling-ode-solvers-diffusion-models</a></li>
+<li><a class="wikilink" href="../sources/2026-04-15-deepcache.html">sources/2026-04-15-deepcache</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>它在本库中的价值，是把“扩散提速”从算法路径进一步补到模型部署路径。这样 diffusion efficiency 主线已经更像一张完整工程图谱，而不是几篇互相孤立的 sampler 论文。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-16-post-training-quantization-on-diffusion-models&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;Post-Training Quantization on Diffusion Models（CVPR 2023）：把扩散模型推理进一步压到低比特部署&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-04-16&quot;,
+  &quot;venue&quot;: &quot;CVPR 2023&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-generation&quot;,
+    &quot;diffusion&quot;,
+    &quot;efficiency&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Shang, Yuzhang&quot;,
+    &quot;Yuan, Zhihang&quot;,
+    &quot;Xie, Bin&quot;,
+    &quot;Wu, Bingzhe&quot;,
+    &quot;Yan, Yan&quot;
+  ],
+  &quot;published_at&quot;: &quot;2022/11/28&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2211.15736&quot;,
+    &quot;https://arxiv.org/pdf/2211.15736.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-16-post-training-quantization-on-diffusion-models/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-generation&quot;,
+    &quot;topics/diffusion-models&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

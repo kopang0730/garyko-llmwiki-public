@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>InsightEdit（CVPR 2025）：迈向更强指令跟随的图像编辑 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-12-insightedit&quot;, &quot;title&quot;: &quot;InsightEdit（CVPR 2025）：迈向更强指令跟随的图像编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;image-generation&quot;, &quot;primary-source&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-17</p>
+        <h1>InsightEdit（CVPR 2025）：迈向更强指令跟随的图像编辑</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-editing">#image-editing</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="insightedit-cvpr-2025-迈向更强指令跟随的图像编辑">InsightEdit（CVPR 2025）：迈向更强指令跟随的图像编辑</h1>
+<blockquote>会议：CVPR 2025</blockquote>
+<blockquote>发表日期：2025-06-11</blockquote>
+<blockquote>资料加入日期：2026-04-12</blockquote>
+<blockquote>深分析稿：<a class="wikilink missing" href="#missing-raw/ingest/2026-04-12-insightedit/analysis">raw/ingest/2026-04-12-insightedit/analysis</a></blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>InsightEdit 把复杂 instruction-based image editing 的升级路径讲得很清楚：要想同时提升复杂指令跟随和背景一致性，既要有更强的数据工厂，也要有把 MLLM 文本推理和视觉推理共同接入扩散编辑器的双流桥接结构。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这篇论文是“高质量编辑数据 + MLLM 双流桥接”路线里的代表作。它的重点不是只做局部模块增强，而是把训练数据与条件建模一起升级。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>作者认为现有 instruction editing 方法主要有两个短板：</p>
+<ul>
+<li>数据集分辨率低、背景一致性差、指令过于简单。</li>
+<li>模型主要依赖文本条件，图像侧信息利用不足，因此在复杂 instruction following 和背景保持上表现有限。</li>
+</ul>
+<h2 id="方法概述">方法概述</h2>
+<p>InsightEdit 有三层核心设计：</p>
+<ol>
+<li><strong>AdvancedEdit 数据集</strong></li>
+<p>   通过新数据构建 pipeline 形成高视觉质量、复杂指令、背景一致性更好的大规模编辑数据集。</p>
+</ol>
+<ol>
+<li><strong>Comprehension Module</strong></li>
+<p>   使用 MLLM 理解输入图像与编辑指令，先得到更强的高层语义推理结果。</p>
+</ol>
+<ol>
+<li><strong>Two-stream Bridging Mechanism</strong></li>
+<p>   将 textual features 与 visual features 一起桥接到扩散编辑过程，使模型更精确地知道“要改什么”和“该改哪里”。</p>
+</ol>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>数据质量仍然是图像编辑性能的关键上限因素。</li>
+<li>复杂 instruction following 需要显式利用图像侧丰富信息，而不只是文本编码。</li>
+<li>背景一致性被当作核心能力单独强化。</li>
+<li>InsightEdit 把 MLLM 从上游理解器变成了真正参与编辑条件构造的中间模块。</li>
+</ul>
+<h2 id="关键图示">关键图示</h2>
+<h3 id="advancededit-数据构建流程">AdvancedEdit 数据构建流程</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-12-insightedit/page-previews/page-4.png">900</a></p>
+<p>这一页展示 caption/object extraction、mask generation、editing pair construction 和质量评估，是理解数据工厂价值的关键图示。</p>
+<h3 id="insightedit-总体架构">InsightEdit 总体架构</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-12-insightedit/page-previews/page-5.png">900</a></p>
+<p>这一页最关键。它把方法拆成 Comprehension Module、Bridging Module 和 Generation Module，并展示 textual branch 与 image branch 如何同时桥接到扩散编辑器里。</p>
+<h3 id="复杂指令结果对比">复杂指令结果对比</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-12-insightedit/page-previews/page-7.png">900</a></p>
+<p>这一页同时包含 Reason-Edit 定量比较和大幅定性结果图，最能体现它在复杂 instruction following 与背景保持上的优势。</p>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<ul>
+<li>InsightEdit 在复杂 instruction following 和背景一致性上达到了很强表现。</li>
+<li>结果页同时覆盖 understanding scenarios 与 reasoning scenarios，说明它针对的是更难的编辑设置。</li>
+<li>数据构建和桥接设计都在消融与结果中得到支持。</li>
+<li>这篇论文把 image-editing 里的“数据升级”和“条件升级”紧密绑定在一起。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>新数据管线贡献很大，因此跨数据集泛化仍需继续观察。</li>
+<li>MLLM 重参与意味着成本和延迟会更高。</li>
+<li>与 FireEdit 这种区域感知强控制路线相比，它更偏推理与桥接增强，后续值得继续做正面对照。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 wiki 判断的影响</h2>
+<ul>
+<li>它补强了 <a class="wikilink" href="../topics/image-editing.html">topics/image-editing</a> 中“数据质量和复杂指令监督仍是瓶颈”这条判断。</li>
+<li>它也补强了“复杂编辑越来越依赖多模态推理接口”这条线。</li>
+<li>对 <a class="wikilink" href="../questions/question-data-vs-architecture-in-image-editing.html">questions/question-data-vs-architecture-in-image-editing</a> 来说，这是一条很有力的证据：高质量数据和新架构都在发挥作用。</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/image-editing.html">topics/image-editing</a></li>
+<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
+<li><a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../questions/question-data-vs-architecture-in-image-editing.html">questions/question-data-vs-architecture-in-image-editing</a></li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://openaccess.thecvf.com/content/CVPR2025/html/Xu_InsightEdit_Towards_Better_Instruction_Following_for_Image_Editing_CVPR_2025_paper.html</li>
+<li>https://openaccess.thecvf.com/content/CVPR2025/papers/Xu_InsightEdit_Towards_Better_Instruction_Following_for_Image_Editing_CVPR_2025_paper.pdf</li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-12-insightedit&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;InsightEdit（CVPR 2025）：迈向更强指令跟随的图像编辑&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-12&quot;,
+  &quot;updated&quot;: &quot;2026-04-17&quot;,
+  &quot;venue&quot;: &quot;CVPR 2025&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-12&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-editing&quot;,
+    &quot;image-generation&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Yingjing Xu&quot;,
+    &quot;Jie Kong&quot;,
+    &quot;Jiazhi Wang&quot;,
+    &quot;Xiao Pan&quot;,
+    &quot;Bo Lin&quot;,
+    &quot;Qiang Liu&quot;
+  ],
+  &quot;published_at&quot;: &quot;2025-06-11&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/CVPR2025/html/Xu_InsightEdit_Towards_Better_Instruction_Following_for_Image_Editing_CVPR_2025_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2025/papers/Xu_InsightEdit_Towards_Better_Instruction_Following_for_Image_Editing_CVPR_2025_paper.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-12-insightedit/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-12-insightedit/analysis.md&quot;,
+  &quot;image_index&quot;: &quot;raw/ingest/2026-04-12-insightedit/images/index.md&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-editing&quot;,
+    &quot;topics/image-generation&quot;,
+    &quot;topics/diffusion-models&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: [
+    &quot;questions/question-data-vs-architecture-in-image-editing&quot;
+  ]
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

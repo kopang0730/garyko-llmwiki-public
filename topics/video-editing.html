@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>视频编辑 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;topics/video-editing&quot;, &quot;title&quot;: &quot;视频编辑&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;diffusion&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a class="active" href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">topic · 2026-04-14</p>
+        <h1>视频编辑</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-editing">#video-editing</a><a class="tag" href="../tags.html#diffusion">#diffusion</a></div>
+      </header>
+      <section class="article-content"><h1 id="视频编辑">视频编辑</h1>
+<h2 id="概述">概述</h2>
+<p>这一页聚焦视频编辑。当前批次里最重要的几条线索是：更精准的视频原生控制、利用视频扩散先验的免训练编辑、通过奖励调优改善编辑质量，以及把“视频编辑理解”本身纳入评测问题。整体来看，视频编辑不只是生成更像的视频，而是要同时兼顾指令遵循、时序一致性和未编辑区域的稳定保留。</p>
+<h2 id="当前综合判断">当前综合判断</h2>
+<p><a class="wikilink" href="../sources/2026-04-14-shape-aware-layered-video-editing.html">sources/2026-04-14-shape-aware-layered-video-editing</a>、<a class="wikilink" href="../sources/2026-04-14-vive3d.html">sources/2026-04-14-vive3d</a>、<a class="wikilink" href="../sources/2026-04-14-fairy-video-to-video.html">sources/2026-04-14-fairy-video-to-video</a> 和 <a class="wikilink" href="../sources/2026-04-14-flowvid.html">sources/2026-04-14-flowvid</a> 进一步把 layered control、3D-aware viewpoint consistency、高效 video-to-video 合成与 flow-guided consistency 这几条分支补厚了。</p>
+<p><a class="wikilink" href="../sources/2026-04-14-avid-video-inpainting.html">sources/2026-04-14-avid-video-inpainting</a>、<a class="wikilink" href="../sources/2026-04-14-dynvideo-e.html">sources/2026-04-14-dynvideo-e</a> 和 <a class="wikilink" href="../sources/2026-04-14-language-driven-video-inpainting.html">sources/2026-04-14-language-driven-video-inpainting</a> 进一步说明，video-editing 还沿着长视频修补、3D/动态表示和语言驱动修补三条分支继续扩张。</p>
+<p><a class="wikilink" href="../sources/2026-04-14-stablevideo.html">sources/2026-04-14-stablevideo</a>、<a class="wikilink" href="../sources/2026-04-14-pix2video.html">sources/2026-04-14-pix2video</a> 和 <a class="wikilink" href="../sources/2026-04-14-video-worth-256-bases.html">sources/2026-04-14-video-worth-256-bases</a> 进一步把 video-editing 的一致性感知、图像扩散迁移和时空 inversion 三条早中期路线补厚了。</p>
+<p>再补入 <a class="wikilink" href="../sources/2026-04-14-camel-video-editing.html">sources/2026-04-14-camel-video-editing</a>、<a class="wikilink" href="../sources/2026-04-14-vidtome.html">sources/2026-04-14-vidtome</a>、<a class="wikilink" href="../sources/2026-04-14-motionfollower.html">sources/2026-04-14-motionfollower</a> 和 <a class="wikilink" href="../sources/2026-04-14-reangle-a-video.html">sources/2026-04-14-reangle-a-video</a> 后，可以看到 video-editing 近三年还在沿着 motion enhancement、token-merging efficiency、score-guided motion editing 和生成/翻译接口重写四条线持续加厚。</p>
+<p><a class="wikilink" href="../sources/2026-04-14-qk-edit.html">sources/2026-04-14-qk-edit</a>、<a class="wikilink" href="../sources/2026-04-14-insvie-1m.html">sources/2026-04-14-insvie-1m</a> 和 <a class="wikilink" href="../sources/2026-04-14-veggie.html">sources/2026-04-14-veggie</a> 进一步说明，video-editing 现在已经同时沿着新主干可编辑性、数据构造和 reasoning-grounded editing 三条线推进。</p>
+<p><a class="wikilink" href="../sources/2026-04-14-framepainter.html">sources/2026-04-14-framepainter</a> 与 <a class="wikilink" href="../sources/2026-04-14-dive-subject-driven-video-editing.html">sources/2026-04-14-dive-subject-driven-video-editing</a> 进一步说明，video-editing 近三年还在沿着“图像/视频双向借模”和“主体驱动编辑”两条路线加深。</p>
+<p>再补入 <a class="wikilink" href="../sources/2026-04-14-ccedit.html">sources/2026-04-14-ccedit</a> 和 <a class="wikilink" href="../sources/2026-04-14-maskint.html">sources/2026-04-14-maskint</a> 后，这条线还多出了“创意且可控的视频编辑”与“masked transformer 对照路线”两种重要分化。</p>
+<p>再加上 <a class="wikilink" href="../sources/2026-04-14-motioneditor.html">sources/2026-04-14-motioneditor</a> 和 <a class="wikilink" href="../sources/2026-04-14-rave-video-editing.html">sources/2026-04-14-rave-video-editing</a>，可以看到 2024 左右 video-editing 已明显分出“运动编辑专门化”和“高效一致编辑”两条工程化路线。</p>
+<p>跨年份补强之后，这条线的前史与细粒度评测层都更完整了。新补入的 <a class="wikilink" href="../sources/2026-04-14-video-p2p.html">sources/2026-04-14-video-p2p</a> 则把 Prompt-to-Prompt 式 cross-attention control 正式接进视频编辑历史链，说明早期 video-editing 的一条核心路线就是把图像编辑控制机制迁移到时序域。早期的 <a class="wikilink" href="../sources/2026-04-14-fatezero.html">sources/2026-04-14-fatezero</a> 说明 attention 控制和零样本注入很早就是视频编辑的重要方法起点；而新补入的 <a class="wikilink" href="../sources/2026-04-14-five-bench.html">sources/2026-04-14-five-bench</a> 则说明到 2025 阶段，video-editing 已经开始拥有更细粒度的专用 benchmark。现有 source 已经显示出四条主要路线。<a class="wikilink" href="../sources/2026-04-12-videodirector.html">sources/2026-04-12-videodirector</a> 代表视频原生反演与控制路线，强调编辑精度；<a class="wikilink" href="../sources/2026-04-12-fade.html">sources/2026-04-12-fade</a> 说明训练免费编辑在视频里依然有竞争力；<a class="wikilink" href="../sources/2026-04-12-align-a-video.html">sources/2026-04-12-align-a-video</a> 把 reward tuning 引入视频编辑，强调主观偏好对齐与一致性保护；<a class="wikilink" href="../sources/2026-04-12-veu-bench.html">sources/2026-04-12-veu-bench</a> 则把注意力拉回编辑理解评测；新补入的 <a class="wikilink" href="../sources/2026-04-14-aigv-assessor.html">sources/2026-04-14-aigv-assessor</a> 则进一步说明，即使只看感知质量，AIGV 也需要比传统 VQA 更贴近人类判断的评测器。</p>
+<h2 id="方法家族">方法家族</h2>
+<ul>
+<li>视频原生反演与控制：<a class="wikilink" href="../sources/2026-04-12-videodirector.html">sources/2026-04-12-videodirector</a></li>
+<li>训练免费视频编辑：<a class="wikilink" href="../sources/2026-04-12-fade.html">sources/2026-04-12-fade</a></li>
+<li>基于 reward tuning 的编辑：<a class="wikilink" href="../sources/2026-04-12-align-a-video.html">sources/2026-04-12-align-a-video</a></li>
+<li>早期零样本 attention 编辑路线：<a class="wikilink" href="../sources/2026-04-14-fatezero.html">sources/2026-04-14-fatezero</a></li>
+<li>cross-attention control 迁移路线：<a class="wikilink" href="../sources/2026-04-14-video-p2p.html">sources/2026-04-14-video-p2p</a></li>
+<li>高效一致视频编辑路线：<a class="wikilink" href="../sources/2026-04-14-rave-video-editing.html">sources/2026-04-14-rave-video-editing</a></li>
+<li>运动编辑专门化路线：<a class="wikilink" href="../sources/2026-04-14-motioneditor.html">sources/2026-04-14-motioneditor</a></li>
+<li>masked transformer 对照路线：<a class="wikilink" href="../sources/2026-04-14-maskint.html">sources/2026-04-14-maskint</a></li>
+<li>主体驱动视频编辑路线：<a class="wikilink" href="../sources/2026-04-14-dive-subject-driven-video-editing.html">sources/2026-04-14-dive-subject-driven-video-editing</a></li>
+<li>图像/视频双向借模路线：<a class="wikilink" href="../sources/2026-04-14-framepainter.html">sources/2026-04-14-framepainter</a></li>
+<li>creative-control 平衡路线：<a class="wikilink" href="../sources/2026-04-14-ccedit.html">sources/2026-04-14-ccedit</a></li>
+<li>reasoning-grounded 视频编辑：<a class="wikilink" href="../sources/2026-04-14-veggie.html">sources/2026-04-14-veggie</a></li>
+<li>4D video-to-video 翻译路线：<a class="wikilink" href="../sources/2026-04-14-reangle-a-video.html">sources/2026-04-14-reangle-a-video</a></li>
+<li>语言驱动视频修补：<a class="wikilink" href="../sources/2026-04-14-language-driven-video-inpainting.html">sources/2026-04-14-language-driven-video-inpainting</a></li>
+<li>flow-guided consistency 路线：<a class="wikilink" href="../sources/2026-04-14-flowvid.html">sources/2026-04-14-flowvid</a></li>
+<li>高效 video-to-video 合成：<a class="wikilink" href="../sources/2026-04-14-fairy-video-to-video.html">sources/2026-04-14-fairy-video-to-video</a></li>
+<li>3D-aware 视角无关视频编辑：<a class="wikilink" href="../sources/2026-04-14-vive3d.html">sources/2026-04-14-vive3d</a></li>
+<li>layered/compositional 视频编辑：<a class="wikilink" href="../sources/2026-04-14-shape-aware-layered-video-editing.html">sources/2026-04-14-shape-aware-layered-video-editing</a></li>
+<li>dynamic NeRF 人体视频编辑：<a class="wikilink" href="../sources/2026-04-14-dynvideo-e.html">sources/2026-04-14-dynvideo-e</a></li>
+<li>任意长度视频修补：<a class="wikilink" href="../sources/2026-04-14-avid-video-inpainting.html">sources/2026-04-14-avid-video-inpainting</a></li>
+<li>时空 EM inversion 路线：<a class="wikilink" href="../sources/2026-04-14-video-worth-256-bases.html">sources/2026-04-14-video-worth-256-bases</a></li>
+<li>图像扩散迁移到视频编辑：<a class="wikilink" href="../sources/2026-04-14-pix2video.html">sources/2026-04-14-pix2video</a></li>
+<li>consistency-aware 视频编辑：<a class="wikilink" href="../sources/2026-04-14-stablevideo.html">sources/2026-04-14-stablevideo</a></li>
+<li>score-guided motion editing：<a class="wikilink" href="../sources/2026-04-14-motionfollower.html">sources/2026-04-14-motionfollower</a></li>
+<li>token-merging 效率路线：<a class="wikilink" href="../sources/2026-04-14-vidtome.html">sources/2026-04-14-vidtome</a></li>
+<li>因果运动增强路线：<a class="wikilink" href="../sources/2026-04-14-camel-video-editing.html">sources/2026-04-14-camel-video-editing</a></li>
+<li>instruction-based 视频编辑数据构造：<a class="wikilink" href="../sources/2026-04-14-insvie-1m.html">sources/2026-04-14-insvie-1m</a></li>
+<li>MM-DiT 时代的编辑注入路线：<a class="wikilink" href="../sources/2026-04-14-qk-edit.html">sources/2026-04-14-qk-edit</a></li>
+<li>面向编辑理解的评测路线：<a class="wikilink" href="../sources/2026-04-12-veu-bench.html">sources/2026-04-12-veu-bench</a></li>
+<li>面向细粒度视频编辑能力剖面的 benchmark：<a class="wikilink" href="../sources/2026-04-14-five-bench.html">sources/2026-04-14-five-bench</a></li>
+<li>面向人类对齐评测的路线：<a class="wikilink" href="../sources/2026-04-14-video-bench.html">sources/2026-04-14-video-bench</a></li>
+<li>面向草图控制的专门编辑/生成系统：<a class="wikilink" href="../sources/2026-04-14-sketchvideo.html">sources/2026-04-14-sketchvideo</a></li>
+</ul>
+<h2 id="相关实体">相关实体</h2>
+<ul>
+<li><a class="wikilink" href="../entities/video-editing-understanding.html">entities/video-editing-understanding</a> 代表“视频编辑理解”这一评测与推理层，对判断编辑模型是否真正完成任务非常关键。</li>
+</ul>
+<h2 id="证据基础">证据基础</h2>
+<ul>
+<li><a class="wikilink" href="../sources/2026-04-12-videodirector.html">sources/2026-04-12-videodirector</a></li>
+<li><a class="wikilink" href="../sources/2026-04-12-fade.html">sources/2026-04-12-fade</a></li>
+<li><a class="wikilink" href="../sources/2026-04-12-align-a-video.html">sources/2026-04-12-align-a-video</a></li>
+<li><a class="wikilink" href="../sources/2026-04-12-veu-bench.html">sources/2026-04-12-veu-bench</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-aigv-assessor.html">sources/2026-04-14-aigv-assessor</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-sketchvideo.html">sources/2026-04-14-sketchvideo</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-video-bench.html">sources/2026-04-14-video-bench</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-fatezero.html">sources/2026-04-14-fatezero</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-five-bench.html">sources/2026-04-14-five-bench</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-video-p2p.html">sources/2026-04-14-video-p2p</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-rave-video-editing.html">sources/2026-04-14-rave-video-editing</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-motioneditor.html">sources/2026-04-14-motioneditor</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-maskint.html">sources/2026-04-14-maskint</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-dive-subject-driven-video-editing.html">sources/2026-04-14-dive-subject-driven-video-editing</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-framepainter.html">sources/2026-04-14-framepainter</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-ccedit.html">sources/2026-04-14-ccedit</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-veggie.html">sources/2026-04-14-veggie</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-reangle-a-video.html">sources/2026-04-14-reangle-a-video</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-video-worth-256-bases.html">sources/2026-04-14-video-worth-256-bases</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-language-driven-video-inpainting.html">sources/2026-04-14-language-driven-video-inpainting</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-flowvid.html">sources/2026-04-14-flowvid</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-fairy-video-to-video.html">sources/2026-04-14-fairy-video-to-video</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-vive3d.html">sources/2026-04-14-vive3d</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-shape-aware-layered-video-editing.html">sources/2026-04-14-shape-aware-layered-video-editing</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-dynvideo-e.html">sources/2026-04-14-dynvideo-e</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-avid-video-inpainting.html">sources/2026-04-14-avid-video-inpainting</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-pix2video.html">sources/2026-04-14-pix2video</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-stablevideo.html">sources/2026-04-14-stablevideo</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-motionfollower.html">sources/2026-04-14-motionfollower</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-vidtome.html">sources/2026-04-14-vidtome</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-camel-video-editing.html">sources/2026-04-14-camel-video-editing</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-insvie-1m.html">sources/2026-04-14-insvie-1m</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-qk-edit.html">sources/2026-04-14-qk-edit</a></li>
+</ul>
+<h2 id="后续值得追踪的问题">后续值得追踪的问题</h2>
+<ul>
+<li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a> — 现有评测是否真的刻画了视频编辑理解能力。</li>
+<li>视频原生 T2V 编辑器是否会明显优于图像编辑延伸路线？</li>
+<li>reward tuning 在什么条件下会比强训练免费方法更有效？</li>
+<li>当前 benchmark 与真实用户满意度之间的关系到底有多强？</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/video-generation.html">topics/video-generation</a></li>
+<li><a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../topics/generative-model-evaluation.html">topics/generative-model-evaluation</a></li>
+<li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;topic-video-editing&quot;,
+  &quot;type&quot;: &quot;topic&quot;,
+  &quot;title&quot;: &quot;视频编辑&quot;,
+  &quot;status&quot;: &quot;active&quot;,
+  &quot;created&quot;: &quot;2026-04-12&quot;,
+  &quot;updated&quot;: &quot;2026-04-14&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-editing&quot;,
+    &quot;diffusion&quot;
+  ],
+  &quot;summary&quot;: &quot;追踪以文本驱动和扩散模型为核心的视频编辑方法，重点关注保真度、时序一致性与编辑精度。&quot;,
+  &quot;source_notes&quot;: [
+    &quot;sources/2026-04-12-videodirector&quot;,
+    &quot;sources/2026-04-12-fade&quot;,
+    &quot;sources/2026-04-12-align-a-video&quot;,
+    &quot;sources/2026-04-12-veu-bench&quot;,
+    &quot;sources/2026-04-14-aigv-assessor&quot;,
+    &quot;sources/2026-04-14-sketchvideo&quot;,
+    &quot;sources/2026-04-14-video-bench&quot;,
+    &quot;sources/2026-04-14-fatezero&quot;,
+    &quot;sources/2026-04-14-five-bench&quot;,
+    &quot;sources/2026-04-14-video-p2p&quot;,
+    &quot;sources/2026-04-14-rave-video-editing&quot;,
+    &quot;sources/2026-04-14-motioneditor&quot;,
+    &quot;sources/2026-04-14-maskint&quot;,
+    &quot;sources/2026-04-14-ccedit&quot;,
+    &quot;sources/2026-04-14-framepainter&quot;,
+    &quot;sources/2026-04-14-dive-subject-driven-video-editing&quot;,
+    &quot;sources/2026-04-14-qk-edit&quot;,
+    &quot;sources/2026-04-14-insvie-1m&quot;,
+    &quot;sources/2026-04-14-veggie&quot;,
+    &quot;sources/2026-04-14-camel-video-editing&quot;,
+    &quot;sources/2026-04-14-vidtome&quot;,
+    &quot;sources/2026-04-14-motionfollower&quot;,
+    &quot;sources/2026-04-14-reangle-a-video&quot;,
+    &quot;sources/2026-04-14-stablevideo&quot;,
+    &quot;sources/2026-04-14-pix2video&quot;,
+    &quot;sources/2026-04-14-video-worth-256-bases&quot;,
+    &quot;sources/2026-04-14-avid-video-inpainting&quot;,
+    &quot;sources/2026-04-14-dynvideo-e&quot;,
+    &quot;sources/2026-04-14-language-driven-video-inpainting&quot;,
+    &quot;sources/2026-04-14-shape-aware-layered-video-editing&quot;,
+    &quot;sources/2026-04-14-vive3d&quot;,
+    &quot;sources/2026-04-14-fairy-video-to-video&quot;,
+    &quot;sources/2026-04-14-flowvid&quot;
+  ],
+  &quot;related_topics&quot;: [
+    &quot;topics/video-generation&quot;,
+    &quot;topics/diffusion-models&quot;,
+    &quot;topics/generative-model-evaluation&quot;,
+    &quot;topics/video-understanding&quot;
+  ],
+  &quot;related_entities&quot;: [
+    &quot;entities/video-editing-understanding&quot;
+  ],
+  &quot;open_questions&quot;: [
+    &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
+  ]
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>图像编辑 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;topics/image-editing&quot;, &quot;title&quot;: &quot;图像编辑&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;diffusion&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a class="active" href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">topic · 2026-04-17</p>
+        <h1>图像编辑</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-editing">#image-editing</a><a class="tag" href="../tags.html#diffusion">#diffusion</a></div>
+      </header>
+      <section class="article-content"><h1 id="图像编辑">图像编辑</h1>
+<h2 id="概述">概述</h2>
+<p>这一页聚焦图像编辑方向。当前可以看到的主线包括：更高质量的数据集仍然是性能提升的重要来源；更细粒度的编辑正在越来越依赖视觉-语言 grounding；模型除了“改得对”之外，也越来越强调“保持原图身份与背景一致”；另外，一步式扩散编辑正在把速度推成一个新的竞争维度。</p>
+<h2 id="当前综合判断">当前综合判断</h2>
+<p><a class="wikilink" href="../sources/2026-04-12-anyedit.html">sources/2026-04-12-anyedit</a>、<a class="wikilink" href="../sources/2026-04-12-fireedit.html">sources/2026-04-12-fireedit</a>、<a class="wikilink" href="../sources/2026-04-12-omnigen.html">sources/2026-04-12-omnigen</a>、<a class="wikilink" href="../sources/2026-04-12-dreamomni.html">sources/2026-04-12-dreamomni</a>、<a class="wikilink" href="../sources/2026-04-12-insightedit.html">sources/2026-04-12-insightedit</a>、<a class="wikilink" href="../sources/2026-04-12-swiftedit.html">sources/2026-04-12-swiftedit</a>、<a class="wikilink" href="../sources/2026-04-12-unireal.html">sources/2026-04-12-unireal</a> 与 <a class="wikilink" href="../sources/2026-04-14-pathways-image-manifold.html">sources/2026-04-14-pathways-image-manifold</a> 这三轮按“深分析 + 提图 + 再编译”重做后，也把 image-editing 主线的内部分工看得更清楚了：AnyEdit 更像数据与任务组织驱动的统一编辑系统；FireEdit 代表区域感知 grounding 与 diffusion-stage control 的强架构路线；OmniGen 把编辑收进统一图像接口；DreamOmni 把编辑进一步纳入 synthetic data pipeline 与联合训练协同；InsightEdit 把高质量数据与 MLLM 双流桥接合在一起；SwiftEdit 把近实时一步编辑拉到主线前台；UniReal 与 Pathways 则把编辑重写到真实世界动态和视频生成框架中。这让当前 image-editing 更像多股力量同时竞争的主线：数据工厂、局部 grounding、统一接口、联合训练、推理桥接、低时延编辑、世界动态建模、视频化架构重写。</p>
+<p><a class="wikilink" href="../sources/2026-04-16-blended-diffusion.html">sources/2026-04-16-blended-diffusion</a> 把这条线往前补到了 diffusion natural-image editing 的更早起点，说明后来的 instruction editing、benchmark-aware editing 和统一式 editing 系统，并不是凭空冒出来的，而是接在更早的真实图像扩散编辑实践上。</p>
+<p><a class="wikilink" href="../sources/2026-04-16-diffusionclip.html">sources/2026-04-16-diffusionclip</a>、<a class="wikilink" href="../sources/2026-04-16-plug-and-play-diffusion-features.html">sources/2026-04-16-plug-and-play-diffusion-features</a>、<a class="wikilink" href="../sources/2026-04-16-edict-exact-diffusion-inversion.html">sources/2026-04-16-edict-exact-diffusion-inversion</a>、<a class="wikilink" href="../sources/2026-04-16-bbdm-brownian-bridge-diffusion.html">sources/2026-04-16-bbdm-brownian-bridge-diffusion</a>、<a class="wikilink" href="../sources/2026-04-16-prompt-to-prompt.html">sources/2026-04-16-prompt-to-prompt</a> 与 <a class="wikilink" href="../sources/2026-04-16-self-correcting-llm-controlled-diffusion-models.html">sources/2026-04-16-self-correcting-llm-controlled-diffusion-models</a> 进一步把这条前史补厚成几条并行支线：文本引导操控、feature-level plug-and-play、精确 inversion、bridge-style image-to-image translation、基于 cross-attention 的 prompt-only 编辑控制，以及 LLM controller 驱动的闭环自纠错编辑。</p>
+<p><a class="wikilink" href="../sources/2026-04-14-contrastive-denoising-score.html">sources/2026-04-14-contrastive-denoising-score</a> 也进一步补厚了 image-editing 里的机制层优化路线。</p>
+<p><a class="wikilink" href="../sources/2026-04-14-customization-assistant.html">sources/2026-04-14-customization-assistant</a> 也说明 image-editing 已开始延伸到更面向用户工作流的定制辅助系统。</p>
+<p><a class="wikilink" href="../sources/2026-04-14-concept-weaver.html">sources/2026-04-14-concept-weaver</a> 也让 image-editing 对复杂多概念组合场景的覆盖更完整。</p>
+<p><a class="wikilink" href="../sources/2026-04-14-multi-concept-customization.html">sources/2026-04-14-multi-concept-customization</a> 和 <a class="wikilink" href="../sources/2026-04-14-image-specific-prompt-learning.html">sources/2026-04-14-image-specific-prompt-learning</a> 也让 image-editing 对个性化组合与提示层适配的覆盖更完整。</p>
+<p><a class="wikilink" href="../sources/2026-04-14-imagic.html">sources/2026-04-14-imagic</a> 把扩散时代真实图像文本编辑的更早起点补了回来，让后续 inversion 路线有了更清楚的前史。</p>
+<p><a class="wikilink" href="../sources/2026-04-14-pix2video.html">sources/2026-04-14-pix2video</a> 也进一步说明，图像编辑能力迁移到视频侧本身就是近三年非常重要的外溢路线。</p>
+<p>再补入 <a class="wikilink" href="../sources/2026-04-14-qk-edit.html">sources/2026-04-14-qk-edit</a>、<a class="wikilink" href="../sources/2026-04-14-insvie-1m.html">sources/2026-04-14-insvie-1m</a>、<a class="wikilink" href="../sources/2026-04-14-framepainter.html">sources/2026-04-14-framepainter</a> 和 <a class="wikilink" href="../sources/2026-04-14-dive-subject-driven-video-editing.html">sources/2026-04-14-dive-subject-driven-video-editing</a> 后，可以看到图像编辑近三年还在沿着 MM-DiT attention 注入、视频编辑数据构造、视频先验反向借模和主体驱动跨模态扩张继续演化。</p>
+<p>再补入 <a class="wikilink" href="../sources/2026-04-14-effective-real-image-editing.html">sources/2026-04-14-effective-real-image-editing</a>、<a class="wikilink" href="../sources/2026-04-14-prompt-tuning-inversion.html">sources/2026-04-14-prompt-tuning-inversion</a>、<a class="wikilink" href="../sources/2026-04-14-framepainter.html">sources/2026-04-14-framepainter</a> 和 <a class="wikilink" href="../sources/2026-04-14-dive-subject-driven-video-editing.html">sources/2026-04-14-dive-subject-driven-video-editing</a> 后，可以看到图像编辑近三年还沿着 inversion 加速、prompt-level inversion、视频先验反向借模与主体驱动跨到视频侧这几条线继续扩张。</p>
+<p>再补上 <a class="wikilink" href="../sources/2026-04-14-paint-by-example.html">sources/2026-04-14-paint-by-example</a> 和 <a class="wikilink" href="../sources/2026-04-14-null-text-inversion.html">sources/2026-04-14-null-text-inversion</a>，可以看到这条线在近三年里还同时扩出了 exemplar-based control 与真实图像 inversion 机制两条重要分支。</p>
+<p><a class="wikilink" href="../sources/2026-04-14-anydoor.html">sources/2026-04-14-anydoor</a> 进一步说明，近三年图像编辑/生成融合的另一个方向是对象级局部定制，而不只是全局 instruction editing。</p>
+<p>跨年份证据把这条线补得更完整了。早期的 <a class="wikilink" href="../sources/2026-04-14-instructpix2pix.html">sources/2026-04-14-instructpix2pix</a> 把 instruction-based image editing 正式建立成一个清晰任务，并强烈依赖合成数据构造；到 <a class="wikilink" href="../sources/2026-04-14-diffeditor.html">sources/2026-04-14-diffeditor</a>，性能提升又明显转向更细的编辑机制、采样策略与局部约束。结合现有 2025 证据看，image-editing 的演化并不是单纯换模型，而是从“先把任务定义出来”逐步走向“把编辑做得更准、更稳、更灵活”。第一，数据质量仍然是瓶颈：<a class="wikilink" href="../sources/2026-04-12-anyedit.html">sources/2026-04-12-anyedit</a> 和 <a class="wikilink" href="../sources/2026-04-12-insightedit.html">sources/2026-04-12-insightedit</a> 都把更高质量、更复杂的编辑数据视为性能关键。第二，更强的指令跟随越来越依赖多模态 grounding，例如 <a class="wikilink" href="../sources/2026-04-12-fireedit.html">sources/2026-04-12-fireedit</a> 和 <a class="wikilink" href="../sources/2026-04-12-insightedit.html">sources/2026-04-12-insightedit</a> 中的区域感知或双流设计。第三，编辑范式本身也在被重写，<a class="wikilink" href="../sources/2026-04-14-pathways-image-manifold.html">sources/2026-04-14-pathways-image-manifold</a> 直接把图像编辑转成视频生成式的连续过程。第四，可控性不再只是语义正确，还包括保留原图身份和背景一致性。第五，编辑速度正在成为明确竞争方向，<a class="wikilink" href="../sources/2026-04-12-swiftedit.html">sources/2026-04-12-swiftedit</a> 就把一步式扩散推向接近实时场景。</p>
+<h2 id="跨年份阶段性演化小结">跨年份阶段性演化小结</h2>
+<p>如果把当前已编译证据按时间排开，这条主线大致可以分成三个阶段。第一阶段是 <strong>任务建立期</strong>：<a class="wikilink" href="../sources/2026-04-14-instructpix2pix.html">sources/2026-04-14-instructpix2pix</a> 让“图像 + 指令 → 编辑结果”成为一个可规模化训练的问题，奠定了 instruction-based image editing 的基本接口。第二阶段是 <strong>能力校准期</strong>：像 <a class="wikilink" href="../sources/2026-04-14-diffeditor.html">sources/2026-04-14-diffeditor</a> 这样的工作开始聚焦编辑精度、局部控制、灵活采样和复杂操作组合，说明研究重心已经从“能不能做编辑”转向“怎样把编辑做准”。第三阶段则是 <strong>系统整合期</strong>：到 <a class="wikilink" href="../sources/2026-04-12-anyedit.html">sources/2026-04-12-anyedit</a>、<a class="wikilink" href="../sources/2026-04-12-insightedit.html">sources/2026-04-12-insightedit</a>、<a class="wikilink" href="../sources/2026-04-14-pathways-image-manifold.html">sources/2026-04-14-pathways-image-manifold</a> 这一层，路线开始分化成数据驱动统一系统、多模态 grounding、以及把编辑问题重写到视频生成路径上的更强结构方案。</p>
+<p>这条演化链说明，image-editing 并不是简单沿着单一模型家族线性升级，而是在三个维度上同时推进：任务接口越来越统一，局部编辑机制越来越精细，跨任务借模越来越激进。也正因为如此，现在再看“数据 vs 架构”这类问题，已经不能停留在单点方法比较，而要把不同年份的研究目标变化一起看进去。</p>
+<h2 id="当前阶段结论">当前阶段结论</h2>
+<ul>
+<li>2023 年更像是在建立 instruction-based image editing 这个任务本身。</li>
+<li>2024 年开始明显进入“提升精度、灵活性与局部控制”的成熟优化期。</li>
+<li>到当前 2025 语境里，竞争已经升级成“数据设计、统一框架、多模态 grounding、跨任务重写”之间的系统级竞争。</li>
+</ul>
+<h2 id="方法家族">方法家族</h2>
+<ul>
+<li>任务建立阶段的指令编辑：<a class="wikilink" href="../sources/2026-04-14-instructpix2pix.html">sources/2026-04-14-instructpix2pix</a></li>
+<li>数据集驱动的统一编辑器：<a class="wikilink" href="../sources/2026-04-12-anyedit.html">sources/2026-04-12-anyedit</a></li>
+<li>强调精度与灵活性的成熟扩散编辑：<a class="wikilink" href="../sources/2026-04-14-diffeditor.html">sources/2026-04-14-diffeditor</a></li>
+<li>区域感知 / 多模态 grounding：<a class="wikilink" href="../sources/2026-04-12-fireedit.html">sources/2026-04-12-fireedit</a>、<a class="wikilink" href="../sources/2026-04-12-insightedit.html">sources/2026-04-12-insightedit</a></li>
+<li>强调效率的一步式编辑：<a class="wikilink" href="../sources/2026-04-12-swiftedit.html">sources/2026-04-12-swiftedit</a></li>
+<li>把编辑重写为连续视频路径：<a class="wikilink" href="../sources/2026-04-14-pathways-image-manifold.html">sources/2026-04-14-pathways-image-manifold</a></li>
+<li>真实图像 inversion 机制：<a class="wikilink" href="../sources/2026-04-14-null-text-inversion.html">sources/2026-04-14-null-text-inversion</a></li>
+<li>exemplar-based 编辑接口：<a class="wikilink" href="../sources/2026-04-14-paint-by-example.html">sources/2026-04-14-paint-by-example</a></li>
+<li>主体驱动路线向视频侧延伸：<a class="wikilink" href="../sources/2026-04-14-dive-subject-driven-video-editing.html">sources/2026-04-14-dive-subject-driven-video-editing</a></li>
+<li>视频编辑数据构造反向启发图像编辑：<a class="wikilink" href="../sources/2026-04-14-insvie-1m.html">sources/2026-04-14-insvie-1m</a></li>
+<li>图像扩散迁移到视频编辑：<a class="wikilink" href="../sources/2026-04-14-pix2video.html">sources/2026-04-14-pix2video</a></li>
+<li>扩散时代真实图像编辑早期锚点：<a class="wikilink" href="../sources/2026-04-14-imagic.html">sources/2026-04-14-imagic</a></li>
+<li>MM-DiT attention 注入编辑：<a class="wikilink" href="../sources/2026-04-14-qk-edit.html">sources/2026-04-14-qk-edit</a></li>
+<li>视频先验反向服务图像编辑：<a class="wikilink" href="../sources/2026-04-14-framepainter.html">sources/2026-04-14-framepainter</a></li>
+<li>prompt-level inversion 路线：<a class="wikilink" href="../sources/2026-04-14-prompt-tuning-inversion.html">sources/2026-04-14-prompt-tuning-inversion</a></li>
+<li>inversion 加速路线：<a class="wikilink" href="../sources/2026-04-14-effective-real-image-editing.html">sources/2026-04-14-effective-real-image-editing</a></li>
+<li>prompt-only cross-attention 编辑控制：<a class="wikilink" href="../sources/2026-04-16-prompt-to-prompt.html">sources/2026-04-16-prompt-to-prompt</a></li>
+<li>LLM controller 闭环编辑：<a class="wikilink" href="../sources/2026-04-16-self-correcting-llm-controlled-diffusion-models.html">sources/2026-04-16-self-correcting-llm-controlled-diffusion-models</a></li>
+</ul>
+<h2 id="相关实体">相关实体</h2>
+<ul>
+<li><a class="wikilink" href="../entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a> 把图像编辑与图像生成合并到统一多任务系统的趋势串了起来。</li>
+</ul>
+<h2 id="证据基础">证据基础</h2>
+<ul>
+<li><a class="wikilink" href="../sources/2026-04-12-anyedit.html">sources/2026-04-12-anyedit</a></li>
+<li><a class="wikilink" href="../sources/2026-04-12-fireedit.html">sources/2026-04-12-fireedit</a></li>
+<li><a class="wikilink" href="../sources/2026-04-12-insightedit.html">sources/2026-04-12-insightedit</a></li>
+<li><a class="wikilink" href="../sources/2026-04-12-swiftedit.html">sources/2026-04-12-swiftedit</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-pathways-image-manifold.html">sources/2026-04-14-pathways-image-manifold</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-instructpix2pix.html">sources/2026-04-14-instructpix2pix</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-diffeditor.html">sources/2026-04-14-diffeditor</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-imagen-editor-editbench.html">sources/2026-04-14-imagen-editor-editbench</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-anydoor.html">sources/2026-04-14-anydoor</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-null-text-inversion.html">sources/2026-04-14-null-text-inversion</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-paint-by-example.html">sources/2026-04-14-paint-by-example</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-dive-subject-driven-video-editing.html">sources/2026-04-14-dive-subject-driven-video-editing</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-insvie-1m.html">sources/2026-04-14-insvie-1m</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-pix2video.html">sources/2026-04-14-pix2video</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-imagic.html">sources/2026-04-14-imagic</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-image-specific-prompt-learning.html">sources/2026-04-14-image-specific-prompt-learning</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-concept-weaver.html">sources/2026-04-14-concept-weaver</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-customization-assistant.html">sources/2026-04-14-customization-assistant</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-contrastive-denoising-score.html">sources/2026-04-14-contrastive-denoising-score</a></li>
+<li><a class="wikilink" href="../sources/2026-04-16-prompt-to-prompt.html">sources/2026-04-16-prompt-to-prompt</a></li>
+<li><a class="wikilink" href="../sources/2026-04-16-self-correcting-llm-controlled-diffusion-models.html">sources/2026-04-16-self-correcting-llm-controlled-diffusion-models</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-multi-concept-customization.html">sources/2026-04-14-multi-concept-customization</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-qk-edit.html">sources/2026-04-14-qk-edit</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-framepainter.html">sources/2026-04-14-framepainter</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-prompt-tuning-inversion.html">sources/2026-04-14-prompt-tuning-inversion</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-effective-real-image-editing.html">sources/2026-04-14-effective-real-image-editing</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-dreambooth.html">sources/2026-04-14-dreambooth</a></li>
+</ul>
+<h2 id="后续值得追踪的问题">后续值得追踪的问题</h2>
+<ul>
+<li><a class="wikilink" href="../questions/question-data-vs-architecture-in-image-editing.html">questions/question-data-vs-architecture-in-image-editing</a> — 当前图像编辑性能提升究竟主要来自数据扩展还是架构升级。</li>
+<li><a class="wikilink" href="../questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a> — 统一图像生成编辑模型能否持续压过专用流水线。</li>
+<li>当前图像编辑的进步，到底更多来自更好的数据，还是更好的架构？</li>
+<li>哪类方法最能平衡“保留原图”与“执行修改”的矛盾？</li>
+<li>一步式编辑在哪些任务上仍有竞争力，又会在哪些复杂编辑上失效？</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
+<li><a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../topics/vision-language.html">topics/vision-language</a></li>
+<li><a class="wikilink" href="../topics/generative-model-evaluation.html">topics/generative-model-evaluation</a></li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;topic-image-editing&quot;,
+  &quot;type&quot;: &quot;topic&quot;,
+  &quot;title&quot;: &quot;图像编辑&quot;,
+  &quot;status&quot;: &quot;active&quot;,
+  &quot;created&quot;: &quot;2026-04-12&quot;,
+  &quot;updated&quot;: &quot;2026-04-17&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-editing&quot;,
+    &quot;diffusion&quot;
+  ],
+  &quot;summary&quot;: &quot;追踪 CVPR 2025 范围内基于指令、可控且重视效率的图像编辑方法。&quot;,
+  &quot;source_notes&quot;: [
+    &quot;sources/2026-04-16-blended-diffusion&quot;,
+    &quot;sources/2026-04-16-diffusionclip&quot;,
+    &quot;sources/2026-04-16-plug-and-play-diffusion-features&quot;,
+    &quot;sources/2026-04-16-edict-exact-diffusion-inversion&quot;,
+    &quot;sources/2026-04-16-bbdm-brownian-bridge-diffusion&quot;,
+    &quot;sources/2026-04-16-prompt-to-prompt&quot;,
+    &quot;sources/2026-04-16-self-correcting-llm-controlled-diffusion-models&quot;,
+    &quot;sources/2026-04-12-anyedit&quot;,
+    &quot;sources/2026-04-12-fireedit&quot;,
+    &quot;sources/2026-04-12-insightedit&quot;,
+    &quot;sources/2026-04-12-swiftedit&quot;,
+    &quot;sources/2026-04-14-pathways-image-manifold&quot;,
+    &quot;sources/2026-04-14-instructpix2pix&quot;,
+    &quot;sources/2026-04-14-diffeditor&quot;,
+    &quot;sources/2026-04-14-imagen-editor-editbench&quot;,
+    &quot;sources/2026-04-14-anydoor&quot;,
+    &quot;sources/2026-04-14-null-text-inversion&quot;,
+    &quot;sources/2026-04-14-paint-by-example&quot;,
+    &quot;sources/2026-04-14-dreambooth&quot;,
+    &quot;sources/2026-04-14-effective-real-image-editing&quot;,
+    &quot;sources/2026-04-14-prompt-tuning-inversion&quot;,
+    &quot;sources/2026-04-14-framepainter&quot;,
+    &quot;sources/2026-04-14-dive-subject-driven-video-editing&quot;,
+    &quot;sources/2026-04-14-qk-edit&quot;,
+    &quot;sources/2026-04-14-insvie-1m&quot;,
+    &quot;sources/2026-04-14-pix2video&quot;,
+    &quot;sources/2026-04-14-imagic&quot;,
+    &quot;sources/2026-04-14-multi-concept-customization&quot;,
+    &quot;sources/2026-04-14-image-specific-prompt-learning&quot;,
+    &quot;sources/2026-04-14-concept-weaver&quot;,
+    &quot;sources/2026-04-14-customization-assistant&quot;,
+    &quot;sources/2026-04-14-contrastive-denoising-score&quot;
+  ],
+  &quot;related_topics&quot;: [
+    &quot;topics/image-generation&quot;,
+    &quot;topics/diffusion-models&quot;,
+    &quot;topics/vision-language&quot;,
+    &quot;topics/generative-model-evaluation&quot;
+  ],
+  &quot;related_entities&quot;: [
+    &quot;entities/unified-image-generation-editing&quot;
+  ],
+  &quot;open_questions&quot;: [
+    &quot;questions/question-data-vs-architecture-in-image-editing&quot;,
+    &quot;questions/question-will-unified-image-models-sustain-their-advantage&quot;
+  ]
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

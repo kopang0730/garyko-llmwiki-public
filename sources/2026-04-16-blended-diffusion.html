@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blended Diffusion（CVPR 2022）：把文本驱动自然图像编辑直接接进扩散生成过程 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-blended-diffusion&quot;, &quot;title&quot;: &quot;Blended Diffusion（CVPR 2022）：把文本驱动自然图像编辑直接接进扩散生成过程&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;diffusion&quot;, &quot;conditioning&quot;, &quot;primary-source&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-16</p>
+        <h1>Blended Diffusion（CVPR 2022）：把文本驱动自然图像编辑直接接进扩散生成过程</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-editing">#image-editing</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#conditioning">#conditioning</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="blended-diffusion-cvpr-2022-把文本驱动自然图像编辑直接接进扩散生成过程">Blended Diffusion（CVPR 2022）：把文本驱动自然图像编辑直接接进扩散生成过程</h1>
+<blockquote>会议：CVPR 2022</blockquote>
+<blockquote>发表日期：2021/11/29</blockquote>
+<blockquote>资料加入日期：2026-04-16</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作把自然图像编辑更早地接进 diffusion 路线：它通过混合局部编辑与全局生成过程，让文本驱动编辑能够在真实图像上更自然地落地。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>早期文本驱动图像编辑常常在两个方向上失衡：要么局部改动不够贴合原图，要么生成结果虽然符合文本但破坏了原始结构。论文要解决的是，怎样让 diffusion 在真实图像编辑里同时保留原图内容和文本目标。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>作者提出 Blended Diffusion，把待编辑区域和上下文图像共同纳入扩散过程，通过扩散式采样在编辑区域内逐步完成语义改写，同时尽量维持上下文一致性。它的重要性在于把 text-driven editing 从纯生成路线拉回到真实图像编辑场景，并给后续 image-editing topic 提供了一个更早的 diffusion 锚点。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>它是 <a class="wikilink" href="../topics/image-editing.html">topics/image-editing</a> 里很早的 diffusion editing 节点，说明文本驱动真实图像编辑在 2022 年就已经明确接入 diffusion 主线。</li>
+<li>它把“编辑区域”和“上下文保持”同时作为生成过程的一部分处理，说明 diffusion editing 很早就开始围绕局部保真度与全局一致性做结构设计。</li>
+<li>它和后来的 <a class="wikilink" href="../sources/2026-04-14-diffeditor.html">sources/2026-04-14-diffeditor</a>、<a class="wikilink" href="../sources/2026-04-14-imagen-editor-editbench.html">sources/2026-04-14-imagen-editor-editbench</a> 能形成清晰前后关系：前者补强编辑精度，后者把方法与 benchmark 一起推进。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>它更像早期自然图像编辑范式，离后来的统一生成-编辑系统还有明显距离。</li>
+<li>在复杂多对象、多步指令编辑场景里的可扩展性，当前材料里还看不到足够证据。</li>
+<li>这条路线对编辑区域定义和上下文融合的依赖较强，后续是否会被更统一的 latent / transformer 路线替代，仍值得继续跟踪。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2111.14818</li>
+<li>https://arxiv.org/pdf/2111.14818.pdf</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/image-editing.html">topics/image-editing</a></li>
+<li><a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-diffeditor.html">sources/2026-04-14-diffeditor</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-imagen-editor-editbench.html">sources/2026-04-14-imagen-editor-editbench</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>它在本库中的价值，是把当前 image-editing 主线往前接到更早的 diffusion natural-image editing 起点，让后续编辑路线不只从 instruction editing 年代开始讲。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-16-blended-diffusion&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;Blended Diffusion（CVPR 2022）：把文本驱动自然图像编辑直接接进扩散生成过程&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-04-16&quot;,
+  &quot;venue&quot;: &quot;CVPR 2022&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-editing&quot;,
+    &quot;diffusion&quot;,
+    &quot;conditioning&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Avrahami, Omri&quot;,
+    &quot;Lischinski, Dani&quot;,
+    &quot;Fried, Ohad&quot;
+  ],
+  &quot;published_at&quot;: &quot;2021/11/29&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2111.14818&quot;,
+    &quot;https://arxiv.org/pdf/2111.14818.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-16-blended-diffusion/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-editing&quot;,
+    &quot;topics/diffusion-models&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

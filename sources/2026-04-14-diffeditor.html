@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DiffEditor（CVPR 2024）：提升扩散式图像编辑的精度与灵活性 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-diffeditor&quot;, &quot;title&quot;: &quot;DiffEditor（CVPR 2024）：提升扩散式图像编辑的精度与灵活性&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;primary-source&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-15</p>
+        <h1>DiffEditor（CVPR 2024）：提升扩散式图像编辑的精度与灵活性</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-editing">#image-editing</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="diffeditor-cvpr-2024-提升扩散式图像编辑的精度与灵活性">DiffEditor（CVPR 2024）：提升扩散式图像编辑的精度与灵活性</h1>
+<blockquote>会议：CVPR 2024</blockquote>
+<blockquote>发表日期：2024-01-01</blockquote>
+<blockquote>资料加入日期：2026-04-14</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作说明，在 instruction-based image editing 进入成熟阶段后，性能提升已经明显转向更细的架构与采样设计，而不只是继续堆训练数据。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>它要解决的是现有扩散式图像编辑在复杂场景下经常编辑不准、出现伪影、并且难以灵活组合编辑操作的问题。相对早期工作的“先把任务做出来”，它更像是在回答“如何把编辑做得更精、更稳、更灵活”。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>论文在编辑中引入图像提示，与文本提示协同描述编辑目标；同时把 SDE 局部结合进 ODE 采样，并叠加区域 score guidance 与 time-travel 策略，以改善局部编辑质量和灵活性。核心价值在于，它把收益来源更多放在采样策略、局部约束和结构机制上。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>它提供了更成熟阶段的证据：编辑性能可以通过架构与采样机制继续提升。</li>
+<li>与 InstructPix2Pix 相比，它更像在优化“怎么编辑得更准”，而不是“先把指令编辑任务建立起来”。</li>
+<li>它支持当前 question 中“架构改写会逐渐成为拉开差距关键”的判断。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>它仍建立在已经很强的基础扩散模型之上，并不是完全脱离数据红利。</li>
+<li>论文强调的是方法和采样细节，系统级成本与泛化边界仍需继续观察。</li>
+<li>当前证据更适合说明成熟阶段改进方向，而不是否定数据的重要性。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2402.02583</li>
+<li>https://arxiv.org/pdf/2402.02583.pdf</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/image-editing.html">topics/image-editing</a></li>
+<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
+<li><a class="wikilink" href="../entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a></li>
+<li><a class="wikilink" href="../questions/question-data-vs-architecture-in-image-editing.html">questions/question-data-vs-architecture-in-image-editing</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>DiffEditor 在这套知识库中的作用很明确：它把 image-editing 路线从 InstructPix2Pix 式的任务建立阶段，推进到“精度与灵活性优化阶段”。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-14-diffeditor&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;DiffEditor（CVPR 2024）：提升扩散式图像编辑的精度与灵活性&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-14&quot;,
+  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;venue&quot;: &quot;CVPR 2024&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-editing&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Chong Mou&quot;,
+    &quot;Xintao Wang&quot;,
+    &quot;Jiechong Song&quot;,
+    &quot;Ying Shan&quot;,
+    &quot;Jian Zhang&quot;
+  ],
+  &quot;published_at&quot;: &quot;2024-01-01&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2402.02583&quot;,
+    &quot;https://arxiv.org/pdf/2402.02583.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-diffeditor/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-editing&quot;,
+    &quot;topics/image-generation&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/unified-image-generation-editing&quot;
+  ],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: [
+    &quot;questions/question-data-vs-architecture-in-image-editing&quot;
+  ]
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

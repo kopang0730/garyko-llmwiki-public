@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SwiftEdit（CVPR 2025）：基于一步扩散的极速文本引导图像编辑 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-12-swiftedit&quot;, &quot;title&quot;: &quot;SwiftEdit（CVPR 2025）：基于一步扩散的极速文本引导图像编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;image-generation&quot;, &quot;primary-source&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-17</p>
+        <h1>SwiftEdit（CVPR 2025）：基于一步扩散的极速文本引导图像编辑</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-editing">#image-editing</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="swiftedit-cvpr-2025-基于一步扩散的极速文本引导图像编辑">SwiftEdit（CVPR 2025）：基于一步扩散的极速文本引导图像编辑</h1>
+<blockquote>会议：CVPR 2025</blockquote>
+<blockquote>发表日期：2025-06-11</blockquote>
+<blockquote>资料加入日期：2026-04-12</blockquote>
+<blockquote>深分析稿：<a class="wikilink missing" href="#missing-raw/ingest/2026-04-12-swiftedit/analysis">raw/ingest/2026-04-12-swiftedit/analysis</a></blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>SwiftEdit 把 text-guided image editing 推到近实时交互层：通过一步反演框架和基于 attention rescaling 的局部编辑机制，它在约 0.23 秒内完成文本引导编辑，并把 image-editing 的竞争重心正式拉向速度与质量的联合权衡。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这篇论文是“near-real-time editing”路线里的代表作。它不追求最复杂的统一系统，而是把低时延、可交互的一步编辑做到可用。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>SwiftEdit 要解决的是一个非常现实的问题：</p>
+<ul>
+<li>传统多步 inversion 和 sampling 太慢，无法满足真实交互与端侧应用的时延要求。</li>
+</ul>
+<p>也就是说，这篇论文主要在回答“图像编辑能否快到即时反馈”。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>SwiftEdit 的核心由三部分组成：</p>
+<ol>
+<li><strong>one-step inversion framework</strong></li>
+<p>   通过一步反演完成图像重建与后续编辑，极大压缩反演成本。</p>
+</ol>
+<ol>
+<li><strong>two-stage training</strong></li>
+<p>   先在 synthetic images 上训练，再在 real images 上适配，使一步框架既高效又更接近真实图像分布。</p>
+</ol>
+<ol>
+<li><strong>mask-guided editing with attention rescaling</strong></li>
+<p>   通过 source prompt 与 edit prompt 的差异构造局部编辑掩码，并用 attention rescaling 更精确地限制修改区域，提升 localized editing 质量。</p>
+</ol>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>延迟被明确当成 image-editing 的一级目标。</li>
+<li>论文将一步扩散从生成侧推进到了真实编辑场景。</li>
+<li>attention rescaling 是保证局部编辑有效性的关键模块。</li>
+<li>SwiftEdit 的价值不在于绝对最强质量，而在于速度和质量的联合最优前沿。</li>
+</ul>
+<h2 id="关键图示">关键图示</h2>
+<h3 id="一步扩散与两阶段训练框架">一步扩散与两阶段训练框架</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-12-swiftedit/page-previews/page-4.png">900</a></p>
+<p>这一页展示 SwiftEdit 的 two-stage training 框架，是理解 one-step editing 如何成立的主图。</p>
+<h3 id="局部编辑与-attention-rescaling">局部编辑与 attention rescaling</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-12-swiftedit/page-previews/page-6.png">900</a></p>
+<p>这一页解释 mask-aware editing 与 attention rescaling（ARaM）机制，最适合说明 SwiftEdit 如何控制局部编辑范围并保护非编辑区域。</p>
+<h3 id="速度与质量主结果">速度与质量主结果</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-12-swiftedit/page-previews/page-8.png">900</a></p>
+<p>这一页集中展示与多种编辑方法的速度和质量对比、用户研究以及部分消融，是最能体现论文实际价值的关键结果页。</p>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<ul>
+<li>SwiftEdit 实现了约 0.23 秒级的一步文本图像编辑。</li>
+<li>论文宣称至少比以往多步方法快 50 倍，同时保持有竞争力的编辑质量。</li>
+<li>user study 与主结果页一起说明它在文本对齐、编辑语义和背景保留上具有很强竞争力。</li>
+<li>这篇论文的意义在于把 image-editing 的主战场扩展到了时延维度。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>一步式方法在高难编辑场景下可能比多步方法更脆弱。</li>
+<li>竞争力强不代表全局质量最优。</li>
+<li>它的上限仍受底层 one-step generator 质量约束。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 wiki 判断的影响</h2>
+<ul>
+<li>它补强了 <a class="wikilink" href="../topics/image-editing.html">topics/image-editing</a> 中“速度正在成为明确竞争方向”的判断。</li>
+<li>它也让 <a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a> 看到一步扩散路线在编辑场景中的产品化潜力。</li>
+<li>SwiftEdit 是统一模型之外另一种非常现实的系统优化方向：先把交互时延做下来。</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/image-editing.html">topics/image-editing</a></li>
+<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
+<li><a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a></li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://openaccess.thecvf.com/content/CVPR2025/html/Nguyen_SwiftEdit_Lightning_Fast_Text-Guided_Image_Editing_via_One-Step_Diffusion_CVPR_2025_paper.html</li>
+<li>https://openaccess.thecvf.com/content/CVPR2025/papers/Nguyen_SwiftEdit_Lightning_Fast_Text-Guided_Image_Editing_via_One-Step_Diffusion_CVPR_2025_paper.pdf</li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-12-swiftedit&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;SwiftEdit（CVPR 2025）：基于一步扩散的极速文本引导图像编辑&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-12&quot;,
+  &quot;updated&quot;: &quot;2026-04-17&quot;,
+  &quot;venue&quot;: &quot;CVPR 2025&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-12&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-editing&quot;,
+    &quot;image-generation&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Trong-Tung Nguyen&quot;,
+    &quot;Quang Nguyen&quot;,
+    &quot;Khoi Nguyen&quot;,
+    &quot;Anh Tran&quot;,
+    &quot;Cuong Pham&quot;
+  ],
+  &quot;published_at&quot;: &quot;2025-06-11&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/CVPR2025/html/Nguyen_SwiftEdit_Lightning_Fast_Text-Guided_Image_Editing_via_One-Step_Diffusion_CVPR_2025_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2025/papers/Nguyen_SwiftEdit_Lightning_Fast_Text-Guided_Image_Editing_via_One-Step_Diffusion_CVPR_2025_paper.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-12-swiftedit/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-12-swiftedit/analysis.md&quot;,
+  &quot;image_index&quot;: &quot;raw/ingest/2026-04-12-swiftedit/images/index.md&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-editing&quot;,
+    &quot;topics/image-generation&quot;,
+    &quot;topics/diffusion-models&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>
