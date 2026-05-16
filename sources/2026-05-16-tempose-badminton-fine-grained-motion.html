@@ -75,11 +75,11 @@
 <li><strong>解释入口</strong>：temporal attention map 可展示模型关注哪些关键帧。</li>
 </ul>
 <h2 id="关键图示">关键图示</h2>
-<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-05-16-tempose-badminton-fine-grained-motion/page-previews/page-02.png">raw/ingest/2026-05-16-tempose-badminton-fine-grained-motion/page-previews/page-02.png</a></p>
+<p><img src="../raw/ingest/2026-05-16-tempose-badminton-fine-grained-motion/page-previews/page-02.png" alt="page-02" loading="lazy"></p>
 <p>p2 展示 TemPose framework：skeleton、joint / bone、court position 和 shuttlecock position 被统一送入 Transformer encoder。</p>
-<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-05-16-tempose-badminton-fine-grained-motion/page-previews/page-07.png">raw/ingest/2026-05-16-tempose-badminton-fine-grained-motion/page-previews/page-07.png</a></p>
+<p><img src="../raw/ingest/2026-05-16-tempose-badminton-fine-grained-motion/page-previews/page-07.png" alt="page-07" loading="lazy"></p>
 <p>p7 是 badminton fine-grained datasets 的主结果页。TemPose-TF 在 Bad OL 上达到 90.7%，TemPose-NF 在 Bad PL 上达到 84.3%，均高于 ST-GCN、TCN 和 MS-G3D 等基线。</p>
-<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-05-16-tempose-badminton-fine-grained-motion/page-previews/page-08.png">raw/ingest/2026-05-16-tempose-badminton-fine-grained-motion/page-previews/page-08.png</a></p>
+<p><img src="../raw/ingest/2026-05-16-tempose-badminton-fine-grained-motion/page-previews/page-08.png" alt="page-08" loading="lazy"></p>
 <p>p8 展示 NTU RGB+D 泛化结果和 attention visualization。attention map 对动作纠正 demo 的证据窗口设计很有价值。</p>
 <h2 id="核心实验与结果">核心实验与结果</h2>
 <table><thead><tr><th>实验</th><th>结果</th><th>含义</th></tr></thead><tbody><tr><td>Model configuration</td><td>TemPose-TF (DL=100, DA=128) 在 Bad OL 上 90.7%，约 1.7M 参数</td><td>temporal fusion 是该设置下的强平衡点</td></tr><tr><td>Joint + Bone</td><td>TemPose-V 从 J-only 81.4% 提升到 J+B 85.6%</td><td>bone 信息对细粒度运动识别有帮助</td></tr><tr><td>Bad PL / Bad OL</td><td>TemPose-TF：83.9% / 90.7%；TemPose-NF：84.3% / 89.3%</td><td>SP / CP 融合比通用 SAR 基线更适合羽毛球</td></tr><tr><td>NTU RGB+D</td><td>TemPose-V (B+J) 在 NTU120 XSet 88.5%、XSub 87.0%</td><td>结构具有通用 skeleton action recognition 能力</td></tr><tr><td>Attention map</td><td>smash 等动作中关注接触 shuttlecock 附近帧</td><td>可作为教练式解释的证据窗口</td></tr></tbody></table>

@@ -75,11 +75,11 @@
 <li><strong>标注工具</strong>：S2 labeling tool 先做 match preparation / rally segmentation / video preprocessing，再执行一遍式 shot-by-shot labeling，并用随机抽样做质量检查。</li>
 </ul>
 <h2 id="关键图示">关键图示</h2>
-<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-05-16-shuttleset-stroke-level-badminton-dataset/page-previews/page-05.png">raw/ingest/2026-05-16-shuttleset-stroke-level-badminton-dataset/page-previews/page-05.png</a></p>
+<p><img src="../raw/ingest/2026-05-16-shuttleset-stroke-level-badminton-dataset/page-previews/page-05.png" alt="page-05" loading="lazy"></p>
 <p>p5 同时展示 shot type distribution 和 S2 标注工具。它说明 ShuttleSet 的核心资产是结构化击球记录。</p>
-<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-05-16-shuttleset-stroke-level-badminton-dataset/page-previews/page-07.png">raw/ingest/2026-05-16-shuttleset-stroke-level-badminton-dataset/page-previews/page-07.png</a></p>
+<p><img src="../raw/ingest/2026-05-16-shuttleset-stroke-level-badminton-dataset/page-previews/page-07.png" alt="page-07" loading="lazy"></p>
 <p>p7 展示 stroke forecasting 与 movement forecasting 结果。ShuttleNet 在 stroke forecasting 中稳定优于 Seq2Seq 等模型，DyMF 在 movement forecasting 中体现 player interaction graph 的价值。</p>
-<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-05-16-shuttleset-stroke-level-badminton-dataset/page-previews/page-08.png">raw/ingest/2026-05-16-shuttleset-stroke-level-badminton-dataset/page-previews/page-08.png</a></p>
+<p><img src="../raw/ingest/2026-05-16-shuttleset-stroke-level-badminton-dataset/page-previews/page-08.png" alt="page-08" loading="lazy"></p>
 <p>p8 的可视化平台 case study 把 net shot、失分区域、站位和回球位置连到教练可读的战术分析。</p>
 <h2 id="核心实验与-benchmark">核心实验与 benchmark</h2>
 <table><thead><tr><th>Benchmark</th><th>任务</th><th>代表结论</th></tr></thead><tbody><tr><td>Shot influence</td><td>给定 stroke-level 信息预测 rally 最终胜负概率</td><td>ShuttleScorer 在 AUC / ACC / Brier score 上优于 Bi-GRU，说明字段能支撑胜率建模</td></tr><tr><td>Stroke forecasting</td><td>给定前 8 / 4 / 2 拍预测未来 shot type 与位置</td><td>ShuttleNet 在 CE、MSE、MAE 上稳定强于 Seq2Seq；18 类细粒度 shot type 提高了任务难度</td></tr><tr><td>Movement forecasting</td><td>同时预测未来 shot 和双方移动</td><td>DyMF 在多种观察长度下表现强，说明动态交互图对站位和回位建模有价值</td></tr></tbody></table>

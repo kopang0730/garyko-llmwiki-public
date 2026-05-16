@@ -75,13 +75,13 @@
 <li><strong>Aim Player (AP)</strong>：按 overall trajectory 与两名球员 trajectory 的相关性给目标球员加权。</li>
 </ul>
 <h2 id="关键图示">关键图示</h2>
-<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-05-16-bst-badminton-stroke-type-transformer/page-previews/page-03.png">raw/ingest/2026-05-16-bst-badminton-stroke-type-transformer/page-previews/page-03.png</a></p>
+<p><img src="../raw/ingest/2026-05-16-bst-badminton-stroke-type-transformer/page-previews/page-03.png" alt="page-03" loading="lazy"></p>
 <p>p3 展示 clipping strategy：目标击球片段应围绕 hit frame，并保留与前后击球相关的球路上下文。</p>
-<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-05-16-bst-badminton-stroke-type-transformer/page-previews/page-05.png">raw/ingest/2026-05-16-bst-badminton-stroke-type-transformer/page-previews/page-05.png</a></p>
+<p><img src="../raw/ingest/2026-05-16-bst-badminton-stroke-type-transformer/page-previews/page-05.png" alt="page-05" loading="lazy"></p>
 <p>p5 展示 BST 架构：pose、shuttle trajectory、player position 分支进入 Transformer 和增强模块。</p>
-<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-05-16-bst-badminton-stroke-type-transformer/page-previews/page-06.png">raw/ingest/2026-05-16-bst-badminton-stroke-type-transformer/page-previews/page-06.png</a></p>
+<p><img src="../raw/ingest/2026-05-16-bst-badminton-stroke-type-transformer/page-previews/page-06.png" alt="page-06" loading="lazy"></p>
 <p>p6 展示 ShuttleSet 25 类主结果。自有 clipping strategy 下，BST-CG-AP 达到 0.8322 accuracy、0.8097 macro-F1、0.9594 top-2 accuracy。</p>
-<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-05-16-bst-badminton-stroke-type-transformer/page-previews/page-07.png">raw/ingest/2026-05-16-bst-badminton-stroke-type-transformer/page-previews/page-07.png</a></p>
+<p><img src="../raw/ingest/2026-05-16-bst-badminton-stroke-type-transformer/page-previews/page-07.png" alt="page-07" loading="lazy"></p>
 <p>p7 展示低样本、BadmintonDB 和数据集细节，说明 BST 在 25% training data 和另一个羽毛球数据集上也保持优势。</p>
 <h2 id="核心实验与结果">核心实验与结果</h2>
 <table><thead><tr><th>数据集 / 设置</th><th>代表结果</th><th>含义</th></tr></thead><tbody><tr><td>ShuttleSet 25 classes, fixed-width</td><td>BST-CG-AP：Acc 0.8254、Macro-F1 0.7983、Acc-2 0.9503</td><td>BST 系列超过 TemPose 与通用 SAR 基线</td></tr><tr><td>ShuttleSet 25 classes, proposed clipping</td><td>BST-CG-AP：Acc 0.8322、Macro-F1 0.8097、Acc-2 0.9594</td><td>hit-frame-centered clipping 带来增益</td></tr><tr><td>25% ShuttleSet training</td><td>BST-CG：Acc 0.7020、Macro-F1 0.6334</td><td>低样本下结构先验仍有价值</td></tr><tr><td>BadmintonDB 18 classes</td><td>BST-AP：Acc 0.6517、Macro-F1 0.5799</td><td>另一个羽毛球数据集上仍强于比较模型</td></tr><tr><td>TenniSet 6 classes</td><td>BST-AP：Acc 0.9923、Macro-F1 0.9922</td><td>球路 + 姿态 + 场上位置路线可迁移到网拍运动</td></tr><tr><td>ShuttleSet 35 classes</td><td>BST-CG-AP + clipping：Acc 0.7710、Macro-F1 0.7042、Acc-2 0.9340</td><td>类别更细时 top-2 和混淆分析更重要</td></tr><tr><td>2D vs 3D pose</td><td>2D pose 在所有列出的模型上优于估计 3D pose</td><td>当前转播场景应优先使用可靠 2D keypoints</td></tr></tbody></table>
