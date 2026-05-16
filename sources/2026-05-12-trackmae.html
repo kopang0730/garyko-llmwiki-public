@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TrackMAE（CVPR 2026 / arXiv）：用轨迹重建强化视频自监督表征 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-05-12-trackmae&quot;, &quot;title&quot;: &quot;TrackMAE（CVPR 2026 / arXiv）：用轨迹重建强化视频自监督表征&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;tracking&quot;, &quot;representation-learning&quot;, &quot;primary-source&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-05-12</p>
+        <h1>TrackMAE（CVPR 2026 / arXiv）：用轨迹重建强化视频自监督表征</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#tracking">#tracking</a><a class="tag" href="../tags.html#representation-learning">#representation-learning</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="trackmae-cvpr-2026-arxiv-用轨迹重建强化视频自监督表征">TrackMAE（CVPR 2026 / arXiv）：用轨迹重建强化视频自监督表征</h1>
+<blockquote>会议 / 来源：CVPR 2026 / arXiv</blockquote>
+<blockquote>发表日期：2026-03-28</blockquote>
+<blockquote>资料加入日期：2026-05-12</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>TrackMAE 把 point tracking 轨迹直接放进 masked video modeling，适合作为体育动作识别和动作阶段理解的 motion-aware 表征底座。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这篇论文被纳入体育 AI roadmap 的“动作识别 / 动作纠正 / 可解释反馈”小批量补强。它的价值不是替代现有体育数据集，而是补上一个可复用方法层：如何学到更强运动表征，或如何把视频理解输出转成按需解释。</p>
+<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
+<p>它补强了 <a class="wikilink" href="../sources/2026-04-25-videomae.html">sources/2026-04-25-videomae</a> 的弱点：VideoMAE 类方法容易学到外观和局部连续性，TrackMAE 让模型显式预测运动轨迹，更贴近投篮、挥拍、深蹲、体操这类动作的时序细节。论文在 FineGym / Gym99、SSv2、UCFRep 等 motion-centric 或细粒度任务上给出证据，因此可以作为“体育动作纠正”的视觉 backbone 候选。</p>
+<h2 id="和现有证据的关系">和现有证据的关系</h2>
+<p>它连接 <a class="wikilink" href="../sources/2026-04-25-finegym.html">sources/2026-04-25-finegym</a>、<a class="wikilink" href="../sources/2026-04-25-finediving.html">sources/2026-04-25-finediving</a> 和 <a class="wikilink" href="../sources/2026-05-05-finecausal-action-quality-assessment.html">sources/2026-05-05-finecausal-action-quality-assessment</a>：先用轨迹感知表征识别动作阶段和异常轨迹，再把异常阶段交给动作质量评估或解释模块。</p>
+<h2 id="来源可靠性与可溯源性">来源可靠性与可溯源性</h2>
+<ul>
+<li><strong>来源层级</strong>：CVPR 2026 / arXiv primary paper。当前本地已保存用户上传 PDF、<code>paper-text.md</code>、abstract 和链接；搜索结果也能回到 arXiv / CVPR 2026 标注。可作为体育动作识别底座方向的强候选证据。</li>
+<li><strong>可溯源材料</strong>：本地保存 <code>paper.pdf</code>、<code>paper-text.md</code>、<code>abstract.md</code>、<code>links.yaml</code>。</li>
+<li><strong>使用建议</strong>：适合进入 <a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的动作纠正构想层；后续若做 demo，应再补数据集、错误模式标注和专家评估。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>论文主要验证 representation learning 和 downstream action benchmarks，尚未直接验证“动作纠正”或教练反馈。</li>
+<li>依赖 point tracker 质量；高速遮挡、人体自遮挡、低清视频中的轨迹噪声会影响后续解释。</li>
+<li>若用于纠正系统，还需要姿态/阶段标签、错误模式库和 human evaluation。</li>
+</ul>
+<h2 id="原始材料">原始材料</h2>
+<ul>
+<li><code>raw/ingest/2026-05-12-trackmae/paper.pdf</code></li>
+<li><code>raw/ingest/2026-05-12-trackmae/paper-text.md</code></li>
+<li><code>raw/ingest/2026-05-12-trackmae/abstract.md</code></li>
+<li><code>raw/ingest/2026-05-12-trackmae/links.yaml</code></li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
+<li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
+<li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
+<li><a class="wikilink" href="../entities/sportsmot.html">entities/sportsmot</a></li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-05-12-trackmae&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;TrackMAE（CVPR 2026 / arXiv）：用轨迹重建强化视频自监督表征&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-05-12&quot;,
+  &quot;updated&quot;: &quot;2026-05-12&quot;,
+  &quot;venue&quot;: &quot;CVPR 2026 / arXiv&quot;,
+  &quot;published_at&quot;: &quot;2026-03-28&quot;,
+  &quot;ingested_at&quot;: &quot;2026-05-12&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-understanding&quot;,
+    &quot;tracking&quot;,
+    &quot;representation-learning&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Vandeghen, Renaud&quot;,
+    &quot;Thoker, Fida Mohammad&quot;,
+    &quot;Van Droogenbroeck, Marc&quot;,
+    &quot;Ghanem, Bernard&quot;
+  ],
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2603.27268&quot;,
+    &quot;https://arxiv.org/pdf/2603.27268&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-05-12-trackmae/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/sports-ai-video-understanding&quot;,
+    &quot;topics/sports-ai-roadmap&quot;,
+    &quot;topics/video-understanding&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/sportsmot&quot;
+  ],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

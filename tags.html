@@ -41,6 +41,7 @@
 <li><a href="claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
 </ul>
 <h2>Questions</h2><ul>
+<li><a href="questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
 <li><a href="questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
@@ -85,9 +86,15 @@
 <li><a href="sources/2026-04-14-mvbench.html">MVBench（CVPR 2024）：综合性的多模态视频理解基准</a><span>source</span></li>
 <li><a href="sources/2026-04-25-multisports.html">MultiSports（ICCV 2021）：多人时空动作定位的数据锚点</a><span>source</span></li>
 <li><a href="sources/2026-04-25-opencap.html">OpenCap（PLOS Computational Biology / PMC 2023）：OpenCap 用智能手机视频估计人体运动学与动力学，降低实验室级运动捕捉门槛。</a><span>source</span></li>
+<li><a href="sources/2026-05-05-refereebench-multi-sport-referees.html">RefereeBench：多运动项目视频裁判能力评测</a><span>source</span></li>
 <li><a href="sources/2026-04-14-sok-bench.html">SOK-Bench（CVPR 2024）：带开放世界知识对齐的情境视频推理基准</a><span>source</span></li>
 <li><a href="sources/2026-04-14-sti-bench.html">STI-Bench（ICCV 2025）：多模态大模型是否已准备好进行精确时空世界理解</a><span>source</span></li>
+<li><a href="sources/2026-05-16-shuttleset-stroke-level-badminton-dataset.html">ShuttleSet：人工标注的羽毛球单打 stroke-level 数据集</a><span>source</span></li>
+<li><a href="sources/2026-05-05-soccernet-2022-challenges-results.html">SoccerNet 2022 Challenges Results：足球视频理解挑战早期基线</a><span>source</span></li>
+<li><a href="sources/2026-05-05-soccernet-2023-challenges-results.html">SoccerNet 2023 Challenges Results：足球视频多任务挑战结果</a><span>source</span></li>
 <li><a href="sources/2026-04-25-soccernet-action-spotting.html">SoccerNet Action Spotting（SoccerNet official task）：SoccerNet action spotting 是足球视频事件定位的核心公开任务入口。</a><span>source</span></li>
+<li><a href="sources/2026-05-05-soccernet-v2-holistic-understanding.html">SoccerNet-v2（arXiv 2020）：广播足球视频整体理解基准</a><span>source</span></li>
+<li><a href="sources/2026-05-05-sports-qa-video-question-answering.html">Sports-QA：复杂专业体育视频问答基准</a><span>source</span></li>
 <li><a href="sources/2026-04-25-sportscap.html">SportsCap（arXiv 2021）：SportsCap 研究单目体育视频中的 3D 人体运动捕捉和细粒度动作理解。</a><span>source</span></li>
 <li><a href="sources/2026-04-24-sportshhi.html">SportsHHI（CVPR 2024）：体育视频中的高层人-人交互检测基准</a><span>source</span></li>
 <li><a href="sources/2026-04-25-sportsmot-dataset-page.html">SportsMOT Dataset Page（DeeperAction dataset page）：SportsMOT 官方数据页记录数据下载、许可和基准说明。</a><span>source</span></li>
@@ -229,6 +236,7 @@
 <li><a href="sources/2026-04-16-text-embedding-quantization-diffusion.html">Text Embedding Knows How to Quantize Text-Guided Diffusion Models（arXiv）：把文本嵌入直接拉进 text-guided diffusion 量化链路</a><span>source</span></li>
 <li><a href="sources/2026-04-16-towards-practical-plug-and-play-diffusion-models.html">Towards Practical Plug-and-Play Diffusion Models（CVPR 2023）：把 diffusion 提速做成可插拔工程模块</a><span>source</span></li>
 <li><a href="sources/2026-04-14-vidtome.html">VidToMe（CVPR 2024）：用于零样本视频编辑的视频 token merging</a><span>source</span></li>
+<li><a href="sources/2026-05-12-videoauto-r1.html">VideoAuto-R1（CVPR 2026 / arXiv）：按需推理的视频理解框架</a><span>source</span></li>
 <li><a href="sources/2026-04-14-wavelet-diffusion-models.html">Wavelet Diffusion Models（CVPR 2023）：快速且可扩展的图像生成器</a><span>source</span></li>
 <li><a href="topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>topic</span></li>
 <li><a href="topics/diffusion-models.html">扩散模型</a><span>topic</span></li>
@@ -236,9 +244,11 @@
 <section class="tag-section" id="evaluation"><h2>#evaluation</h2><ul>
 <li><a href="sources/2026-04-14-aigv-assessor.html">AIGV-Assessor（CVPR 2025）：用大模型评测文本到视频生成感知质量</a><span>source</span></li>
 <li><a href="sources/2026-04-14-anetqa.html">ANetQA（CVPR 2023）：面向未裁剪视频细粒度组合推理的大规模基准</a><span>source</span></li>
+<li><a href="sources/2026-05-05-active-learning-action-spotting-football.html">Active Learning for Action Spotting（CVPRW 2023）：足球事件定位的低标注路线</a><span>source</span></li>
 <li><a href="sources/2026-04-14-concon-chi.html">ConCon-Chi（CVPR 2024）：面向个性化视觉语言任务的概念-上下文嵌合基准</a><span>source</span></li>
 <li><a href="sources/2026-04-14-evalcrafter.html">EvalCrafter（CVPR 2024）：大视频生成模型的评测与基准</a><span>source</span></li>
 <li><a href="sources/2026-04-14-five-bench.html">FiVE-Bench（ICCV 2025）：细粒度视频编辑评测基准</a><span>source</span></li>
+<li><a href="sources/2026-05-05-finecausal-action-quality-assessment.html">FineCausal（arXiv 2025）：可解释细粒度动作质量评估</a><span>source</span></li>
 <li><a href="sources/2026-04-14-flasheval.html">FlashEval（CVPR 2024）：快速而准确地评测文本到图像扩散模型</a><span>source</span></li>
 <li><a href="sources/2026-04-14-glitchbench.html">GlitchBench（CVPR 2024）：大型多模态模型能否识别电子游戏故障</a><span>source</span></li>
 <li><a href="sources/2026-04-14-hallusionbench.html">HallusionBench（CVPR 2024）：大型视觉语言模型中的幻觉与视觉错觉诊断基准</a><span>source</span></li>
@@ -248,6 +258,7 @@
 <li><a href="sources/2026-04-14-mmmu.html">MMMU（CVPR 2024）：面向专家级 AGI 的大规模多学科多模态理解与推理基准</a><span>source</span></li>
 <li><a href="sources/2026-04-14-mvbench.html">MVBench（CVPR 2024）：综合性的多模态视频理解基准</a><span>source</span></li>
 <li><a href="sources/2026-04-25-nist-ai-risk-management-framework.html">NIST AI RMF（NIST）：NIST AI RMF 提供 AI 风险管理框架。</a><span>source</span></li>
+<li><a href="sources/2026-05-05-refereebench-multi-sport-referees.html">RefereeBench：多运动项目视频裁判能力评测</a><span>source</span></li>
 <li><a href="sources/2026-04-14-sok-bench.html">SOK-Bench（CVPR 2024）：带开放世界知识对齐的情境视频推理基准</a><span>source</span></li>
 <li><a href="sources/2026-04-14-vbench.html">VBench（CVPR 2024）：面向视频生成模型的综合评测套件</a><span>source</span></li>
 <li><a href="sources/2026-04-14-video-bench.html">Video-Bench（CVPR 2025）：面向视频生成的人类对齐评测基准</a><span>source</span></li>
@@ -381,6 +392,7 @@
 <li><a href="entities/diffusion-transformer.html">扩散 Transformer</a><span>entity</span></li>
 </ul></section>
 <section class="tag-section" id="multimodal"><h2>#multimodal</h2><ul>
+<li><a href="sources/2026-05-05-event2tracking.html">Event2Tracking：用长时多模态上下文重建多智能体足球轨迹</a><span>source</span></li>
 <li><a href="sources/2026-04-25-wear-outdoor-sports-dataset.html">WEAR（arXiv 2023）：WEAR 提供户外运动中的第一视角视频与可穿戴传感器数据，用来研究视频、IMU 与活动识别的多模态融合。</a><span>source</span></li>
 <li><a href="topics/generative-model-evaluation.html">生成模型评测</a><span>topic</span></li>
 <li><a href="topics/vision-language.html">视觉-语言</a><span>topic</span></li>
@@ -389,11 +401,13 @@
 <li><a href="sources/2026-04-14-video-worth-256-bases.html">A Video is Worth 256 Bases（CVPR 2024）：零样本视频编辑的时空 EM 反演</a><span>source</span></li>
 <li><a href="sources/2026-04-16-a-star.html">A-STAR（ICCV 2023）：在测试时直接修 cross-attention 的概念冲突与遗忘</a><span>source</span></li>
 <li><a href="sources/2026-04-15-act-diffusion.html">ACT-Diffusion（CVPR 2024）：用对抗一致性训练把一步扩散做得更省</a><span>source</span></li>
+<li><a href="sources/2026-05-05-ai-driven-soccer-analysis.html">AI Driven Soccer Analysis（arXiv 2026）：足球视频分析系统样本</a><span>source</span></li>
 <li><a href="sources/2026-04-14-aigv-assessor.html">AIGV-Assessor（CVPR 2025）：用大模型评测文本到视频生成感知质量</a><span>source</span></li>
 <li><a href="sources/2026-04-14-anetqa.html">ANetQA（CVPR 2023）：面向未裁剪视频细粒度组合推理的大规模基准</a><span>source</span></li>
 <li><a href="sources/2026-04-14-avid-video-inpainting.html">AVID（CVPR 2024）：基于扩散模型的任意长度视频修补</a><span>source</span></li>
 <li><a href="sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html">Accelerating Diffusion Sampling with Optimized Time Steps（CVPR 2024）：用优化时间步加速扩散采样</a><span>source</span></li>
 <li><a href="sources/2026-04-16-accelerating-dit-gradient-cache.html">Accelerating Diffusion Transformer via Gradient-Optimized Cache（arXiv）：用梯度优化缓存继续压缩 DiT 推理成本</a><span>source</span></li>
+<li><a href="sources/2026-05-05-active-learning-action-spotting-football.html">Active Learning for Action Spotting（CVPRW 2023）：足球事件定位的低标注路线</a><span>source</span></li>
 <li><a href="sources/2026-04-16-controlnet.html">Adding Conditional Control to Text-to-Image Diffusion Models（ICCV 2023）：把条件控制做成 diffusion 的通用侧支接口</a><span>source</span></li>
 <li><a href="sources/2026-04-12-align-a-video.html">Align-A-Video（CVPR 2025）：面向一致视频编辑的确定性奖励调优</a><span>source</span></li>
 <li><a href="sources/2026-04-15-all-are-worth-words.html">All Are Worth Words（CVPR 2023）：把 ViT 直接变成扩散模型主干</a><span>source</span></li>
@@ -406,7 +420,9 @@
 <li><a href="sources/2026-04-14-attention-calibration-personalization.html">Attention Calibration for Disentangled Text-to-Image Personalization（CVPR 2024）：解耦式文本到图像个性化的注意力校准</a><span>source</span></li>
 <li><a href="sources/2026-04-25-automated-offside-detection.html">Automated Offside Detection（ACM MM Workshop 2021）：这项工作把足球越位判定转成时空视频分析问题，强调规则、时刻同步和几何位置。</a><span>source</span></li>
 <li><a href="sources/2026-04-16-bbdm-brownian-bridge-diffusion.html">BBDM（CVPR 2023）：把 Brownian Bridge diffusion 接成图像到图像翻译主线</a><span>source</span></li>
+<li><a href="sources/2026-05-16-bst-badminton-stroke-type-transformer.html">BST：面向羽毛球击球类型识别的骨架动作 Transformer</a><span>source</span></li>
 <li><a href="sources/2026-04-16-blended-diffusion.html">Blended Diffusion（CVPR 2022）：把文本驱动自然图像编辑直接接进扩散生成过程</a><span>source</span></li>
+<li><a href="sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition.html">BlockGCN：重新强化骨架动作识别中的拓扑意识</a><span>source</span></li>
 <li><a href="sources/2026-04-16-boxdiff.html">BoxDiff（ICCV 2023）：不用训练，直接把框约束压进 diffusion 采样过程</a><span>source</span></li>
 <li><a href="sources/2026-04-16-c3net.html">C3Net（CVPR 2024）：把 ControlNet 从单条件接口推进到多模态复合条件接口</a><span>source</span></li>
 <li><a href="sources/2026-04-14-camel-video-editing.html">CAMEL（CVPR 2024）：面向文本驱动视频编辑的因果运动增强</a><span>source</span></li>
@@ -443,10 +459,12 @@
 <li><a href="sources/2026-04-16-edict-exact-diffusion-inversion.html">EDICT（CVPR 2023）：把精确 diffusion inversion 变成真实图像编辑的关键接口</a><span>source</span></li>
 <li><a href="sources/2026-04-14-encapsulated-composition-t2i-t2v.html">Encapsulated Composition（CVPR 2025）：组合式文本到图像/视频模型高质量视频合成</a><span>source</span></li>
 <li><a href="sources/2026-04-14-evalcrafter.html">EvalCrafter（CVPR 2024）：大视频生成模型的评测与基准</a><span>source</span></li>
+<li><a href="sources/2026-05-05-event2tracking.html">Event2Tracking：用长时多模态上下文重建多智能体足球轨迹</a><span>source</span></li>
 <li><a href="sources/2026-04-12-fade.html">FADE（CVPR 2025）：面向视频编辑的频率感知扩散模型分解</a><span>source</span></li>
 <li><a href="sources/2026-04-14-fairy-video-to-video.html">Fairy（CVPR 2024）：快速并行的指令引导视频到视频合成</a><span>source</span></li>
 <li><a href="sources/2026-04-14-fatezero.html">FateZero（ICCV 2023）：融合注意力做零样本文本视频编辑</a><span>source</span></li>
 <li><a href="sources/2026-04-14-five-bench.html">FiVE-Bench（ICCV 2025）：细粒度视频编辑评测基准</a><span>source</span></li>
+<li><a href="sources/2026-05-05-finecausal-action-quality-assessment.html">FineCausal（arXiv 2025）：可解释细粒度动作质量评估</a><span>source</span></li>
 <li><a href="sources/2026-04-25-finediving-repository.html">FineDiving Repository（GitHub repository）：FineDiving 仓库提供数据集与代码入口。</a><span>source</span></li>
 <li><a href="sources/2026-04-25-finediving.html">FineDiving（CVPR 2022）：技术动作评分与过程理解锚点</a><span>source</span></li>
 <li><a href="sources/2026-04-25-finegym.html">FineGym（CVPR 2020）：体育 AI 的细粒度动作理解早期锚点</a><span>source</span></li>
@@ -461,6 +479,7 @@
 <li><a href="sources/2026-04-14-hallusionbench.html">HallusionBench（CVPR 2024）：大型视觉语言模型中的幻觉与视觉错觉诊断基准</a><span>source</span></li>
 <li><a href="sources/2026-04-16-high-fidelity-guided-image-synthesis.html">High-Fidelity Guided Image Synthesis with Latent Diffusion Models（CVPR 2023）：把 latent diffusion 的 guidance 质量推到更高保真</a><span>source</span></li>
 <li><a href="sources/2026-04-25-homecourt.html">HomeCourt（Product page）：HomeCourt 代表手机相机驱动的消费级训练反馈应用。</a><span>source</span></li>
+<li><a href="sources/2026-05-05-human-in-loop-team-sports-retrieval.html">Human-in-the-loop Adaptation（arXiv 2026）：团队运动检索的人机闭环适配</a><span>source</span></li>
 <li><a href="sources/2026-04-14-imagen-editor-editbench.html">Imagen Editor 与 EditBench（CVPR 2023）：推进并评测文本引导图像修补</a><span>source</span></li>
 <li><a href="sources/2026-04-14-imagic.html">Imagic（CVPR 2023）：基于扩散模型的文本真实图像编辑</a><span>source</span></li>
 <li><a href="sources/2026-04-14-insvie-1m.html">InsViE-1M（ICCV 2025）：通过精细数据构造实现有效的 instruction-based 视频编辑</a><span>source</span></li>
@@ -480,6 +499,7 @@
 <li><a href="sources/2026-04-14-mvbench.html">MVBench（CVPR 2024）：综合性的多模态视频理解基准</a><span>source</span></li>
 <li><a href="sources/2026-04-14-maskint.html">MaskINT（CVPR 2024）：基于插值式非自回归 masked transformer 的视频编辑</a><span>source</span></li>
 <li><a href="sources/2026-04-25-mediapipe-pose.html">MediaPipe Pose（Google AI Edge documentation）：MediaPipe Pose / BlazePose 提供移动端友好的 3D landmarks 姿态估计。</a><span>source</span></li>
+<li><a href="sources/2026-05-05-monotrack-shuttle-trajectory-reconstruction.html">MonoTrack：单目羽毛球视频的 3D 轨迹重建</a><span>source</span></li>
 <li><a href="sources/2026-04-14-motioneditor.html">MotionEditor（CVPR 2024）：基于内容感知扩散的视频运动编辑</a><span>source</span></li>
 <li><a href="sources/2026-04-14-motionfollower.html">MotionFollower（ICCV 2025）：通过 score-guided diffusion 编辑视频运动</a><span>source</span></li>
 <li><a href="sources/2026-04-14-motionstone.html">MotionStone（CVPR 2025）：用 DiT 解耦运动强度调制的图像到视频生成</a><span>source</span></li>
@@ -500,10 +520,12 @@
 <li><a href="sources/2026-04-16-post-training-quantization-on-diffusion-models.html">Post-Training Quantization on Diffusion Models（CVPR 2023）：把扩散模型推理进一步压到低比特部署</a><span>source</span></li>
 <li><a href="sources/2026-04-25-reuters-premier-league-semi-automated-offside.html">Premier League Semi-Automated Offside（Reuters 2025）：Reuters 报道英超启用半自动越位技术。</a><span>source</span></li>
 <li><a href="sources/2026-04-16-prompt-to-prompt.html">Prompt-to-Prompt（arXiv 2022）：把 cross-attention 直接变成文本编辑控制面板</a><span>source</span></li>
+<li><a href="sources/2026-05-16-protogcn-skeleton-action-recognition.html">ProtoGCN：用原型视角强化骨架动作识别的细粒度差异</a><span>source</span></li>
 <li><a href="sources/2026-04-14-qk-edit.html">QK-Edit（ICCV 2025）：在 MM-DiT 中重新审视图像与视频编辑的 attention 注入</a><span>source</span></li>
 <li><a href="sources/2026-04-14-rave-video-editing.html">RAVE（CVPR 2024）：通过随机噪声重排实现快速且一致的视频编辑</a><span>source</span></li>
 <li><a href="sources/2026-04-14-reco.html">ReCo（CVPR 2023）：区域控制的文本到图像生成</a><span>source</span></li>
 <li><a href="sources/2026-04-14-reangle-a-video.html">Reangle-A-Video（ICCV 2025）：把 4D 视频生成重写为视频到视频翻译</a><span>source</span></li>
+<li><a href="sources/2026-05-05-refereebench-multi-sport-referees.html">RefereeBench：多运动项目视频裁判能力评测</a><span>source</span></li>
 <li><a href="sources/2026-04-16-rethinking-spatial-inconsistency-cfg.html">Rethinking the Spatial Inconsistency in Classifier-Free Diffusion Guidance（CVPR 2024）：把 CFG 的空间不一致问题拉到前台</a><span>source</span></li>
 <li><a href="sources/2026-04-16-sana-sprint.html">SANA-Sprint（arXiv）：用连续时间一致性蒸馏把一步扩散再往前推</a><span>source</span></li>
 <li><a href="sources/2026-04-16-self-correcting-llm-controlled-diffusion-models.html">SLD（CVPR 2024）：把 diffusion 生成改成 LLM 驱动的闭环自纠错系统</a><span>source</span></li>
@@ -514,12 +536,20 @@
 <li><a href="sources/2026-04-25-genius-sports-second-spectrum.html">Second Spectrum / Genius Sports（Company newsroom）：Genius Sports 收购 Second Spectrum 的公告展示了光学追踪、联赛数据和媒体可视化的商业链路。</a><span>source</span></li>
 <li><a href="sources/2026-04-16-self-guided-diffusion-models.html">Self-Guided Diffusion Models（CVPR 2023）：把 guidance 从外部条件器部分收回到模型内部结构</a><span>source</span></li>
 <li><a href="sources/2026-04-14-shape-aware-layered-video-editing.html">Shape-aware Text-driven Layered Video Editing（CVPR 2023）：形状感知的分层文本视频编辑</a><span>source</span></li>
+<li><a href="sources/2026-05-16-shuttleset-stroke-level-badminton-dataset.html">ShuttleSet：人工标注的羽毛球单打 stroke-level 数据集</a><span>source</span></li>
+<li><a href="sources/2026-05-16-skateformer-skeletal-temporal-transformer.html">SkateFormer：面向人体动作识别的骨架-时间 Transformer</a><span>source</span></li>
 <li><a href="sources/2026-04-14-sketchvideo.html">SketchVideo（CVPR 2025）：基于草图的视频生成与编辑</a><span>source</span></li>
+<li><a href="sources/2026-05-05-soccernet-2022-challenges-results.html">SoccerNet 2022 Challenges Results：足球视频理解挑战早期基线</a><span>source</span></li>
+<li><a href="sources/2026-05-05-soccernet-2023-challenges-results.html">SoccerNet 2023 Challenges Results：足球视频多任务挑战结果</a><span>source</span></li>
+<li><a href="sources/2026-05-05-soccernet-2023-tracking-mot4mot.html">SoccerNet 2023 Tracking Challenge MOT4MOT：球员跟踪团队报告</a><span>source</span></li>
 <li><a href="sources/2026-04-25-soccernet-action-spotting.html">SoccerNet Action Spotting（SoccerNet official task）：SoccerNet action spotting 是足球视频事件定位的核心公开任务入口。</a><span>source</span></li>
 <li><a href="sources/2026-04-25-soccernet-game-state-reconstruction.html">SoccerNet-GSR（CVPR Workshop 2024）：足球比赛状态重建锚点</a><span>source</span></li>
+<li><a href="sources/2026-05-05-soccernet-v2-camera-calibration-player-localization.html">SoccerNet-v2 Camera Calibration（arXiv 2021）：足球场标定与球员定位</a><span>source</span></li>
+<li><a href="sources/2026-05-05-soccernet-v2-holistic-understanding.html">SoccerNet-v2（arXiv 2020）：广播足球视频整体理解基准</a><span>source</span></li>
 <li><a href="sources/2026-04-14-specialist-diffusion.html">Specialist Diffusion（CVPR 2023）：可插拔且样本高效的文本到图像扩散微调</a><span>source</span></li>
 <li><a href="sources/2026-04-23-sportmamba.html">SportMamba（arXiv 2025）：用状态空间模型处理团队运动中的非线性多目标跟踪</a><span>source</span></li>
 <li><a href="sources/2026-04-25-sports-ai-review-2025.html">Sports AI Review 2025（Artificial Intelligence Review 2025）：这篇综述讨论体育视觉、分析和 AI 系统的发展趋势。</a><span>source</span></li>
+<li><a href="sources/2026-05-05-sports-qa-video-question-answering.html">Sports-QA：复杂专业体育视频问答基准</a><span>source</span></li>
 <li><a href="sources/2026-04-25-sportscap.html">SportsCap（arXiv 2021）：SportsCap 研究单目体育视频中的 3D 人体运动捕捉和细粒度动作理解。</a><span>source</span></li>
 <li><a href="sources/2026-04-24-sportshhi.html">SportsHHI（CVPR 2024）：体育视频中的高层人-人交互检测基准</a><span>source</span></li>
 <li><a href="entities/sportsmot.html">SportsMOT</a><span>entity</span></li>
@@ -530,12 +560,17 @@
 <li><a href="sources/2026-04-12-swiftedit.html">SwiftEdit（CVPR 2025）：基于一步扩散的极速文本引导图像编辑</a><span>source</span></li>
 <li><a href="sources/2026-04-25-tacticai.html">TacticAI（Nature Communications 2024）：战术决策支持锚点</a><span>source</span></li>
 <li><a href="sources/2026-04-24-teamtrack.html">TeamTrack（CVPRW 2024）：全场视角多运动多目标跟踪数据集</a><span>source</span></li>
+<li><a href="sources/2026-05-16-tempose-badminton-fine-grained-motion.html">TemPose：面向羽毛球细粒度动作识别的骨架 Transformer</a><span>source</span></li>
 <li><a href="sources/2026-04-25-temporal-parsing-transformer-aqa.html">Temporal Parsing Transformer（ECCV 2022）：Temporal Parsing Transformer 把动作质量评估拆成时序解析问题，在打分类体育动作中强调过程结构。</a><span>source</span></li>
 <li><a href="sources/2026-04-16-text-embedding-quantization-diffusion.html">Text Embedding Knows How to Quantize Text-Guided Diffusion Models（arXiv）：把文本嵌入直接拉进 text-guided diffusion 量化链路</a><span>source</span></li>
 <li><a href="sources/2026-04-25-timesformer.html">TimeSformer（ICML 2021）：TimeSformer 用纯 attention 结构建模视频时空关系，是视频 Transformer 路线的重要基础。</a><span>source</span></li>
 <li><a href="sources/2026-04-12-tora.html">Tora（CVPR 2025）：面向视频生成的轨迹导向扩散 Transformer</a><span>source</span></li>
 <li><a href="sources/2026-04-16-towards-practical-plug-and-play-diffusion-models.html">Towards Practical Plug-and-Play Diffusion Models（CVPR 2023）：把 diffusion 提速做成可插拔工程模块</a><span>source</span></li>
-<li><a href="sources/2026-04-25-tracknetv3.html">TrackNetV3（arXiv / technical report）：高速小目标球类 tracking 锚点</a><span>source</span></li>
+<li><a href="sources/2026-05-12-trackmae.html">TrackMAE（CVPR 2026 / arXiv）：用轨迹重建强化视频自监督表征</a><span>source</span></li>
+<li><a href="sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking.html">TrackNetV2：高效羽毛球追踪网络</a><span>source</span></li>
+<li><a href="sources/2026-04-25-tracknetv3.html">TrackNetV3：增强羽毛球 shuttle tracking 的数据增强与轨迹校正</a><span>source</span></li>
+<li><a href="sources/2026-05-05-tracknetv4-motion-attention-maps.html">TrackNetV4：用运动注意力图增强快速体育小目标追踪</a><span>source</span></li>
+<li><a href="sources/2026-05-05-tracknet-high-speed-tiny-objects.html">TrackNet：体育高速小目标追踪网络</a><span>source</span></li>
 <li><a href="sources/2026-04-24-transportmer.html">TranSPORTmer（arXiv 2024）：面向多智能体体育轨迹理解的统一 Transformer 框架</a><span>source</span></li>
 <li><a href="sources/2026-04-14-tune-a-video.html">Tune-A-Video（ICCV 2023）：单样本调优图像扩散模型做文本到视频生成</a><span>source</span></li>
 <li><a href="sources/2026-04-12-unireal.html">UniReal（CVPR 2025）：通过学习真实世界动态实现通用图像生成与编辑</a><span>source</span></li>
@@ -547,11 +582,13 @@
 <li><a href="sources/2026-04-14-vidtome.html">VidToMe（CVPR 2024）：用于零样本视频编辑的视频 token merging</a><span>source</span></li>
 <li><a href="sources/2026-04-14-video-bench.html">Video-Bench（CVPR 2025）：面向视频生成的人类对齐评测基准</a><span>source</span></li>
 <li><a href="sources/2026-04-14-video-p2p.html">Video-P2P（ICCV 2023）：基于 cross-attention control 的视频编辑</a><span>source</span></li>
+<li><a href="sources/2026-05-12-videoauto-r1.html">VideoAuto-R1（CVPR 2026 / arXiv）：按需推理的视频理解框架</a><span>source</span></li>
 <li><a href="sources/2026-04-14-videocrafter2.html">VideoCrafter2（CVPR 2024）：突破数据限制的高质量视频扩散模型</a><span>source</span></li>
 <li><a href="sources/2026-04-12-videodirector.html">VideoDirector（CVPR 2025）：借助文本到视频模型实现精确视频编辑</a><span>source</span></li>
 <li><a href="sources/2026-04-25-videomae.html">VideoMAE（NeurIPS 2022 / arXiv）：VideoMAE 用 masked autoencoding 做视频自监督预训练，强调数据效率。</a><span>source</span></li>
 <li><a href="sources/2026-04-25-wear-outdoor-sports-dataset.html">WEAR（arXiv 2023）：WEAR 提供户外运动中的第一视角视频与可穿戴传感器数据，用来研究视频、IMU 与活动识别的多模态融合。</a><span>source</span></li>
 <li><a href="sources/2026-04-14-wavelet-diffusion-models.html">Wavelet Diffusion Models（CVPR 2023）：快速且可扩展的图像生成器</a><span>source</span></li>
+<li><a href="sources/2026-05-05-x-vars-explainable-football-refereeing.html">X-VARS：可解释足球视频助理裁判系统</a><span>source</span></li>
 <li><a href="topics/sports-ai-roadmap.html">体育 AI 研究路线图</a><span>topic</span></li>
 <li><a href="topics/sports-ai-video-understanding.html">体育 AI 视频理解</a><span>topic</span></li>
 <li><a href="sources/2026-04-14-effective-real-image-editing.html">加速迭代扩散反演的真实图像编辑（ICCV 2023）</a><span>source</span></li>
@@ -570,6 +607,7 @@
 <li><a href="sources/2026-04-14-prompt-tuning-inversion.html">用于文本驱动图像编辑的 Prompt Tuning Inversion（ICCV 2023）</a><span>source</span></li>
 <li><a href="claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a><span>claim</span></li>
 <li><a href="questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a><span>question</span></li>
+<li><a href="questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a><span>question</span></li>
 <li><a href="topics/vision-language.html">视觉-语言</a><span>topic</span></li>
 <li><a href="topics/video-understanding.html">视频理解</a><span>topic</span></li>
 <li><a href="topics/video-generation.html">视频生成</a><span>topic</span></li>
@@ -589,11 +627,13 @@
 <li><a href="sources/2026-04-14-video-worth-256-bases.html">A Video is Worth 256 Bases（CVPR 2024）：零样本视频编辑的时空 EM 反演</a><span>source</span></li>
 <li><a href="sources/2026-04-16-a-star.html">A-STAR（ICCV 2023）：在测试时直接修 cross-attention 的概念冲突与遗忘</a><span>source</span></li>
 <li><a href="sources/2026-04-15-act-diffusion.html">ACT-Diffusion（CVPR 2024）：用对抗一致性训练把一步扩散做得更省</a><span>source</span></li>
+<li><a href="sources/2026-05-05-ai-driven-soccer-analysis.html">AI Driven Soccer Analysis（arXiv 2026）：足球视频分析系统样本</a><span>source</span></li>
 <li><a href="sources/2026-04-14-aigv-assessor.html">AIGV-Assessor（CVPR 2025）：用大模型评测文本到视频生成感知质量</a><span>source</span></li>
 <li><a href="sources/2026-04-14-anetqa.html">ANetQA（CVPR 2023）：面向未裁剪视频细粒度组合推理的大规模基准</a><span>source</span></li>
 <li><a href="sources/2026-04-14-avid-video-inpainting.html">AVID（CVPR 2024）：基于扩散模型的任意长度视频修补</a><span>source</span></li>
 <li><a href="sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html">Accelerating Diffusion Sampling with Optimized Time Steps（CVPR 2024）：用优化时间步加速扩散采样</a><span>source</span></li>
 <li><a href="sources/2026-04-16-accelerating-dit-gradient-cache.html">Accelerating Diffusion Transformer via Gradient-Optimized Cache（arXiv）：用梯度优化缓存继续压缩 DiT 推理成本</a><span>source</span></li>
+<li><a href="sources/2026-05-05-active-learning-action-spotting-football.html">Active Learning for Action Spotting（CVPRW 2023）：足球事件定位的低标注路线</a><span>source</span></li>
 <li><a href="sources/2026-04-16-controlnet.html">Adding Conditional Control to Text-to-Image Diffusion Models（ICCV 2023）：把条件控制做成 diffusion 的通用侧支接口</a><span>source</span></li>
 <li><a href="sources/2026-04-12-align-a-video.html">Align-A-Video（CVPR 2025）：面向一致视频编辑的确定性奖励调优</a><span>source</span></li>
 <li><a href="sources/2026-04-15-all-are-worth-words.html">All Are Worth Words（CVPR 2023）：把 ViT 直接变成扩散模型主干</a><span>source</span></li>
@@ -606,7 +646,9 @@
 <li><a href="sources/2026-04-14-attention-calibration-personalization.html">Attention Calibration for Disentangled Text-to-Image Personalization（CVPR 2024）：解耦式文本到图像个性化的注意力校准</a><span>source</span></li>
 <li><a href="sources/2026-04-25-automated-offside-detection.html">Automated Offside Detection（ACM MM Workshop 2021）：这项工作把足球越位判定转成时空视频分析问题，强调规则、时刻同步和几何位置。</a><span>source</span></li>
 <li><a href="sources/2026-04-16-bbdm-brownian-bridge-diffusion.html">BBDM（CVPR 2023）：把 Brownian Bridge diffusion 接成图像到图像翻译主线</a><span>source</span></li>
+<li><a href="sources/2026-05-16-bst-badminton-stroke-type-transformer.html">BST：面向羽毛球击球类型识别的骨架动作 Transformer</a><span>source</span></li>
 <li><a href="sources/2026-04-16-blended-diffusion.html">Blended Diffusion（CVPR 2022）：把文本驱动自然图像编辑直接接进扩散生成过程</a><span>source</span></li>
+<li><a href="sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition.html">BlockGCN：重新强化骨架动作识别中的拓扑意识</a><span>source</span></li>
 <li><a href="sources/2026-04-16-boxdiff.html">BoxDiff（ICCV 2023）：不用训练，直接把框约束压进 diffusion 采样过程</a><span>source</span></li>
 <li><a href="sources/2026-04-16-c3net.html">C3Net（CVPR 2024）：把 ControlNet 从单条件接口推进到多模态复合条件接口</a><span>source</span></li>
 <li><a href="sources/2026-04-14-camel-video-editing.html">CAMEL（CVPR 2024）：面向文本驱动视频编辑的因果运动增强</a><span>source</span></li>
@@ -641,10 +683,12 @@
 <li><a href="sources/2026-04-16-edict-exact-diffusion-inversion.html">EDICT（CVPR 2023）：把精确 diffusion inversion 变成真实图像编辑的关键接口</a><span>source</span></li>
 <li><a href="sources/2026-04-14-encapsulated-composition-t2i-t2v.html">Encapsulated Composition（CVPR 2025）：组合式文本到图像/视频模型高质量视频合成</a><span>source</span></li>
 <li><a href="sources/2026-04-14-evalcrafter.html">EvalCrafter（CVPR 2024）：大视频生成模型的评测与基准</a><span>source</span></li>
+<li><a href="sources/2026-05-05-event2tracking.html">Event2Tracking：用长时多模态上下文重建多智能体足球轨迹</a><span>source</span></li>
 <li><a href="sources/2026-04-12-fade.html">FADE（CVPR 2025）：面向视频编辑的频率感知扩散模型分解</a><span>source</span></li>
 <li><a href="sources/2026-04-14-fairy-video-to-video.html">Fairy（CVPR 2024）：快速并行的指令引导视频到视频合成</a><span>source</span></li>
 <li><a href="sources/2026-04-14-fatezero.html">FateZero（ICCV 2023）：融合注意力做零样本文本视频编辑</a><span>source</span></li>
 <li><a href="sources/2026-04-14-five-bench.html">FiVE-Bench（ICCV 2025）：细粒度视频编辑评测基准</a><span>source</span></li>
+<li><a href="sources/2026-05-05-finecausal-action-quality-assessment.html">FineCausal（arXiv 2025）：可解释细粒度动作质量评估</a><span>source</span></li>
 <li><a href="sources/2026-04-25-finediving.html">FineDiving（CVPR 2022）：技术动作评分与过程理解锚点</a><span>source</span></li>
 <li><a href="sources/2026-04-25-finegym.html">FineGym（CVPR 2020）：体育 AI 的细粒度动作理解早期锚点</a><span>source</span></li>
 <li><a href="sources/2026-04-25-finesports.html">FineSports（CVPR 2024）：多人层级细粒度体育动作数据锚点</a><span>source</span></li>
@@ -657,6 +701,7 @@
 <li><a href="sources/2026-04-14-glitchbench.html">GlitchBench（CVPR 2024）：大型多模态模型能否识别电子游戏故障</a><span>source</span></li>
 <li><a href="sources/2026-04-14-hallusionbench.html">HallusionBench（CVPR 2024）：大型视觉语言模型中的幻觉与视觉错觉诊断基准</a><span>source</span></li>
 <li><a href="sources/2026-04-16-high-fidelity-guided-image-synthesis.html">High-Fidelity Guided Image Synthesis with Latent Diffusion Models（CVPR 2023）：把 latent diffusion 的 guidance 质量推到更高保真</a><span>source</span></li>
+<li><a href="sources/2026-05-05-human-in-loop-team-sports-retrieval.html">Human-in-the-loop Adaptation（arXiv 2026）：团队运动检索的人机闭环适配</a><span>source</span></li>
 <li><a href="sources/2026-04-14-imagen-editor-editbench.html">Imagen Editor 与 EditBench（CVPR 2023）：推进并评测文本引导图像修补</a><span>source</span></li>
 <li><a href="sources/2026-04-14-imagic.html">Imagic（CVPR 2023）：基于扩散模型的文本真实图像编辑</a><span>source</span></li>
 <li><a href="sources/2026-04-14-insvie-1m.html">InsViE-1M（ICCV 2025）：通过精细数据构造实现有效的 instruction-based 视频编辑</a><span>source</span></li>
@@ -672,6 +717,7 @@
 <li><a href="sources/2026-04-14-mmmu.html">MMMU（CVPR 2024）：面向专家级 AGI 的大规模多学科多模态理解与推理基准</a><span>source</span></li>
 <li><a href="sources/2026-04-14-mvbench.html">MVBench（CVPR 2024）：综合性的多模态视频理解基准</a><span>source</span></li>
 <li><a href="sources/2026-04-14-maskint.html">MaskINT（CVPR 2024）：基于插值式非自回归 masked transformer 的视频编辑</a><span>source</span></li>
+<li><a href="sources/2026-05-05-monotrack-shuttle-trajectory-reconstruction.html">MonoTrack：单目羽毛球视频的 3D 轨迹重建</a><span>source</span></li>
 <li><a href="sources/2026-04-14-motioneditor.html">MotionEditor（CVPR 2024）：基于内容感知扩散的视频运动编辑</a><span>source</span></li>
 <li><a href="sources/2026-04-14-motionfollower.html">MotionFollower（ICCV 2025）：通过 score-guided diffusion 编辑视频运动</a><span>source</span></li>
 <li><a href="sources/2026-04-14-motionstone.html">MotionStone（CVPR 2025）：用 DiT 解耦运动强度调制的图像到视频生成</a><span>source</span></li>
@@ -688,10 +734,12 @@
 <li><a href="sources/2026-04-16-plug-and-play-diffusion-features.html">Plug-and-Play Diffusion Features（CVPR 2023）：把 diffusion feature 直接变成文本驱动图像翻译接口</a><span>source</span></li>
 <li><a href="sources/2026-04-16-post-training-quantization-on-diffusion-models.html">Post-Training Quantization on Diffusion Models（CVPR 2023）：把扩散模型推理进一步压到低比特部署</a><span>source</span></li>
 <li><a href="sources/2026-04-16-prompt-to-prompt.html">Prompt-to-Prompt（arXiv 2022）：把 cross-attention 直接变成文本编辑控制面板</a><span>source</span></li>
+<li><a href="sources/2026-05-16-protogcn-skeleton-action-recognition.html">ProtoGCN：用原型视角强化骨架动作识别的细粒度差异</a><span>source</span></li>
 <li><a href="sources/2026-04-14-qk-edit.html">QK-Edit（ICCV 2025）：在 MM-DiT 中重新审视图像与视频编辑的 attention 注入</a><span>source</span></li>
 <li><a href="sources/2026-04-14-rave-video-editing.html">RAVE（CVPR 2024）：通过随机噪声重排实现快速且一致的视频编辑</a><span>source</span></li>
 <li><a href="sources/2026-04-14-reco.html">ReCo（CVPR 2023）：区域控制的文本到图像生成</a><span>source</span></li>
 <li><a href="sources/2026-04-14-reangle-a-video.html">Reangle-A-Video（ICCV 2025）：把 4D 视频生成重写为视频到视频翻译</a><span>source</span></li>
+<li><a href="sources/2026-05-05-refereebench-multi-sport-referees.html">RefereeBench：多运动项目视频裁判能力评测</a><span>source</span></li>
 <li><a href="sources/2026-04-16-rethinking-spatial-inconsistency-cfg.html">Rethinking the Spatial Inconsistency in Classifier-Free Diffusion Guidance（CVPR 2024）：把 CFG 的空间不一致问题拉到前台</a><span>source</span></li>
 <li><a href="sources/2026-04-16-sana-sprint.html">SANA-Sprint（arXiv）：用连续时间一致性蒸馏把一步扩散再往前推</a><span>source</span></li>
 <li><a href="sources/2026-04-16-self-correcting-llm-controlled-diffusion-models.html">SLD（CVPR 2024）：把 diffusion 生成改成 LLM 驱动的闭环自纠错系统</a><span>source</span></li>
@@ -701,10 +749,18 @@
 <li><a href="sources/2026-04-15-scalable-diffusion-models-with-transformers.html">Scalable Diffusion Models with Transformers（ICCV 2023）：DiT 把 Transformer 真正坐实为可扩展扩散主干</a><span>source</span></li>
 <li><a href="sources/2026-04-16-self-guided-diffusion-models.html">Self-Guided Diffusion Models（CVPR 2023）：把 guidance 从外部条件器部分收回到模型内部结构</a><span>source</span></li>
 <li><a href="sources/2026-04-14-shape-aware-layered-video-editing.html">Shape-aware Text-driven Layered Video Editing（CVPR 2023）：形状感知的分层文本视频编辑</a><span>source</span></li>
+<li><a href="sources/2026-05-16-shuttleset-stroke-level-badminton-dataset.html">ShuttleSet：人工标注的羽毛球单打 stroke-level 数据集</a><span>source</span></li>
+<li><a href="sources/2026-05-16-skateformer-skeletal-temporal-transformer.html">SkateFormer：面向人体动作识别的骨架-时间 Transformer</a><span>source</span></li>
 <li><a href="sources/2026-04-14-sketchvideo.html">SketchVideo（CVPR 2025）：基于草图的视频生成与编辑</a><span>source</span></li>
+<li><a href="sources/2026-05-05-soccernet-2022-challenges-results.html">SoccerNet 2022 Challenges Results：足球视频理解挑战早期基线</a><span>source</span></li>
+<li><a href="sources/2026-05-05-soccernet-2023-challenges-results.html">SoccerNet 2023 Challenges Results：足球视频多任务挑战结果</a><span>source</span></li>
+<li><a href="sources/2026-05-05-soccernet-2023-tracking-mot4mot.html">SoccerNet 2023 Tracking Challenge MOT4MOT：球员跟踪团队报告</a><span>source</span></li>
 <li><a href="sources/2026-04-25-soccernet-game-state-reconstruction.html">SoccerNet-GSR（CVPR Workshop 2024）：足球比赛状态重建锚点</a><span>source</span></li>
+<li><a href="sources/2026-05-05-soccernet-v2-camera-calibration-player-localization.html">SoccerNet-v2 Camera Calibration（arXiv 2021）：足球场标定与球员定位</a><span>source</span></li>
+<li><a href="sources/2026-05-05-soccernet-v2-holistic-understanding.html">SoccerNet-v2（arXiv 2020）：广播足球视频整体理解基准</a><span>source</span></li>
 <li><a href="sources/2026-04-14-specialist-diffusion.html">Specialist Diffusion（CVPR 2023）：可插拔且样本高效的文本到图像扩散微调</a><span>source</span></li>
 <li><a href="sources/2026-04-23-sportmamba.html">SportMamba（arXiv 2025）：用状态空间模型处理团队运动中的非线性多目标跟踪</a><span>source</span></li>
+<li><a href="sources/2026-05-05-sports-qa-video-question-answering.html">Sports-QA：复杂专业体育视频问答基准</a><span>source</span></li>
 <li><a href="sources/2026-04-25-sportscap.html">SportsCap（arXiv 2021）：SportsCap 研究单目体育视频中的 3D 人体运动捕捉和细粒度动作理解。</a><span>source</span></li>
 <li><a href="sources/2026-04-24-sportshhi.html">SportsHHI（CVPR 2024）：体育视频中的高层人-人交互检测基准</a><span>source</span></li>
 <li><a href="sources/2026-04-24-sportsmot.html">SportsMOT（ICCV 2023）：多运动场景下的大规模球员多目标跟踪基准</a><span>source</span></li>
@@ -713,12 +769,17 @@
 <li><a href="sources/2026-04-12-swiftedit.html">SwiftEdit（CVPR 2025）：基于一步扩散的极速文本引导图像编辑</a><span>source</span></li>
 <li><a href="sources/2026-04-25-tacticai.html">TacticAI（Nature Communications 2024）：战术决策支持锚点</a><span>source</span></li>
 <li><a href="sources/2026-04-24-teamtrack.html">TeamTrack（CVPRW 2024）：全场视角多运动多目标跟踪数据集</a><span>source</span></li>
+<li><a href="sources/2026-05-16-tempose-badminton-fine-grained-motion.html">TemPose：面向羽毛球细粒度动作识别的骨架 Transformer</a><span>source</span></li>
 <li><a href="sources/2026-04-25-temporal-parsing-transformer-aqa.html">Temporal Parsing Transformer（ECCV 2022）：Temporal Parsing Transformer 把动作质量评估拆成时序解析问题，在打分类体育动作中强调过程结构。</a><span>source</span></li>
 <li><a href="sources/2026-04-16-text-embedding-quantization-diffusion.html">Text Embedding Knows How to Quantize Text-Guided Diffusion Models（arXiv）：把文本嵌入直接拉进 text-guided diffusion 量化链路</a><span>source</span></li>
 <li><a href="sources/2026-04-25-timesformer.html">TimeSformer（ICML 2021）：TimeSformer 用纯 attention 结构建模视频时空关系，是视频 Transformer 路线的重要基础。</a><span>source</span></li>
 <li><a href="sources/2026-04-12-tora.html">Tora（CVPR 2025）：面向视频生成的轨迹导向扩散 Transformer</a><span>source</span></li>
 <li><a href="sources/2026-04-16-towards-practical-plug-and-play-diffusion-models.html">Towards Practical Plug-and-Play Diffusion Models（CVPR 2023）：把 diffusion 提速做成可插拔工程模块</a><span>source</span></li>
-<li><a href="sources/2026-04-25-tracknetv3.html">TrackNetV3（arXiv / technical report）：高速小目标球类 tracking 锚点</a><span>source</span></li>
+<li><a href="sources/2026-05-12-trackmae.html">TrackMAE（CVPR 2026 / arXiv）：用轨迹重建强化视频自监督表征</a><span>source</span></li>
+<li><a href="sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking.html">TrackNetV2：高效羽毛球追踪网络</a><span>source</span></li>
+<li><a href="sources/2026-04-25-tracknetv3.html">TrackNetV3：增强羽毛球 shuttle tracking 的数据增强与轨迹校正</a><span>source</span></li>
+<li><a href="sources/2026-05-05-tracknetv4-motion-attention-maps.html">TrackNetV4：用运动注意力图增强快速体育小目标追踪</a><span>source</span></li>
+<li><a href="sources/2026-05-05-tracknet-high-speed-tiny-objects.html">TrackNet：体育高速小目标追踪网络</a><span>source</span></li>
 <li><a href="sources/2026-04-24-transportmer.html">TranSPORTmer（arXiv 2024）：面向多智能体体育轨迹理解的统一 Transformer 框架</a><span>source</span></li>
 <li><a href="sources/2026-04-14-tune-a-video.html">Tune-A-Video（ICCV 2023）：单样本调优图像扩散模型做文本到视频生成</a><span>source</span></li>
 <li><a href="sources/2026-04-12-unireal.html">UniReal（CVPR 2025）：通过学习真实世界动态实现通用图像生成与编辑</a><span>source</span></li>
@@ -730,11 +791,13 @@
 <li><a href="sources/2026-04-14-vidtome.html">VidToMe（CVPR 2024）：用于零样本视频编辑的视频 token merging</a><span>source</span></li>
 <li><a href="sources/2026-04-14-video-bench.html">Video-Bench（CVPR 2025）：面向视频生成的人类对齐评测基准</a><span>source</span></li>
 <li><a href="sources/2026-04-14-video-p2p.html">Video-P2P（ICCV 2023）：基于 cross-attention control 的视频编辑</a><span>source</span></li>
+<li><a href="sources/2026-05-12-videoauto-r1.html">VideoAuto-R1（CVPR 2026 / arXiv）：按需推理的视频理解框架</a><span>source</span></li>
 <li><a href="sources/2026-04-14-videocrafter2.html">VideoCrafter2（CVPR 2024）：突破数据限制的高质量视频扩散模型</a><span>source</span></li>
 <li><a href="sources/2026-04-12-videodirector.html">VideoDirector（CVPR 2025）：借助文本到视频模型实现精确视频编辑</a><span>source</span></li>
 <li><a href="sources/2026-04-25-videomae.html">VideoMAE（NeurIPS 2022 / arXiv）：VideoMAE 用 masked autoencoding 做视频自监督预训练，强调数据效率。</a><span>source</span></li>
 <li><a href="sources/2026-04-25-wear-outdoor-sports-dataset.html">WEAR（arXiv 2023）：WEAR 提供户外运动中的第一视角视频与可穿戴传感器数据，用来研究视频、IMU 与活动识别的多模态融合。</a><span>source</span></li>
 <li><a href="sources/2026-04-14-wavelet-diffusion-models.html">Wavelet Diffusion Models（CVPR 2023）：快速且可扩展的图像生成器</a><span>source</span></li>
+<li><a href="sources/2026-05-05-x-vars-explainable-football-refereeing.html">X-VARS：可解释足球视频助理裁判系统</a><span>source</span></li>
 <li><a href="sources/2026-04-14-effective-real-image-editing.html">加速迭代扩散反演的真实图像编辑（ICCV 2023）</a><span>source</span></li>
 <li><a href="sources/2026-04-14-multi-concept-customization.html">文本到图像扩散中的多概念定制（CVPR 2023）</a><span>source</span></li>
 <li><a href="sources/2026-04-14-prompt-tuning-inversion.html">用于文本驱动图像编辑的 Prompt Tuning Inversion（ICCV 2023）</a><span>source</span></li>
@@ -746,6 +809,7 @@
 <section class="tag-section" id="reasoning"><h2>#reasoning</h2><ul>
 <li><a href="sources/2026-04-14-anetqa.html">ANetQA（CVPR 2023）：面向未裁剪视频细粒度组合推理的大规模基准</a><span>source</span></li>
 <li><a href="sources/2026-04-25-automated-offside-detection.html">Automated Offside Detection（ACM MM Workshop 2021）：这项工作把足球越位判定转成时空视频分析问题，强调规则、时刻同步和几何位置。</a><span>source</span></li>
+<li><a href="sources/2026-05-05-finecausal-action-quality-assessment.html">FineCausal（arXiv 2025）：可解释细粒度动作质量评估</a><span>source</span></li>
 <li><a href="sources/2026-04-14-mmmu.html">MMMU（CVPR 2024）：面向专家级 AGI 的大规模多学科多模态理解与推理基准</a><span>source</span></li>
 <li><a href="sources/2026-04-14-sok-bench.html">SOK-Bench（CVPR 2024）：带开放世界知识对齐的情境视频推理基准</a><span>source</span></li>
 <li><a href="sources/2026-04-25-st-gcn.html">ST-GCN（AAAI 2018 / arXiv）：ST-GCN 用时空图卷积建模骨架动作，是姿态驱动动作识别的经典基线。</a><span>source</span></li>
@@ -754,11 +818,20 @@
 <li><a href="sources/2026-04-24-transportmer.html">TranSPORTmer（arXiv 2024）：面向多智能体体育轨迹理解的统一 Transformer 框架</a><span>source</span></li>
 <li><a href="sources/2026-04-25-universal-soccer-video-understanding.html">Universal Soccer Video Understanding（CVPR 2025）：统一足球视频理解锚点</a><span>source</span></li>
 <li><a href="sources/2026-04-14-veggie.html">VEGGIE（ICCV 2025）：通过 grounded generation 进行指令式编辑与视频概念推理</a><span>source</span></li>
+<li><a href="sources/2026-05-12-videoauto-r1.html">VideoAuto-R1（CVPR 2026 / arXiv）：按需推理的视频理解框架</a><span>source</span></li>
+<li><a href="sources/2026-05-05-x-vars-explainable-football-refereeing.html">X-VARS：可解释足球视频助理裁判系统</a><span>source</span></li>
 <li><a href="topics/video-understanding.html">视频理解</a><span>topic</span></li>
 </ul></section>
 <section class="tag-section" id="representation-learning"><h2>#representation-learning</h2><ul>
+<li><a href="sources/2026-05-16-bst-badminton-stroke-type-transformer.html">BST：面向羽毛球击球类型识别的骨架动作 Transformer</a><span>source</span></li>
+<li><a href="sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition.html">BlockGCN：重新强化骨架动作识别中的拓扑意识</a><span>source</span></li>
 <li><a href="sources/2026-04-16-diffusion-autoencoders.html">Diffusion Autoencoders（CVPR 2022）：为扩散模型补上更可解释、可解码的语义表征层</a><span>source</span></li>
+<li><a href="sources/2026-05-16-protogcn-skeleton-action-recognition.html">ProtoGCN：用原型视角强化骨架动作识别的细粒度差异</a><span>source</span></li>
+<li><a href="sources/2026-05-16-skateformer-skeletal-temporal-transformer.html">SkateFormer：面向人体动作识别的骨架-时间 Transformer</a><span>source</span></li>
+<li><a href="sources/2026-05-16-tempose-badminton-fine-grained-motion.html">TemPose：面向羽毛球细粒度动作识别的骨架 Transformer</a><span>source</span></li>
+<li><a href="sources/2026-05-12-trackmae.html">TrackMAE（CVPR 2026 / arXiv）：用轨迹重建强化视频自监督表征</a><span>source</span></li>
 <li><a href="sources/2026-04-25-videomae.html">VideoMAE（NeurIPS 2022 / arXiv）：VideoMAE 用 masked autoencoding 做视频自监督预训练，强调数据效率。</a><span>source</span></li>
+<li><a href="questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a><span>question</span></li>
 </ul></section>
 <section class="tag-section" id="secondary-source"><h2>#secondary-source</h2><ul>
 <li><a href="sources/2026-04-25-catapult-athlete-monitoring.html">Catapult Athlete Monitoring（Company product page）：Catapult athlete monitoring 页面展示运动员负荷、训练监测和多模态数据产品。</a><span>source</span></li>
@@ -782,17 +855,28 @@
 <li><a href="questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a><span>question</span></li>
 <li><a href="questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a><span>question</span></li>
 <li><a href="questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a><span>question</span></li>
+<li><a href="questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a><span>question</span></li>
 </ul></section>
 <section class="tag-section" id="tracking"><h2>#tracking</h2><ul>
+<li><a href="sources/2026-05-05-ai-driven-soccer-analysis.html">AI Driven Soccer Analysis（arXiv 2026）：足球视频分析系统样本</a><span>source</span></li>
+<li><a href="sources/2026-05-16-bst-badminton-stroke-type-transformer.html">BST：面向羽毛球击球类型识别的骨架动作 Transformer</a><span>source</span></li>
+<li><a href="sources/2026-05-05-event2tracking.html">Event2Tracking：用长时多模态上下文重建多智能体足球轨迹</a><span>source</span></li>
 <li><a href="sources/2026-04-25-kinexon-player-tracking.html">KINEXON Player Tracking（Company product page）：KINEXON player tracking 页面展示 UWB/GPS/LPS 球员追踪系统。</a><span>source</span></li>
+<li><a href="sources/2026-05-05-monotrack-shuttle-trajectory-reconstruction.html">MonoTrack：单目羽毛球视频的 3D 轨迹重建</a><span>source</span></li>
 <li><a href="sources/2026-04-25-genius-sports-second-spectrum.html">Second Spectrum / Genius Sports（Company newsroom）：Genius Sports 收购 Second Spectrum 的公告展示了光学追踪、联赛数据和媒体可视化的商业链路。</a><span>source</span></li>
+<li><a href="sources/2026-05-05-soccernet-2023-tracking-mot4mot.html">SoccerNet 2023 Tracking Challenge MOT4MOT：球员跟踪团队报告</a><span>source</span></li>
 <li><a href="sources/2026-04-25-soccernet-game-state-reconstruction.html">SoccerNet-GSR（CVPR Workshop 2024）：足球比赛状态重建锚点</a><span>source</span></li>
+<li><a href="sources/2026-05-05-soccernet-v2-camera-calibration-player-localization.html">SoccerNet-v2 Camera Calibration（arXiv 2021）：足球场标定与球员定位</a><span>source</span></li>
 <li><a href="sources/2026-04-23-sportmamba.html">SportMamba（arXiv 2025）：用状态空间模型处理团队运动中的非线性多目标跟踪</a><span>source</span></li>
 <li><a href="entities/sportsmot.html">SportsMOT</a><span>entity</span></li>
 <li><a href="sources/2026-04-25-sportsmot-dataset-page.html">SportsMOT Dataset Page（DeeperAction dataset page）：SportsMOT 官方数据页记录数据下载、许可和基准说明。</a><span>source</span></li>
 <li><a href="sources/2026-04-24-sportsmot.html">SportsMOT（ICCV 2023）：多运动场景下的大规模球员多目标跟踪基准</a><span>source</span></li>
 <li><a href="sources/2026-04-24-teamtrack.html">TeamTrack（CVPRW 2024）：全场视角多运动多目标跟踪数据集</a><span>source</span></li>
-<li><a href="sources/2026-04-25-tracknetv3.html">TrackNetV3（arXiv / technical report）：高速小目标球类 tracking 锚点</a><span>source</span></li>
+<li><a href="sources/2026-05-12-trackmae.html">TrackMAE（CVPR 2026 / arXiv）：用轨迹重建强化视频自监督表征</a><span>source</span></li>
+<li><a href="sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking.html">TrackNetV2：高效羽毛球追踪网络</a><span>source</span></li>
+<li><a href="sources/2026-04-25-tracknetv3.html">TrackNetV3：增强羽毛球 shuttle tracking 的数据增强与轨迹校正</a><span>source</span></li>
+<li><a href="sources/2026-05-05-tracknetv4-motion-attention-maps.html">TrackNetV4：用运动注意力图增强快速体育小目标追踪</a><span>source</span></li>
+<li><a href="sources/2026-05-05-tracknet-high-speed-tiny-objects.html">TrackNet：体育高速小目标追踪网络</a><span>source</span></li>
 <li><a href="sources/2026-04-24-transportmer.html">TranSPORTmer（arXiv 2024）：面向多智能体体育轨迹理解的统一 Transformer 框架</a><span>source</span></li>
 <li><a href="topics/sports-ai-roadmap.html">体育 AI 研究路线图</a><span>topic</span></li>
 <li><a href="topics/sports-ai-video-understanding.html">体育 AI 视频理解</a><span>topic</span></li>
@@ -871,47 +955,73 @@
 <li><a href="sources/2026-04-14-neuro-symbolic-eval-t2v.html">通过形式化验证评测文本到视频模型的神经符号方法（CVPR 2025）</a><span>source</span></li>
 </ul></section>
 <section class="tag-section" id="video-understanding"><h2>#video-understanding</h2><ul>
+<li><a href="sources/2026-05-05-ai-driven-soccer-analysis.html">AI Driven Soccer Analysis（arXiv 2026）：足球视频分析系统样本</a><span>source</span></li>
 <li><a href="sources/2026-04-14-anetqa.html">ANetQA（CVPR 2023）：面向未裁剪视频细粒度组合推理的大规模基准</a><span>source</span></li>
+<li><a href="sources/2026-05-05-active-learning-action-spotting-football.html">Active Learning for Action Spotting（CVPRW 2023）：足球事件定位的低标注路线</a><span>source</span></li>
 <li><a href="sources/2026-04-25-athletepose3d.html">AthletePose3D（CVPR Workshop 2025）：真实体育 3D 姿态与生物力学锚点</a><span>source</span></li>
 <li><a href="sources/2026-04-25-athleticspose.html">AthleticsPose（arXiv 2025）：AthleticsPose 聚焦真实田径动作中的 3D 姿态估计与泛化评估。</a><span>source</span></li>
 <li><a href="sources/2026-04-25-automated-offside-detection.html">Automated Offside Detection（ACM MM Workshop 2021）：这项工作把足球越位判定转成时空视频分析问题，强调规则、时刻同步和几何位置。</a><span>source</span></li>
+<li><a href="sources/2026-05-16-bst-badminton-stroke-type-transformer.html">BST：面向羽毛球击球类型识别的骨架动作 Transformer</a><span>source</span></li>
+<li><a href="sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition.html">BlockGCN：重新强化骨架动作识别中的拓扑意识</a><span>source</span></li>
 <li><a href="sources/2026-04-25-catapult-athlete-monitoring.html">Catapult Athlete Monitoring（Company product page）：Catapult athlete monitoring 页面展示运动员负荷、训练监测和多模态数据产品。</a><span>source</span></li>
 <li><a href="sources/2026-04-25-deeplabcut.html">DeepLabCut（GitHub repository）：DeepLabCut 是少量标注即可训练的无标记关键点追踪工具。</a><span>source</span></li>
+<li><a href="sources/2026-05-05-event2tracking.html">Event2Tracking：用长时多模态上下文重建多智能体足球轨迹</a><span>source</span></li>
+<li><a href="sources/2026-05-05-finecausal-action-quality-assessment.html">FineCausal（arXiv 2025）：可解释细粒度动作质量评估</a><span>source</span></li>
 <li><a href="sources/2026-04-25-finediving-repository.html">FineDiving Repository（GitHub repository）：FineDiving 仓库提供数据集与代码入口。</a><span>source</span></li>
 <li><a href="sources/2026-04-25-finediving.html">FineDiving（CVPR 2022）：技术动作评分与过程理解锚点</a><span>source</span></li>
 <li><a href="sources/2026-04-25-finegym.html">FineGym（CVPR 2020）：体育 AI 的细粒度动作理解早期锚点</a><span>source</span></li>
 <li><a href="sources/2026-04-25-finesports.html">FineSports（CVPR 2024）：多人层级细粒度体育动作数据锚点</a><span>source</span></li>
 <li><a href="sources/2026-04-14-glitchbench.html">GlitchBench（CVPR 2024）：大型多模态模型能否识别电子游戏故障</a><span>source</span></li>
 <li><a href="sources/2026-04-25-homecourt.html">HomeCourt（Product page）：HomeCourt 代表手机相机驱动的消费级训练反馈应用。</a><span>source</span></li>
+<li><a href="sources/2026-05-05-human-in-loop-team-sports-retrieval.html">Human-in-the-loop Adaptation（arXiv 2026）：团队运动检索的人机闭环适配</a><span>source</span></li>
 <li><a href="sources/2026-04-25-logo-group-action-quality.html">LOGO（CVPR 2023）：群体动作质量评估锚点</a><span>source</span></li>
 <li><a href="sources/2026-04-14-lvbench.html">LVBench（ICCV 2025）：极限长视频理解基准</a><span>source</span></li>
 <li><a href="sources/2026-04-25-mmaction2.html">MMAction2（GitHub repository）：MMAction2 是 OpenMMLab 视频理解工具箱，支持动作识别、检测和骨架动作等任务。</a><span>source</span></li>
 <li><a href="sources/2026-04-25-mmpose.html">MMPose / RTMPose（GitHub repository）：MMPose 提供 2D/3D 姿态估计工具链，RTMPose 强调实时部署。</a><span>source</span></li>
 <li><a href="sources/2026-04-14-mvbench.html">MVBench（CVPR 2024）：综合性的多模态视频理解基准</a><span>source</span></li>
 <li><a href="sources/2026-04-25-mediapipe-pose.html">MediaPipe Pose（Google AI Edge documentation）：MediaPipe Pose / BlazePose 提供移动端友好的 3D landmarks 姿态估计。</a><span>source</span></li>
+<li><a href="sources/2026-05-05-monotrack-shuttle-trajectory-reconstruction.html">MonoTrack：单目羽毛球视频的 3D 轨迹重建</a><span>source</span></li>
 <li><a href="sources/2026-04-25-multisports.html">MultiSports（ICCV 2021）：多人时空动作定位的数据锚点</a><span>source</span></li>
 <li><a href="sources/2026-04-25-ap-nfl-hawkeye-first-down.html">NFL Hawk-Eye First Down（Associated Press 2025）：AP 报道 NFL 引入基于 Hawk-Eye 的首攻测量技术。</a><span>source</span></li>
 <li><a href="sources/2026-04-25-opencap.html">OpenCap（PLOS Computational Biology / PMC 2023）：OpenCap 用智能手机视频估计人体运动学与动力学，降低实验室级运动捕捉门槛。</a><span>source</span></li>
 <li><a href="sources/2026-04-25-openpose.html">OpenPose（GitHub repository）：OpenPose 是早期多人 2D 关键点检测工具。</a><span>source</span></li>
 <li><a href="sources/2026-04-25-reuters-premier-league-semi-automated-offside.html">Premier League Semi-Automated Offside（Reuters 2025）：Reuters 报道英超启用半自动越位技术。</a><span>source</span></li>
+<li><a href="sources/2026-05-16-protogcn-skeleton-action-recognition.html">ProtoGCN：用原型视角强化骨架动作识别的细粒度差异</a><span>source</span></li>
+<li><a href="sources/2026-05-05-refereebench-multi-sport-referees.html">RefereeBench：多运动项目视频裁判能力评测</a><span>source</span></li>
 <li><a href="sources/2026-04-14-sok-bench.html">SOK-Bench（CVPR 2024）：带开放世界知识对齐的情境视频推理基准</a><span>source</span></li>
 <li><a href="sources/2026-04-25-st-gcn.html">ST-GCN（AAAI 2018 / arXiv）：ST-GCN 用时空图卷积建模骨架动作，是姿态驱动动作识别的经典基线。</a><span>source</span></li>
 <li><a href="sources/2026-04-14-sti-bench.html">STI-Bench（ICCV 2025）：多模态大模型是否已准备好进行精确时空世界理解</a><span>source</span></li>
+<li><a href="sources/2026-05-16-shuttleset-stroke-level-badminton-dataset.html">ShuttleSet：人工标注的羽毛球单打 stroke-level 数据集</a><span>source</span></li>
+<li><a href="sources/2026-05-16-skateformer-skeletal-temporal-transformer.html">SkateFormer：面向人体动作识别的骨架-时间 Transformer</a><span>source</span></li>
+<li><a href="sources/2026-05-05-soccernet-2022-challenges-results.html">SoccerNet 2022 Challenges Results：足球视频理解挑战早期基线</a><span>source</span></li>
+<li><a href="sources/2026-05-05-soccernet-2023-challenges-results.html">SoccerNet 2023 Challenges Results：足球视频多任务挑战结果</a><span>source</span></li>
+<li><a href="sources/2026-05-05-soccernet-2023-tracking-mot4mot.html">SoccerNet 2023 Tracking Challenge MOT4MOT：球员跟踪团队报告</a><span>source</span></li>
 <li><a href="sources/2026-04-25-soccernet-action-spotting.html">SoccerNet Action Spotting（SoccerNet official task）：SoccerNet action spotting 是足球视频事件定位的核心公开任务入口。</a><span>source</span></li>
 <li><a href="sources/2026-04-25-soccernet-game-state-reconstruction.html">SoccerNet-GSR（CVPR Workshop 2024）：足球比赛状态重建锚点</a><span>source</span></li>
+<li><a href="sources/2026-05-05-soccernet-v2-camera-calibration-player-localization.html">SoccerNet-v2 Camera Calibration（arXiv 2021）：足球场标定与球员定位</a><span>source</span></li>
+<li><a href="sources/2026-05-05-soccernet-v2-holistic-understanding.html">SoccerNet-v2（arXiv 2020）：广播足球视频整体理解基准</a><span>source</span></li>
 <li><a href="sources/2026-04-25-sports-ai-review-2025.html">Sports AI Review 2025（Artificial Intelligence Review 2025）：这篇综述讨论体育视觉、分析和 AI 系统的发展趋势。</a><span>source</span></li>
+<li><a href="sources/2026-05-05-sports-qa-video-question-answering.html">Sports-QA：复杂专业体育视频问答基准</a><span>source</span></li>
 <li><a href="sources/2026-04-25-sportscap.html">SportsCap（arXiv 2021）：SportsCap 研究单目体育视频中的 3D 人体运动捕捉和细粒度动作理解。</a><span>source</span></li>
 <li><a href="sources/2026-04-24-sportshhi.html">SportsHHI（CVPR 2024）：体育视频中的高层人-人交互检测基准</a><span>source</span></li>
 <li><a href="sources/2026-04-25-tacticai.html">TacticAI（Nature Communications 2024）：战术决策支持锚点</a><span>source</span></li>
+<li><a href="sources/2026-05-16-tempose-badminton-fine-grained-motion.html">TemPose：面向羽毛球细粒度动作识别的骨架 Transformer</a><span>source</span></li>
 <li><a href="sources/2026-04-25-temporal-parsing-transformer-aqa.html">Temporal Parsing Transformer（ECCV 2022）：Temporal Parsing Transformer 把动作质量评估拆成时序解析问题，在打分类体育动作中强调过程结构。</a><span>source</span></li>
 <li><a href="sources/2026-04-25-timesformer.html">TimeSformer（ICML 2021）：TimeSformer 用纯 attention 结构建模视频时空关系，是视频 Transformer 路线的重要基础。</a><span>source</span></li>
-<li><a href="sources/2026-04-25-tracknetv3.html">TrackNetV3（arXiv / technical report）：高速小目标球类 tracking 锚点</a><span>source</span></li>
+<li><a href="sources/2026-05-12-trackmae.html">TrackMAE（CVPR 2026 / arXiv）：用轨迹重建强化视频自监督表征</a><span>source</span></li>
+<li><a href="sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking.html">TrackNetV2：高效羽毛球追踪网络</a><span>source</span></li>
+<li><a href="sources/2026-04-25-tracknetv3.html">TrackNetV3：增强羽毛球 shuttle tracking 的数据增强与轨迹校正</a><span>source</span></li>
+<li><a href="sources/2026-05-05-tracknetv4-motion-attention-maps.html">TrackNetV4：用运动注意力图增强快速体育小目标追踪</a><span>source</span></li>
+<li><a href="sources/2026-05-05-tracknet-high-speed-tiny-objects.html">TrackNet：体育高速小目标追踪网络</a><span>source</span></li>
 <li><a href="sources/2026-04-25-universal-soccer-video-understanding.html">Universal Soccer Video Understanding（CVPR 2025）：统一足球视频理解锚点</a><span>source</span></li>
 <li><a href="sources/2026-04-14-veggie.html">VEGGIE（ICCV 2025）：通过 grounded generation 进行指令式编辑与视频概念推理</a><span>source</span></li>
+<li><a href="sources/2026-05-12-videoauto-r1.html">VideoAuto-R1（CVPR 2026 / arXiv）：按需推理的视频理解框架</a><span>source</span></li>
 <li><a href="sources/2026-04-25-videomae.html">VideoMAE（NeurIPS 2022 / arXiv）：VideoMAE 用 masked autoencoding 做视频自监督预训练，强调数据效率。</a><span>source</span></li>
 <li><a href="sources/2026-04-25-wear-outdoor-sports-dataset.html">WEAR（arXiv 2023）：WEAR 提供户外运动中的第一视角视频与可穿戴传感器数据，用来研究视频、IMU 与活动识别的多模态融合。</a><span>source</span></li>
+<li><a href="sources/2026-05-05-x-vars-explainable-football-refereeing.html">X-VARS：可解释足球视频助理裁判系统</a><span>source</span></li>
 <li><a href="topics/sports-ai-roadmap.html">体育 AI 研究路线图</a><span>topic</span></li>
 <li><a href="topics/sports-ai-video-understanding.html">体育 AI 视频理解</a><span>topic</span></li>
+<li><a href="questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a><span>question</span></li>
 <li><a href="topics/video-understanding.html">视频理解</a><span>topic</span></li>
 <li><a href="sources/2026-04-14-language-driven-video-inpainting.html">通过多模态大模型实现语言驱动视频修补（CVPR 2024）</a><span>source</span></li>
 </ul></section>
@@ -919,10 +1029,14 @@
 <li><a href="sources/2026-04-14-concon-chi.html">ConCon-Chi（CVPR 2024）：面向个性化视觉语言任务的概念-上下文嵌合基准</a><span>source</span></li>
 <li><a href="sources/2026-04-14-gligen.html">GLIGEN（CVPR 2023）：开放集合 grounded 文本到图像生成</a><span>source</span></li>
 <li><a href="sources/2026-04-14-hallusionbench.html">HallusionBench（CVPR 2024）：大型视觉语言模型中的幻觉与视觉错觉诊断基准</a><span>source</span></li>
+<li><a href="sources/2026-05-05-human-in-loop-team-sports-retrieval.html">Human-in-the-loop Adaptation（arXiv 2026）：团队运动检索的人机闭环适配</a><span>source</span></li>
 <li><a href="sources/2026-04-14-maplm.html">MAPLM（CVPR 2024）：面向地图与交通场景理解的真实世界大规模视觉语言基准</a><span>source</span></li>
 <li><a href="sources/2026-04-14-mmmu.html">MMMU（CVPR 2024）：面向专家级 AGI 的大规模多学科多模态理解与推理基准</a><span>source</span></li>
 <li><a href="sources/2026-04-14-sti-bench.html">STI-Bench（ICCV 2025）：多模态大模型是否已准备好进行精确时空世界理解</a><span>source</span></li>
+<li><a href="sources/2026-05-05-sports-qa-video-question-answering.html">Sports-QA：复杂专业体育视频问答基准</a><span>source</span></li>
 <li><a href="sources/2026-04-14-veggie.html">VEGGIE（ICCV 2025）：通过 grounded generation 进行指令式编辑与视频概念推理</a><span>source</span></li>
+<li><a href="sources/2026-05-12-videoauto-r1.html">VideoAuto-R1（CVPR 2026 / arXiv）：按需推理的视频理解框架</a><span>source</span></li>
+<li><a href="sources/2026-05-05-x-vars-explainable-football-refereeing.html">X-VARS：可解释足球视频助理裁判系统</a><span>source</span></li>
 <li><a href="topics/vision-language.html">视觉-语言</a><span>topic</span></li>
 <li><a href="sources/2026-04-14-language-driven-video-inpainting.html">通过多模态大模型实现语言驱动视频修补（CVPR 2024）</a><span>source</span></li>
 </ul></section></section>

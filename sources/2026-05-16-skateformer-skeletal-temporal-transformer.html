@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SkateFormer：面向人体动作识别的骨架-时间 Transformer · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-05-16-skateformer-skeletal-temporal-transformer&quot;, &quot;title&quot;: &quot;SkateFormer：面向人体动作识别的骨架-时间 Transformer&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;representation-learning&quot;, &quot;primary-source&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-05-16</p>
+        <h1>SkateFormer：面向人体动作识别的骨架-时间 Transformer</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#representation-learning">#representation-learning</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="skateformer-面向人体动作识别的骨架-时间-transformer">SkateFormer：面向人体动作识别的骨架-时间 Transformer</h1>
+<blockquote>会议 / 来源：ECCV 2024；本地 primary 抓取使用 arXiv 页面与 PDF</blockquote>
+<blockquote>发表日期：2024-03-14</blockquote>
+<blockquote>资料加入日期：2026-05-16</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>SkateFormer 用 skeletal-temporal partition 把骨架关节和时间帧划成四类关系，再在每个分区内做 self-attention，从而在控制计算量的同时捕捉关键关节与关键帧之间的长程关系。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>BST 把 SkateFormer 作为 skeleton Transformer 系列的重要 baseline。它和 <a class="wikilink" href="../sources/2026-05-16-tempose-badminton-fine-grained-motion.html">sources/2026-05-16-tempose-badminton-fine-grained-motion</a> 共同说明：羽毛球 stroke-type classification 可以借用通用 SAR 里的时空注意力路线，但需要根据运动项目加入球路、场地位置和动作阶段。</p>
+<h2 id="方法概述">方法概述</h2>
+<ul>
+<li><strong>问题定义</strong>：全关节、全帧 attention 计算和显存成本高；GCN 的 receptive field 又受骨架连接限制。</li>
+<li><strong>Skate-Type 分区</strong>：把关系拆成身体结构上相邻/远距，以及时间上邻近/远距的组合。</li>
+<li><strong>Skate-MSA</strong>：在每个 skeletal-temporal partition 内做注意力，让模型以更省算力的方式关注关键 joints 和 frames。</li>
+<li><strong>实验结果</strong>：在多个 skeleton action recognition benchmark 上超过近期强方法。</li>
+</ul>
+<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
+<p>SkateFormer 给体育动作纠正提供了一个很实用的建模提示：很多运动错误来自“某些关节在某些时间点”的组合，而不是整段动作都错。对 <a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 中的羽毛球挥拍 demo，它可以作为动作阶段定位和关键帧选择的参考路线，和 <a class="wikilink" href="../sources/2026-05-12-trackmae.html">sources/2026-05-12-trackmae</a> 的轨迹重建目标形成互补。</p>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>通用 SAR benchmark 的动作类别和羽毛球 stroke-type 的细粒度标签差异很大，迁移时需要重新设计 label taxonomy。</li>
+<li>partition-specific attention 解决计算问题，但教练可解释输出还需要把 attention / key frame 变成动作阶段和错误原因。</li>
+<li>纯骨架时空建模仍缺少球、拍、场线、击球瞬间等运动项目特有证据。</li>
+</ul>
+<h2 id="原始材料">原始材料</h2>
+<ul>
+<li><code>raw/ingest/2026-05-16-skateformer-skeletal-temporal-transformer/paper.pdf</code></li>
+<li><code>raw/ingest/2026-05-16-skateformer-skeletal-temporal-transformer/paper-text.md</code></li>
+<li><code>raw/ingest/2026-05-16-skateformer-skeletal-temporal-transformer/abstract.md</code></li>
+<li><code>raw/ingest/2026-05-16-skateformer-skeletal-temporal-transformer/links.yaml</code></li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../sources/2026-05-16-bst-badminton-stroke-type-transformer.html">sources/2026-05-16-bst-badminton-stroke-type-transformer</a></li>
+<li><a class="wikilink" href="../sources/2026-05-16-tempose-badminton-fine-grained-motion.html">sources/2026-05-16-tempose-badminton-fine-grained-motion</a></li>
+<li><a class="wikilink" href="../sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition.html">sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition</a></li>
+<li><a class="wikilink" href="../sources/2026-05-12-trackmae.html">sources/2026-05-12-trackmae</a></li>
+<li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
+<li><a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-05-16-skateformer-skeletal-temporal-transformer&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;SkateFormer：面向人体动作识别的骨架-时间 Transformer&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-05-16&quot;,
+  &quot;updated&quot;: &quot;2026-05-16&quot;,
+  &quot;venue&quot;: &quot;ECCV 2024&quot;,
+  &quot;published_at&quot;: &quot;2024-03-14&quot;,
+  &quot;ingested_at&quot;: &quot;2026-05-16&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-understanding&quot;,
+    &quot;representation-learning&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Jeonghyeok Do&quot;,
+    &quot;Munchurl Kim&quot;
+  ],
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2403.09508&quot;,
+    &quot;https://arxiv.org/pdf/2403.09508&quot;,
+    &quot;https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/05796.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-05-16-skateformer-skeletal-temporal-transformer/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/sports-ai-video-understanding&quot;,
+    &quot;topics/sports-ai-roadmap&quot;,
+    &quot;topics/video-understanding&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/sportsmot&quot;
+  ],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

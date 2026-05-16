@@ -41,6 +41,7 @@
 <li><a href="claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
 </ul>
 <h2>Questions</h2><ul>
+<li><a href="questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
 <li><a href="questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
@@ -58,7 +59,7 @@
       <section class="article-content"><h1 id="索引">索引</h1>
 <blockquote>这是 CVPR 2025 研究 wiki 的总入口。</blockquote>
 <blockquote>想先看整体结构与阅读路径，请从这里开始；想看当前状态与 backlog，请转到 <a class="wikilink missing" href="#missing-dashboard">dashboard</a>。</blockquote>
-<blockquote>最后更新：2026-04-25 | Topics：11 | 已编译页面：193</blockquote>
+<blockquote>最后更新：2026-05-16 | Topics：11 | 已编译页面：219</blockquote>
 <h2 id="总览入口">总览入口</h2>
 <ul>
 <li><a class="wikilink" href="llm-wiki.html">llm-wiki</a> — Karpathy 提出的 LLM Wiki 概念说明，也是本知识库的设计理念入口。</li>
@@ -267,6 +268,31 @@
 <li><a class="wikilink" href="sources/2026-04-25-mediapipe-pose.html">sources/2026-04-25-mediapipe-pose</a> — Google AI Edge documentation；MediaPipe Pose / BlazePose 提供移动端友好的 3D landmarks 姿态估计。</li>
 <li><a class="wikilink" href="sources/2026-04-25-deeplabcut.html">sources/2026-04-25-deeplabcut</a> — GitHub repository；DeepLabCut 是少量标注即可训练的无标记关键点追踪工具。</li>
 <li><a class="wikilink" href="sources/2026-04-25-nist-ai-risk-management-framework.html">sources/2026-04-25-nist-ai-risk-management-framework</a> — NIST；NIST AI RMF 提供 AI 风险管理框架。</li>
+<li><a class="wikilink" href="sources/2026-05-05-human-in-loop-team-sports-retrieval.html">sources/2026-05-05-human-in-loop-team-sports-retrieval</a> — arXiv 2026；团队运动视频检索的人机闭环适配样本，补强 coach-assist 和人工复核工作流。</li>
+<li><a class="wikilink" href="sources/2026-05-05-finecausal-action-quality-assessment.html">sources/2026-05-05-finecausal-action-quality-assessment</a> — arXiv 2025；可解释细粒度动作质量评估，把体育训练反馈推进到因果解释层。</li>
+<li><a class="wikilink" href="sources/2026-05-05-ai-driven-soccer-analysis.html">sources/2026-05-05-ai-driven-soccer-analysis</a> — arXiv 2026；足球视频分析系统样本，补强端到端 soccer analysis pipeline。</li>
+<li><a class="wikilink" href="sources/2026-05-05-soccernet-v2-holistic-understanding.html">sources/2026-05-05-soccernet-v2-holistic-understanding</a> — arXiv 2020；SoccerNet-v2 广播足球视频整体理解基准，补强足球公开数据生态。</li>
+<li><a class="wikilink" href="sources/2026-05-05-soccernet-v2-camera-calibration-player-localization.html">sources/2026-05-05-soccernet-v2-camera-calibration-player-localization</a> — arXiv 2021；把足球场标定与球员定位接成 full-pitch understanding 的关键桥。</li>
+<li><a class="wikilink" href="sources/2026-05-05-active-learning-action-spotting-football.html">sources/2026-05-05-active-learning-action-spotting-football</a> — CVPR Workshop 2023；足球事件定位的主动学习低标注路线。</li>
+<li><a class="wikilink" href="sources/2026-05-05-soccernet-2022-challenges-results.html">sources/2026-05-05-soccernet-2022-challenges-results</a> — arXiv 2022；SoccerNet 2022 多任务挑战结果，补足球视频理解评测生态前史。</li>
+<li><a class="wikilink" href="sources/2026-05-05-soccernet-2023-challenges-results.html">sources/2026-05-05-soccernet-2023-challenges-results</a> — arXiv 2023；SoccerNet 2023 多任务挑战结果，连接 action spotting、tracking 与公开 leaderboard。</li>
+<li><a class="wikilink" href="sources/2026-05-05-soccernet-2023-tracking-mot4mot.html">sources/2026-05-05-soccernet-2023-tracking-mot4mot</a> — arXiv 2023；SoccerNet tracking challenge 团队报告，补球员轨迹系统工程样本。</li>
+<li><a class="wikilink" href="sources/2026-05-05-event2tracking.html">sources/2026-05-05-event2tracking</a> — AAAI 2025；用长时多模态上下文和 event data 重建足球多智能体轨迹，补上 trajectory-event semantics 关键桥。</li>
+<li><a class="wikilink" href="sources/2026-05-05-x-vars-explainable-football-refereeing.html">sources/2026-05-05-x-vars-explainable-football-refereeing</a> — CVPR Workshop 2024；可解释足球 VAR / referee assistant，把视频证据、规则和判罚解释接起来。</li>
+<li><a class="wikilink" href="sources/2026-05-05-refereebench-multi-sport-referees.html">sources/2026-05-05-refereebench-multi-sport-referees</a> — arXiv 2026；多运动项目裁判能力 benchmark，测试 Video MLLM 的规则化判罚推理。</li>
+<li><a class="wikilink" href="sources/2026-05-05-sports-qa-video-question-answering.html">sources/2026-05-05-sports-qa-video-question-answering</a> — IJCV 2026；复杂专业体育 VideoQA benchmark，补 sports MLLM reasoning 基础层。</li>
+<li><a class="wikilink" href="sources/2026-05-05-tracknet-high-speed-tiny-objects.html">sources/2026-05-05-tracknet-high-speed-tiny-objects</a> — AVSS 2019 / arXiv；TrackNet 原始高速小目标追踪网络，建立球类小目标 heatmap tracking 基线。</li>
+<li><a class="wikilink" href="sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking.html">sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking</a> — ICPAI 2020；TrackNetV2 针对羽毛球 shuttle tracking 优化效率、显存和精度。</li>
+<li><a class="wikilink" href="sources/2026-05-05-monotrack-shuttle-trajectory-reconstruction.html">sources/2026-05-05-monotrack-shuttle-trajectory-reconstruction</a> — CVPR Workshop 2022；从单目羽毛球视频恢复 3D shuttle trajectory。</li>
+<li><a class="wikilink" href="sources/2026-05-05-tracknetv4-motion-attention-maps.html">sources/2026-05-05-tracknetv4-motion-attention-maps</a> — ICASSP 2025 / arXiv；用 motion attention maps 增强 TrackNet 系列的快速小目标追踪。</li>
+<li><a class="wikilink" href="sources/2026-05-12-trackmae.html">sources/2026-05-12-trackmae</a> — CVPR 2026 / arXiv；把 point-tracking 轨迹加入 masked video modeling，补强体育动作识别的 motion-aware 表征底座。</li>
+<li><a class="wikilink" href="sources/2026-05-12-videoauto-r1.html">sources/2026-05-12-videoauto-r1</a> — CVPR 2026 / arXiv；用 confidence-based early exit 做按需视频推理，适合作为动作纠正的解释策略。</li>
+<li><a class="wikilink" href="sources/2026-05-16-bst-badminton-stroke-type-transformer.html">sources/2026-05-16-bst-badminton-stroke-type-transformer</a> — arXiv 2025；把羽毛球视频理解从 TrackNet/MonoTrack 球路追踪推进到骨架动作识别和 stroke-type classification，并追溯 TemPose、ShuttleSet、BlockGCN、SkateFormer、ProtoGCN 等 related work。</li>
+<li><a class="wikilink" href="sources/2026-05-16-shuttleset-stroke-level-badminton-dataset.html">sources/2026-05-16-shuttleset-stroke-level-badminton-dataset</a> — KDD 2023；羽毛球单打 stroke-level 数据集，提供 shot type、hit frame、击球位置和双方球员位置标注。</li>
+<li><a class="wikilink" href="sources/2026-05-16-tempose-badminton-fine-grained-motion.html">sources/2026-05-16-tempose-badminton-fine-grained-motion</a> — CVPR Workshop 2023；用 skeleton Transformer 做羽毛球细粒度动作识别，并接入 shuttle position。</li>
+<li><a class="wikilink" href="sources/2026-05-16-protogcn-skeleton-action-recognition.html">sources/2026-05-16-protogcn-skeleton-action-recognition</a> — CVPR 2025；用 motion prototypes 强化骨架动作识别中的局部细节差异判别。</li>
+<li><a class="wikilink" href="sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition.html">sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition</a> — CVPR 2024；重新编码骨架拓扑，减少 GCN 中 bone connectivity 信息衰减。</li>
+<li><a class="wikilink" href="sources/2026-05-16-skateformer-skeletal-temporal-transformer.html">sources/2026-05-16-skateformer-skeletal-temporal-transformer</a> — ECCV 2024；用 skeletal-temporal partition attention 高效建模关键关节和关键帧。</li>
 <li><a class="wikilink" href="sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html">sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps</a> — CVPR 2024；用优化时间步替代均匀步长，提高少步采样表现。</li>
 <li><a class="wikilink" href="sources/2026-04-15-diffusion-models-without-attention.html">sources/2026-04-15-diffusion-models-without-attention</a> — CVPR 2024；用 state space 主干给出非 DiT 的高分辨率扩散路线。</li>
 </ul>
@@ -288,6 +314,7 @@
 <li><a class="wikilink" href="questions/question-data-vs-architecture-in-image-editing.html">questions/question-data-vs-architecture-in-image-editing</a> — 图像编辑进步究竟主要来自数据扩展还是架构升级。</li>
 <li><a class="wikilink" href="questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a> — 统一图像生成编辑模型能否持续压过专用流水线。</li>
 <li><a class="wikilink" href="questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a> — 现有评测是否真的刻画了视频编辑理解能力。</li>
+<li><a class="wikilink" href="questions/question-badminton-stroke-correction-demo.html">questions/question-badminton-stroke-correction-demo</a> — 羽毛球挥拍动作纠正 demo 的最小任务定义、错误模式和反馈输出格式。</li>
 </ul>
 <h2 id="模板">模板</h2>
 <ul>

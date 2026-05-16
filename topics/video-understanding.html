@@ -41,6 +41,7 @@
 <li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
 </ul>
 <h2>Questions</h2><ul>
+<li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
 <li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
@@ -51,7 +52,7 @@
     <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">topic · 2026-04-25</p>
+        <p class="eyebrow">topic · 2026-05-16</p>
         <h1>视频理解</h1>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#reasoning">#reasoning</a></div>
       </header>
@@ -77,7 +78,7 @@
 <p><a class="wikilink" href="../sources/2026-04-14-language-driven-video-inpainting.html">sources/2026-04-14-language-driven-video-inpainting</a> 也说明视频理解已经开始更直接地嵌入编辑型任务接口，而不是只留在纯 benchmark 页面里。</p>
 <p><a class="wikilink" href="../sources/2026-04-14-glitchbench.html">sources/2026-04-14-glitchbench</a> 又补入了动态异常识别这一类诊断 benchmark，使这一页不再只停留在概念层。</p>
 <p><a class="wikilink" href="../sources/2026-04-14-veggie.html">sources/2026-04-14-veggie</a> 说明视频理解正在和 instruction-based editing 直接耦合；<a class="wikilink" href="../sources/2026-04-14-hallusionbench.html">sources/2026-04-14-hallusionbench</a> 则把多模态理解失败模式的诊断层补了进来。</p>
-<p>这一主题现在已经可以承载更明确的系统观察：核心问题是模型是否真正理解长时序内容、动作关系、事件演化，以及在真实拥挤场景里能否持续保持稳定的对象级理解与关联。体育机器视觉文献清单 进一步把体育视频理解和部署协议、跨场景泛化、可解释输出、人工复核连接起来。</p>
+<p>这一主题现在已经可以承载更明确的系统观察：核心问题是模型是否真正理解长时序内容、动作关系、事件演化，以及在真实拥挤场景里能否持续保持稳定的对象级理解与关联。体育机器视觉文献清单 进一步把体育视频理解和部署协议、跨场景泛化、可解释输出、人工复核连接起来；<a class="wikilink" href="../sources/2026-05-05-soccernet-v2-holistic-understanding.html">sources/2026-05-05-soccernet-v2-holistic-understanding</a>、<a class="wikilink" href="../sources/2026-05-05-soccernet-v2-camera-calibration-player-localization.html">sources/2026-05-05-soccernet-v2-camera-calibration-player-localization</a>、<a class="wikilink" href="../sources/2026-05-05-active-learning-action-spotting-football.html">sources/2026-05-05-active-learning-action-spotting-football</a>、<a class="wikilink" href="../sources/2026-05-05-soccernet-2022-challenges-results.html">sources/2026-05-05-soccernet-2022-challenges-results</a>、<a class="wikilink" href="../sources/2026-05-05-soccernet-2023-challenges-results.html">sources/2026-05-05-soccernet-2023-challenges-results</a> 与 <a class="wikilink" href="../sources/2026-05-05-soccernet-2023-tracking-mot4mot.html">sources/2026-05-05-soccernet-2023-tracking-mot4mot</a> 把足球视频理解补到数据生态、球场几何、低标注事件定位、年度挑战和 tracking 系统；<a class="wikilink" href="../sources/2026-05-05-human-in-loop-team-sports-retrieval.html">sources/2026-05-05-human-in-loop-team-sports-retrieval</a>、<a class="wikilink" href="../sources/2026-05-05-finecausal-action-quality-assessment.html">sources/2026-05-05-finecausal-action-quality-assessment</a> 与 <a class="wikilink" href="../sources/2026-05-05-ai-driven-soccer-analysis.html">sources/2026-05-05-ai-driven-soccer-analysis</a> 则把这条线继续推进到人机闭环、因果解释和应用系统；<a class="wikilink" href="../sources/2026-05-16-bst-badminton-stroke-type-transformer.html">sources/2026-05-16-bst-badminton-stroke-type-transformer</a>、<a class="wikilink" href="../sources/2026-05-12-trackmae.html">sources/2026-05-12-trackmae</a> 与 <a class="wikilink" href="../sources/2026-05-12-videoauto-r1.html">sources/2026-05-12-videoauto-r1</a> 进一步把通用视频理解接到体育动作语义和动作纠正：BST 负责羽毛球击球类型，TrackMAE 负责运动轨迹表征，VideoAuto-R1 负责按需解释。</p>
 <h2 id="证据基础">证据基础</h2>
 <ul>
 <li><a class="wikilink" href="../sources/2026-04-25-finegym.html">sources/2026-04-25-finegym</a></li>
@@ -101,6 +102,17 @@
 <li><a class="wikilink" href="../sources/2026-04-14-lvbench.html">sources/2026-04-14-lvbench</a></li>
 <li><a class="wikilink" href="../sources/2026-04-14-language-driven-video-inpainting.html">sources/2026-04-14-language-driven-video-inpainting</a></li>
 </ul>
+<h2 id="体育多智能体轨迹-事件语义作为长视频上下文">体育多智能体轨迹：事件语义作为长视频上下文</h2>
+<p><a class="wikilink" href="../sources/2026-05-05-event2tracking.html">sources/2026-05-05-event2tracking</a> 给 video understanding 增加了一个强应用锚点：长视频理解可以服务于多智能体轨迹重建，event data 能成为恢复 noisy trajectories 的上下文。这与 <a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 中的 SoccerNet challenge、tracking team report 和 game-state reconstruction 证据形成连续链路。</p>
+<h2 id="体育裁判推理-专业规则作为视频理解压力测试">体育裁判推理：专业规则作为视频理解压力测试</h2>
+<p><a class="wikilink" href="../sources/2026-05-05-x-vars-explainable-football-refereeing.html">sources/2026-05-05-x-vars-explainable-football-refereeing</a>、<a class="wikilink" href="../sources/2026-05-05-refereebench-multi-sport-referees.html">sources/2026-05-05-refereebench-multi-sport-referees</a> 与 <a class="wikilink" href="../sources/2026-05-05-sports-qa-video-question-answering.html">sources/2026-05-05-sports-qa-video-question-answering</a> 给 video understanding 增加了一个专业评测方向：模型需要把视频片段、实体、时间点、运动规则和解释链合在一起。这个方向比通用 VideoQA 更贴近真实决策，也更能暴露 MLLM 在 temporal grounding、规则遵循和可解释输出上的短板。</p>
+<h2 id="高速小目标追踪-体育视频里的极端-temporal-localization">高速小目标追踪：体育视频里的极端 temporal localization</h2>
+<p><a class="wikilink" href="../sources/2026-05-05-tracknet-high-speed-tiny-objects.html">sources/2026-05-05-tracknet-high-speed-tiny-objects</a>、<a class="wikilink" href="../sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking.html">sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking</a>、<a class="wikilink" href="../sources/2026-04-25-tracknetv3.html">sources/2026-04-25-tracknetv3</a>、<a class="wikilink" href="../sources/2026-05-05-tracknetv4-motion-attention-maps.html">sources/2026-05-05-tracknetv4-motion-attention-maps</a> 与 <a class="wikilink" href="../sources/2026-05-05-monotrack-shuttle-trajectory-reconstruction.html">sources/2026-05-05-monotrack-shuttle-trajectory-reconstruction</a> 给 video understanding 增加了一个极端应用：目标很小、速度很快、模糊和遮挡频繁，但轨迹又直接决定战术和训练分析价值。</p>
+<h2 id="细粒度体育动作语义-从骨架动作识别到击球类型">细粒度体育动作语义：从骨架动作识别到击球类型</h2>
+<p><a class="wikilink" href="../sources/2026-05-16-bst-badminton-stroke-type-transformer.html">sources/2026-05-16-bst-badminton-stroke-type-transformer</a> 给 video understanding 增加了一个细粒度动作语义样本：系统需要把人体骨架、shuttle trajectory 和场上位置融合起来，预测羽毛球 stroke type。<a class="wikilink" href="../sources/2026-05-16-shuttleset-stroke-level-badminton-dataset.html">sources/2026-05-16-shuttleset-stroke-level-badminton-dataset</a> 补上 stroke-level 数据结构，<a class="wikilink" href="../sources/2026-05-16-tempose-badminton-fine-grained-motion.html">sources/2026-05-16-tempose-badminton-fine-grained-motion</a> 补上 badminton skeleton Transformer 方法锚点，<a class="wikilink" href="../sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition.html">sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition</a> 补上 topology-aware GCN，<a class="wikilink" href="../sources/2026-05-16-skateformer-skeletal-temporal-transformer.html">sources/2026-05-16-skateformer-skeletal-temporal-transformer</a> 补上 skeletal-temporal Transformer，<a class="wikilink" href="../sources/2026-05-16-protogcn-skeleton-action-recognition.html">sources/2026-05-16-protogcn-skeleton-action-recognition</a> 则说明通用 SAR 正在把相似动作的局部细节差异建模成 prototype-level representation。</p>
+<p>这条线和 <a class="wikilink" href="../sources/2026-04-25-st-gcn.html">sources/2026-04-25-st-gcn</a> 形成方法前史关系，也和 <a class="wikilink" href="../sources/2026-05-12-trackmae.html">sources/2026-05-12-trackmae</a> 的 motion-aware representation 形成后续动作纠正接口。</p>
+<h2 id="动作纠正-运动轨迹表征与按需解释">动作纠正：运动轨迹表征与按需解释</h2>
+<p><a class="wikilink" href="../sources/2026-05-12-trackmae.html">sources/2026-05-12-trackmae</a> 和 <a class="wikilink" href="../sources/2026-05-12-videoauto-r1.html">sources/2026-05-12-videoauto-r1</a> 给 video understanding 增加了一个更接近产品的评估维度：模型是否能把动作细节、错误阶段和解释策略连接起来。TrackMAE 指向 motion-centric representation，VideoAuto-R1 指向 reason-when-necessary policy；它们共同说明体育动作纠正的核心不只是分类精度，还包括可解释性、置信度和反馈成本。</p>
 <h2 id="关联页面">关联页面</h2>
 <ul>
 <li><a class="wikilink" href="../topics/vision-language.html">topics/vision-language</a></li>
@@ -117,6 +129,8 @@
 <li>体育视频中的 tracking 表现能否转化成更强的高层事件理解能力？</li>
 <li>体育 AI 是否应优先从轨迹/交互/战术状态这些结构化中间层切入？</li>
 <li>视频语言方法相比纯视频方法，真正的优势边界在哪里？</li>
+<li>体育动作纠正中，哪些错误只需要感知判断，哪些错误必须进入因果/推理解释？</li>
+<li>羽毛球这类高速小目标项目中，stroke-type classification 能否稳定承接 TrackNet / MonoTrack 的球路输出？这条问题已推进到 <a class="wikilink" href="../questions/question-badminton-stroke-correction-demo.html">questions/question-badminton-stroke-correction-demo</a>：用 stroke type、关键帧、错误模式和反馈模板定义最小可复现 demo。</li>
 </ul></section>
       <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
   &quot;id&quot;: &quot;topic-video-understanding&quot;,
@@ -124,7 +138,7 @@
   &quot;title&quot;: &quot;视频理解&quot;,
   &quot;status&quot;: &quot;active&quot;,
   &quot;created&quot;: &quot;2026-04-12&quot;,
-  &quot;updated&quot;: &quot;2026-04-25&quot;,
+  &quot;updated&quot;: &quot;2026-05-16&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;video-understanding&quot;,
@@ -180,7 +194,32 @@
     &quot;sources/2026-04-25-mmpose&quot;,
     &quot;sources/2026-04-25-mediapipe-pose&quot;,
     &quot;sources/2026-04-25-deeplabcut&quot;,
-    &quot;sources/2026-04-25-nist-ai-risk-management-framework&quot;
+    &quot;sources/2026-04-25-nist-ai-risk-management-framework&quot;,
+    &quot;sources/2026-05-05-human-in-loop-team-sports-retrieval&quot;,
+    &quot;sources/2026-05-05-finecausal-action-quality-assessment&quot;,
+    &quot;sources/2026-05-05-ai-driven-soccer-analysis&quot;,
+    &quot;sources/2026-05-05-soccernet-v2-holistic-understanding&quot;,
+    &quot;sources/2026-05-05-soccernet-v2-camera-calibration-player-localization&quot;,
+    &quot;sources/2026-05-05-active-learning-action-spotting-football&quot;,
+    &quot;sources/2026-05-05-soccernet-2023-challenges-results&quot;,
+    &quot;sources/2026-05-05-soccernet-2022-challenges-results&quot;,
+    &quot;sources/2026-05-05-soccernet-2023-tracking-mot4mot&quot;,
+    &quot;sources/2026-05-05-event2tracking&quot;,
+    &quot;sources/2026-05-05-x-vars-explainable-football-refereeing&quot;,
+    &quot;sources/2026-05-05-refereebench-multi-sport-referees&quot;,
+    &quot;sources/2026-05-05-sports-qa-video-question-answering&quot;,
+    &quot;sources/2026-05-05-tracknet-high-speed-tiny-objects&quot;,
+    &quot;sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking&quot;,
+    &quot;sources/2026-05-05-monotrack-shuttle-trajectory-reconstruction&quot;,
+    &quot;sources/2026-05-05-tracknetv4-motion-attention-maps&quot;,
+    &quot;sources/2026-05-12-trackmae&quot;,
+    &quot;sources/2026-05-12-videoauto-r1&quot;,
+    &quot;sources/2026-05-16-bst-badminton-stroke-type-transformer&quot;,
+    &quot;sources/2026-05-16-tempose-badminton-fine-grained-motion&quot;,
+    &quot;sources/2026-05-16-shuttleset-stroke-level-badminton-dataset&quot;,
+    &quot;sources/2026-05-16-protogcn-skeleton-action-recognition&quot;,
+    &quot;sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition&quot;,
+    &quot;sources/2026-05-16-skateformer-skeletal-temporal-transformer&quot;
   ],
   &quot;related_topics&quot;: [
     &quot;topics/vision-language&quot;,
@@ -192,7 +231,9 @@
   &quot;related_entities&quot;: [
     &quot;entities/sportsmot&quot;
   ],
-  &quot;open_questions&quot;: []
+  &quot;open_questions&quot;: [
+    &quot;questions/question-badminton-stroke-correction-demo&quot;
+  ]
 }</pre></section>
     </article>
   </main>

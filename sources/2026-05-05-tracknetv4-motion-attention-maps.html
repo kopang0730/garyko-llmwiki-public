@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TrackNetV4：用运动注意力图增强快速体育小目标追踪 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-05-05-tracknetv4-motion-attention-maps&quot;, &quot;title&quot;: &quot;TrackNetV4：用运动注意力图增强快速体育小目标追踪&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;tracking&quot;, &quot;primary-source&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-05-05</p>
+        <h1>TrackNetV4：用运动注意力图增强快速体育小目标追踪</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#tracking">#tracking</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="tracknetv4-用运动注意力图增强快速体育小目标追踪">TrackNetV4：用运动注意力图增强快速体育小目标追踪</h1>
+<blockquote>会议 / 来源：ICASSP 2025 / arXiv</blockquote>
+<blockquote>发表日期：2024-09-22</blockquote>
+<blockquote>资料加入日期：2026-05-05</blockquote>
+<blockquote>DOI：10.1109/ICASSP49660.2025.10889364</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>TrackNetV4 在 TrackNetV2 / V3 基础上加入 motion attention maps，把视觉特征和运动线索融合起来，针对遮挡、低可见度和快速小目标定位做增强。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这篇 ICASSP 2025 / arXiv 论文把 TrackNet 系列推进到 motion-aware fusion：用 frame differencing maps 和 motion prompt layer 强调运动区域，再和 TrackNetV2 / V3 这类模型结合。它覆盖 tennis ball 与 shuttlecock datasets，适合作为 TrackNet 系列的 frontier evidence。</p>
+<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
+<ul>
+<li>与 <a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：它把高速小目标 tracking 从纯视觉检测推进到显式运动注意力。</li>
+<li>与 <a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它说明体育小目标任务需要 temporal motion prior，而不仅是单帧外观。</li>
+<li>与 <a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a> 的关系：它给视频模型提供了一个轻量、可插拔的运动提示样本。</li>
+</ul>
+<h2 id="来源可靠性与可溯源性">来源可靠性与可溯源性</h2>
+<ul>
+<li><strong>来源层级</strong>：ICASSP 2025 / arXiv paper，DOI <code>10.1109/ICASSP49660.2025.10889364</code> 可查；官方 GitHub 和项目页可访问。</li>
+<li><strong>可溯源材料</strong>：本地已保存 arXiv PDF、<code>paper-text.md</code>、abstract 与 <code>links.yaml</code>；PDF SHA256：<code>1c98f6840d8be224a223617cba9b8ec7123975a0deebe8023f17f2e2cc82f44d</code>。</li>
+<li><strong>使用边界</strong>：适合作为 TrackNet 系列最新方法趋势；正式复现前仍需核查官方代码、权重和数据下载是否完整。</li>
+</ul>
+<h2 id="和现有证据的关系">和现有证据的关系</h2>
+<p>TrackNetV4 位于 <a class="wikilink" href="../sources/2026-04-25-tracknetv3.html">sources/2026-04-25-tracknetv3</a> 之后：TrackNetV3 用 augmentation 和 trajectory rectification 提升 shuttlecock localization，TrackNetV4 进一步把 motion attention maps 作为可插拔模块加进 TrackNet family。</p>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>arXiv PDF 较大，后续 deep-analysis 可重点抽取模型结构图和实验表。</li>
+<li>它面向 fast sports object tracking 的通用增强，badminton 是关键测试场景之一。</li>
+</ul>
+<h2 id="原始材料">原始材料</h2>
+<ul>
+<li><code>raw/ingest/2026-05-05-tracknetv4-motion-attention-maps/paper.pdf</code></li>
+<li><code>raw/ingest/2026-05-05-tracknetv4-motion-attention-maps/paper-text.md</code></li>
+<li><code>raw/ingest/2026-05-05-tracknetv4-motion-attention-maps/abstract.md</code></li>
+<li><code>raw/ingest/2026-05-05-tracknetv4-motion-attention-maps/links.yaml</code></li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
+<li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
+<li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
+<li><a class="wikilink" href="../entities/sportsmot.html">entities/sportsmot</a></li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-05-05-tracknetv4-motion-attention-maps&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;TrackNetV4：用运动注意力图增强快速体育小目标追踪&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-05-05&quot;,
+  &quot;updated&quot;: &quot;2026-05-05&quot;,
+  &quot;venue&quot;: &quot;ICASSP 2025 / arXiv&quot;,
+  &quot;published_at&quot;: &quot;2024-09-22&quot;,
+  &quot;ingested_at&quot;: &quot;2026-05-05&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-understanding&quot;,
+    &quot;tracking&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Arjun Raj&quot;,
+    &quot;Lei Wang&quot;,
+    &quot;Tom Gedeon&quot;
+  ],
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2409.14543&quot;,
+    &quot;https://arxiv.org/pdf/2409.14543&quot;,
+    &quot;https://doi.org/10.1109/ICASSP49660.2025.10889364&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-05-05-tracknetv4-motion-attention-maps/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/sports-ai-video-understanding&quot;,
+    &quot;topics/sports-ai-roadmap&quot;,
+    &quot;topics/video-understanding&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/sportsmot&quot;
+  ],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

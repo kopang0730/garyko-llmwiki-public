@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BST：面向羽毛球击球类型识别的骨架动作 Transformer · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-05-16-bst-badminton-stroke-type-transformer&quot;, &quot;title&quot;: &quot;BST：面向羽毛球击球类型识别的骨架动作 Transformer&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;tracking&quot;, &quot;representation-learning&quot;, &quot;primary-source&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-05-16</p>
+        <h1>BST：面向羽毛球击球类型识别的骨架动作 Transformer</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#tracking">#tracking</a><a class="tag" href="../tags.html#representation-learning">#representation-learning</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="bst-面向羽毛球击球类型识别的骨架动作-transformer">BST：面向羽毛球击球类型识别的骨架动作 Transformer</h1>
+<blockquote>会议 / 来源：arXiv</blockquote>
+<blockquote>发表日期：2025-02-28；v4 更新：2026-03-31</blockquote>
+<blockquote>资料加入日期：2026-05-16</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>BST 把羽毛球分析从 shuttle tracking 推到 stroke-type classification：先围绕 hit frame 截取每个球员的挥拍片段，再把人体骨架、球路轨迹和场上位置送入 Transformer，预测单打场景中的击球类型。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这篇论文适合作为羽毛球视频理解的“任务拓展”锚点。此前 wiki 已覆盖 <a class="wikilink" href="../sources/2026-05-05-tracknet-high-speed-tiny-objects.html">sources/2026-05-05-tracknet-high-speed-tiny-objects</a>、<a class="wikilink" href="../sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking.html">sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking</a>、<a class="wikilink" href="../sources/2026-04-25-tracknetv3.html">sources/2026-04-25-tracknetv3</a>、<a class="wikilink" href="../sources/2026-05-05-tracknetv4-motion-attention-maps.html">sources/2026-05-05-tracknetv4-motion-attention-maps</a> 与 <a class="wikilink" href="../sources/2026-05-05-monotrack-shuttle-trajectory-reconstruction.html">sources/2026-05-05-monotrack-shuttle-trajectory-reconstruction</a>，它们主要解决 shuttle 2D / 3D 轨迹。BST 进一步说明：当球、场线、人体姿态和球员位置可用后，下游可以进入击球类别、技战术标签和动作纠正。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>羽毛球 stroke-type classification 的难点在于：人体挥拍动作高度相似，选手可能有假动作，且目标击球前后的对手动作会干扰片段表征。BST 的核心判断是：shuttle trajectory 直接反映真实击球结果，因此 stroke classifier 应把球路作为主证据，再用 pose 与 court position 补充身体动作和空间上下文。</p>
+<h2 id="方法概述">方法概述</h2>
+<ul>
+<li><strong>Clipping strategy</strong>：围绕 hit frame 和相邻击球帧切出 target stroke clip，保留前一拍与后一拍的上下文。</li>
+<li><strong>BST-0 backbone</strong>：编码 player joints / bones 和 shuttle positions，形成 stroke representation。</li>
+<li><strong>Pose Position Fusion (PPF)</strong>：将 player position 融入 pose latent，让场上站位参与判断。</li>
+<li><strong>Cleaned Graph (CG)</strong>：清理由对手动作带来的 trajectory 干扰。</li>
+<li><strong>Aim Player (AP)</strong>：按 overall trajectory 与两名球员 trajectory 的相关性给目标球员加权。</li>
+</ul>
+<h2 id="关键图示">关键图示</h2>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-05-16-bst-badminton-stroke-type-transformer/page-previews/page-03.png">raw/ingest/2026-05-16-bst-badminton-stroke-type-transformer/page-previews/page-03.png</a></p>
+<p>p3 展示 clipping strategy：目标击球片段应围绕 hit frame，并保留与前后击球相关的球路上下文。</p>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-05-16-bst-badminton-stroke-type-transformer/page-previews/page-05.png">raw/ingest/2026-05-16-bst-badminton-stroke-type-transformer/page-previews/page-05.png</a></p>
+<p>p5 展示 BST 架构：pose、shuttle trajectory、player position 分支进入 Transformer 和增强模块。</p>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-05-16-bst-badminton-stroke-type-transformer/page-previews/page-06.png">raw/ingest/2026-05-16-bst-badminton-stroke-type-transformer/page-previews/page-06.png</a></p>
+<p>p6 展示 ShuttleSet 25 类主结果。自有 clipping strategy 下，BST-CG-AP 达到 0.8322 accuracy、0.8097 macro-F1、0.9594 top-2 accuracy。</p>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-05-16-bst-badminton-stroke-type-transformer/page-previews/page-07.png">raw/ingest/2026-05-16-bst-badminton-stroke-type-transformer/page-previews/page-07.png</a></p>
+<p>p7 展示低样本、BadmintonDB 和数据集细节，说明 BST 在 25% training data 和另一个羽毛球数据集上也保持优势。</p>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<table><thead><tr><th>数据集 / 设置</th><th>代表结果</th><th>含义</th></tr></thead><tbody><tr><td>ShuttleSet 25 classes, fixed-width</td><td>BST-CG-AP：Acc 0.8254、Macro-F1 0.7983、Acc-2 0.9503</td><td>BST 系列超过 TemPose 与通用 SAR 基线</td></tr><tr><td>ShuttleSet 25 classes, proposed clipping</td><td>BST-CG-AP：Acc 0.8322、Macro-F1 0.8097、Acc-2 0.9594</td><td>hit-frame-centered clipping 带来增益</td></tr><tr><td>25% ShuttleSet training</td><td>BST-CG：Acc 0.7020、Macro-F1 0.6334</td><td>低样本下结构先验仍有价值</td></tr><tr><td>BadmintonDB 18 classes</td><td>BST-AP：Acc 0.6517、Macro-F1 0.5799</td><td>另一个羽毛球数据集上仍强于比较模型</td></tr><tr><td>TenniSet 6 classes</td><td>BST-AP：Acc 0.9923、Macro-F1 0.9922</td><td>球路 + 姿态 + 场上位置路线可迁移到网拍运动</td></tr><tr><td>ShuttleSet 35 classes</td><td>BST-CG-AP + clipping：Acc 0.7710、Macro-F1 0.7042、Acc-2 0.9340</td><td>类别更细时 top-2 和混淆分析更重要</td></tr><tr><td>2D vs 3D pose</td><td>2D pose 在所有列出的模型上优于估计 3D pose</td><td>当前转播场景应优先使用可靠 2D keypoints</td></tr></tbody></table>
+<h2 id="related-work-溯源价值">Related Work 溯源价值</h2>
+<p>用户贴出的 Related Work 段落来自 BST 论文。它有两条可直接补进 wiki 的线索：</p>
+<ol>
+<li><strong>Badminton analysis system</strong>：早期系统从广播视频结构化分析、球场/球员/球路检测、属性标注、可视化 UI、击球分类、发球检测逐步推进到 TrackNet 系列和 MonoTrack。</li>
+<li><strong>Skeleton-based Action Recognition</strong>：ST-GCN、BlockGCN、SkateFormer、ProtoGCN 说明骨架动作识别已经形成 GCN、TCN、Transformer、contrastive/prototype learning 等方法分支，BST 借用这条 SAR 主线来解决羽毛球击球类型识别。</li>
+</ol>
+<p>本地已把 BST v4 references 中和这两条线相关的 14 个条目追溯到 <code>raw/ingest/2026-05-16-bst-badminton-stroke-type-transformer/related-work-trace.md</code>。其中 TemPose、ShuttleSet、BlockGCN、SkateFormer 和 ProtoGCN 已经拆成独立 source notes；后续可继续补 badminton serve / stroke classification 的早期工作。</p>
+<h2 id="对当前-wiki-判断的影响">对当前 wiki 判断的影响</h2>
+<p>BST 把 <a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的羽毛球线从“球在哪里”推进到“这个击球是什么类型”。它给 <a class="wikilink" href="../questions/question-badminton-stroke-correction-demo.html">questions/question-badminton-stroke-correction-demo</a> 三个工程原则：hit frame 是样本中心，shuttle trajectory 是主证据，2D pose 先行更适合当前转播 / 手机视频质量。</p>
+<h2 id="来源可靠性与可溯源性">来源可靠性与可溯源性</h2>
+<ul>
+<li><strong>来源层级</strong>：arXiv primary paper；v4 HTML 和 PDF 已保存。</li>
+<li><strong>可溯源材料</strong>：本地已保存 <code>paper.pdf</code>、<code>paper-text.md</code>、<code>analysis.md</code>、<code>abstract.md</code>、<code>links.yaml</code> 和 related-work trace；PDF SHA256：<code>a1197eb9d5cde5eb35689b8d79358b94925fc7cceb3e2201eab44bdfbbab34d0</code>。</li>
+<li><strong>使用边界</strong>：当前作为 arXiv evidence 使用；若后续进入正式会议或期刊，需要补 venue、DOI 和最终版本。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>效果依赖 hit frame detection、shuttle tracking、court-line detection 和 pose estimation；真实系统应把这些上游置信度写进输出。</li>
+<li>论文主要处理 singles stroke classification；动作纠正还需要错误模式标签、动作阶段和教练反馈字段。</li>
+<li>3D pose 估计在示例中出现朝向误差，第一版 demo 应优先使用稳定 2D keypoints 与球路证据。</li>
+</ul>
+<h2 id="原始材料">原始材料</h2>
+<ul>
+<li><code>raw/ingest/2026-05-16-bst-badminton-stroke-type-transformer/paper.pdf</code></li>
+<li><code>raw/ingest/2026-05-16-bst-badminton-stroke-type-transformer/paper-text.md</code></li>
+<li><code>raw/ingest/2026-05-16-bst-badminton-stroke-type-transformer/analysis.md</code></li>
+<li><code>raw/ingest/2026-05-16-bst-badminton-stroke-type-transformer/page-previews-contact-sheet.png</code></li>
+<li><code>raw/ingest/2026-05-16-bst-badminton-stroke-type-transformer/abstract.md</code></li>
+<li><code>raw/ingest/2026-05-16-bst-badminton-stroke-type-transformer/related-work-trace.md</code></li>
+<li><code>raw/ingest/2026-05-16-bst-badminton-stroke-type-transformer/links.yaml</code></li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
+<li><a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
+<li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
+<li><a class="wikilink" href="../questions/question-badminton-stroke-correction-demo.html">questions/question-badminton-stroke-correction-demo</a></li>
+<li><a class="wikilink" href="../sources/2026-05-16-shuttleset-stroke-level-badminton-dataset.html">sources/2026-05-16-shuttleset-stroke-level-badminton-dataset</a></li>
+<li><a class="wikilink" href="../sources/2026-05-16-tempose-badminton-fine-grained-motion.html">sources/2026-05-16-tempose-badminton-fine-grained-motion</a></li>
+<li><a class="wikilink" href="../sources/2026-04-25-st-gcn.html">sources/2026-04-25-st-gcn</a></li>
+<li><a class="wikilink" href="../sources/2026-05-12-trackmae.html">sources/2026-05-12-trackmae</a></li>
+<li><a class="wikilink" href="../entities/sportsmot.html">entities/sportsmot</a></li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-05-16-bst-badminton-stroke-type-transformer&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;BST：面向羽毛球击球类型识别的骨架动作 Transformer&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-05-16&quot;,
+  &quot;updated&quot;: &quot;2026-05-16&quot;,
+  &quot;venue&quot;: &quot;arXiv&quot;,
+  &quot;published_at&quot;: &quot;2025-02-28&quot;,
+  &quot;ingested_at&quot;: &quot;2026-05-16&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-understanding&quot;,
+    &quot;tracking&quot;,
+    &quot;representation-learning&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Jing-Yuan Chang&quot;
+  ],
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2502.21085&quot;,
+    &quot;https://arxiv.org/pdf/2502.21085v4&quot;,
+    &quot;https://arxiv.org/html/2502.21085v4&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-05-16-bst-badminton-stroke-type-transformer/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/sports-ai-video-understanding&quot;,
+    &quot;topics/sports-ai-roadmap&quot;,
+    &quot;topics/video-understanding&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/sportsmot&quot;
+  ],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: [
+    &quot;questions/question-badminton-stroke-correction-demo&quot;
+  ]
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

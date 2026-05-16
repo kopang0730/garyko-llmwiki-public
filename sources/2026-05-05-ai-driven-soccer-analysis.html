@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Driven Soccer Analysis（arXiv 2026）：足球视频分析系统样本 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-05-05-ai-driven-soccer-analysis&quot;, &quot;title&quot;: &quot;AI Driven Soccer Analysis（arXiv 2026）：足球视频分析系统样本&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;tracking&quot;, &quot;primary-source&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-05-05</p>
+        <h1>AI Driven Soccer Analysis（arXiv 2026）：足球视频分析系统样本</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#tracking">#tracking</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="ai-driven-soccer-analysis-arxiv-2026-足球视频分析系统样本">AI Driven Soccer Analysis（arXiv 2026）：足球视频分析系统样本</h1>
+<blockquote>会议 / 来源：arXiv 2026</blockquote>
+<blockquote>发表日期：2026/04/09</blockquote>
+<blockquote>资料加入日期：2026-05-05</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>把足球视频分析组织成计算机视觉系统问题，适合作为从单点 tracking / event detection 走向端到端足球分析 pipeline 的补充样本。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这篇论文更偏系统性 soccer analysis，价值在于把 detection、tracking、事件理解或战术分析串到一个应用型框架里。</p>
+<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
+<p>它能补 sports-ai-roadmap 的“部署闭环”层，提醒后续 source note 需要关注延迟、稳定性、可视化、标定和人工复核，而非只看单项指标。</p>
+<h2 id="和现有证据的关系">和现有证据的关系</h2>
+<ul>
+<li>与 <a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：它补强 roadmap 中近期 batch 的一个缺口，让体育 AI 从 tracking / 数据集扩展到交互检索、可解释评分或端到端系统。</li>
+<li>与 <a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它把体育视频理解继续推向事件语义、训练反馈、可解释输出和 human-in-the-loop 工作流。</li>
+<li>与 <a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a> 的关系：它提供真实长视频、多主体和应用约束下的视频理解样本。</li>
+</ul>
+<h2 id="来源可靠性与可溯源性">来源可靠性与可溯源性</h2>
+<ul>
+<li><strong>来源层级</strong>：arXiv preprint。arXiv 页面可访问，主题属于 <code>cs.CV</code> 与 <code>cs.AI</code>，但当前未看到 journal-ref 或 DOI。</li>
+<li><strong>可溯源材料</strong>：本地已保存 arXiv abstract、PDF 与 <code>paper-text.md</code>；可从 <code>links.yaml</code> 回到 arXiv abstract / PDF。</li>
+<li><strong>使用建议</strong>：适合作为“足球视频分析 pipeline”的轻量系统样本，证据等级低于正式会议 / 期刊论文。后续 roadmap 使用它时应强调系统启发，避免把它当成强 benchmark 或成熟部署证据。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>当前先作为轻量 source note 纳入；后续应核查其公开代码、数据规模、真实比赛覆盖和实验严谨性，再决定是否升级为高置信锚点。</li>
+<li>当前这版先完成轻量 primary-source 编译，后续可按 deep-analysis-first 流程补 <code>analysis.md</code>、关键图页和实验细节。</li>
+<li>具体数值和 benchmark 细节应以 <code>raw/ingest/2026-05-05-ai-driven-soccer-analysis/paper-text.md</code> 与原始 PDF 为准。</li>
+</ul>
+<h2 id="原始材料">原始材料</h2>
+<ul>
+<li><code>raw/ingest/2026-05-05-ai-driven-soccer-analysis/paper.pdf</code></li>
+<li><code>raw/ingest/2026-05-05-ai-driven-soccer-analysis/paper-text.md</code></li>
+<li><code>raw/ingest/2026-05-05-ai-driven-soccer-analysis/abstract.md</code></li>
+<li><code>raw/ingest/2026-05-05-ai-driven-soccer-analysis/links.yaml</code></li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
+<li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
+<li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
+<li><a class="wikilink" href="../entities/sportsmot.html">entities/sportsmot</a></li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-05-05-ai-driven-soccer-analysis&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;AI Driven Soccer Analysis（arXiv 2026）：足球视频分析系统样本&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-05-05&quot;,
+  &quot;updated&quot;: &quot;2026-05-05&quot;,
+  &quot;venue&quot;: &quot;arXiv 2026&quot;,
+  &quot;published_at&quot;: &quot;2026/04/09&quot;,
+  &quot;ingested_at&quot;: &quot;2026-05-05&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-understanding&quot;,
+    &quot;tracking&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Manchado, Adrian&quot;,
+    &quot;Cellio, Tanner&quot;,
+    &quot;Keane, Jonathan&quot;,
+    &quot;Wang, Yiyang&quot;
+  ],
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2604.08722&quot;,
+    &quot;https://arxiv.org/pdf/2604.08722&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-05-05-ai-driven-soccer-analysis/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/sports-ai-video-understanding&quot;,
+    &quot;topics/sports-ai-roadmap&quot;,
+    &quot;topics/video-understanding&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/sportsmot&quot;
+  ],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

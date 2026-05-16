@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ShuttleSet：人工标注的羽毛球单打 stroke-level 数据集 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-05-16-shuttleset-stroke-level-badminton-dataset&quot;, &quot;title&quot;: &quot;ShuttleSet：人工标注的羽毛球单打 stroke-level 数据集&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-05-16</p>
+        <h1>ShuttleSet：人工标注的羽毛球单打 stroke-level 数据集</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#benchmarking">#benchmarking</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="shuttleset-人工标注的羽毛球单打-stroke-level-数据集">ShuttleSet：人工标注的羽毛球单打 stroke-level 数据集</h1>
+<blockquote>会议 / 来源：KDD 2023 / arXiv</blockquote>
+<blockquote>发表日期：2023-06-08</blockquote>
+<blockquote>资料加入日期：2026-05-16</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>ShuttleSet 把羽毛球 tactical analysis 的基础单位推进到 stroke-level record：它提供 44 场顶级单打比赛、104 sets、3,685 rallies、36,492 strokes，并标注击球类型、击球位置、双方球员位置和 rally 结构。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这篇论文是 <a class="wikilink" href="../sources/2026-05-16-bst-badminton-stroke-type-transformer.html">sources/2026-05-16-bst-badminton-stroke-type-transformer</a> 与 <a class="wikilink" href="../sources/2026-05-16-tempose-badminton-fine-grained-motion.html">sources/2026-05-16-tempose-badminton-fine-grained-motion</a> 的数据底座。TrackNet 系列让系统能追踪 shuttle，ShuttleSet 则给出 stroke-level 标签和战术分析结构，让模型可以学习击球类别、落点、移动预测和战术偏好。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>羽毛球这类 turn-based sport 的难点在于：比赛视频里有球路、球员、场地、击球时刻和战术选择，但公开数据常停留在视频或粗粒度事件层。ShuttleSet 的目标是把比赛拆成从 match → set → rally → stroke 的显式结构，让每一次击球都成为可训练、可预测、可解释的记录。</p>
+<h2 id="数据与标注结构">数据与标注结构</h2>
+<ul>
+<li><strong>规模</strong>：44 matches、104 sets、3,685 rallies、36,492 strokes，覆盖 2018–2021 年 27 位高排名男女单打选手。</li>
+<li><strong>标签</strong>：18 类 shot type，包含 net shot、return net、smash、wrist smash、lob、clear、drive、drop、push、rush、serve 等。</li>
+<li><strong>空间字段</strong>：击球位置、双方球员位置、court grid 映射。</li>
+<li><strong>时间字段</strong>：hitting time、hit frame、rally 起止。</li>
+<li><strong>标注工具</strong>：S2 labeling tool 先做 match preparation / rally segmentation / video preprocessing，再执行一遍式 shot-by-shot labeling，并用随机抽样做质量检查。</li>
+</ul>
+<h2 id="关键图示">关键图示</h2>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-05-16-shuttleset-stroke-level-badminton-dataset/page-previews/page-05.png">raw/ingest/2026-05-16-shuttleset-stroke-level-badminton-dataset/page-previews/page-05.png</a></p>
+<p>p5 同时展示 shot type distribution 和 S2 标注工具。它说明 ShuttleSet 的核心资产是结构化击球记录。</p>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-05-16-shuttleset-stroke-level-badminton-dataset/page-previews/page-07.png">raw/ingest/2026-05-16-shuttleset-stroke-level-badminton-dataset/page-previews/page-07.png</a></p>
+<p>p7 展示 stroke forecasting 与 movement forecasting 结果。ShuttleNet 在 stroke forecasting 中稳定优于 Seq2Seq 等模型，DyMF 在 movement forecasting 中体现 player interaction graph 的价值。</p>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-05-16-shuttleset-stroke-level-badminton-dataset/page-previews/page-08.png">raw/ingest/2026-05-16-shuttleset-stroke-level-badminton-dataset/page-previews/page-08.png</a></p>
+<p>p8 的可视化平台 case study 把 net shot、失分区域、站位和回球位置连到教练可读的战术分析。</p>
+<h2 id="核心实验与-benchmark">核心实验与 benchmark</h2>
+<table><thead><tr><th>Benchmark</th><th>任务</th><th>代表结论</th></tr></thead><tbody><tr><td>Shot influence</td><td>给定 stroke-level 信息预测 rally 最终胜负概率</td><td>ShuttleScorer 在 AUC / ACC / Brier score 上优于 Bi-GRU，说明字段能支撑胜率建模</td></tr><tr><td>Stroke forecasting</td><td>给定前 8 / 4 / 2 拍预测未来 shot type 与位置</td><td>ShuttleNet 在 CE、MSE、MAE 上稳定强于 Seq2Seq；18 类细粒度 shot type 提高了任务难度</td></tr><tr><td>Movement forecasting</td><td>同时预测未来 shot 和双方移动</td><td>DyMF 在多种观察长度下表现强，说明动态交互图对站位和回位建模有价值</td></tr></tbody></table>
+<h2 id="对当前-wiki-判断的影响">对当前 wiki 判断的影响</h2>
+<p>ShuttleSet 让 <a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的羽毛球线具备“从感知到战术”的数据桥：TrackNet / MonoTrack 给球路，ShuttleSet 给结构化击球记录，TemPose / BST 给动作语义，下游可以进入战术推荐或动作纠正。</p>
+<p>对于 <a class="wikilink" href="../questions/question-badminton-stroke-correction-demo.html">questions/question-badminton-stroke-correction-demo</a>，ShuttleSet 直接支持三个设计：第一版 stroke type 可以从高频类别压缩开始；标注窗口应围绕 hit frame；输出应保留球路、球员位置和动作阶段。</p>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>数据主要来自顶级单打转播，双打、青训、业余、训练场和多机位场景仍需要补充。</li>
+<li>18 类 shot type 对模型已有挑战，demo 首版应先收缩类别空间。</li>
+<li>数据依赖专业标注，后续研究可优先做半自动标注、主动学习和人工复核 UI。</li>
+</ul>
+<h2 id="原始材料">原始材料</h2>
+<ul>
+<li><code>raw/ingest/2026-05-16-shuttleset-stroke-level-badminton-dataset/paper.pdf</code></li>
+<li><code>raw/ingest/2026-05-16-shuttleset-stroke-level-badminton-dataset/paper-text.md</code></li>
+<li><code>raw/ingest/2026-05-16-shuttleset-stroke-level-badminton-dataset/analysis.md</code></li>
+<li><code>raw/ingest/2026-05-16-shuttleset-stroke-level-badminton-dataset/page-previews-contact-sheet.png</code></li>
+<li><code>raw/ingest/2026-05-16-shuttleset-stroke-level-badminton-dataset/abstract.md</code></li>
+<li><code>raw/ingest/2026-05-16-shuttleset-stroke-level-badminton-dataset/links.yaml</code></li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../sources/2026-05-16-bst-badminton-stroke-type-transformer.html">sources/2026-05-16-bst-badminton-stroke-type-transformer</a></li>
+<li><a class="wikilink" href="../sources/2026-05-16-tempose-badminton-fine-grained-motion.html">sources/2026-05-16-tempose-badminton-fine-grained-motion</a></li>
+<li><a class="wikilink" href="../sources/2026-05-05-tracknet-high-speed-tiny-objects.html">sources/2026-05-05-tracknet-high-speed-tiny-objects</a></li>
+<li><a class="wikilink" href="../sources/2026-04-25-tracknetv3.html">sources/2026-04-25-tracknetv3</a></li>
+<li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
+<li><a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
+<li><a class="wikilink" href="../questions/question-badminton-stroke-correction-demo.html">questions/question-badminton-stroke-correction-demo</a></li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-05-16-shuttleset-stroke-level-badminton-dataset&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;ShuttleSet：人工标注的羽毛球单打 stroke-level 数据集&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-05-16&quot;,
+  &quot;updated&quot;: &quot;2026-05-16&quot;,
+  &quot;venue&quot;: &quot;KDD 2023&quot;,
+  &quot;published_at&quot;: &quot;2023-06-08&quot;,
+  &quot;ingested_at&quot;: &quot;2026-05-16&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-understanding&quot;,
+    &quot;benchmarking&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Wei-Yao Wang&quot;,
+    &quot;Yung-Chang Huang&quot;,
+    &quot;Tsi-Ui Ik&quot;,
+    &quot;Wen-Chih Peng&quot;
+  ],
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2306.04948&quot;,
+    &quot;https://arxiv.org/pdf/2306.04948&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-05-16-shuttleset-stroke-level-badminton-dataset/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/sports-ai-video-understanding&quot;,
+    &quot;topics/sports-ai-roadmap&quot;,
+    &quot;topics/video-understanding&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/sportsmot&quot;
+  ],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: [
+    &quot;questions/question-badminton-stroke-correction-demo&quot;
+  ]
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

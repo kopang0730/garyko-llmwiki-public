@@ -41,6 +41,7 @@
 <li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
 </ul>
 <h2>Questions</h2><ul>
+<li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
 <li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
@@ -51,13 +52,13 @@
     <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">topic · 2026-04-25</p>
+        <p class="eyebrow">topic · 2026-05-16</p>
         <h1>体育 AI 视频理解</h1>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#tracking">#tracking</a><a class="tag" href="../tags.html#benchmarking">#benchmarking</a></div>
       </header>
       <section class="article-content"><h1 id="体育-ai-视频理解">体育 AI 视频理解</h1>
 <h2 id="公开专题入口">公开专题入口</h2>
-<p>这页是公开站 <code>wiki.garyko.com</code> 的体育 AI 专题入口。它把体育视频分析从 <a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a> 中抽成一条独立子线，并连接到 <a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a>。当前证据已经覆盖四层：数据集基准、球员多目标跟踪、人-人交互检测、全场轨迹与多智能体状态理解。</p>
+<p>这页是公开站 <code>wiki.garyko.com</code> 的体育 AI 专题入口。它把体育视频分析从 <a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a> 中抽成一条独立子线，并连接到 <a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a>。当前证据已经覆盖九层：数据集基准、球员多目标跟踪、人-人交互检测、全场轨迹与多智能体状态理解、高速小目标 tracking / shuttle trajectory、羽毛球 stroke-type classification、运动轨迹表征与动作纠正、人机闭环 / 可解释训练反馈 / 端到端足球分析系统，以及 rule-grounded officiating / sports MLLM reasoning。</p>
 <p>如果是第一次阅读，建议先按这条路径走：<a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> → <a class="wikilink" href="../entities/sportsmot.html">entities/sportsmot</a> → <a class="wikilink" href="../sources/2026-04-24-sportsmot.html">sources/2026-04-24-sportsmot</a> → <a class="wikilink" href="../sources/2026-04-24-sportshhi.html">sources/2026-04-24-sportshhi</a> → <a class="wikilink" href="../sources/2026-04-24-transportmer.html">sources/2026-04-24-transportmer</a>。</p>
 <h2 id="当前综合判断">当前综合判断</h2>
 <p>体育 AI 视频理解的关键价值在于，它把通用视频理解里的“时序推理”压到更具体、更难取巧的结构化任务上：同一个球员要持续被跟踪，多个人之间的交互要被识别，完整场地中的轨迹要能被补全和预测，比赛状态还要能被解释。</p>
@@ -69,7 +70,7 @@
 <h2 id="方法图谱">方法图谱</h2>
 <table><thead><tr><th>层级</th><th>代表页面</th><th>它解决什么</th></tr></thead><tbody><tr><td>体育 MOT 数据锚点</td><td><a class="wikilink" href="../sources/2026-04-24-sportsmot.html">sources/2026-04-24-sportsmot</a></td><td>建立团队运动 tracking 的核心 benchmark</td></tr><tr><td>非线性运动建模</td><td><a class="wikilink" href="../sources/2026-04-23-sportmamba.html">sources/2026-04-23-sportmamba</a></td><td>用状态空间模型和 adaptive association 改进球员跟踪</td></tr><tr><td>全场空间 tracking</td><td><a class="wikilink" href="../sources/2026-04-24-teamtrack.html">sources/2026-04-24-teamtrack</a></td><td>把跟踪放到 full-pitch、多运动、多视角场景</td></tr><tr><td>人-人交互理解</td><td><a class="wikilink" href="../sources/2026-04-24-sportshhi.html">sources/2026-04-24-sportshhi</a></td><td>检测篮球/排球中的高层互动关系</td></tr><tr><td>多智能体轨迹理解</td><td><a class="wikilink" href="../sources/2026-04-24-transportmer.html">sources/2026-04-24-transportmer</a></td><td>统一预测、补全、球推断和比赛状态分类</td></tr><tr><td>方向级综述</td><td>体育机器视觉文献清单</td><td>连接研究任务、数据、部署与选题规划</td></tr></tbody></table>
 <h2 id="公开专题结构">公开专题结构</h2>
-<table><thead><tr><th>模块</th><th>推荐入口</th><th>读完应该理解什么</th></tr></thead><tbody><tr><td>路线图</td><td><a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></td><td>体育 AI 从感知到部署的七层地图与下一批补强计划</td></tr><tr><td>数据锚点</td><td><a class="wikilink" href="../entities/sportsmot.html">entities/sportsmot</a></td><td>为什么团队运动 MOT 是体育视频理解的稳定入口</td></tr><tr><td>跟踪与关联</td><td><a class="wikilink" href="../sources/2026-04-24-sportsmot.html">sources/2026-04-24-sportsmot</a>、<a class="wikilink" href="../sources/2026-04-23-sportmamba.html">sources/2026-04-23-sportmamba</a></td><td>遮挡、变速、相似外观如何把 player association 变成核心问题</td></tr><tr><td>交互理解</td><td><a class="wikilink" href="../sources/2026-04-24-sportshhi.html">sources/2026-04-24-sportshhi</a></td><td>体育 AI 如何从“看见人”推进到“理解关系”</td></tr><tr><td>全场与轨迹</td><td><a class="wikilink" href="../sources/2026-04-24-teamtrack.html">sources/2026-04-24-teamtrack</a>、<a class="wikilink" href="../sources/2026-04-24-transportmer.html">sources/2026-04-24-transportmer</a></td><td>full-pitch、多视角、多智能体轨迹如何连接到比赛状态</td></tr><tr><td>系统部署</td><td>体育机器视觉文献清单</td><td>研究任务怎样转成可解释、可复核、可部署的系统</td></tr></tbody></table>
+<table><thead><tr><th>模块</th><th>推荐入口</th><th>读完应该理解什么</th></tr></thead><tbody><tr><td>路线图</td><td><a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></td><td>体育 AI 从感知到部署的七层地图与下一批补强计划</td></tr><tr><td>数据锚点</td><td><a class="wikilink" href="../entities/sportsmot.html">entities/sportsmot</a></td><td>为什么团队运动 MOT 是体育视频理解的稳定入口</td></tr><tr><td>跟踪与关联</td><td><a class="wikilink" href="../sources/2026-04-24-sportsmot.html">sources/2026-04-24-sportsmot</a>、<a class="wikilink" href="../sources/2026-04-23-sportmamba.html">sources/2026-04-23-sportmamba</a></td><td>遮挡、变速、相似外观如何把 player association 变成核心问题</td></tr><tr><td>交互理解</td><td><a class="wikilink" href="../sources/2026-04-24-sportshhi.html">sources/2026-04-24-sportshhi</a></td><td>体育 AI 如何从“看见人”推进到“理解关系”</td></tr><tr><td>全场与轨迹</td><td><a class="wikilink" href="../sources/2026-04-24-teamtrack.html">sources/2026-04-24-teamtrack</a>、<a class="wikilink" href="../sources/2026-04-24-transportmer.html">sources/2026-04-24-transportmer</a>、<a class="wikilink" href="../sources/2026-05-05-soccernet-v2-camera-calibration-player-localization.html">sources/2026-05-05-soccernet-v2-camera-calibration-player-localization</a></td><td>full-pitch、多视角、多智能体轨迹如何连接到比赛状态</td></tr><tr><td>动作纠正</td><td><a class="wikilink" href="../sources/2026-05-12-trackmae.html">sources/2026-05-12-trackmae</a>、<a class="wikilink" href="../sources/2026-05-05-finecausal-action-quality-assessment.html">sources/2026-05-05-finecausal-action-quality-assessment</a>、<a class="wikilink" href="../sources/2026-05-12-videoauto-r1.html">sources/2026-05-12-videoauto-r1</a></td><td>如何从运动轨迹和动作阶段走到“哪里错、为什么错、怎么改”</td></tr><tr><td>系统部署</td><td><a class="wikilink" href="../sources/2026-05-05-human-in-loop-team-sports-retrieval.html">sources/2026-05-05-human-in-loop-team-sports-retrieval</a>、<a class="wikilink" href="../sources/2026-05-05-ai-driven-soccer-analysis.html">sources/2026-05-05-ai-driven-soccer-analysis</a></td><td>研究任务怎样转成可解释、可复核、可部署的系统</td></tr></tbody></table>
 <h2 id="对研究选题的启发">对研究选题的启发</h2>
 <ul>
 <li><strong>数据集路线</strong>：体育 AI 仍有明显 benchmark 空间，尤其是跨运动、跨视角、跨规则体系的数据构建。</li>
@@ -81,13 +82,43 @@
 <h2 id="文献清单拆分后的独立证据">文献清单拆分后的独立证据</h2>
 <p>这轮已经把体育机器视觉文献清单拆成独立 raw/source 条目。<a class="wikilink" href="../sources/2026-04-25-finegym.html">sources/2026-04-25-finegym</a>、<a class="wikilink" href="../sources/2026-04-25-multisports.html">sources/2026-04-25-multisports</a>、<a class="wikilink" href="../sources/2026-04-25-finesports.html">sources/2026-04-25-finesports</a> 把动作理解补成层级、多人、细粒度动作线；<a class="wikilink" href="../sources/2026-04-25-finediving.html">sources/2026-04-25-finediving</a> 和 <a class="wikilink" href="../sources/2026-04-25-logo-group-action-quality.html">sources/2026-04-25-logo-group-action-quality</a> 把体育 AI 接到动作质量评估；<a class="wikilink" href="../sources/2026-04-25-soccernet-game-state-reconstruction.html">sources/2026-04-25-soccernet-game-state-reconstruction</a> 与 <a class="wikilink" href="../sources/2026-04-25-universal-soccer-video-understanding.html">sources/2026-04-25-universal-soccer-video-understanding</a> 把足球理解推进到比赛状态和多模态统一理解；<a class="wikilink" href="../sources/2026-04-25-tacticai.html">sources/2026-04-25-tacticai</a> 把证据提升到战术建议与专家偏好；<a class="wikilink" href="../sources/2026-04-25-athletepose3d.html">sources/2026-04-25-athletepose3d</a> 补上真实竞技 3D 姿态；<a class="wikilink" href="../sources/2026-04-25-tracknetv3.html">sources/2026-04-25-tracknetv3</a> 补上高速小目标球类 tracking。</p>
 <h2 id="当前局限性">当前局限性</h2>
-<table><thead><tr><th>局限</th><th>现在的证据</th><th>对选题的含义</th></tr></thead><tbody><tr><td>数据覆盖偏置</td><td>体育机器视觉文献清单 指出公开数据集中职业转播、热门项目和单一机位更多；训练场、青训、女性运动、低资源项目仍薄。<a class="wikilink" href="../sources/2026-04-25-finegym.html">sources/2026-04-25-finegym</a>、<a class="wikilink" href="../sources/2026-04-25-multisports.html">sources/2026-04-25-multisports</a>、<a class="wikilink" href="../sources/2026-04-25-finesports.html">sources/2026-04-25-finesports</a> 补了动作数据，但覆盖仍集中在少数运动。</td><td>有价值的数据集工作应优先做跨运动、跨场馆、跨机位、跨人群，而不是只扩同质样本量。</td></tr><tr><td>标注成本与标签稀缺</td><td><a class="wikilink" href="../sources/2026-04-25-soccernet-game-state-reconstruction.html">sources/2026-04-25-soccernet-game-state-reconstruction</a>、<a class="wikilink" href="../sources/2026-04-25-finediving.html">sources/2026-04-25-finediving</a>、<a class="wikilink" href="../sources/2026-04-25-logo-group-action-quality.html">sources/2026-04-25-logo-group-action-quality</a> 都说明高质量标签需要专家知识、时间同步、场地几何或评分规则。</td><td>主动学习、弱监督、半监督、规则辅助标注和可复核 annotation tool 是很现实的研究入口。</td></tr><tr><td>跨域泛化弱</td><td><a class="wikilink" href="../sources/2026-04-25-athletepose3d.html">sources/2026-04-25-athletepose3d</a> 显示通用姿态模型迁移到真实竞技动作会遇到明显域差；体育视频还受到联赛、场馆、光照、转播风格、球衣和摄像机运动影响。</td><td>实验协议应加入 leave-one-venue、leave-one-broadcast-style、leave-one-sport、leave-one-season，而不是只报告随机划分分数。</td></tr><tr><td>小目标、遮挡与身份保持</td><td><a class="wikilink" href="../sources/2026-04-24-sportsmot.html">sources/2026-04-24-sportsmot</a> 和 <a class="wikilink" href="../sources/2026-04-23-sportmamba.html">sources/2026-04-23-sportmamba</a> 指向球员遮挡、变速、相似外观和 ID switch；<a class="wikilink" href="../sources/2026-04-25-tracknetv3.html">sources/2026-04-25-tracknetv3</a> 指向羽毛球这类高速小目标。</td><td>体育 tracking 的改进点在 association、ReID、motion prior、ball / equipment tracking 与不确定性估计。</td></tr><tr><td>规则推理仍薄</td><td><a class="wikilink" href="../sources/2026-04-25-tacticai.html">sources/2026-04-25-tacticai</a> 证明战术建议可以进入专家评估，但 foul、offside、out-of-bounds 等裁判辅助仍缺公开、可复核、规则约束 benchmark。</td><td>rule-grounded vision、可解释 VAR、视觉证据片段 + 规则文本联合推理是高上限方向。</td></tr><tr><td>可解释性与可信输出不足</td><td>体育机器视觉文献清单 强调教练、裁判、运动员需要置信度、失败案例、关键片段和人工复核；<a class="wikilink" href="../sources/2026-04-25-tacticai.html">sources/2026-04-25-tacticai</a> 的专家偏好评估说明可用性需要人类判断闭环。</td><td>论文应报告 calibration、failure taxonomy、human-in-the-loop review，而不是只报告 mAP/HOTA/MPJPE。</td></tr><tr><td>部署闭环缺失</td><td>当前证据多为离线 benchmark；真实系统还要处理端到端延迟、时间同步、相机标定漂移、数据权限、隐私合规和模型运维。</td><td>可部署体育 AI 需要把感知、标定、推理、可视化、监控、人工复核写成完整 pipeline。</td></tr></tbody></table>
+<table><thead><tr><th>局限</th><th>现在的证据</th><th>对选题的含义</th></tr></thead><tbody><tr><td>数据覆盖偏置</td><td>体育机器视觉文献清单 指出公开数据集中职业转播、热门项目和单一机位更多；训练场、青训、女性运动、低资源项目仍薄。<a class="wikilink" href="../sources/2026-04-25-finegym.html">sources/2026-04-25-finegym</a>、<a class="wikilink" href="../sources/2026-04-25-multisports.html">sources/2026-04-25-multisports</a>、<a class="wikilink" href="../sources/2026-04-25-finesports.html">sources/2026-04-25-finesports</a> 补了动作数据，但覆盖仍集中在少数运动。</td><td>有价值的数据集工作应优先做跨运动、跨场馆、跨机位、跨人群，而不是只扩同质样本量。</td></tr><tr><td>标注成本与标签稀缺</td><td><a class="wikilink" href="../sources/2026-04-25-soccernet-game-state-reconstruction.html">sources/2026-04-25-soccernet-game-state-reconstruction</a>、<a class="wikilink" href="../sources/2026-05-05-active-learning-action-spotting-football.html">sources/2026-05-05-active-learning-action-spotting-football</a>、<a class="wikilink" href="../sources/2026-04-25-finediving.html">sources/2026-04-25-finediving</a>、<a class="wikilink" href="../sources/2026-04-25-logo-group-action-quality.html">sources/2026-04-25-logo-group-action-quality</a> 都说明高质量标签需要专家知识、时间同步、场地几何或评分规则。</td><td>主动学习、弱监督、半监督、规则辅助标注和可复核 annotation tool 是很现实的研究入口。</td></tr><tr><td>跨域泛化弱</td><td><a class="wikilink" href="../sources/2026-04-25-athletepose3d.html">sources/2026-04-25-athletepose3d</a> 显示通用姿态模型迁移到真实竞技动作会遇到明显域差；体育视频还受到联赛、场馆、光照、转播风格、球衣和摄像机运动影响。</td><td>实验协议应加入 leave-one-venue、leave-one-broadcast-style、leave-one-sport、leave-one-season，而不是只报告随机划分分数。</td></tr><tr><td>小目标、遮挡与身份保持</td><td><a class="wikilink" href="../sources/2026-04-24-sportsmot.html">sources/2026-04-24-sportsmot</a>、<a class="wikilink" href="../sources/2026-04-23-sportmamba.html">sources/2026-04-23-sportmamba</a>、<a class="wikilink" href="../sources/2026-05-05-soccernet-2023-tracking-mot4mot.html">sources/2026-05-05-soccernet-2023-tracking-mot4mot</a> 和 <a class="wikilink" href="../sources/2026-05-05-event2tracking.html">sources/2026-05-05-event2tracking</a> 指向球员遮挡、变速、相似外观、ID switch 与事件语义辅助的轨迹重建；<a class="wikilink" href="../sources/2026-04-25-tracknetv3.html">sources/2026-04-25-tracknetv3</a> 指向羽毛球这类高速小目标。</td><td>体育 tracking 的改进点在 association、ReID、motion prior、ball / equipment tracking 与不确定性估计。</td></tr><tr><td>规则推理开始有锚点</td><td><a class="wikilink" href="../sources/2026-04-25-tacticai.html">sources/2026-04-25-tacticai</a> 证明战术建议可以进入专家评估；<a class="wikilink" href="../sources/2026-05-05-x-vars-explainable-football-refereeing.html">sources/2026-05-05-x-vars-explainable-football-refereeing</a>、<a class="wikilink" href="../sources/2026-05-05-refereebench-multi-sport-referees.html">sources/2026-05-05-refereebench-multi-sport-referees</a> 和 <a class="wikilink" href="../sources/2026-04-25-automated-offside-detection.html">sources/2026-04-25-automated-offside-detection</a> 把 foul / offside / referee assistance 接到可解释与评测层。</td><td>rule-grounded vision、可解释 VAR、视觉证据片段 + 规则文本联合推理是高上限方向。</td></tr><tr><td>可解释性与可信输出不足</td><td>体育机器视觉文献清单 强调教练、裁判、运动员需要置信度、失败案例、关键片段和人工复核；<a class="wikilink" href="../sources/2026-04-25-tacticai.html">sources/2026-04-25-tacticai</a> 的专家偏好评估说明可用性需要人类判断闭环。</td><td>论文应报告 calibration、failure taxonomy、human-in-the-loop review，而不是只报告 mAP/HOTA/MPJPE。</td></tr><tr><td>部署闭环缺失</td><td>当前证据多为离线 benchmark；真实系统还要处理端到端延迟、时间同步、相机标定漂移、数据权限、隐私合规和模型运维。</td><td>可部署体育 AI 需要把感知、标定、推理、可视化、监控、人工复核写成完整 pipeline。</td></tr></tbody></table>
 <p>这些局限共同指向一个研究判断：体育 AI 的可发表空间正在从单点 SOTA 转向“数据协议 + 结构化中间表示 + 规则/战术推理 + 可部署评估”。最值得优先做的不是再堆一个孤立模型，而是把跨域、低标注、可解释、可复核变成实验设计本身。</p>
+<h2 id="2026-05-05-小批量补强-从-benchmark-到人机闭环">2026-05-05 小批量补强：从 benchmark 到人机闭环</h2>
+<p>本轮新增三篇 primary-source 样本：<a class="wikilink" href="../sources/2026-05-05-human-in-loop-team-sports-retrieval.html">sources/2026-05-05-human-in-loop-team-sports-retrieval</a> 把团队运动视频检索接到 human-in-the-loop adaptation，<a class="wikilink" href="../sources/2026-05-05-finecausal-action-quality-assessment.html">sources/2026-05-05-finecausal-action-quality-assessment</a> 把动作质量评估推向因果解释，<a class="wikilink" href="../sources/2026-05-05-ai-driven-soccer-analysis.html">sources/2026-05-05-ai-driven-soccer-analysis</a> 则把足球视频分析整理成应用系统样本。</p>
+<p>这三篇共同说明，体育 AI 的下一层价值来自“可被人复核和使用”的结构：分析师能检索相似片段，教练能看到动作质量解释，系统能把检测、跟踪、事件和可视化接成 workflow。</p>
+<h2 id="2026-05-05-soccernet-基础补强-事件-球场几何与低标注">2026-05-05 SoccerNet 基础补强：事件、球场几何与低标注</h2>
+<p>本轮新增三篇 SoccerNet 相关 primary sources：<a class="wikilink" href="../sources/2026-05-05-soccernet-v2-holistic-understanding.html">sources/2026-05-05-soccernet-v2-holistic-understanding</a> 补上广播足球视频整体理解的数据基础，<a class="wikilink" href="../sources/2026-05-05-soccernet-v2-camera-calibration-player-localization.html">sources/2026-05-05-soccernet-v2-camera-calibration-player-localization</a> 把 camera calibration 与 player localization 明确成从图像到球场坐标的桥，<a class="wikilink" href="../sources/2026-05-05-active-learning-action-spotting-football.html">sources/2026-05-05-active-learning-action-spotting-football</a> 则把 action spotting 的专家标注成本转成 active learning 问题。</p>
+<p>这组证据让体育 AI roadmap 的 S1 更稳：比赛状态重建需要的不只是 tracking 模型，还需要事件标签、场地几何、低标注协议和可复核的公开任务生态。</p>
+<h2 id="2026-05-05-soccernet-challenge-补强-从任务生态到-tracking-系统">2026-05-05 SoccerNet challenge 补强：从任务生态到 tracking 系统</h2>
+<p>本轮新增 <a class="wikilink" href="../sources/2026-05-05-soccernet-2022-challenges-results.html">sources/2026-05-05-soccernet-2022-challenges-results</a>、<a class="wikilink" href="../sources/2026-05-05-soccernet-2023-challenges-results.html">sources/2026-05-05-soccernet-2023-challenges-results</a> 与 <a class="wikilink" href="../sources/2026-05-05-soccernet-2023-tracking-mot4mot.html">sources/2026-05-05-soccernet-2023-tracking-mot4mot</a>。前两篇提供 SoccerNet 年度 challenge 的任务生态和结果脉络，第三篇提供 tracking challenge 中具体团队系统的工程样本。</p>
+<p>这组证据让 S1 更接近 Event2Tracking / trajectory-event semantics：真正有用的足球轨迹理解需要公开任务定义、年度结果、tracking 系统和 action/event 任务之间的衔接。</p>
+<h2 id="2026-05-05-event2tracking-补强-轨迹重建接入事件语义">2026-05-05 Event2Tracking 补强：轨迹重建接入事件语义</h2>
+<p>本轮新增 <a class="wikilink" href="../sources/2026-05-05-event2tracking.html">sources/2026-05-05-event2tracking</a>。它把 tracking data 与 event data 融合，用长时上下文重建球员和球的轨迹，正式补上此前 roadmap 中 Event2Tracking / trajectory-event semantics 的 P0 缺口。</p>
+<p>这组证据把 S1 从公开任务生态推进到模型设计层：体育视频理解里的 event 不只是标签终点，也可以反过来作为轨迹修复、状态重建和战术语义理解的上下文。</p>
+<h2 id="2026-05-05-referee-sports-mllm-补强-可解释判罚与专业问答">2026-05-05 Referee / sports MLLM 补强：可解释判罚与专业问答</h2>
+<p>本轮新增 <a class="wikilink" href="../sources/2026-05-05-x-vars-explainable-football-refereeing.html">sources/2026-05-05-x-vars-explainable-football-refereeing</a>、<a class="wikilink" href="../sources/2026-05-05-refereebench-multi-sport-referees.html">sources/2026-05-05-refereebench-multi-sport-referees</a> 与 <a class="wikilink" href="../sources/2026-05-05-sports-qa-video-question-answering.html">sources/2026-05-05-sports-qa-video-question-answering</a>。X-VARS 把足球 VAR 做成可解释多模态模型和 SoccerNet-XFoul 数据集，RefereeBench 把裁判能力做成 11 项运动的 Video MLLM benchmark，Sports-QA 则补上专业体育 VideoQA 的基础评测。</p>
+<p>这组证据把体育视频理解从“看懂事件”推进到“按规则解释决策”：模型需要识别实体、定位时间、判断犯规或处罚类别，并给出可由裁判或分析师复核的证据链。</p>
+<h2 id="2026-05-05-badminton-小目标追踪补强-从-2d-shuttle-tracking-到单目-3d-轨迹">2026-05-05 Badminton 小目标追踪补强：从 2D shuttle tracking 到单目 3D 轨迹</h2>
+<p>本轮新增 <a class="wikilink" href="../sources/2026-05-05-tracknet-high-speed-tiny-objects.html">sources/2026-05-05-tracknet-high-speed-tiny-objects</a>、<a class="wikilink" href="../sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking.html">sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking</a>、<a class="wikilink" href="../sources/2026-05-05-monotrack-shuttle-trajectory-reconstruction.html">sources/2026-05-05-monotrack-shuttle-trajectory-reconstruction</a> 与 <a class="wikilink" href="../sources/2026-05-05-tracknetv4-motion-attention-maps.html">sources/2026-05-05-tracknetv4-motion-attention-maps</a>，并修正 <a class="wikilink" href="../sources/2026-04-25-tracknetv3.html">sources/2026-04-25-tracknetv3</a> 的正式来源信息。</p>
+<p>TrackNet 系列说明体育视频理解不只是在跟踪球员，也要处理高速、小目标、运动模糊和遮挡；MonoTrack 进一步说明当 shuttle 的 2D 轨迹稳定后，普通单目视频也可以尝试恢复 3D 轨迹，从而服务击球质量、落点和战术分析。</p>
+<h2 id="2026-05-16-badminton-related-work-溯源-从球路追踪到击球语义">2026-05-16 Badminton Related Work 溯源：从球路追踪到击球语义</h2>
+<p><a class="wikilink" href="../sources/2026-05-16-bst-badminton-stroke-type-transformer.html">sources/2026-05-16-bst-badminton-stroke-type-transformer</a> 把用户贴出的 Related Work 追溯成一个可复用入口：badminton analysis system 线从 WACV 2018 的 broadcast badminton 结构化分析、TrackNet / TrackNetV2 / TrackNetV3 / TrackNetV4 的 shuttle tracking、MonoTrack 的单目 3D shuttle trajectory，推进到 ShuttleSet、TemPose 和 BST 这类 stroke-level / skeleton-based action recognition。</p>
+<p>本轮已把其中五条高价值线索拆成独立 source notes：<a class="wikilink" href="../sources/2026-05-16-shuttleset-stroke-level-badminton-dataset.html">sources/2026-05-16-shuttleset-stroke-level-badminton-dataset</a> 提供 stroke-level 数据底座，<a class="wikilink" href="../sources/2026-05-16-tempose-badminton-fine-grained-motion.html">sources/2026-05-16-tempose-badminton-fine-grained-motion</a> 提供 badminton skeleton Transformer 方法锚点，<a class="wikilink" href="../sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition.html">sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition</a> 提供 topology-aware GCN 路线，<a class="wikilink" href="../sources/2026-05-16-skateformer-skeletal-temporal-transformer.html">sources/2026-05-16-skateformer-skeletal-temporal-transformer</a> 提供 skeletal-temporal Transformer 路线，<a class="wikilink" href="../sources/2026-05-16-protogcn-skeleton-action-recognition.html">sources/2026-05-16-protogcn-skeleton-action-recognition</a> 提供 CVPR 2025 阶段通用 SAR 的 prototype / contrastive fine-grained 路线。</p>
+<p>这条线对当前 wiki 的意义是：羽毛球视频理解已经可以拆成“球路—场地—人体姿态—击球类别—战术/训练反馈”的层级。本轮深分析后，这条链更清楚：<a class="wikilink" href="../sources/2026-05-16-shuttleset-stroke-level-badminton-dataset.html">sources/2026-05-16-shuttleset-stroke-level-badminton-dataset</a> 提供 hit frame、shot type、球员位置和 rally 结构；<a class="wikilink" href="../sources/2026-05-16-tempose-badminton-fine-grained-motion.html">sources/2026-05-16-tempose-badminton-fine-grained-motion</a> 证明 skeleton + shuttle / court position 能做细粒度动作识别，并提供 attention 证据窗口；<a class="wikilink" href="../sources/2026-05-16-bst-badminton-stroke-type-transformer.html">sources/2026-05-16-bst-badminton-stroke-type-transformer</a> 把 hit-frame-centered clipping、shuttle trajectory 和 2D pose 组合成 stroke-type classifier。后续最值得继续补的是 badminton serve / stroke classification 的早期系统论文，以及把这三篇串成可复现的挥拍动作纠正 demo。</p>
+<h2 id="2026-05-12-动作纠正补强-从-motion-representation-到-adaptive-explanation">2026-05-12 动作纠正补强：从 motion representation 到 adaptive explanation</h2>
+<p><a class="wikilink" href="../sources/2026-05-12-trackmae.html">sources/2026-05-12-trackmae</a> 把轨迹显式引入视频自监督预训练，补强 <a class="wikilink" href="../sources/2026-04-25-videomae.html">sources/2026-04-25-videomae</a> 在运动细节上的短板；<a class="wikilink" href="../sources/2026-05-12-videoauto-r1.html">sources/2026-05-12-videoauto-r1</a> 则把视频推理做成 confidence-based early exit，让模型只在复杂问题上进入长解释。两者和 <a class="wikilink" href="../sources/2026-05-05-finecausal-action-quality-assessment.html">sources/2026-05-05-finecausal-action-quality-assessment</a> 组合后，可以支撑一个体育动作纠正 pipeline：运动轨迹表征负责看懂动作，AQA / 因果层负责定位错误，video reasoning 层负责把错误转成教练式解释。</p>
+<p>这条线的研究价值在于把体育视频理解从 action recognition 推到 action correction：系统不只回答“这是什么动作”，还要输出“哪个阶段偏了、偏差如何影响结果、下一次训练应该修正什么”。</p>
+<h2 id="2026-05-06-tracknetv3-cuda-复现推进">2026-05-06 TrackNetV3 CUDA 复现推进</h2>
+<p>TrackNetV3 的正式复现目标已经明确为 CUDA/GPU benchmark reproduction。当前记录把 dataset 下载页、test split 三场比赛、29 个 rally、目录规整、checkpoint、依赖缺口、官方 metric 计算方式和执行命令合并到 <code>raw/ingest/2026-04-25-tracknetv3/cuda-benchmark-repro-2026-05-06.md</code>。</p>
+<p>这一步的意义是把 badminton 小目标 tracking 从“论文可读”推进到“可复现实验可执行”：后续结果应直接保存 <code>eval/test_eval_res_weight.json</code>，并对齐官方表格中的 accuracy / precision / recall / F1。</p>
 <h2 id="当前缺口">当前缺口</h2>
 <ul>
-<li>还缺少 rule-grounded referee / officiating 类 benchmark。</li>
+<li>已补入 X-VARS 和 RefereeBench 作为 rule-grounded referee / officiating 锚点；后续要继续跟踪数据开放、复现实验和真实 VAR 流程。</li>
+<li>已补入 TrackNet 系列和 MonoTrack 作为 badminton high-speed tiny object tracking 锚点；BST 已把 related work 溯源到动作识别方法线，本轮已进一步补入 ShuttleSet、TemPose、BlockGCN、SkateFormer 与 ProtoGCN；TrackNetV3 已完成 synthetic video smoke test，并已写出 CUDA/GPU benchmark 复现方案，下一步是在真实 Shuttlecock Trajectory Dataset test split 上跑 <code>generate_mask_data.py</code> 与 <code>test.py</code>。</li>
 <li>还缺少伤病风险方向的 primary paper 锚点。</li>
-<li>还缺少把视觉、轨迹、事件文本和战术知识统一起来的深分析版本。</li>
+<li>动作纠正线已经有 TrackMAE + FineCausal + VideoAuto-R1 的方法组合；羽毛球挥拍 demo 的最小问题定义已写入 <a class="wikilink" href="../questions/question-badminton-stroke-correction-demo.html">questions/question-badminton-stroke-correction-demo</a>，并已补入 annotation guideline、baseline 规则和 10 个样本的最小验收标准。</li>
+<li>已补入 Event2Tracking 作为轨迹与事件语义桥；后续还需要把视觉、轨迹、事件文本和战术知识统一起来的深分析版本。</li>
 <li>还缺少面向真实比赛长视频的端到端体育 MLLM 评估。</li>
 </ul>
 <h2 id="完整来源拆分">完整来源拆分</h2>
@@ -105,7 +136,7 @@
   &quot;title&quot;: &quot;体育 AI 视频理解&quot;,
   &quot;status&quot;: &quot;active&quot;,
   &quot;created&quot;: &quot;2026-04-24&quot;,
-  &quot;updated&quot;: &quot;2026-04-25&quot;,
+  &quot;updated&quot;: &quot;2026-05-16&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;video-understanding&quot;,
@@ -153,7 +184,32 @@
     &quot;sources/2026-04-25-mmpose&quot;,
     &quot;sources/2026-04-25-mediapipe-pose&quot;,
     &quot;sources/2026-04-25-deeplabcut&quot;,
-    &quot;sources/2026-04-25-nist-ai-risk-management-framework&quot;
+    &quot;sources/2026-04-25-nist-ai-risk-management-framework&quot;,
+    &quot;sources/2026-05-05-human-in-loop-team-sports-retrieval&quot;,
+    &quot;sources/2026-05-05-finecausal-action-quality-assessment&quot;,
+    &quot;sources/2026-05-05-ai-driven-soccer-analysis&quot;,
+    &quot;sources/2026-05-05-soccernet-v2-holistic-understanding&quot;,
+    &quot;sources/2026-05-05-soccernet-v2-camera-calibration-player-localization&quot;,
+    &quot;sources/2026-05-05-active-learning-action-spotting-football&quot;,
+    &quot;sources/2026-05-05-soccernet-2023-challenges-results&quot;,
+    &quot;sources/2026-05-05-soccernet-2022-challenges-results&quot;,
+    &quot;sources/2026-05-05-soccernet-2023-tracking-mot4mot&quot;,
+    &quot;sources/2026-05-05-event2tracking&quot;,
+    &quot;sources/2026-05-05-x-vars-explainable-football-refereeing&quot;,
+    &quot;sources/2026-05-05-refereebench-multi-sport-referees&quot;,
+    &quot;sources/2026-05-05-sports-qa-video-question-answering&quot;,
+    &quot;sources/2026-05-05-tracknet-high-speed-tiny-objects&quot;,
+    &quot;sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking&quot;,
+    &quot;sources/2026-05-05-monotrack-shuttle-trajectory-reconstruction&quot;,
+    &quot;sources/2026-05-05-tracknetv4-motion-attention-maps&quot;,
+    &quot;sources/2026-05-12-trackmae&quot;,
+    &quot;sources/2026-05-12-videoauto-r1&quot;,
+    &quot;sources/2026-05-16-bst-badminton-stroke-type-transformer&quot;,
+    &quot;sources/2026-05-16-tempose-badminton-fine-grained-motion&quot;,
+    &quot;sources/2026-05-16-shuttleset-stroke-level-badminton-dataset&quot;,
+    &quot;sources/2026-05-16-protogcn-skeleton-action-recognition&quot;,
+    &quot;sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition&quot;,
+    &quot;sources/2026-05-16-skateformer-skeletal-temporal-transformer&quot;
   ],
   &quot;related_topics&quot;: [
     &quot;topics/sports-ai-roadmap&quot;,
@@ -163,7 +219,9 @@
   &quot;related_entities&quot;: [
     &quot;entities/sportsmot&quot;
   ],
-  &quot;open_questions&quot;: []
+  &quot;open_questions&quot;: [
+    &quot;questions/question-badminton-stroke-correction-demo&quot;
+  ]
 }</pre></section>
     </article>
   </main>

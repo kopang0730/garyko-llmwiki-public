@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SoccerNet-v2 Camera Calibration（arXiv 2021）：足球场标定与球员定位 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-05-05-soccernet-v2-camera-calibration-player-localization&quot;, &quot;title&quot;: &quot;SoccerNet-v2 Camera Calibration（arXiv 2021）：足球场标定与球员定位&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;tracking&quot;, &quot;primary-source&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-05-05</p>
+        <h1>SoccerNet-v2 Camera Calibration（arXiv 2021）：足球场标定与球员定位</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#tracking">#tracking</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="soccernet-v2-camera-calibration-arxiv-2021-足球场标定与球员定位">SoccerNet-v2 Camera Calibration（arXiv 2021）：足球场标定与球员定位</h1>
+<blockquote>会议 / 来源：arXiv 2021</blockquote>
+<blockquote>发表日期：2021-04-19</blockquote>
+<blockquote>资料加入日期：2026-05-05</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>把广播足球视频中的 camera calibration 与 player localization 明确成可评测任务，补上从像素坐标到球场坐标、从 tracking 到 full-pitch understanding 的关键桥。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这篇论文位于 sports-AI roadmap 的全场空间理解层，直接支撑 field localization、camera calibration、player localization 与 action spotting 表示之间的关系。</p>
+<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
+<p>它能解释为什么 SoccerNet Game State Reconstruction 需要球场几何和 minimap 坐标，也能把 TeamTrack / TranSPORTmer 这类轨迹工作接到真实比赛空间。</p>
+<h2 id="来源可靠性与可溯源性">来源可靠性与可溯源性</h2>
+<ul>
+<li><strong>来源层级</strong>：arXiv 页面可访问，当前页面未显示 journal-ref / DOI；论文被后续 SoccerNet-GSR 引用，可作为可溯源 primary paper 使用。</li>
+<li><strong>可溯源材料</strong>：本地已保存 arXiv abstract、PDF 与 <code>paper-text.md</code>；<code>links.yaml</code> 可回到 arXiv abstract / PDF。</li>
+<li><strong>使用边界</strong>：后续应补官方 workshop 页面或代码/数据页，用于确认评测协议和数据可获得性。</li>
+</ul>
+<h2 id="和现有证据的关系">和现有证据的关系</h2>
+<ul>
+<li>与 <a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：它补强 SoccerNet 基础数据生态、全场空间理解或低标注事件定位这类 roadmap 缺口。</li>
+<li>与 <a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它把体育视频理解从已有 tracking / interaction / trajectory 继续接到足球事件、球场几何和数据协议。</li>
+<li>与 <a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a> 的关系：它提供真实长视频、密集事件和结构化评测下的视频理解样本。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>后续应补官方 workshop 页面或代码/数据页，用于确认评测协议和数据可获得性。</li>
+<li>当前这版先完成轻量 primary-source 编译，后续可按 deep-analysis-first 流程补 <code>analysis.md</code>、关键图页和实验细节。</li>
+</ul>
+<h2 id="原始材料">原始材料</h2>
+<ul>
+<li><code>raw/ingest/2026-05-05-soccernet-v2-camera-calibration-player-localization/paper.pdf</code></li>
+<li><code>raw/ingest/2026-05-05-soccernet-v2-camera-calibration-player-localization/paper-text.md</code></li>
+<li><code>raw/ingest/2026-05-05-soccernet-v2-camera-calibration-player-localization/abstract.md</code></li>
+<li><code>raw/ingest/2026-05-05-soccernet-v2-camera-calibration-player-localization/links.yaml</code></li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
+<li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
+<li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
+<li><a class="wikilink" href="../entities/sportsmot.html">entities/sportsmot</a></li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-05-05-soccernet-v2-camera-calibration-player-localization&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;SoccerNet-v2 Camera Calibration（arXiv 2021）：足球场标定与球员定位&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-05-05&quot;,
+  &quot;updated&quot;: &quot;2026-05-05&quot;,
+  &quot;venue&quot;: &quot;arXiv 2021&quot;,
+  &quot;published_at&quot;: &quot;2021-04-19&quot;,
+  &quot;ingested_at&quot;: &quot;2026-05-05&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-understanding&quot;,
+    &quot;tracking&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Cioppa, Anthony&quot;,
+    &quot;Deliège, Adrien&quot;,
+    &quot;Magera, Floriane&quot;,
+    &quot;Giancola, Silvio&quot;,
+    &quot;Barnich, Olivier&quot;,
+    &quot;Ghanem, Bernard&quot;,
+    &quot;Van Droogenbroeck, Marc&quot;
+  ],
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2104.09333&quot;,
+    &quot;https://arxiv.org/pdf/2104.09333&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-05-05-soccernet-v2-camera-calibration-player-localization/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/sports-ai-video-understanding&quot;,
+    &quot;topics/sports-ai-roadmap&quot;,
+    &quot;topics/video-understanding&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/sportsmot&quot;
+  ],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

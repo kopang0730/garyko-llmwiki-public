@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RefereeBench：多运动项目视频裁判能力评测 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-05-05-refereebench-multi-sport-referees&quot;, &quot;title&quot;: &quot;RefereeBench：多运动项目视频裁判能力评测&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;]}">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../index.html">Index</a></li>
+<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-05-05</p>
+        <h1>RefereeBench：多运动项目视频裁判能力评测</h1>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#evaluation">#evaluation</a><a class="tag" href="../tags.html#benchmarking">#benchmarking</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="refereebench-多运动项目视频裁判能力评测">RefereeBench：多运动项目视频裁判能力评测</h1>
+<blockquote>会议 / 来源：arXiv 2026</blockquote>
+<blockquote>发表日期：2026-04-17</blockquote>
+<blockquote>资料加入日期：2026-05-05</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>RefereeBench 把 sports referee reasoning 做成多运动项目 Video MLLM benchmark，用 11 项运动、925 个视频和 6,475 个 QA pairs 测试犯规存在、处罚分类、理由解释、实体感知和 temporal grounding。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这篇论文的价值在评测定义：它把“视频模型会看体育视频”推进到“模型能否执行规则化裁判判断”。它覆盖多运动项目，因此适合放在 <a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的 rule-grounded officiating 层，作为从足球 VAR 扩展到 multi-sport referee benchmark 的趋势证据。</p>
+<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
+<ul>
+<li>与 <a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：它把 referee-assist 从单一足球场景扩成跨运动评测。</li>
+<li>与 <a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它强调体育视频理解需要实体、时间点、规则和处罚逻辑同步成立。</li>
+<li>与 <a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a> 的关系：它给通用 Video MLLM 提供一个更严的专业能力测试。</li>
+</ul>
+<h2 id="来源可靠性与可溯源性">来源可靠性与可溯源性</h2>
+<ul>
+<li><strong>来源层级</strong>：arXiv 2026 preprint；当前作为 candidate benchmark evidence 使用。</li>
+<li><strong>可溯源材料</strong>：本地已保存 arXiv abstract、PDF、<code>paper-text.md</code> 和 <code>links.yaml</code>；PDF SHA256：<code>13f24e24a416105f30d1e82bf6b7372feabb0b69dbf2e7361276589c2052d02b</code>。</li>
+<li><strong>使用边界</strong>：适合表示 rule-grounded sports MLLM evaluation 的新趋势；正式 venue、数据开放状态和社区复现情况需要后续跟踪。</li>
+</ul>
+<h2 id="和现有证据的关系">和现有证据的关系</h2>
+<p>它与 <a class="wikilink" href="../sources/2026-05-05-x-vars-explainable-football-refereeing.html">sources/2026-05-05-x-vars-explainable-football-refereeing</a> 形成层次关系：X-VARS 是 football VAR / foul explanation 的强场景样本，RefereeBench 则把同一类能力转成多运动评测问题。</p>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>当前按 arXiv preprint 处理，后续应补 official venue、数据页或代码页。</li>
+<li>评测结果对模型版本敏感，需要记录被评模型版本和测试时间。</li>
+</ul>
+<h2 id="原始材料">原始材料</h2>
+<ul>
+<li><code>raw/ingest/2026-05-05-refereebench-multi-sport-referees/paper.pdf</code></li>
+<li><code>raw/ingest/2026-05-05-refereebench-multi-sport-referees/paper-text.md</code></li>
+<li><code>raw/ingest/2026-05-05-refereebench-multi-sport-referees/abstract.md</code></li>
+<li><code>raw/ingest/2026-05-05-refereebench-multi-sport-referees/links.yaml</code></li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
+<li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
+<li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
+<li><a class="wikilink" href="../entities/sportsmot.html">entities/sportsmot</a></li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-05-05-refereebench-multi-sport-referees&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;RefereeBench：多运动项目视频裁判能力评测&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-05-05&quot;,
+  &quot;updated&quot;: &quot;2026-05-05&quot;,
+  &quot;venue&quot;: &quot;arXiv 2026&quot;,
+  &quot;published_at&quot;: &quot;2026-04-17&quot;,
+  &quot;ingested_at&quot;: &quot;2026-05-05&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-understanding&quot;,
+    &quot;evaluation&quot;,
+    &quot;benchmarking&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Yichen Xu&quot;,
+    &quot;Yuanhang Liu&quot;,
+    &quot;Chuhan Wang&quot;,
+    &quot;Zihan Zhao&quot;,
+    &quot;jinghan luo&quot;,
+    &quot;Jianzhe Ma&quot;,
+    &quot;Wenxuan Wang&quot;,
+    &quot;Qin Jin&quot;
+  ],
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2604.15736&quot;,
+    &quot;https://arxiv.org/pdf/2604.15736&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-05-05-refereebench-multi-sport-referees/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/sports-ai-video-understanding&quot;,
+    &quot;topics/sports-ai-roadmap&quot;,
+    &quot;topics/video-understanding&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/sportsmot&quot;
+  ],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>
