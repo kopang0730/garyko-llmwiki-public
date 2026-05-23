@@ -28,6 +28,7 @@
 <li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
 <li><a href="../../en/topics/video-generation.html">视频生成</a></li>
 <li><a class="active" href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-backbones.html">Vision Backbones</a></li>
 <li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
 </ul>
 <h2>Entities</h2><ul>
@@ -68,9 +69,11 @@
 <li>长上下文视频推理</li>
 <li>体育视频中的目标跟踪与关联</li>
 <li>benchmark 与评测范式变化</li>
+<li>视觉 backbone 与时序主干选型</li>
 <li>效率与时序保真之间的权衡</li>
 </ul>
 <h2 id="当前综合判断">当前综合判断</h2>
+<p><a class="wikilink" href="../../en/topics/vision-backbones.html">topics/vision-backbones</a> 现在提供基础架构入口：CNN / U-Net 负责局部感知和生成细节，Transformer / DiT 负责 token 化全局关系和生成 scaling，GCN / Skeleton Transformer 负责姿态动作结构，Mamba / SSM 负责长序列效率。</p>
 <p><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 已经把这页的体育 AI 分支抽成独立子线，<a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 进一步把这条子线整理成公开阅读路径与后续补强计划。<a class="wikilink" href="../../en/sources/2026-04-24-sportsmot.html">sources/2026-04-24-sportsmot</a>、<a class="wikilink" href="../../en/sources/2026-04-24-teamtrack.html">sources/2026-04-24-teamtrack</a>、<a class="wikilink" href="../../en/sources/2026-04-24-sportshhi.html">sources/2026-04-24-sportshhi</a> 和 <a class="wikilink" href="../../en/sources/2026-04-24-transportmer.html">sources/2026-04-24-transportmer</a> 让这个分支从单个 SportMamba 样本扩展到 tracking benchmark、人-人交互、全场轨迹与多智能体推理。</p>
 <p><a class="wikilink" href="../../en/sources/2026-04-23-sportmamba.html">sources/2026-04-23-sportmamba</a> 把这页的证据边界向体育视频分析推进了一步。它说明视频理解层的问题并不只存在于 QA benchmark 或 video-language reasoning 里，拥挤场景下的 player tracking 同样要求模型处理复杂时序依赖、遮挡恢复和非线性运动。</p>
 <p><a class="wikilink" href="../../en/entities/sportsmot.html">entities/sportsmot</a> 的加入也让这一页第一次有了更具体的体育视频数据锚点：团队运动场景里的时序理解常常要落到“能否持续跟住同一个人”这种结构化任务上，而不只是回答问题或打分。</p>
@@ -229,6 +232,7 @@
     &quot;topics/vision-language&quot;,
     &quot;topics/generative-model-evaluation&quot;,
     &quot;topics/diffusion-models&quot;,
+    &quot;topics/vision-backbones&quot;,
     &quot;topics/sports-ai-video-understanding&quot;,
     &quot;topics/sports-ai-roadmap&quot;
   ],
