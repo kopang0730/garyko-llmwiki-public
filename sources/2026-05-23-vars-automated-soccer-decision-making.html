@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VARS：多视角足球视频助理裁判系统 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
+  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+</head>
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-23-vars-automated-soccer-decision-making&quot;, &quot;title&quot;: &quot;VARS：多视角足球视频助理裁判系统&quot;, &quot;title_en&quot;: &quot;VARS：多视角足球视频助理裁判系统&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;vision-language&quot;, &quot;reasoning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>入口</h2><ul>
+<li><a href="../index.html">索引</a></li>
+<li><a href="../llm-wiki.html">LLM Wiki</a></li>
+<li><a href="../main.html">首页</a></li>
+</ul>
+<h2>主题</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>实体</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>判断</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>问题</h2><ul>
+<li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-05-23-vars-automated-soccer-decision-making.html">中文</a><a class="" href="../en/sources/2026-05-23-vars-automated-soccer-decision-making.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-05-23</p>
+        <h1><span class="title-main">VARS</span><span class="title-subtitle">多视角足球视频助理裁判系统</span></h1>
+        
+        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR Workshop 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023-04-10</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-05-23</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2023W/CVSports/html/Held_VARS_Video_Assistant_Referee_System_for_Automated_Soccer_Decision_Making_CVPRW_2023_paper.html" title="https://openaccess.thecvf.com/content/CVPR2023W/CVSports/html/Held_VARS_Video_Assistant_Referee_System_for_Automated_Soccer_Decision_Making_CVPRW_2023_paper.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>openaccess.thecvf.com · Held_VARS_Video_Assistant_Refer…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2023W/CVSports/papers/Held_VARS_Video_Assistant_Referee_System_for_Automated_Soccer_Decision_Making_CVPRW_2023_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2023W/CVSports/papers/Held_VARS_Video_Assistant_Referee_System_for_Automated_Soccer_Decision_Making_CVPRW_2023_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Held_VARS_Video_Assistant_Refer…</strong></a><a class="source-link source-link-code" href="https://github.com/SoccerNet/sn-mvfoul" title="https://github.com/SoccerNet/sn-mvfoul" target="_blank" rel="noopener noreferrer"><span>代码仓库</span><strong>github.com · sn-mvfoul</strong></a></div></section>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#vision-language">#vision-language</a><a class="tag" href="../tags.html#reasoning">#reasoning</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>VARS 把足球 VAR workflow 具体化为多视角 foul recognition 和 severity classification，并提出 SoccerNet-MVFoul 数据集，是 <a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 中 rule-grounded officiating 线在 X-VARS 之前的关键系统锚点。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这篇论文提出 Video Assistant Referee System for automated soccer decision making from multiple views。它的核心贡献有两层：一是 SoccerNet-MVFoul，多视角足球犯规视频数据集，由专业裁判给出犯规属性和严重程度标注；二是一个多摄像机视频识别系统，用于判断 foul type 和 sanction severity。</p>
+<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
+<ul>
+<li>与 <a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它把视频理解从事件识别推进到“多角度证据 + 裁判决策”的结构化场景。</li>
+<li>与 <a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：它让 roadmap 的 VAR workflow 更完整：<a class="wikilink" href="../sources/2026-04-25-automated-offside-detection.html">sources/2026-04-25-automated-offside-detection</a> 偏几何越位，VARS 偏多视角犯规分类，<a class="wikilink" href="../sources/2026-05-05-x-vars-explainable-football-refereeing.html">sources/2026-05-05-x-vars-explainable-football-refereeing</a> 再把解释和 VLM 接上。</li>
+<li>与 <a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a> 的关系：它是专用 VideoQA / reasoning 之外的强应用样本，任务输出直接影响人类复核流程。</li>
+</ul>
+<h2 id="来源可靠性与可溯源性">来源可靠性与可溯源性</h2>
+<ul>
+<li><strong>来源层级</strong>：CVPR Workshop 2023 / CVSports primary paper；CVF OpenAccess 页面、CVF PDF、arXiv 页面和官方 SoccerNet-MVFoul repo 均可访问。</li>
+<li><strong>可溯源材料</strong>：本地已保存 <code>abstract.md</code>、<code>paper.pdf</code>、<code>paper-text.md</code>、<code>meta.yaml</code> 与 <code>links.yaml</code>；PDF 本地从 arXiv mirror 保存，SHA256：<code>b0a6873d4de030ed16368cfe01ab15241451dfbd2fb154cc3d434918149eecfa</code>。</li>
+<li><strong>使用边界</strong>：适合作为 multi-view foul recognition / automated referee assistance 的 strong primary evidence；正式比赛中的责任边界、延迟、可解释性和裁判一致性仍要结合 X-VARS 与后续 challenge results 判断。</li>
+</ul>
+<h2 id="和现有证据的关系">和现有证据的关系</h2>
+<p>这篇是 <a class="wikilink" href="../sources/2026-05-05-x-vars-explainable-football-refereeing.html">sources/2026-05-05-x-vars-explainable-football-refereeing</a> 的前置路线。VARS 建立 SoccerNet-MVFoul 和多视角识别任务，X-VARS 在此基础上引入 SoccerNet-XFoul、自然语言解释和多模态大模型。两者一起把 rule-grounded officiating 从“分类”推进到“解释 + 复核”。</p>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>VARS 的输出仍以 foul type / severity 为主，解释链和规则文本 grounding 需要 X-VARS 或后续系统补强。</li>
+<li>多视角视频更接近职业赛事环境，低级别比赛或单机位训练场的可用性需要另行验证。</li>
+</ul>
+<h2 id="原始材料">原始材料</h2>
+<ul>
+<li><code>raw/ingest/2026-05-23-vars-automated-soccer-decision-making/paper.pdf</code></li>
+<li><code>raw/ingest/2026-05-23-vars-automated-soccer-decision-making/paper-text.md</code></li>
+<li><code>raw/ingest/2026-05-23-vars-automated-soccer-decision-making/abstract.md</code></li>
+<li><code>raw/ingest/2026-05-23-vars-automated-soccer-decision-making/links.yaml</code></li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
+<li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
+<li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
+<li><a class="wikilink" href="../entities/sportsmot.html">entities/sportsmot</a></li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+  &quot;id&quot;: &quot;2026-05-23-vars-automated-soccer-decision-making&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;VARS：多视角足球视频助理裁判系统&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-05-23&quot;,
+  &quot;updated&quot;: &quot;2026-05-23&quot;,
+  &quot;venue&quot;: &quot;CVPR Workshop 2023&quot;,
+  &quot;published_at&quot;: &quot;2023-04-10&quot;,
+  &quot;ingested_at&quot;: &quot;2026-05-23&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-understanding&quot;,
+    &quot;vision-language&quot;,
+    &quot;reasoning&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Jan Held&quot;,
+    &quot;Anthony Cioppa&quot;,
+    &quot;Silvio Giancola&quot;,
+    &quot;Abdullah Hamdi&quot;,
+    &quot;Bernard Ghanem&quot;,
+    &quot;Marc Van Droogenbroeck&quot;
+  ],
+  &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/CVPR2023W/CVSports/html/Held_VARS_Video_Assistant_Referee_System_for_Automated_Soccer_Decision_Making_CVPRW_2023_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2023W/CVSports/papers/Held_VARS_Video_Assistant_Referee_System_for_Automated_Soccer_Decision_Making_CVPRW_2023_paper.pdf&quot;,
+    &quot;https://arxiv.org/abs/2304.04617&quot;,
+    &quot;https://github.com/SoccerNet/sn-mvfoul&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-05-23-vars-automated-soccer-decision-making/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/sports-ai-video-understanding&quot;,
+    &quot;topics/sports-ai-roadmap&quot;,
+    &quot;topics/video-understanding&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/sportsmot&quot;
+  ],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

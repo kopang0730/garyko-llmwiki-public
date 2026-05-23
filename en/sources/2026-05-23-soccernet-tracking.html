@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SoccerNet-Tracking：足球多目标跟踪数据集与基准 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
+  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+</head>
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-23-soccernet-tracking&quot;, &quot;title&quot;: &quot;SoccerNet-Tracking：足球多目标跟踪数据集与基准&quot;, &quot;title_en&quot;: &quot;SoccerNet-Tracking：足球多目标跟踪数据集与基准&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;tracking&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-05-23-soccernet-tracking.html">中文</a><a class="selected-lang" href="../../en/sources/2026-05-23-soccernet-tracking.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-05-23</p>
+        <h1><span class="title-main">SoccerNet-Tracking</span><span class="title-subtitle">足球多目标跟踪数据集与基准</span></h1>
+        
+        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR Workshop 2022</dd></div><div class="source-fact"><dt>Published</dt><dd>2022-04-14</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-05-23</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2022W/CVSports/html/Cioppa_SoccerNet-Tracking_Multiple_Object_Tracking_Dataset_and_Benchmark_in_Soccer_Videos_CVPRW_2022_paper.html" title="https://openaccess.thecvf.com/content/CVPR2022W/CVSports/html/Cioppa_SoccerNet-Tracking_Multiple_Object_Tracking_Dataset_and_Benchmark_in_Soccer_Videos_CVPRW_2022_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Cioppa_SoccerNet-Tracking_Multi…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2022W/CVSports/papers/Cioppa_SoccerNet-Tracking_Multiple_Object_Tracking_Dataset_and_Benchmark_in_Soccer_Videos_CVPRW_2022_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2022W/CVSports/papers/Cioppa_SoccerNet-Tracking_Multiple_Object_Tracking_Dataset_and_Benchmark_in_Soccer_Videos_CVPRW_2022_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Cioppa_SoccerNet-Tracking_Multi…</strong></a><a class="source-link source-link-code" href="https://github.com/SoccerNet/sn-tracking" title="https://github.com/SoccerNet/sn-tracking" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · sn-tracking</strong></a></div></section>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#tracking">#tracking</a><a class="tag" href="../../en/tags.html#benchmarking">#benchmarking</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>SoccerNet-Tracking 给足球视频里的球员、裁判和球建立了可复用的 MOT 数据集与 benchmark，是 <a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 从 SoccerNet 事件生态走向 full-pitch game-state reconstruction 的底层 tracking 证据。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这篇论文提出 SoccerNet-Tracking：200 段 30 秒挑战片段，加上一段完整 45 分钟半场长时跟踪视频；标注包含 bounding boxes 和 tracklet IDs，目标覆盖 players、referees 和 ball。它解决的是足球场景里最基础但很难绕开的对象连续性问题：快速运动、遮挡、相似球衣、球的小目标属性和长时 re-identification。</p>
+<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
+<ul>
+<li>与 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它把“看见球员/球”转成可评测的 identity-preserving tracking 问题，是后续轨迹、队形和战术分析的底层输入。</li>
+<li>与 <a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：已有 <a class="wikilink" href="../../en/sources/2026-04-25-soccernet-game-state-reconstruction.html">sources/2026-04-25-soccernet-game-state-reconstruction</a> 直接扩展 SoccerNet-Tracking 标注；补入这篇后，GSR 的数据来源链条更完整。</li>
+<li>与 <a class="wikilink" href="../../en/entities/sportsmot.html">entities/sportsmot</a> 的关系：SportsMOT 是跨运动团队运动 MOT 锚点，SoccerNet-Tracking 是足球专项 MOT 锚点，两者共同说明体育 MOT 的核心难点在 association 与长时身份保持。</li>
+</ul>
+<h2 id="来源可靠性与可溯源性">来源可靠性与可溯源性</h2>
+<ul>
+<li><strong>来源层级</strong>：CVPR Workshop 2022 / CVSports primary paper；CVF OpenAccess 页面、CVF PDF、arXiv 页面和官方 SoccerNet tracking repo 均可访问。</li>
+<li><strong>可溯源材料</strong>：本地已保存 <code>abstract.md</code>、<code>paper.pdf</code>、<code>paper-text.md</code>、<code>meta.yaml</code> 与 <code>links.yaml</code>；PDF 本地从 arXiv mirror 保存，SHA256：<code>f3cb64b8a707960afa4db8d53db3bd00c4ef119dd75dbc2e53a22fffc1c70806</code>。</li>
+<li><strong>使用边界</strong>：适合作为 football MOT / SoccerNet-GSR 前置数据层的强 primary evidence；它本身还停在 bbox-level tracking，pitch coordinates、身份语义和战术解释需要后续 GSR / trajectory sources 承接。</li>
+</ul>
+<h2 id="和现有证据的关系">和现有证据的关系</h2>
+<p>它补在 <a class="wikilink" href="../../en/sources/2026-05-05-soccernet-2023-tracking-mot4mot.html">sources/2026-05-05-soccernet-2023-tracking-mot4mot</a> 和 <a class="wikilink" href="../../en/sources/2026-04-25-soccernet-game-state-reconstruction.html">sources/2026-04-25-soccernet-game-state-reconstruction</a> 之间：前者是 challenge 系统样本，后者把 tracking 扩展到 minimap / pitch localization / role-team-jersey identity。SoccerNet-Tracking 则提供最原始的足球 MOT benchmark substrate。</p>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>论文强调 fast motion 与 severe occlusion 下仍有明显提升空间，这正好解释了为什么 <a class="wikilink" href="../../en/sources/2026-05-23-broadcast2pitch-game-state-reconstruction.html">sources/2026-05-23-broadcast2pitch-game-state-reconstruction</a> 这类后续工作需要更强的几何对齐、ReID 和 tracklet refinement。</li>
+<li>数据集仍以足球转播片段为主，跨联赛、跨画质、跨机位泛化需要继续用 TeamTrack / SportsMOT / GSR follow-up 验证。</li>
+</ul>
+<h2 id="原始材料">原始材料</h2>
+<ul>
+<li><code>raw/ingest/2026-05-23-soccernet-tracking/paper.pdf</code></li>
+<li><code>raw/ingest/2026-05-23-soccernet-tracking/paper-text.md</code></li>
+<li><code>raw/ingest/2026-05-23-soccernet-tracking/abstract.md</code></li>
+<li><code>raw/ingest/2026-05-23-soccernet-tracking/links.yaml</code></li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
+<li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
+<li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a></li>
+<li><a class="wikilink" href="../../en/entities/sportsmot.html">entities/sportsmot</a></li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-05-23-soccernet-tracking&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;SoccerNet-Tracking：足球多目标跟踪数据集与基准&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-05-23&quot;,
+  &quot;updated&quot;: &quot;2026-05-23&quot;,
+  &quot;venue&quot;: &quot;CVPR Workshop 2022&quot;,
+  &quot;published_at&quot;: &quot;2022-04-14&quot;,
+  &quot;ingested_at&quot;: &quot;2026-05-23&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-understanding&quot;,
+    &quot;tracking&quot;,
+    &quot;benchmarking&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Anthony Cioppa&quot;,
+    &quot;Silvio Giancola&quot;,
+    &quot;Adrien Deliège&quot;,
+    &quot;Le Kang&quot;,
+    &quot;Xin Zhou&quot;,
+    &quot;Zhiyu Cheng&quot;,
+    &quot;Bernard Ghanem&quot;,
+    &quot;Marc Van Droogenbroeck&quot;
+  ],
+  &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/CVPR2022W/CVSports/html/Cioppa_SoccerNet-Tracking_Multiple_Object_Tracking_Dataset_and_Benchmark_in_Soccer_Videos_CVPRW_2022_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2022W/CVSports/papers/Cioppa_SoccerNet-Tracking_Multiple_Object_Tracking_Dataset_and_Benchmark_in_Soccer_Videos_CVPRW_2022_paper.pdf&quot;,
+    &quot;https://arxiv.org/abs/2204.06918&quot;,
+    &quot;https://github.com/SoccerNet/sn-tracking&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-05-23-soccernet-tracking/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/sports-ai-video-understanding&quot;,
+    &quot;topics/sports-ai-roadmap&quot;,
+    &quot;topics/video-understanding&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/sportsmot&quot;
+  ],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

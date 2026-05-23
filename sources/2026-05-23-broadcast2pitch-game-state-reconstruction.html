@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Broadcast2Pitch：从非受控足球转播视频重建比赛状态 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
+  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+</head>
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-23-broadcast2pitch-game-state-reconstruction&quot;, &quot;title&quot;: &quot;Broadcast2Pitch：从非受控足球转播视频重建比赛状态&quot;, &quot;title_en&quot;: &quot;Broadcast2Pitch：从非受控足球转播视频重建比赛状态&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;tracking&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>入口</h2><ul>
+<li><a href="../index.html">索引</a></li>
+<li><a href="../llm-wiki.html">LLM Wiki</a></li>
+<li><a href="../main.html">首页</a></li>
+</ul>
+<h2>主题</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>实体</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>判断</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>问题</h2><ul>
+<li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-05-23-broadcast2pitch-game-state-reconstruction.html">中文</a><a class="" href="../en/sources/2026-05-23-broadcast2pitch-game-state-reconstruction.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-05-23</p>
+        <h1><span class="title-main">Broadcast2Pitch</span><span class="title-subtitle">从非受控足球转播视频重建比赛状态</span></h1>
+        
+        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>WACV 2026</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2026-03-23</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-05-23</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/WACV2026/html/Oo_Broadcast2Pitch_Game_State_Reconstruction_from_Unconstrained_Soccer_Videos_WACV_2026_paper.html" title="https://openaccess.thecvf.com/content/WACV2026/html/Oo_Broadcast2Pitch_Game_State_Reconstruction_from_Unconstrained_Soccer_Videos_WACV_2026_paper.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>openaccess.thecvf.com · Oo_Broadcast2Pitch_Game_State_R…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/WACV2026/papers/Oo_Broadcast2Pitch_Game_State_Reconstruction_from_Unconstrained_Soccer_Videos_WACV_2026_paper.pdf" title="https://openaccess.thecvf.com/content/WACV2026/papers/Oo_Broadcast2Pitch_Game_State_Reconstruction_from_Unconstrained_Soccer_Videos_WACV_2026_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Oo_Broadcast2Pitch_Game_State_R…</strong></a><a class="source-link source-link-code" href="https://github.com/yinmayoo185/SoccernetGSR" title="https://github.com/yinmayoo185/SoccernetGSR" target="_blank" rel="noopener noreferrer"><span>代码仓库</span><strong>github.com · SoccernetGSR</strong></a></div></section>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#tracking">#tracking</a><a class="tag" href="../tags.html#benchmarking">#benchmarking</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>Broadcast2Pitch 是 SoccerNet-GSR 的直接 follow-up：它把 game-state reconstruction 做成检测、几何对齐、ReID 和视觉语言 tracklet refinement 的模块化 pipeline，补强 <a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 里“真实转播视频 → pitch/minimap 状态”的工程证据。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这篇论文针对 Game State Reconstruction：从足球转播视频中恢复所有运动员的 2D pitch position 和 identity。方法上，它用多任务 keypoint / line detection 提供球场几何线索，用 optimization-based homography estimation 做空间对齐，再用 appearance-based re-identification 与 vision-language-guided tracklet refinement 降低 ID switches。</p>
+<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
+<ul>
+<li>与 <a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它把 GSR 从任务定义推进到更强的系统实现，明确了 detection、homography、ReID、tracklet refinement 这几个模块的边界。</li>
+<li>与 <a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：它补上此前 “SoccerNet Game State Reconstruction 已补，但 follow-up 还薄” 的缺口，让 roadmap 从数据集锚点继续走向真实转播鲁棒性。</li>
+<li>与 <a class="wikilink" href="../sources/2026-05-23-soccernet-tracking.html">sources/2026-05-23-soccernet-tracking</a> 的关系：SoccerNet-Tracking 提供 MOT substrate，Broadcast2Pitch 进一步把轨迹接到 pitch coordinate 和 identity coherence。</li>
+</ul>
+<h2 id="来源可靠性与可溯源性">来源可靠性与可溯源性</h2>
+<ul>
+<li><strong>来源层级</strong>：WACV 2026 primary paper；CVF OpenAccess 页面、CVF PDF 和官方 GitHub repository 均可访问。</li>
+<li><strong>可溯源材料</strong>：本地已保存 <code>abstract.md</code>、<code>paper.pdf</code>、<code>paper-text.md</code>、<code>meta.yaml</code> 与 <code>links.yaml</code>；PDF SHA256：<code>ca4f4a502edeb57ef17566be0eded0125aebeeb2503c604655801d4135bdfeab</code>。</li>
+<li><strong>使用边界</strong>：适合作为 SoccerNet-GSR follow-up 和 modular GSR system 的强 primary evidence；它展示的是 benchmark 上的系统改进，真实部署的延迟、相机漂移监控和人工复核界面仍需后续资料。</li>
+</ul>
+<h2 id="和现有证据的关系">和现有证据的关系</h2>
+<p>它接在 <a class="wikilink" href="../sources/2026-04-25-soccernet-game-state-reconstruction.html">sources/2026-04-25-soccernet-game-state-reconstruction</a> 之后：GSR formalizes the task，Broadcast2Pitch 更偏系统化工程路径。它也和 <a class="wikilink" href="../sources/2026-05-05-event2tracking.html">sources/2026-05-05-event2tracking</a> 互补：Event2Tracking 强调 event data 对 trajectory reconstruction 的帮助，Broadcast2Pitch 强调从 unconstrained broadcast videos 恢复 pitch-space identity state。</p>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>论文中的 vision-language-guided tracklet refinement 很适合后续深分析，因为它可能把视觉语言模型接入体育 tracking 的错误修正流程。</li>
+<li>roadmap 还需要继续追踪 tactical intent modeling：GSR 能还原“人在场上哪里”，下一层要解释“这个站位和移动意味着什么”。</li>
+</ul>
+<h2 id="原始材料">原始材料</h2>
+<ul>
+<li><code>raw/ingest/2026-05-23-broadcast2pitch-game-state-reconstruction/paper.pdf</code></li>
+<li><code>raw/ingest/2026-05-23-broadcast2pitch-game-state-reconstruction/paper-text.md</code></li>
+<li><code>raw/ingest/2026-05-23-broadcast2pitch-game-state-reconstruction/abstract.md</code></li>
+<li><code>raw/ingest/2026-05-23-broadcast2pitch-game-state-reconstruction/links.yaml</code></li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
+<li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
+<li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
+<li><a class="wikilink" href="../entities/sportsmot.html">entities/sportsmot</a></li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+  &quot;id&quot;: &quot;2026-05-23-broadcast2pitch-game-state-reconstruction&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;Broadcast2Pitch：从非受控足球转播视频重建比赛状态&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-05-23&quot;,
+  &quot;updated&quot;: &quot;2026-05-23&quot;,
+  &quot;venue&quot;: &quot;WACV 2026&quot;,
+  &quot;published_at&quot;: &quot;2026-03-23&quot;,
+  &quot;ingested_at&quot;: &quot;2026-05-23&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-understanding&quot;,
+    &quot;tracking&quot;,
+    &quot;benchmarking&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Yin May Oo&quot;,
+    &quot;Yewon Hwang&quot;,
+    &quot;Muhammad Amrulloh Robbani&quot;,
+    &quot;Vanyi Chao&quot;,
+    &quot;Ankhzaya Jamsrandorj&quot;,
+    &quot;Hoang Quoc Nguyen&quot;,
+    &quot;Kyung-Ryoul Mun&quot;,
+    &quot;Jinwook Kim&quot;
+  ],
+  &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/WACV2026/html/Oo_Broadcast2Pitch_Game_State_Reconstruction_from_Unconstrained_Soccer_Videos_WACV_2026_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/WACV2026/papers/Oo_Broadcast2Pitch_Game_State_Reconstruction_from_Unconstrained_Soccer_Videos_WACV_2026_paper.pdf&quot;,
+    &quot;https://github.com/yinmayoo185/SoccernetGSR&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-05-23-broadcast2pitch-game-state-reconstruction/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/sports-ai-video-understanding&quot;,
+    &quot;topics/sports-ai-roadmap&quot;,
+    &quot;topics/video-understanding&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/sportsmot&quot;
+  ],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>
