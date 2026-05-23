@@ -7,16 +7,17 @@
   <link rel="stylesheet" href="../assets/wiki.css">
   <script defer src="../assets/wiki.js"></script>
 </head>
-<body data-page="{&quot;slug&quot;: &quot;sources/2026-05-16-bst-badminton-stroke-type-transformer&quot;, &quot;title&quot;: &quot;BST：面向羽毛球击球类型识别的骨架动作 Transformer&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;tracking&quot;, &quot;representation-learning&quot;, &quot;primary-source&quot;]}">
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-05-16-bst-badminton-stroke-type-transformer&quot;, &quot;title&quot;: &quot;BST：面向羽毛球击球类型识别的骨架动作 Transformer&quot;, &quot;title_en&quot;: &quot;BST：面向羽毛球击球类型识别的骨架动作 Transformer&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;tracking&quot;, &quot;representation-learning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh">
   <aside class="wiki-sidebar">
-    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
-    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
-<h2>Entry</h2><ul>
-<li><a href="../index.html">Index</a></li>
-<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+<h2>入口</h2><ul>
+<li><a href="../index.html">索引</a></li>
+<li><a href="../llm-wiki.html">LLM Wiki</a></li>
+<li><a href="../main.html">首页</a></li>
 </ul>
-<h2>Topics</h2><ul>
+<h2>主题</h2><ul>
 <li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
 <li><a href="../topics/diffusion-models.html">扩散模型</a></li>
 <li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
@@ -29,18 +30,18 @@
 <li><a href="../topics/video-understanding.html">视频理解</a></li>
 <li><a href="../topics/vision-language.html">视觉-语言</a></li>
 </ul>
-<h2>Entities</h2><ul>
+<h2>实体</h2><ul>
 <li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
 <li><a href="../entities/sportsmot.html">SportsMOT</a></li>
 <li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
-<h2>Claims</h2><ul>
+<h2>判断</h2><ul>
 <li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
 <li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
 <li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
 </ul>
-<h2>Questions</h2><ul>
+<h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
@@ -49,15 +50,16 @@
 </nav>
   </aside>
   <main class="wiki-page">
-    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-05-16-bst-badminton-stroke-type-transformer.html">中文</a><a class="" href="../en/sources/2026-05-16-bst-badminton-stroke-type-transformer.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-05-16</p>
+        <p class="eyebrow">source · 2026-05-22</p>
         <h1>BST：面向羽毛球击球类型识别的骨架动作 Transformer</h1>
+        
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#tracking">#tracking</a><a class="tag" href="../tags.html#representation-learning">#representation-learning</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
       <section class="article-content"><h1 id="bst-面向羽毛球击球类型识别的骨架动作-transformer">BST：面向羽毛球击球类型识别的骨架动作 Transformer</h1>
-<blockquote>会议 / 来源：arXiv</blockquote>
+<blockquote>会议 / 来源：arXiv；CVPRW 2026 / CVSports accepted claim pending official proceedings</blockquote>
 <blockquote>发表日期：2025-02-28；v4 更新：2026-03-31</blockquote>
 <blockquote>资料加入日期：2026-05-16</blockquote>
 <h2 id="一句话结论">一句话结论</h2>
@@ -96,9 +98,9 @@
 <p>BST 把 <a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的羽毛球线从“球在哪里”推进到“这个击球是什么类型”。它给 <a class="wikilink" href="../questions/question-badminton-stroke-correction-demo.html">questions/question-badminton-stroke-correction-demo</a> 三个工程原则：hit frame 是样本中心，shuttle trajectory 是主证据，2D pose 先行更适合当前转播 / 手机视频质量。</p>
 <h2 id="来源可靠性与可溯源性">来源可靠性与可溯源性</h2>
 <ul>
-<li><strong>来源层级</strong>：arXiv primary paper；v4 HTML 和 PDF 已保存。</li>
+<li><strong>来源层级</strong>：arXiv primary paper；v4 HTML 和 PDF 已保存。arXiv comments 标注 accepted by CVPRW 2026 / 12th CVsports，但 official proceedings pending。</li>
 <li><strong>可溯源材料</strong>：本地已保存 <code>paper.pdf</code>、<code>paper-text.md</code>、<code>analysis.md</code>、<code>abstract.md</code>、<code>links.yaml</code> 和 related-work trace；PDF SHA256：<code>a1197eb9d5cde5eb35689b8d79358b94925fc7cceb3e2201eab44bdfbbab34d0</code>。</li>
-<li><strong>使用边界</strong>：当前作为 arXiv evidence 使用；若后续进入正式会议或期刊，需要补 venue、DOI 和最终版本。</li>
+<li><strong>使用边界</strong>：当前作为 arXiv / accepted-claim evidence 使用；若后续 official proceedings 发布，需要补 venue、DOI 和最终版本。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
@@ -128,13 +130,13 @@
 <li><a class="wikilink" href="../sources/2026-05-12-trackmae.html">sources/2026-05-12-trackmae</a></li>
 <li><a class="wikilink" href="../entities/sportsmot.html">entities/sportsmot</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
   &quot;id&quot;: &quot;2026-05-16-bst-badminton-stroke-type-transformer&quot;,
   &quot;type&quot;: &quot;source&quot;,
   &quot;title&quot;: &quot;BST：面向羽毛球击球类型识别的骨架动作 Transformer&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-05-16&quot;,
-  &quot;updated&quot;: &quot;2026-05-16&quot;,
+  &quot;updated&quot;: &quot;2026-05-22&quot;,
   &quot;venue&quot;: &quot;arXiv&quot;,
   &quot;published_at&quot;: &quot;2025-02-28&quot;,
   &quot;ingested_at&quot;: &quot;2026-05-16&quot;,

@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TrackNetV3：增强羽毛球 shuttle tracking 的数据增强与轨迹校正 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-25-tracknetv3&quot;, &quot;title&quot;: &quot;TrackNetV3：增强羽毛球 shuttle tracking 的数据增强与轨迹校正&quot;, &quot;title_en&quot;: &quot;TrackNetV3：增强羽毛球 shuttle tracking 的数据增强与轨迹校正&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;tracking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-25-tracknetv3.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-25-tracknetv3.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-05-06</p>
+        <h1>TrackNetV3：增强羽毛球 shuttle tracking 的数据增强与轨迹校正</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#tracking">#tracking</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="tracknetv3-增强羽毛球-shuttle-tracking-的数据增强与轨迹校正">TrackNetV3：增强羽毛球 shuttle tracking 的数据增强与轨迹校正</h1>
+<blockquote>会议 / 来源：ACM MMAsia 2023</blockquote>
+<blockquote>发表日期：2023-12-06</blockquote>
+<blockquote>资料加入日期：2026-04-25</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>聚焦羽毛球高速小目标轨迹定位，补上体育 AI 中球/器械高速小目标 tracking 的特殊难点。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>TrackNetV3 聚焦羽毛球轨迹追踪，通过面向小目标、高速和运动模糊的后处理增强轨迹定位。</p>
+<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
+<p>它提醒体育 AI 的 tracking 难点不仅来自球员身份保持，也来自球/器械的高速小目标观测。</p>
+<h2 id="来源可靠性与可溯源性">来源可靠性与可溯源性</h2>
+<ul>
+<li><strong>来源层级</strong>：ACM MMAsia 2023 primary paper，ACM DOI <code>10.1145/3595916.3626370</code>、作者 PDF 和官方 GitHub 可访问。</li>
+<li><strong>可溯源材料</strong>：本地已保存作者 PDF、<code>paper-text.md</code>、abstract 与 <code>links.yaml</code>；适合作为 TrackNet 系列中最优先复现的来源。</li>
+<li><strong>使用边界</strong>：适合作为 badminton shuttle tracking 的强 primary evidence；复现时仍需核查数据集下载、环境版本和权重。</li>
+</ul>
+<h2 id="和现有证据的关系">和现有证据的关系</h2>
+<ul>
+<li>与 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它把体育 AI 的证据面从 player tracking 扩展到 shuttlecock 这类高速小目标。</li>
+<li>与 <a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：它是 badminton high-speed tiny object tracking batch 的复现首选锚点。</li>
+</ul>
+<h2 id="2026-05-05-复现-smoke-test">2026-05-05 复现 smoke test</h2>
+<p>本地完成了一次最小可复现验证：克隆官方 GitHub，下载 README 中的 Google Drive checkpoints，并在 synthetic shuttle-like video 上跑通 <code>predict.py</code>，生成 48 行预测 CSV 和带轨迹输出的视频。</p>
+<p>关键发现：</p>
+<ul>
+<li>官方 checkpoints 可下载：<code>TrackNet_best.pt</code> 约 136 MB，<code>InpaintNet_best.pt</code> 约 6.3 MB。</li>
+<li>后续正式复现以 CUDA/GPU 环境为目标；本地 smoke test 里出现的 CPU/Mac 补丁只作为环境绕行记录。</li>
+<li>安装依赖时还需要补 <code>pycocotools</code>；README 的 <code>requirements.txt</code> 没列出这个依赖，但 <code>test.py</code> 会导入它。</li>
+<li>smoke test 只验证仓库、权重和推理脚本可跑通，不等价于论文 benchmark 复现。</li>
+</ul>
+<p>复现记录与生成文件保存于：</p>
+<ul>
+<li><code>raw/ingest/2026-04-25-tracknetv3/repro-demo-2026-05-05.md</code></li>
+<li><code>raw/ingest/2026-04-25-tracknetv3/repro-2026-05-05/synthetic_shuttle_input.mp4</code></li>
+<li><code>raw/ingest/2026-04-25-tracknetv3/repro-2026-05-05/synthetic_shuttle_ball.csv</code></li>
+<li><code>raw/ingest/2026-04-25-tracknetv3/repro-2026-05-05/synthetic_shuttle_prediction.mp4</code></li>
+</ul>
+<p>下一步真正 benchmark 复现应下载 Shuttlecock Trajectory Dataset test split，然后运行 <code>generate_mask_data.py</code> 与 <code>test.py</code>，对照论文里的 accuracy / precision / recall / F1。</p>
+<h2 id="2026-05-06-cuda-gpu-benchmark-复现方案">2026-05-06 CUDA/GPU benchmark 复现方案</h2>
+<p>已把下一步正式复现拆成 CUDA/GPU benchmark plan，记录在 <code>raw/ingest/2026-04-25-tracknetv3/cuda-benchmark-repro-2026-05-06.md</code>。这份计划聚焦真实 Shuttlecock Trajectory Dataset test split，而不是 synthetic demo。</p>
+<p>关键执行路径：</p>
+<ol>
+<li>下载 Shuttlecock Trajectory Dataset，并按 TrackNetV3 README 规整成 <code>data/train</code>、<code>data/val</code>、<code>data/test</code>。</li>
+<li>确认 <code>data/test/match*/corrected_csv</code>、<code>frame</code>、<code>video</code> 三类目录存在；test split 对应 3 场专业比赛、29 个 rally。</li>
+<li>在 CUDA/GPU Linux 环境下安装 PyTorch CUDA build、OpenCV、<code>parse</code>、<code>tqdm</code>、<code>pycocotools</code>、<code>gdown</code>。</li>
+<li>下载并校验官方 <code>TrackNet_best.pt</code> 与 <code>InpaintNet_best.pt</code>。</li>
+<li>运行：</li>
+</ol>
+<pre><code>python preprocess.py
+python generate_mask_data.py --tracknet_file ckpts/TrackNet_best.pt --batch_size 16 --split_list test --eval_mode weight --verbose
+python test.py --tracknet_file ckpts/TrackNet_best.pt --inpaintnet_file ckpts/InpaintNet_best.pt --split test --batch_size 16 --eval_mode weight --save_dir eval --output_pred --verbose</code></pre>
+<p>评估时对齐官方 README 指标：TrackNetV3 test split accuracy <code>97.51%</code>、precision <code>97.79%</code>、recall <code>99.33%</code>、F1 <code>98.56%</code>、FPS <code>25.11</code>。最终记录应保存 <code>eval/test_eval_res_weight.json</code>、环境信息、checkpoint SHA256、数据集目录统计和与官方表格的差异说明。已补充可直接复制执行的 runner：<code>raw/ingest/2026-04-25-tracknetv3/run-tracknetv3-cuda-benchmark.sh</code>。</p>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>当前 smoke test 使用 synthetic video，只说明 pipeline 可运行，不说明真实羽毛球数据集上的指标。</li>
+<li>正式复现以 CUDA/GPU 为目标环境；本地 CPU/Mac workaround 只保留为 smoke-test 记录。</li>
+<li>具体论文数值和 benchmark 细节应以 <code>raw/ingest/2026-04-25-tracknetv3/paper-text.md</code> 与原始 PDF 为准。</li>
+</ul>
+<h2 id="原始材料">原始材料</h2>
+<ul>
+<li><code>raw/ingest/2026-04-25-tracknetv3/paper.pdf</code></li>
+<li><code>raw/ingest/2026-04-25-tracknetv3/paper-text.md</code></li>
+<li><code>raw/ingest/2026-04-25-tracknetv3/abstract.md</code></li>
+<li><code>raw/ingest/2026-04-25-tracknetv3/links.yaml</code></li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
+<li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
+<li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a></li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-25-tracknetv3&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;TrackNetV3：增强羽毛球 shuttle tracking 的数据增强与轨迹校正&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-25&quot;,
+  &quot;updated&quot;: &quot;2026-05-06&quot;,
+  &quot;venue&quot;: &quot;ACM MMAsia 2023&quot;,
+  &quot;published_at&quot;: &quot;2023-12-06&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-25&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-understanding&quot;,
+    &quot;tracking&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Yu-Jou Chen&quot;,
+    &quot;Yu-Shuen Wang&quot;
+  ],
+  &quot;canonical_links&quot;: [
+    &quot;https://dl.acm.org/doi/10.1145/3595916.3626370&quot;,
+    &quot;https://people.cs.nycu.edu.tw/~yushuen/data/TrackNetV3.pdf&quot;,
+    &quot;https://github.com/qaz812345/TrackNetV3&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-25-tracknetv3/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/sports-ai-video-understanding&quot;,
+    &quot;topics/sports-ai-roadmap&quot;,
+    &quot;topics/video-understanding&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/sportsmot&quot;
+  ],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

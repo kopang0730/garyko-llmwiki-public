@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MAPLM（CVPR 2024）：面向地图与交通场景理解的真实世界大规模视觉语言基准 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-maplm&quot;, &quot;title&quot;: &quot;MAPLM（CVPR 2024）：面向地图与交通场景理解的真实世界大规模视觉语言基准&quot;, &quot;title_en&quot;: &quot;MAPLM（CVPR 2024）：面向地图与交通场景理解的真实世界大规模视觉语言基准&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;vision-language&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-maplm.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-maplm.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-15</p>
+        <h1>MAPLM（CVPR 2024）：面向地图与交通场景理解的真实世界大规模视觉语言基准</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#evaluation">#evaluation</a><a class="tag" href="../../en/tags.html#benchmarking">#benchmarking</a><a class="tag" href="../../en/tags.html#vision-language">#vision-language</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="maplm-cvpr-2024-面向地图与交通场景理解的真实世界大规模视觉语言基准">MAPLM（CVPR 2024）：面向地图与交通场景理解的真实世界大规模视觉语言基准</h1>
+<blockquote>会议：CVPR 2024</blockquote>
+<blockquote>发表日期：2024-01-01</blockquote>
+<blockquote>资料加入日期：2026-04-14</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作把真实世界视觉语言 benchmark 补进库里，增强了 vision-language 页对现实场景任务的覆盖。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>它要解决的是很多视觉语言 benchmark 与真实复杂场景仍有距离的问题。对当前知识库来说，它补的是更现实、更场景化的 benchmark 层。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>MAPLM 构建真实世界大规模 vision-language benchmark，围绕地图和交通场景理解测试模型在复杂现实任务中的多模态能力。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>它让 vision-language 页多了一类“真实世界场景 benchmark”样本，而不只是更抽象的推理或个性化任务。</li>
+<li>它能帮助后续比较模型在实验室式 benchmark 和现实场景 benchmark 上是否存在明显能力落差。</li>
+<li>它对以后构造更贴近真实应用的视频/视觉研究方向很有参考价值。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>它更偏地图与交通场景，不直接对应视频编辑。</li>
+<li>领域场景较强，泛化到其他任务仍需谨慎。</li>
+<li>它适合作为现实场景 benchmark 补层。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://openaccess.thecvf.com/content/CVPR2024/html/Cao_MAPLM_A_Real-World_Large-Scale_Vision-Language_Benchmark_for_Map_and_Traffic_CVPR_2024_paper.html</li>
+<li>https://openaccess.thecvf.com/content/CVPR2024/papers/Cao_MAPLM_A_Real-World_Large-Scale_Vision-Language_Benchmark_for_Map_and_Traffic_CVPR_2024_paper.pdf</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">topics/generative-model-evaluation</a></li>
+<li><a class="wikilink" href="../../en/topics/vision-language.html">topics/vision-language</a></li>
+<li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>MAPLM 在这套库里的作用，是把现实场景 vision-language benchmark 补入 evaluation / vision-language 层。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-14-maplm&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;MAPLM（CVPR 2024）：面向地图与交通场景理解的真实世界大规模视觉语言基准&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-14&quot;,
+  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;venue&quot;: &quot;CVPR 2024&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;evaluation&quot;,
+    &quot;benchmarking&quot;,
+    &quot;vision-language&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Xu Cao&quot;,
+    &quot;Tong Zhou&quot;,
+    &quot;Yunsheng Ma&quot;,
+    &quot;Wenqian Ye&quot;,
+    &quot;Can Cui&quot;,
+    &quot;Kun Tang&quot;,
+    &quot;Zhipeng Cao&quot;,
+    &quot;Kaizhao Liang&quot;,
+    &quot;Ziran Wang&quot;,
+    &quot;James M. Rehg&quot;,
+    &quot;Chao Zheng&quot;
+  ],
+  &quot;published_at&quot;: &quot;2024-01-01&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/CVPR2024/html/Cao_MAPLM_A_Real-World_Large-Scale_Vision-Language_Benchmark_for_Map_and_Traffic_CVPR_2024_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2024/papers/Cao_MAPLM_A_Real-World_Large-Scale_Vision-Language_Benchmark_for_Map_and_Traffic_CVPR_2024_paper.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-maplm/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/generative-model-evaluation&quot;,
+    &quot;topics/vision-language&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: [
+    &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
+  ]
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

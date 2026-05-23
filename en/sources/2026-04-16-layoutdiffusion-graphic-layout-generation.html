@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LayoutDiffusion（ICCV 2023）：把 graphic layout generation 做成离散 diffusion 的标准接口 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-layoutdiffusion-graphic-layout-generation&quot;, &quot;title&quot;: &quot;LayoutDiffusion（ICCV 2023）：把 graphic layout generation 做成离散 diffusion 的标准接口&quot;, &quot;title_en&quot;: &quot;LayoutDiffusion（ICCV 2023）：把 graphic layout generation 做成离散 diffusion 的标准接口&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-16-layoutdiffusion-graphic-layout-generation.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-16-layoutdiffusion-graphic-layout-generation.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-16</p>
+        <h1>LayoutDiffusion（ICCV 2023）：把 graphic layout generation 做成离散 diffusion 的标准接口</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="layoutdiffusion-iccv-2023-把-graphic-layout-generation-做成离散-diffusion-的标准接口">LayoutDiffusion（ICCV 2023）：把 graphic layout generation 做成离散 diffusion 的标准接口</h1>
+<blockquote>会议：ICCV 2023</blockquote>
+<blockquote>发表日期：2023/03/21</blockquote>
+<blockquote>资料加入日期：2026-04-16</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作把 graphic layout generation 直接建模成离散扩散过程，为 layout controllability 提供了一个更标准、更独立的生成接口。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>graphic layout 主要由离散 token 序列表示，既要保证布局合法性，又要保持坐标邻近和类型扰动可控。传统扩散大多围绕连续图像空间展开，这让 layout 任务的接口地位一直不够清晰。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>作者把 layout generation 表达为 discrete denoising diffusion process，并围绕 legality、coordinate proximity 和 type disruption 设计 block-wise transition matrix 与 piece-wise linear noise schedule，让离散布局序列也能稳定做扩散建模。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>它和 <a class="wikilink" href="../../en/sources/2026-04-16-dlt-layout-transformer.html">sources/2026-04-16-dlt-layout-transformer</a> 形成互补：一个强调 conditioned layout generation，一个强调 graphic layout generation 的离散 diffusion 基础建模。</li>
+<li>这说明 layout interface 已经开始有自己独立的方法主线，而不只是 image generation 的附属约束。</li>
+<li>在 batch-g 里，这篇工作负责把“layout control”进一步收敛成可单独命名的标准接口层。</li>
+<li>它也补强了 <a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a> 里“控制接口前移到抽象中间表示层”的证据。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>它更偏布局生成基础建模，对最终图像渲染质量不直接给答案。</li>
+<li>离散布局任务的应用场景相对专门，和开放世界图像生成之间还有桥接成本。</li>
+<li>当前价值主要在谱系定位：layout control 已经足够独立，值得与 region/prompt control 并列观察。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2303.11589</li>
+<li>https://arxiv.org/pdf/2303.11589.pdf</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-dlt-layout-transformer.html">sources/2026-04-16-dlt-layout-transformer</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-14-layoutdiffusion.html">sources/2026-04-14-layoutdiffusion</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>它在本库中的价值，是把 control interface consolidation 从“已有很多控制技巧”继续推进到“接口边界、层级分工和闭环控制是否开始成形”这个层面。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-16-layoutdiffusion-graphic-layout-generation&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;LayoutDiffusion（ICCV 2023）：把 graphic layout generation 做成离散 diffusion 的标准接口&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-04-16&quot;,
+  &quot;venue&quot;: &quot;ICCV 2023&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-generation&quot;,
+    &quot;diffusion&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Junyi Zhang&quot;,
+    &quot;Jiaqi Guo&quot;,
+    &quot;Shizhao Sun&quot;,
+    &quot;Jian–Guang Lou&quot;,
+    &quot;Dongmei Zhang&quot;
+  ],
+  &quot;published_at&quot;: &quot;2023/03/21&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2303.11589&quot;,
+    &quot;https://arxiv.org/pdf/2303.11589.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-16-layoutdiffusion-graphic-layout-generation/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-generation&quot;,
+    &quot;topics/diffusion-models&quot;,
+    &quot;topics/diffusion-efficiency-engineering&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

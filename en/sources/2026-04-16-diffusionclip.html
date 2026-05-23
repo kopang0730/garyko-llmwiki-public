@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DiffusionCLIP（CVPR 2022）：把文本引导图像操控更早接到 diffusion 路线里 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-diffusionclip&quot;, &quot;title&quot;: &quot;DiffusionCLIP（CVPR 2022）：把文本引导图像操控更早接到 diffusion 路线里&quot;, &quot;title_en&quot;: &quot;DiffusionCLIP（CVPR 2022）：把文本引导图像操控更早接到 diffusion 路线里&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;diffusion&quot;, &quot;conditioning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-16-diffusionclip.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-16-diffusionclip.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-16</p>
+        <h1>DiffusionCLIP（CVPR 2022）：把文本引导图像操控更早接到 diffusion 路线里</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-editing">#image-editing</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#conditioning">#conditioning</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="diffusionclip-cvpr-2022-把文本引导图像操控更早接到-diffusion-路线里">DiffusionCLIP（CVPR 2022）：把文本引导图像操控更早接到 diffusion 路线里</h1>
+<blockquote>会议：CVPR 2022</blockquote>
+<blockquote>发表日期：2021/10/06</blockquote>
+<blockquote>资料加入日期：2026-04-16</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作把文本驱动图像操控更早地接到 diffusion 路线里，说明真实图像属性编辑在 diffusion 时代很早就开始摆脱 GAN-only 范式。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>真实图像编辑需要同时满足两件事：语义改动要准确，原图身份与结构也要尽量保住。论文要解决的是，怎样把文本驱动操控能力稳定迁移到 diffusion 模型上。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>作者围绕预训练 diffusion model 做文本引导编辑，让模型在保留原图核心内容的同时按文本做语义变换。它的重要性在于给后续 image-editing 主线补上一个早期 diffusion text-guided manipulation 锚点。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>它说明 2022 年时 diffusion 就已经开始争夺真实图像操控这条路线。</li>
+<li>它和 <a class="wikilink" href="../../en/sources/2026-04-16-blended-diffusion.html">sources/2026-04-16-blended-diffusion</a> 一起构成早期 diffusion editing 双节点：一个更偏自然图像区域编辑，一个更偏文本驱动属性操控。</li>
+<li>它能帮助解释后续 <a class="wikilink" href="../../en/sources/2026-04-14-null-text-inversion.html">sources/2026-04-14-null-text-inversion</a>、<a class="wikilink" href="../../en/sources/2026-04-14-imagic.html">sources/2026-04-14-imagic</a>、<a class="wikilink" href="../../en/sources/2026-04-14-diffeditor.html">sources/2026-04-14-diffeditor</a> 为什么会继续沿真实图像 diffusion 编辑深挖。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>它仍处在早期文本驱动编辑阶段，距离后来的多对象、复杂指令编辑还有明显距离。</li>
+<li>这条路线和 inversion-based 编辑、plug-and-play feature 编辑的关系，还需要更多跨年份证据串起来。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2110.02711</li>
+<li>https://arxiv.org/pdf/2110.02711.pdf</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/image-editing.html">topics/image-editing</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-blended-diffusion.html">sources/2026-04-16-blended-diffusion</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-14-null-text-inversion.html">sources/2026-04-14-null-text-inversion</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-14-imagic.html">sources/2026-04-14-imagic</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>它在本库中的价值，是把“文本引导真实图像 diffusion 编辑”这条线往前接到 2022 年，使后续编辑谱系更完整。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-16-diffusionclip&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;DiffusionCLIP（CVPR 2022）：把文本引导图像操控更早接到 diffusion 路线里&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-04-16&quot;,
+  &quot;venue&quot;: &quot;CVPR 2022&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-editing&quot;,
+    &quot;diffusion&quot;,
+    &quot;conditioning&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Kim, Gwanghyun&quot;,
+    &quot;Kwon, Taesung&quot;,
+    &quot;Ye, Jong Chul&quot;
+  ],
+  &quot;published_at&quot;: &quot;2021/10/06&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2110.02711&quot;,
+    &quot;https://arxiv.org/pdf/2110.02711.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-16-diffusionclip/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-editing&quot;,
+    &quot;topics/diffusion-models&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

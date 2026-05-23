@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AnyEdit（CVPR 2025）：面向任意创意的统一高质量图像编辑 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-12-anyedit&quot;, &quot;title&quot;: &quot;AnyEdit（CVPR 2025）：面向任意创意的统一高质量图像编辑&quot;, &quot;title_en&quot;: &quot;AnyEdit（CVPR 2025）：面向任意创意的统一高质量图像编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;image-generation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-12-anyedit.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-12-anyedit.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-17</p>
+        <h1>AnyEdit（CVPR 2025）：面向任意创意的统一高质量图像编辑</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-editing">#image-editing</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="anyedit-cvpr-2025-面向任意创意的统一高质量图像编辑">AnyEdit（CVPR 2025）：面向任意创意的统一高质量图像编辑</h1>
+<blockquote>会议：CVPR 2025</blockquote>
+<blockquote>发表日期：2025-06-11</blockquote>
+<blockquote>资料加入日期：2026-04-12</blockquote>
+<blockquote>深分析稿：<a class="wikilink missing" href="#missing-raw/ingest/2026-04-12-anyedit/analysis">raw/ingest/2026-04-12-anyedit/analysis</a></blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>AnyEdit 证明了统一图像编辑系统的核心瓶颈很大程度上在高质量多任务数据和任务组织方式；当 20+ 编辑类型、250 万+ 编辑对、任务感知路由和任务嵌入被放进同一系统后，统一编辑器的稳定性会明显提升。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这篇论文更像“统一编辑系统工程样本”，它的主贡献来自一条可扩展的数据构建与筛选流水线，以及让统一扩散编辑器更适配多任务训练的任务感知机制。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>论文聚焦 instruction-based image editing 的三个痛点：</p>
+<ul>
+<li>复杂指令执行不稳定</li>
+<li>编辑类型覆盖太窄</li>
+<li>训练数据噪声高、质量不一致</li>
+</ul>
+<p>作者的判断很直接：如果训练数据和任务组织方式不够强，统一编辑器很难兑现“任意创意编辑”的承诺。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>AnyEdit 包含两层关键设计：</p>
+<ol>
+<li><strong>AnyEdit 数据集</strong></li>
+<p>   构建 250 万+ 高质量编辑图像对，覆盖 20 多种编辑类型和 5 个领域，通过通用数据准备、指令生成、自适应编辑流水线和自动筛选共同保证质量与多样性。</p>
+</ol>
+<ol>
+<li><strong>AnyEdit Stable Diffusion（AnySD）</strong></li>
+<p>   在统一扩散编辑器里加入 <strong>task-aware routing</strong> 和 <strong>learnable task embedding</strong>，让多种编辑任务共享模型时拥有更稳定的任务条件和更清晰的路由边界。</p>
+</ol>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>统一编辑器的效果上限高度依赖高质量编辑数据。</li>
+<li>多任务统一训练需要显式任务路由，单纯堆任务会放大互相干扰。</li>
+<li>论文把 instruction following、source image detail preservation 和任务覆盖面一起当作一级目标。</li>
+<li>AnyEdit 的贡献点首先在“系统化数据生产 + 统一编辑组织”，其次才是模型层局部模块设计。</li>
+</ul>
+<h2 id="关键图示">关键图示</h2>
+<h3 id="方法与数据构建总览">方法与数据构建总览</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-12-anyedit/page-previews/page-4.png">900</a></p>
+<p>Figure 2 展示了 AnyEdit 的完整构建流程：通用数据准备、指令生成、自适应编辑流水线、图像质量评估和数据集收集。这张图最能解释论文为什么把数据构建当成核心贡献。</p>
+<h3 id="多任务复杂编辑结果">多任务复杂编辑结果</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-12-anyedit/page-previews/page-7.png">900</a></p>
+<p>这一页集中展示复杂编辑任务上的定性结果，覆盖动作修改、属性变化、目标增删、背景替换、风格迁移、几何变换和补全，直观体现了 AnyEdit 的任务覆盖面。</p>
+<h3 id="visual-editing-对比与消融">visual editing 对比与消融</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-12-anyedit/page-previews/page-8.png">900</a></p>
+<p>这一页同时给出 visual editing 对比和 task-aware routing / task map 等模块消融，说明统一系统中的任务结构设计对性能确实有贡献。</p>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<p>根据论文摘要、页面预览和现有证据，可以稳定得出四点：</p>
+<ul>
+<li>AnyEdit 在多个 benchmark 上持续提升扩散式编辑模型性能。</li>
+<li>复杂多任务 instruction editing 的收益来自更高质量、更广覆盖的数据。</li>
+<li>visual editing 场景下，任务结构设计和任务映射依旧重要。</li>
+<li>这篇论文的实验叙事强调“复杂度与覆盖面”，很适合当作统一编辑器工程路线的代表样本。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>数据构造链条越强，模型性能越依赖数据流水线质量。</li>
+<li>统一系统覆盖广，单项编辑类别是否都达到最强仍需更细致对照。</li>
+<li>失败模式可能被总体指标掩盖，后续值得继续追踪细分类别表现。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 wiki 判断的影响</h2>
+<ul>
+<li>它显著补强了 <a class="wikilink" href="../../en/topics/image-editing.html">topics/image-editing</a> 中“数据质量仍是性能瓶颈”的判断。</li>
+<li>它也为 <a class="wikilink" href="../../en/entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a> 提供了一条系统工程层的支持证据：统一路线能成立，靠的是训练组织与任务组织一起升级。</li>
+<li>它使 <a class="wikilink" href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">claims/claim-unified-models-may-outcompete-specialized-image-pipelines</a> 更有说服力，因为 AnyEdit 展示了统一系统在工程扩展性上的潜力。</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/image-editing.html">topics/image-editing</a></li>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../../en/entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a></li>
+<li><a class="wikilink" href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">claims/claim-unified-models-may-outcompete-specialized-image-pipelines</a></li>
+<li><a class="wikilink" href="../../en/questions/question-data-vs-architecture-in-image-editing.html">questions/question-data-vs-architecture-in-image-editing</a></li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://openaccess.thecvf.com/content/CVPR2025/html/Yu_AnyEdit_Mastering_Unified_High-Quality_Image_Editing_for_Any_Idea_CVPR_2025_paper.html</li>
+<li>https://openaccess.thecvf.com/content/CVPR2025/papers/Yu_AnyEdit_Mastering_Unified_High-Quality_Image_Editing_for_Any_Idea_CVPR_2025_paper.pdf</li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-12-anyedit&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;AnyEdit（CVPR 2025）：面向任意创意的统一高质量图像编辑&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-12&quot;,
+  &quot;updated&quot;: &quot;2026-04-17&quot;,
+  &quot;venue&quot;: &quot;CVPR 2025&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-12&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-editing&quot;,
+    &quot;image-generation&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Qifan Yu&quot;,
+    &quot;Wei Chow&quot;,
+    &quot;Zhongqi Yue&quot;,
+    &quot;Kaihang Pan&quot;,
+    &quot;Yang Wu&quot;,
+    &quot;Xiaoyang Wan&quot;,
+    &quot;Juncheng Li&quot;,
+    &quot;Siliang Tang&quot;,
+    &quot;Hanwang Zhang&quot;,
+    &quot;Yueting Zhuang&quot;
+  ],
+  &quot;published_at&quot;: &quot;2025-06-11&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/CVPR2025/html/Yu_AnyEdit_Mastering_Unified_High-Quality_Image_Editing_for_Any_Idea_CVPR_2025_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2025/papers/Yu_AnyEdit_Mastering_Unified_High-Quality_Image_Editing_for_Any_Idea_CVPR_2025_paper.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-12-anyedit/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-12-anyedit/analysis.md&quot;,
+  &quot;image_index&quot;: &quot;raw/ingest/2026-04-12-anyedit/images/index.md&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-editing&quot;,
+    &quot;topics/image-generation&quot;,
+    &quot;topics/diffusion-models&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/unified-image-generation-editing&quot;
+  ],
+  &quot;claims&quot;: [
+    &quot;claims/claim-unified-models-may-outcompete-specialized-image-pipelines&quot;
+  ],
+  &quot;questions&quot;: [
+    &quot;questions/question-data-vs-architecture-in-image-editing&quot;
+  ]
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

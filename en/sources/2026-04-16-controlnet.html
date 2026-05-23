@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Adding Conditional Control to Text-to-Image Diffusion Models（ICCV 2023）：把条件控制做成 diffusion 的通用侧支接口 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-controlnet&quot;, &quot;title&quot;: &quot;Adding Conditional Control to Text-to-Image Diffusion Models（ICCV 2023）：把条件控制做成 diffusion 的通用侧支接口&quot;, &quot;title_en&quot;: &quot;Adding Conditional Control to Text-to-Image Diffusion Models（ICCV 2023）：把条件控制做成 diffusion 的通用侧支接口&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-16-controlnet.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-16-controlnet.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-16</p>
+        <h1>Adding Conditional Control to Text-to-Image Diffusion Models（ICCV 2023）：把条件控制做成 diffusion 的通用侧支接口</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#efficiency">#efficiency</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="adding-conditional-control-to-text-to-image-diffusion-models-iccv-2023-把条件控制做成-diffusion-的通用侧支接口">Adding Conditional Control to Text-to-Image Diffusion Models（ICCV 2023）：把条件控制做成 diffusion 的通用侧支接口</h1>
+<blockquote>会议：ICCV 2023</blockquote>
+<blockquote>发表日期：2023/02/10</blockquote>
+<blockquote>资料加入日期：2026-04-16</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作用 zero-conv 侧支网络把边缘、深度、分割、姿态等空间条件稳定接到冻结的预训练 diffusion backbone 上，让 controllability 不再必须重训整套生成模型。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>在大规模 text-to-image diffusion 模型已经可用之后，真正的工程难点不再只是“能不能生成”，而是怎样在不破坏原模型能力的情况下，把空间条件、结构提示和多种外部控制安全地接到系统里。传统整体微调成本高，也容易伤害原始生成质量。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>作者提出 ControlNet：冻结原始大 diffusion 模型主干，仅增加一条可训练的条件控制分支，并用 zero convolutions 从零开始渐进吸收控制信号。这样已有 backbone 继续负责强生成能力，新分支只学习如何把边缘、深度、分割、姿态等结构条件注入 denoising 过程。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>它把 <a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a> 里的 guidance 工程化推进到最有平台性的一个节点：控制接口不再只是 prompt 或 classifier guidance，而是变成可复用的条件适配器。</li>
+<li>ControlNet 说明 diffusion controllability 的关键工程答案之一，是“冻结强 backbone + 外挂轻量条件分支”，这和 <a class="wikilink" href="../../en/sources/2026-04-16-towards-practical-plug-and-play-diffusion-models.html">sources/2026-04-16-towards-practical-plug-and-play-diffusion-models</a> 的模块化思路很一致。</li>
+<li>它支持边缘、深度、分割、姿态等多种空间条件，说明 guidance 已经从语义引导扩展成结构引导。</li>
+<li>在本库语境里，它补上了 <a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a> 与 <a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a> 之间缺的一块：不仅要更快、更便宜，还要更稳定地接入控制。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>它主要解决条件接入稳定性，不直接减少采样步数或单步网络成本，因此延迟收益并不是这篇工作的主轴。</li>
+<li>ControlNet 的成功很大程度依赖原始 backbone 已足够强，这意味着它更像“平台放大器”，而不是替代主干路线的答案。</li>
+<li>当前证据集中在图像侧条件控制，视频和统一图像/视频框架里的同类侧支接口还值得继续跟踪。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2302.05543</li>
+<li>https://arxiv.org/pdf/2302.05543.pdf</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-towards-practical-plug-and-play-diffusion-models.html">sources/2026-04-16-towards-practical-plug-and-play-diffusion-models</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-self-guided-diffusion-models.html">sources/2026-04-16-self-guided-diffusion-models</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>它在本库中的价值，是把 diffusion guidance engineering 从“模块能否接入”继续推进到“空间控制、attention 治理与训练免费接口能否系统化成立”。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-16-controlnet&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;Adding Conditional Control to Text-to-Image Diffusion Models（ICCV 2023）：把条件控制做成 diffusion 的通用侧支接口&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-04-16&quot;,
+  &quot;venue&quot;: &quot;ICCV 2023&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-generation&quot;,
+    &quot;diffusion&quot;,
+    &quot;efficiency&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Lvmin Zhang&quot;,
+    &quot;Anyi Rao&quot;,
+    &quot;Maneesh Agrawala&quot;
+  ],
+  &quot;published_at&quot;: &quot;2023/02/10&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2302.05543&quot;,
+    &quot;https://arxiv.org/pdf/2302.05543.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-16-controlnet/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-generation&quot;,
+    &quot;topics/diffusion-models&quot;,
+    &quot;topics/diffusion-efficiency-engineering&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

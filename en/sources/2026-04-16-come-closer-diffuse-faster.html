@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Come-Closer-Diffuse-Faster（CVPR 2022）：用随机收缩把条件扩散的采样路径压得更短 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-come-closer-diffuse-faster&quot;, &quot;title&quot;: &quot;Come-Closer-Diffuse-Faster（CVPR 2022）：用随机收缩把条件扩散的采样路径压得更短&quot;, &quot;title_en&quot;: &quot;Come-Closer-Diffuse-Faster（CVPR 2022）：用随机收缩把条件扩散的采样路径压得更短&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-16-come-closer-diffuse-faster.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-16-come-closer-diffuse-faster.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-16</p>
+        <h1>Come-Closer-Diffuse-Faster（CVPR 2022）：用随机收缩把条件扩散的采样路径压得更短</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#efficiency">#efficiency</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="come-closer-diffuse-faster-cvpr-2022-用随机收缩把条件扩散的采样路径压得更短">Come-Closer-Diffuse-Faster（CVPR 2022）：用随机收缩把条件扩散的采样路径压得更短</h1>
+<blockquote>会议：CVPR 2022</blockquote>
+<blockquote>发表日期：2021/12/09</blockquote>
+<blockquote>资料加入日期：2026-04-16</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作把条件扩散提速更早地推进到“缩短有效采样轨迹”这一层，说明 few-step acceleration 在 2022 年就已经开始成为明确问题。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>条件扩散在逆问题和图像恢复里往往需要长采样链，导致推理成本过高。论文要解决的是，怎样在尽量保住重建质量的前提下，把条件扩散的有效采样路径压短。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>作者通过 stochastic contraction 思路让采样过程更快靠近目标分布，减少条件扩散在逆问题场景中的迭代负担。它的重要性在于为后续 few-step、solver distillation、time-step optimization 路线补上更早的 acceleration 前史。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>它把 <a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a> 的 acceleration 谱系往前接到了 2022 年。</li>
+<li>它说明 diffusion efficiency 很早就不只是生成质量问题，而是明确的采样路径工程问题。</li>
+<li>它和 <a class="wikilink" href="../../en/sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">sources/2026-04-15-distilling-ode-solvers-diffusion-models</a>、<a class="wikilink" href="../../en/sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html">sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps</a> 形成早期到后期的自然演化链。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>它聚焦条件扩散与逆问题，不完全等同于后来的大规模文生图 few-step acceleration。</li>
+<li>这条路线与 solver-level distillation、consistency distillation 谁更有长期潜力，还需要继续观察。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2112.05146</li>
+<li>https://arxiv.org/pdf/2112.05146.pdf</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">sources/2026-04-15-distilling-ode-solvers-diffusion-models</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html">sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>它在本库中的价值，是把当前 acceleration 主线往更早的 conditional diffusion 提速阶段补齐。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-16-come-closer-diffuse-faster&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;Come-Closer-Diffuse-Faster（CVPR 2022）：用随机收缩把条件扩散的采样路径压得更短&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-04-16&quot;,
+  &quot;venue&quot;: &quot;CVPR 2022&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-generation&quot;,
+    &quot;diffusion&quot;,
+    &quot;efficiency&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Chung, Hyungjin&quot;,
+    &quot;Sim, Byeongyu&quot;,
+    &quot;Ryu, Dohoon&quot;,
+    &quot;Ye, Jong Chul&quot;
+  ],
+  &quot;published_at&quot;: &quot;2021/12/09&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2112.05146&quot;,
+    &quot;https://arxiv.org/pdf/2112.05146.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-16-come-closer-diffuse-faster/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/diffusion-models&quot;,
+    &quot;topics/diffusion-efficiency-engineering&quot;,
+    &quot;topics/image-generation&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

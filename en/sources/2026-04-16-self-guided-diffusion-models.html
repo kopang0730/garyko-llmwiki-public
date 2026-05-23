@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Self-Guided Diffusion Models（CVPR 2023）：把 guidance 从外部条件器部分收回到模型内部结构 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-self-guided-diffusion-models&quot;, &quot;title&quot;: &quot;Self-Guided Diffusion Models（CVPR 2023）：把 guidance 从外部条件器部分收回到模型内部结构&quot;, &quot;title_en&quot;: &quot;Self-Guided Diffusion Models（CVPR 2023）：把 guidance 从外部条件器部分收回到模型内部结构&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-16-self-guided-diffusion-models.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-16-self-guided-diffusion-models.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-16</p>
+        <h1>Self-Guided Diffusion Models（CVPR 2023）：把 guidance 从外部条件器部分收回到模型内部结构</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#efficiency">#efficiency</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="self-guided-diffusion-models-cvpr-2023-把-guidance-从外部条件器部分收回到模型内部结构">Self-Guided Diffusion Models（CVPR 2023）：把 guidance 从外部条件器部分收回到模型内部结构</h1>
+<blockquote>会议：CVPR 2023</blockquote>
+<blockquote>发表日期：2022/10/12</blockquote>
+<blockquote>资料加入日期：2026-04-16</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作把 diffusion guidance 的数据依赖明显压低了：它用 self-supervision 产生 guidance signal，让模型在没有 class / box / mask 标注的前提下，也能获得从整体语义到对象框、分割掩码不同粒度的控制能力。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>传统 guidance 往往依赖大量图像-标注对，训练成本、标注质量和偏差都会直接影响 diffusion model 的控制效果与可扩展性。论文要解决的核心问题，是怎样在尽量摆脱人工标注的情况下，仍然为 diffusion reverse process 提供足够有效的 guidance signal。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>作者提出 self-guided diffusion framework，通过 feature extraction function 和 self-annotation function 自动构造 guidance。它不是把 guidance 完全外包给人工标注条件器，而是从模型自身可提取的自监督信号里生成不同粒度的控制目标。这样 guidance 从外部监督链路部分回收到内部结构，既保留控制能力，也降低对昂贵标签的依赖。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>它把 <a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a> 里的 guidance 主线补成另一条重要分支：除了蒸馏 guidance、插件化 guidance，还存在 self-guidance 这条低标注成本路线。</li>
+<li>论文报告 self-labeled guidance 稳定优于无 guidance diffusion，并在不平衡数据上还可能优于 ground-truth label guidance，说明 guidance 的有效性并不只取决于人工标注。</li>
+<li>当方法接入 self-supervised box proposal 或 mask proposal 后，模型可以生成语义一致且视觉多样的图像，说明 self-guidance 具备向对象级和区域级控制扩展的潜力。</li>
+<li>它和 <a class="wikilink" href="../../en/sources/2026-04-16-towards-practical-plug-and-play-diffusion-models.html">sources/2026-04-16-towards-practical-plug-and-play-diffusion-models</a> 很互补：后者降低外部 guidance 的接入成本，这篇降低 guidance supervision 本身的数据成本。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>这篇工作的重点在于 guidance source 的替换，而不是直接减少采样步数或压缩单步网络成本，因此它对整体延迟的改善更偏间接。</li>
+<li>self-annotation 的质量上限会直接影响 guidance 质量，跨数据分布时的稳定性仍值得继续跟踪。</li>
+<li>当前证据主要在图像生成侧，视频扩散或统一生成编辑场景里的自引导扩展仍需要更多材料。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2210.06462</li>
+<li>https://arxiv.org/pdf/2210.06462.pdf</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-on-distillation-of-guided-diffusion-models.html">sources/2026-04-16-on-distillation-of-guided-diffusion-models</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-towards-practical-plug-and-play-diffusion-models.html">sources/2026-04-16-towards-practical-plug-and-play-diffusion-models</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-post-training-quantization-on-diffusion-models.html">sources/2026-04-16-post-training-quantization-on-diffusion-models</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>它在本库中的价值，是把 diffusion efficiency / controllability 叙事继续往“低数据成本 guidance”推进。这样 guidance 这条子线已经同时覆盖蒸馏、插件化接入和自监督引导三种不同方向。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-16-self-guided-diffusion-models&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;Self-Guided Diffusion Models（CVPR 2023）：把 guidance 从外部条件器部分收回到模型内部结构&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-04-16&quot;,
+  &quot;venue&quot;: &quot;CVPR 2023&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-generation&quot;,
+    &quot;diffusion&quot;,
+    &quot;efficiency&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Hu, Vincent Tao&quot;,
+    &quot;Zhang, David W&quot;,
+    &quot;Asano, Yuki M.&quot;,
+    &quot;Burghouts, Gertjan J.&quot;,
+    &quot;Snoek, Cees G. M.&quot;
+  ],
+  &quot;published_at&quot;: &quot;2022/10/12&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2210.06462&quot;,
+    &quot;https://arxiv.org/pdf/2210.06462.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-16-self-guided-diffusion-models/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-generation&quot;,
+    &quot;topics/diffusion-models&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

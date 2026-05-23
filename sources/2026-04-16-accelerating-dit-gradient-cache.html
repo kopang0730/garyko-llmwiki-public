@@ -3,20 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Accelerating Diffusion Transformer via Gradient-Optimized Cache（arXiv）：用梯度优化缓存继续压缩 DiT 推理成本 · llmwiki</title>
+  <title>Accelerating Diffusion Transformer via Gradient-Optimized Cache（ICCV 2025）：用梯度优化缓存继续压缩 DiT 推理成本 · llmwiki</title>
   <link rel="stylesheet" href="../assets/wiki.css">
   <script defer src="../assets/wiki.js"></script>
 </head>
-<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-accelerating-dit-gradient-cache&quot;, &quot;title&quot;: &quot;Accelerating Diffusion Transformer via Gradient-Optimized Cache（arXiv）：用梯度优化缓存继续压缩 DiT 推理成本&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;]}">
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-accelerating-dit-gradient-cache&quot;, &quot;title&quot;: &quot;Accelerating Diffusion Transformer via Gradient-Optimized Cache（ICCV 2025）：用梯度优化缓存继续压缩 DiT 推理成本&quot;, &quot;title_en&quot;: &quot;Accelerating Diffusion Transformer via Gradient-Optimized Cache（ICCV 2025）：用梯度优化缓存继续压缩 DiT 推理成本&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh">
   <aside class="wiki-sidebar">
-    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
-    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
-<h2>Entry</h2><ul>
-<li><a href="../index.html">Index</a></li>
-<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+<h2>入口</h2><ul>
+<li><a href="../index.html">索引</a></li>
+<li><a href="../llm-wiki.html">LLM Wiki</a></li>
+<li><a href="../main.html">首页</a></li>
 </ul>
-<h2>Topics</h2><ul>
+<h2>主题</h2><ul>
 <li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
 <li><a href="../topics/diffusion-models.html">扩散模型</a></li>
 <li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
@@ -29,18 +30,18 @@
 <li><a href="../topics/video-understanding.html">视频理解</a></li>
 <li><a href="../topics/vision-language.html">视觉-语言</a></li>
 </ul>
-<h2>Entities</h2><ul>
+<h2>实体</h2><ul>
 <li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
 <li><a href="../entities/sportsmot.html">SportsMOT</a></li>
 <li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
-<h2>Claims</h2><ul>
+<h2>判断</h2><ul>
 <li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
 <li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
 <li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
 </ul>
-<h2>Questions</h2><ul>
+<h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
@@ -49,15 +50,16 @@
 </nav>
   </aside>
   <main class="wiki-page">
-    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-16-accelerating-dit-gradient-cache.html">中文</a><a class="" href="../en/sources/2026-04-16-accelerating-dit-gradient-cache.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-16</p>
-        <h1>Accelerating Diffusion Transformer via Gradient-Optimized Cache（arXiv）：用梯度优化缓存继续压缩 DiT 推理成本</h1>
+        <p class="eyebrow">source · 2026-05-22</p>
+        <h1>Accelerating Diffusion Transformer via Gradient-Optimized Cache（ICCV 2025）：用梯度优化缓存继续压缩 DiT 推理成本</h1>
+        
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#efficiency">#efficiency</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h1 id="accelerating-diffusion-transformer-via-gradient-optimized-cache-arxiv-用梯度优化缓存继续压缩-dit-推理成本">Accelerating Diffusion Transformer via Gradient-Optimized Cache（arXiv）：用梯度优化缓存继续压缩 DiT 推理成本</h1>
-<blockquote>会议：arXiv</blockquote>
+      <section class="article-content"><h1 id="accelerating-diffusion-transformer-via-gradient-optimized-cache-iccv-2025-用梯度优化缓存继续压缩-dit-推理成本">Accelerating Diffusion Transformer via Gradient-Optimized Cache（ICCV 2025）：用梯度优化缓存继续压缩 DiT 推理成本</h1>
+<blockquote>会议：ICCV 2025</blockquote>
 <blockquote>发表日期：2025/03/07</blockquote>
 <blockquote>资料加入日期：2026-04-16</blockquote>
 <h2 id="一句话结论">一句话结论</h2>
@@ -74,7 +76,7 @@
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>当前仍是 arXiv 节点，工程收益的稳定性还要继续观察。</li>
+<li>venue 已按外部审计修为 ICCV 2025；本地 primary links 仍以 arXiv 版本为可追溯入口，后续可继续补 official proceedings / DOI。</li>
 <li>缓存路线与 quantization / few-step / solver distillation 组合后的整体收益边界还不清楚。</li>
 </ul>
 <h2 id="原始链接">原始链接</h2>
@@ -91,14 +93,14 @@
 </ul>
 <h2 id="备注">备注</h2>
 <p>它在本库中的价值，是把 cache acceleration 明确推进到 DiT-aware 工程优化层。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
   &quot;id&quot;: &quot;2026-04-16-accelerating-dit-gradient-cache&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Accelerating Diffusion Transformer via Gradient-Optimized Cache（arXiv）：用梯度优化缓存继续压缩 DiT 推理成本&quot;,
+  &quot;title&quot;: &quot;Accelerating Diffusion Transformer via Gradient-Optimized Cache（ICCV 2025）：用梯度优化缓存继续压缩 DiT 推理成本&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-16&quot;,
-  &quot;updated&quot;: &quot;2026-04-16&quot;,
-  &quot;venue&quot;: &quot;arXiv&quot;,
+  &quot;updated&quot;: &quot;2026-05-22&quot;,
+  &quot;venue&quot;: &quot;ICCV 2025&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,

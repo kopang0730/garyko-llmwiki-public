@@ -7,16 +7,17 @@
   <link rel="stylesheet" href="../assets/wiki.css">
   <script defer src="../assets/wiki.js"></script>
 </head>
-<body data-page="{&quot;slug&quot;: &quot;sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking&quot;, &quot;title&quot;: &quot;TrackNetV2：高效羽毛球追踪网络&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;tracking&quot;, &quot;primary-source&quot;]}">
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking&quot;, &quot;title&quot;: &quot;TrackNetV2：高效羽毛球追踪网络&quot;, &quot;title_en&quot;: &quot;TrackNetV2：高效羽毛球追踪网络&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;tracking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh">
   <aside class="wiki-sidebar">
-    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
-    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
-<h2>Entry</h2><ul>
-<li><a href="../index.html">Index</a></li>
-<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+<h2>入口</h2><ul>
+<li><a href="../index.html">索引</a></li>
+<li><a href="../llm-wiki.html">LLM Wiki</a></li>
+<li><a href="../main.html">首页</a></li>
 </ul>
-<h2>Topics</h2><ul>
+<h2>主题</h2><ul>
 <li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
 <li><a href="../topics/diffusion-models.html">扩散模型</a></li>
 <li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
@@ -29,18 +30,18 @@
 <li><a href="../topics/video-understanding.html">视频理解</a></li>
 <li><a href="../topics/vision-language.html">视觉-语言</a></li>
 </ul>
-<h2>Entities</h2><ul>
+<h2>实体</h2><ul>
 <li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
 <li><a href="../entities/sportsmot.html">SportsMOT</a></li>
 <li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
-<h2>Claims</h2><ul>
+<h2>判断</h2><ul>
 <li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
 <li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
 <li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
 </ul>
-<h2>Questions</h2><ul>
+<h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
@@ -49,11 +50,12 @@
 </nav>
   </aside>
   <main class="wiki-page">
-    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking.html">中文</a><a class="" href="../en/sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-05-05</p>
+        <p class="eyebrow">source · 2026-05-22</p>
         <h1>TrackNetV2：高效羽毛球追踪网络</h1>
+        
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#tracking">#tracking</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
       <section class="article-content"><h1 id="tracknetv2-高效羽毛球追踪网络">TrackNetV2：高效羽毛球追踪网络</h1>
@@ -74,14 +76,14 @@
 <h2 id="来源可靠性与可溯源性">来源可靠性与可溯源性</h2>
 <ul>
 <li><strong>来源层级</strong>：IEEE ICPAI 2020 conference paper，IEEE Xplore 页面和 DOI <code>10.1109/ICPAI51961.2020.00023</code> 可访问。</li>
-<li><strong>可溯源材料</strong>：本地已保存 IEEE/DOI 元数据、abstract/source snapshot 与 <code>links.yaml</code>；公开 PDF 未获取，因此本条不保存 <code>paper.pdf</code>。</li>
+<li><strong>可溯源材料</strong>：本地已保存 IEEE/DOI 元数据、abstract/source snapshot、<code>links.yaml</code>；另保存 GitHub implementation mirror 提供的 <code>paper.pdf</code> 与 <code>paper-text.md</code>，作为可读全文镜像，结论仍以 IEEE/DOI 为准。</li>
 <li><strong>使用边界</strong>：适合作为 TrackNet 系列中效率优化的 primary evidence；代码复现时可参考第三方 PyTorch 实现，但结论仍以 IEEE 论文为准。</li>
 </ul>
 <h2 id="和现有证据的关系">和现有证据的关系</h2>
 <p>TrackNetV2 位于 <a class="wikilink" href="../sources/2026-05-05-tracknet-high-speed-tiny-objects.html">sources/2026-05-05-tracknet-high-speed-tiny-objects</a> 与 <a class="wikilink" href="../sources/2026-04-25-tracknetv3.html">sources/2026-04-25-tracknetv3</a> 之间：TrackNet 定义问题，TrackNetV2 优化效率，TrackNetV3 加入 augmentation 和 trajectory rectification。</p>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>当前公开 PDF 未保存，后续如取得作者版或开放版本，应补入 <code>paper.pdf</code> 与 <code>paper-text.md</code>。</li>
+<li>当前已保存第三方 GitHub mirror PDF；后续如取得 IEEE 官方 PDF，应补入或替换为 official artifact。</li>
 <li>第三方代码页只能作为 implementation context 使用。</li>
 </ul>
 <h2 id="原始材料">原始材料</h2>
@@ -89,6 +91,8 @@
 <li><code>raw/ingest/2026-05-05-tracknetv2-efficient-shuttlecock-tracking/abstract.md</code></li>
 <li><code>raw/ingest/2026-05-05-tracknetv2-efficient-shuttlecock-tracking/source.md</code></li>
 <li><code>raw/ingest/2026-05-05-tracknetv2-efficient-shuttlecock-tracking/links.yaml</code></li>
+<li><code>raw/ingest/2026-05-05-tracknetv2-efficient-shuttlecock-tracking/paper.pdf</code>（GitHub PDF mirror）</li>
+<li><code>raw/ingest/2026-05-05-tracknetv2-efficient-shuttlecock-tracking/paper-text.md</code></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
@@ -97,13 +101,13 @@
 <li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
 <li><a class="wikilink" href="../entities/sportsmot.html">entities/sportsmot</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
   &quot;id&quot;: &quot;2026-05-05-tracknetv2-efficient-shuttlecock-tracking&quot;,
   &quot;type&quot;: &quot;source&quot;,
   &quot;title&quot;: &quot;TrackNetV2：高效羽毛球追踪网络&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-05-05&quot;,
-  &quot;updated&quot;: &quot;2026-05-05&quot;,
+  &quot;updated&quot;: &quot;2026-05-22&quot;,
   &quot;venue&quot;: &quot;ICPAI 2020&quot;,
   &quot;published_at&quot;: &quot;2020-12-01&quot;,
   &quot;ingested_at&quot;: &quot;2026-05-05&quot;,

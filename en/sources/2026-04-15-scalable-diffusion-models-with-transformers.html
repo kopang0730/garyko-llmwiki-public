@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scalable Diffusion Models with Transformers（ICCV 2023）：DiT 把 Transformer 真正坐实为可扩展扩散主干 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-15-scalable-diffusion-models-with-transformers&quot;, &quot;title&quot;: &quot;Scalable Diffusion Models with Transformers（ICCV 2023）：DiT 把 Transformer 真正坐实为可扩展扩散主干&quot;, &quot;title_en&quot;: &quot;Scalable Diffusion Models with Transformers（ICCV 2023）：DiT 把 Transformer 真正坐实为可扩展扩散主干&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-15-scalable-diffusion-models-with-transformers.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-15-scalable-diffusion-models-with-transformers.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-15</p>
+        <h1>Scalable Diffusion Models with Transformers（ICCV 2023）：DiT 把 Transformer 真正坐实为可扩展扩散主干</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="scalable-diffusion-models-with-transformers-iccv-2023-dit-把-transformer-真正坐实为可扩展扩散主干">Scalable Diffusion Models with Transformers（ICCV 2023）：DiT 把 Transformer 真正坐实为可扩展扩散主干</h1>
+<blockquote>会议：ICCV 2023</blockquote>
+<blockquote>发表日期：2022/12/19</blockquote>
+<blockquote>资料加入日期：2026-04-15</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇论文是当前库里最关键的 DiT 正统锚点：它不再只是证明 ViT 可以做扩散主干，而是进一步把“Transformer 主干会随算力扩张而稳定变强”这件事做成了清晰的 scaling 叙事。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>它要解决的是扩散模型主干虽然已经开始从 CNN U-Net 向 Transformer 演化，但社区还缺少一个足够干净、足够有说服力的答案：如果把 Transformer 认真当作 latent diffusion 的底座，它是否真的具备比传统设计更好的可扩展性，而不是只是一种可行替代品。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>方法上，论文提出 DiT（Diffusion Transformer），把潜空间图像切成 patch token 后交给纯 Transformer 主干处理，并系统比较不同深度、宽度、patch 粒度带来的计算量与质量变化。它的关键不只是换 backbone，而是把 Gflops 明确当成 scaling 观察轴，展示更大的 DiT 会稳定带来更低的 FID。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>它为 <a class="wikilink" href="../../en/entities/diffusion-transformer.html">entities/diffusion-transformer</a> 提供了真正意义上的 canonical paper：从这里开始，DiT 不再只是“Transformer 化扩散”的泛称，而是一条有明确命名和 scaling 证据的主干路线。</li>
+<li>它显著补强了 <a class="wikilink" href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">claims/claim-dit-is-becoming-the-default-scalable-generation-backbone</a>：后续很多图像/视频生成工作沿着 DiT 做压缩、控制和长序列扩展，更像是建立在这篇论文已经坐实的可扩展底座之上。</li>
+<li>它与 <a class="wikilink" href="../../en/sources/2026-04-15-all-are-worth-words.html">sources/2026-04-15-all-are-worth-words</a> 形成清晰分工：前者更像 ViT 主干可行性的前史起点，后者则把 DiT 作为正式架构谱系推到主舞台。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>它的证据核心仍集中在图像生成 benchmark，并不能直接推出视频长时序、复杂编辑控制和多模态条件注入下同样最优。</li>
+<li>它强调的是 scaling 优势，不等于所有部署场景都会优先选择 DiT；在高分辨率效率、注意力成本和推理工程上，仍可能被其他 backbone 挑战。</li>
+<li>它把“更大更强”讲清楚了，但训练稳定性、蒸馏、一致性训练和缓存加速等后续工程问题还需要其他论文补齐。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2212.09748</li>
+<li>https://arxiv.org/pdf/2212.09748</li>
+<li>https://doi.org/10.1109/ICCV51070.2023.00387</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../../en/entities/diffusion-transformer.html">entities/diffusion-transformer</a></li>
+<li><a class="wikilink" href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">claims/claim-dit-is-becoming-the-default-scalable-generation-backbone</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>在这套库里，这篇论文的价值主要不是单个 ImageNet FID 数字，而是把“DiT 之所以成为后续默认主干候选，不只是因为它新，而是因为它在 scaling 维度上更像一条可持续扩张的路线”这件事提前讲清楚。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-15-scalable-diffusion-models-with-transformers&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;Scalable Diffusion Models with Transformers（ICCV 2023）：DiT 把 Transformer 真正坐实为可扩展扩散主干&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;venue&quot;: &quot;ICCV 2023&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-15&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-generation&quot;,
+    &quot;diffusion&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Peebles, William&quot;,
+    &quot;Xie, Saining&quot;
+  ],
+  &quot;published_at&quot;: &quot;2022/12/19&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2212.09748&quot;,
+    &quot;https://arxiv.org/pdf/2212.09748&quot;,
+    &quot;https://doi.org/10.1109/ICCV51070.2023.00387&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-15-scalable-diffusion-models-with-transformers/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-generation&quot;,
+    &quot;topics/diffusion-models&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/diffusion-transformer&quot;
+  ],
+  &quot;claims&quot;: [
+    &quot;claims/claim-dit-is-becoming-the-default-scalable-generation-backbone&quot;
+  ],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

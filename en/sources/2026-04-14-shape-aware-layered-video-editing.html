@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shape-aware Text-driven Layered Video Editing（CVPR 2023）：形状感知的分层文本视频编辑 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-shape-aware-layered-video-editing&quot;, &quot;title&quot;: &quot;Shape-aware Text-driven Layered Video Editing（CVPR 2023）：形状感知的分层文本视频编辑&quot;, &quot;title_en&quot;: &quot;Shape-aware Text-driven Layered Video Editing（CVPR 2023）：形状感知的分层文本视频编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;video-generation&quot;, &quot;control&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-shape-aware-layered-video-editing.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-shape-aware-layered-video-editing.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-15</p>
+        <h1>Shape-aware Text-driven Layered Video Editing（CVPR 2023）：形状感知的分层文本视频编辑</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-editing">#video-editing</a><a class="tag" href="../../en/tags.html#video-generation">#video-generation</a><a class="tag" href="../../en/tags.html#control">#control</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="shape-aware-text-driven-layered-video-editing-cvpr-2023-形状感知的分层文本视频编辑">Shape-aware Text-driven Layered Video Editing（CVPR 2023）：形状感知的分层文本视频编辑</h1>
+<blockquote>会议：CVPR 2023</blockquote>
+<blockquote>发表日期：2023/01/30</blockquote>
+<blockquote>资料加入日期：2026-04-14</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作把分层视频编辑和 shape-aware 控制结合起来，补上了视频编辑里的 layered composition 路线。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>它要解决的是视频编辑中对象与背景、前景层级难以稳定拆分和控制的问题。对当前知识库来说，它补的是 video-editing 在 compositional / layered control 方向上的明显缺口。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>该工作通过 shape-aware 的分层建模实现 text-driven layered video editing，让不同层次的内容能在编辑中更稳定地被区分与控制。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>它说明视频编辑主线里除了 motion、一致性、效率之外，还有层级分解与局部组合控制这条路线。</li>
+<li>它为以后分析 object/background disentanglement 在视频编辑中的作用提供了更清楚的样本。</li>
+<li>它与 FramePainter、Pix2Video、Video-P2P 等路线互补，强调的是分层结构控制而不是纯 attention 注入。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>分层建模本身会带来系统复杂度。</li>
+<li>shape-aware 分解是否泛化到复杂场景仍需更多证据。</li>
+<li>它是分支补厚节点，不代表统一接口最终形态。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2301.13173</li>
+<li>https://arxiv.org/pdf/2301.13173</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/video-editing.html">topics/video-editing</a></li>
+<li><a class="wikilink" href="../../en/topics/video-generation.html">topics/video-generation</a></li>
+<li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">entities/video-editing-understanding</a></li>
+<li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>这篇工作在库里的作用，是把 layered/compositional video editing 路线补成明确分支。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-14-shape-aware-layered-video-editing&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;Shape-aware Text-driven Layered Video Editing（CVPR 2023）：形状感知的分层文本视频编辑&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-14&quot;,
+  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;venue&quot;: &quot;CVPR 2023&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-editing&quot;,
+    &quot;video-generation&quot;,
+    &quot;control&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Lee, Yao-Chih&quot;,
+    &quot;Jang, Ji-Ze Genevieve&quot;,
+    &quot;Chen, Yi-Ting&quot;,
+    &quot;Qiu, Elizabeth&quot;,
+    &quot;Huang, Jia-Bin&quot;
+  ],
+  &quot;published_at&quot;: &quot;2023/01/30&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2301.13173&quot;,
+    &quot;https://arxiv.org/pdf/2301.13173&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-shape-aware-layered-video-editing/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/video-editing&quot;,
+    &quot;topics/video-generation&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/video-editing-understanding&quot;
+  ],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: [
+    &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
+  ]
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

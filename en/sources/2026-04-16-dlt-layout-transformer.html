@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DLT（ICCV 2023）：把 layout generation 做成离散-连续联合 diffusion · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-dlt-layout-transformer&quot;, &quot;title&quot;: &quot;DLT（ICCV 2023）：把 layout generation 做成离散-连续联合 diffusion&quot;, &quot;title_en&quot;: &quot;DLT（ICCV 2023）：把 layout generation 做成离散-连续联合 diffusion&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-16-dlt-layout-transformer.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-16-dlt-layout-transformer.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-16</p>
+        <h1>DLT（ICCV 2023）：把 layout generation 做成离散-连续联合 diffusion</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="dlt-iccv-2023-把-layout-generation-做成离散-连续联合-diffusion">DLT（ICCV 2023）：把 layout generation 做成离散-连续联合 diffusion</h1>
+<blockquote>会议：ICCV 2023</blockquote>
+<blockquote>发表日期：2023/03/07</blockquote>
+<blockquote>资料加入日期：2026-04-16</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作把布局控制本身变成 diffusion 的一个正式建模对象：它同时处理离散类别和连续位置/尺寸，让用户可以对任意属性子集做条件布局生成。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>真实世界布局生成既有离散变量，如组件类别，也有连续变量，如位置与尺寸。扩散模型虽然强，但如何自然处理这种混合表示，并支持交互式部分条件控制，一直不清楚。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>DLT 提出 Joint Discrete-Continuous Diffusion Layout Transformer，用 transformer backbone 同时建模类别、位置和尺寸，并通过灵活 conditioning 机制支持对任意属性子集做条件布局生成。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>它把 batch-f 从“图像里的 controllability”推进到“布局本身的 controllability”，说明 composition 并不只是最终渲染阶段的问题。</li>
+<li>DLT 和 <a class="wikilink" href="../../en/sources/2026-04-14-layoutdiffusion.html">sources/2026-04-14-layoutdiffusion</a> 形成一组很有价值的 layout evidence：一个做 layout-to-image，一个做 conditioned layout generation。</li>
+<li>它说明 diffusion 的控制接口可以前移到更抽象的中间表示层，而不是只在像素生成阶段施加约束。</li>
+<li>在本库里，这篇工作帮助我们把 guidance / layout composition 看成同一条更长的控制链。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>它更偏布局生成建模，不直接回答最终图像质量与真实感问题。</li>
+<li>与直接对图像采样施加控制的方法相比，它需要一条更长的中间表示链路。</li>
+<li>当前价值更多在方法谱系定位：说明 controllability 还在持续往抽象结构层前移。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2303.03755</li>
+<li>https://arxiv.org/pdf/2303.03755.pdf</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-14-layoutdiffusion.html">sources/2026-04-14-layoutdiffusion</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-multidiffusion.html">sources/2026-04-16-multidiffusion</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>它在本库中的价值，是把 control / layout composition 这条长尾从“prompt 可以控制一点生成”推进到“attention、语义覆盖、布局建模和多路径组合都能成为独立接口设计问题”。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-16-dlt-layout-transformer&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;DLT（ICCV 2023）：把 layout generation 做成离散-连续联合 diffusion&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-04-16&quot;,
+  &quot;venue&quot;: &quot;ICCV 2023&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-generation&quot;,
+    &quot;diffusion&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Elad Levi&quot;,
+    &quot;Eli Brosh&quot;,
+    &quot;Mykola Mykhailych&quot;,
+    &quot;Meir Perez&quot;
+  ],
+  &quot;published_at&quot;: &quot;2023/03/07&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2303.03755&quot;,
+    &quot;https://arxiv.org/pdf/2303.03755.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-16-dlt-layout-transformer/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-generation&quot;,
+    &quot;topics/diffusion-models&quot;,
+    &quot;topics/diffusion-efficiency-engineering&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

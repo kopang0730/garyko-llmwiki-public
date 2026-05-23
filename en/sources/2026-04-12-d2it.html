@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>D²iT（CVPR 2025）：用于高精度图像生成的动态扩散 Transformer · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-12-d2it&quot;, &quot;title&quot;: &quot;D²iT（CVPR 2025）：用于高精度图像生成的动态扩散 Transformer&quot;, &quot;title_en&quot;: &quot;D²iT（CVPR 2025）：用于高精度图像生成的动态扩散 Transformer&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-12-d2it.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-12-d2it.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-17</p>
+        <h1>D²iT（CVPR 2025）：用于高精度图像生成的动态扩散 Transformer</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="d²it-cvpr-2025-用于高精度图像生成的动态扩散-transformer">D²iT（CVPR 2025）：用于高精度图像生成的动态扩散 Transformer</h1>
+<blockquote>会议：CVPR 2025</blockquote>
+<blockquote>发表日期：2025-06-11</blockquote>
+<blockquote>资料加入日期：2026-04-12</blockquote>
+<blockquote>深分析稿：<a class="wikilink missing" href="#missing-raw/ingest/2026-04-12-d2it/analysis">raw/ingest/2026-04-12-d2it/analysis</a></blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>D²iT 证明了标准 DiT 的固定压缩是一个真实瓶颈：只有把空间预算分配推进到 latent 表示层和多粒度噪声建模层，才能同时兼顾局部真实感、全局一致性和效率。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这篇论文是 DiT 主干内部精修路线的代表作。它不做统一任务扩张，而是直接改造生成主干内部的粒度分配逻辑。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>作者指出标准 DiT 的核心局限是固定压缩：</p>
+<ul>
+<li>重要区域表达不足会损伤局部真实感。</li>
+<li>全局统一高密度表示又会显著推高计算成本，并影响整体效率和一致性。</li>
+</ul>
+<p>它要解决的是“不同区域不该被一视同仁地压缩和建模”。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>D²iT 包含两阶段设计：</p>
+<ol>
+<li><strong>Dynamic VAE（DVAE）</strong></li>
+<p>   通过 Dynamic Grain Coding 和 hierarchical encoder，对不同图像区域采用不同 downsampling rates，得到多粒度 latent 表示。</p>
+</ol>
+<ol>
+<li><strong>Dynamic Diffusion Transformer（D²iT）</strong></li>
+<p>   由 Dynamic Grain Transformer 和 Dynamic Content Transformer 组成：前者预测 grain map，后者按 grain map 做多粒度噪声建模与内容生成。</p>
+</ol>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>生成质量问题被推进到了 latent 表示与空间预算分配层。</li>
+<li>grain map 预测是让动态粒度真正可训练、可推理的关键。</li>
+<li>D²iT 的核心不只是“哪里更细”，而是“粗粒度全局预测 + 细粒度局部修正”的联合机制。</li>
+<li>这篇论文把 DiT 路线从统一 patch 粒度推进到动态区域粒度。</li>
+</ul>
+<h2 id="关键图示">关键图示</h2>
+<h3 id="两阶段总体框架">两阶段总体框架</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-12-d2it/page-previews/page-4.png">900</a></p>
+<p>这一页同时展示 Stage 1 的 DVAE 和 Stage 2 的 D²iT，并展开 Dynamic Grain Transformer 与 Dynamic Content Transformer 的关系，是理解论文的核心主图。</p>
+<h3 id="主结果与-grain-ratio-分析">主结果与 grain ratio 分析</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-12-d2it/page-previews/page-7.png">900</a></p>
+<p>这一页同时给出 ImageNet 主结果、grain map 可视化和 grain ratio 分析，是说明 D²iT 既有效又合理的关键证据页。</p>
+<h3 id="消融与训练收敛">消融与训练收敛</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-12-d2it/page-previews/page-8.png">900</a></p>
+<p>这一页集中展示模块消融、RefineNet 层数影响、Dynamic Grain Transformer 效果和训练收敛对比，是理解论文内部证据链的最佳页面。</p>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<ul>
+<li>D²iT 在 FFHQ 与 ImageNet 等生成任务上展现出很强竞争力。</li>
+<li>grain map 定性可视化表明模型会优先把细粒度预算分给结构复杂区域。</li>
+<li>grain ratio 分析说明动态粒度存在合理最优区间，而不是越细越好。</li>
+<li>消融表明 DVAE、routing、grain prediction 和 refinement 都在共同贡献性能。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>这条路线主要服务生成主干本身，并不直接扩张到统一生成-编辑系统。</li>
+<li>工程复杂度高于更简单的 DiT baseline。</li>
+<li>它在部署和跨任务迁移上的外溢价值，仍需更多后续证据。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 wiki 判断的影响</h2>
+<ul>
+<li>它强化了 <a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a> 中“生成质量问题已经推进到 latent 表示层和预算分配层”的判断。</li>
+<li>它也提醒 <a class="wikilink" href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">claims/claim-unified-models-may-outcompete-specialized-image-pipelines</a>：专用生成主干优化依旧非常强，统一路线并没有天然压倒性优势。</li>
+<li>D²iT 是统一路线之外，对生成底座持续深挖的一条重要反向证据。</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">claims/claim-unified-models-may-outcompete-specialized-image-pipelines</a></li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://openaccess.thecvf.com/content/CVPR2025/html/Jia_D2iT_Dynamic_Diffusion_Transformer_for_Accurate_Image_Generation_CVPR_2025_paper.html</li>
+<li>https://openaccess.thecvf.com/content/CVPR2025/papers/Jia_D2iT_Dynamic_Diffusion_Transformer_for_Accurate_Image_Generation_CVPR_2025_paper.pdf</li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-12-d2it&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;D²iT（CVPR 2025）：用于高精度图像生成的动态扩散 Transformer&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-12&quot;,
+  &quot;updated&quot;: &quot;2026-04-17&quot;,
+  &quot;venue&quot;: &quot;CVPR 2025&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-12&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-generation&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Weinan Jia&quot;,
+    &quot;Mengqi Huang&quot;,
+    &quot;Nan Chen&quot;,
+    &quot;Lei Zhang&quot;,
+    &quot;Zhendong Mao&quot;
+  ],
+  &quot;published_at&quot;: &quot;2025-06-11&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/CVPR2025/html/Jia_D2iT_Dynamic_Diffusion_Transformer_for_Accurate_Image_Generation_CVPR_2025_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2025/papers/Jia_D2iT_Dynamic_Diffusion_Transformer_for_Accurate_Image_Generation_CVPR_2025_paper.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-12-d2it/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-12-d2it/analysis.md&quot;,
+  &quot;image_index&quot;: &quot;raw/ingest/2026-04-12-d2it/images/index.md&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-generation&quot;,
+    &quot;topics/diffusion-models&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [
+    &quot;claims/claim-unified-models-may-outcompete-specialized-image-pipelines&quot;
+  ],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

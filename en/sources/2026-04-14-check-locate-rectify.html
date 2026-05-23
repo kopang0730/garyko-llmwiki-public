@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Check, Locate, Rectify（CVPR 2024）：文本到图像生成的训练免费布局校准系统 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-check-locate-rectify&quot;, &quot;title&quot;: &quot;Check, Locate, Rectify（CVPR 2024）：文本到图像生成的训练免费布局校准系统&quot;, &quot;title_en&quot;: &quot;Check, Locate, Rectify（CVPR 2024）：文本到图像生成的训练免费布局校准系统&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;control&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-check-locate-rectify.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-check-locate-rectify.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-15</p>
+        <h1>Check, Locate, Rectify（CVPR 2024）：文本到图像生成的训练免费布局校准系统</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#control">#control</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="check-locate-rectify-cvpr-2024-文本到图像生成的训练免费布局校准系统">Check, Locate, Rectify（CVPR 2024）：文本到图像生成的训练免费布局校准系统</h1>
+<blockquote>会议：CVPR 2024</blockquote>
+<blockquote>发表日期：2023/11/27</blockquote>
+<blockquote>资料加入日期：2026-04-14</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作把训练免费的布局校准系统补进库里，强化了 image-generation 中的 layout control / calibration 路线。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>它要解决的是文本到图像生成即使有布局条件，仍可能放错位置或结构不稳的问题。对当前知识库来说，它补的是 LayoutDiffusion 之外更偏 inference-time calibration 的路线。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>Check, Locate, Rectify 提供 training-free layout calibration system，通过检测、定位和校正步骤提升 text-to-image generation 的布局遵循能力。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>它说明布局控制不仅可以在训练阶段建模，也可以在推理阶段做校准。</li>
+<li>它让 image-generation 的空间控制路线从 layout modeling 扩到 layout calibration。</li>
+<li>它对以后做低成本控制增强方向很有价值。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>训练免费系统通常更依赖基础模型已有能力。</li>
+<li>它更偏布局校正，不直接等于更强开放语义生成。</li>
+<li>它是控制增强路线，而不是基础模型路线。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2311.15773</li>
+<li>https://arxiv.org/pdf/2311.15773</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
+<li><a class="wikilink" href="../../en/topics/vision-language.html">topics/vision-language</a></li>
+<li><a class="wikilink" href="../../en/entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a></li>
+<li><a class="wikilink" href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>这篇工作在库里的作用，是把 layout calibration 路线补成 image-generation 控制层的重要分支。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-14-check-locate-rectify&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;Check, Locate, Rectify（CVPR 2024）：文本到图像生成的训练免费布局校准系统&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-14&quot;,
+  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;venue&quot;: &quot;CVPR 2024&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-generation&quot;,
+    &quot;control&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Gong, Biao&quot;,
+    &quot;Huang, Siteng&quot;,
+    &quot;Feng, Yutong&quot;,
+    &quot;Zhang, Shiwei&quot;,
+    &quot;Li, Yuyuan&quot;,
+    &quot;Liu, Yu&quot;
+  ],
+  &quot;published_at&quot;: &quot;2023/11/27&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2311.15773&quot;,
+    &quot;https://arxiv.org/pdf/2311.15773&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-check-locate-rectify/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-generation&quot;,
+    &quot;topics/vision-language&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/unified-image-generation-editing&quot;
+  ],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: [
+    &quot;questions/question-will-unified-image-models-sustain-their-advantage&quot;
+  ]
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

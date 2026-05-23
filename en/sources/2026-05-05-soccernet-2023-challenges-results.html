@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SoccerNet 2023 Challenges Results：足球视频多任务挑战结果 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-05-05-soccernet-2023-challenges-results&quot;, &quot;title&quot;: &quot;SoccerNet 2023 Challenges Results：足球视频多任务挑战结果&quot;, &quot;title_en&quot;: &quot;SoccerNet 2023 Challenges Results：足球视频多任务挑战结果&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-05-05-soccernet-2023-challenges-results.html">中文</a><a class="selected-lang" href="../../en/sources/2026-05-05-soccernet-2023-challenges-results.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-05-05</p>
+        <h1>SoccerNet 2023 Challenges Results：足球视频多任务挑战结果</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#benchmarking">#benchmarking</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="soccernet-2023-challenges-results-足球视频多任务挑战结果">SoccerNet 2023 Challenges Results：足球视频多任务挑战结果</h1>
+<blockquote>会议 / 来源：arXiv 2023</blockquote>
+<blockquote>发表日期：2023-09-12</blockquote>
+<blockquote>资料加入日期：2026-05-05</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>SoccerNet 2023 Challenges Results 把足球视频理解拆成多个公开任务，提供从 action spotting、tracking 到比赛状态相关任务的社区基准结果。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这篇挑战报告适合补 sports-AI roadmap 的公开评测生态层，说明足球视频理解已经从单篇论文走向多任务、可比较、年度迭代的 benchmark program。</p>
+<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
+<p>它能支撑 Event2Tracking / game-state 后续补强：trajectory-event semantics 需要公开任务、排行榜和年度结果来定义可复核进展。</p>
+<h2 id="来源可靠性与可溯源性">来源可靠性与可溯源性</h2>
+<ul>
+<li><strong>来源层级</strong>：arXiv 页面可访问；作为 SoccerNet 2023 challenge result 报告，可作为社区 benchmark 证据使用。当前按 arXiv primary paper 处理。</li>
+<li><strong>可溯源材料</strong>：本地已保存 arXiv abstract、PDF 与 <code>paper-text.md</code>；<code>links.yaml</code> 可回到 arXiv abstract / PDF。</li>
+<li><strong>使用边界</strong>：需要结合每个具体挑战的官方页面和任务说明理解指标细节，避免把挑战汇总报告当成单一方法论文。</li>
+</ul>
+<h2 id="和现有证据的关系">和现有证据的关系</h2>
+<ul>
+<li>与 <a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：它补强 S1 足球轨迹与比赛状态中的年度挑战、公开任务和 tracking 工程证据。</li>
+<li>与 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它把体育视频理解从静态数据集推进到可比较的 challenge / leaderboard / team-system 层。</li>
+<li>与 <a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a> 的关系：它提供真实广播足球长视频、密集事件和多目标跟踪的应用型评测样本。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>需要结合每个具体挑战的官方页面和任务说明理解指标细节，避免把挑战汇总报告当成单一方法论文。</li>
+<li>当前这版先完成轻量 primary-source 编译，后续可按 deep-analysis-first 流程补 <code>analysis.md</code>、关键图页和实验细节。</li>
+</ul>
+<h2 id="原始材料">原始材料</h2>
+<ul>
+<li><code>raw/ingest/2026-05-05-soccernet-2023-challenges-results/paper.pdf</code></li>
+<li><code>raw/ingest/2026-05-05-soccernet-2023-challenges-results/paper-text.md</code></li>
+<li><code>raw/ingest/2026-05-05-soccernet-2023-challenges-results/abstract.md</code></li>
+<li><code>raw/ingest/2026-05-05-soccernet-2023-challenges-results/links.yaml</code></li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
+<li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
+<li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a></li>
+<li><a class="wikilink" href="../../en/entities/sportsmot.html">entities/sportsmot</a></li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-05-05-soccernet-2023-challenges-results&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;SoccerNet 2023 Challenges Results：足球视频多任务挑战结果&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-05-05&quot;,
+  &quot;updated&quot;: &quot;2026-05-05&quot;,
+  &quot;venue&quot;: &quot;arXiv 2023&quot;,
+  &quot;published_at&quot;: &quot;2023-09-12&quot;,
+  &quot;ingested_at&quot;: &quot;2026-05-05&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-understanding&quot;,
+    &quot;benchmarking&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Cioppa, Anthony&quot;,
+    &quot;Giancola, Silvio&quot;,
+    &quot;Somers, Vladimir&quot;,
+    &quot;Magera, Floriane&quot;,
+    &quot;Zhou, Xin&quot;,
+    &quot;Mkhallati, Hassan&quot;,
+    &quot;Deliège, Adrien&quot;,
+    &quot;Held, Jan&quot;,
+    &quot;Hinojosa, Carlos&quot;,
+    &quot;Mansourian, Amir M.&quot;,
+    &quot;Miralles, Pierre&quot;,
+    &quot;Barnich, Olivier&quot;,
+    &quot;De Vleeschouwer, Christophe&quot;,
+    &quot;Alahi, Alexandre&quot;,
+    &quot;Ghanem, Bernard&quot;,
+    &quot;Van Droogenbroeck, Marc&quot;,
+    &quot;Kamal, Abdullah&quot;,
+    &quot;Maglo, Adrien&quot;,
+    &quot;Clapés, Albert&quot;,
+    &quot;Abdelaziz, Amr&quot;,
+    &quot;Xarles, Artur&quot;,
+    &quot;Orcesi, Astrid&quot;,
+    &quot;Scott, Atom&quot;,
+    &quot;Liu, Bin&quot;,
+    &quot;Lim, Byoungkwon&quot;,
+    &quot;Chen, Chen&quot;,
+    &quot;Deuser, Fabian&quot;,
+    &quot;Yan, Feng&quot;,
+    &quot;Yu, Fufu&quot;,
+    &quot;Shitrit, Gal&quot;,
+    &quot;Wang, Guanshuo&quot;,
+    &quot;Choi, Gyusik&quot;,
+    &quot;Kim, Hankyul&quot;,
+    &quot;Guo, Hao&quot;,
+    &quot;Fahrudin, Hasby&quot;,
+    &quot;Koguchi, Hidenari&quot;,
+    &quot;Ardö, Håkan&quot;,
+    &quot;Salah, Ibrahim&quot;,
+    &quot;Yerushalmy, Ido&quot;,
+    &quot;Muhammad, Iftikar&quot;,
+    &quot;Uchida, Ikuma&quot;,
+    &quot;Be&#x27;ery, Ishay&quot;,
+    &quot;Rabarisoa, Jaonary&quot;,
+    &quot;Lee, Jeongae&quot;,
+    &quot;Fu, Jiajun&quot;,
+    &quot;Yin, Jianqin&quot;,
+    &quot;Xu, Jinghang&quot;,
+    &quot;Nang, Jongho&quot;,
+    &quot;Denize, Julien&quot;,
+    &quot;Li, Junjie&quot;,
+    &quot;Zhang, Junpei&quot;,
+    &quot;Kim, Juntae&quot;,
+    &quot;Synowiec, Kamil&quot;,
+    &quot;Kobayashi, Kenji&quot;,
+    &quot;Zhang, Kexin&quot;,
+    &quot;Habel, Konrad&quot;,
+    &quot;Nakajima, Kota&quot;,
+    &quot;Jiao, Licheng&quot;,
+    &quot;Ma, Lin&quot;,
+    &quot;Wang, Lizhi&quot;,
+    &quot;Wang, Luping&quot;,
+    &quot;Li, Menglong&quot;,
+    &quot;Zhou, Mengying&quot;,
+    &quot;Nasr, Mohamed&quot;,
+    &quot;Abdelwahed, Mohamed&quot;,
+    &quot;Liashuha, Mykola&quot;,
+    &quot;Falaleev, Nikolay&quot;,
+    &quot;Oswald, Norbert&quot;,
+    &quot;Jia, Qiong&quot;,
+    &quot;Pham, Quoc-Cuong&quot;,
+    &quot;Song, Ran&quot;,
+    &quot;Hérault, Romain&quot;,
+    &quot;Peng, Rui&quot;,
+    &quot;Chen, Ruilong&quot;,
+    &quot;Liu, Ruixuan&quot;,
+    &quot;Baikulov, Ruslan&quot;,
+    &quot;Fukushima, Ryuto&quot;,
+    &quot;Escalera, Sergio&quot;,
+    &quot;Lee, Seungcheon&quot;,
+    &quot;Chen, Shimin&quot;,
+    &quot;Ding, Shouhong&quot;,
+    &quot;Someya, Taiga&quot;,
+    &quot;Moeslund, Thomas B.&quot;,
+    &quot;Li, Tianjiao&quot;,
+    &quot;Shen, Wei&quot;,
+    &quot;Zhang, Wei&quot;,
+    &quot;Li, Wei&quot;,
+    &quot;Dai, Wei&quot;,
+    &quot;Luo, Weixin&quot;,
+    &quot;Zhao, Wending&quot;,
+    &quot;Zhang, Wenjie&quot;,
+    &quot;Yang, Xinquan&quot;,
+    &quot;Ma, Yanbiao&quot;,
+    &quot;Joo, Yeeun&quot;,
+    &quot;Zeng, Yingsen&quot;,
+    &quot;Gan, Yiyang&quot;,
+    &quot;Zhu, Yongqiang&quot;,
+    &quot;Zhong, Yujie&quot;,
+    &quot;Ruan, Zheng&quot;,
+    &quot;Li, Zhiheng&quot;,
+    &quot;Huang, Zhijian&quot;,
+    &quot;Meng, Ziyu&quot;
+  ],
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2309.06006&quot;,
+    &quot;https://arxiv.org/pdf/2309.06006&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-05-05-soccernet-2023-challenges-results/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/sports-ai-video-understanding&quot;,
+    &quot;topics/sports-ai-roadmap&quot;,
+    &quot;topics/video-understanding&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/sportsmot&quot;
+  ],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

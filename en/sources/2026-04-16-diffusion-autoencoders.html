@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Diffusion Autoencoders（CVPR 2022）：为扩散模型补上更可解释、可解码的语义表征层 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-diffusion-autoencoders&quot;, &quot;title&quot;: &quot;Diffusion Autoencoders（CVPR 2022）：为扩散模型补上更可解释、可解码的语义表征层&quot;, &quot;title_en&quot;: &quot;Diffusion Autoencoders（CVPR 2022）：为扩散模型补上更可解释、可解码的语义表征层&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;representation-learning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-16-diffusion-autoencoders.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-16-diffusion-autoencoders.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-16</p>
+        <h1>Diffusion Autoencoders（CVPR 2022）：为扩散模型补上更可解释、可解码的语义表征层</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#representation-learning">#representation-learning</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="diffusion-autoencoders-cvpr-2022-为扩散模型补上更可解释-可解码的语义表征层">Diffusion Autoencoders（CVPR 2022）：为扩散模型补上更可解释、可解码的语义表征层</h1>
+<blockquote>会议：CVPR 2022</blockquote>
+<blockquote>发表日期：2021/11/30</blockquote>
+<blockquote>资料加入日期：2026-04-16</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作把 diffusion 从“只会采样的生成器”往“带语义编码能力的表示模型”推进了一步，为后续可编辑、可操控的 diffusion 表征路线补了一个早期锚点。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>标准 diffusion 更擅长高质量生成，弱在显式语义表征。没有一个稳定、可解码、可操作的潜在表示时，很多编辑、插值和语义操控能力都很难自然建立。论文要解决的是，怎样让 diffusion 也拥有更有意义的表示层。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>作者提出 diffusion autoencoder，把语义编码与随机细节建模分开：一个语义 latent 负责高层内容，一个 diffusion decoder 负责把表示还原成图像并生成细节。这样 diffusion 不再只是噪声到图像的黑箱过程，而是获得了一个更可解释的表示接口。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>它为 <a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a> 里的“表示层”补入了很早的基础节点，说明 diffusion 路线并不只有采样效率问题，也一直在探索语义 latent 的可操作性。</li>
+<li>它能帮助解释后面很多 editing / guidance 工作为什么会持续围绕 latent space 与可解码表示展开。</li>
+<li>它和 <a class="wikilink" href="../../en/sources/2026-04-14-latent-diffusion-models.html">sources/2026-04-14-latent-diffusion-models</a> 一起看很有价值：一个强调高分辨率潜空间扩散底座，一个强调语义上更有意义的可解码表示。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>它更偏表示建模，不直接回答大规模文生图系统里的效率与 scaling 问题。</li>
+<li>在超大数据、超大模型条件下，这种表示分解是否仍保持同样优势，当前材料里还看不到。</li>
+<li>它和后续 transformer 化 diffusion 主干之间的衔接，还需要更多跨年份证据补齐。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2111.15640</li>
+<li>https://arxiv.org/pdf/2111.15640.pdf</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-14-latent-diffusion-models.html">sources/2026-04-14-latent-diffusion-models</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>它在本库中的价值，是把 diffusion 路线的“表示能力”前史补进来，让后续 latent diffusion、editing latent、semantic control 这些路线拥有更清楚的起点。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-16-diffusion-autoencoders&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;Diffusion Autoencoders（CVPR 2022）：为扩散模型补上更可解释、可解码的语义表征层&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-04-16&quot;,
+  &quot;venue&quot;: &quot;CVPR 2022&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-generation&quot;,
+    &quot;diffusion&quot;,
+    &quot;representation-learning&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Preechakul, Konpat&quot;,
+    &quot;Chatthee, Nattanat&quot;,
+    &quot;Wizadwongsa, Suttisak&quot;,
+    &quot;Suwajanakorn, Supasorn&quot;
+  ],
+  &quot;published_at&quot;: &quot;2021/11/30&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2111.15640&quot;,
+    &quot;https://arxiv.org/pdf/2111.15640.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-16-diffusion-autoencoders/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-generation&quot;,
+    &quot;topics/diffusion-models&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

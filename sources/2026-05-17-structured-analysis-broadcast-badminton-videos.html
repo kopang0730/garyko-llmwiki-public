@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Towards Structured Analysis：广播羽毛球视频的结构化分析早期系统 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css">
+  <script defer src="../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-05-17-structured-analysis-broadcast-badminton-videos&quot;, &quot;title&quot;: &quot;Towards Structured Analysis：广播羽毛球视频的结构化分析早期系统&quot;, &quot;title_en&quot;: &quot;Towards Structured Analysis：广播羽毛球视频的结构化分析早期系统&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;tracking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>入口</h2><ul>
+<li><a href="../index.html">索引</a></li>
+<li><a href="../llm-wiki.html">LLM Wiki</a></li>
+<li><a href="../main.html">首页</a></li>
+</ul>
+<h2>主题</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>实体</h2><ul>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>判断</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>问题</h2><ul>
+<li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-05-17-structured-analysis-broadcast-badminton-videos.html">中文</a><a class="" href="../en/sources/2026-05-17-structured-analysis-broadcast-badminton-videos.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-05-22</p>
+        <h1>Towards Structured Analysis：广播羽毛球视频的结构化分析早期系统</h1>
+        
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#tracking">#tracking</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="towards-structured-analysis-广播羽毛球视频的结构化分析早期系统">Towards Structured Analysis：广播羽毛球视频的结构化分析早期系统</h1>
+<blockquote>会议 / 期刊：WACV 2018</blockquote>
+<blockquote>发表日期：2018-02-28</blockquote>
+<blockquote>资料加入日期：2026-05-17</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇论文把羽毛球 broadcast video 从“录像”转成“可查询的结构化比赛数据”，是后续 TrackNet、ShuttleSet、TemPose、BST 之前的重要系统锚点。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>它补强 <a class="wikilink" href="../sources/2026-05-16-bst-badminton-stroke-type-transformer.html">sources/2026-05-16-bst-badminton-stroke-type-transformer</a> 的 related-work 前史：BST 关注 hit-frame-centered clipping、pose、shuttle trajectory 和 stroke-type classification；这篇 WACV 2018 工作更早定义了完整 pipeline：point segmentation → player detection / identification → stroke segmentation → player tactics analytics。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>公开羽毛球比赛视频数量很大，但人工观看和标注成本高。研究真正需要的是可索引的结构化数据：每个 point 什么时候开始结束、谁在打、球员在哪、打了什么 stroke，以及这些事件如何汇总成战术指标。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>系统分四层：</p>
+<ol>
+<li><strong>Point segmentation</strong>：把 broadcast video 切成 point / non-point。</li>
+<li><strong>Player tracking / identification</strong>：检测 top / bottom player，并结合场地位置和换边规则保持身份。</li>
+<li><strong>Stroke segmentation</strong>：识别 serve、forehand、backhand、lob、smash、react 等动作片段。</li>
+<li><strong>Analytics layer</strong>：计算 reaction time、dominance、average speed、court movement 等可解释指标。</li>
+</ol>
+<h2 id="数据与实验">数据与实验</h2>
+<p>论文使用 London Olympics 2012 的 10 场单打比赛：20 名球员、751 个 point segments、15,327 个 stroke labels。训练/测试按 7 场 / 3 场比赛划分，接近跨球员和跨比赛泛化评估。</p>
+<p>主要结果：</p>
+<table><thead><tr><th>模块</th><th>指标</th></tr></thead><tbody><tr><td>Point segmentation</td><td>F1 95.44%</td></tr><tr><td>Player detection</td><td>mAP@0.5 97.38%</td></tr><tr><td>Player identification</td><td>accuracy 97.98%</td></tr><tr><td>Stroke segmentation</td><td>edit score 80.48%</td></tr></tbody></table>
+<h2 id="关键图示">关键图示</h2>
+<p><img src="../raw/ingest/2026-05-17-structured-analysis-broadcast-badminton-videos/page-previews/page-01.png" alt="overall pipeline" loading="lazy"></p>
+<p>p1 展示目标输出：player tracks、points、strokes 和 color-coded stroke timeline。</p>
+<p><img src="../raw/ingest/2026-05-17-structured-analysis-broadcast-badminton-videos/page-previews/page-03.png" alt="task and dataset" loading="lazy"></p>
+<p>p3 展示任务图谱和数据统计，能看出它同时处理 player tracks、point segments、action segments 和 match statistics。</p>
+<p><img src="../raw/ingest/2026-05-17-structured-analysis-broadcast-badminton-videos/page-previews/page-08.png" alt="analytics" loading="lazy"></p>
+<p>p8 展示 dominance、reaction time、court movement、average speed 等 tactical metrics，说明结构化标注可以直接服务教练/分析师阅读。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>系统级结构比单一模型更重要：只有 point / player / stroke 都被结构化，后续战术和训练反馈才有基础。</li>
+<li>Stroke segmentation 是最难模块；这也解释了为什么后续 TemPose / BST 会把 hit window、pose 和 shuttle trajectory 加进来。</li>
+<li>它已经把“反应时间、优势、站位、速度、步法”变成可计算指标，这和当前 badminton action-correction demo 的反馈目标高度一致。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>视觉与时序模型较早，和 VideoMAE / TrackMAE / skeleton Transformer 时代的表征能力差距明显。</li>
+<li>10 场奥运比赛规模有限，跨场馆、跨转播风格、业余训练视频泛化仍需验证。</li>
+<li>它输出的是比赛结构和动作片段，尚未进入“错误模式”和“教练式反馈”。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 wiki 判断的影响</h2>
+<p>它让 <a class="wikilink" href="../questions/question-badminton-stroke-correction-demo.html">questions/question-badminton-stroke-correction-demo</a> 的第一步更清楚：demo 先不要急着做复杂教练系统，应先保证 rally / point、player side、hit frame 和 stroke segment 的结构化输出稳定。后续 <a class="wikilink" href="../sources/2026-05-16-bst-badminton-stroke-type-transformer.html">sources/2026-05-16-bst-badminton-stroke-type-transformer</a> 负责细化 stroke classifier，<a class="wikilink" href="../sources/2026-05-17-multisensebadminton-biomechanical-dataset.html">sources/2026-05-17-multisensebadminton-biomechanical-dataset</a> 负责定义训练反馈上界。</p>
+<h2 id="原始材料">原始材料</h2>
+<ul>
+<li>raw entry：<code>raw/ingest/2026-05-17-structured-analysis-broadcast-badminton-videos/</code></li>
+<li><code>raw/ingest/2026-05-17-structured-analysis-broadcast-badminton-videos/paper.pdf</code></li>
+<li><code>raw/ingest/2026-05-17-structured-analysis-broadcast-badminton-videos/paper-text.md</code></li>
+<li><code>raw/ingest/2026-05-17-structured-analysis-broadcast-badminton-videos/analysis.md</code></li>
+<li><code>raw/ingest/2026-05-17-structured-analysis-broadcast-badminton-videos/page-previews/</code></li>
+<li><code>raw/ingest/2026-05-17-structured-analysis-broadcast-badminton-videos/abstract.md</code></li>
+<li><code>raw/ingest/2026-05-17-structured-analysis-broadcast-badminton-videos/links.yaml</code></li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
+<li><a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
+<li><a class="wikilink" href="../questions/question-badminton-stroke-correction-demo.html">questions/question-badminton-stroke-correction-demo</a></li>
+<li><a class="wikilink" href="../sources/2026-05-16-bst-badminton-stroke-type-transformer.html">sources/2026-05-16-bst-badminton-stroke-type-transformer</a></li>
+<li><a class="wikilink" href="../sources/2026-05-17-badmintondb-player-specific-match-analysis.html">sources/2026-05-17-badmintondb-player-specific-match-analysis</a></li>
+<li><a class="wikilink" href="../sources/2026-05-17-multisensebadminton-biomechanical-dataset.html">sources/2026-05-17-multisensebadminton-biomechanical-dataset</a></li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+  &quot;id&quot;: &quot;2026-05-17-structured-analysis-broadcast-badminton-videos&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;Towards Structured Analysis：广播羽毛球视频的结构化分析早期系统&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-05-17&quot;,
+  &quot;updated&quot;: &quot;2026-05-22&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-understanding&quot;,
+    &quot;tracking&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;venue&quot;: &quot;WACV 2018&quot;,
+  &quot;authors&quot;: [
+    &quot;Anurag Ghosh&quot;,
+    &quot;Suriya Singh&quot;,
+    &quot;C. V. Jawahar&quot;
+  ],
+  &quot;published_at&quot;: &quot;2018-02-28&quot;,
+  &quot;ingested_at&quot;: &quot;2026-05-17&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;http://arxiv.org/abs/1712.08714&quot;,
+    &quot;https://arxiv.org/pdf/1712.08714&quot;,
+    &quot;https://doi.org/10.1109/WACV.2018.00039&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-05-17-structured-analysis-broadcast-badminton-videos/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/sports-ai-video-understanding&quot;,
+    &quot;topics/sports-ai-roadmap&quot;,
+    &quot;topics/video-understanding&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: [
+    &quot;questions/question-badminton-stroke-correction-demo&quot;
+  ]
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

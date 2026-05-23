@@ -7,16 +7,17 @@
   <link rel="stylesheet" href="../assets/wiki.css">
   <script defer src="../assets/wiki.js"></script>
 </head>
-<body data-page="{&quot;slug&quot;: &quot;topics/sports-ai-video-understanding&quot;, &quot;title&quot;: &quot;体育 AI 视频理解&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;tracking&quot;, &quot;benchmarking&quot;]}">
+<body data-page="{&quot;slug&quot;: &quot;topics/sports-ai-video-understanding&quot;, &quot;title&quot;: &quot;体育 AI 视频理解&quot;, &quot;title_en&quot;: &quot;Sports AI Video Understanding&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;tracking&quot;, &quot;benchmarking&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh">
   <aside class="wiki-sidebar">
-    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
-    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
-<h2>Entry</h2><ul>
-<li><a href="../index.html">Index</a></li>
-<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+<h2>入口</h2><ul>
+<li><a href="../index.html">索引</a></li>
+<li><a href="../llm-wiki.html">LLM Wiki</a></li>
+<li><a href="../main.html">首页</a></li>
 </ul>
-<h2>Topics</h2><ul>
+<h2>主题</h2><ul>
 <li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
 <li><a href="../topics/diffusion-models.html">扩散模型</a></li>
 <li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
@@ -29,18 +30,18 @@
 <li><a href="../topics/video-understanding.html">视频理解</a></li>
 <li><a href="../topics/vision-language.html">视觉-语言</a></li>
 </ul>
-<h2>Entities</h2><ul>
+<h2>实体</h2><ul>
 <li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
 <li><a href="../entities/sportsmot.html">SportsMOT</a></li>
 <li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
-<h2>Claims</h2><ul>
+<h2>判断</h2><ul>
 <li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
 <li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
 <li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
 </ul>
-<h2>Questions</h2><ul>
+<h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
@@ -49,11 +50,12 @@
 </nav>
   </aside>
   <main class="wiki-page">
-    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../topics/sports-ai-video-understanding.html">中文</a><a class="" href="../en/topics/sports-ai-video-understanding.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">topic · 2026-05-16</p>
+        <p class="eyebrow">topic · 2026-05-23</p>
         <h1>体育 AI 视频理解</h1>
+        <p class="article-summary">追踪体育视频中的球员跟踪、人-人交互、全场轨迹、多智能体时序理解与可部署研究系统。</p>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#tracking">#tracking</a><a class="tag" href="../tags.html#benchmarking">#benchmarking</a></div>
       </header>
       <section class="article-content"><h1 id="体育-ai-视频理解">体育 AI 视频理解</h1>
@@ -106,6 +108,9 @@
 <p><a class="wikilink" href="../sources/2026-05-16-bst-badminton-stroke-type-transformer.html">sources/2026-05-16-bst-badminton-stroke-type-transformer</a> 把用户贴出的 Related Work 追溯成一个可复用入口：badminton analysis system 线从 WACV 2018 的 broadcast badminton 结构化分析、TrackNet / TrackNetV2 / TrackNetV3 / TrackNetV4 的 shuttle tracking、MonoTrack 的单目 3D shuttle trajectory，推进到 ShuttleSet、TemPose 和 BST 这类 stroke-level / skeleton-based action recognition。</p>
 <p>本轮已把其中五条高价值线索拆成独立 source notes：<a class="wikilink" href="../sources/2026-05-16-shuttleset-stroke-level-badminton-dataset.html">sources/2026-05-16-shuttleset-stroke-level-badminton-dataset</a> 提供 stroke-level 数据底座，<a class="wikilink" href="../sources/2026-05-16-tempose-badminton-fine-grained-motion.html">sources/2026-05-16-tempose-badminton-fine-grained-motion</a> 提供 badminton skeleton Transformer 方法锚点，<a class="wikilink" href="../sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition.html">sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition</a> 提供 topology-aware GCN 路线，<a class="wikilink" href="../sources/2026-05-16-skateformer-skeletal-temporal-transformer.html">sources/2026-05-16-skateformer-skeletal-temporal-transformer</a> 提供 skeletal-temporal Transformer 路线，<a class="wikilink" href="../sources/2026-05-16-protogcn-skeleton-action-recognition.html">sources/2026-05-16-protogcn-skeleton-action-recognition</a> 提供 CVPR 2025 阶段通用 SAR 的 prototype / contrastive fine-grained 路线。</p>
 <p>这条线对当前 wiki 的意义是：羽毛球视频理解已经可以拆成“球路—场地—人体姿态—击球类别—战术/训练反馈”的层级。本轮深分析后，这条链更清楚：<a class="wikilink" href="../sources/2026-05-16-shuttleset-stroke-level-badminton-dataset.html">sources/2026-05-16-shuttleset-stroke-level-badminton-dataset</a> 提供 hit frame、shot type、球员位置和 rally 结构；<a class="wikilink" href="../sources/2026-05-16-tempose-badminton-fine-grained-motion.html">sources/2026-05-16-tempose-badminton-fine-grained-motion</a> 证明 skeleton + shuttle / court position 能做细粒度动作识别，并提供 attention 证据窗口；<a class="wikilink" href="../sources/2026-05-16-bst-badminton-stroke-type-transformer.html">sources/2026-05-16-bst-badminton-stroke-type-transformer</a> 把 hit-frame-centered clipping、shuttle trajectory 和 2D pose 组合成 stroke-type classifier。后续最值得继续补的是 badminton serve / stroke classification 的早期系统论文，以及把这三篇串成可复现的挥拍动作纠正 demo。</p>
+<h2 id="2026-05-17-badminton-系统-数据-训练反馈补强">2026-05-17 Badminton 系统 / 数据 / 训练反馈补强</h2>
+<p>本轮新增 <a class="wikilink" href="../sources/2026-05-17-structured-analysis-broadcast-badminton-videos.html">sources/2026-05-17-structured-analysis-broadcast-badminton-videos</a>、<a class="wikilink" href="../sources/2026-05-17-badmintondb-player-specific-match-analysis.html">sources/2026-05-17-badmintondb-player-specific-match-analysis</a> 与 <a class="wikilink" href="../sources/2026-05-17-multisensebadminton-biomechanical-dataset.html">sources/2026-05-17-multisensebadminton-biomechanical-dataset</a>。这组三篇把 BST related-work 继续向前后两侧补齐：WACV 2018 的结构化广播视频分析提供 point segmentation、player tracking / identification 和 stroke annotation 的早期系统边界；BadmintonDB 提供 player-specific match analysis / prediction 和跨数据集 stroke taxonomy 参照；MultiSenseBadminton 则把训练反馈推进到眼动、身体追踪、肌电、足压、视频和落点等多传感器证据。</p>
+<p>这组证据让羽毛球动作纠正线更像一条完整研究路线：第一步用公开视频跑通“rally / hit frame / shuttle / pose / stroke type”，第二步用 player-specific 数据检验跨球员泛化，第三步再把多传感器生物力学数据当作高质量反馈上界。</p>
 <h2 id="2026-05-12-动作纠正补强-从-motion-representation-到-adaptive-explanation">2026-05-12 动作纠正补强：从 motion representation 到 adaptive explanation</h2>
 <p><a class="wikilink" href="../sources/2026-05-12-trackmae.html">sources/2026-05-12-trackmae</a> 把轨迹显式引入视频自监督预训练，补强 <a class="wikilink" href="../sources/2026-04-25-videomae.html">sources/2026-04-25-videomae</a> 在运动细节上的短板；<a class="wikilink" href="../sources/2026-05-12-videoauto-r1.html">sources/2026-05-12-videoauto-r1</a> 则把视频推理做成 confidence-based early exit，让模型只在复杂问题上进入长解释。两者和 <a class="wikilink" href="../sources/2026-05-05-finecausal-action-quality-assessment.html">sources/2026-05-05-finecausal-action-quality-assessment</a> 组合后，可以支撑一个体育动作纠正 pipeline：运动轨迹表征负责看懂动作，AQA / 因果层负责定位错误，video reasoning 层负责把错误转成教练式解释。</p>
 <p>这条线的研究价值在于把体育视频理解从 action recognition 推到 action correction：系统不只回答“这是什么动作”，还要输出“哪个阶段偏了、偏差如何影响结果、下一次训练应该修正什么”。</p>
@@ -130,13 +135,14 @@
 <li><a class="wikilink" href="../topics/generative-model-evaluation.html">topics/generative-model-evaluation</a></li>
 <li><a class="wikilink" href="../entities/sportsmot.html">entities/sportsmot</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
   &quot;id&quot;: &quot;topic-sports-ai-video-understanding&quot;,
   &quot;type&quot;: &quot;topic&quot;,
   &quot;title&quot;: &quot;体育 AI 视频理解&quot;,
+  &quot;title_en&quot;: &quot;Sports AI Video Understanding&quot;,
   &quot;status&quot;: &quot;active&quot;,
   &quot;created&quot;: &quot;2026-04-24&quot;,
-  &quot;updated&quot;: &quot;2026-05-16&quot;,
+  &quot;updated&quot;: &quot;2026-05-23&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;video-understanding&quot;,
@@ -144,6 +150,7 @@
     &quot;benchmarking&quot;
   ],
   &quot;summary&quot;: &quot;追踪体育视频中的球员跟踪、人-人交互、全场轨迹、多智能体时序理解与可部署研究系统。&quot;,
+  &quot;summary_en&quot;: &quot;A topic hub for player tracking, human-human interaction, full-field trajectories, multi-agent temporal understanding, and deployable sports AI systems.&quot;,
   &quot;source_notes&quot;: [
     &quot;sources/2026-04-23-sportmamba&quot;,
     &quot;sources/2026-04-24-sportsmot&quot;,
@@ -209,7 +216,10 @@
     &quot;sources/2026-05-16-shuttleset-stroke-level-badminton-dataset&quot;,
     &quot;sources/2026-05-16-protogcn-skeleton-action-recognition&quot;,
     &quot;sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition&quot;,
-    &quot;sources/2026-05-16-skateformer-skeletal-temporal-transformer&quot;
+    &quot;sources/2026-05-16-skateformer-skeletal-temporal-transformer&quot;,
+    &quot;sources/2026-05-17-badmintondb-player-specific-match-analysis&quot;,
+    &quot;sources/2026-05-17-structured-analysis-broadcast-badminton-videos&quot;,
+    &quot;sources/2026-05-17-multisensebadminton-biomechanical-dataset&quot;
   ],
   &quot;related_topics&quot;: [
     &quot;topics/sports-ai-roadmap&quot;,

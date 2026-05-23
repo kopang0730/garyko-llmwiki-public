@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ProtoGCN：用原型视角强化骨架动作识别的细粒度差异 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-05-16-protogcn-skeleton-action-recognition&quot;, &quot;title&quot;: &quot;ProtoGCN：用原型视角强化骨架动作识别的细粒度差异&quot;, &quot;title_en&quot;: &quot;ProtoGCN：用原型视角强化骨架动作识别的细粒度差异&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;representation-learning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-05-16-protogcn-skeleton-action-recognition.html">中文</a><a class="selected-lang" href="../../en/sources/2026-05-16-protogcn-skeleton-action-recognition.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-05-16</p>
+        <h1>ProtoGCN：用原型视角强化骨架动作识别的细粒度差异</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#representation-learning">#representation-learning</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="protogcn-用原型视角强化骨架动作识别的细粒度差异">ProtoGCN：用原型视角强化骨架动作识别的细粒度差异</h1>
+<blockquote>会议 / 来源：CVPR 2025；本地 primary 抓取使用 arXiv 页面与 PDF</blockquote>
+<blockquote>发表日期：2024-11-28</blockquote>
+<blockquote>资料加入日期：2026-05-16</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>ProtoGCN 解决 skeleton-based action recognition 中“动作轨迹相似、细节差异很小”的问题：它把整段骨架动态拆成可学习的 motion prototypes，并通过 prototype reconstruction contrast 强化局部骨架部件的细粒度判别能力。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>BST 把 ProtoGCN 作为强 SAR baseline 引入羽毛球 stroke-type classification。对 wiki 来说，它的价值在于把 badminton 动作识别和通用 skeleton-based action recognition 接起来：<a class="wikilink" href="../../en/sources/2026-04-25-st-gcn.html">sources/2026-04-25-st-gcn</a> 给早期图卷积基线，<a class="wikilink" href="../../en/sources/2026-05-16-tempose-badminton-fine-grained-motion.html">sources/2026-05-16-tempose-badminton-fine-grained-motion</a> 给 badminton Transformer 路线，ProtoGCN 给 CVPR 2025 阶段的 prototype / contrastive fine-grained SAR 路线。</p>
+<h2 id="方法概述">方法概述</h2>
+<ul>
+<li><strong>问题</strong>：骨架表示缺少图像细节，容易混淆轨迹相近的动作。</li>
+<li><strong>核心想法</strong>：学习一组 motion prototypes，表示动作单元的核心运动模式。</li>
+<li><strong>判别机制</strong>：通过 prototype reconstruction contrast 放大相似动作之间的关键局部差异。</li>
+<li><strong>实验覆盖</strong>：NTU RGB+D、NTU RGB+D 120、Kinetics-Skeleton、FineGYM 等 benchmark。</li>
+</ul>
+<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
+<p>ProtoGCN 支撑一个更通用的动作纠正假设：很多运动错误不是整体轨迹错，而是局部身体部件在关键阶段的 subtle motion details 错。这个判断可以和 <a class="wikilink" href="../../en/sources/2026-05-12-trackmae.html">sources/2026-05-12-trackmae</a> 的 trajectory reconstruction、<a class="wikilink" href="../../en/sources/2026-05-05-finecausal-action-quality-assessment.html">sources/2026-05-05-finecausal-action-quality-assessment</a> 的细粒度因果解释、<a class="wikilink" href="../../en/sources/2026-05-16-bst-badminton-stroke-type-transformer.html">sources/2026-05-16-bst-badminton-stroke-type-transformer</a> 的 stroke classification 形成组合。</p>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>ProtoGCN 本身是通用 SAR 方法，迁移到羽毛球、体操、投篮等运动项目时仍需检查标注体系和动作阶段定义。</li>
+<li>skeleton-only 方法会丢失球、器械、场地几何和接触关系；体育场景中应和 ball trajectory / court position 一起建模。</li>
+<li>对动作纠正 demo 来说，prototype 是否能转成教练可读的错误模式仍需要额外设计。</li>
+</ul>
+<h2 id="原始材料">原始材料</h2>
+<ul>
+<li><code>raw/ingest/2026-05-16-protogcn-skeleton-action-recognition/paper.pdf</code></li>
+<li><code>raw/ingest/2026-05-16-protogcn-skeleton-action-recognition/paper-text.md</code></li>
+<li><code>raw/ingest/2026-05-16-protogcn-skeleton-action-recognition/abstract.md</code></li>
+<li><code>raw/ingest/2026-05-16-protogcn-skeleton-action-recognition/links.yaml</code></li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/sources/2026-05-16-bst-badminton-stroke-type-transformer.html">sources/2026-05-16-bst-badminton-stroke-type-transformer</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-05-16-tempose-badminton-fine-grained-motion.html">sources/2026-05-16-tempose-badminton-fine-grained-motion</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-25-st-gcn.html">sources/2026-04-25-st-gcn</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-05-12-trackmae.html">sources/2026-05-12-trackmae</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-05-05-finecausal-action-quality-assessment.html">sources/2026-05-05-finecausal-action-quality-assessment</a></li>
+<li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a></li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-05-16-protogcn-skeleton-action-recognition&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;ProtoGCN：用原型视角强化骨架动作识别的细粒度差异&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-05-16&quot;,
+  &quot;updated&quot;: &quot;2026-05-16&quot;,
+  &quot;venue&quot;: &quot;CVPR 2025&quot;,
+  &quot;published_at&quot;: &quot;2024-11-28&quot;,
+  &quot;ingested_at&quot;: &quot;2026-05-16&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-understanding&quot;,
+    &quot;representation-learning&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Hongda Liu&quot;,
+    &quot;Yunfan Liu&quot;,
+    &quot;Min Ren&quot;,
+    &quot;Hao Wang&quot;,
+    &quot;Yunlong Wang&quot;,
+    &quot;Zhenan Sun&quot;
+  ],
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2411.18941&quot;,
+    &quot;https://arxiv.org/pdf/2411.18941&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2025/papers/Liu_Revealing_Key_Details_to_See_Differences_A_Novel_Prototypical_Perspective_CVPR_2025_paper.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-05-16-protogcn-skeleton-action-recognition/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/sports-ai-video-understanding&quot;,
+    &quot;topics/sports-ai-roadmap&quot;,
+    &quot;topics/video-understanding&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/sportsmot&quot;
+  ],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

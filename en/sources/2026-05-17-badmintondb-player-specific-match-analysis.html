@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BadmintonDB：面向球员级比赛分析与预测的羽毛球数据集 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-05-17-badmintondb-player-specific-match-analysis&quot;, &quot;title&quot;: &quot;BadmintonDB：面向球员级比赛分析与预测的羽毛球数据集&quot;, &quot;title_en&quot;: &quot;BadmintonDB：面向球员级比赛分析与预测的羽毛球数据集&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;representation-learning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-05-17-badmintondb-player-specific-match-analysis.html">中文</a><a class="selected-lang" href="../../en/sources/2026-05-17-badmintondb-player-specific-match-analysis.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-05-22</p>
+        <h1>BadmintonDB：面向球员级比赛分析与预测的羽毛球数据集</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#representation-learning">#representation-learning</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="badmintondb-面向球员级比赛分析与预测的羽毛球数据集">BadmintonDB：面向球员级比赛分析与预测的羽毛球数据集</h1>
+<blockquote>会议 / 期刊：ACM MMSports 2022</blockquote>
+<blockquote>发表日期：2022-10-13</blockquote>
+<blockquote>资料加入日期：2026-05-17</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>BadmintonDB 的关键价值在于 player-specific：它提醒羽毛球 stroke recognition 最终要经受跨球员、跨比赛和更细 stroke taxonomy 的检验。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>当前 wiki 已经有 <a class="wikilink" href="../../en/sources/2026-05-16-shuttleset-stroke-level-badminton-dataset.html">sources/2026-05-16-shuttleset-stroke-level-badminton-dataset</a> 作为 stroke-level 数据底座，也有 <a class="wikilink" href="../../en/sources/2026-05-16-bst-badminton-stroke-type-transformer.html">sources/2026-05-16-bst-badminton-stroke-type-transformer</a> 作为 stroke-type classifier。BadmintonDB 是 BST 的外部数据集评估对象，用来验证模型能否迁移到另一套羽毛球数据定义。</p>
+<h2 id="当前证据状态">当前证据状态</h2>
+<p>本条目的 ACM PDF 访问受限，因此本页基于 DOI 元数据、Heriot-Watt research portal 元数据页、官方数据仓库、BST 论文正文与 related-work trace 做细读。后续拿到全文后，应补充原始采集协议、label taxonomy 和实验表。</p>
+<p>已核验信息：</p>
+<ul>
+<li>DOI：<code>10.1145/3552437.3555696</code>。</li>
+<li>Venue：ACM MMSports 2022。</li>
+<li>BST 中复用版本：清洗后 8 场单打比赛、7,658 个 strokes。</li>
+<li>BST 中评估设定：18 classes。</li>
+</ul>
+<h2 id="问题定义">问题定义</h2>
+<p>只做全局 stroke classification 容易忽略球员个体差异。BadmintonDB 指向的问题是：同一种 stroke 在不同球员、不同战术意图、不同比赛上下文里表现不同，数据集和模型需要支持 player-specific match analysis and prediction。</p>
+<h2 id="和-shuttleset-bst-的关系">和 ShuttleSet / BST 的关系</h2>
+<ul>
+<li><a class="wikilink" href="../../en/sources/2026-05-16-shuttleset-stroke-level-badminton-dataset.html">sources/2026-05-16-shuttleset-stroke-level-badminton-dataset</a> 强在 hit frame、shot type、landing area、player location 和 rally structure。</li>
+<li>BadmintonDB 强调 player-specific match analysis / prediction。</li>
+<li><a class="wikilink" href="../../en/sources/2026-05-16-bst-badminton-stroke-type-transformer.html">sources/2026-05-16-bst-badminton-stroke-type-transformer</a> 同时使用 ShuttleSet 和 BadmintonDB，说明一个可靠的 stroke-type classifier 需要跨数据集评估。</li>
+</ul>
+<h2 id="对-demo-的启发">对 demo 的启发</h2>
+<p>第一版 <a class="wikilink" href="../../en/questions/question-badminton-stroke-correction-demo.html">questions/question-badminton-stroke-correction-demo</a> 可以保持 4–6 类 stroke type。BadmintonDB 给第二阶段三个扩展方向：</p>
+<ol>
+<li><strong>更细 stroke taxonomy</strong>：从 clear / drop / smash / drive / net shot / serve 扩展到更细动作类别。</li>
+<li><strong>player-specific split</strong>：训练和测试按球员或比赛拆分，避免随机划分高估泛化。</li>
+<li><strong>个体化反馈</strong>：同一个错误模式在不同球员身上的阈值和反馈模板可能不同。</li>
+</ol>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>全文尚未保存，数据协议和任务定义仍需补齐。</li>
+<li>18 类 label 与 ShuttleSet / demo label 的映射需要单独整理。</li>
+<li>若公开下载入口受限，后续可以优先寻找作者版 PDF、代码仓库或 dataset page。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 wiki 判断的影响</h2>
+<p>它把 badminton action-correction 的评价目标从“单样本能输出反馈”推进到“反馈是否能跨球员泛化”。这对后续实验协议很关键：demo 验收可以看 10 个样本，研究论文阶段应看 leave-player-out 或 leave-match-out。</p>
+<h2 id="原始材料">原始材料</h2>
+<ul>
+<li>raw entry：<code>raw/ingest/2026-05-17-badmintondb-player-specific-match-analysis/</code></li>
+<li><code>raw/ingest/2026-05-17-badmintondb-player-specific-match-analysis/links.yaml</code></li>
+<li><code>raw/ingest/2026-05-17-badmintondb-player-specific-match-analysis/abstract.md</code></li>
+<li><code>raw/ingest/2026-05-17-badmintondb-player-specific-match-analysis/source.md</code></li>
+<li><code>raw/ingest/2026-05-17-badmintondb-player-specific-match-analysis/paper-search.json</code></li>
+<li><code>raw/ingest/2026-05-17-badmintondb-player-specific-match-analysis/acm-page.html</code></li>
+<li><code>raw/ingest/2026-05-17-badmintondb-player-specific-match-analysis/researchportal-page.md</code></li>
+<li><code>raw/ingest/2026-05-17-badmintondb-player-specific-match-analysis/acm-access-placeholder.html</code>（ACM access-control response；保留作访问受限证据）</li>
+<li>PDF 状态：ACM access restricted；有效 <code>paper.pdf</code> / <code>paper-text.md</code> 待通过 ACM/publisher 或作者版补齐。</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
+<li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
+<li><a class="wikilink" href="../../en/questions/question-badminton-stroke-correction-demo.html">questions/question-badminton-stroke-correction-demo</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-05-16-shuttleset-stroke-level-badminton-dataset.html">sources/2026-05-16-shuttleset-stroke-level-badminton-dataset</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-05-16-bst-badminton-stroke-type-transformer.html">sources/2026-05-16-bst-badminton-stroke-type-transformer</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-05-17-structured-analysis-broadcast-badminton-videos.html">sources/2026-05-17-structured-analysis-broadcast-badminton-videos</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-05-17-multisensebadminton-biomechanical-dataset.html">sources/2026-05-17-multisensebadminton-biomechanical-dataset</a></li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-05-17-badmintondb-player-specific-match-analysis&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;BadmintonDB：面向球员级比赛分析与预测的羽毛球数据集&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-05-17&quot;,
+  &quot;updated&quot;: &quot;2026-05-22&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-understanding&quot;,
+    &quot;representation-learning&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;venue&quot;: &quot;ACM MMSports 2022&quot;,
+  &quot;authors&quot;: [
+    &quot;Kar-Weng Ban&quot;,
+    &quot;John See&quot;,
+    &quot;Junaidi Abdullah&quot;,
+    &quot;Yuen Peng Loh&quot;
+  ],
+  &quot;published_at&quot;: &quot;2022-10-13&quot;,
+  &quot;ingested_at&quot;: &quot;2026-05-17&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://doi.org/10.1145/3552437.3555696&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-05-17-badmintondb-player-specific-match-analysis/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/sports-ai-video-understanding&quot;,
+    &quot;topics/sports-ai-roadmap&quot;,
+    &quot;topics/video-understanding&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: [
+    &quot;questions/question-badminton-stroke-correction-demo&quot;
+  ]
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

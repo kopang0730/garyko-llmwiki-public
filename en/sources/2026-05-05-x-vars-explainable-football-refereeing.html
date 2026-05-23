@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>X-VARS：可解释足球视频助理裁判系统 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-05-05-x-vars-explainable-football-refereeing&quot;, &quot;title&quot;: &quot;X-VARS：可解释足球视频助理裁判系统&quot;, &quot;title_en&quot;: &quot;X-VARS：可解释足球视频助理裁判系统&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;vision-language&quot;, &quot;reasoning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-05-05-x-vars-explainable-football-refereeing.html">中文</a><a class="selected-lang" href="../../en/sources/2026-05-05-x-vars-explainable-football-refereeing.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-05-22</p>
+        <h1>X-VARS：可解释足球视频助理裁判系统</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#vision-language">#vision-language</a><a class="tag" href="../../en/tags.html#reasoning">#reasoning</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="x-vars-可解释足球视频助理裁判系统">X-VARS：可解释足球视频助理裁判系统</h1>
+<blockquote>会议 / 来源：CVPR Workshop 2024</blockquote>
+<blockquote>发表日期：2024-04-07</blockquote>
+<blockquote>资料加入日期：2026-05-05</blockquote>
+<blockquote>DOI：10.1109/CVPRW63382.2024.00332</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>X-VARS 把 football refereeing 放进多模态大语言模型框架：模型既要看视频，也要按照 Laws of the Game 生成判罚解释，是 <a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 从轨迹 / 事件语义走向 rule-grounded officiating 的核心证据。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这篇论文提出 Explainable Video Assistant Referee System。它以足球裁判为测试场景，让模型执行视频描述、问答、动作识别和基于足球规则的对话解释。论文同时引入 SoccerNet-XFoul：超过 22k 个 video-question-answer triplets，由 70 多名有经验足球裁判标注。</p>
+<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
+<ul>
+<li>与 <a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：它补上“视觉证据 + 足球规则 + 可解释判罚”的 referee-assist 锚点。</li>
+<li>与 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它让体育视频理解从事件识别进入裁判复核场景，输出需要对人类有解释力。</li>
+<li>与 <a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a> 的关系：它是 specialized video reasoning 的代表样本，任务目标从泛化问答推进到规则约束决策。</li>
+</ul>
+<h2 id="来源可靠性与可溯源性">来源可靠性与可溯源性</h2>
+<ul>
+<li><strong>来源层级</strong>：CVPR Workshop 2024 / CVSports primary paper，CVF OpenAccess PDF 与 DOI 可访问。</li>
+<li><strong>可溯源材料</strong>：本地已保存 CVF PDF、<code>paper-text.md</code>、abstract 与 <code>links.yaml</code>；PDF SHA256：<code>1deb351a65124e0ab9321fd9b53c49a25866c17fc2d6cc7974439ad4a9bb0640</code>。</li>
+<li><strong>使用边界</strong>：适合作为 explainable VAR / football refereeing 的强 primary evidence；实际比赛部署、裁判责任边界和跨联赛泛化仍需后续来源补强。</li>
+</ul>
+<h2 id="和现有证据的关系">和现有证据的关系</h2>
+<p>它接在 <a class="wikilink" href="../../en/sources/2026-05-05-event2tracking.html">sources/2026-05-05-event2tracking</a> 之后：Event2Tracking 处理 tracking data + event data 的语义轨迹重建，X-VARS 进一步把事件证据接到规则化判罚解释。它也和 <a class="wikilink" href="../../en/sources/2026-04-25-automated-offside-detection.html">sources/2026-04-25-automated-offside-detection</a> 构成互补：offside detection 更偏几何判定，X-VARS 更偏 foul / referee reasoning / explanation。</p>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>SoccerNet-XFoul 的裁判标注很有价值，后续还需要检查数据许可、类别分布、争议案例和人类一致性。</li>
+<li>X-VARS 展示了可解释裁判助手方向，但正式比赛流程还需要人工复核、错误责任、延迟和审计记录。</li>
+</ul>
+<h2 id="原始材料">原始材料</h2>
+<ul>
+<li><code>raw/ingest/2026-05-05-x-vars-explainable-football-refereeing/paper.pdf</code></li>
+<li><code>raw/ingest/2026-05-05-x-vars-explainable-football-refereeing/paper-text.md</code></li>
+<li><code>raw/ingest/2026-05-05-x-vars-explainable-football-refereeing/abstract.md</code></li>
+<li><code>raw/ingest/2026-05-05-x-vars-explainable-football-refereeing/links.yaml</code></li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
+<li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
+<li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a></li>
+<li><a class="wikilink" href="../../en/entities/sportsmot.html">entities/sportsmot</a></li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-05-05-x-vars-explainable-football-refereeing&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;X-VARS：可解释足球视频助理裁判系统&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-05-05&quot;,
+  &quot;updated&quot;: &quot;2026-05-22&quot;,
+  &quot;venue&quot;: &quot;CVPR Workshop 2024&quot;,
+  &quot;published_at&quot;: &quot;2024-04-07&quot;,
+  &quot;ingested_at&quot;: &quot;2026-05-05&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-understanding&quot;,
+    &quot;vision-language&quot;,
+    &quot;reasoning&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Jan Held&quot;,
+    &quot;Hani Itani&quot;,
+    &quot;Anthony Cioppa&quot;,
+    &quot;Silvio Giancola&quot;,
+    &quot;Bernard Ghanem&quot;,
+    &quot;Marc Van Droogenbroeck&quot;
+  ],
+  &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/CVPR2024W/CVsports/html/Held_X-VARS_Introducing_Explainability_in_Football_Refereeing_with_Multi-Modal_Large_Language_CVPRW_2024_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2024W/CVsports/papers/Held_X-VARS_Introducing_Explainability_in_Football_Refereeing_with_Multi-Modal_Large_Language_CVPRW_2024_paper.pdf&quot;,
+    &quot;https://arxiv.org/abs/2404.06332&quot;,
+    &quot;https://doi.org/10.1109/CVPRW63382.2024.00332&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-05-05-x-vars-explainable-football-refereeing/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/sports-ai-video-understanding&quot;,
+    &quot;topics/sports-ai-roadmap&quot;,
+    &quot;topics/video-understanding&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/sportsmot&quot;
+  ],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

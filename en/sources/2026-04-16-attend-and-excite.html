@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Attend-and-Excite（SIGGRAPH 2023）：在推理时主动修复 diffusion 的语义遗漏 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-attend-and-excite&quot;, &quot;title&quot;: &quot;Attend-and-Excite（SIGGRAPH 2023）：在推理时主动修复 diffusion 的语义遗漏&quot;, &quot;title_en&quot;: &quot;Attend-and-Excite（SIGGRAPH 2023）：在推理时主动修复 diffusion 的语义遗漏&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-16-attend-and-excite.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-16-attend-and-excite.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-05-22</p>
+        <h1>Attend-and-Excite（SIGGRAPH 2023）：在推理时主动修复 diffusion 的语义遗漏</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#efficiency">#efficiency</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="attend-and-excite-siggraph-2023-在推理时主动修复-diffusion-的语义遗漏">Attend-and-Excite（SIGGRAPH 2023）：在推理时主动修复 diffusion 的语义遗漏</h1>
+<blockquote>会议：SIGGRAPH 2023</blockquote>
+<blockquote>发表日期：2023/01/31</blockquote>
+<blockquote>资料加入日期：2026-04-16</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作把“catastrophic neglect”明确拉成一个独立问题：当模型漏掉 prompt 里的主体或错绑属性时，它在推理时直接提升对应 token 的 cross-attention 激活，逼模型把该出现的概念补出来。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>扩散模型虽然能生成高质量图像，但面对多主体 prompt 时经常漏掉某个对象，或把颜色、属性绑定错对象。这个问题并不是简单的画质问题，而是语义覆盖失败。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>Attend-and-Excite 提出一种 attention-based semantic guidance。在推理时监控 subject token 的 cross-attention，如果某个概念没有被充分激活，就主动优化 latent，使相应 token 的 attention 被“激发”起来，从而缓解主体遗漏与属性错绑。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>它和 <a class="wikilink" href="../../en/sources/2026-04-16-a-star.html">sources/2026-04-16-a-star</a> 构成一组很强的 attention-level guidance 证据：一个强调概念冲突与遗忘，一个强调主体遗漏与语义绑定失败。</li>
+<li>这说明 guidance engineering 的长尾，不只是空间位置控制，也包括 prompt 语义覆盖本身。</li>
+<li>它把 <a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a> 里的 controllability 从 layout/box 继续推进到 semantic completeness。</li>
+<li>在 batch-f 里，它代表的是“inference-time semantic nursing”这一类控制接口。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>它解决的是语义遗漏，不直接降低推理成本，因此更偏质量修复而不是效率加速。</li>
+<li>方法仍然依赖测试时优化，复杂 prompt 下的额外计算开销不能忽略。</li>
+<li>它主要立足于 subject token 激活，对更高阶关系推理和复杂组合约束仍不充分。</li>
+<li>venue 已按外部审计修为 SIGGRAPH 2023；TOG / ACM 版本关联后续可继续补 publisher 链接。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2301.13826</li>
+<li>https://arxiv.org/pdf/2301.13826.pdf</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-a-star.html">sources/2026-04-16-a-star</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-prompt-to-prompt.html">sources/2026-04-16-prompt-to-prompt</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>它在本库中的价值，是把 control / layout composition 这条长尾从“prompt 可以控制一点生成”推进到“attention、语义覆盖、布局建模和多路径组合都能成为独立接口设计问题”。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-16-attend-and-excite&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;Attend-and-Excite（SIGGRAPH 2023）：在推理时主动修复 diffusion 的语义遗漏&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-05-22&quot;,
+  &quot;venue&quot;: &quot;SIGGRAPH 2023&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-generation&quot;,
+    &quot;diffusion&quot;,
+    &quot;efficiency&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Hila Chefer&quot;,
+    &quot;Yuval Alaluf&quot;,
+    &quot;Yael Vinker&quot;,
+    &quot;Lior Wolf&quot;,
+    &quot;Daniel Cohen‐Or&quot;
+  ],
+  &quot;published_at&quot;: &quot;2023/01/31&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2301.13826&quot;,
+    &quot;https://arxiv.org/pdf/2301.13826.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-16-attend-and-excite/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-generation&quot;,
+    &quot;topics/diffusion-models&quot;,
+    &quot;topics/diffusion-efficiency-engineering&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

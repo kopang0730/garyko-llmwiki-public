@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rethinking the Spatial Inconsistency in Classifier-Free Diffusion Guidance（CVPR 2024）：把 CFG 的空间不一致问题拉到前台 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-rethinking-spatial-inconsistency-cfg&quot;, &quot;title&quot;: &quot;Rethinking the Spatial Inconsistency in Classifier-Free Diffusion Guidance（CVPR 2024）：把 CFG 的空间不一致问题拉到前台&quot;, &quot;title_en&quot;: &quot;Rethinking the Spatial Inconsistency in Classifier-Free Diffusion Guidance（CVPR 2024）：把 CFG 的空间不一致问题拉到前台&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;conditioning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-16-rethinking-spatial-inconsistency-cfg.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-16-rethinking-spatial-inconsistency-cfg.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-16</p>
+        <h1>Rethinking the Spatial Inconsistency in Classifier-Free Diffusion Guidance（CVPR 2024）：把 CFG 的空间不一致问题拉到前台</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#conditioning">#conditioning</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="rethinking-the-spatial-inconsistency-in-classifier-free-diffusion-guidance-cvpr-2024-把-cfg-的空间不一致问题拉到前台">Rethinking the Spatial Inconsistency in Classifier-Free Diffusion Guidance（CVPR 2024）：把 CFG 的空间不一致问题拉到前台</h1>
+<blockquote>会议：CVPR 2024</blockquote>
+<blockquote>发表日期：2024/04/08</blockquote>
+<blockquote>资料加入日期：2026-04-16</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作把 classifier-free guidance 的空间不一致问题显式提出，说明 guidance 质量的瓶颈已经从“有没有 guidance”推进到“guidance 在空间上是否稳定一致”。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>CFG 已经是 diffusion 中的默认引导机制之一，但它经常会在局部区域产生不一致、破碎或语义不稳定的问题。论文要解决的是，怎样理解并缓解这种空间层面的 guidance 失真。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>作者从空间不一致角度重新审视 CFG，把 guidance 失真从经验现象变成明确问题。它的重要性在于把 guidance engineering 从速度和接口问题继续推进到稳定性与空间质量问题。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>它补强了 <a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a> 里 guidance engineering 的“质量控制”维度。</li>
+<li>它和 <a class="wikilink" href="../../en/sources/2026-04-16-high-fidelity-guided-image-synthesis.html">sources/2026-04-16-high-fidelity-guided-image-synthesis</a>、<a class="wikilink" href="../../en/sources/2026-04-16-self-guided-diffusion-models.html">sources/2026-04-16-self-guided-diffusion-models</a> 形成呼应：一个看高保真 guidance，一个看自监督 guidance，一个看 CFG 的空间稳定性。</li>
+<li>它说明 guidance 这条线正在从粗粒度能用性走向细粒度空间一致性治理。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>它针对的是 CFG 的空间质量问题，不直接处理部署压缩或 few-step acceleration。</li>
+<li>这条修正路线是否会成为默认 CFG 配套，还需要更多后续工作验证。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2404.05384</li>
+<li>https://arxiv.org/pdf/2404.05384.pdf</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-high-fidelity-guided-image-synthesis.html">sources/2026-04-16-high-fidelity-guided-image-synthesis</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-self-guided-diffusion-models.html">sources/2026-04-16-self-guided-diffusion-models</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>它在本库中的价值，是把 guidance engineering 继续从“有没有”“快不快”推进到“局部空间上稳不稳”。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-16-rethinking-spatial-inconsistency-cfg&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;Rethinking the Spatial Inconsistency in Classifier-Free Diffusion Guidance（CVPR 2024）：把 CFG 的空间不一致问题拉到前台&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-04-16&quot;,
+  &quot;venue&quot;: &quot;CVPR 2024&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-generation&quot;,
+    &quot;diffusion&quot;,
+    &quot;conditioning&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Ma, Xinyang&quot;,
+    &quot;Fang, Gongfan&quot;,
+    &quot;Wang, Yuhang&quot;,
+    &quot;Wang, Xinlong&quot;
+  ],
+  &quot;published_at&quot;: &quot;2024/04/08&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2404.05384&quot;,
+    &quot;https://arxiv.org/pdf/2404.05384.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-16-rethinking-spatial-inconsistency-cfg/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/diffusion-models&quot;,
+    &quot;topics/diffusion-efficiency-engineering&quot;,
+    &quot;topics/image-generation&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

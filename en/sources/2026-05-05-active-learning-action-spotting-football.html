@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Active Learning for Action Spotting（CVPRW 2023）：足球事件定位的低标注路线 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-05-05-active-learning-action-spotting-football&quot;, &quot;title&quot;: &quot;Active Learning for Action Spotting（CVPRW 2023）：足球事件定位的低标注路线&quot;, &quot;title_en&quot;: &quot;Active Learning for Action Spotting（CVPRW 2023）：足球事件定位的低标注路线&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;evaluation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-05-05-active-learning-action-spotting-football.html">中文</a><a class="selected-lang" href="../../en/sources/2026-05-05-active-learning-action-spotting-football.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-05-05</p>
+        <h1>Active Learning for Action Spotting（CVPRW 2023）：足球事件定位的低标注路线</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#evaluation">#evaluation</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="active-learning-for-action-spotting-cvprw-2023-足球事件定位的低标注路线">Active Learning for Action Spotting（CVPRW 2023）：足球事件定位的低标注路线</h1>
+<blockquote>会议 / 来源：CVPR Workshop 2023</blockquote>
+<blockquote>发表日期：2023-04-09</blockquote>
+<blockquote>资料加入日期：2026-05-05</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>把足球 action spotting 的标注成本问题转成 active learning 选择策略，正好补 sports-AI roadmap 中“专家标注稀缺”和“低标注比赛状态理解”的研究机会。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这篇论文使用 SoccerNet-v2 语境讨论 action spotting 的主动学习，适合作为从大规模人工标注走向低标注、可迭代数据协议的证据。</p>
+<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
+<p>它把体育 AI 的限制从“数据少”具体化为“哪些片段值得标、怎样用更少专家标注逼近完整训练效果”，对教练/分析师场景很有实际意义。</p>
+<h2 id="来源可靠性与可溯源性">来源可靠性与可溯源性</h2>
+<ul>
+<li><strong>来源层级</strong>：arXiv 页面可访问，并显示 DOI <code>10.1109/CVPRW59228.2023.00538</code>，可作为 CVPR Workshop 2023 级别证据。</li>
+<li><strong>可溯源材料</strong>：本地已保存 arXiv abstract、PDF 与 <code>paper-text.md</code>；<code>links.yaml</code> 可回到 arXiv abstract / PDF / DOI。</li>
+<li><strong>使用边界</strong>：后续深读时应核查具体标注节省比例、查询策略、与全监督基线的距离，以及是否能迁移到 tracking / referee reasoning。</li>
+</ul>
+<h2 id="和现有证据的关系">和现有证据的关系</h2>
+<ul>
+<li>与 <a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：它补强 SoccerNet 基础数据生态、全场空间理解或低标注事件定位这类 roadmap 缺口。</li>
+<li>与 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它把体育视频理解从已有 tracking / interaction / trajectory 继续接到足球事件、球场几何和数据协议。</li>
+<li>与 <a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a> 的关系：它提供真实长视频、密集事件和结构化评测下的视频理解样本。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>后续深读时应核查具体标注节省比例、查询策略、与全监督基线的距离，以及是否能迁移到 tracking / referee reasoning。</li>
+<li>当前这版先完成轻量 primary-source 编译，后续可按 deep-analysis-first 流程补 <code>analysis.md</code>、关键图页和实验细节。</li>
+</ul>
+<h2 id="原始材料">原始材料</h2>
+<ul>
+<li><code>raw/ingest/2026-05-05-active-learning-action-spotting-football/paper.pdf</code></li>
+<li><code>raw/ingest/2026-05-05-active-learning-action-spotting-football/paper-text.md</code></li>
+<li><code>raw/ingest/2026-05-05-active-learning-action-spotting-football/abstract.md</code></li>
+<li><code>raw/ingest/2026-05-05-active-learning-action-spotting-football/links.yaml</code></li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
+<li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
+<li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a></li>
+<li><a class="wikilink" href="../../en/entities/sportsmot.html">entities/sportsmot</a></li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-05-05-active-learning-action-spotting-football&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;Active Learning for Action Spotting（CVPRW 2023）：足球事件定位的低标注路线&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-05-05&quot;,
+  &quot;updated&quot;: &quot;2026-05-05&quot;,
+  &quot;venue&quot;: &quot;CVPR Workshop 2023&quot;,
+  &quot;published_at&quot;: &quot;2023-04-09&quot;,
+  &quot;ingested_at&quot;: &quot;2026-05-05&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-understanding&quot;,
+    &quot;evaluation&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Giancola, Silvio&quot;,
+    &quot;Cioppa, Anthony&quot;,
+    &quot;Georgieva, Julia&quot;,
+    &quot;Billingham, Johsan&quot;,
+    &quot;Serner, Andreas&quot;,
+    &quot;Peek, Kerry&quot;,
+    &quot;Ghanem, Bernard&quot;,
+    &quot;Van Droogenbroeck, Marc&quot;
+  ],
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2304.04220&quot;,
+    &quot;https://arxiv.org/pdf/2304.04220&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-05-05-active-learning-action-spotting-football/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/sports-ai-video-understanding&quot;,
+    &quot;topics/sports-ai-roadmap&quot;,
+    &quot;topics/video-understanding&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/sportsmot&quot;
+  ],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

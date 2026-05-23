@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SLD（CVPR 2024）：把 diffusion 生成改成 LLM 驱动的闭环自纠错系统 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-self-correcting-llm-controlled-diffusion-models&quot;, &quot;title&quot;: &quot;SLD（CVPR 2024）：把 diffusion 生成改成 LLM 驱动的闭环自纠错系统&quot;, &quot;title_en&quot;: &quot;SLD（CVPR 2024）：把 diffusion 生成改成 LLM 驱动的闭环自纠错系统&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-16-self-correcting-llm-controlled-diffusion-models.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-16-self-correcting-llm-controlled-diffusion-models.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-16</p>
+        <h1>SLD（CVPR 2024）：把 diffusion 生成改成 LLM 驱动的闭环自纠错系统</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#efficiency">#efficiency</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="sld-cvpr-2024-把-diffusion-生成改成-llm-驱动的闭环自纠错系统">SLD（CVPR 2024）：把 diffusion 生成改成 LLM 驱动的闭环自纠错系统</h1>
+<blockquote>会议：CVPR 2024</blockquote>
+<blockquote>发表日期：2023/11/27</blockquote>
+<blockquote>资料加入日期：2026-04-16</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作把 controllability 从单次采样推进成闭环控制：先生成、再评估、再纠错，在 LLM controller 驱动下反复修正 diffusion 输出，让复杂 prompt 对齐度更高。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>text-to-image diffusion 面对复杂文本时，经常在属性绑定、空间关系和数目理解上出错。很多控制方法都在单次采样里做局部修正，但更像“尽力生成”，缺少显式反馈回路。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>SLD 引入一个 LLM controller，把 text-to-image generation 变成迭代闭环：先得到初始图像，再由控制器评估与 prompt 的偏差，然后生成纠错指令，驱动下一轮 diffusion 修正。这样 controllability 从一次性条件输入升级成持续反馈控制。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>它把 batch-g 的“control interface consolidation”推进到更系统层：控制接口开始从 token / attention / layout 进一步升级为外部 controller 驱动的闭环流程。</li>
+<li>SLD 和 <a class="wikilink" href="../../en/sources/2026-04-16-attend-and-excite.html">sources/2026-04-16-attend-and-excite</a> 都关注语义遗漏与错绑，但 SLD 的特点是把修正逻辑外包给更高层的 LLM controller。</li>
+<li>它还把图像生成和图像编辑重新绑到同一闭环里，因为只改控制器指令就能把生成流程转成编辑流程。</li>
+<li>在本库里，这篇工作很适合用来判断 control interface 是否正从“单技巧”收敛成“可编排工作流”。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>闭环纠错会带来多轮推理成本，工程上更偏质量换时延。</li>
+<li>LLM controller 的判断质量会直接决定修正效果，因此系统表现受上游语言模型能力影响。</li>
+<li>它更像外部 orchestration 层的答案，对底层 backbone 内部机制的解释较少。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2311.16090</li>
+<li>https://arxiv.org/pdf/2311.16090.pdf</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
+<li><a class="wikilink" href="../../en/topics/image-editing.html">topics/image-editing</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-attend-and-excite.html">sources/2026-04-16-attend-and-excite</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>它在本库中的价值，是把 control interface consolidation 从“已有很多控制技巧”继续推进到“接口边界、层级分工和闭环控制是否开始成形”这个层面。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-16-self-correcting-llm-controlled-diffusion-models&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;SLD（CVPR 2024）：把 diffusion 生成改成 LLM 驱动的闭环自纠错系统&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-04-16&quot;,
+  &quot;venue&quot;: &quot;CVPR 2024&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-generation&quot;,
+    &quot;diffusion&quot;,
+    &quot;efficiency&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Tsung-Han Wu&quot;,
+    &quot;Long Lian&quot;,
+    &quot;Joseph E. Gonzalez&quot;,
+    &quot;Boyi Li&quot;,
+    &quot;Trevor Darrell&quot;
+  ],
+  &quot;published_at&quot;: &quot;2023/11/27&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2311.16090&quot;,
+    &quot;https://arxiv.org/pdf/2311.16090.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-16-self-correcting-llm-controlled-diffusion-models/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-generation&quot;,
+    &quot;topics/image-editing&quot;,
+    &quot;topics/diffusion-models&quot;,
+    &quot;topics/diffusion-efficiency-engineering&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

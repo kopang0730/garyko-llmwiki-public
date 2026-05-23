@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Distilling ODE Solvers of Diffusion Models into Smaller Steps（CVPR 2024）：把扩散求解器蒸馏到更少步数 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-15-distilling-ode-solvers-diffusion-models&quot;, &quot;title&quot;: &quot;Distilling ODE Solvers of Diffusion Models into Smaller Steps（CVPR 2024）：把扩散求解器蒸馏到更少步数&quot;, &quot;title_en&quot;: &quot;Distilling ODE Solvers of Diffusion Models into Smaller Steps（CVPR 2024）：把扩散求解器蒸馏到更少步数&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-15</p>
+        <h1>Distilling ODE Solvers of Diffusion Models into Smaller Steps（CVPR 2024）：把扩散求解器蒸馏到更少步数</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#efficiency">#efficiency</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="distilling-ode-solvers-of-diffusion-models-into-smaller-steps-cvpr-2024-把扩散求解器蒸馏到更少步数">Distilling ODE Solvers of Diffusion Models into Smaller Steps（CVPR 2024）：把扩散求解器蒸馏到更少步数</h1>
+<blockquote>会议：CVPR 2024</blockquote>
+<blockquote>发表日期：2023/09/28</blockquote>
+<blockquote>资料加入日期：2026-04-15</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作把“少步采样”推进得更系统：它不是重新发明采样器，而是把已有 ODE solver 的轨迹知识蒸馏到更小步数版本里。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>扩散模型采样慢，核心原因之一是 function evaluations 太多。纯数值求解器在极少步数时难以忠实跟踪真实轨迹，而传统蒸馏方法又往往训练代价高。论文要解决的正是这两类路线之间的断层。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>作者提出 D-ODE solvers，把 ODE solver 的公式结构与蒸馏结合起来：不是端到端重训一个新生成器，而是在已有 solver 上加入少量可学习调整，让小步数版本从大步数 solver 的轨迹中学习。这样既保留 solver 家族的可解释性，又压低蒸馏成本。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>它把 <a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a> 中的效率叙事进一步从“模型蒸馏”细化到“求解器蒸馏”。</li>
+<li>它和 <a class="wikilink" href="../../en/sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html">sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps</a> 很互补：一个优化步点分配，一个直接蒸馏少步求解器。</li>
+<li>它说明 diffusion 提速不只靠 backbone 或缓存，数值轨迹本身也是重要优化对象。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>它仍主要围绕采样效率，不直接回答复杂编辑、多模态控制或视频场景中的泛化。</li>
+<li>即便蒸馏开销显著低于重训，它仍不是完全零成本路线。</li>
+<li>不同 solver 家族之间的可迁移性与稳定收益，还需要更大范围比较。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2309.16421</li>
+<li>https://arxiv.org/pdf/2309.16421</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html">sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>它在本库中的价值，是把 diffusion efficiency 主线再向数值分析那一层推进了一步，提醒我们“少步扩散”本质上也是 solver design 问题。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-15-distilling-ode-solvers-diffusion-models&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;Distilling ODE Solvers of Diffusion Models into Smaller Steps（CVPR 2024）：把扩散求解器蒸馏到更少步数&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;venue&quot;: &quot;CVPR 2024&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-15&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-generation&quot;,
+    &quot;diffusion&quot;,
+    &quot;efficiency&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Kim, Sanghwan&quot;,
+    &quot;Tang, Hao&quot;,
+    &quot;Yu, Fisher&quot;
+  ],
+  &quot;published_at&quot;: &quot;2023/09/28&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2309.16421&quot;,
+    &quot;https://arxiv.org/pdf/2309.16421&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-15-distilling-ode-solvers-diffusion-models/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-generation&quot;,
+    &quot;topics/diffusion-models&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

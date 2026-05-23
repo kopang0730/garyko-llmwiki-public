@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>用于文本驱动图像编辑的 Prompt Tuning Inversion（ICCV 2023） · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-prompt-tuning-inversion&quot;, &quot;title&quot;: &quot;用于文本驱动图像编辑的 Prompt Tuning Inversion（ICCV 2023）&quot;, &quot;title_en&quot;: &quot;用于文本驱动图像编辑的 Prompt Tuning Inversion（ICCV 2023）&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-prompt-tuning-inversion.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-prompt-tuning-inversion.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-15</p>
+        <h1>用于文本驱动图像编辑的 Prompt Tuning Inversion（ICCV 2023）</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-editing">#image-editing</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="用于文本驱动图像编辑的-prompt-tuning-inversion-iccv-2023">用于文本驱动图像编辑的 Prompt Tuning Inversion（ICCV 2023）</h1>
+<blockquote>会议：ICCV 2023</blockquote>
+<blockquote>发表日期：2023/05/08</blockquote>
+<blockquote>资料加入日期：2026-04-14</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作把 prompt tuning 接进 inversion 过程，补强了真实图像编辑里“如何更好进入可编辑空间”的另一条技术线。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>它要解决的是文本驱动图像编辑中，真实图像反演后仍可能不够好编辑、不够稳定的问题。对当前知识库来说，它补的是 inversion 机制进一步细化为 prompt tuning 路线的节点。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>Prompt Tuning Inversion 通过对 prompt 或相关条件进行调优，帮助真实图像在扩散模型中获得更适合后续文本编辑的可编辑表示。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>它说明真实图像编辑并不是单靠一次反演就结束，而是可以围绕条件表示继续优化。</li>
+<li>它让 inversion 主线进一步分叉出 prompt-level 调整，而不只是 latent-level 反演。</li>
+<li>它与 NULL-Text Inversion、Effective Real Image Editing 一起，构成了 image-editing 近三年里很重要的机制改进簇。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>这一路线更偏底层机制调优，对最终任务表达的帮助需要结合具体编辑任务看。</li>
+<li>它可能增加编辑链条的复杂度。</li>
+<li>它仍然属于扩散式真实图像编辑范式内部优化。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2305.04441</li>
+<li>https://arxiv.org/pdf/2305.04441</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/image-editing.html">topics/image-editing</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../../en/entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a></li>
+<li><a class="wikilink" href="../../en/questions/question-data-vs-architecture-in-image-editing.html">questions/question-data-vs-architecture-in-image-editing</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>Prompt Tuning Inversion 在这套库里的意义，是把真实图像编辑里的 prompt-level inversion 改进补成独立节点。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-14-prompt-tuning-inversion&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;用于文本驱动图像编辑的 Prompt Tuning Inversion（ICCV 2023）&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-14&quot;,
+  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;venue&quot;: &quot;ICCV 2023&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-editing&quot;,
+    &quot;diffusion&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Dong, Wenkai&quot;,
+    &quot;Xue, Song&quot;,
+    &quot;Duan, Xiaoyue&quot;,
+    &quot;Han, Shumin&quot;
+  ],
+  &quot;published_at&quot;: &quot;2023/05/08&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2305.04441&quot;,
+    &quot;https://arxiv.org/pdf/2305.04441&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-prompt-tuning-inversion/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-editing&quot;,
+    &quot;topics/diffusion-models&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/unified-image-generation-editing&quot;
+  ],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: [
+    &quot;questions/question-data-vs-architecture-in-image-editing&quot;
+  ]
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SportsMOT（ICCV 2023）：多运动场景下的大规模球员多目标跟踪基准 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-24-sportsmot&quot;, &quot;title&quot;: &quot;SportsMOT（ICCV 2023）：多运动场景下的大规模球员多目标跟踪基准&quot;, &quot;title_en&quot;: &quot;SportsMOT（ICCV 2023）：多运动场景下的大规模球员多目标跟踪基准&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;tracking&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-24-sportsmot.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-24-sportsmot.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-24</p>
+        <h1>SportsMOT（ICCV 2023）：多运动场景下的大规模球员多目标跟踪基准</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#tracking">#tracking</a><a class="tag" href="../../en/tags.html#benchmarking">#benchmarking</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="sportsmot-iccv-2023-多运动场景下的大规模球员多目标跟踪基准">SportsMOT（ICCV 2023）：多运动场景下的大规模球员多目标跟踪基准</h1>
+<blockquote>会议：ICCV 2023</blockquote>
+<blockquote>发表日期：2023-04-13</blockquote>
+<blockquote>资料加入日期：2026-04-24</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>SportsMOT 把体育视频 MOT 从通用行人跟踪里独立出来，明确指出团队运动的核心难点是高速非线性运动、遮挡和相似外观共同造成的 association 压力。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这篇论文属于体育 AI / 体育视频理解主线，和 <a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a> 的长时序理解、对象级关联与 benchmark 设计直接相关。它在 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 中承担的角色是：这是 <a class="wikilink" href="../../en/entities/sportsmot.html">entities/sportsmot</a> 的原始 anchor paper，也解释了为什么 <a class="wikilink" href="../../en/sources/2026-04-23-sportmamba.html">sources/2026-04-23-sportmamba</a> 选择 SportsMOT 作为核心验证场景。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>通用 MOT benchmark 多来自行人、车辆或监控场景，运动速度、视角变化和遮挡模式都和团队运动有明显差异。体育分析真正需要的是持续跟住场上每个球员，从而支持跑动距离、速度、站位和战术分析。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>论文贡献以数据集和基准为主：收集篮球、排球、足球 3 类运动的 240 段视频，提供超过 150K 帧和 1.6M bounding boxes，并在多种 SOTA tracker 上做系统评测。作者还提出 MixSort，把 MixFormer-like 辅助关联结构接入跟踪管线，用来补强外观相似和运动剧烈场景下的匹配。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>SportsMOT 的规模约为 MOT17 帧数的 15 倍、框数的 3 倍，使体育 MOT 有了可复用的大规模评测入口。</li>
+<li>它把挑战明确归纳为快且变速的运动，以及相似但可区分的球员外观，正好对应 SportMamba 后续要解决的非线性 motion prediction 和 association 问题。</li>
+<li>基准结果显示 SportsMOT 的瓶颈主要在 object association。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>数据集仍以三类团队运动为主，和网球、冰球、橄榄球等项目存在场景差异。</li>
+<li>它主要提供 tracking 评价，仍需要和事件识别、战术理解、规则判断等高层任务连接。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 wiki 判断的影响</h2>
+<p>这是 <a class="wikilink" href="../../en/entities/sportsmot.html">entities/sportsmot</a> 的原始 anchor paper，也解释了为什么 <a class="wikilink" href="../../en/sources/2026-04-23-sportmamba.html">sources/2026-04-23-sportmamba</a> 选择 SportsMOT 作为核心验证场景。 它也让 <a class="wikilink" href="../../en/entities/sportsmot.html">entities/sportsmot</a> 从单一数据集条目扩展成体育 MOT / 轨迹理解分支的导航锚点。</p>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2304.05170</li>
+<li>https://arxiv.org/pdf/2304.05170</li>
+<li>https://doi.org/10.1109/ICCV51070.2023.00910</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a></li>
+<li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
+<li><a class="wikilink" href="../../en/entities/sportsmot.html">entities/sportsmot</a></li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-24-sportsmot&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;SportsMOT（ICCV 2023）：多运动场景下的大规模球员多目标跟踪基准&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-24&quot;,
+  &quot;updated&quot;: &quot;2026-04-24&quot;,
+  &quot;venue&quot;: &quot;ICCV 2023&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-24&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;tracking&quot;,
+    &quot;benchmarking&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Yutao Cui&quot;,
+    &quot;Chenkai Zeng&quot;,
+    &quot;Xiaoyu Zhao&quot;,
+    &quot;Yichun Yang&quot;,
+    &quot;Gangshan Wu&quot;,
+    &quot;Limin Wang&quot;
+  ],
+  &quot;published_at&quot;: &quot;2023-04-13&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2304.05170&quot;,
+    &quot;https://arxiv.org/pdf/2304.05170&quot;,
+    &quot;https://doi.org/10.1109/ICCV51070.2023.00910&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-24-sportsmot/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/video-understanding&quot;,
+    &quot;topics/sports-ai-video-understanding&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/sportsmot&quot;
+  ],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

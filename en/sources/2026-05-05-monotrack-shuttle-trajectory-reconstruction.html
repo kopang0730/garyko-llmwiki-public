@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MonoTrack：单目羽毛球视频的 3D 轨迹重建 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-05-05-monotrack-shuttle-trajectory-reconstruction&quot;, &quot;title&quot;: &quot;MonoTrack：单目羽毛球视频的 3D 轨迹重建&quot;, &quot;title_en&quot;: &quot;MonoTrack：单目羽毛球视频的 3D 轨迹重建&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;tracking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-05-05-monotrack-shuttle-trajectory-reconstruction.html">中文</a><a class="selected-lang" href="../../en/sources/2026-05-05-monotrack-shuttle-trajectory-reconstruction.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-05-05</p>
+        <h1>MonoTrack：单目羽毛球视频的 3D 轨迹重建</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#tracking">#tracking</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="monotrack-单目羽毛球视频的-3d-轨迹重建">MonoTrack：单目羽毛球视频的 3D 轨迹重建</h1>
+<blockquote>会议 / 来源：CVPR Workshop 2022</blockquote>
+<blockquote>发表日期：2022-04-04</blockquote>
+<blockquote>资料加入日期：2026-05-05</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>MonoTrack 把羽毛球 shuttle tracking 从 2D 像素坐标推进到单目 3D 轨迹重建，是低成本体育空间分析的重要桥。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这篇 CVPR Workshop 2022 论文提出一个从 monocular badminton video 提取和分割 3D shuttle trajectories 的 end-to-end system。它结合场地尺寸、击球位置、物理运动规律、球员姿态和 shuttle tracking 等信息，处理单目视频中 3D 重建困难的问题。</p>
+<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
+<ul>
+<li>与 <a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：它把“高速小目标是否能追踪”推进到“轨迹是否能服务战术和训练分析”。</li>
+<li>与 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它提供了普通摄像机方向的低成本空间理解路径。</li>
+<li>与 <a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a> 的关系：它把 video understanding 和 geometry / physics / domain knowledge 结合起来。</li>
+</ul>
+<h2 id="来源可靠性与可溯源性">来源可靠性与可溯源性</h2>
+<ul>
+<li><strong>来源层级</strong>：CVPR Workshop 2022 / CVSports primary paper，CVF OpenAccess 页面和 PDF 可访问；同时有 arXiv 与 GitHub 代码页。</li>
+<li><strong>可溯源材料</strong>：本地已保存 CVF PDF、<code>paper-text.md</code>、abstract 与 <code>links.yaml</code>；PDF SHA256：<code>bd4e9d69991d776a0bf2294afff62012dae17e1166e50a812e249faa8a696159</code>。</li>
+<li><strong>使用边界</strong>：适合作为 badminton 3D trajectory reconstruction 的强 primary evidence；部署到不同场馆和机位时仍需校准、鲁棒性和数据许可验证。</li>
+</ul>
+<h2 id="和现有证据的关系">和现有证据的关系</h2>
+<p>它接在 TrackNet 系列之后：<a class="wikilink" href="../../en/sources/2026-05-05-tracknet-high-speed-tiny-objects.html">sources/2026-05-05-tracknet-high-speed-tiny-objects</a> / <a class="wikilink" href="../../en/sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking.html">sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking</a> / <a class="wikilink" href="../../en/sources/2026-04-25-tracknetv3.html">sources/2026-04-25-tracknetv3</a> 主要回答 2D shuttle localization，MonoTrack 进一步回答如何从单目视频恢复 3D trajectory。</p>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>单目 3D 重建高度依赖场地几何、摄像机参数和物理假设。</li>
+<li>后续复现需要检查代码环境、视频数据和标注文件是否完整可用。</li>
+</ul>
+<h2 id="原始材料">原始材料</h2>
+<ul>
+<li><code>raw/ingest/2026-05-05-monotrack-shuttle-trajectory-reconstruction/paper.pdf</code></li>
+<li><code>raw/ingest/2026-05-05-monotrack-shuttle-trajectory-reconstruction/paper-text.md</code></li>
+<li><code>raw/ingest/2026-05-05-monotrack-shuttle-trajectory-reconstruction/abstract.md</code></li>
+<li><code>raw/ingest/2026-05-05-monotrack-shuttle-trajectory-reconstruction/links.yaml</code></li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
+<li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
+<li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a></li>
+<li><a class="wikilink" href="../../en/entities/sportsmot.html">entities/sportsmot</a></li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-05-05-monotrack-shuttle-trajectory-reconstruction&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;MonoTrack：单目羽毛球视频的 3D 轨迹重建&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-05-05&quot;,
+  &quot;updated&quot;: &quot;2026-05-05&quot;,
+  &quot;venue&quot;: &quot;CVPR Workshop 2022&quot;,
+  &quot;published_at&quot;: &quot;2022-04-04&quot;,
+  &quot;ingested_at&quot;: &quot;2026-05-05&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-understanding&quot;,
+    &quot;tracking&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Paul Liu&quot;,
+    &quot;Jui-Hsien Wang&quot;
+  ],
+  &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/CVPR2022W/CVSports/html/Liu_MonoTrack_Shuttle_Trajectory_Reconstruction_From_Monocular_Badminton_Video_CVPRW_2022_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2022W/CVSports/papers/Liu_MonoTrack_Shuttle_Trajectory_Reconstruction_From_Monocular_Badminton_Video_CVPRW_2022_paper.pdf&quot;,
+    &quot;https://arxiv.org/abs/2204.01899&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-05-05-monotrack-shuttle-trajectory-reconstruction/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/sports-ai-video-understanding&quot;,
+    &quot;topics/sports-ai-roadmap&quot;,
+    &quot;topics/video-understanding&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/sportsmot&quot;
+  ],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

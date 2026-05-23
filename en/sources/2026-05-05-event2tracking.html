@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Event2Tracking：用长时多模态上下文重建多智能体足球轨迹 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-05-05-event2tracking&quot;, &quot;title&quot;: &quot;Event2Tracking：用长时多模态上下文重建多智能体足球轨迹&quot;, &quot;title_en&quot;: &quot;Event2Tracking：用长时多模态上下文重建多智能体足球轨迹&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;tracking&quot;, &quot;multimodal&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-05-05-event2tracking.html">中文</a><a class="selected-lang" href="../../en/sources/2026-05-05-event2tracking.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-05-22</p>
+        <h1>Event2Tracking：用长时多模态上下文重建多智能体足球轨迹</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#tracking">#tracking</a><a class="tag" href="../../en/tags.html#multimodal">#multimodal</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="event2tracking-用长时多模态上下文重建多智能体足球轨迹">Event2Tracking：用长时多模态上下文重建多智能体足球轨迹</h1>
+<blockquote>会议 / 来源：AAAI 2025</blockquote>
+<blockquote>发表日期：2025-04-11</blockquote>
+<blockquote>资料加入日期：2026-05-05</blockquote>
+<blockquote>DOI：10.1609/aaai.v39i11.33289</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>Event2Tracking 把足球 tracking data 与 event data 融合起来，用 60 秒长时上下文重建球员和球的 noisy trajectories，是当前 <a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 中“轨迹 → 事件语义 → 比赛状态”的关键桥。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这篇论文把足球轨迹重建从短窗口、纯轨迹输入推进到长时、多模态输入。它关注的对象是 soccer agents，包括球员和球；输入侧同时使用 tracking data 和描述高层语义事件的 event data；输出侧用 reconstruction loss 衡量轨迹恢复质量。</p>
+<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
+<ul>
+<li>与 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它把 tracking 从“保持 ID 和坐标连续”推进到“用事件语义解释和修复轨迹”。</li>
+<li>与 <a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：它补上 S1 中此前明确标为 P0 的 Event2Tracking 缺口，使 SoccerNet 数据生态、年度 challenge、tracking team report 与 trajectory-event semantics 连成一条证据链。</li>
+<li>与 <a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a> 的关系：它给通用视频理解提供一个强应用样本：长视频理解可以落到多智能体状态重建，而不仅是片段分类或问答。</li>
+</ul>
+<h2 id="来源可靠性与可溯源性">来源可靠性与可溯源性</h2>
+<ul>
+<li><strong>来源层级</strong>：AAAI 2025 proceedings primary paper；AAAI OJS 页面和 DOI <code>10.1609/aaai.v39i11.33289</code> 均可访问，证据等级高于 arXiv-only preprint。</li>
+<li><strong>可溯源材料</strong>：本地已保存 AAAI OJS abstract、PDF、<code>paper-text.md</code> 和 <code>links.yaml</code>；PDF SHA256：<code>a2f8b120abea7e2bf8c5da551a391e9c64f4a6d750c0a6ef1827ac62b57aec57</code>。</li>
+<li><strong>使用边界</strong>：适合作为 trajectory-event semantics 的强 primary evidence；对真实部署、跨联赛泛化和端到端视频系统延迟的判断仍需后续 source 补强。</li>
+</ul>
+<h2 id="和现有证据的关系">和现有证据的关系</h2>
+<p>此前 S1 已补入 <a class="wikilink" href="../../en/sources/2026-05-05-soccernet-v2-holistic-understanding.html">sources/2026-05-05-soccernet-v2-holistic-understanding</a>、<a class="wikilink" href="../../en/sources/2026-05-05-soccernet-v2-camera-calibration-player-localization.html">sources/2026-05-05-soccernet-v2-camera-calibration-player-localization</a>、<a class="wikilink" href="../../en/sources/2026-05-05-active-learning-action-spotting-football.html">sources/2026-05-05-active-learning-action-spotting-football</a>、<a class="wikilink" href="../../en/sources/2026-05-05-soccernet-2022-challenges-results.html">sources/2026-05-05-soccernet-2022-challenges-results</a>、<a class="wikilink" href="../../en/sources/2026-05-05-soccernet-2023-challenges-results.html">sources/2026-05-05-soccernet-2023-challenges-results</a> 与 <a class="wikilink" href="../../en/sources/2026-05-05-soccernet-2023-tracking-mot4mot.html">sources/2026-05-05-soccernet-2023-tracking-mot4mot</a>。Event2Tracking 在这条链路中承担“把事件语义真正注入轨迹重建模型”的角色。</p>
+<p>它和 <a class="wikilink" href="../../en/sources/2026-04-24-transportmer.html">sources/2026-04-24-transportmer</a> 形成互补：TranSPORTmer 更像多智能体轨迹理解框架，Event2Tracking 则强调长时上下文和 event data 对轨迹重建的增益。</p>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>这篇论文证明 event data 对 trajectory reconstruction 有价值，但 roadmap 仍需要继续追踪 game-state reconstruction、战术意图建模和 rule-grounded referee assistance。</li>
+<li>当前这版先完成轻量 primary-source 编译，后续可按 deep-analysis-first 流程补 <code>analysis.md</code>、关键图页和实验细节。</li>
+</ul>
+<h2 id="原始材料">原始材料</h2>
+<ul>
+<li><code>raw/ingest/2026-05-05-event2tracking/paper.pdf</code></li>
+<li><code>raw/ingest/2026-05-05-event2tracking/paper-text.md</code></li>
+<li><code>raw/ingest/2026-05-05-event2tracking/abstract.md</code></li>
+<li><code>raw/ingest/2026-05-05-event2tracking/links.yaml</code></li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
+<li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
+<li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a></li>
+<li><a class="wikilink" href="../../en/entities/sportsmot.html">entities/sportsmot</a></li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-05-05-event2tracking&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;Event2Tracking：用长时多模态上下文重建多智能体足球轨迹&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-05-05&quot;,
+  &quot;updated&quot;: &quot;2026-05-22&quot;,
+  &quot;venue&quot;: &quot;AAAI 2025&quot;,
+  &quot;published_at&quot;: &quot;2025-04-11&quot;,
+  &quot;ingested_at&quot;: &quot;2026-05-05&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-understanding&quot;,
+    &quot;tracking&quot;,
+    &quot;multimodal&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Harry Hughes&quot;,
+    &quot;Michael Horton&quot;,
+    &quot;Xinyu Wei&quot;,
+    &quot;Harshala Gammulle&quot;,
+    &quot;Clinton Fookes&quot;,
+    &quot;Sridha Sridharan&quot;,
+    &quot;Patrick Lucey&quot;
+  ],
+  &quot;canonical_links&quot;: [
+    &quot;https://ojs.aaai.org/index.php/AAAI/article/view/33289&quot;,
+    &quot;https://ojs.aaai.org/index.php/AAAI/article/download/33289/35444&quot;,
+    &quot;https://doi.org/10.1609/aaai.v39i11.33289&quot;,
+    &quot;https://dl.acm.org/doi/abs/10.1609/aaai.v39i11.33289&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-05-05-event2tracking/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/sports-ai-video-understanding&quot;,
+    &quot;topics/sports-ai-roadmap&quot;,
+    &quot;topics/video-understanding&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/sportsmot&quot;
+  ],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

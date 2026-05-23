@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MultiSenseBadminton：面向羽毛球表现评估的多传感器生物力学数据集 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-05-17-multisensebadminton-biomechanical-dataset&quot;, &quot;title&quot;: &quot;MultiSenseBadminton：面向羽毛球表现评估的多传感器生物力学数据集&quot;, &quot;title_en&quot;: &quot;MultiSenseBadminton：面向羽毛球表现评估的多传感器生物力学数据集&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;representation-learning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-05-17-multisensebadminton-biomechanical-dataset.html">中文</a><a class="selected-lang" href="../../en/sources/2026-05-17-multisensebadminton-biomechanical-dataset.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-05-22</p>
+        <h1>MultiSenseBadminton：面向羽毛球表现评估的多传感器生物力学数据集</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#representation-learning">#representation-learning</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="multisensebadminton-面向羽毛球表现评估的多传感器生物力学数据集">MultiSenseBadminton：面向羽毛球表现评估的多传感器生物力学数据集</h1>
+<blockquote>会议 / 期刊：Scientific Data 2024</blockquote>
+<blockquote>发表日期：2024-04-04</blockquote>
+<blockquote>资料加入日期：2026-05-17</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>MultiSenseBadminton 给了羽毛球训练反馈一个高质量数据上界：它把 stroke、skill level、落点、击球位置、眼动、身体追踪、肌电、足压和多视角视频同步到同一个数据结构里。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这篇论文和 <a class="wikilink" href="../../en/sources/2026-05-16-bst-badminton-stroke-type-transformer.html">sources/2026-05-16-bst-badminton-stroke-type-transformer</a> 的互补关系很强：BST 证明公开视频 + shuttle + pose 可以做 stroke-type classification；MultiSenseBadminton 说明真正训练反馈还需要多传感器和生物力学证据。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>羽毛球训练里的 stance、power control、arm speed、footwork、gaze 和 muscle activation 很难靠肉眼同时观察。公开视频适合战术和比赛分析，但对“为什么动作质量差”解释力有限。MultiSenseBadminton 用受控采集和多传感器补上这一层。</p>
+<h2 id="数据设计">数据设计</h2>
+<p>数据集包括：</p>
+<ul>
+<li>25 名球员。</li>
+<li>7,763 个 swing samples。</li>
+<li>技能水平：beginner、intermediate、expert。</li>
+<li>动作：forehand clear、backhand drive。</li>
+<li>传感器：eye tracking、IMU/body tracking、EMG、foot pressure、video。</li>
+<li>标签：stroke type、skill level、sound、ball landing、hitting location、survey/interview data。</li>
+</ul>
+<p>作者通过教练访谈确定数据字段，强调 grip、posture、swing、step、landing point、stroke sound、ball speed、verbal comments 和 demonstration 等训练反馈元素。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>数据采集使用 shuttlecock launcher 控制来球轨迹，使不同参与者面对相似输入。传感器避免改变球拍重量和手感，使用手部/身体传感作为 racket dynamics proxy。论文还提供 HDF5 数据组织和机器学习验证 pipeline，降低复用门槛。</p>
+<h2 id="关键图示">关键图示</h2>
+<p><img src="../../raw/ingest/2026-05-17-multisensebadminton-biomechanical-dataset/page-previews/page-02.png" alt="dataset comparison" loading="lazy"></p>
+<p>p2 的 Table 1 显示它相对已有羽毛球数据集的差异：受控采集、多传感器、训练反馈和多标签结构。</p>
+<p><img src="../../raw/ingest/2026-05-17-multisensebadminton-biomechanical-dataset/page-previews/page-06.png" alt="sensor setup" loading="lazy"></p>
+<p>p6 展示完整传感器配置：眼动眼镜、motion sensors、EMG、足压鞋垫、shuttle launcher 和摄像机。</p>
+<p><img src="../../raw/ingest/2026-05-17-multisensebadminton-biomechanical-dataset/page-previews/page-07.png" alt="data format" loading="lazy"></p>
+<p>p7 展示数据流和 HDF5 结构，说明该数据集适合直接训练/验证模型。</p>
+<p><img src="../../raw/ingest/2026-05-17-multisensebadminton-biomechanical-dataset/page-previews/page-08.png" alt="collection environment" loading="lazy"></p>
+<p>p8 展示采集环境、camera / launcher / net / court 布局，方便后续复现实验或设计简化版 demo。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>训练反馈数据应关注动作质量本身，而不只关注比赛战术。</li>
+<li>同步多模态数据能把“姿势、发力、步法、落点、声音”放进同一个分析框架。</li>
+<li>受控输入让不同技能水平之间的动作差异更可比较。</li>
+<li>技术验证覆盖 stroke type、skill level、landing position、hitting point、stroke sound 等任务，说明标签体系可以直接服务监督学习。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>采集条件依赖可穿戴和受控场地，和公开视频 demo 的输入形态不同。</li>
+<li>只覆盖 forehand clear 与 backhand drive，和 ShuttleSet / BST 的多类 stroke taxonomy 需要后续映射。</li>
+<li>数据集更适合训练反馈和动作质量评估，若用于真实比赛战术理解，需要和 match-level 数据组合。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 wiki 判断的影响</h2>
+<p>它让 <a class="wikilink" href="../../en/questions/question-badminton-stroke-correction-demo.html">questions/question-badminton-stroke-correction-demo</a> 的路线分成两层：短期用公开视频、shuttle trajectory 和 2D pose 跑通最小闭环；中长期把多传感器数据作为反馈质量上界，逐步加入 skill level、落点、击球声音、足压和肌肉活动等证据。</p>
+<h2 id="原始材料">原始材料</h2>
+<ul>
+<li>raw entry：<code>raw/ingest/2026-05-17-multisensebadminton-biomechanical-dataset/</code></li>
+<li><code>raw/ingest/2026-05-17-multisensebadminton-biomechanical-dataset/paper.pdf</code></li>
+<li><code>raw/ingest/2026-05-17-multisensebadminton-biomechanical-dataset/paper-text.md</code></li>
+<li><code>raw/ingest/2026-05-17-multisensebadminton-biomechanical-dataset/analysis.md</code></li>
+<li><code>raw/ingest/2026-05-17-multisensebadminton-biomechanical-dataset/page-previews/</code></li>
+<li><code>raw/ingest/2026-05-17-multisensebadminton-biomechanical-dataset/abstract.md</code></li>
+<li><code>raw/ingest/2026-05-17-multisensebadminton-biomechanical-dataset/links.yaml</code></li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
+<li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
+<li><a class="wikilink" href="../../en/questions/question-badminton-stroke-correction-demo.html">questions/question-badminton-stroke-correction-demo</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-05-16-bst-badminton-stroke-type-transformer.html">sources/2026-05-16-bst-badminton-stroke-type-transformer</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-05-17-structured-analysis-broadcast-badminton-videos.html">sources/2026-05-17-structured-analysis-broadcast-badminton-videos</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-05-17-badmintondb-player-specific-match-analysis.html">sources/2026-05-17-badmintondb-player-specific-match-analysis</a></li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-05-17-multisensebadminton-biomechanical-dataset&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;MultiSenseBadminton：面向羽毛球表现评估的多传感器生物力学数据集&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-05-17&quot;,
+  &quot;updated&quot;: &quot;2026-05-22&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-understanding&quot;,
+    &quot;representation-learning&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;venue&quot;: &quot;Scientific Data 2024&quot;,
+  &quot;authors&quot;: [
+    &quot;Minwoo Seong&quot;,
+    &quot;Gwangbin Kim&quot;,
+    &quot;Dohyeon Yeo&quot;,
+    &quot;Yumin Kang&quot;,
+    &quot;Heesan Yang&quot;,
+    &quot;Joseph DelPreto&quot;,
+    &quot;Wojciech Matusik&quot;,
+    &quot;Daniela Rus&quot;,
+    &quot;SeungJun Kim&quot;
+  ],
+  &quot;published_at&quot;: &quot;2024-04-04&quot;,
+  &quot;ingested_at&quot;: &quot;2026-05-17&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://doi.org/10.1038/s41597-024-03144-z&quot;,
+    &quot;https://www.nature.com/articles/s41597-024-03144-z.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-05-17-multisensebadminton-biomechanical-dataset/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/sports-ai-video-understanding&quot;,
+    &quot;topics/sports-ai-roadmap&quot;,
+    &quot;topics/video-understanding&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: [
+    &quot;questions/question-badminton-stroke-correction-demo&quot;
+  ]
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

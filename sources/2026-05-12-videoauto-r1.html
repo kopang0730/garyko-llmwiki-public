@@ -3,20 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>VideoAuto-R1（CVPR 2026 / arXiv）：按需推理的视频理解框架 · llmwiki</title>
+  <title>VideoAuto-R1（arXiv；CVPR 2026 accepted claim pending proceedings）：按需推理的视频理解框架 · llmwiki</title>
   <link rel="stylesheet" href="../assets/wiki.css">
   <script defer src="../assets/wiki.js"></script>
 </head>
-<body data-page="{&quot;slug&quot;: &quot;sources/2026-05-12-videoauto-r1&quot;, &quot;title&quot;: &quot;VideoAuto-R1（CVPR 2026 / arXiv）：按需推理的视频理解框架&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;vision-language&quot;, &quot;reasoning&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;]}">
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-05-12-videoauto-r1&quot;, &quot;title&quot;: &quot;VideoAuto-R1（arXiv；CVPR 2026 accepted claim pending proceedings）：按需推理的视频理解框架&quot;, &quot;title_en&quot;: &quot;VideoAuto-R1（arXiv；CVPR 2026 accepted claim pending proceedings）：按需推理的视频理解框架&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;vision-language&quot;, &quot;reasoning&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh">
   <aside class="wiki-sidebar">
-    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
-    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
-<h2>Entry</h2><ul>
-<li><a href="../index.html">Index</a></li>
-<li><a href="../llm-wiki.html">Llm Wiki</a></li>
+<h2>入口</h2><ul>
+<li><a href="../index.html">索引</a></li>
+<li><a href="../llm-wiki.html">LLM Wiki</a></li>
+<li><a href="../main.html">首页</a></li>
 </ul>
-<h2>Topics</h2><ul>
+<h2>主题</h2><ul>
 <li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
 <li><a href="../topics/diffusion-models.html">扩散模型</a></li>
 <li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
@@ -29,18 +30,18 @@
 <li><a href="../topics/video-understanding.html">视频理解</a></li>
 <li><a href="../topics/vision-language.html">视觉-语言</a></li>
 </ul>
-<h2>Entities</h2><ul>
+<h2>实体</h2><ul>
 <li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
 <li><a href="../entities/sportsmot.html">SportsMOT</a></li>
 <li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
-<h2>Claims</h2><ul>
+<h2>判断</h2><ul>
 <li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
 <li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
 <li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
 </ul>
-<h2>Questions</h2><ul>
+<h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
@@ -49,15 +50,16 @@
 </nav>
   </aside>
   <main class="wiki-page">
-    <header class="page-tabs"><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../main.html">Main page</a></header>
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-05-12-videoauto-r1.html">中文</a><a class="" href="../en/sources/2026-05-12-videoauto-r1.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-05-12</p>
-        <h1>VideoAuto-R1（CVPR 2026 / arXiv）：按需推理的视频理解框架</h1>
+        <p class="eyebrow">source · 2026-05-22</p>
+        <h1>VideoAuto-R1（arXiv；CVPR 2026 accepted claim pending proceedings）：按需推理的视频理解框架</h1>
+        
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#vision-language">#vision-language</a><a class="tag" href="../tags.html#reasoning">#reasoning</a><a class="tag" href="../tags.html#efficiency">#efficiency</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h1 id="videoauto-r1-cvpr-2026-arxiv-按需推理的视频理解框架">VideoAuto-R1（CVPR 2026 / arXiv）：按需推理的视频理解框架</h1>
-<blockquote>会议 / 来源：CVPR 2026 / arXiv</blockquote>
+      <section class="article-content"><h1 id="videoauto-r1-arxiv-cvpr-2026-accepted-claim-pending-proceedings-按需推理的视频理解框架">VideoAuto-R1（arXiv；CVPR 2026 accepted claim pending proceedings）：按需推理的视频理解框架</h1>
+<blockquote>会议 / 来源：arXiv preprint；CVPR 2026 accepted claim pending official proceedings</blockquote>
 <blockquote>发表日期：2026-03-21</blockquote>
 <blockquote>资料加入日期：2026-05-12</blockquote>
 <h2 id="一句话结论">一句话结论</h2>
@@ -70,7 +72,7 @@
 <p>它可以和 <a class="wikilink" href="../sources/2026-05-12-trackmae.html">sources/2026-05-12-trackmae</a> 形成上下游：TrackMAE 负责 motion-aware 表征和异常轨迹检测，VideoAuto-R1 负责把动作阶段、置信度和错误候选转成可复核解释。它也补强 <a class="wikilink" href="../sources/2026-05-05-sports-qa-video-question-answering.html">sources/2026-05-05-sports-qa-video-question-answering</a>、<a class="wikilink" href="../sources/2026-05-05-refereebench-multi-sport-referees.html">sources/2026-05-05-refereebench-multi-sport-referees</a> 与 <a class="wikilink" href="../sources/2026-05-05-finecausal-action-quality-assessment.html">sources/2026-05-05-finecausal-action-quality-assessment</a> 的解释/推理层。</p>
 <h2 id="来源可靠性与可溯源性">来源可靠性与可溯源性</h2>
 <ul>
-<li><strong>来源层级</strong>：CVPR 2026 / arXiv primary paper，项目仓库公开标注 CVPR2026，arXiv PDF 可追溯。当前本地已保存用户上传 PDF 与 <code>paper-text.md</code>。可作为视频推理系统设计证据，尤其适合 efficiency / explanation policy。</li>
+<li><strong>来源层级</strong>：arXiv primary paper；project repository / arXiv comments 标注 CVPR 2026 accepted claim，但 official proceedings / DOI pending。当前本地已保存用户上传 PDF 与 <code>paper-text.md</code>。可作为视频推理系统设计候选证据，尤其适合 efficiency / explanation policy，不作为 confirmed proceedings evidence 使用。</li>
 <li><strong>可溯源材料</strong>：本地保存 <code>paper.pdf</code>、<code>paper-text.md</code>、<code>abstract.md</code>、<code>links.yaml</code>。</li>
 <li><strong>使用建议</strong>：适合进入 <a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的动作纠正构想层；后续若做 demo，应再补数据集、错误模式标注和专家评估。</li>
 </ul>
@@ -94,14 +96,14 @@
 <li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
 <li><a class="wikilink" href="../entities/sportsmot.html">entities/sportsmot</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
   &quot;id&quot;: &quot;2026-05-12-videoauto-r1&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;VideoAuto-R1（CVPR 2026 / arXiv）：按需推理的视频理解框架&quot;,
+  &quot;title&quot;: &quot;VideoAuto-R1（arXiv；CVPR 2026 accepted claim pending proceedings）：按需推理的视频理解框架&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-05-12&quot;,
-  &quot;updated&quot;: &quot;2026-05-12&quot;,
-  &quot;venue&quot;: &quot;CVPR 2026 / arXiv&quot;,
+  &quot;updated&quot;: &quot;2026-05-22&quot;,
+  &quot;venue&quot;: &quot;arXiv / CVPR 2026 accepted claim pending proceedings&quot;,
   &quot;published_at&quot;: &quot;2026-03-21&quot;,
   &quot;ingested_at&quot;: &quot;2026-05-12&quot;,
   &quot;tags&quot;: [

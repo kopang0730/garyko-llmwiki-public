@@ -1,21 +1,38 @@
 [
   {
     "slug": "index",
-    "title": "Index",
+    "title": "索引",
+    "title_en": "Index",
+    "summary": "视觉生成、视频理解与体育 AI 研究 wiki 的总入口。",
+    "summary_en": "Entry point for the generative vision, video understanding, and sports AI research wiki.",
     "kind": "root",
-    "tags": [],
-    "url": "index.html"
+    "tags": [
+      "near-cvpr-2025"
+    ],
+    "url": "index.html",
+    "url_en": "en/index.html",
+    "search_text": "索引 Index 视觉生成、视频理解与体育 AI 研究 wiki 的总入口。 Entry point for the generative vision, video understanding, and sports AI research wiki. index root near-cvpr-2025"
   },
   {
     "slug": "llm-wiki",
-    "title": "Llm Wiki",
+    "title": "LLM Wiki",
+    "title_en": "LLM Wiki Pattern",
+    "summary": "Karpathy 提出的 LLM Wiki 模式：用 LLM 持续维护一组互相链接的 Markdown 知识页。",
+    "summary_en": "Karpathy's pattern for maintaining a persistent, interlinked Markdown knowledge base with an LLM compiler.",
     "kind": "root",
-    "tags": [],
-    "url": "llm-wiki.html"
+    "tags": [
+      "near-cvpr-2025"
+    ],
+    "url": "llm-wiki.html",
+    "url_en": "en/llm-wiki.html",
+    "search_text": "LLM Wiki LLM Wiki Pattern Karpathy 提出的 LLM Wiki 模式：用 LLM 持续维护一组互相链接的 Markdown 知识页。 Karpathy's pattern for maintaining a persistent, interlinked Markdown knowledge base with an LLM compiler. llm-wiki root near-cvpr-2025"
   },
   {
     "slug": "topics/diffusion-efficiency-engineering",
     "title": "扩散效率工程",
+    "title_en": "扩散效率工程",
+    "summary": "追踪扩散模型从主干缩放到采样加速、部署压缩与 guidance 工程化的完整效率技术栈。",
+    "summary_en": "",
     "kind": "topic",
     "tags": [
       "near-cvpr-2025",
@@ -23,22 +40,32 @@
       "diffusion",
       "efficiency"
     ],
-    "url": "topics/diffusion-efficiency-engineering.html"
+    "url": "topics/diffusion-efficiency-engineering.html",
+    "url_en": "en/topics/diffusion-efficiency-engineering.html",
+    "search_text": "扩散效率工程 扩散效率工程 追踪扩散模型从主干缩放到采样加速、部署压缩与 guidance 工程化的完整效率技术栈。  topics/diffusion-efficiency-engineering topic near-cvpr-2025 image-generation diffusion efficiency"
   },
   {
     "slug": "topics/diffusion-models",
     "title": "扩散模型",
+    "title_en": "扩散模型",
+    "summary": "追踪扩散模型作为方法家族在图像、视频、条件控制、可控性与效率权衡中的演化。",
+    "summary_en": "",
     "kind": "topic",
     "tags": [
       "near-cvpr-2025",
       "diffusion",
       "efficiency"
     ],
-    "url": "topics/diffusion-models.html"
+    "url": "topics/diffusion-models.html",
+    "url_en": "en/topics/diffusion-models.html",
+    "search_text": "扩散模型 扩散模型 追踪扩散模型作为方法家族在图像、视频、条件控制、可控性与效率权衡中的演化。  topics/diffusion-models topic near-cvpr-2025 diffusion efficiency"
   },
   {
     "slug": "topics/generative-model-evaluation",
     "title": "生成模型评测",
+    "title_en": "生成模型评测",
+    "summary": "追踪生成式与多模态视觉系统的评测方式，包括指标质量、benchmark 盲点与证据强度。",
+    "summary_en": "",
     "kind": "topic",
     "tags": [
       "near-cvpr-2025",
@@ -46,33 +73,48 @@
       "benchmarking",
       "multimodal"
     ],
-    "url": "topics/generative-model-evaluation.html"
+    "url": "topics/generative-model-evaluation.html",
+    "url_en": "en/topics/generative-model-evaluation.html",
+    "search_text": "生成模型评测 生成模型评测 追踪生成式与多模态视觉系统的评测方式，包括指标质量、benchmark 盲点与证据强度。  topics/generative-model-evaluation topic near-cvpr-2025 evaluation benchmarking multimodal"
   },
   {
     "slug": "topics/image-editing",
     "title": "图像编辑",
+    "title_en": "图像编辑",
+    "summary": "追踪 CVPR 2025 范围内基于指令、可控且重视效率的图像编辑方法。",
+    "summary_en": "",
     "kind": "topic",
     "tags": [
       "near-cvpr-2025",
       "image-editing",
       "diffusion"
     ],
-    "url": "topics/image-editing.html"
+    "url": "topics/image-editing.html",
+    "url_en": "en/topics/image-editing.html",
+    "search_text": "图像编辑 图像编辑 追踪 CVPR 2025 范围内基于指令、可控且重视效率的图像编辑方法。  topics/image-editing topic near-cvpr-2025 image-editing diffusion"
   },
   {
     "slug": "topics/image-generation",
     "title": "图像生成",
+    "title_en": "图像生成",
+    "summary": "追踪 CVPR 2025 邻近工作中的图像合成、编辑一体化、可控性与条件机制演化。",
+    "summary_en": "",
     "kind": "topic",
     "tags": [
       "near-cvpr-2025",
       "image-generation",
       "diffusion"
     ],
-    "url": "topics/image-generation.html"
+    "url": "topics/image-generation.html",
+    "url_en": "en/topics/image-generation.html",
+    "search_text": "图像生成 图像生成 追踪 CVPR 2025 邻近工作中的图像合成、编辑一体化、可控性与条件机制演化。  topics/image-generation topic near-cvpr-2025 image-generation diffusion"
   },
   {
     "slug": "topics/sports-ai-roadmap",
     "title": "体育 AI 研究路线图",
+    "title_en": "Sports AI Research Roadmap",
+    "summary": "把体育 AI 从论文列表整理成公开可读的研究路线：感知、跟踪、交互、轨迹、战术、评估与部署。",
+    "summary_en": "A public research roadmap organizing sports AI evidence across perception, tracking, interaction, trajectories, tactics, evaluation, and deployment.",
     "kind": "topic",
     "tags": [
       "near-cvpr-2025",
@@ -80,11 +122,16 @@
       "tracking",
       "benchmarking"
     ],
-    "url": "topics/sports-ai-roadmap.html"
+    "url": "topics/sports-ai-roadmap.html",
+    "url_en": "en/topics/sports-ai-roadmap.html",
+    "search_text": "体育 AI 研究路线图 Sports AI Research Roadmap 把体育 AI 从论文列表整理成公开可读的研究路线：感知、跟踪、交互、轨迹、战术、评估与部署。 A public research roadmap organizing sports AI evidence across perception, tracking, interaction, trajectories, tactics, evaluation, and deployment. topics/sports-ai-roadmap topic near-cvpr-2025 video-understanding tracking benchmarking"
   },
   {
     "slug": "topics/sports-ai-video-understanding",
     "title": "体育 AI 视频理解",
+    "title_en": "Sports AI Video Understanding",
+    "summary": "追踪体育视频中的球员跟踪、人-人交互、全场轨迹、多智能体时序理解与可部署研究系统。",
+    "summary_en": "A topic hub for player tracking, human-human interaction, full-field trajectories, multi-agent temporal understanding, and deployable sports AI systems.",
     "kind": "topic",
     "tags": [
       "near-cvpr-2025",
@@ -92,66 +139,96 @@
       "tracking",
       "benchmarking"
     ],
-    "url": "topics/sports-ai-video-understanding.html"
+    "url": "topics/sports-ai-video-understanding.html",
+    "url_en": "en/topics/sports-ai-video-understanding.html",
+    "search_text": "体育 AI 视频理解 Sports AI Video Understanding 追踪体育视频中的球员跟踪、人-人交互、全场轨迹、多智能体时序理解与可部署研究系统。 A topic hub for player tracking, human-human interaction, full-field trajectories, multi-agent temporal understanding, and deployable sports AI systems. topics/sports-ai-video-understanding topic near-cvpr-2025 video-understanding tracking benchmarking"
   },
   {
     "slug": "topics/video-editing",
     "title": "视频编辑",
+    "title_en": "视频编辑",
+    "summary": "追踪以文本驱动和扩散模型为核心的视频编辑方法，重点关注保真度、时序一致性与编辑精度。",
+    "summary_en": "",
     "kind": "topic",
     "tags": [
       "near-cvpr-2025",
       "video-editing",
       "diffusion"
     ],
-    "url": "topics/video-editing.html"
+    "url": "topics/video-editing.html",
+    "url_en": "en/topics/video-editing.html",
+    "search_text": "视频编辑 视频编辑 追踪以文本驱动和扩散模型为核心的视频编辑方法，重点关注保真度、时序一致性与编辑精度。  topics/video-editing topic near-cvpr-2025 video-editing diffusion"
   },
   {
     "slug": "topics/video-generation",
     "title": "视频生成",
+    "title_en": "视频生成",
+    "summary": "追踪文本到视频与图像到视频生成，重点关注可控性、效率与长程一致性。",
+    "summary_en": "",
     "kind": "topic",
     "tags": [
       "near-cvpr-2025",
       "video-generation",
       "diffusion"
     ],
-    "url": "topics/video-generation.html"
+    "url": "topics/video-generation.html",
+    "url_en": "en/topics/video-generation.html",
+    "search_text": "视频生成 视频生成 追踪文本到视频与图像到视频生成，重点关注可控性、效率与长程一致性。  topics/video-generation topic near-cvpr-2025 video-generation diffusion"
   },
   {
     "slug": "topics/video-understanding",
     "title": "视频理解",
+    "title_en": "Video Understanding",
+    "summary": "追踪视频系统中的时序推理、长上下文建模、体育视频跟踪、体育 AI 视频理解与 benchmark 设计问题。",
+    "summary_en": "A synthesis page for temporal reasoning, long-context video modeling, sports video understanding, and benchmark design.",
     "kind": "topic",
     "tags": [
       "near-cvpr-2025",
       "video-understanding",
       "reasoning"
     ],
-    "url": "topics/video-understanding.html"
+    "url": "topics/video-understanding.html",
+    "url_en": "en/topics/video-understanding.html",
+    "search_text": "视频理解 Video Understanding 追踪视频系统中的时序推理、长上下文建模、体育视频跟踪、体育 AI 视频理解与 benchmark 设计问题。 A synthesis page for temporal reasoning, long-context video modeling, sports video understanding, and benchmark design. topics/video-understanding topic near-cvpr-2025 video-understanding reasoning"
   },
   {
     "slug": "topics/vision-language",
     "title": "视觉-语言",
+    "title_en": "视觉-语言",
+    "summary": "追踪影响本知识库核心方向的多模态条件控制、对齐与语言驱动推理。",
+    "summary_en": "",
     "kind": "topic",
     "tags": [
       "near-cvpr-2025",
       "multimodal",
       "vision-language"
     ],
-    "url": "topics/vision-language.html"
+    "url": "topics/vision-language.html",
+    "url_en": "en/topics/vision-language.html",
+    "search_text": "视觉-语言 视觉-语言 追踪影响本知识库核心方向的多模态条件控制、对齐与语言驱动推理。  topics/vision-language topic near-cvpr-2025 multimodal vision-language"
   },
   {
     "slug": "sources/2026-04-12-align-a-video",
     "title": "Align-A-Video（CVPR 2025）：面向一致视频编辑的确定性奖励调优",
+    "title_en": "Align-A-Video（CVPR 2025）：面向一致视频编辑的确定性奖励调优",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
       "video-editing",
       "primary-source"
     ],
-    "url": "sources/2026-04-12-align-a-video.html"
+    "url": "sources/2026-04-12-align-a-video.html",
+    "url_en": "en/sources/2026-04-12-align-a-video.html",
+    "search_text": "Align-A-Video（CVPR 2025）：面向一致视频编辑的确定性奖励调优 Align-A-Video（CVPR 2025）：面向一致视频编辑的确定性奖励调优   sources/2026-04-12-align-a-video source near-cvpr-2025 video-editing primary-source"
   },
   {
     "slug": "sources/2026-04-12-anyedit",
     "title": "AnyEdit（CVPR 2025）：面向任意创意的统一高质量图像编辑",
+    "title_en": "AnyEdit（CVPR 2025）：面向任意创意的统一高质量图像编辑",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -159,22 +236,32 @@
       "image-generation",
       "primary-source"
     ],
-    "url": "sources/2026-04-12-anyedit.html"
+    "url": "sources/2026-04-12-anyedit.html",
+    "url_en": "en/sources/2026-04-12-anyedit.html",
+    "search_text": "AnyEdit（CVPR 2025）：面向任意创意的统一高质量图像编辑 AnyEdit（CVPR 2025）：面向任意创意的统一高质量图像编辑   sources/2026-04-12-anyedit source near-cvpr-2025 image-editing image-generation primary-source"
   },
   {
     "slug": "sources/2026-04-12-d2it",
     "title": "D²iT（CVPR 2025）：用于高精度图像生成的动态扩散 Transformer",
+    "title_en": "D²iT（CVPR 2025）：用于高精度图像生成的动态扩散 Transformer",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
       "image-generation",
       "primary-source"
     ],
-    "url": "sources/2026-04-12-d2it.html"
+    "url": "sources/2026-04-12-d2it.html",
+    "url_en": "en/sources/2026-04-12-d2it.html",
+    "search_text": "D²iT（CVPR 2025）：用于高精度图像生成的动态扩散 Transformer D²iT（CVPR 2025）：用于高精度图像生成的动态扩散 Transformer   sources/2026-04-12-d2it source near-cvpr-2025 image-generation primary-source"
   },
   {
     "slug": "sources/2026-04-12-dreamomni",
     "title": "DreamOmni（CVPR 2025）：统一图像生成与编辑",
+    "title_en": "DreamOmni（CVPR 2025）：统一图像生成与编辑",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -182,22 +269,32 @@
       "image-editing",
       "primary-source"
     ],
-    "url": "sources/2026-04-12-dreamomni.html"
+    "url": "sources/2026-04-12-dreamomni.html",
+    "url_en": "en/sources/2026-04-12-dreamomni.html",
+    "search_text": "DreamOmni（CVPR 2025）：统一图像生成与编辑 DreamOmni（CVPR 2025）：统一图像生成与编辑   sources/2026-04-12-dreamomni source near-cvpr-2025 image-generation image-editing primary-source"
   },
   {
     "slug": "sources/2026-04-12-fade",
     "title": "FADE（CVPR 2025）：面向视频编辑的频率感知扩散模型分解",
+    "title_en": "FADE（CVPR 2025）：面向视频编辑的频率感知扩散模型分解",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
       "video-editing",
       "primary-source"
     ],
-    "url": "sources/2026-04-12-fade.html"
+    "url": "sources/2026-04-12-fade.html",
+    "url_en": "en/sources/2026-04-12-fade.html",
+    "search_text": "FADE（CVPR 2025）：面向视频编辑的频率感知扩散模型分解 FADE（CVPR 2025）：面向视频编辑的频率感知扩散模型分解   sources/2026-04-12-fade source near-cvpr-2025 video-editing primary-source"
   },
   {
     "slug": "sources/2026-04-12-fireedit",
     "title": "FireEdit（CVPR 2025）：基于区域感知视觉语言模型的细粒度指令图像编辑",
+    "title_en": "FireEdit（CVPR 2025）：基于区域感知视觉语言模型的细粒度指令图像编辑",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -205,11 +302,16 @@
       "image-generation",
       "primary-source"
     ],
-    "url": "sources/2026-04-12-fireedit.html"
+    "url": "sources/2026-04-12-fireedit.html",
+    "url_en": "en/sources/2026-04-12-fireedit.html",
+    "search_text": "FireEdit（CVPR 2025）：基于区域感知视觉语言模型的细粒度指令图像编辑 FireEdit（CVPR 2025）：基于区域感知视觉语言模型的细粒度指令图像编辑   sources/2026-04-12-fireedit source near-cvpr-2025 image-editing image-generation primary-source"
   },
   {
     "slug": "sources/2026-04-12-insightedit",
     "title": "InsightEdit（CVPR 2025）：迈向更强指令跟随的图像编辑",
+    "title_en": "InsightEdit（CVPR 2025）：迈向更强指令跟随的图像编辑",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -217,55 +319,80 @@
       "image-generation",
       "primary-source"
     ],
-    "url": "sources/2026-04-12-insightedit.html"
+    "url": "sources/2026-04-12-insightedit.html",
+    "url_en": "en/sources/2026-04-12-insightedit.html",
+    "search_text": "InsightEdit（CVPR 2025）：迈向更强指令跟随的图像编辑 InsightEdit（CVPR 2025）：迈向更强指令跟随的图像编辑   sources/2026-04-12-insightedit source near-cvpr-2025 image-editing image-generation primary-source"
   },
   {
     "slug": "sources/2026-04-12-lingen",
     "title": "LinGen（CVPR 2025）：面向高分辨率分钟级文本到视频生成的线性复杂度框架",
+    "title_en": "LinGen（CVPR 2025）：面向高分辨率分钟级文本到视频生成的线性复杂度框架",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
       "video-generation",
       "primary-source"
     ],
-    "url": "sources/2026-04-12-lingen.html"
+    "url": "sources/2026-04-12-lingen.html",
+    "url_en": "en/sources/2026-04-12-lingen.html",
+    "search_text": "LinGen（CVPR 2025）：面向高分辨率分钟级文本到视频生成的线性复杂度框架 LinGen（CVPR 2025）：面向高分辨率分钟级文本到视频生成的线性复杂度框架   sources/2026-04-12-lingen source near-cvpr-2025 video-generation primary-source"
   },
   {
     "slug": "sources/2026-04-12-omnigen",
     "title": "OmniGen（CVPR 2025）：统一图像生成",
+    "title_en": "OmniGen（CVPR 2025）：统一图像生成",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
       "image-generation",
       "primary-source"
     ],
-    "url": "sources/2026-04-12-omnigen.html"
+    "url": "sources/2026-04-12-omnigen.html",
+    "url_en": "en/sources/2026-04-12-omnigen.html",
+    "search_text": "OmniGen（CVPR 2025）：统一图像生成 OmniGen（CVPR 2025）：统一图像生成   sources/2026-04-12-omnigen source near-cvpr-2025 image-generation primary-source"
   },
   {
     "slug": "sources/2026-04-12-osv",
     "title": "OSV（CVPR 2025）：高质量图像到视频生成一步就够",
+    "title_en": "OSV（CVPR 2025）：高质量图像到视频生成一步就够",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
       "video-generation",
       "primary-source"
     ],
-    "url": "sources/2026-04-12-osv.html"
+    "url": "sources/2026-04-12-osv.html",
+    "url_en": "en/sources/2026-04-12-osv.html",
+    "search_text": "OSV（CVPR 2025）：高质量图像到视频生成一步就够 OSV（CVPR 2025）：高质量图像到视频生成一步就够   sources/2026-04-12-osv source near-cvpr-2025 video-generation primary-source"
   },
   {
     "slug": "sources/2026-04-12-streamingt2v",
     "title": "StreamingT2V（CVPR 2025）：一致、动态、可扩展的长视频文本生成",
+    "title_en": "StreamingT2V（CVPR 2025）：一致、动态、可扩展的长视频文本生成",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
       "video-generation",
       "primary-source"
     ],
-    "url": "sources/2026-04-12-streamingt2v.html"
+    "url": "sources/2026-04-12-streamingt2v.html",
+    "url_en": "en/sources/2026-04-12-streamingt2v.html",
+    "search_text": "StreamingT2V（CVPR 2025）：一致、动态、可扩展的长视频文本生成 StreamingT2V（CVPR 2025）：一致、动态、可扩展的长视频文本生成   sources/2026-04-12-streamingt2v source near-cvpr-2025 video-generation primary-source"
   },
   {
     "slug": "sources/2026-04-12-swiftedit",
     "title": "SwiftEdit（CVPR 2025）：基于一步扩散的极速文本引导图像编辑",
+    "title_en": "SwiftEdit（CVPR 2025）：基于一步扩散的极速文本引导图像编辑",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -273,22 +400,32 @@
       "image-generation",
       "primary-source"
     ],
-    "url": "sources/2026-04-12-swiftedit.html"
+    "url": "sources/2026-04-12-swiftedit.html",
+    "url_en": "en/sources/2026-04-12-swiftedit.html",
+    "search_text": "SwiftEdit（CVPR 2025）：基于一步扩散的极速文本引导图像编辑 SwiftEdit（CVPR 2025）：基于一步扩散的极速文本引导图像编辑   sources/2026-04-12-swiftedit source near-cvpr-2025 image-editing image-generation primary-source"
   },
   {
     "slug": "sources/2026-04-12-tora",
     "title": "Tora（CVPR 2025）：面向视频生成的轨迹导向扩散 Transformer",
+    "title_en": "Tora（CVPR 2025）：面向视频生成的轨迹导向扩散 Transformer",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
       "video-generation",
       "primary-source"
     ],
-    "url": "sources/2026-04-12-tora.html"
+    "url": "sources/2026-04-12-tora.html",
+    "url_en": "en/sources/2026-04-12-tora.html",
+    "search_text": "Tora（CVPR 2025）：面向视频生成的轨迹导向扩散 Transformer Tora（CVPR 2025）：面向视频生成的轨迹导向扩散 Transformer   sources/2026-04-12-tora source near-cvpr-2025 video-generation primary-source"
   },
   {
     "slug": "sources/2026-04-12-unireal",
     "title": "UniReal（CVPR 2025）：通过学习真实世界动态实现通用图像生成与编辑",
+    "title_en": "UniReal（CVPR 2025）：通过学习真实世界动态实现通用图像生成与编辑",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -296,33 +433,48 @@
       "image-editing",
       "primary-source"
     ],
-    "url": "sources/2026-04-12-unireal.html"
+    "url": "sources/2026-04-12-unireal.html",
+    "url_en": "en/sources/2026-04-12-unireal.html",
+    "search_text": "UniReal（CVPR 2025）：通过学习真实世界动态实现通用图像生成与编辑 UniReal（CVPR 2025）：通过学习真实世界动态实现通用图像生成与编辑   sources/2026-04-12-unireal source near-cvpr-2025 image-generation image-editing primary-source"
   },
   {
     "slug": "sources/2026-04-12-veu-bench",
     "title": "VEU-Bench（CVPR 2025）：迈向对视频编辑的全面理解",
+    "title_en": "VEU-Bench（CVPR 2025）：迈向对视频编辑的全面理解",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
       "video-editing",
       "primary-source"
     ],
-    "url": "sources/2026-04-12-veu-bench.html"
+    "url": "sources/2026-04-12-veu-bench.html",
+    "url_en": "en/sources/2026-04-12-veu-bench.html",
+    "search_text": "VEU-Bench（CVPR 2025）：迈向对视频编辑的全面理解 VEU-Bench（CVPR 2025）：迈向对视频编辑的全面理解   sources/2026-04-12-veu-bench source near-cvpr-2025 video-editing primary-source"
   },
   {
     "slug": "sources/2026-04-12-videodirector",
     "title": "VideoDirector（CVPR 2025）：借助文本到视频模型实现精确视频编辑",
+    "title_en": "VideoDirector（CVPR 2025）：借助文本到视频模型实现精确视频编辑",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
       "video-editing",
       "primary-source"
     ],
-    "url": "sources/2026-04-12-videodirector.html"
+    "url": "sources/2026-04-12-videodirector.html",
+    "url_en": "en/sources/2026-04-12-videodirector.html",
+    "search_text": "VideoDirector（CVPR 2025）：借助文本到视频模型实现精确视频编辑 VideoDirector（CVPR 2025）：借助文本到视频模型实现精确视频编辑   sources/2026-04-12-videodirector source near-cvpr-2025 video-editing primary-source"
   },
   {
     "slug": "sources/2026-04-14-aigv-assessor",
     "title": "AIGV-Assessor（CVPR 2025）：用大模型评测文本到视频生成感知质量",
+    "title_en": "AIGV-Assessor（CVPR 2025）：用大模型评测文本到视频生成感知质量",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -331,11 +483,16 @@
       "benchmarking",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-aigv-assessor.html"
+    "url": "sources/2026-04-14-aigv-assessor.html",
+    "url_en": "en/sources/2026-04-14-aigv-assessor.html",
+    "search_text": "AIGV-Assessor（CVPR 2025）：用大模型评测文本到视频生成感知质量 AIGV-Assessor（CVPR 2025）：用大模型评测文本到视频生成感知质量   sources/2026-04-14-aigv-assessor source near-cvpr-2025 video-generation evaluation benchmarking primary-source"
   },
   {
     "slug": "sources/2026-04-14-anetqa",
     "title": "ANetQA（CVPR 2023）：面向未裁剪视频细粒度组合推理的大规模基准",
+    "title_en": "ANetQA（CVPR 2023）：面向未裁剪视频细粒度组合推理的大规模基准",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -345,11 +502,16 @@
       "reasoning",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-anetqa.html"
+    "url": "sources/2026-04-14-anetqa.html",
+    "url_en": "en/sources/2026-04-14-anetqa.html",
+    "search_text": "ANetQA（CVPR 2023）：面向未裁剪视频细粒度组合推理的大规模基准 ANetQA（CVPR 2023）：面向未裁剪视频细粒度组合推理的大规模基准   sources/2026-04-14-anetqa source near-cvpr-2025 video-understanding evaluation benchmarking reasoning primary-source"
   },
   {
     "slug": "sources/2026-04-14-anydoor",
     "title": "AnyDoor（CVPR 2024）：零样本对象级图像定制",
+    "title_en": "AnyDoor（CVPR 2024）：零样本对象级图像定制",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -358,22 +520,32 @@
       "control",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-anydoor.html"
+    "url": "sources/2026-04-14-anydoor.html",
+    "url_en": "en/sources/2026-04-14-anydoor.html",
+    "search_text": "AnyDoor（CVPR 2024）：零样本对象级图像定制 AnyDoor（CVPR 2024）：零样本对象级图像定制   sources/2026-04-14-anydoor source near-cvpr-2025 image-generation image-editing control primary-source"
   },
   {
     "slug": "sources/2026-04-14-attention-calibration-personalization",
     "title": "Attention Calibration for Disentangled Text-to-Image Personalization（CVPR 2024）：解耦式文本到图像个性化的注意力校准",
+    "title_en": "Attention Calibration for Disentangled Text-to-Image Personalization（CVPR 2024）：解耦式文本到图像个性化的注意力校准",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
       "image-generation",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-attention-calibration-personalization.html"
+    "url": "sources/2026-04-14-attention-calibration-personalization.html",
+    "url_en": "en/sources/2026-04-14-attention-calibration-personalization.html",
+    "search_text": "Attention Calibration for Disentangled Text-to-Image Personalization（CVPR 2024）：解耦式文本到图像个性化的注意力校准 Attention Calibration for Disentangled Text-to-Image Personalization（CVPR 2024）：解耦式文本到图像个性化的注意力校准   sources/2026-04-14-attention-calibration-personalization source near-cvpr-2025 image-generation primary-source"
   },
   {
     "slug": "sources/2026-04-14-avid-video-inpainting",
     "title": "AVID（CVPR 2024）：基于扩散模型的任意长度视频修补",
+    "title_en": "AVID（CVPR 2024）：基于扩散模型的任意长度视频修补",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -382,11 +554,16 @@
       "diffusion",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-avid-video-inpainting.html"
+    "url": "sources/2026-04-14-avid-video-inpainting.html",
+    "url_en": "en/sources/2026-04-14-avid-video-inpainting.html",
+    "search_text": "AVID（CVPR 2024）：基于扩散模型的任意长度视频修补 AVID（CVPR 2024）：基于扩散模型的任意长度视频修补   sources/2026-04-14-avid-video-inpainting source near-cvpr-2025 video-editing video-generation diffusion primary-source"
   },
   {
     "slug": "sources/2026-04-14-camel-video-editing",
     "title": "CAMEL（CVPR 2024）：面向文本驱动视频编辑的因果运动增强",
+    "title_en": "CAMEL（CVPR 2024）：面向文本驱动视频编辑的因果运动增强",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -396,11 +573,16 @@
       "control",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-camel-video-editing.html"
+    "url": "sources/2026-04-14-camel-video-editing.html",
+    "url_en": "en/sources/2026-04-14-camel-video-editing.html",
+    "search_text": "CAMEL（CVPR 2024）：面向文本驱动视频编辑的因果运动增强 CAMEL（CVPR 2024）：面向文本驱动视频编辑的因果运动增强   sources/2026-04-14-camel-video-editing source near-cvpr-2025 video-editing video-generation diffusion control primary-source"
   },
   {
     "slug": "sources/2026-04-14-ccedit",
     "title": "CCEdit（CVPR 2024）：创意且可控的视频编辑",
+    "title_en": "CCEdit（CVPR 2024）：创意且可控的视频编辑",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -409,11 +591,16 @@
       "diffusion",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-ccedit.html"
+    "url": "sources/2026-04-14-ccedit.html",
+    "url_en": "en/sources/2026-04-14-ccedit.html",
+    "search_text": "CCEdit（CVPR 2024）：创意且可控的视频编辑 CCEdit（CVPR 2024）：创意且可控的视频编辑   sources/2026-04-14-ccedit source near-cvpr-2025 video-editing video-generation diffusion primary-source"
   },
   {
     "slug": "sources/2026-04-14-check-locate-rectify",
     "title": "Check, Locate, Rectify（CVPR 2024）：文本到图像生成的训练免费布局校准系统",
+    "title_en": "Check, Locate, Rectify（CVPR 2024）：文本到图像生成的训练免费布局校准系统",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -421,11 +608,16 @@
       "control",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-check-locate-rectify.html"
+    "url": "sources/2026-04-14-check-locate-rectify.html",
+    "url_en": "en/sources/2026-04-14-check-locate-rectify.html",
+    "search_text": "Check, Locate, Rectify（CVPR 2024）：文本到图像生成的训练免费布局校准系统 Check, Locate, Rectify（CVPR 2024）：文本到图像生成的训练免费布局校准系统   sources/2026-04-14-check-locate-rectify source near-cvpr-2025 image-generation control primary-source"
   },
   {
     "slug": "sources/2026-04-14-codi",
     "title": "CoDi（CVPR 2024）：用于更高保真且更快图像生成的条件扩散蒸馏",
+    "title_en": "CoDi（CVPR 2024）：用于更高保真且更快图像生成的条件扩散蒸馏",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -434,11 +626,16 @@
       "efficiency",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-codi.html"
+    "url": "sources/2026-04-14-codi.html",
+    "url_en": "en/sources/2026-04-14-codi.html",
+    "search_text": "CoDi（CVPR 2024）：用于更高保真且更快图像生成的条件扩散蒸馏 CoDi（CVPR 2024）：用于更高保真且更快图像生成的条件扩散蒸馏   sources/2026-04-14-codi source near-cvpr-2025 image-generation diffusion efficiency primary-source"
   },
   {
     "slug": "sources/2026-04-14-commoncanvas",
     "title": "CommonCanvas（CVPR 2024）：在 Creative Commons 图像上训练的开放扩散模型",
+    "title_en": "CommonCanvas（CVPR 2024）：在 Creative Commons 图像上训练的开放扩散模型",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -446,11 +643,16 @@
       "diffusion",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-commoncanvas.html"
+    "url": "sources/2026-04-14-commoncanvas.html",
+    "url_en": "en/sources/2026-04-14-commoncanvas.html",
+    "search_text": "CommonCanvas（CVPR 2024）：在 Creative Commons 图像上训练的开放扩散模型 CommonCanvas（CVPR 2024）：在 Creative Commons 图像上训练的开放扩散模型   sources/2026-04-14-commoncanvas source near-cvpr-2025 image-generation diffusion primary-source"
   },
   {
     "slug": "sources/2026-04-14-concept-weaver",
     "title": "Concept Weaver（CVPR 2024）：在文本到图像模型中实现多概念融合",
+    "title_en": "Concept Weaver（CVPR 2024）：在文本到图像模型中实现多概念融合",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -458,11 +660,16 @@
       "image-editing",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-concept-weaver.html"
+    "url": "sources/2026-04-14-concept-weaver.html",
+    "url_en": "en/sources/2026-04-14-concept-weaver.html",
+    "search_text": "Concept Weaver（CVPR 2024）：在文本到图像模型中实现多概念融合 Concept Weaver（CVPR 2024）：在文本到图像模型中实现多概念融合   sources/2026-04-14-concept-weaver source near-cvpr-2025 image-generation image-editing primary-source"
   },
   {
     "slug": "sources/2026-04-14-concon-chi",
     "title": "ConCon-Chi（CVPR 2024）：面向个性化视觉语言任务的概念-上下文嵌合基准",
+    "title_en": "ConCon-Chi（CVPR 2024）：面向个性化视觉语言任务的概念-上下文嵌合基准",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -471,11 +678,16 @@
       "vision-language",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-concon-chi.html"
+    "url": "sources/2026-04-14-concon-chi.html",
+    "url_en": "en/sources/2026-04-14-concon-chi.html",
+    "search_text": "ConCon-Chi（CVPR 2024）：面向个性化视觉语言任务的概念-上下文嵌合基准 ConCon-Chi（CVPR 2024）：面向个性化视觉语言任务的概念-上下文嵌合基准   sources/2026-04-14-concon-chi source near-cvpr-2025 evaluation benchmarking vision-language primary-source"
   },
   {
     "slug": "sources/2026-04-14-condition-aware-neural-network",
     "title": "Condition-Aware Neural Network for Controlled Image Generation（CVPR 2024）：面向可控图像生成的条件感知网络",
+    "title_en": "Condition-Aware Neural Network for Controlled Image Generation（CVPR 2024）：面向可控图像生成的条件感知网络",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -483,11 +695,16 @@
       "control",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-condition-aware-neural-network.html"
+    "url": "sources/2026-04-14-condition-aware-neural-network.html",
+    "url_en": "en/sources/2026-04-14-condition-aware-neural-network.html",
+    "search_text": "Condition-Aware Neural Network for Controlled Image Generation（CVPR 2024）：面向可控图像生成的条件感知网络 Condition-Aware Neural Network for Controlled Image Generation（CVPR 2024）：面向可控图像生成的条件感知网络   sources/2026-04-14-condition-aware-neural-network source near-cvpr-2025 image-generation control primary-source"
   },
   {
     "slug": "sources/2026-04-14-conform",
     "title": "CONFORM（CVPR 2024）：用对比学习提升高保真文本到图像扩散模型",
+    "title_en": "CONFORM（CVPR 2024）：用对比学习提升高保真文本到图像扩散模型",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -495,11 +712,16 @@
       "diffusion",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-conform.html"
+    "url": "sources/2026-04-14-conform.html",
+    "url_en": "en/sources/2026-04-14-conform.html",
+    "search_text": "CONFORM（CVPR 2024）：用对比学习提升高保真文本到图像扩散模型 CONFORM（CVPR 2024）：用对比学习提升高保真文本到图像扩散模型   sources/2026-04-14-conform source near-cvpr-2025 image-generation diffusion primary-source"
   },
   {
     "slug": "sources/2026-04-14-contrastive-denoising-score",
     "title": "Contrastive Denoising Score（CVPR 2024）：用于文本引导潜扩散图像编辑的对比去噪评分",
+    "title_en": "Contrastive Denoising Score（CVPR 2024）：用于文本引导潜扩散图像编辑的对比去噪评分",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -508,22 +730,32 @@
       "diffusion",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-contrastive-denoising-score.html"
+    "url": "sources/2026-04-14-contrastive-denoising-score.html",
+    "url_en": "en/sources/2026-04-14-contrastive-denoising-score.html",
+    "search_text": "Contrastive Denoising Score（CVPR 2024）：用于文本引导潜扩散图像编辑的对比去噪评分 Contrastive Denoising Score（CVPR 2024）：用于文本引导潜扩散图像编辑的对比去噪评分   sources/2026-04-14-contrastive-denoising-score source near-cvpr-2025 image-editing image-generation diffusion primary-source"
   },
   {
     "slug": "sources/2026-04-14-cosmicman",
     "title": "CosmicMan（CVPR 2024）：面向人物的文本到图像基础模型",
+    "title_en": "CosmicMan（CVPR 2024）：面向人物的文本到图像基础模型",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
       "image-generation",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-cosmicman.html"
+    "url": "sources/2026-04-14-cosmicman.html",
+    "url_en": "en/sources/2026-04-14-cosmicman.html",
+    "search_text": "CosmicMan（CVPR 2024）：面向人物的文本到图像基础模型 CosmicMan（CVPR 2024）：面向人物的文本到图像基础模型   sources/2026-04-14-cosmicman source near-cvpr-2025 image-generation primary-source"
   },
   {
     "slug": "sources/2026-04-14-customization-assistant",
     "title": "Customization Assistant（CVPR 2024）：面向文本到图像生成的定制辅助系统",
+    "title_en": "Customization Assistant（CVPR 2024）：面向文本到图像生成的定制辅助系统",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -531,22 +763,32 @@
       "image-editing",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-customization-assistant.html"
+    "url": "sources/2026-04-14-customization-assistant.html",
+    "url_en": "en/sources/2026-04-14-customization-assistant.html",
+    "search_text": "Customization Assistant（CVPR 2024）：面向文本到图像生成的定制辅助系统 Customization Assistant（CVPR 2024）：面向文本到图像生成的定制辅助系统   sources/2026-04-14-customization-assistant source near-cvpr-2025 image-generation image-editing primary-source"
   },
   {
     "slug": "sources/2026-04-14-diffeditor",
     "title": "DiffEditor（CVPR 2024）：提升扩散式图像编辑的精度与灵活性",
+    "title_en": "DiffEditor（CVPR 2024）：提升扩散式图像编辑的精度与灵活性",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
       "image-editing",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-diffeditor.html"
+    "url": "sources/2026-04-14-diffeditor.html",
+    "url_en": "en/sources/2026-04-14-diffeditor.html",
+    "search_text": "DiffEditor（CVPR 2024）：提升扩散式图像编辑的精度与灵活性 DiffEditor（CVPR 2024）：提升扩散式图像编辑的精度与灵活性   sources/2026-04-14-diffeditor source near-cvpr-2025 image-editing primary-source"
   },
   {
     "slug": "sources/2026-04-14-dive-subject-driven-video-editing",
     "title": "DIVE（ICCV 2025）：用 DINO 做主体驱动视频编辑",
+    "title_en": "DIVE（ICCV 2025）：用 DINO 做主体驱动视频编辑",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -555,22 +797,32 @@
       "image-generation",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-dive-subject-driven-video-editing.html"
+    "url": "sources/2026-04-14-dive-subject-driven-video-editing.html",
+    "url_en": "en/sources/2026-04-14-dive-subject-driven-video-editing.html",
+    "search_text": "DIVE（ICCV 2025）：用 DINO 做主体驱动视频编辑 DIVE（ICCV 2025）：用 DINO 做主体驱动视频编辑   sources/2026-04-14-dive-subject-driven-video-editing source near-cvpr-2025 video-editing image-editing image-generation primary-source"
   },
   {
     "slug": "sources/2026-04-14-domain-expansion-image-generators",
     "title": "Domain Expansion of Image Generators（CVPR 2023）：图像生成器的领域扩展",
+    "title_en": "Domain Expansion of Image Generators（CVPR 2023）：图像生成器的领域扩展",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
       "image-generation",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-domain-expansion-image-generators.html"
+    "url": "sources/2026-04-14-domain-expansion-image-generators.html",
+    "url_en": "en/sources/2026-04-14-domain-expansion-image-generators.html",
+    "search_text": "Domain Expansion of Image Generators（CVPR 2023）：图像生成器的领域扩展 Domain Expansion of Image Generators（CVPR 2023）：图像生成器的领域扩展   sources/2026-04-14-domain-expansion-image-generators source near-cvpr-2025 image-generation primary-source"
   },
   {
     "slug": "sources/2026-04-14-dreambooth",
     "title": "DreamBooth（CVPR 2023）：面向主体驱动生成的文本到图像扩散微调",
+    "title_en": "DreamBooth（CVPR 2023）：面向主体驱动生成的文本到图像扩散微调",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -578,11 +830,16 @@
       "image-editing",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-dreambooth.html"
+    "url": "sources/2026-04-14-dreambooth.html",
+    "url_en": "en/sources/2026-04-14-dreambooth.html",
+    "search_text": "DreamBooth（CVPR 2023）：面向主体驱动生成的文本到图像扩散微调 DreamBooth（CVPR 2023）：面向主体驱动生成的文本到图像扩散微调   sources/2026-04-14-dreambooth source near-cvpr-2025 image-generation image-editing primary-source"
   },
   {
     "slug": "sources/2026-04-14-dynvideo-e",
     "title": "DynVideo-E（CVPR 2024）：利用动态 NeRF 做大尺度运动与视角变化的人体中心视频编辑",
+    "title_en": "DynVideo-E（CVPR 2024）：利用动态 NeRF 做大尺度运动与视角变化的人体中心视频编辑",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -590,11 +847,16 @@
       "video-generation",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-dynvideo-e.html"
+    "url": "sources/2026-04-14-dynvideo-e.html",
+    "url_en": "en/sources/2026-04-14-dynvideo-e.html",
+    "search_text": "DynVideo-E（CVPR 2024）：利用动态 NeRF 做大尺度运动与视角变化的人体中心视频编辑 DynVideo-E（CVPR 2024）：利用动态 NeRF 做大尺度运动与视角变化的人体中心视频编辑   sources/2026-04-14-dynvideo-e source near-cvpr-2025 video-editing video-generation primary-source"
   },
   {
     "slug": "sources/2026-04-14-effective-real-image-editing",
     "title": "加速迭代扩散反演的真实图像编辑（ICCV 2023）",
+    "title_en": "加速迭代扩散反演的真实图像编辑（ICCV 2023）",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -602,11 +864,16 @@
       "diffusion",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-effective-real-image-editing.html"
+    "url": "sources/2026-04-14-effective-real-image-editing.html",
+    "url_en": "en/sources/2026-04-14-effective-real-image-editing.html",
+    "search_text": "加速迭代扩散反演的真实图像编辑（ICCV 2023） 加速迭代扩散反演的真实图像编辑（ICCV 2023）   sources/2026-04-14-effective-real-image-editing source near-cvpr-2025 image-editing diffusion primary-source"
   },
   {
     "slug": "sources/2026-04-14-encapsulated-composition-t2i-t2v",
     "title": "Encapsulated Composition（CVPR 2025）：组合式文本到图像/视频模型高质量视频合成",
+    "title_en": "Encapsulated Composition（CVPR 2025）：组合式文本到图像/视频模型高质量视频合成",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -614,11 +881,16 @@
       "image-generation",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-encapsulated-composition-t2i-t2v.html"
+    "url": "sources/2026-04-14-encapsulated-composition-t2i-t2v.html",
+    "url_en": "en/sources/2026-04-14-encapsulated-composition-t2i-t2v.html",
+    "search_text": "Encapsulated Composition（CVPR 2025）：组合式文本到图像/视频模型高质量视频合成 Encapsulated Composition（CVPR 2025）：组合式文本到图像/视频模型高质量视频合成   sources/2026-04-14-encapsulated-composition-t2i-t2v source near-cvpr-2025 video-generation image-generation primary-source"
   },
   {
     "slug": "sources/2026-04-14-evalcrafter",
     "title": "EvalCrafter（CVPR 2024）：大视频生成模型的评测与基准",
+    "title_en": "EvalCrafter（CVPR 2024）：大视频生成模型的评测与基准",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -627,11 +899,16 @@
       "benchmarking",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-evalcrafter.html"
+    "url": "sources/2026-04-14-evalcrafter.html",
+    "url_en": "en/sources/2026-04-14-evalcrafter.html",
+    "search_text": "EvalCrafter（CVPR 2024）：大视频生成模型的评测与基准 EvalCrafter（CVPR 2024）：大视频生成模型的评测与基准   sources/2026-04-14-evalcrafter source near-cvpr-2025 video-generation evaluation benchmarking primary-source"
   },
   {
     "slug": "sources/2026-04-14-fairy-video-to-video",
     "title": "Fairy（CVPR 2024）：快速并行的指令引导视频到视频合成",
+    "title_en": "Fairy（CVPR 2024）：快速并行的指令引导视频到视频合成",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -640,22 +917,32 @@
       "efficiency",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-fairy-video-to-video.html"
+    "url": "sources/2026-04-14-fairy-video-to-video.html",
+    "url_en": "en/sources/2026-04-14-fairy-video-to-video.html",
+    "search_text": "Fairy（CVPR 2024）：快速并行的指令引导视频到视频合成 Fairy（CVPR 2024）：快速并行的指令引导视频到视频合成   sources/2026-04-14-fairy-video-to-video source near-cvpr-2025 video-editing video-generation efficiency primary-source"
   },
   {
     "slug": "sources/2026-04-14-fatezero",
     "title": "FateZero（ICCV 2023）：融合注意力做零样本文本视频编辑",
+    "title_en": "FateZero（ICCV 2023）：融合注意力做零样本文本视频编辑",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
       "video-editing",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-fatezero.html"
+    "url": "sources/2026-04-14-fatezero.html",
+    "url_en": "en/sources/2026-04-14-fatezero.html",
+    "search_text": "FateZero（ICCV 2023）：融合注意力做零样本文本视频编辑 FateZero（ICCV 2023）：融合注意力做零样本文本视频编辑   sources/2026-04-14-fatezero source near-cvpr-2025 video-editing primary-source"
   },
   {
     "slug": "sources/2026-04-14-five-bench",
     "title": "FiVE-Bench（ICCV 2025）：细粒度视频编辑评测基准",
+    "title_en": "FiVE-Bench（ICCV 2025）：细粒度视频编辑评测基准",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -664,11 +951,16 @@
       "benchmarking",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-five-bench.html"
+    "url": "sources/2026-04-14-five-bench.html",
+    "url_en": "en/sources/2026-04-14-five-bench.html",
+    "search_text": "FiVE-Bench（ICCV 2025）：细粒度视频编辑评测基准 FiVE-Bench（ICCV 2025）：细粒度视频编辑评测基准   sources/2026-04-14-five-bench source near-cvpr-2025 video-editing evaluation benchmarking primary-source"
   },
   {
     "slug": "sources/2026-04-14-flasheval",
     "title": "FlashEval（CVPR 2024）：快速而准确地评测文本到图像扩散模型",
+    "title_en": "FlashEval（CVPR 2024）：快速而准确地评测文本到图像扩散模型",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -677,11 +969,16 @@
       "benchmarking",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-flasheval.html"
+    "url": "sources/2026-04-14-flasheval.html",
+    "url_en": "en/sources/2026-04-14-flasheval.html",
+    "search_text": "FlashEval（CVPR 2024）：快速而准确地评测文本到图像扩散模型 FlashEval（CVPR 2024）：快速而准确地评测文本到图像扩散模型   sources/2026-04-14-flasheval source near-cvpr-2025 image-generation evaluation benchmarking primary-source"
   },
   {
     "slug": "sources/2026-04-14-flowvid",
     "title": "FlowVid（CVPR 2024）：通过处理不完美光流实现一致的视频到视频合成",
+    "title_en": "FlowVid（CVPR 2024）：通过处理不完美光流实现一致的视频到视频合成",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -689,11 +986,16 @@
       "video-generation",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-flowvid.html"
+    "url": "sources/2026-04-14-flowvid.html",
+    "url_en": "en/sources/2026-04-14-flowvid.html",
+    "search_text": "FlowVid（CVPR 2024）：通过处理不完美光流实现一致的视频到视频合成 FlowVid（CVPR 2024）：通过处理不完美光流实现一致的视频到视频合成   sources/2026-04-14-flowvid source near-cvpr-2025 video-editing video-generation primary-source"
   },
   {
     "slug": "sources/2026-04-14-framepainter",
     "title": "FramePainter（ICCV 2025）：用视频扩散先验增强交互式图像编辑",
+    "title_en": "FramePainter（ICCV 2025）：用视频扩散先验增强交互式图像编辑",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -702,11 +1004,16 @@
       "video-generation",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-framepainter.html"
+    "url": "sources/2026-04-14-framepainter.html",
+    "url_en": "en/sources/2026-04-14-framepainter.html",
+    "search_text": "FramePainter（ICCV 2025）：用视频扩散先验增强交互式图像编辑 FramePainter（ICCV 2025）：用视频扩散先验增强交互式图像编辑   sources/2026-04-14-framepainter source near-cvpr-2025 image-editing video-editing video-generation primary-source"
   },
   {
     "slug": "sources/2026-04-14-gligen",
     "title": "GLIGEN（CVPR 2023）：开放集合 grounded 文本到图像生成",
+    "title_en": "GLIGEN（CVPR 2023）：开放集合 grounded 文本到图像生成",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -714,11 +1021,16 @@
       "vision-language",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-gligen.html"
+    "url": "sources/2026-04-14-gligen.html",
+    "url_en": "en/sources/2026-04-14-gligen.html",
+    "search_text": "GLIGEN（CVPR 2023）：开放集合 grounded 文本到图像生成 GLIGEN（CVPR 2023）：开放集合 grounded 文本到图像生成   sources/2026-04-14-gligen source near-cvpr-2025 image-generation vision-language primary-source"
   },
   {
     "slug": "sources/2026-04-14-glitchbench",
     "title": "GlitchBench（CVPR 2024）：大型多模态模型能否识别电子游戏故障",
+    "title_en": "GlitchBench（CVPR 2024）：大型多模态模型能否识别电子游戏故障",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -727,11 +1039,16 @@
       "video-understanding",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-glitchbench.html"
+    "url": "sources/2026-04-14-glitchbench.html",
+    "url_en": "en/sources/2026-04-14-glitchbench.html",
+    "search_text": "GlitchBench（CVPR 2024）：大型多模态模型能否识别电子游戏故障 GlitchBench（CVPR 2024）：大型多模态模型能否识别电子游戏故障   sources/2026-04-14-glitchbench source near-cvpr-2025 evaluation benchmarking video-understanding primary-source"
   },
   {
     "slug": "sources/2026-04-14-hallusionbench",
     "title": "HallusionBench（CVPR 2024）：大型视觉语言模型中的幻觉与视觉错觉诊断基准",
+    "title_en": "HallusionBench（CVPR 2024）：大型视觉语言模型中的幻觉与视觉错觉诊断基准",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -740,11 +1057,16 @@
       "vision-language",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-hallusionbench.html"
+    "url": "sources/2026-04-14-hallusionbench.html",
+    "url_en": "en/sources/2026-04-14-hallusionbench.html",
+    "search_text": "HallusionBench（CVPR 2024）：大型视觉语言模型中的幻觉与视觉错觉诊断基准 HallusionBench（CVPR 2024）：大型视觉语言模型中的幻觉与视觉错觉诊断基准   sources/2026-04-14-hallusionbench source near-cvpr-2025 evaluation benchmarking vision-language primary-source"
   },
   {
     "slug": "sources/2026-04-14-image-specific-prompt-learning",
     "title": "通过图像特定提示学习实现零样本生成模型适配（CVPR 2023）",
+    "title_en": "通过图像特定提示学习实现零样本生成模型适配（CVPR 2023）",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -752,11 +1074,16 @@
       "image-editing",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-image-specific-prompt-learning.html"
+    "url": "sources/2026-04-14-image-specific-prompt-learning.html",
+    "url_en": "en/sources/2026-04-14-image-specific-prompt-learning.html",
+    "search_text": "通过图像特定提示学习实现零样本生成模型适配（CVPR 2023） 通过图像特定提示学习实现零样本生成模型适配（CVPR 2023）   sources/2026-04-14-image-specific-prompt-learning source near-cvpr-2025 image-generation image-editing primary-source"
   },
   {
     "slug": "sources/2026-04-14-imagen-editor-editbench",
     "title": "Imagen Editor 与 EditBench（CVPR 2023）：推进并评测文本引导图像修补",
+    "title_en": "Imagen Editor 与 EditBench（CVPR 2023）：推进并评测文本引导图像修补",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -765,11 +1092,16 @@
       "benchmarking",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-imagen-editor-editbench.html"
+    "url": "sources/2026-04-14-imagen-editor-editbench.html",
+    "url_en": "en/sources/2026-04-14-imagen-editor-editbench.html",
+    "search_text": "Imagen Editor 与 EditBench（CVPR 2023）：推进并评测文本引导图像修补 Imagen Editor 与 EditBench（CVPR 2023）：推进并评测文本引导图像修补   sources/2026-04-14-imagen-editor-editbench source near-cvpr-2025 image-editing evaluation benchmarking primary-source"
   },
   {
     "slug": "sources/2026-04-14-imagic",
     "title": "Imagic（CVPR 2023）：基于扩散模型的文本真实图像编辑",
+    "title_en": "Imagic（CVPR 2023）：基于扩散模型的文本真实图像编辑",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -777,22 +1109,32 @@
       "diffusion",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-imagic.html"
+    "url": "sources/2026-04-14-imagic.html",
+    "url_en": "en/sources/2026-04-14-imagic.html",
+    "search_text": "Imagic（CVPR 2023）：基于扩散模型的文本真实图像编辑 Imagic（CVPR 2023）：基于扩散模型的文本真实图像编辑   sources/2026-04-14-imagic source near-cvpr-2025 image-editing diffusion primary-source"
   },
   {
     "slug": "sources/2026-04-14-instructpix2pix",
     "title": "InstructPix2Pix（CVPR 2023）：学习遵循图像编辑指令",
+    "title_en": "InstructPix2Pix（CVPR 2023）：学习遵循图像编辑指令",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
       "image-editing",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-instructpix2pix.html"
+    "url": "sources/2026-04-14-instructpix2pix.html",
+    "url_en": "en/sources/2026-04-14-instructpix2pix.html",
+    "search_text": "InstructPix2Pix（CVPR 2023）：学习遵循图像编辑指令 InstructPix2Pix（CVPR 2023）：学习遵循图像编辑指令   sources/2026-04-14-instructpix2pix source near-cvpr-2025 image-editing primary-source"
   },
   {
     "slug": "sources/2026-04-14-insvie-1m",
     "title": "InsViE-1M（ICCV 2025）：通过精细数据构造实现有效的 instruction-based 视频编辑",
+    "title_en": "InsViE-1M（ICCV 2025）：通过精细数据构造实现有效的 instruction-based 视频编辑",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -801,11 +1143,16 @@
       "video-generation",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-insvie-1m.html"
+    "url": "sources/2026-04-14-insvie-1m.html",
+    "url_en": "en/sources/2026-04-14-insvie-1m.html",
+    "search_text": "InsViE-1M（ICCV 2025）：通过精细数据构造实现有效的 instruction-based 视频编辑 InsViE-1M（ICCV 2025）：通过精细数据构造实现有效的 instruction-based 视频编辑   sources/2026-04-14-insvie-1m source near-cvpr-2025 video-editing image-editing video-generation primary-source"
   },
   {
     "slug": "sources/2026-04-14-language-driven-video-inpainting",
     "title": "通过多模态大模型实现语言驱动视频修补（CVPR 2024）",
+    "title_en": "通过多模态大模型实现语言驱动视频修补（CVPR 2024）",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -814,11 +1161,16 @@
       "video-understanding",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-language-driven-video-inpainting.html"
+    "url": "sources/2026-04-14-language-driven-video-inpainting.html",
+    "url_en": "en/sources/2026-04-14-language-driven-video-inpainting.html",
+    "search_text": "通过多模态大模型实现语言驱动视频修补（CVPR 2024） 通过多模态大模型实现语言驱动视频修补（CVPR 2024）   sources/2026-04-14-language-driven-video-inpainting source near-cvpr-2025 video-editing vision-language video-understanding primary-source"
   },
   {
     "slug": "sources/2026-04-14-latent-diffusion-models",
     "title": "Latent Diffusion Models（CVPR 2022）：高分辨率图像合成的潜空间扩散框架",
+    "title_en": "Latent Diffusion Models（CVPR 2022）：高分辨率图像合成的潜空间扩散框架",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -826,11 +1178,16 @@
       "diffusion",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-latent-diffusion-models.html"
+    "url": "sources/2026-04-14-latent-diffusion-models.html",
+    "url_en": "en/sources/2026-04-14-latent-diffusion-models.html",
+    "search_text": "Latent Diffusion Models（CVPR 2022）：高分辨率图像合成的潜空间扩散框架 Latent Diffusion Models（CVPR 2022）：高分辨率图像合成的潜空间扩散框架   sources/2026-04-14-latent-diffusion-models source near-cvpr-2025 image-generation diffusion primary-source"
   },
   {
     "slug": "sources/2026-04-14-layoutdiffusion",
     "title": "LayoutDiffusion（CVPR 2023）：面向布局到图像生成的可控扩散模型",
+    "title_en": "LayoutDiffusion（CVPR 2023）：面向布局到图像生成的可控扩散模型",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -839,11 +1196,16 @@
       "diffusion",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-layoutdiffusion.html"
+    "url": "sources/2026-04-14-layoutdiffusion.html",
+    "url_en": "en/sources/2026-04-14-layoutdiffusion.html",
+    "search_text": "LayoutDiffusion（CVPR 2023）：面向布局到图像生成的可控扩散模型 LayoutDiffusion（CVPR 2023）：面向布局到图像生成的可控扩散模型   sources/2026-04-14-layoutdiffusion source near-cvpr-2025 image-generation control diffusion primary-source"
   },
   {
     "slug": "sources/2026-04-14-lvbench",
     "title": "LVBench（ICCV 2025）：极限长视频理解基准",
+    "title_en": "LVBench（ICCV 2025）：极限长视频理解基准",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -852,11 +1214,16 @@
       "benchmarking",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-lvbench.html"
+    "url": "sources/2026-04-14-lvbench.html",
+    "url_en": "en/sources/2026-04-14-lvbench.html",
+    "search_text": "LVBench（ICCV 2025）：极限长视频理解基准 LVBench（ICCV 2025）：极限长视频理解基准   sources/2026-04-14-lvbench source near-cvpr-2025 video-understanding evaluation benchmarking primary-source"
   },
   {
     "slug": "sources/2026-04-14-maplm",
     "title": "MAPLM（CVPR 2024）：面向地图与交通场景理解的真实世界大规模视觉语言基准",
+    "title_en": "MAPLM（CVPR 2024）：面向地图与交通场景理解的真实世界大规模视觉语言基准",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -865,11 +1232,16 @@
       "vision-language",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-maplm.html"
+    "url": "sources/2026-04-14-maplm.html",
+    "url_en": "en/sources/2026-04-14-maplm.html",
+    "search_text": "MAPLM（CVPR 2024）：面向地图与交通场景理解的真实世界大规模视觉语言基准 MAPLM（CVPR 2024）：面向地图与交通场景理解的真实世界大规模视觉语言基准   sources/2026-04-14-maplm source near-cvpr-2025 evaluation benchmarking vision-language primary-source"
   },
   {
     "slug": "sources/2026-04-14-maskint",
     "title": "MaskINT（CVPR 2024）：基于插值式非自回归 masked transformer 的视频编辑",
+    "title_en": "MaskINT（CVPR 2024）：基于插值式非自回归 masked transformer 的视频编辑",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -878,11 +1250,16 @@
       "autoregressive",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-maskint.html"
+    "url": "sources/2026-04-14-maskint.html",
+    "url_en": "en/sources/2026-04-14-maskint.html",
+    "search_text": "MaskINT（CVPR 2024）：基于插值式非自回归 masked transformer 的视频编辑 MaskINT（CVPR 2024）：基于插值式非自回归 masked transformer 的视频编辑   sources/2026-04-14-maskint source near-cvpr-2025 video-editing video-generation autoregressive primary-source"
   },
   {
     "slug": "sources/2026-04-14-mmmu",
     "title": "MMMU（CVPR 2024）：面向专家级 AGI 的大规模多学科多模态理解与推理基准",
+    "title_en": "MMMU（CVPR 2024）：面向专家级 AGI 的大规模多学科多模态理解与推理基准",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -892,11 +1269,16 @@
       "reasoning",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-mmmu.html"
+    "url": "sources/2026-04-14-mmmu.html",
+    "url_en": "en/sources/2026-04-14-mmmu.html",
+    "search_text": "MMMU（CVPR 2024）：面向专家级 AGI 的大规模多学科多模态理解与推理基准 MMMU（CVPR 2024）：面向专家级 AGI 的大规模多学科多模态理解与推理基准   sources/2026-04-14-mmmu source near-cvpr-2025 evaluation benchmarking vision-language reasoning primary-source"
   },
   {
     "slug": "sources/2026-04-14-motioneditor",
     "title": "MotionEditor（CVPR 2024）：基于内容感知扩散的视频运动编辑",
+    "title_en": "MotionEditor（CVPR 2024）：基于内容感知扩散的视频运动编辑",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -905,11 +1287,16 @@
       "diffusion",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-motioneditor.html"
+    "url": "sources/2026-04-14-motioneditor.html",
+    "url_en": "en/sources/2026-04-14-motioneditor.html",
+    "search_text": "MotionEditor（CVPR 2024）：基于内容感知扩散的视频运动编辑 MotionEditor（CVPR 2024）：基于内容感知扩散的视频运动编辑   sources/2026-04-14-motioneditor source near-cvpr-2025 video-editing video-generation diffusion primary-source"
   },
   {
     "slug": "sources/2026-04-14-motionfollower",
     "title": "MotionFollower（ICCV 2025）：通过 score-guided diffusion 编辑视频运动",
+    "title_en": "MotionFollower（ICCV 2025）：通过 score-guided diffusion 编辑视频运动",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -919,11 +1306,16 @@
       "control",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-motionfollower.html"
+    "url": "sources/2026-04-14-motionfollower.html",
+    "url_en": "en/sources/2026-04-14-motionfollower.html",
+    "search_text": "MotionFollower（ICCV 2025）：通过 score-guided diffusion 编辑视频运动 MotionFollower（ICCV 2025）：通过 score-guided diffusion 编辑视频运动   sources/2026-04-14-motionfollower source near-cvpr-2025 video-editing video-generation diffusion control primary-source"
   },
   {
     "slug": "sources/2026-04-14-motionstone",
     "title": "MotionStone（CVPR 2025）：用 DiT 解耦运动强度调制的图像到视频生成",
+    "title_en": "MotionStone（CVPR 2025）：用 DiT 解耦运动强度调制的图像到视频生成",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -931,11 +1323,16 @@
       "diffusion",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-motionstone.html"
+    "url": "sources/2026-04-14-motionstone.html",
+    "url_en": "en/sources/2026-04-14-motionstone.html",
+    "search_text": "MotionStone（CVPR 2025）：用 DiT 解耦运动强度调制的图像到视频生成 MotionStone（CVPR 2025）：用 DiT 解耦运动强度调制的图像到视频生成   sources/2026-04-14-motionstone source near-cvpr-2025 video-generation diffusion primary-source"
   },
   {
     "slug": "sources/2026-04-14-multi-concept-customization",
     "title": "文本到图像扩散中的多概念定制（CVPR 2023）",
+    "title_en": "文本到图像扩散中的多概念定制（CVPR 2023）",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -943,11 +1340,16 @@
       "image-editing",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-multi-concept-customization.html"
+    "url": "sources/2026-04-14-multi-concept-customization.html",
+    "url_en": "en/sources/2026-04-14-multi-concept-customization.html",
+    "search_text": "文本到图像扩散中的多概念定制（CVPR 2023） 文本到图像扩散中的多概念定制（CVPR 2023）   sources/2026-04-14-multi-concept-customization source near-cvpr-2025 image-generation image-editing primary-source"
   },
   {
     "slug": "sources/2026-04-14-mvbench",
     "title": "MVBench（CVPR 2024）：综合性的多模态视频理解基准",
+    "title_en": "MVBench（CVPR 2024）：综合性的多模态视频理解基准",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -956,11 +1358,16 @@
       "benchmarking",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-mvbench.html"
+    "url": "sources/2026-04-14-mvbench.html",
+    "url_en": "en/sources/2026-04-14-mvbench.html",
+    "search_text": "MVBench（CVPR 2024）：综合性的多模态视频理解基准 MVBench（CVPR 2024）：综合性的多模态视频理解基准   sources/2026-04-14-mvbench source near-cvpr-2025 video-understanding evaluation benchmarking primary-source"
   },
   {
     "slug": "sources/2026-04-14-neuro-symbolic-eval-t2v",
     "title": "通过形式化验证评测文本到视频模型的神经符号方法（CVPR 2025）",
+    "title_en": "通过形式化验证评测文本到视频模型的神经符号方法（CVPR 2025）",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -969,11 +1376,16 @@
       "video-generation",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-neuro-symbolic-eval-t2v.html"
+    "url": "sources/2026-04-14-neuro-symbolic-eval-t2v.html",
+    "url_en": "en/sources/2026-04-14-neuro-symbolic-eval-t2v.html",
+    "search_text": "通过形式化验证评测文本到视频模型的神经符号方法（CVPR 2025） 通过形式化验证评测文本到视频模型的神经符号方法（CVPR 2025）   sources/2026-04-14-neuro-symbolic-eval-t2v source near-cvpr-2025 evaluation benchmarking video-generation primary-source"
   },
   {
     "slug": "sources/2026-04-14-null-text-inversion",
     "title": "NULL-Text Inversion（CVPR 2023）：用 guided diffusion 编辑真实图像",
+    "title_en": "NULL-Text Inversion（CVPR 2023）：用 guided diffusion 编辑真实图像",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -981,11 +1393,16 @@
       "diffusion",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-null-text-inversion.html"
+    "url": "sources/2026-04-14-null-text-inversion.html",
+    "url_en": "en/sources/2026-04-14-null-text-inversion.html",
+    "search_text": "NULL-Text Inversion（CVPR 2023）：用 guided diffusion 编辑真实图像 NULL-Text Inversion（CVPR 2023）：用 guided diffusion 编辑真实图像   sources/2026-04-14-null-text-inversion source near-cvpr-2025 image-editing diffusion primary-source"
   },
   {
     "slug": "sources/2026-04-14-paint-by-example",
     "title": "Paint by Example（CVPR 2023）：基于示例的扩散图像编辑",
+    "title_en": "Paint by Example（CVPR 2023）：基于示例的扩散图像编辑",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -993,11 +1410,16 @@
       "image-generation",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-paint-by-example.html"
+    "url": "sources/2026-04-14-paint-by-example.html",
+    "url_en": "en/sources/2026-04-14-paint-by-example.html",
+    "search_text": "Paint by Example（CVPR 2023）：基于示例的扩散图像编辑 Paint by Example（CVPR 2023）：基于示例的扩散图像编辑   sources/2026-04-14-paint-by-example source near-cvpr-2025 image-editing image-generation primary-source"
   },
   {
     "slug": "sources/2026-04-14-pathways-image-manifold",
     "title": "Pathways on the Image Manifold（CVPR 2025）：通过视频生成做图像编辑",
+    "title_en": "Pathways on the Image Manifold（CVPR 2025）：通过视频生成做图像编辑",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1005,11 +1427,16 @@
       "image-generation",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-pathways-image-manifold.html"
+    "url": "sources/2026-04-14-pathways-image-manifold.html",
+    "url_en": "en/sources/2026-04-14-pathways-image-manifold.html",
+    "search_text": "Pathways on the Image Manifold（CVPR 2025）：通过视频生成做图像编辑 Pathways on the Image Manifold（CVPR 2025）：通过视频生成做图像编辑   sources/2026-04-14-pathways-image-manifold source near-cvpr-2025 image-editing image-generation primary-source"
   },
   {
     "slug": "sources/2026-04-14-pix2video",
     "title": "Pix2Video：利用图像扩散进行视频编辑",
+    "title_en": "Pix2Video：利用图像扩散进行视频编辑",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1018,11 +1445,16 @@
       "video-generation",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-pix2video.html"
+    "url": "sources/2026-04-14-pix2video.html",
+    "url_en": "en/sources/2026-04-14-pix2video.html",
+    "search_text": "Pix2Video：利用图像扩散进行视频编辑 Pix2Video：利用图像扩散进行视频编辑   sources/2026-04-14-pix2video source near-cvpr-2025 video-editing image-editing video-generation primary-source"
   },
   {
     "slug": "sources/2026-04-14-prompt-tuning-inversion",
     "title": "用于文本驱动图像编辑的 Prompt Tuning Inversion（ICCV 2023）",
+    "title_en": "用于文本驱动图像编辑的 Prompt Tuning Inversion（ICCV 2023）",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1030,11 +1462,16 @@
       "diffusion",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-prompt-tuning-inversion.html"
+    "url": "sources/2026-04-14-prompt-tuning-inversion.html",
+    "url_en": "en/sources/2026-04-14-prompt-tuning-inversion.html",
+    "search_text": "用于文本驱动图像编辑的 Prompt Tuning Inversion（ICCV 2023） 用于文本驱动图像编辑的 Prompt Tuning Inversion（ICCV 2023）   sources/2026-04-14-prompt-tuning-inversion source near-cvpr-2025 image-editing diffusion primary-source"
   },
   {
     "slug": "sources/2026-04-14-qk-edit",
     "title": "QK-Edit（ICCV 2025）：在 MM-DiT 中重新审视图像与视频编辑的 attention 注入",
+    "title_en": "QK-Edit（ICCV 2025）：在 MM-DiT 中重新审视图像与视频编辑的 attention 注入",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1045,11 +1482,16 @@
       "diffusion",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-qk-edit.html"
+    "url": "sources/2026-04-14-qk-edit.html",
+    "url_en": "en/sources/2026-04-14-qk-edit.html",
+    "search_text": "QK-Edit（ICCV 2025）：在 MM-DiT 中重新审视图像与视频编辑的 attention 注入 QK-Edit（ICCV 2025）：在 MM-DiT 中重新审视图像与视频编辑的 attention 注入   sources/2026-04-14-qk-edit source near-cvpr-2025 image-editing video-editing image-generation control diffusion primary-source"
   },
   {
     "slug": "sources/2026-04-14-rave-video-editing",
     "title": "RAVE（CVPR 2024）：通过随机噪声重排实现快速且一致的视频编辑",
+    "title_en": "RAVE（CVPR 2024）：通过随机噪声重排实现快速且一致的视频编辑",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1059,11 +1501,16 @@
       "diffusion",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-rave-video-editing.html"
+    "url": "sources/2026-04-14-rave-video-editing.html",
+    "url_en": "en/sources/2026-04-14-rave-video-editing.html",
+    "search_text": "RAVE（CVPR 2024）：通过随机噪声重排实现快速且一致的视频编辑 RAVE（CVPR 2024）：通过随机噪声重排实现快速且一致的视频编辑   sources/2026-04-14-rave-video-editing source near-cvpr-2025 video-editing video-generation efficiency diffusion primary-source"
   },
   {
     "slug": "sources/2026-04-14-reangle-a-video",
     "title": "Reangle-A-Video（ICCV 2025）：把 4D 视频生成重写为视频到视频翻译",
+    "title_en": "Reangle-A-Video（ICCV 2025）：把 4D 视频生成重写为视频到视频翻译",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1072,11 +1519,16 @@
       "image-generation",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-reangle-a-video.html"
+    "url": "sources/2026-04-14-reangle-a-video.html",
+    "url_en": "en/sources/2026-04-14-reangle-a-video.html",
+    "search_text": "Reangle-A-Video（ICCV 2025）：把 4D 视频生成重写为视频到视频翻译 Reangle-A-Video（ICCV 2025）：把 4D 视频生成重写为视频到视频翻译   sources/2026-04-14-reangle-a-video source near-cvpr-2025 video-generation video-editing image-generation primary-source"
   },
   {
     "slug": "sources/2026-04-14-reco",
     "title": "ReCo（CVPR 2023）：区域控制的文本到图像生成",
+    "title_en": "ReCo（CVPR 2023）：区域控制的文本到图像生成",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1084,11 +1536,16 @@
       "control",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-reco.html"
+    "url": "sources/2026-04-14-reco.html",
+    "url_en": "en/sources/2026-04-14-reco.html",
+    "search_text": "ReCo（CVPR 2023）：区域控制的文本到图像生成 ReCo（CVPR 2023）：区域控制的文本到图像生成   sources/2026-04-14-reco source near-cvpr-2025 image-generation control primary-source"
   },
   {
     "slug": "sources/2026-04-14-shape-aware-layered-video-editing",
     "title": "Shape-aware Text-driven Layered Video Editing（CVPR 2023）：形状感知的分层文本视频编辑",
+    "title_en": "Shape-aware Text-driven Layered Video Editing（CVPR 2023）：形状感知的分层文本视频编辑",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1097,11 +1554,16 @@
       "control",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-shape-aware-layered-video-editing.html"
+    "url": "sources/2026-04-14-shape-aware-layered-video-editing.html",
+    "url_en": "en/sources/2026-04-14-shape-aware-layered-video-editing.html",
+    "search_text": "Shape-aware Text-driven Layered Video Editing（CVPR 2023）：形状感知的分层文本视频编辑 Shape-aware Text-driven Layered Video Editing（CVPR 2023）：形状感知的分层文本视频编辑   sources/2026-04-14-shape-aware-layered-video-editing source near-cvpr-2025 video-editing video-generation control primary-source"
   },
   {
     "slug": "sources/2026-04-14-sketchvideo",
     "title": "SketchVideo（CVPR 2025）：基于草图的视频生成与编辑",
+    "title_en": "SketchVideo（CVPR 2025）：基于草图的视频生成与编辑",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1109,11 +1571,16 @@
       "video-editing",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-sketchvideo.html"
+    "url": "sources/2026-04-14-sketchvideo.html",
+    "url_en": "en/sources/2026-04-14-sketchvideo.html",
+    "search_text": "SketchVideo（CVPR 2025）：基于草图的视频生成与编辑 SketchVideo（CVPR 2025）：基于草图的视频生成与编辑   sources/2026-04-14-sketchvideo source near-cvpr-2025 video-generation video-editing primary-source"
   },
   {
     "slug": "sources/2026-04-14-sok-bench",
     "title": "SOK-Bench（CVPR 2024）：带开放世界知识对齐的情境视频推理基准",
+    "title_en": "SOK-Bench（CVPR 2024）：带开放世界知识对齐的情境视频推理基准",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1123,11 +1590,16 @@
       "reasoning",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-sok-bench.html"
+    "url": "sources/2026-04-14-sok-bench.html",
+    "url_en": "en/sources/2026-04-14-sok-bench.html",
+    "search_text": "SOK-Bench（CVPR 2024）：带开放世界知识对齐的情境视频推理基准 SOK-Bench（CVPR 2024）：带开放世界知识对齐的情境视频推理基准   sources/2026-04-14-sok-bench source near-cvpr-2025 video-understanding evaluation benchmarking reasoning primary-source"
   },
   {
     "slug": "sources/2026-04-14-specialist-diffusion",
     "title": "Specialist Diffusion（CVPR 2023）：可插拔且样本高效的文本到图像扩散微调",
+    "title_en": "Specialist Diffusion（CVPR 2023）：可插拔且样本高效的文本到图像扩散微调",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1136,11 +1608,16 @@
       "efficiency",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-specialist-diffusion.html"
+    "url": "sources/2026-04-14-specialist-diffusion.html",
+    "url_en": "en/sources/2026-04-14-specialist-diffusion.html",
+    "search_text": "Specialist Diffusion（CVPR 2023）：可插拔且样本高效的文本到图像扩散微调 Specialist Diffusion（CVPR 2023）：可插拔且样本高效的文本到图像扩散微调   sources/2026-04-14-specialist-diffusion source near-cvpr-2025 image-generation diffusion efficiency primary-source"
   },
   {
     "slug": "sources/2026-04-14-stablevideo",
     "title": "StableVideo（ICCV 2023）：文本驱动且一致性感知的扩散视频编辑",
+    "title_en": "StableVideo（ICCV 2023）：文本驱动且一致性感知的扩散视频编辑",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1149,11 +1626,16 @@
       "diffusion",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-stablevideo.html"
+    "url": "sources/2026-04-14-stablevideo.html",
+    "url_en": "en/sources/2026-04-14-stablevideo.html",
+    "search_text": "StableVideo（ICCV 2023）：文本驱动且一致性感知的扩散视频编辑 StableVideo（ICCV 2023）：文本驱动且一致性感知的扩散视频编辑   sources/2026-04-14-stablevideo source near-cvpr-2025 video-editing video-generation diffusion primary-source"
   },
   {
     "slug": "sources/2026-04-14-sti-bench",
     "title": "STI-Bench（ICCV 2025）：多模态大模型是否已准备好进行精确时空世界理解",
+    "title_en": "STI-Bench（ICCV 2025）：多模态大模型是否已准备好进行精确时空世界理解",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1162,22 +1644,32 @@
       "vision-language",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-sti-bench.html"
+    "url": "sources/2026-04-14-sti-bench.html",
+    "url_en": "en/sources/2026-04-14-sti-bench.html",
+    "search_text": "STI-Bench（ICCV 2025）：多模态大模型是否已准备好进行精确时空世界理解 STI-Bench（ICCV 2025）：多模态大模型是否已准备好进行精确时空世界理解   sources/2026-04-14-sti-bench source near-cvpr-2025 video-understanding benchmarking vision-language primary-source"
   },
   {
     "slug": "sources/2026-04-14-tune-a-video",
     "title": "Tune-A-Video（ICCV 2023）：单样本调优图像扩散模型做文本到视频生成",
+    "title_en": "Tune-A-Video（ICCV 2023）：单样本调优图像扩散模型做文本到视频生成",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
       "video-generation",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-tune-a-video.html"
+    "url": "sources/2026-04-14-tune-a-video.html",
+    "url_en": "en/sources/2026-04-14-tune-a-video.html",
+    "search_text": "Tune-A-Video（ICCV 2023）：单样本调优图像扩散模型做文本到视频生成 Tune-A-Video（ICCV 2023）：单样本调优图像扩散模型做文本到视频生成   sources/2026-04-14-tune-a-video source near-cvpr-2025 video-generation primary-source"
   },
   {
     "slug": "sources/2026-04-14-vbench",
     "title": "VBench（CVPR 2024）：面向视频生成模型的综合评测套件",
+    "title_en": "VBench（CVPR 2024）：面向视频生成模型的综合评测套件",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1186,11 +1678,16 @@
       "benchmarking",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-vbench.html"
+    "url": "sources/2026-04-14-vbench.html",
+    "url_en": "en/sources/2026-04-14-vbench.html",
+    "search_text": "VBench（CVPR 2024）：面向视频生成模型的综合评测套件 VBench（CVPR 2024）：面向视频生成模型的综合评测套件   sources/2026-04-14-vbench source near-cvpr-2025 video-generation evaluation benchmarking primary-source"
   },
   {
     "slug": "sources/2026-04-14-veggie",
     "title": "VEGGIE（ICCV 2025）：通过 grounded generation 进行指令式编辑与视频概念推理",
+    "title_en": "VEGGIE（ICCV 2025）：通过 grounded generation 进行指令式编辑与视频概念推理",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1200,11 +1697,16 @@
       "reasoning",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-veggie.html"
+    "url": "sources/2026-04-14-veggie.html",
+    "url_en": "en/sources/2026-04-14-veggie.html",
+    "search_text": "VEGGIE（ICCV 2025）：通过 grounded generation 进行指令式编辑与视频概念推理 VEGGIE（ICCV 2025）：通过 grounded generation 进行指令式编辑与视频概念推理   sources/2026-04-14-veggie source near-cvpr-2025 video-editing video-understanding vision-language reasoning primary-source"
   },
   {
     "slug": "sources/2026-04-14-verifiable-human-eval-t2i",
     "title": "面向文本到图像生成的可验证与可复现人工评测（CVPR 2023）",
+    "title_en": "面向文本到图像生成的可验证与可复现人工评测（CVPR 2023）",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1213,11 +1715,16 @@
       "benchmarking",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-verifiable-human-eval-t2i.html"
+    "url": "sources/2026-04-14-verifiable-human-eval-t2i.html",
+    "url_en": "en/sources/2026-04-14-verifiable-human-eval-t2i.html",
+    "search_text": "面向文本到图像生成的可验证与可复现人工评测（CVPR 2023） 面向文本到图像生成的可验证与可复现人工评测（CVPR 2023）   sources/2026-04-14-verifiable-human-eval-t2i source near-cvpr-2025 image-generation evaluation benchmarking primary-source"
   },
   {
     "slug": "sources/2026-04-14-video-bench",
     "title": "Video-Bench（CVPR 2025）：面向视频生成的人类对齐评测基准",
+    "title_en": "Video-Bench（CVPR 2025）：面向视频生成的人类对齐评测基准",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1226,11 +1733,16 @@
       "benchmarking",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-video-bench.html"
+    "url": "sources/2026-04-14-video-bench.html",
+    "url_en": "en/sources/2026-04-14-video-bench.html",
+    "search_text": "Video-Bench（CVPR 2025）：面向视频生成的人类对齐评测基准 Video-Bench（CVPR 2025）：面向视频生成的人类对齐评测基准   sources/2026-04-14-video-bench source near-cvpr-2025 video-generation evaluation benchmarking primary-source"
   },
   {
     "slug": "sources/2026-04-14-video-p2p",
-    "title": "Video-P2P（ICCV 2023）：基于 cross-attention control 的视频编辑",
+    "title": "Video-P2P（CVPR 2024）：基于 cross-attention control 的视频编辑",
+    "title_en": "Video-P2P（CVPR 2024）：基于 cross-attention control 的视频编辑",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1239,11 +1751,16 @@
       "diffusion",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-video-p2p.html"
+    "url": "sources/2026-04-14-video-p2p.html",
+    "url_en": "en/sources/2026-04-14-video-p2p.html",
+    "search_text": "Video-P2P（CVPR 2024）：基于 cross-attention control 的视频编辑 Video-P2P（CVPR 2024）：基于 cross-attention control 的视频编辑   sources/2026-04-14-video-p2p source near-cvpr-2025 video-editing video-generation diffusion primary-source"
   },
   {
     "slug": "sources/2026-04-14-video-worth-256-bases",
     "title": "A Video is Worth 256 Bases（CVPR 2024）：零样本视频编辑的时空 EM 反演",
+    "title_en": "A Video is Worth 256 Bases（CVPR 2024）：零样本视频编辑的时空 EM 反演",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1251,22 +1768,32 @@
       "diffusion",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-video-worth-256-bases.html"
+    "url": "sources/2026-04-14-video-worth-256-bases.html",
+    "url_en": "en/sources/2026-04-14-video-worth-256-bases.html",
+    "search_text": "A Video is Worth 256 Bases（CVPR 2024）：零样本视频编辑的时空 EM 反演 A Video is Worth 256 Bases（CVPR 2024）：零样本视频编辑的时空 EM 反演   sources/2026-04-14-video-worth-256-bases source near-cvpr-2025 video-editing diffusion primary-source"
   },
   {
     "slug": "sources/2026-04-14-videocrafter2",
     "title": "VideoCrafter2（CVPR 2024）：突破数据限制的高质量视频扩散模型",
+    "title_en": "VideoCrafter2（CVPR 2024）：突破数据限制的高质量视频扩散模型",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
       "video-generation",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-videocrafter2.html"
+    "url": "sources/2026-04-14-videocrafter2.html",
+    "url_en": "en/sources/2026-04-14-videocrafter2.html",
+    "search_text": "VideoCrafter2（CVPR 2024）：突破数据限制的高质量视频扩散模型 VideoCrafter2（CVPR 2024）：突破数据限制的高质量视频扩散模型   sources/2026-04-14-videocrafter2 source near-cvpr-2025 video-generation primary-source"
   },
   {
     "slug": "sources/2026-04-14-vidtome",
     "title": "VidToMe（CVPR 2024）：用于零样本视频编辑的视频 token merging",
+    "title_en": "VidToMe（CVPR 2024）：用于零样本视频编辑的视频 token merging",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1275,11 +1802,16 @@
       "efficiency",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-vidtome.html"
+    "url": "sources/2026-04-14-vidtome.html",
+    "url_en": "en/sources/2026-04-14-vidtome.html",
+    "search_text": "VidToMe（CVPR 2024）：用于零样本视频编辑的视频 token merging VidToMe（CVPR 2024）：用于零样本视频编辑的视频 token merging   sources/2026-04-14-vidtome source near-cvpr-2025 video-editing video-generation efficiency primary-source"
   },
   {
     "slug": "sources/2026-04-14-vive3d",
     "title": "VIVE3D（CVPR 2023）：基于 3D-aware GAN 的视角无关视频编辑",
+    "title_en": "VIVE3D（CVPR 2023）：基于 3D-aware GAN 的视角无关视频编辑",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1287,11 +1819,16 @@
       "video-generation",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-vive3d.html"
+    "url": "sources/2026-04-14-vive3d.html",
+    "url_en": "en/sources/2026-04-14-vive3d.html",
+    "search_text": "VIVE3D（CVPR 2023）：基于 3D-aware GAN 的视角无关视频编辑 VIVE3D（CVPR 2023）：基于 3D-aware GAN 的视角无关视频编辑   sources/2026-04-14-vive3d source near-cvpr-2025 video-editing video-generation primary-source"
   },
   {
     "slug": "sources/2026-04-14-wavelet-diffusion-models",
     "title": "Wavelet Diffusion Models（CVPR 2023）：快速且可扩展的图像生成器",
+    "title_en": "Wavelet Diffusion Models（CVPR 2023）：快速且可扩展的图像生成器",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1300,11 +1837,16 @@
       "efficiency",
       "primary-source"
     ],
-    "url": "sources/2026-04-14-wavelet-diffusion-models.html"
+    "url": "sources/2026-04-14-wavelet-diffusion-models.html",
+    "url_en": "en/sources/2026-04-14-wavelet-diffusion-models.html",
+    "search_text": "Wavelet Diffusion Models（CVPR 2023）：快速且可扩展的图像生成器 Wavelet Diffusion Models（CVPR 2023）：快速且可扩展的图像生成器   sources/2026-04-14-wavelet-diffusion-models source near-cvpr-2025 image-generation diffusion efficiency primary-source"
   },
   {
     "slug": "sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps",
     "title": "Accelerating Diffusion Sampling with Optimized Time Steps（CVPR 2024）：用优化时间步加速扩散采样",
+    "title_en": "Accelerating Diffusion Sampling with Optimized Time Steps（CVPR 2024）：用优化时间步加速扩散采样",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1313,11 +1855,16 @@
       "efficiency",
       "primary-source"
     ],
-    "url": "sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html"
+    "url": "sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html",
+    "url_en": "en/sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html",
+    "search_text": "Accelerating Diffusion Sampling with Optimized Time Steps（CVPR 2024）：用优化时间步加速扩散采样 Accelerating Diffusion Sampling with Optimized Time Steps（CVPR 2024）：用优化时间步加速扩散采样   sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps source near-cvpr-2025 image-generation diffusion efficiency primary-source"
   },
   {
     "slug": "sources/2026-04-15-act-diffusion",
     "title": "ACT-Diffusion（CVPR 2024）：用对抗一致性训练把一步扩散做得更省",
+    "title_en": "ACT-Diffusion（CVPR 2024）：用对抗一致性训练把一步扩散做得更省",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1326,11 +1873,16 @@
       "efficiency",
       "primary-source"
     ],
-    "url": "sources/2026-04-15-act-diffusion.html"
+    "url": "sources/2026-04-15-act-diffusion.html",
+    "url_en": "en/sources/2026-04-15-act-diffusion.html",
+    "search_text": "ACT-Diffusion（CVPR 2024）：用对抗一致性训练把一步扩散做得更省 ACT-Diffusion（CVPR 2024）：用对抗一致性训练把一步扩散做得更省   sources/2026-04-15-act-diffusion source near-cvpr-2025 image-generation diffusion efficiency primary-source"
   },
   {
     "slug": "sources/2026-04-15-all-are-worth-words",
     "title": "All Are Worth Words（CVPR 2023）：把 ViT 直接变成扩散模型主干",
+    "title_en": "All Are Worth Words（CVPR 2023）：把 ViT 直接变成扩散模型主干",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1338,11 +1890,16 @@
       "diffusion",
       "primary-source"
     ],
-    "url": "sources/2026-04-15-all-are-worth-words.html"
+    "url": "sources/2026-04-15-all-are-worth-words.html",
+    "url_en": "en/sources/2026-04-15-all-are-worth-words.html",
+    "search_text": "All Are Worth Words（CVPR 2023）：把 ViT 直接变成扩散模型主干 All Are Worth Words（CVPR 2023）：把 ViT 直接变成扩散模型主干   sources/2026-04-15-all-are-worth-words source near-cvpr-2025 image-generation diffusion primary-source"
   },
   {
     "slug": "sources/2026-04-15-analyzing-training-dynamics-diffusion-models",
     "title": "Analyzing and Improving the Training Dynamics of Diffusion Models（CVPR 2024）：修正扩散训练动力学的缩放失衡",
+    "title_en": "Analyzing and Improving the Training Dynamics of Diffusion Models（CVPR 2024）：修正扩散训练动力学的缩放失衡",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1350,11 +1907,16 @@
       "diffusion",
       "primary-source"
     ],
-    "url": "sources/2026-04-15-analyzing-training-dynamics-diffusion-models.html"
+    "url": "sources/2026-04-15-analyzing-training-dynamics-diffusion-models.html",
+    "url_en": "en/sources/2026-04-15-analyzing-training-dynamics-diffusion-models.html",
+    "search_text": "Analyzing and Improving the Training Dynamics of Diffusion Models（CVPR 2024）：修正扩散训练动力学的缩放失衡 Analyzing and Improving the Training Dynamics of Diffusion Models（CVPR 2024）：修正扩散训练动力学的缩放失衡   sources/2026-04-15-analyzing-training-dynamics-diffusion-models source near-cvpr-2025 image-generation diffusion primary-source"
   },
   {
     "slug": "sources/2026-04-15-deepcache",
     "title": "DeepCache（CVPR 2024）：用特征缓存免费加速扩散模型",
+    "title_en": "DeepCache（CVPR 2024）：用特征缓存免费加速扩散模型",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1363,11 +1925,16 @@
       "efficiency",
       "primary-source"
     ],
-    "url": "sources/2026-04-15-deepcache.html"
+    "url": "sources/2026-04-15-deepcache.html",
+    "url_en": "en/sources/2026-04-15-deepcache.html",
+    "search_text": "DeepCache（CVPR 2024）：用特征缓存免费加速扩散模型 DeepCache（CVPR 2024）：用特征缓存免费加速扩散模型   sources/2026-04-15-deepcache source near-cvpr-2025 image-generation diffusion efficiency primary-source"
   },
   {
     "slug": "sources/2026-04-15-diffusion-models-without-attention",
     "title": "Diffusion Models Without Attention（CVPR 2024）：不用注意力也能做高分辨率扩散",
+    "title_en": "Diffusion Models Without Attention（CVPR 2024）：不用注意力也能做高分辨率扩散",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1375,11 +1942,16 @@
       "diffusion",
       "primary-source"
     ],
-    "url": "sources/2026-04-15-diffusion-models-without-attention.html"
+    "url": "sources/2026-04-15-diffusion-models-without-attention.html",
+    "url_en": "en/sources/2026-04-15-diffusion-models-without-attention.html",
+    "search_text": "Diffusion Models Without Attention（CVPR 2024）：不用注意力也能做高分辨率扩散 Diffusion Models Without Attention（CVPR 2024）：不用注意力也能做高分辨率扩散   sources/2026-04-15-diffusion-models-without-attention source near-cvpr-2025 image-generation diffusion primary-source"
   },
   {
     "slug": "sources/2026-04-15-distilling-ode-solvers-diffusion-models",
     "title": "Distilling ODE Solvers of Diffusion Models into Smaller Steps（CVPR 2024）：把扩散求解器蒸馏到更少步数",
+    "title_en": "Distilling ODE Solvers of Diffusion Models into Smaller Steps（CVPR 2024）：把扩散求解器蒸馏到更少步数",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1388,11 +1960,16 @@
       "efficiency",
       "primary-source"
     ],
-    "url": "sources/2026-04-15-distilling-ode-solvers-diffusion-models.html"
+    "url": "sources/2026-04-15-distilling-ode-solvers-diffusion-models.html",
+    "url_en": "en/sources/2026-04-15-distilling-ode-solvers-diffusion-models.html",
+    "search_text": "Distilling ODE Solvers of Diffusion Models into Smaller Steps（CVPR 2024）：把扩散求解器蒸馏到更少步数 Distilling ODE Solvers of Diffusion Models into Smaller Steps（CVPR 2024）：把扩散求解器蒸馏到更少步数   sources/2026-04-15-distilling-ode-solvers-diffusion-models source near-cvpr-2025 image-generation diffusion efficiency primary-source"
   },
   {
     "slug": "sources/2026-04-15-freeu",
     "title": "FreeU（CVPR 2024）：不重训也能提质的扩散 U-Net 调参",
+    "title_en": "FreeU（CVPR 2024）：不重训也能提质的扩散 U-Net 调参",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1401,11 +1978,16 @@
       "efficiency",
       "primary-source"
     ],
-    "url": "sources/2026-04-15-freeu.html"
+    "url": "sources/2026-04-15-freeu.html",
+    "url_en": "en/sources/2026-04-15-freeu.html",
+    "search_text": "FreeU（CVPR 2024）：不重训也能提质的扩散 U-Net 调参 FreeU（CVPR 2024）：不重训也能提质的扩散 U-Net 调参   sources/2026-04-15-freeu source near-cvpr-2025 image-generation diffusion efficiency primary-source"
   },
   {
     "slug": "sources/2026-04-15-scalable-diffusion-models-with-transformers",
     "title": "Scalable Diffusion Models with Transformers（ICCV 2023）：DiT 把 Transformer 真正坐实为可扩展扩散主干",
+    "title_en": "Scalable Diffusion Models with Transformers（ICCV 2023）：DiT 把 Transformer 真正坐实为可扩展扩散主干",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1413,11 +1995,16 @@
       "diffusion",
       "primary-source"
     ],
-    "url": "sources/2026-04-15-scalable-diffusion-models-with-transformers.html"
+    "url": "sources/2026-04-15-scalable-diffusion-models-with-transformers.html",
+    "url_en": "en/sources/2026-04-15-scalable-diffusion-models-with-transformers.html",
+    "search_text": "Scalable Diffusion Models with Transformers（ICCV 2023）：DiT 把 Transformer 真正坐实为可扩展扩散主干 Scalable Diffusion Models with Transformers（ICCV 2023）：DiT 把 Transformer 真正坐实为可扩展扩散主干   sources/2026-04-15-scalable-diffusion-models-with-transformers source near-cvpr-2025 image-generation diffusion primary-source"
   },
   {
     "slug": "sources/2026-04-16-a-star",
     "title": "A-STAR（ICCV 2023）：在测试时直接修 cross-attention 的概念冲突与遗忘",
+    "title_en": "A-STAR（ICCV 2023）：在测试时直接修 cross-attention 的概念冲突与遗忘",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1426,11 +2013,16 @@
       "efficiency",
       "primary-source"
     ],
-    "url": "sources/2026-04-16-a-star.html"
+    "url": "sources/2026-04-16-a-star.html",
+    "url_en": "en/sources/2026-04-16-a-star.html",
+    "search_text": "A-STAR（ICCV 2023）：在测试时直接修 cross-attention 的概念冲突与遗忘 A-STAR（ICCV 2023）：在测试时直接修 cross-attention 的概念冲突与遗忘   sources/2026-04-16-a-star source near-cvpr-2025 image-generation diffusion efficiency primary-source"
   },
   {
     "slug": "sources/2026-04-16-accelerating-dit-gradient-cache",
-    "title": "Accelerating Diffusion Transformer via Gradient-Optimized Cache（arXiv）：用梯度优化缓存继续压缩 DiT 推理成本",
+    "title": "Accelerating Diffusion Transformer via Gradient-Optimized Cache（ICCV 2025）：用梯度优化缓存继续压缩 DiT 推理成本",
+    "title_en": "Accelerating Diffusion Transformer via Gradient-Optimized Cache（ICCV 2025）：用梯度优化缓存继续压缩 DiT 推理成本",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1439,11 +2031,16 @@
       "efficiency",
       "primary-source"
     ],
-    "url": "sources/2026-04-16-accelerating-dit-gradient-cache.html"
+    "url": "sources/2026-04-16-accelerating-dit-gradient-cache.html",
+    "url_en": "en/sources/2026-04-16-accelerating-dit-gradient-cache.html",
+    "search_text": "Accelerating Diffusion Transformer via Gradient-Optimized Cache（ICCV 2025）：用梯度优化缓存继续压缩 DiT 推理成本 Accelerating Diffusion Transformer via Gradient-Optimized Cache（ICCV 2025）：用梯度优化缓存继续压缩 DiT 推理成本   sources/2026-04-16-accelerating-dit-gradient-cache source near-cvpr-2025 image-generation diffusion efficiency primary-source"
   },
   {
     "slug": "sources/2026-04-16-attend-and-excite",
-    "title": "Attend-and-Excite（TOG 2023）：在推理时主动修复 diffusion 的语义遗漏",
+    "title": "Attend-and-Excite（SIGGRAPH 2023）：在推理时主动修复 diffusion 的语义遗漏",
+    "title_en": "Attend-and-Excite（SIGGRAPH 2023）：在推理时主动修复 diffusion 的语义遗漏",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1452,11 +2049,16 @@
       "efficiency",
       "primary-source"
     ],
-    "url": "sources/2026-04-16-attend-and-excite.html"
+    "url": "sources/2026-04-16-attend-and-excite.html",
+    "url_en": "en/sources/2026-04-16-attend-and-excite.html",
+    "search_text": "Attend-and-Excite（SIGGRAPH 2023）：在推理时主动修复 diffusion 的语义遗漏 Attend-and-Excite（SIGGRAPH 2023）：在推理时主动修复 diffusion 的语义遗漏   sources/2026-04-16-attend-and-excite source near-cvpr-2025 image-generation diffusion efficiency primary-source"
   },
   {
     "slug": "sources/2026-04-16-bbdm-brownian-bridge-diffusion",
     "title": "BBDM（CVPR 2023）：把 Brownian Bridge diffusion 接成图像到图像翻译主线",
+    "title_en": "BBDM（CVPR 2023）：把 Brownian Bridge diffusion 接成图像到图像翻译主线",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1465,11 +2067,16 @@
       "conditioning",
       "primary-source"
     ],
-    "url": "sources/2026-04-16-bbdm-brownian-bridge-diffusion.html"
+    "url": "sources/2026-04-16-bbdm-brownian-bridge-diffusion.html",
+    "url_en": "en/sources/2026-04-16-bbdm-brownian-bridge-diffusion.html",
+    "search_text": "BBDM（CVPR 2023）：把 Brownian Bridge diffusion 接成图像到图像翻译主线 BBDM（CVPR 2023）：把 Brownian Bridge diffusion 接成图像到图像翻译主线   sources/2026-04-16-bbdm-brownian-bridge-diffusion source near-cvpr-2025 image-editing diffusion conditioning primary-source"
   },
   {
     "slug": "sources/2026-04-16-blended-diffusion",
     "title": "Blended Diffusion（CVPR 2022）：把文本驱动自然图像编辑直接接进扩散生成过程",
+    "title_en": "Blended Diffusion（CVPR 2022）：把文本驱动自然图像编辑直接接进扩散生成过程",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1478,11 +2085,16 @@
       "conditioning",
       "primary-source"
     ],
-    "url": "sources/2026-04-16-blended-diffusion.html"
+    "url": "sources/2026-04-16-blended-diffusion.html",
+    "url_en": "en/sources/2026-04-16-blended-diffusion.html",
+    "search_text": "Blended Diffusion（CVPR 2022）：把文本驱动自然图像编辑直接接进扩散生成过程 Blended Diffusion（CVPR 2022）：把文本驱动自然图像编辑直接接进扩散生成过程   sources/2026-04-16-blended-diffusion source near-cvpr-2025 image-editing diffusion conditioning primary-source"
   },
   {
     "slug": "sources/2026-04-16-boxdiff",
     "title": "BoxDiff（ICCV 2023）：不用训练，直接把框约束压进 diffusion 采样过程",
+    "title_en": "BoxDiff（ICCV 2023）：不用训练，直接把框约束压进 diffusion 采样过程",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1491,11 +2103,16 @@
       "efficiency",
       "primary-source"
     ],
-    "url": "sources/2026-04-16-boxdiff.html"
+    "url": "sources/2026-04-16-boxdiff.html",
+    "url_en": "en/sources/2026-04-16-boxdiff.html",
+    "search_text": "BoxDiff（ICCV 2023）：不用训练，直接把框约束压进 diffusion 采样过程 BoxDiff（ICCV 2023）：不用训练，直接把框约束压进 diffusion 采样过程   sources/2026-04-16-boxdiff source near-cvpr-2025 image-generation diffusion efficiency primary-source"
   },
   {
     "slug": "sources/2026-04-16-c3net",
     "title": "C3Net（CVPR 2024）：把 ControlNet 从单条件接口推进到多模态复合条件接口",
+    "title_en": "C3Net（CVPR 2024）：把 ControlNet 从单条件接口推进到多模态复合条件接口",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1504,11 +2121,16 @@
       "efficiency",
       "primary-source"
     ],
-    "url": "sources/2026-04-16-c3net.html"
+    "url": "sources/2026-04-16-c3net.html",
+    "url_en": "en/sources/2026-04-16-c3net.html",
+    "search_text": "C3Net（CVPR 2024）：把 ControlNet 从单条件接口推进到多模态复合条件接口 C3Net（CVPR 2024）：把 ControlNet 从单条件接口推进到多模态复合条件接口   sources/2026-04-16-c3net source near-cvpr-2025 image-generation diffusion efficiency primary-source"
   },
   {
     "slug": "sources/2026-04-16-come-closer-diffuse-faster",
     "title": "Come-Closer-Diffuse-Faster（CVPR 2022）：用随机收缩把条件扩散的采样路径压得更短",
+    "title_en": "Come-Closer-Diffuse-Faster（CVPR 2022）：用随机收缩把条件扩散的采样路径压得更短",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1517,11 +2139,16 @@
       "efficiency",
       "primary-source"
     ],
-    "url": "sources/2026-04-16-come-closer-diffuse-faster.html"
+    "url": "sources/2026-04-16-come-closer-diffuse-faster.html",
+    "url_en": "en/sources/2026-04-16-come-closer-diffuse-faster.html",
+    "search_text": "Come-Closer-Diffuse-Faster（CVPR 2022）：用随机收缩把条件扩散的采样路径压得更短 Come-Closer-Diffuse-Faster（CVPR 2022）：用随机收缩把条件扩散的采样路径压得更短   sources/2026-04-16-come-closer-diffuse-faster source near-cvpr-2025 image-generation diffusion efficiency primary-source"
   },
   {
     "slug": "sources/2026-04-16-controlnet",
     "title": "Adding Conditional Control to Text-to-Image Diffusion Models（ICCV 2023）：把条件控制做成 diffusion 的通用侧支接口",
+    "title_en": "Adding Conditional Control to Text-to-Image Diffusion Models（ICCV 2023）：把条件控制做成 diffusion 的通用侧支接口",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1530,11 +2157,16 @@
       "efficiency",
       "primary-source"
     ],
-    "url": "sources/2026-04-16-controlnet.html"
+    "url": "sources/2026-04-16-controlnet.html",
+    "url_en": "en/sources/2026-04-16-controlnet.html",
+    "search_text": "Adding Conditional Control to Text-to-Image Diffusion Models（ICCV 2023）：把条件控制做成 diffusion 的通用侧支接口 Adding Conditional Control to Text-to-Image Diffusion Models（ICCV 2023）：把条件控制做成 diffusion 的通用侧支接口   sources/2026-04-16-controlnet source near-cvpr-2025 image-generation diffusion efficiency primary-source"
   },
   {
     "slug": "sources/2026-04-16-dc-controlnet",
-    "title": "DC-ControlNet（arXiv 2025）：把多元素条件控制拆成 inter-element / intra-element 两层接口",
+    "title": "DC-ControlNet（ICCV 2025）：把多元素条件控制拆成 inter-element / intra-element 两层接口",
+    "title_en": "DC-ControlNet（ICCV 2025）：把多元素条件控制拆成 inter-element / intra-element 两层接口",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1543,11 +2175,16 @@
       "efficiency",
       "primary-source"
     ],
-    "url": "sources/2026-04-16-dc-controlnet.html"
+    "url": "sources/2026-04-16-dc-controlnet.html",
+    "url_en": "en/sources/2026-04-16-dc-controlnet.html",
+    "search_text": "DC-ControlNet（ICCV 2025）：把多元素条件控制拆成 inter-element / intra-element 两层接口 DC-ControlNet（ICCV 2025）：把多元素条件控制拆成 inter-element / intra-element 两层接口   sources/2026-04-16-dc-controlnet source near-cvpr-2025 image-generation diffusion efficiency primary-source"
   },
   {
     "slug": "sources/2026-04-16-dense-text-attention-modulation",
     "title": "DenseDiffusion（ICCV 2023）：用 attention modulation 让 dense caption 和布局控制真正可用",
+    "title_en": "DenseDiffusion（ICCV 2023）：用 attention modulation 让 dense caption 和布局控制真正可用",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1556,11 +2193,16 @@
       "efficiency",
       "primary-source"
     ],
-    "url": "sources/2026-04-16-dense-text-attention-modulation.html"
+    "url": "sources/2026-04-16-dense-text-attention-modulation.html",
+    "url_en": "en/sources/2026-04-16-dense-text-attention-modulation.html",
+    "search_text": "DenseDiffusion（ICCV 2023）：用 attention modulation 让 dense caption 和布局控制真正可用 DenseDiffusion（ICCV 2023）：用 attention modulation 让 dense caption 和布局控制真正可用   sources/2026-04-16-dense-text-attention-modulation source near-cvpr-2025 image-generation diffusion efficiency primary-source"
   },
   {
     "slug": "sources/2026-04-16-diffusion-autoencoders",
     "title": "Diffusion Autoencoders（CVPR 2022）：为扩散模型补上更可解释、可解码的语义表征层",
+    "title_en": "Diffusion Autoencoders（CVPR 2022）：为扩散模型补上更可解释、可解码的语义表征层",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1569,11 +2211,16 @@
       "representation-learning",
       "primary-source"
     ],
-    "url": "sources/2026-04-16-diffusion-autoencoders.html"
+    "url": "sources/2026-04-16-diffusion-autoencoders.html",
+    "url_en": "en/sources/2026-04-16-diffusion-autoencoders.html",
+    "search_text": "Diffusion Autoencoders（CVPR 2022）：为扩散模型补上更可解释、可解码的语义表征层 Diffusion Autoencoders（CVPR 2022）：为扩散模型补上更可解释、可解码的语义表征层   sources/2026-04-16-diffusion-autoencoders source near-cvpr-2025 image-generation diffusion representation-learning primary-source"
   },
   {
     "slug": "sources/2026-04-16-diffusionclip",
     "title": "DiffusionCLIP（CVPR 2022）：把文本引导图像操控更早接到 diffusion 路线里",
+    "title_en": "DiffusionCLIP（CVPR 2022）：把文本引导图像操控更早接到 diffusion 路线里",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1582,11 +2229,16 @@
       "conditioning",
       "primary-source"
     ],
-    "url": "sources/2026-04-16-diffusionclip.html"
+    "url": "sources/2026-04-16-diffusionclip.html",
+    "url_en": "en/sources/2026-04-16-diffusionclip.html",
+    "search_text": "DiffusionCLIP（CVPR 2022）：把文本引导图像操控更早接到 diffusion 路线里 DiffusionCLIP（CVPR 2022）：把文本引导图像操控更早接到 diffusion 路线里   sources/2026-04-16-diffusionclip source near-cvpr-2025 image-editing diffusion conditioning primary-source"
   },
   {
     "slug": "sources/2026-04-16-distilling-parallel-gradients-ode-solvers",
-    "title": "Distilling Parallel Gradients for Fast ODE Solvers of Diffusion Models（arXiv）：把并行梯度蒸馏接进快速 ODE solver 路线",
+    "title": "Distilling Parallel Gradients for Fast ODE Solvers of Diffusion Models（ICCV 2025）：把并行梯度蒸馏接进快速 ODE solver 路线",
+    "title_en": "Distilling Parallel Gradients for Fast ODE Solvers of Diffusion Models（ICCV 2025）：把并行梯度蒸馏接进快速 ODE solver 路线",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1595,11 +2247,16 @@
       "efficiency",
       "primary-source"
     ],
-    "url": "sources/2026-04-16-distilling-parallel-gradients-ode-solvers.html"
+    "url": "sources/2026-04-16-distilling-parallel-gradients-ode-solvers.html",
+    "url_en": "en/sources/2026-04-16-distilling-parallel-gradients-ode-solvers.html",
+    "search_text": "Distilling Parallel Gradients for Fast ODE Solvers of Diffusion Models（ICCV 2025）：把并行梯度蒸馏接进快速 ODE solver 路线 Distilling Parallel Gradients for Fast ODE Solvers of Diffusion Models（ICCV 2025）：把并行梯度蒸馏接进快速 ODE solver 路线   sources/2026-04-16-distilling-parallel-gradients-ode-solvers source near-cvpr-2025 image-generation diffusion efficiency primary-source"
   },
   {
     "slug": "sources/2026-04-16-dlt-layout-transformer",
     "title": "DLT（ICCV 2023）：把 layout generation 做成离散-连续联合 diffusion",
+    "title_en": "DLT（ICCV 2023）：把 layout generation 做成离散-连续联合 diffusion",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1607,11 +2264,16 @@
       "diffusion",
       "primary-source"
     ],
-    "url": "sources/2026-04-16-dlt-layout-transformer.html"
+    "url": "sources/2026-04-16-dlt-layout-transformer.html",
+    "url_en": "en/sources/2026-04-16-dlt-layout-transformer.html",
+    "search_text": "DLT（ICCV 2023）：把 layout generation 做成离散-连续联合 diffusion DLT（ICCV 2023）：把 layout generation 做成离散-连续联合 diffusion   sources/2026-04-16-dlt-layout-transformer source near-cvpr-2025 image-generation diffusion primary-source"
   },
   {
     "slug": "sources/2026-04-16-edict-exact-diffusion-inversion",
     "title": "EDICT（CVPR 2023）：把精确 diffusion inversion 变成真实图像编辑的关键接口",
+    "title_en": "EDICT（CVPR 2023）：把精确 diffusion inversion 变成真实图像编辑的关键接口",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1620,11 +2282,16 @@
       "editing",
       "primary-source"
     ],
-    "url": "sources/2026-04-16-edict-exact-diffusion-inversion.html"
+    "url": "sources/2026-04-16-edict-exact-diffusion-inversion.html",
+    "url_en": "en/sources/2026-04-16-edict-exact-diffusion-inversion.html",
+    "search_text": "EDICT（CVPR 2023）：把精确 diffusion inversion 变成真实图像编辑的关键接口 EDICT（CVPR 2023）：把精确 diffusion inversion 变成真实图像编辑的关键接口   sources/2026-04-16-edict-exact-diffusion-inversion source near-cvpr-2025 image-editing diffusion editing primary-source"
   },
   {
     "slug": "sources/2026-04-16-high-fidelity-guided-image-synthesis",
     "title": "High-Fidelity Guided Image Synthesis with Latent Diffusion Models（CVPR 2023）：把 latent diffusion 的 guidance 质量推到更高保真",
+    "title_en": "High-Fidelity Guided Image Synthesis with Latent Diffusion Models（CVPR 2023）：把 latent diffusion 的 guidance 质量推到更高保真",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1633,11 +2300,16 @@
       "conditioning",
       "primary-source"
     ],
-    "url": "sources/2026-04-16-high-fidelity-guided-image-synthesis.html"
+    "url": "sources/2026-04-16-high-fidelity-guided-image-synthesis.html",
+    "url_en": "en/sources/2026-04-16-high-fidelity-guided-image-synthesis.html",
+    "search_text": "High-Fidelity Guided Image Synthesis with Latent Diffusion Models（CVPR 2023）：把 latent diffusion 的 guidance 质量推到更高保真 High-Fidelity Guided Image Synthesis with Latent Diffusion Models（CVPR 2023）：把 latent diffusion 的 guidance 质量推到更高保真   sources/2026-04-16-high-fidelity-guided-image-synthesis source near-cvpr-2025 image-generation diffusion conditioning primary-source"
   },
   {
     "slug": "sources/2026-04-16-layoutdiffusion-graphic-layout-generation",
     "title": "LayoutDiffusion（ICCV 2023）：把 graphic layout generation 做成离散 diffusion 的标准接口",
+    "title_en": "LayoutDiffusion（ICCV 2023）：把 graphic layout generation 做成离散 diffusion 的标准接口",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1645,11 +2317,16 @@
       "diffusion",
       "primary-source"
     ],
-    "url": "sources/2026-04-16-layoutdiffusion-graphic-layout-generation.html"
+    "url": "sources/2026-04-16-layoutdiffusion-graphic-layout-generation.html",
+    "url_en": "en/sources/2026-04-16-layoutdiffusion-graphic-layout-generation.html",
+    "search_text": "LayoutDiffusion（ICCV 2023）：把 graphic layout generation 做成离散 diffusion 的标准接口 LayoutDiffusion（ICCV 2023）：把 graphic layout generation 做成离散 diffusion 的标准接口   sources/2026-04-16-layoutdiffusion-graphic-layout-generation source near-cvpr-2025 image-generation diffusion primary-source"
   },
   {
     "slug": "sources/2026-04-16-multidiffusion",
     "title": "MultiDiffusion（arXiv 2023）：把多条 diffusion 轨迹绑成统一的受控生成框架",
+    "title_en": "MultiDiffusion（arXiv 2023）：把多条 diffusion 轨迹绑成统一的受控生成框架",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1658,11 +2335,16 @@
       "efficiency",
       "primary-source"
     ],
-    "url": "sources/2026-04-16-multidiffusion.html"
+    "url": "sources/2026-04-16-multidiffusion.html",
+    "url_en": "en/sources/2026-04-16-multidiffusion.html",
+    "search_text": "MultiDiffusion（arXiv 2023）：把多条 diffusion 轨迹绑成统一的受控生成框架 MultiDiffusion（arXiv 2023）：把多条 diffusion 轨迹绑成统一的受控生成框架   sources/2026-04-16-multidiffusion source near-cvpr-2025 image-generation diffusion efficiency primary-source"
   },
   {
     "slug": "sources/2026-04-16-on-distillation-of-guided-diffusion-models",
     "title": "On Distillation of Guided Diffusion Models（CVPR 2023）：把 classifier-free guided diffusion 蒸馏到极少步采样",
+    "title_en": "On Distillation of Guided Diffusion Models（CVPR 2023）：把 classifier-free guided diffusion 蒸馏到极少步采样",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1671,11 +2353,16 @@
       "efficiency",
       "primary-source"
     ],
-    "url": "sources/2026-04-16-on-distillation-of-guided-diffusion-models.html"
+    "url": "sources/2026-04-16-on-distillation-of-guided-diffusion-models.html",
+    "url_en": "en/sources/2026-04-16-on-distillation-of-guided-diffusion-models.html",
+    "search_text": "On Distillation of Guided Diffusion Models（CVPR 2023）：把 classifier-free guided diffusion 蒸馏到极少步采样 On Distillation of Guided Diffusion Models（CVPR 2023）：把 classifier-free guided diffusion 蒸馏到极少步采样   sources/2026-04-16-on-distillation-of-guided-diffusion-models source near-cvpr-2025 image-generation diffusion efficiency primary-source"
   },
   {
     "slug": "sources/2026-04-16-plug-and-play-diffusion-features",
     "title": "Plug-and-Play Diffusion Features（CVPR 2023）：把 diffusion feature 直接变成文本驱动图像翻译接口",
+    "title_en": "Plug-and-Play Diffusion Features（CVPR 2023）：把 diffusion feature 直接变成文本驱动图像翻译接口",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1684,11 +2371,16 @@
       "conditioning",
       "primary-source"
     ],
-    "url": "sources/2026-04-16-plug-and-play-diffusion-features.html"
+    "url": "sources/2026-04-16-plug-and-play-diffusion-features.html",
+    "url_en": "en/sources/2026-04-16-plug-and-play-diffusion-features.html",
+    "search_text": "Plug-and-Play Diffusion Features（CVPR 2023）：把 diffusion feature 直接变成文本驱动图像翻译接口 Plug-and-Play Diffusion Features（CVPR 2023）：把 diffusion feature 直接变成文本驱动图像翻译接口   sources/2026-04-16-plug-and-play-diffusion-features source near-cvpr-2025 image-editing diffusion conditioning primary-source"
   },
   {
     "slug": "sources/2026-04-16-post-training-quantization-on-diffusion-models",
     "title": "Post-Training Quantization on Diffusion Models（CVPR 2023）：把扩散模型推理进一步压到低比特部署",
+    "title_en": "Post-Training Quantization on Diffusion Models（CVPR 2023）：把扩散模型推理进一步压到低比特部署",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1697,11 +2389,16 @@
       "efficiency",
       "primary-source"
     ],
-    "url": "sources/2026-04-16-post-training-quantization-on-diffusion-models.html"
+    "url": "sources/2026-04-16-post-training-quantization-on-diffusion-models.html",
+    "url_en": "en/sources/2026-04-16-post-training-quantization-on-diffusion-models.html",
+    "search_text": "Post-Training Quantization on Diffusion Models（CVPR 2023）：把扩散模型推理进一步压到低比特部署 Post-Training Quantization on Diffusion Models（CVPR 2023）：把扩散模型推理进一步压到低比特部署   sources/2026-04-16-post-training-quantization-on-diffusion-models source near-cvpr-2025 image-generation diffusion efficiency primary-source"
   },
   {
     "slug": "sources/2026-04-16-prompt-to-prompt",
     "title": "Prompt-to-Prompt（arXiv 2022）：把 cross-attention 直接变成文本编辑控制面板",
+    "title_en": "Prompt-to-Prompt（arXiv 2022）：把 cross-attention 直接变成文本编辑控制面板",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1709,11 +2406,16 @@
       "diffusion",
       "primary-source"
     ],
-    "url": "sources/2026-04-16-prompt-to-prompt.html"
+    "url": "sources/2026-04-16-prompt-to-prompt.html",
+    "url_en": "en/sources/2026-04-16-prompt-to-prompt.html",
+    "search_text": "Prompt-to-Prompt（arXiv 2022）：把 cross-attention 直接变成文本编辑控制面板 Prompt-to-Prompt（arXiv 2022）：把 cross-attention 直接变成文本编辑控制面板   sources/2026-04-16-prompt-to-prompt source near-cvpr-2025 image-editing diffusion primary-source"
   },
   {
     "slug": "sources/2026-04-16-rethinking-spatial-inconsistency-cfg",
     "title": "Rethinking the Spatial Inconsistency in Classifier-Free Diffusion Guidance（CVPR 2024）：把 CFG 的空间不一致问题拉到前台",
+    "title_en": "Rethinking the Spatial Inconsistency in Classifier-Free Diffusion Guidance（CVPR 2024）：把 CFG 的空间不一致问题拉到前台",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1722,11 +2424,16 @@
       "conditioning",
       "primary-source"
     ],
-    "url": "sources/2026-04-16-rethinking-spatial-inconsistency-cfg.html"
+    "url": "sources/2026-04-16-rethinking-spatial-inconsistency-cfg.html",
+    "url_en": "en/sources/2026-04-16-rethinking-spatial-inconsistency-cfg.html",
+    "search_text": "Rethinking the Spatial Inconsistency in Classifier-Free Diffusion Guidance（CVPR 2024）：把 CFG 的空间不一致问题拉到前台 Rethinking the Spatial Inconsistency in Classifier-Free Diffusion Guidance（CVPR 2024）：把 CFG 的空间不一致问题拉到前台   sources/2026-04-16-rethinking-spatial-inconsistency-cfg source near-cvpr-2025 image-generation diffusion conditioning primary-source"
   },
   {
     "slug": "sources/2026-04-16-sana-sprint",
-    "title": "SANA-Sprint（arXiv）：用连续时间一致性蒸馏把一步扩散再往前推",
+    "title": "SANA-Sprint（ICCV 2025）：用连续时间一致性蒸馏把一步扩散再往前推",
+    "title_en": "SANA-Sprint（ICCV 2025）：用连续时间一致性蒸馏把一步扩散再往前推",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1735,11 +2442,16 @@
       "efficiency",
       "primary-source"
     ],
-    "url": "sources/2026-04-16-sana-sprint.html"
+    "url": "sources/2026-04-16-sana-sprint.html",
+    "url_en": "en/sources/2026-04-16-sana-sprint.html",
+    "search_text": "SANA-Sprint（ICCV 2025）：用连续时间一致性蒸馏把一步扩散再往前推 SANA-Sprint（ICCV 2025）：用连续时间一致性蒸馏把一步扩散再往前推   sources/2026-04-16-sana-sprint source near-cvpr-2025 image-generation diffusion efficiency primary-source"
   },
   {
     "slug": "sources/2026-04-16-self-correcting-llm-controlled-diffusion-models",
     "title": "SLD（CVPR 2024）：把 diffusion 生成改成 LLM 驱动的闭环自纠错系统",
+    "title_en": "SLD（CVPR 2024）：把 diffusion 生成改成 LLM 驱动的闭环自纠错系统",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1748,11 +2460,16 @@
       "efficiency",
       "primary-source"
     ],
-    "url": "sources/2026-04-16-self-correcting-llm-controlled-diffusion-models.html"
+    "url": "sources/2026-04-16-self-correcting-llm-controlled-diffusion-models.html",
+    "url_en": "en/sources/2026-04-16-self-correcting-llm-controlled-diffusion-models.html",
+    "search_text": "SLD（CVPR 2024）：把 diffusion 生成改成 LLM 驱动的闭环自纠错系统 SLD（CVPR 2024）：把 diffusion 生成改成 LLM 驱动的闭环自纠错系统   sources/2026-04-16-self-correcting-llm-controlled-diffusion-models source near-cvpr-2025 image-generation diffusion efficiency primary-source"
   },
   {
     "slug": "sources/2026-04-16-self-guided-diffusion-models",
     "title": "Self-Guided Diffusion Models（CVPR 2023）：把 guidance 从外部条件器部分收回到模型内部结构",
+    "title_en": "Self-Guided Diffusion Models（CVPR 2023）：把 guidance 从外部条件器部分收回到模型内部结构",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1761,11 +2478,16 @@
       "efficiency",
       "primary-source"
     ],
-    "url": "sources/2026-04-16-self-guided-diffusion-models.html"
+    "url": "sources/2026-04-16-self-guided-diffusion-models.html",
+    "url_en": "en/sources/2026-04-16-self-guided-diffusion-models.html",
+    "search_text": "Self-Guided Diffusion Models（CVPR 2023）：把 guidance 从外部条件器部分收回到模型内部结构 Self-Guided Diffusion Models（CVPR 2023）：把 guidance 从外部条件器部分收回到模型内部结构   sources/2026-04-16-self-guided-diffusion-models source near-cvpr-2025 image-generation diffusion efficiency primary-source"
   },
   {
     "slug": "sources/2026-04-16-text-embedding-quantization-diffusion",
-    "title": "Text Embedding Knows How to Quantize Text-Guided Diffusion Models（arXiv）：把文本嵌入直接拉进 text-guided diffusion 量化链路",
+    "title": "Text Embedding Knows How to Quantize Text-Guided Diffusion Models（ICCV 2025）：把文本嵌入直接拉进 text-guided diffusion 量化链路",
+    "title_en": "Text Embedding Knows How to Quantize Text-Guided Diffusion Models（ICCV 2025）：把文本嵌入直接拉进 text-guided diffusion 量化链路",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1774,11 +2496,16 @@
       "efficiency",
       "primary-source"
     ],
-    "url": "sources/2026-04-16-text-embedding-quantization-diffusion.html"
+    "url": "sources/2026-04-16-text-embedding-quantization-diffusion.html",
+    "url_en": "en/sources/2026-04-16-text-embedding-quantization-diffusion.html",
+    "search_text": "Text Embedding Knows How to Quantize Text-Guided Diffusion Models（ICCV 2025）：把文本嵌入直接拉进 text-guided diffusion 量化链路 Text Embedding Knows How to Quantize Text-Guided Diffusion Models（ICCV 2025）：把文本嵌入直接拉进 text-guided diffusion 量化链路   sources/2026-04-16-text-embedding-quantization-diffusion source near-cvpr-2025 image-generation diffusion efficiency primary-source"
   },
   {
     "slug": "sources/2026-04-16-towards-practical-plug-and-play-diffusion-models",
     "title": "Towards Practical Plug-and-Play Diffusion Models（CVPR 2023）：把 diffusion 提速做成可插拔工程模块",
+    "title_en": "Towards Practical Plug-and-Play Diffusion Models（CVPR 2023）：把 diffusion 提速做成可插拔工程模块",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1787,22 +2514,32 @@
       "efficiency",
       "primary-source"
     ],
-    "url": "sources/2026-04-16-towards-practical-plug-and-play-diffusion-models.html"
+    "url": "sources/2026-04-16-towards-practical-plug-and-play-diffusion-models.html",
+    "url_en": "en/sources/2026-04-16-towards-practical-plug-and-play-diffusion-models.html",
+    "search_text": "Towards Practical Plug-and-Play Diffusion Models（CVPR 2023）：把 diffusion 提速做成可插拔工程模块 Towards Practical Plug-and-Play Diffusion Models（CVPR 2023）：把 diffusion 提速做成可插拔工程模块   sources/2026-04-16-towards-practical-plug-and-play-diffusion-models source near-cvpr-2025 image-generation diffusion efficiency primary-source"
   },
   {
     "slug": "sources/2026-04-23-sportmamba",
-    "title": "SportMamba（arXiv 2025）：用状态空间模型处理团队运动中的非线性多目标跟踪",
+    "title": "SportMamba（CVPR Workshop 2025 / arXiv）：用状态空间模型处理团队运动中的非线性多目标跟踪",
+    "title_en": "SportMamba（CVPR Workshop 2025 / arXiv）：用状态空间模型处理团队运动中的非线性多目标跟踪",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
       "tracking",
       "primary-source"
     ],
-    "url": "sources/2026-04-23-sportmamba.html"
+    "url": "sources/2026-04-23-sportmamba.html",
+    "url_en": "en/sources/2026-04-23-sportmamba.html",
+    "search_text": "SportMamba（CVPR Workshop 2025 / arXiv）：用状态空间模型处理团队运动中的非线性多目标跟踪 SportMamba（CVPR Workshop 2025 / arXiv）：用状态空间模型处理团队运动中的非线性多目标跟踪   sources/2026-04-23-sportmamba source near-cvpr-2025 tracking primary-source"
   },
   {
     "slug": "sources/2026-04-24-sportshhi",
     "title": "SportsHHI（CVPR 2024）：体育视频中的高层人-人交互检测基准",
+    "title_en": "SportsHHI（CVPR 2024）：体育视频中的高层人-人交互检测基准",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1810,11 +2547,16 @@
       "benchmarking",
       "primary-source"
     ],
-    "url": "sources/2026-04-24-sportshhi.html"
+    "url": "sources/2026-04-24-sportshhi.html",
+    "url_en": "en/sources/2026-04-24-sportshhi.html",
+    "search_text": "SportsHHI（CVPR 2024）：体育视频中的高层人-人交互检测基准 SportsHHI（CVPR 2024）：体育视频中的高层人-人交互检测基准   sources/2026-04-24-sportshhi source near-cvpr-2025 video-understanding benchmarking primary-source"
   },
   {
     "slug": "sources/2026-04-24-sportsmot",
     "title": "SportsMOT（ICCV 2023）：多运动场景下的大规模球员多目标跟踪基准",
+    "title_en": "SportsMOT（ICCV 2023）：多运动场景下的大规模球员多目标跟踪基准",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1822,11 +2564,16 @@
       "benchmarking",
       "primary-source"
     ],
-    "url": "sources/2026-04-24-sportsmot.html"
+    "url": "sources/2026-04-24-sportsmot.html",
+    "url_en": "en/sources/2026-04-24-sportsmot.html",
+    "search_text": "SportsMOT（ICCV 2023）：多运动场景下的大规模球员多目标跟踪基准 SportsMOT（ICCV 2023）：多运动场景下的大规模球员多目标跟踪基准   sources/2026-04-24-sportsmot source near-cvpr-2025 tracking benchmarking primary-source"
   },
   {
     "slug": "sources/2026-04-24-teamtrack",
     "title": "TeamTrack（CVPRW 2024）：全场视角多运动多目标跟踪数据集",
+    "title_en": "TeamTrack（CVPRW 2024）：全场视角多运动多目标跟踪数据集",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1834,11 +2581,16 @@
       "benchmarking",
       "primary-source"
     ],
-    "url": "sources/2026-04-24-teamtrack.html"
+    "url": "sources/2026-04-24-teamtrack.html",
+    "url_en": "en/sources/2026-04-24-teamtrack.html",
+    "search_text": "TeamTrack（CVPRW 2024）：全场视角多运动多目标跟踪数据集 TeamTrack（CVPRW 2024）：全场视角多运动多目标跟踪数据集   sources/2026-04-24-teamtrack source near-cvpr-2025 tracking benchmarking primary-source"
   },
   {
     "slug": "sources/2026-04-24-transportmer",
-    "title": "TranSPORTmer（arXiv 2024）：面向多智能体体育轨迹理解的统一 Transformer 框架",
+    "title": "TranSPORTmer（ACCV 2024 / arXiv）：面向多智能体体育轨迹理解的统一 Transformer 框架",
+    "title_en": "TranSPORTmer（ACCV 2024 / arXiv）：面向多智能体体育轨迹理解的统一 Transformer 框架",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1846,22 +2598,32 @@
       "reasoning",
       "primary-source"
     ],
-    "url": "sources/2026-04-24-transportmer.html"
+    "url": "sources/2026-04-24-transportmer.html",
+    "url_en": "en/sources/2026-04-24-transportmer.html",
+    "search_text": "TranSPORTmer（ACCV 2024 / arXiv）：面向多智能体体育轨迹理解的统一 Transformer 框架 TranSPORTmer（ACCV 2024 / arXiv）：面向多智能体体育轨迹理解的统一 Transformer 框架   sources/2026-04-24-transportmer source near-cvpr-2025 tracking reasoning primary-source"
   },
   {
     "slug": "sources/2026-04-25-ap-nfl-hawkeye-first-down",
     "title": "NFL Hawk-Eye First Down（Associated Press 2025）：AP 报道 NFL 引入基于 Hawk-Eye 的首攻测量技术。",
+    "title_en": "NFL Hawk-Eye First Down（Associated Press 2025）：AP 报道 NFL 引入基于 Hawk-Eye 的首攻测量技术。",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
       "video-understanding",
       "secondary-source"
     ],
-    "url": "sources/2026-04-25-ap-nfl-hawkeye-first-down.html"
+    "url": "sources/2026-04-25-ap-nfl-hawkeye-first-down.html",
+    "url_en": "en/sources/2026-04-25-ap-nfl-hawkeye-first-down.html",
+    "search_text": "NFL Hawk-Eye First Down（Associated Press 2025）：AP 报道 NFL 引入基于 Hawk-Eye 的首攻测量技术。 NFL Hawk-Eye First Down（Associated Press 2025）：AP 报道 NFL 引入基于 Hawk-Eye 的首攻测量技术。   sources/2026-04-25-ap-nfl-hawkeye-first-down source near-cvpr-2025 video-understanding secondary-source"
   },
   {
     "slug": "sources/2026-04-25-athletepose3d",
     "title": "AthletePose3D（CVPR Workshop 2025）：真实体育 3D 姿态与生物力学锚点",
+    "title_en": "AthletePose3D（CVPR Workshop 2025）：真实体育 3D 姿态与生物力学锚点",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1869,11 +2631,16 @@
       "benchmarking",
       "primary-source"
     ],
-    "url": "sources/2026-04-25-athletepose3d.html"
+    "url": "sources/2026-04-25-athletepose3d.html",
+    "url_en": "en/sources/2026-04-25-athletepose3d.html",
+    "search_text": "AthletePose3D（CVPR Workshop 2025）：真实体育 3D 姿态与生物力学锚点 AthletePose3D（CVPR Workshop 2025）：真实体育 3D 姿态与生物力学锚点   sources/2026-04-25-athletepose3d source near-cvpr-2025 video-understanding benchmarking primary-source"
   },
   {
     "slug": "sources/2026-04-25-athleticspose",
     "title": "AthleticsPose（arXiv 2025）：AthleticsPose 聚焦真实田径动作中的 3D 姿态估计与泛化评估。",
+    "title_en": "AthleticsPose（arXiv 2025）：AthleticsPose 聚焦真实田径动作中的 3D 姿态估计与泛化评估。",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1881,11 +2648,16 @@
       "benchmarking",
       "primary-source"
     ],
-    "url": "sources/2026-04-25-athleticspose.html"
+    "url": "sources/2026-04-25-athleticspose.html",
+    "url_en": "en/sources/2026-04-25-athleticspose.html",
+    "search_text": "AthleticsPose（arXiv 2025）：AthleticsPose 聚焦真实田径动作中的 3D 姿态估计与泛化评估。 AthleticsPose（arXiv 2025）：AthleticsPose 聚焦真实田径动作中的 3D 姿态估计与泛化评估。   sources/2026-04-25-athleticspose source near-cvpr-2025 video-understanding benchmarking primary-source"
   },
   {
     "slug": "sources/2026-04-25-automated-offside-detection",
     "title": "Automated Offside Detection（ACM MM Workshop 2021）：这项工作把足球越位判定转成时空视频分析问题，强调规则、时刻同步和几何位置。",
+    "title_en": "Automated Offside Detection（ACM MM Workshop 2021）：这项工作把足球越位判定转成时空视频分析问题，强调规则、时刻同步和几何位置。",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1893,33 +2665,48 @@
       "reasoning",
       "primary-source"
     ],
-    "url": "sources/2026-04-25-automated-offside-detection.html"
+    "url": "sources/2026-04-25-automated-offside-detection.html",
+    "url_en": "en/sources/2026-04-25-automated-offside-detection.html",
+    "search_text": "Automated Offside Detection（ACM MM Workshop 2021）：这项工作把足球越位判定转成时空视频分析问题，强调规则、时刻同步和几何位置。 Automated Offside Detection（ACM MM Workshop 2021）：这项工作把足球越位判定转成时空视频分析问题，强调规则、时刻同步和几何位置。   sources/2026-04-25-automated-offside-detection source near-cvpr-2025 video-understanding reasoning primary-source"
   },
   {
     "slug": "sources/2026-04-25-catapult-athlete-monitoring",
     "title": "Catapult Athlete Monitoring（Company product page）：Catapult athlete monitoring 页面展示运动员负荷、训练监测和多模态数据产品。",
+    "title_en": "Catapult Athlete Monitoring（Company product page）：Catapult athlete monitoring 页面展示运动员负荷、训练监测和多模态数据产品。",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
       "video-understanding",
       "secondary-source"
     ],
-    "url": "sources/2026-04-25-catapult-athlete-monitoring.html"
+    "url": "sources/2026-04-25-catapult-athlete-monitoring.html",
+    "url_en": "en/sources/2026-04-25-catapult-athlete-monitoring.html",
+    "search_text": "Catapult Athlete Monitoring（Company product page）：Catapult athlete monitoring 页面展示运动员负荷、训练监测和多模态数据产品。 Catapult Athlete Monitoring（Company product page）：Catapult athlete monitoring 页面展示运动员负荷、训练监测和多模态数据产品。   sources/2026-04-25-catapult-athlete-monitoring source near-cvpr-2025 video-understanding secondary-source"
   },
   {
     "slug": "sources/2026-04-25-deeplabcut",
     "title": "DeepLabCut（GitHub repository）：DeepLabCut 是少量标注即可训练的无标记关键点追踪工具。",
+    "title_en": "DeepLabCut（GitHub repository）：DeepLabCut 是少量标注即可训练的无标记关键点追踪工具。",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
       "video-understanding",
       "secondary-source"
     ],
-    "url": "sources/2026-04-25-deeplabcut.html"
+    "url": "sources/2026-04-25-deeplabcut.html",
+    "url_en": "en/sources/2026-04-25-deeplabcut.html",
+    "search_text": "DeepLabCut（GitHub repository）：DeepLabCut 是少量标注即可训练的无标记关键点追踪工具。 DeepLabCut（GitHub repository）：DeepLabCut 是少量标注即可训练的无标记关键点追踪工具。   sources/2026-04-25-deeplabcut source near-cvpr-2025 video-understanding secondary-source"
   },
   {
     "slug": "sources/2026-04-25-finediving-repository",
     "title": "FineDiving Repository（GitHub repository）：FineDiving 仓库提供数据集与代码入口。",
+    "title_en": "FineDiving Repository（GitHub repository）：FineDiving 仓库提供数据集与代码入口。",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1927,11 +2714,16 @@
       "benchmarking",
       "secondary-source"
     ],
-    "url": "sources/2026-04-25-finediving-repository.html"
+    "url": "sources/2026-04-25-finediving-repository.html",
+    "url_en": "en/sources/2026-04-25-finediving-repository.html",
+    "search_text": "FineDiving Repository（GitHub repository）：FineDiving 仓库提供数据集与代码入口。 FineDiving Repository（GitHub repository）：FineDiving 仓库提供数据集与代码入口。   sources/2026-04-25-finediving-repository source near-cvpr-2025 video-understanding benchmarking secondary-source"
   },
   {
     "slug": "sources/2026-04-25-finediving",
     "title": "FineDiving（CVPR 2022）：技术动作评分与过程理解锚点",
+    "title_en": "FineDiving（CVPR 2022）：技术动作评分与过程理解锚点",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1939,11 +2731,16 @@
       "benchmarking",
       "primary-source"
     ],
-    "url": "sources/2026-04-25-finediving.html"
+    "url": "sources/2026-04-25-finediving.html",
+    "url_en": "en/sources/2026-04-25-finediving.html",
+    "search_text": "FineDiving（CVPR 2022）：技术动作评分与过程理解锚点 FineDiving（CVPR 2022）：技术动作评分与过程理解锚点   sources/2026-04-25-finediving source near-cvpr-2025 video-understanding benchmarking primary-source"
   },
   {
     "slug": "sources/2026-04-25-finegym",
     "title": "FineGym（CVPR 2020）：体育 AI 的细粒度动作理解早期锚点",
+    "title_en": "FineGym（CVPR 2020）：体育 AI 的细粒度动作理解早期锚点",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1951,11 +2748,16 @@
       "benchmarking",
       "primary-source"
     ],
-    "url": "sources/2026-04-25-finegym.html"
+    "url": "sources/2026-04-25-finegym.html",
+    "url_en": "en/sources/2026-04-25-finegym.html",
+    "search_text": "FineGym（CVPR 2020）：体育 AI 的细粒度动作理解早期锚点 FineGym（CVPR 2020）：体育 AI 的细粒度动作理解早期锚点   sources/2026-04-25-finegym source near-cvpr-2025 video-understanding benchmarking primary-source"
   },
   {
     "slug": "sources/2026-04-25-finesports",
     "title": "FineSports（CVPR 2024）：多人层级细粒度体育动作数据锚点",
+    "title_en": "FineSports（CVPR 2024）：多人层级细粒度体育动作数据锚点",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -1963,44 +2765,64 @@
       "benchmarking",
       "primary-source"
     ],
-    "url": "sources/2026-04-25-finesports.html"
+    "url": "sources/2026-04-25-finesports.html",
+    "url_en": "en/sources/2026-04-25-finesports.html",
+    "search_text": "FineSports（CVPR 2024）：多人层级细粒度体育动作数据锚点 FineSports（CVPR 2024）：多人层级细粒度体育动作数据锚点   sources/2026-04-25-finesports source near-cvpr-2025 video-understanding benchmarking primary-source"
   },
   {
     "slug": "sources/2026-04-25-genius-sports-second-spectrum",
     "title": "Second Spectrum / Genius Sports（Company newsroom）：Genius Sports 收购 Second Spectrum 的公告展示了光学追踪、联赛数据和媒体可视化的商业链路。",
+    "title_en": "Second Spectrum / Genius Sports（Company newsroom）：Genius Sports 收购 Second Spectrum 的公告展示了光学追踪、联赛数据和媒体可视化的商业链路。",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
       "tracking",
       "secondary-source"
     ],
-    "url": "sources/2026-04-25-genius-sports-second-spectrum.html"
+    "url": "sources/2026-04-25-genius-sports-second-spectrum.html",
+    "url_en": "en/sources/2026-04-25-genius-sports-second-spectrum.html",
+    "search_text": "Second Spectrum / Genius Sports（Company newsroom）：Genius Sports 收购 Second Spectrum 的公告展示了光学追踪、联赛数据和媒体可视化的商业链路。 Second Spectrum / Genius Sports（Company newsroom）：Genius Sports 收购 Second Spectrum 的公告展示了光学追踪、联赛数据和媒体可视化的商业链路。   sources/2026-04-25-genius-sports-second-spectrum source near-cvpr-2025 tracking secondary-source"
   },
   {
     "slug": "sources/2026-04-25-homecourt",
     "title": "HomeCourt（Product page）：HomeCourt 代表手机相机驱动的消费级训练反馈应用。",
+    "title_en": "HomeCourt（Product page）：HomeCourt 代表手机相机驱动的消费级训练反馈应用。",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
       "video-understanding",
       "secondary-source"
     ],
-    "url": "sources/2026-04-25-homecourt.html"
+    "url": "sources/2026-04-25-homecourt.html",
+    "url_en": "en/sources/2026-04-25-homecourt.html",
+    "search_text": "HomeCourt（Product page）：HomeCourt 代表手机相机驱动的消费级训练反馈应用。 HomeCourt（Product page）：HomeCourt 代表手机相机驱动的消费级训练反馈应用。   sources/2026-04-25-homecourt source near-cvpr-2025 video-understanding secondary-source"
   },
   {
     "slug": "sources/2026-04-25-kinexon-player-tracking",
     "title": "KINEXON Player Tracking（Company product page）：KINEXON player tracking 页面展示 UWB/GPS/LPS 球员追踪系统。",
+    "title_en": "KINEXON Player Tracking（Company product page）：KINEXON player tracking 页面展示 UWB/GPS/LPS 球员追踪系统。",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
       "tracking",
       "secondary-source"
     ],
-    "url": "sources/2026-04-25-kinexon-player-tracking.html"
+    "url": "sources/2026-04-25-kinexon-player-tracking.html",
+    "url_en": "en/sources/2026-04-25-kinexon-player-tracking.html",
+    "search_text": "KINEXON Player Tracking（Company product page）：KINEXON player tracking 页面展示 UWB/GPS/LPS 球员追踪系统。 KINEXON Player Tracking（Company product page）：KINEXON player tracking 页面展示 UWB/GPS/LPS 球员追踪系统。   sources/2026-04-25-kinexon-player-tracking source near-cvpr-2025 tracking secondary-source"
   },
   {
     "slug": "sources/2026-04-25-logo-group-action-quality",
     "title": "LOGO（CVPR 2023）：群体动作质量评估锚点",
+    "title_en": "LOGO（CVPR 2023）：群体动作质量评估锚点",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2008,44 +2830,64 @@
       "benchmarking",
       "primary-source"
     ],
-    "url": "sources/2026-04-25-logo-group-action-quality.html"
+    "url": "sources/2026-04-25-logo-group-action-quality.html",
+    "url_en": "en/sources/2026-04-25-logo-group-action-quality.html",
+    "search_text": "LOGO（CVPR 2023）：群体动作质量评估锚点 LOGO（CVPR 2023）：群体动作质量评估锚点   sources/2026-04-25-logo-group-action-quality source near-cvpr-2025 video-understanding benchmarking primary-source"
   },
   {
     "slug": "sources/2026-04-25-mediapipe-pose",
     "title": "MediaPipe Pose（Google AI Edge documentation）：MediaPipe Pose / BlazePose 提供移动端友好的 3D landmarks 姿态估计。",
+    "title_en": "MediaPipe Pose（Google AI Edge documentation）：MediaPipe Pose / BlazePose 提供移动端友好的 3D landmarks 姿态估计。",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
       "video-understanding",
       "secondary-source"
     ],
-    "url": "sources/2026-04-25-mediapipe-pose.html"
+    "url": "sources/2026-04-25-mediapipe-pose.html",
+    "url_en": "en/sources/2026-04-25-mediapipe-pose.html",
+    "search_text": "MediaPipe Pose（Google AI Edge documentation）：MediaPipe Pose / BlazePose 提供移动端友好的 3D landmarks 姿态估计。 MediaPipe Pose（Google AI Edge documentation）：MediaPipe Pose / BlazePose 提供移动端友好的 3D landmarks 姿态估计。   sources/2026-04-25-mediapipe-pose source near-cvpr-2025 video-understanding secondary-source"
   },
   {
     "slug": "sources/2026-04-25-mmaction2",
     "title": "MMAction2（GitHub repository）：MMAction2 是 OpenMMLab 视频理解工具箱，支持动作识别、检测和骨架动作等任务。",
+    "title_en": "MMAction2（GitHub repository）：MMAction2 是 OpenMMLab 视频理解工具箱，支持动作识别、检测和骨架动作等任务。",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
       "video-understanding",
       "secondary-source"
     ],
-    "url": "sources/2026-04-25-mmaction2.html"
+    "url": "sources/2026-04-25-mmaction2.html",
+    "url_en": "en/sources/2026-04-25-mmaction2.html",
+    "search_text": "MMAction2（GitHub repository）：MMAction2 是 OpenMMLab 视频理解工具箱，支持动作识别、检测和骨架动作等任务。 MMAction2（GitHub repository）：MMAction2 是 OpenMMLab 视频理解工具箱，支持动作识别、检测和骨架动作等任务。   sources/2026-04-25-mmaction2 source near-cvpr-2025 video-understanding secondary-source"
   },
   {
     "slug": "sources/2026-04-25-mmpose",
     "title": "MMPose / RTMPose（GitHub repository）：MMPose 提供 2D/3D 姿态估计工具链，RTMPose 强调实时部署。",
+    "title_en": "MMPose / RTMPose（GitHub repository）：MMPose 提供 2D/3D 姿态估计工具链，RTMPose 强调实时部署。",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
       "video-understanding",
       "secondary-source"
     ],
-    "url": "sources/2026-04-25-mmpose.html"
+    "url": "sources/2026-04-25-mmpose.html",
+    "url_en": "en/sources/2026-04-25-mmpose.html",
+    "search_text": "MMPose / RTMPose（GitHub repository）：MMPose 提供 2D/3D 姿态估计工具链，RTMPose 强调实时部署。 MMPose / RTMPose（GitHub repository）：MMPose 提供 2D/3D 姿态估计工具链，RTMPose 强调实时部署。   sources/2026-04-25-mmpose source near-cvpr-2025 video-understanding secondary-source"
   },
   {
     "slug": "sources/2026-04-25-multisports",
     "title": "MultiSports（ICCV 2021）：多人时空动作定位的数据锚点",
+    "title_en": "MultiSports（ICCV 2021）：多人时空动作定位的数据锚点",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2053,22 +2895,32 @@
       "benchmarking",
       "primary-source"
     ],
-    "url": "sources/2026-04-25-multisports.html"
+    "url": "sources/2026-04-25-multisports.html",
+    "url_en": "en/sources/2026-04-25-multisports.html",
+    "search_text": "MultiSports（ICCV 2021）：多人时空动作定位的数据锚点 MultiSports（ICCV 2021）：多人时空动作定位的数据锚点   sources/2026-04-25-multisports source near-cvpr-2025 video-understanding benchmarking primary-source"
   },
   {
     "slug": "sources/2026-04-25-nist-ai-risk-management-framework",
     "title": "NIST AI RMF（NIST）：NIST AI RMF 提供 AI 风险管理框架。",
+    "title_en": "NIST AI RMF（NIST）：NIST AI RMF 提供 AI 风险管理框架。",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
       "evaluation",
       "secondary-source"
     ],
-    "url": "sources/2026-04-25-nist-ai-risk-management-framework.html"
+    "url": "sources/2026-04-25-nist-ai-risk-management-framework.html",
+    "url_en": "en/sources/2026-04-25-nist-ai-risk-management-framework.html",
+    "search_text": "NIST AI RMF（NIST）：NIST AI RMF 提供 AI 风险管理框架。 NIST AI RMF（NIST）：NIST AI RMF 提供 AI 风险管理框架。   sources/2026-04-25-nist-ai-risk-management-framework source near-cvpr-2025 evaluation secondary-source"
   },
   {
     "slug": "sources/2026-04-25-opencap",
     "title": "OpenCap（PLOS Computational Biology / PMC 2023）：OpenCap 用智能手机视频估计人体运动学与动力学，降低实验室级运动捕捉门槛。",
+    "title_en": "OpenCap（PLOS Computational Biology / PMC 2023）：OpenCap 用智能手机视频估计人体运动学与动力学，降低实验室级运动捕捉门槛。",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2076,33 +2928,48 @@
       "benchmarking",
       "primary-source"
     ],
-    "url": "sources/2026-04-25-opencap.html"
+    "url": "sources/2026-04-25-opencap.html",
+    "url_en": "en/sources/2026-04-25-opencap.html",
+    "search_text": "OpenCap（PLOS Computational Biology / PMC 2023）：OpenCap 用智能手机视频估计人体运动学与动力学，降低实验室级运动捕捉门槛。 OpenCap（PLOS Computational Biology / PMC 2023）：OpenCap 用智能手机视频估计人体运动学与动力学，降低实验室级运动捕捉门槛。   sources/2026-04-25-opencap source near-cvpr-2025 video-understanding benchmarking primary-source"
   },
   {
     "slug": "sources/2026-04-25-openpose",
     "title": "OpenPose（GitHub repository）：OpenPose 是早期多人 2D 关键点检测工具。",
+    "title_en": "OpenPose（GitHub repository）：OpenPose 是早期多人 2D 关键点检测工具。",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
       "video-understanding",
       "secondary-source"
     ],
-    "url": "sources/2026-04-25-openpose.html"
+    "url": "sources/2026-04-25-openpose.html",
+    "url_en": "en/sources/2026-04-25-openpose.html",
+    "search_text": "OpenPose（GitHub repository）：OpenPose 是早期多人 2D 关键点检测工具。 OpenPose（GitHub repository）：OpenPose 是早期多人 2D 关键点检测工具。   sources/2026-04-25-openpose source near-cvpr-2025 video-understanding secondary-source"
   },
   {
     "slug": "sources/2026-04-25-reuters-premier-league-semi-automated-offside",
     "title": "Premier League Semi-Automated Offside（Reuters 2025）：Reuters 报道英超启用半自动越位技术。",
+    "title_en": "Premier League Semi-Automated Offside（Reuters 2025）：Reuters 报道英超启用半自动越位技术。",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
       "video-understanding",
       "secondary-source"
     ],
-    "url": "sources/2026-04-25-reuters-premier-league-semi-automated-offside.html"
+    "url": "sources/2026-04-25-reuters-premier-league-semi-automated-offside.html",
+    "url_en": "en/sources/2026-04-25-reuters-premier-league-semi-automated-offside.html",
+    "search_text": "Premier League Semi-Automated Offside（Reuters 2025）：Reuters 报道英超启用半自动越位技术。 Premier League Semi-Automated Offside（Reuters 2025）：Reuters 报道英超启用半自动越位技术。   sources/2026-04-25-reuters-premier-league-semi-automated-offside source near-cvpr-2025 video-understanding secondary-source"
   },
   {
     "slug": "sources/2026-04-25-soccernet-action-spotting",
     "title": "SoccerNet Action Spotting（SoccerNet official task）：SoccerNet action spotting 是足球视频事件定位的核心公开任务入口。",
+    "title_en": "SoccerNet Action Spotting（SoccerNet official task）：SoccerNet action spotting 是足球视频事件定位的核心公开任务入口。",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2110,11 +2977,16 @@
       "benchmarking",
       "secondary-source"
     ],
-    "url": "sources/2026-04-25-soccernet-action-spotting.html"
+    "url": "sources/2026-04-25-soccernet-action-spotting.html",
+    "url_en": "en/sources/2026-04-25-soccernet-action-spotting.html",
+    "search_text": "SoccerNet Action Spotting（SoccerNet official task）：SoccerNet action spotting 是足球视频事件定位的核心公开任务入口。 SoccerNet Action Spotting（SoccerNet official task）：SoccerNet action spotting 是足球视频事件定位的核心公开任务入口。   sources/2026-04-25-soccernet-action-spotting source near-cvpr-2025 video-understanding benchmarking secondary-source"
   },
   {
     "slug": "sources/2026-04-25-soccernet-game-state-reconstruction",
     "title": "SoccerNet-GSR（CVPR Workshop 2024）：足球比赛状态重建锚点",
+    "title_en": "SoccerNet-GSR（CVPR Workshop 2024）：足球比赛状态重建锚点",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2122,22 +2994,32 @@
       "tracking",
       "primary-source"
     ],
-    "url": "sources/2026-04-25-soccernet-game-state-reconstruction.html"
+    "url": "sources/2026-04-25-soccernet-game-state-reconstruction.html",
+    "url_en": "en/sources/2026-04-25-soccernet-game-state-reconstruction.html",
+    "search_text": "SoccerNet-GSR（CVPR Workshop 2024）：足球比赛状态重建锚点 SoccerNet-GSR（CVPR Workshop 2024）：足球比赛状态重建锚点   sources/2026-04-25-soccernet-game-state-reconstruction source near-cvpr-2025 video-understanding tracking primary-source"
   },
   {
     "slug": "sources/2026-04-25-sports-ai-review-2025",
     "title": "Sports AI Review 2025（Artificial Intelligence Review 2025）：这篇综述讨论体育视觉、分析和 AI 系统的发展趋势。",
+    "title_en": "Sports AI Review 2025（Artificial Intelligence Review 2025）：这篇综述讨论体育视觉、分析和 AI 系统的发展趋势。",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
       "video-understanding",
       "secondary-source"
     ],
-    "url": "sources/2026-04-25-sports-ai-review-2025.html"
+    "url": "sources/2026-04-25-sports-ai-review-2025.html",
+    "url_en": "en/sources/2026-04-25-sports-ai-review-2025.html",
+    "search_text": "Sports AI Review 2025（Artificial Intelligence Review 2025）：这篇综述讨论体育视觉、分析和 AI 系统的发展趋势。 Sports AI Review 2025（Artificial Intelligence Review 2025）：这篇综述讨论体育视觉、分析和 AI 系统的发展趋势。   sources/2026-04-25-sports-ai-review-2025 source near-cvpr-2025 video-understanding secondary-source"
   },
   {
     "slug": "sources/2026-04-25-sportscap",
     "title": "SportsCap（arXiv 2021）：SportsCap 研究单目体育视频中的 3D 人体运动捕捉和细粒度动作理解。",
+    "title_en": "SportsCap（arXiv 2021）：SportsCap 研究单目体育视频中的 3D 人体运动捕捉和细粒度动作理解。",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2145,11 +3027,16 @@
       "benchmarking",
       "primary-source"
     ],
-    "url": "sources/2026-04-25-sportscap.html"
+    "url": "sources/2026-04-25-sportscap.html",
+    "url_en": "en/sources/2026-04-25-sportscap.html",
+    "search_text": "SportsCap（arXiv 2021）：SportsCap 研究单目体育视频中的 3D 人体运动捕捉和细粒度动作理解。 SportsCap（arXiv 2021）：SportsCap 研究单目体育视频中的 3D 人体运动捕捉和细粒度动作理解。   sources/2026-04-25-sportscap source near-cvpr-2025 video-understanding benchmarking primary-source"
   },
   {
     "slug": "sources/2026-04-25-sportsmot-dataset-page",
     "title": "SportsMOT Dataset Page（DeeperAction dataset page）：SportsMOT 官方数据页记录数据下载、许可和基准说明。",
+    "title_en": "SportsMOT Dataset Page（DeeperAction dataset page）：SportsMOT 官方数据页记录数据下载、许可和基准说明。",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2157,11 +3044,16 @@
       "benchmarking",
       "secondary-source"
     ],
-    "url": "sources/2026-04-25-sportsmot-dataset-page.html"
+    "url": "sources/2026-04-25-sportsmot-dataset-page.html",
+    "url_en": "en/sources/2026-04-25-sportsmot-dataset-page.html",
+    "search_text": "SportsMOT Dataset Page（DeeperAction dataset page）：SportsMOT 官方数据页记录数据下载、许可和基准说明。 SportsMOT Dataset Page（DeeperAction dataset page）：SportsMOT 官方数据页记录数据下载、许可和基准说明。   sources/2026-04-25-sportsmot-dataset-page source near-cvpr-2025 tracking benchmarking secondary-source"
   },
   {
     "slug": "sources/2026-04-25-st-gcn",
     "title": "ST-GCN（AAAI 2018 / arXiv）：ST-GCN 用时空图卷积建模骨架动作，是姿态驱动动作识别的经典基线。",
+    "title_en": "ST-GCN（AAAI 2018 / arXiv）：ST-GCN 用时空图卷积建模骨架动作，是姿态驱动动作识别的经典基线。",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2169,11 +3061,16 @@
       "reasoning",
       "primary-source"
     ],
-    "url": "sources/2026-04-25-st-gcn.html"
+    "url": "sources/2026-04-25-st-gcn.html",
+    "url_en": "en/sources/2026-04-25-st-gcn.html",
+    "search_text": "ST-GCN（AAAI 2018 / arXiv）：ST-GCN 用时空图卷积建模骨架动作，是姿态驱动动作识别的经典基线。 ST-GCN（AAAI 2018 / arXiv）：ST-GCN 用时空图卷积建模骨架动作，是姿态驱动动作识别的经典基线。   sources/2026-04-25-st-gcn source near-cvpr-2025 video-understanding reasoning primary-source"
   },
   {
     "slug": "sources/2026-04-25-tacticai",
     "title": "TacticAI（Nature Communications 2024）：战术决策支持锚点",
+    "title_en": "TacticAI（Nature Communications 2024）：战术决策支持锚点",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2181,11 +3078,16 @@
       "reasoning",
       "primary-source"
     ],
-    "url": "sources/2026-04-25-tacticai.html"
+    "url": "sources/2026-04-25-tacticai.html",
+    "url_en": "en/sources/2026-04-25-tacticai.html",
+    "search_text": "TacticAI（Nature Communications 2024）：战术决策支持锚点 TacticAI（Nature Communications 2024）：战术决策支持锚点   sources/2026-04-25-tacticai source near-cvpr-2025 video-understanding reasoning primary-source"
   },
   {
     "slug": "sources/2026-04-25-temporal-parsing-transformer-aqa",
     "title": "Temporal Parsing Transformer（ECCV 2022）：Temporal Parsing Transformer 把动作质量评估拆成时序解析问题，在打分类体育动作中强调过程结构。",
+    "title_en": "Temporal Parsing Transformer（ECCV 2022）：Temporal Parsing Transformer 把动作质量评估拆成时序解析问题，在打分类体育动作中强调过程结构。",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2193,11 +3095,16 @@
       "benchmarking",
       "primary-source"
     ],
-    "url": "sources/2026-04-25-temporal-parsing-transformer-aqa.html"
+    "url": "sources/2026-04-25-temporal-parsing-transformer-aqa.html",
+    "url_en": "en/sources/2026-04-25-temporal-parsing-transformer-aqa.html",
+    "search_text": "Temporal Parsing Transformer（ECCV 2022）：Temporal Parsing Transformer 把动作质量评估拆成时序解析问题，在打分类体育动作中强调过程结构。 Temporal Parsing Transformer（ECCV 2022）：Temporal Parsing Transformer 把动作质量评估拆成时序解析问题，在打分类体育动作中强调过程结构。   sources/2026-04-25-temporal-parsing-transformer-aqa source near-cvpr-2025 video-understanding benchmarking primary-source"
   },
   {
     "slug": "sources/2026-04-25-timesformer",
     "title": "TimeSformer（ICML 2021）：TimeSformer 用纯 attention 结构建模视频时空关系，是视频 Transformer 路线的重要基础。",
+    "title_en": "TimeSformer（ICML 2021）：TimeSformer 用纯 attention 结构建模视频时空关系，是视频 Transformer 路线的重要基础。",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2205,11 +3112,16 @@
       "reasoning",
       "primary-source"
     ],
-    "url": "sources/2026-04-25-timesformer.html"
+    "url": "sources/2026-04-25-timesformer.html",
+    "url_en": "en/sources/2026-04-25-timesformer.html",
+    "search_text": "TimeSformer（ICML 2021）：TimeSformer 用纯 attention 结构建模视频时空关系，是视频 Transformer 路线的重要基础。 TimeSformer（ICML 2021）：TimeSformer 用纯 attention 结构建模视频时空关系，是视频 Transformer 路线的重要基础。   sources/2026-04-25-timesformer source near-cvpr-2025 video-understanding reasoning primary-source"
   },
   {
     "slug": "sources/2026-04-25-tracknetv3",
     "title": "TrackNetV3：增强羽毛球 shuttle tracking 的数据增强与轨迹校正",
+    "title_en": "TrackNetV3：增强羽毛球 shuttle tracking 的数据增强与轨迹校正",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2217,11 +3129,16 @@
       "tracking",
       "primary-source"
     ],
-    "url": "sources/2026-04-25-tracknetv3.html"
+    "url": "sources/2026-04-25-tracknetv3.html",
+    "url_en": "en/sources/2026-04-25-tracknetv3.html",
+    "search_text": "TrackNetV3：增强羽毛球 shuttle tracking 的数据增强与轨迹校正 TrackNetV3：增强羽毛球 shuttle tracking 的数据增强与轨迹校正   sources/2026-04-25-tracknetv3 source near-cvpr-2025 video-understanding tracking primary-source"
   },
   {
     "slug": "sources/2026-04-25-universal-soccer-video-understanding",
     "title": "Universal Soccer Video Understanding（CVPR 2025）：统一足球视频理解锚点",
+    "title_en": "Universal Soccer Video Understanding（CVPR 2025）：统一足球视频理解锚点",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2229,11 +3146,16 @@
       "reasoning",
       "primary-source"
     ],
-    "url": "sources/2026-04-25-universal-soccer-video-understanding.html"
+    "url": "sources/2026-04-25-universal-soccer-video-understanding.html",
+    "url_en": "en/sources/2026-04-25-universal-soccer-video-understanding.html",
+    "search_text": "Universal Soccer Video Understanding（CVPR 2025）：统一足球视频理解锚点 Universal Soccer Video Understanding（CVPR 2025）：统一足球视频理解锚点   sources/2026-04-25-universal-soccer-video-understanding source near-cvpr-2025 video-understanding reasoning primary-source"
   },
   {
     "slug": "sources/2026-04-25-videomae",
     "title": "VideoMAE（NeurIPS 2022 / arXiv）：VideoMAE 用 masked autoencoding 做视频自监督预训练，强调数据效率。",
+    "title_en": "VideoMAE（NeurIPS 2022 / arXiv）：VideoMAE 用 masked autoencoding 做视频自监督预训练，强调数据效率。",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2241,11 +3163,16 @@
       "representation-learning",
       "primary-source"
     ],
-    "url": "sources/2026-04-25-videomae.html"
+    "url": "sources/2026-04-25-videomae.html",
+    "url_en": "en/sources/2026-04-25-videomae.html",
+    "search_text": "VideoMAE（NeurIPS 2022 / arXiv）：VideoMAE 用 masked autoencoding 做视频自监督预训练，强调数据效率。 VideoMAE（NeurIPS 2022 / arXiv）：VideoMAE 用 masked autoencoding 做视频自监督预训练，强调数据效率。   sources/2026-04-25-videomae source near-cvpr-2025 video-understanding representation-learning primary-source"
   },
   {
     "slug": "sources/2026-04-25-wear-outdoor-sports-dataset",
     "title": "WEAR（arXiv 2023）：WEAR 提供户外运动中的第一视角视频与可穿戴传感器数据，用来研究视频、IMU 与活动识别的多模态融合。",
+    "title_en": "WEAR（arXiv 2023）：WEAR 提供户外运动中的第一视角视频与可穿戴传感器数据，用来研究视频、IMU 与活动识别的多模态融合。",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2254,11 +3181,16 @@
       "benchmarking",
       "primary-source"
     ],
-    "url": "sources/2026-04-25-wear-outdoor-sports-dataset.html"
+    "url": "sources/2026-04-25-wear-outdoor-sports-dataset.html",
+    "url_en": "en/sources/2026-04-25-wear-outdoor-sports-dataset.html",
+    "search_text": "WEAR（arXiv 2023）：WEAR 提供户外运动中的第一视角视频与可穿戴传感器数据，用来研究视频、IMU 与活动识别的多模态融合。 WEAR（arXiv 2023）：WEAR 提供户外运动中的第一视角视频与可穿戴传感器数据，用来研究视频、IMU 与活动识别的多模态融合。   sources/2026-04-25-wear-outdoor-sports-dataset source near-cvpr-2025 video-understanding multimodal benchmarking primary-source"
   },
   {
     "slug": "sources/2026-05-05-active-learning-action-spotting-football",
     "title": "Active Learning for Action Spotting（CVPRW 2023）：足球事件定位的低标注路线",
+    "title_en": "Active Learning for Action Spotting（CVPRW 2023）：足球事件定位的低标注路线",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2266,11 +3198,16 @@
       "evaluation",
       "primary-source"
     ],
-    "url": "sources/2026-05-05-active-learning-action-spotting-football.html"
+    "url": "sources/2026-05-05-active-learning-action-spotting-football.html",
+    "url_en": "en/sources/2026-05-05-active-learning-action-spotting-football.html",
+    "search_text": "Active Learning for Action Spotting（CVPRW 2023）：足球事件定位的低标注路线 Active Learning for Action Spotting（CVPRW 2023）：足球事件定位的低标注路线   sources/2026-05-05-active-learning-action-spotting-football source near-cvpr-2025 video-understanding evaluation primary-source"
   },
   {
     "slug": "sources/2026-05-05-ai-driven-soccer-analysis",
     "title": "AI Driven Soccer Analysis（arXiv 2026）：足球视频分析系统样本",
+    "title_en": "AI Driven Soccer Analysis（arXiv 2026）：足球视频分析系统样本",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2278,11 +3215,16 @@
       "tracking",
       "primary-source"
     ],
-    "url": "sources/2026-05-05-ai-driven-soccer-analysis.html"
+    "url": "sources/2026-05-05-ai-driven-soccer-analysis.html",
+    "url_en": "en/sources/2026-05-05-ai-driven-soccer-analysis.html",
+    "search_text": "AI Driven Soccer Analysis（arXiv 2026）：足球视频分析系统样本 AI Driven Soccer Analysis（arXiv 2026）：足球视频分析系统样本   sources/2026-05-05-ai-driven-soccer-analysis source near-cvpr-2025 video-understanding tracking primary-source"
   },
   {
     "slug": "sources/2026-05-05-event2tracking",
     "title": "Event2Tracking：用长时多模态上下文重建多智能体足球轨迹",
+    "title_en": "Event2Tracking：用长时多模态上下文重建多智能体足球轨迹",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2291,11 +3233,16 @@
       "multimodal",
       "primary-source"
     ],
-    "url": "sources/2026-05-05-event2tracking.html"
+    "url": "sources/2026-05-05-event2tracking.html",
+    "url_en": "en/sources/2026-05-05-event2tracking.html",
+    "search_text": "Event2Tracking：用长时多模态上下文重建多智能体足球轨迹 Event2Tracking：用长时多模态上下文重建多智能体足球轨迹   sources/2026-05-05-event2tracking source near-cvpr-2025 video-understanding tracking multimodal primary-source"
   },
   {
     "slug": "sources/2026-05-05-finecausal-action-quality-assessment",
     "title": "FineCausal（arXiv 2025）：可解释细粒度动作质量评估",
+    "title_en": "FineCausal（arXiv 2025）：可解释细粒度动作质量评估",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2304,11 +3251,16 @@
       "reasoning",
       "primary-source"
     ],
-    "url": "sources/2026-05-05-finecausal-action-quality-assessment.html"
+    "url": "sources/2026-05-05-finecausal-action-quality-assessment.html",
+    "url_en": "en/sources/2026-05-05-finecausal-action-quality-assessment.html",
+    "search_text": "FineCausal（arXiv 2025）：可解释细粒度动作质量评估 FineCausal（arXiv 2025）：可解释细粒度动作质量评估   sources/2026-05-05-finecausal-action-quality-assessment source near-cvpr-2025 video-understanding evaluation reasoning primary-source"
   },
   {
     "slug": "sources/2026-05-05-human-in-loop-team-sports-retrieval",
     "title": "Human-in-the-loop Adaptation（arXiv 2026）：团队运动检索的人机闭环适配",
+    "title_en": "Human-in-the-loop Adaptation（arXiv 2026）：团队运动检索的人机闭环适配",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2316,11 +3268,16 @@
       "vision-language",
       "primary-source"
     ],
-    "url": "sources/2026-05-05-human-in-loop-team-sports-retrieval.html"
+    "url": "sources/2026-05-05-human-in-loop-team-sports-retrieval.html",
+    "url_en": "en/sources/2026-05-05-human-in-loop-team-sports-retrieval.html",
+    "search_text": "Human-in-the-loop Adaptation（arXiv 2026）：团队运动检索的人机闭环适配 Human-in-the-loop Adaptation（arXiv 2026）：团队运动检索的人机闭环适配   sources/2026-05-05-human-in-loop-team-sports-retrieval source near-cvpr-2025 video-understanding vision-language primary-source"
   },
   {
     "slug": "sources/2026-05-05-monotrack-shuttle-trajectory-reconstruction",
     "title": "MonoTrack：单目羽毛球视频的 3D 轨迹重建",
+    "title_en": "MonoTrack：单目羽毛球视频的 3D 轨迹重建",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2328,11 +3285,16 @@
       "tracking",
       "primary-source"
     ],
-    "url": "sources/2026-05-05-monotrack-shuttle-trajectory-reconstruction.html"
+    "url": "sources/2026-05-05-monotrack-shuttle-trajectory-reconstruction.html",
+    "url_en": "en/sources/2026-05-05-monotrack-shuttle-trajectory-reconstruction.html",
+    "search_text": "MonoTrack：单目羽毛球视频的 3D 轨迹重建 MonoTrack：单目羽毛球视频的 3D 轨迹重建   sources/2026-05-05-monotrack-shuttle-trajectory-reconstruction source near-cvpr-2025 video-understanding tracking primary-source"
   },
   {
     "slug": "sources/2026-05-05-refereebench-multi-sport-referees",
     "title": "RefereeBench：多运动项目视频裁判能力评测",
+    "title_en": "RefereeBench：多运动项目视频裁判能力评测",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2341,11 +3303,16 @@
       "benchmarking",
       "primary-source"
     ],
-    "url": "sources/2026-05-05-refereebench-multi-sport-referees.html"
+    "url": "sources/2026-05-05-refereebench-multi-sport-referees.html",
+    "url_en": "en/sources/2026-05-05-refereebench-multi-sport-referees.html",
+    "search_text": "RefereeBench：多运动项目视频裁判能力评测 RefereeBench：多运动项目视频裁判能力评测   sources/2026-05-05-refereebench-multi-sport-referees source near-cvpr-2025 video-understanding evaluation benchmarking primary-source"
   },
   {
     "slug": "sources/2026-05-05-soccernet-2022-challenges-results",
     "title": "SoccerNet 2022 Challenges Results：足球视频理解挑战早期基线",
+    "title_en": "SoccerNet 2022 Challenges Results：足球视频理解挑战早期基线",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2353,11 +3320,16 @@
       "benchmarking",
       "primary-source"
     ],
-    "url": "sources/2026-05-05-soccernet-2022-challenges-results.html"
+    "url": "sources/2026-05-05-soccernet-2022-challenges-results.html",
+    "url_en": "en/sources/2026-05-05-soccernet-2022-challenges-results.html",
+    "search_text": "SoccerNet 2022 Challenges Results：足球视频理解挑战早期基线 SoccerNet 2022 Challenges Results：足球视频理解挑战早期基线   sources/2026-05-05-soccernet-2022-challenges-results source near-cvpr-2025 video-understanding benchmarking primary-source"
   },
   {
     "slug": "sources/2026-05-05-soccernet-2023-challenges-results",
     "title": "SoccerNet 2023 Challenges Results：足球视频多任务挑战结果",
+    "title_en": "SoccerNet 2023 Challenges Results：足球视频多任务挑战结果",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2365,11 +3337,16 @@
       "benchmarking",
       "primary-source"
     ],
-    "url": "sources/2026-05-05-soccernet-2023-challenges-results.html"
+    "url": "sources/2026-05-05-soccernet-2023-challenges-results.html",
+    "url_en": "en/sources/2026-05-05-soccernet-2023-challenges-results.html",
+    "search_text": "SoccerNet 2023 Challenges Results：足球视频多任务挑战结果 SoccerNet 2023 Challenges Results：足球视频多任务挑战结果   sources/2026-05-05-soccernet-2023-challenges-results source near-cvpr-2025 video-understanding benchmarking primary-source"
   },
   {
     "slug": "sources/2026-05-05-soccernet-2023-tracking-mot4mot",
     "title": "SoccerNet 2023 Tracking Challenge MOT4MOT：球员跟踪团队报告",
+    "title_en": "SoccerNet 2023 Tracking Challenge MOT4MOT：球员跟踪团队报告",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2377,11 +3354,16 @@
       "tracking",
       "primary-source"
     ],
-    "url": "sources/2026-05-05-soccernet-2023-tracking-mot4mot.html"
+    "url": "sources/2026-05-05-soccernet-2023-tracking-mot4mot.html",
+    "url_en": "en/sources/2026-05-05-soccernet-2023-tracking-mot4mot.html",
+    "search_text": "SoccerNet 2023 Tracking Challenge MOT4MOT：球员跟踪团队报告 SoccerNet 2023 Tracking Challenge MOT4MOT：球员跟踪团队报告   sources/2026-05-05-soccernet-2023-tracking-mot4mot source near-cvpr-2025 video-understanding tracking primary-source"
   },
   {
     "slug": "sources/2026-05-05-soccernet-v2-camera-calibration-player-localization",
     "title": "SoccerNet-v2 Camera Calibration（arXiv 2021）：足球场标定与球员定位",
+    "title_en": "SoccerNet-v2 Camera Calibration（arXiv 2021）：足球场标定与球员定位",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2389,11 +3371,16 @@
       "tracking",
       "primary-source"
     ],
-    "url": "sources/2026-05-05-soccernet-v2-camera-calibration-player-localization.html"
+    "url": "sources/2026-05-05-soccernet-v2-camera-calibration-player-localization.html",
+    "url_en": "en/sources/2026-05-05-soccernet-v2-camera-calibration-player-localization.html",
+    "search_text": "SoccerNet-v2 Camera Calibration（arXiv 2021）：足球场标定与球员定位 SoccerNet-v2 Camera Calibration（arXiv 2021）：足球场标定与球员定位   sources/2026-05-05-soccernet-v2-camera-calibration-player-localization source near-cvpr-2025 video-understanding tracking primary-source"
   },
   {
     "slug": "sources/2026-05-05-soccernet-v2-holistic-understanding",
     "title": "SoccerNet-v2（arXiv 2020）：广播足球视频整体理解基准",
+    "title_en": "SoccerNet-v2（arXiv 2020）：广播足球视频整体理解基准",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2401,11 +3388,16 @@
       "benchmarking",
       "primary-source"
     ],
-    "url": "sources/2026-05-05-soccernet-v2-holistic-understanding.html"
+    "url": "sources/2026-05-05-soccernet-v2-holistic-understanding.html",
+    "url_en": "en/sources/2026-05-05-soccernet-v2-holistic-understanding.html",
+    "search_text": "SoccerNet-v2（arXiv 2020）：广播足球视频整体理解基准 SoccerNet-v2（arXiv 2020）：广播足球视频整体理解基准   sources/2026-05-05-soccernet-v2-holistic-understanding source near-cvpr-2025 video-understanding benchmarking primary-source"
   },
   {
     "slug": "sources/2026-05-05-sports-qa-video-question-answering",
     "title": "Sports-QA：复杂专业体育视频问答基准",
+    "title_en": "Sports-QA：复杂专业体育视频问答基准",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2414,11 +3406,16 @@
       "benchmarking",
       "primary-source"
     ],
-    "url": "sources/2026-05-05-sports-qa-video-question-answering.html"
+    "url": "sources/2026-05-05-sports-qa-video-question-answering.html",
+    "url_en": "en/sources/2026-05-05-sports-qa-video-question-answering.html",
+    "search_text": "Sports-QA：复杂专业体育视频问答基准 Sports-QA：复杂专业体育视频问答基准   sources/2026-05-05-sports-qa-video-question-answering source near-cvpr-2025 video-understanding vision-language benchmarking primary-source"
   },
   {
     "slug": "sources/2026-05-05-tracknet-high-speed-tiny-objects",
     "title": "TrackNet：体育高速小目标追踪网络",
+    "title_en": "TrackNet：体育高速小目标追踪网络",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2426,11 +3423,16 @@
       "tracking",
       "primary-source"
     ],
-    "url": "sources/2026-05-05-tracknet-high-speed-tiny-objects.html"
+    "url": "sources/2026-05-05-tracknet-high-speed-tiny-objects.html",
+    "url_en": "en/sources/2026-05-05-tracknet-high-speed-tiny-objects.html",
+    "search_text": "TrackNet：体育高速小目标追踪网络 TrackNet：体育高速小目标追踪网络   sources/2026-05-05-tracknet-high-speed-tiny-objects source near-cvpr-2025 video-understanding tracking primary-source"
   },
   {
     "slug": "sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking",
     "title": "TrackNetV2：高效羽毛球追踪网络",
+    "title_en": "TrackNetV2：高效羽毛球追踪网络",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2438,11 +3440,16 @@
       "tracking",
       "primary-source"
     ],
-    "url": "sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking.html"
+    "url": "sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking.html",
+    "url_en": "en/sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking.html",
+    "search_text": "TrackNetV2：高效羽毛球追踪网络 TrackNetV2：高效羽毛球追踪网络   sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking source near-cvpr-2025 video-understanding tracking primary-source"
   },
   {
     "slug": "sources/2026-05-05-tracknetv4-motion-attention-maps",
     "title": "TrackNetV4：用运动注意力图增强快速体育小目标追踪",
+    "title_en": "TrackNetV4：用运动注意力图增强快速体育小目标追踪",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2450,11 +3457,16 @@
       "tracking",
       "primary-source"
     ],
-    "url": "sources/2026-05-05-tracknetv4-motion-attention-maps.html"
+    "url": "sources/2026-05-05-tracknetv4-motion-attention-maps.html",
+    "url_en": "en/sources/2026-05-05-tracknetv4-motion-attention-maps.html",
+    "search_text": "TrackNetV4：用运动注意力图增强快速体育小目标追踪 TrackNetV4：用运动注意力图增强快速体育小目标追踪   sources/2026-05-05-tracknetv4-motion-attention-maps source near-cvpr-2025 video-understanding tracking primary-source"
   },
   {
     "slug": "sources/2026-05-05-x-vars-explainable-football-refereeing",
     "title": "X-VARS：可解释足球视频助理裁判系统",
+    "title_en": "X-VARS：可解释足球视频助理裁判系统",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2463,11 +3475,16 @@
       "reasoning",
       "primary-source"
     ],
-    "url": "sources/2026-05-05-x-vars-explainable-football-refereeing.html"
+    "url": "sources/2026-05-05-x-vars-explainable-football-refereeing.html",
+    "url_en": "en/sources/2026-05-05-x-vars-explainable-football-refereeing.html",
+    "search_text": "X-VARS：可解释足球视频助理裁判系统 X-VARS：可解释足球视频助理裁判系统   sources/2026-05-05-x-vars-explainable-football-refereeing source near-cvpr-2025 video-understanding vision-language reasoning primary-source"
   },
   {
     "slug": "sources/2026-05-12-trackmae",
-    "title": "TrackMAE（CVPR 2026 / arXiv）：用轨迹重建强化视频自监督表征",
+    "title": "TrackMAE（arXiv；CVPR 2026 accepted claim pending proceedings）：用轨迹重建强化视频自监督表征",
+    "title_en": "TrackMAE（arXiv；CVPR 2026 accepted claim pending proceedings）：用轨迹重建强化视频自监督表征",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2476,11 +3493,16 @@
       "representation-learning",
       "primary-source"
     ],
-    "url": "sources/2026-05-12-trackmae.html"
+    "url": "sources/2026-05-12-trackmae.html",
+    "url_en": "en/sources/2026-05-12-trackmae.html",
+    "search_text": "TrackMAE（arXiv；CVPR 2026 accepted claim pending proceedings）：用轨迹重建强化视频自监督表征 TrackMAE（arXiv；CVPR 2026 accepted claim pending proceedings）：用轨迹重建强化视频自监督表征   sources/2026-05-12-trackmae source near-cvpr-2025 video-understanding tracking representation-learning primary-source"
   },
   {
     "slug": "sources/2026-05-12-videoauto-r1",
-    "title": "VideoAuto-R1（CVPR 2026 / arXiv）：按需推理的视频理解框架",
+    "title": "VideoAuto-R1（arXiv；CVPR 2026 accepted claim pending proceedings）：按需推理的视频理解框架",
+    "title_en": "VideoAuto-R1（arXiv；CVPR 2026 accepted claim pending proceedings）：按需推理的视频理解框架",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2490,11 +3512,16 @@
       "efficiency",
       "primary-source"
     ],
-    "url": "sources/2026-05-12-videoauto-r1.html"
+    "url": "sources/2026-05-12-videoauto-r1.html",
+    "url_en": "en/sources/2026-05-12-videoauto-r1.html",
+    "search_text": "VideoAuto-R1（arXiv；CVPR 2026 accepted claim pending proceedings）：按需推理的视频理解框架 VideoAuto-R1（arXiv；CVPR 2026 accepted claim pending proceedings）：按需推理的视频理解框架   sources/2026-05-12-videoauto-r1 source near-cvpr-2025 video-understanding vision-language reasoning efficiency primary-source"
   },
   {
     "slug": "sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition",
     "title": "BlockGCN：重新强化骨架动作识别中的拓扑意识",
+    "title_en": "BlockGCN：重新强化骨架动作识别中的拓扑意识",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2502,11 +3529,16 @@
       "representation-learning",
       "primary-source"
     ],
-    "url": "sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition.html"
+    "url": "sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition.html",
+    "url_en": "en/sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition.html",
+    "search_text": "BlockGCN：重新强化骨架动作识别中的拓扑意识 BlockGCN：重新强化骨架动作识别中的拓扑意识   sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition source near-cvpr-2025 video-understanding representation-learning primary-source"
   },
   {
     "slug": "sources/2026-05-16-bst-badminton-stroke-type-transformer",
     "title": "BST：面向羽毛球击球类型识别的骨架动作 Transformer",
+    "title_en": "BST：面向羽毛球击球类型识别的骨架动作 Transformer",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2515,11 +3547,16 @@
       "representation-learning",
       "primary-source"
     ],
-    "url": "sources/2026-05-16-bst-badminton-stroke-type-transformer.html"
+    "url": "sources/2026-05-16-bst-badminton-stroke-type-transformer.html",
+    "url_en": "en/sources/2026-05-16-bst-badminton-stroke-type-transformer.html",
+    "search_text": "BST：面向羽毛球击球类型识别的骨架动作 Transformer BST：面向羽毛球击球类型识别的骨架动作 Transformer   sources/2026-05-16-bst-badminton-stroke-type-transformer source near-cvpr-2025 video-understanding tracking representation-learning primary-source"
   },
   {
     "slug": "sources/2026-05-16-protogcn-skeleton-action-recognition",
     "title": "ProtoGCN：用原型视角强化骨架动作识别的细粒度差异",
+    "title_en": "ProtoGCN：用原型视角强化骨架动作识别的细粒度差异",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2527,11 +3564,16 @@
       "representation-learning",
       "primary-source"
     ],
-    "url": "sources/2026-05-16-protogcn-skeleton-action-recognition.html"
+    "url": "sources/2026-05-16-protogcn-skeleton-action-recognition.html",
+    "url_en": "en/sources/2026-05-16-protogcn-skeleton-action-recognition.html",
+    "search_text": "ProtoGCN：用原型视角强化骨架动作识别的细粒度差异 ProtoGCN：用原型视角强化骨架动作识别的细粒度差异   sources/2026-05-16-protogcn-skeleton-action-recognition source near-cvpr-2025 video-understanding representation-learning primary-source"
   },
   {
     "slug": "sources/2026-05-16-shuttleset-stroke-level-badminton-dataset",
     "title": "ShuttleSet：人工标注的羽毛球单打 stroke-level 数据集",
+    "title_en": "ShuttleSet：人工标注的羽毛球单打 stroke-level 数据集",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2539,11 +3581,16 @@
       "benchmarking",
       "primary-source"
     ],
-    "url": "sources/2026-05-16-shuttleset-stroke-level-badminton-dataset.html"
+    "url": "sources/2026-05-16-shuttleset-stroke-level-badminton-dataset.html",
+    "url_en": "en/sources/2026-05-16-shuttleset-stroke-level-badminton-dataset.html",
+    "search_text": "ShuttleSet：人工标注的羽毛球单打 stroke-level 数据集 ShuttleSet：人工标注的羽毛球单打 stroke-level 数据集   sources/2026-05-16-shuttleset-stroke-level-badminton-dataset source near-cvpr-2025 video-understanding benchmarking primary-source"
   },
   {
     "slug": "sources/2026-05-16-skateformer-skeletal-temporal-transformer",
     "title": "SkateFormer：面向人体动作识别的骨架-时间 Transformer",
+    "title_en": "SkateFormer：面向人体动作识别的骨架-时间 Transformer",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2551,11 +3598,16 @@
       "representation-learning",
       "primary-source"
     ],
-    "url": "sources/2026-05-16-skateformer-skeletal-temporal-transformer.html"
+    "url": "sources/2026-05-16-skateformer-skeletal-temporal-transformer.html",
+    "url_en": "en/sources/2026-05-16-skateformer-skeletal-temporal-transformer.html",
+    "search_text": "SkateFormer：面向人体动作识别的骨架-时间 Transformer SkateFormer：面向人体动作识别的骨架-时间 Transformer   sources/2026-05-16-skateformer-skeletal-temporal-transformer source near-cvpr-2025 video-understanding representation-learning primary-source"
   },
   {
     "slug": "sources/2026-05-16-tempose-badminton-fine-grained-motion",
     "title": "TemPose：面向羽毛球细粒度动作识别的骨架 Transformer",
+    "title_en": "TemPose：面向羽毛球细粒度动作识别的骨架 Transformer",
+    "summary": "",
+    "summary_en": "",
     "kind": "source",
     "tags": [
       "near-cvpr-2025",
@@ -2563,33 +3615,99 @@
       "representation-learning",
       "primary-source"
     ],
-    "url": "sources/2026-05-16-tempose-badminton-fine-grained-motion.html"
+    "url": "sources/2026-05-16-tempose-badminton-fine-grained-motion.html",
+    "url_en": "en/sources/2026-05-16-tempose-badminton-fine-grained-motion.html",
+    "search_text": "TemPose：面向羽毛球细粒度动作识别的骨架 Transformer TemPose：面向羽毛球细粒度动作识别的骨架 Transformer   sources/2026-05-16-tempose-badminton-fine-grained-motion source near-cvpr-2025 video-understanding representation-learning primary-source"
+  },
+  {
+    "slug": "sources/2026-05-17-badmintondb-player-specific-match-analysis",
+    "title": "BadmintonDB：面向球员级比赛分析与预测的羽毛球数据集",
+    "title_en": "BadmintonDB：面向球员级比赛分析与预测的羽毛球数据集",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "video-understanding",
+      "representation-learning",
+      "primary-source"
+    ],
+    "url": "sources/2026-05-17-badmintondb-player-specific-match-analysis.html",
+    "url_en": "en/sources/2026-05-17-badmintondb-player-specific-match-analysis.html",
+    "search_text": "BadmintonDB：面向球员级比赛分析与预测的羽毛球数据集 BadmintonDB：面向球员级比赛分析与预测的羽毛球数据集   sources/2026-05-17-badmintondb-player-specific-match-analysis source near-cvpr-2025 video-understanding representation-learning primary-source"
+  },
+  {
+    "slug": "sources/2026-05-17-multisensebadminton-biomechanical-dataset",
+    "title": "MultiSenseBadminton：面向羽毛球表现评估的多传感器生物力学数据集",
+    "title_en": "MultiSenseBadminton：面向羽毛球表现评估的多传感器生物力学数据集",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "video-understanding",
+      "representation-learning",
+      "primary-source"
+    ],
+    "url": "sources/2026-05-17-multisensebadminton-biomechanical-dataset.html",
+    "url_en": "en/sources/2026-05-17-multisensebadminton-biomechanical-dataset.html",
+    "search_text": "MultiSenseBadminton：面向羽毛球表现评估的多传感器生物力学数据集 MultiSenseBadminton：面向羽毛球表现评估的多传感器生物力学数据集   sources/2026-05-17-multisensebadminton-biomechanical-dataset source near-cvpr-2025 video-understanding representation-learning primary-source"
+  },
+  {
+    "slug": "sources/2026-05-17-structured-analysis-broadcast-badminton-videos",
+    "title": "Towards Structured Analysis：广播羽毛球视频的结构化分析早期系统",
+    "title_en": "Towards Structured Analysis：广播羽毛球视频的结构化分析早期系统",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "video-understanding",
+      "tracking",
+      "primary-source"
+    ],
+    "url": "sources/2026-05-17-structured-analysis-broadcast-badminton-videos.html",
+    "url_en": "en/sources/2026-05-17-structured-analysis-broadcast-badminton-videos.html",
+    "search_text": "Towards Structured Analysis：广播羽毛球视频的结构化分析早期系统 Towards Structured Analysis：广播羽毛球视频的结构化分析早期系统   sources/2026-05-17-structured-analysis-broadcast-badminton-videos source near-cvpr-2025 video-understanding tracking primary-source"
   },
   {
     "slug": "entities/diffusion-transformer",
     "title": "扩散 Transformer",
+    "title_en": "扩散 Transformer",
+    "summary": "",
+    "summary_en": "",
     "kind": "entity",
     "tags": [
       "near-cvpr-2025",
       "method",
       "diffusion"
     ],
-    "url": "entities/diffusion-transformer.html"
+    "url": "entities/diffusion-transformer.html",
+    "url_en": "en/entities/diffusion-transformer.html",
+    "search_text": "扩散 Transformer 扩散 Transformer   entities/diffusion-transformer entity near-cvpr-2025 method diffusion"
   },
   {
     "slug": "entities/sportsmot",
     "title": "SportsMOT",
+    "title_en": "SportsMOT",
+    "summary": "",
+    "summary_en": "",
     "kind": "entity",
     "tags": [
       "near-cvpr-2025",
       "dataset",
       "tracking"
     ],
-    "url": "entities/sportsmot.html"
+    "url": "entities/sportsmot.html",
+    "url_en": "en/entities/sportsmot.html",
+    "search_text": "SportsMOT SportsMOT   entities/sportsmot entity near-cvpr-2025 dataset tracking"
   },
   {
     "slug": "entities/unified-image-generation-editing",
     "title": "图像生成与编辑统一建模",
+    "title_en": "图像生成与编辑统一建模",
+    "summary": "",
+    "summary_en": "",
     "kind": "entity",
     "tags": [
       "near-cvpr-2025",
@@ -2597,11 +3715,16 @@
       "image-generation",
       "image-editing"
     ],
-    "url": "entities/unified-image-generation-editing.html"
+    "url": "entities/unified-image-generation-editing.html",
+    "url_en": "en/entities/unified-image-generation-editing.html",
+    "search_text": "图像生成与编辑统一建模 图像生成与编辑统一建模   entities/unified-image-generation-editing entity near-cvpr-2025 method image-generation image-editing"
   },
   {
     "slug": "entities/video-editing-understanding",
     "title": "视频编辑理解",
+    "title_en": "视频编辑理解",
+    "summary": "",
+    "summary_en": "",
     "kind": "entity",
     "tags": [
       "near-cvpr-2025",
@@ -2609,22 +3732,32 @@
       "video-editing",
       "evaluation"
     ],
-    "url": "entities/video-editing-understanding.html"
+    "url": "entities/video-editing-understanding.html",
+    "url_en": "en/entities/video-editing-understanding.html",
+    "search_text": "视频编辑理解 视频编辑理解   entities/video-editing-understanding entity near-cvpr-2025 benchmark video-editing evaluation"
   },
   {
     "slug": "claims/claim-current-models-still-struggle-to-understand-video-editing",
     "title": "当前模型仍然难以真正理解视频编辑",
+    "title_en": "当前模型仍然难以真正理解视频编辑",
+    "summary": "",
+    "summary_en": "",
     "kind": "claim",
     "tags": [
       "near-cvpr-2025",
       "open-claim",
       "video-editing"
     ],
-    "url": "claims/claim-current-models-still-struggle-to-understand-video-editing.html"
+    "url": "claims/claim-current-models-still-struggle-to-understand-video-editing.html",
+    "url_en": "en/claims/claim-current-models-still-struggle-to-understand-video-editing.html",
+    "search_text": "当前模型仍然难以真正理解视频编辑 当前模型仍然难以真正理解视频编辑   claims/claim-current-models-still-struggle-to-understand-video-editing claim near-cvpr-2025 open-claim video-editing"
   },
   {
     "slug": "claims/claim-dit-is-becoming-the-default-scalable-generation-backbone",
     "title": "扩散 Transformer 正在成为默认的可扩展生成主干",
+    "title_en": "扩散 Transformer 正在成为默认的可扩展生成主干",
+    "summary": "",
+    "summary_en": "",
     "kind": "claim",
     "tags": [
       "near-cvpr-2025",
@@ -2632,11 +3765,16 @@
       "diffusion",
       "high-confidence"
     ],
-    "url": "claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html"
+    "url": "claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html",
+    "url_en": "en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html",
+    "search_text": "扩散 Transformer 正在成为默认的可扩展生成主干 扩散 Transformer 正在成为默认的可扩展生成主干   claims/claim-dit-is-becoming-the-default-scalable-generation-backbone claim near-cvpr-2025 open-claim diffusion high-confidence"
   },
   {
     "slug": "claims/claim-unified-models-may-outcompete-specialized-image-pipelines",
     "title": "统一图像生成-编辑模型可能会胜过专用流水线",
+    "title_en": "统一图像生成-编辑模型可能会胜过专用流水线",
+    "summary": "",
+    "summary_en": "",
     "kind": "claim",
     "tags": [
       "near-cvpr-2025",
@@ -2644,11 +3782,16 @@
       "image-generation",
       "image-editing"
     ],
-    "url": "claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html"
+    "url": "claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html",
+    "url_en": "en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html",
+    "search_text": "统一图像生成-编辑模型可能会胜过专用流水线 统一图像生成-编辑模型可能会胜过专用流水线   claims/claim-unified-models-may-outcompete-specialized-image-pipelines claim near-cvpr-2025 open-claim image-generation image-editing"
   },
   {
     "slug": "questions/question-badminton-stroke-correction-demo",
     "title": "羽毛球挥拍动作纠正 demo 应如何定义",
+    "title_en": "羽毛球挥拍动作纠正 demo 应如何定义",
+    "summary": "",
+    "summary_en": "",
     "kind": "question",
     "tags": [
       "near-cvpr-2025",
@@ -2656,11 +3799,16 @@
       "video-understanding",
       "representation-learning"
     ],
-    "url": "questions/question-badminton-stroke-correction-demo.html"
+    "url": "questions/question-badminton-stroke-correction-demo.html",
+    "url_en": "en/questions/question-badminton-stroke-correction-demo.html",
+    "search_text": "羽毛球挥拍动作纠正 demo 应如何定义 羽毛球挥拍动作纠正 demo 应如何定义   questions/question-badminton-stroke-correction-demo question near-cvpr-2025 survey-needed video-understanding representation-learning"
   },
   {
     "slug": "questions/question-data-vs-architecture-in-image-editing",
     "title": "图像编辑的进步主要来自数据扩展还是架构升级",
+    "title_en": "图像编辑的进步主要来自数据扩展还是架构升级",
+    "summary": "",
+    "summary_en": "",
     "kind": "question",
     "tags": [
       "near-cvpr-2025",
@@ -2668,11 +3816,16 @@
       "image-generation",
       "survey-needed"
     ],
-    "url": "questions/question-data-vs-architecture-in-image-editing.html"
+    "url": "questions/question-data-vs-architecture-in-image-editing.html",
+    "url_en": "en/questions/question-data-vs-architecture-in-image-editing.html",
+    "search_text": "图像编辑的进步主要来自数据扩展还是架构升级 图像编辑的进步主要来自数据扩展还是架构升级   questions/question-data-vs-architecture-in-image-editing question near-cvpr-2025 image-editing image-generation survey-needed"
   },
   {
     "slug": "questions/question-do-benchmarks-track-real-video-editing-understanding",
     "title": "现有评测是否真的刻画了视频编辑理解能力",
+    "title_en": "现有评测是否真的刻画了视频编辑理解能力",
+    "summary": "",
+    "summary_en": "",
     "kind": "question",
     "tags": [
       "near-cvpr-2025",
@@ -2680,11 +3833,16 @@
       "benchmarking",
       "survey-needed"
     ],
-    "url": "questions/question-do-benchmarks-track-real-video-editing-understanding.html"
+    "url": "questions/question-do-benchmarks-track-real-video-editing-understanding.html",
+    "url_en": "en/questions/question-do-benchmarks-track-real-video-editing-understanding.html",
+    "search_text": "现有评测是否真的刻画了视频编辑理解能力 现有评测是否真的刻画了视频编辑理解能力   questions/question-do-benchmarks-track-real-video-editing-understanding question near-cvpr-2025 video-editing benchmarking survey-needed"
   },
   {
     "slug": "questions/question-will-unified-image-models-sustain-their-advantage",
     "title": "统一图像生成编辑模型能否持续压过专用流水线",
+    "title_en": "统一图像生成编辑模型能否持续压过专用流水线",
+    "summary": "",
+    "summary_en": "",
     "kind": "question",
     "tags": [
       "near-cvpr-2025",
@@ -2692,6 +3850,8 @@
       "image-editing",
       "survey-needed"
     ],
-    "url": "questions/question-will-unified-image-models-sustain-their-advantage.html"
+    "url": "questions/question-will-unified-image-models-sustain-their-advantage.html",
+    "url_en": "en/questions/question-will-unified-image-models-sustain-their-advantage.html",
+    "search_text": "统一图像生成编辑模型能否持续压过专用流水线 统一图像生成编辑模型能否持续压过专用流水线   questions/question-will-unified-image-models-sustain-their-advantage question near-cvpr-2025 image-generation image-editing survey-needed"
   }
 ]

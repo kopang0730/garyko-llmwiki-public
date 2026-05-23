@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>视觉-语言 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;topics/vision-language&quot;, &quot;title&quot;: &quot;视觉-语言&quot;, &quot;title_en&quot;: &quot;视觉-语言&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;multimodal&quot;, &quot;vision-language&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a class="active" href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../topics/vision-language.html">中文</a><a class="selected-lang" href="../../en/topics/vision-language.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">topic · 2026-04-14</p>
+        <h1>视觉-语言</h1>
+        <p class="article-summary">追踪影响本知识库核心方向的多模态条件控制、对齐与语言驱动推理。</p>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#multimodal">#multimodal</a><a class="tag" href="../../en/tags.html#vision-language">#vision-language</a></div>
+      </header>
+      <section class="article-content"><h1 id="视觉-语言">视觉-语言</h1>
+<h2 id="概述">概述</h2>
+<p>这一页整理视觉-语言接口在本知识库中的作用。当前证据显示，语言已经不只是一个外部提示层，而是在越来越多生成和编辑系统中成为核心交互方式与建模入口。换句话说，vision-language 在这里既影响模型如何接收指令，也影响模型如何完成多任务统一、条件控制和后续评测。</p>
+<h2 id="本页关注什么">本页关注什么</h2>
+<ul>
+<li>视觉与文本对齐机制</li>
+<li>prompting 与条件控制范式</li>
+<li>多模态预训练模式</li>
+<li>语言驱动的评测与推理</li>
+</ul>
+<h2 id="当前综合判断">当前综合判断</h2>
+<p><a class="wikilink" href="../../en/sources/2026-04-14-condition-aware-neural-network.html">sources/2026-04-14-condition-aware-neural-network</a> 也进一步把条件感知控制结构接回了 vision-language 条件接口层。</p>
+<p><a class="wikilink" href="../../en/sources/2026-04-14-check-locate-rectify.html">sources/2026-04-14-check-locate-rectify</a> 也把布局校准这一类更结构化的条件接口接回了 vision-language 页面。</p>
+<p><a class="wikilink" href="../../en/sources/2026-04-14-reco.html">sources/2026-04-14-reco</a> 进一步把区域控制接口接回 vision-language 条件层，使这页对细粒度区域条件的覆盖更完整。</p>
+<p><a class="wikilink" href="../../en/sources/2026-04-14-mmmu.html">sources/2026-04-14-mmmu</a>、<a class="wikilink" href="../../en/sources/2026-04-14-maplm.html">sources/2026-04-14-maplm</a>、<a class="wikilink" href="../../en/sources/2026-04-14-concon-chi.html">sources/2026-04-14-concon-chi</a> 和 <a class="wikilink" href="../../en/sources/2026-04-14-sti-bench.html">sources/2026-04-14-sti-bench</a> 让 vision-language 页在通用推理、现实场景、个性化与精确时空理解四个方向都多了 benchmark 支点。</p>
+<p><a class="wikilink" href="../../en/sources/2026-04-14-layoutdiffusion.html">sources/2026-04-14-layoutdiffusion</a> 也说明 vision-language/condition interface 不只体现在 grounding，还体现在更显式的空间布局控制。</p>
+<p><a class="wikilink" href="../../en/sources/2026-04-14-language-driven-video-inpainting.html">sources/2026-04-14-language-driven-video-inpainting</a> 进一步说明视觉语言接口正在深入视频修补与编辑任务。</p>
+<p><a class="wikilink" href="../../en/sources/2026-04-14-veggie.html">sources/2026-04-14-veggie</a> 与 <a class="wikilink" href="../../en/sources/2026-04-14-hallusionbench.html">sources/2026-04-14-hallusionbench</a> 也说明视觉语言接口正在同时承载 grounded editing 与 failure diagnosis 两类任务。</p>
+<p><a class="wikilink" href="../../en/sources/2026-04-14-anydoor.html">sources/2026-04-14-anydoor</a> 说明对象级条件控制正在继续把视觉生成系统推向更强的多模态接口。</p>
+<p>第二批 source 明显强化了一个判断：指令接口正在从“编辑系统附加层”变成“生成系统核心接口”。<a class="wikilink" href="../../en/sources/2026-04-12-dreamomni.html">sources/2026-04-12-dreamomni</a> 和 <a class="wikilink" href="../../en/sources/2026-04-12-omnigen.html">sources/2026-04-12-omnigen</a> 都把统一的指令驱动使用方式视为产品与模型设计的一部分。这意味着视觉-语言接口在本库里不仅关系到交互体验，也关系到模型是否能真正支撑统一多任务范式。</p>
+<h2 id="关联页面">关联页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
+<li><a class="wikilink" href="../../en/topics/image-editing.html">topics/image-editing</a></li>
+<li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">topics/generative-model-evaluation</a></li>
+</ul>
+<h2 id="后续值得追踪的问题">后续值得追踪的问题</h2>
+<ul>
+<li>更强的语言监督带来的到底是更深的因果理解，还是更好的 prompt following？</li>
+<li>多模态预训练在生成任务与理解任务之间的迁移边界在哪里？</li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;topic-vision-language&quot;,
+  &quot;type&quot;: &quot;topic&quot;,
+  &quot;title&quot;: &quot;视觉-语言&quot;,
+  &quot;status&quot;: &quot;active&quot;,
+  &quot;created&quot;: &quot;2026-04-12&quot;,
+  &quot;updated&quot;: &quot;2026-04-14&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;multimodal&quot;,
+    &quot;vision-language&quot;
+  ],
+  &quot;summary&quot;: &quot;追踪影响本知识库核心方向的多模态条件控制、对齐与语言驱动推理。&quot;,
+  &quot;source_notes&quot;: [
+    &quot;sources/2026-04-12-fireedit&quot;,
+    &quot;sources/2026-04-12-insightedit&quot;,
+    &quot;sources/2026-04-12-dreamomni&quot;,
+    &quot;sources/2026-04-12-omnigen&quot;,
+    &quot;sources/2026-04-14-gligen&quot;,
+    &quot;sources/2026-04-14-veggie&quot;,
+    &quot;sources/2026-04-14-hallusionbench&quot;,
+    &quot;sources/2026-04-14-language-driven-video-inpainting&quot;,
+    &quot;sources/2026-04-14-layoutdiffusion&quot;,
+    &quot;sources/2026-04-14-mmmu&quot;,
+    &quot;sources/2026-04-14-maplm&quot;,
+    &quot;sources/2026-04-14-concon-chi&quot;,
+    &quot;sources/2026-04-14-sti-bench&quot;,
+    &quot;sources/2026-04-14-reco&quot;,
+    &quot;sources/2026-04-14-check-locate-rectify&quot;,
+    &quot;sources/2026-04-14-condition-aware-neural-network&quot;
+  ],
+  &quot;related_topics&quot;: [
+    &quot;topics/image-generation&quot;,
+    &quot;topics/image-editing&quot;,
+    &quot;topics/video-understanding&quot;,
+    &quot;topics/diffusion-models&quot;,
+    &quot;topics/generative-model-evaluation&quot;
+  ],
+  &quot;related_entities&quot;: [],
+  &quot;open_questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>通过形式化验证评测文本到视频模型的神经符号方法（CVPR 2025） · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-neuro-symbolic-eval-t2v&quot;, &quot;title&quot;: &quot;通过形式化验证评测文本到视频模型的神经符号方法（CVPR 2025）&quot;, &quot;title_en&quot;: &quot;通过形式化验证评测文本到视频模型的神经符号方法（CVPR 2025）&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;video-generation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-neuro-symbolic-eval-t2v.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-neuro-symbolic-eval-t2v.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-17</p>
+        <h1>通过形式化验证评测文本到视频模型的神经符号方法（CVPR 2025）</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#evaluation">#evaluation</a><a class="tag" href="../../en/tags.html#benchmarking">#benchmarking</a><a class="tag" href="../../en/tags.html#video-generation">#video-generation</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="通过形式化验证评测文本到视频模型的神经符号方法-cvpr-2025">通过形式化验证评测文本到视频模型的神经符号方法（CVPR 2025）</h1>
+<blockquote>会议：CVPR 2025</blockquote>
+<blockquote>发表日期：2025-01-01</blockquote>
+<blockquote>资料加入日期：2026-04-14</blockquote>
+<blockquote>深分析稿：<a class="wikilink missing" href="#missing-raw/ingest/2026-04-14-neuro-symbolic-eval-t2v/analysis">raw/ingest/2026-04-14-neuro-symbolic-eval-t2v/analysis</a></blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇论文把 formal verification 引进 text-to-video 评测，说明视频评测可以从“看起来像不像”推进到“是否真的满足 prompt 中的时间逻辑与事件关系”。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>它是“formal verification evaluator”路线里的代表作。与 AIGV-Assessor 和 Video-Bench 不同，这篇论文更强调可验证性与时序逻辑完整性。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>作者认为现有 T2V 评测存在一个核心缺口：</p>
+<ul>
+<li>视频可能看起来合理，但在时间顺序、动作逻辑和关系约束上仍然违背 prompt</li>
+<li>传统指标和一般 VLM 打分很难严格表达这类要求</li>
+</ul>
+<p>因此需要把 prompt 形式化，再用更严格的验证框架来评测视频。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>方法有三层：</p>
+<ol>
+<li><strong>Prompt → temporal logic specification</strong></li>
+<p>   将 prompt 转写成显式时间逻辑规范。</p>
+</ol>
+<ol>
+<li><strong>Video → automaton / DTMC representation</strong></li>
+<p>   将视频解析成带状态与转移的时序表示，便于后续验证。</p>
+</ol>
+<ol>
+<li><strong>Probabilistic model checking</strong></li>
+<p>   对视频是否满足规范进行概率模型检测，计算满足度分数。</p>
+</ol>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>这条路线让评测不再只是软分数，而开始具备可验证约束。</li>
+<li>Neu-SV 比 VBench 更能识别 temporal alignment / misalignment。</li>
+<li>它与人工标注相关性更高，说明形式化验证路线具备更强可信度。</li>
+<li>这篇论文清楚地把“时间逻辑是否满足”从评测盲区拉到了前台。</li>
+</ul>
+<h2 id="关键图示">关键图示</h2>
+<h3 id="论文总览图">论文总览图</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-14-neuro-symbolic-eval-t2v/page-previews/page-1.png">900</a></p>
+<p>这一页同时展示 prompt、temporal spec、video automata、验证结果以及与 VBench 的直观对比，是最适合作为 source note 首图的页面。</p>
+<h3 id="formal-verification-方法页">formal verification 方法页</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-14-neuro-symbolic-eval-t2v/page-previews/page-3.png">900</a></p>
+<p>这一页解释 temporal logic、video automaton/DTMC 和 neuro-symbolic pipeline 的组合方式，是理解方法的关键页。</p>
+<h3 id="主结果与讨论">主结果与讨论</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-14-neuro-symbolic-eval-t2v/page-previews/page-8.png">900</a></p>
+<p>这一页集中展示与 VBench 的对比、与人工标注的相关性以及模型与上下文设置消融，是说明方法有效性的关键证据页。</p>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<ul>
+<li>Neu-SV 相比 VBench 更能区分 temporally aligned 与 misaligned 的视频。</li>
+<li>结果页说明它与人工标注相关性更高，也更适合复杂 prompt 评测。</li>
+<li>VLM 选择、上下文长度等因素都会影响 formal verification evaluator 的表现。</li>
+<li>这篇论文使“可信评测”成为 T2V 评测中的一条独立路线。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>形式化验证覆盖的能力维度不一定像人类判断那样全面。</li>
+<li>它更偏可信评测，不等于真实用户偏好。</li>
+<li>这条路线补的是“评测可信度”，而不单独构成完整评测体系。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 wiki 判断的影响</h2>
+<ul>
+<li>它显著补强了 <code>topics/generative-model-evaluation</code> 中“评测路线正在分化”这条判断。</li>
+<li>对 <code>questions/question-do-benchmarks-track-real-video-editing-understanding</code> 来说，它提供了一条比人类偏好和感知质量更严格的“时间逻辑验证”路线。</li>
+<li>它帮助我们把“看起来好”“人类喜欢”“逻辑满足”这三类评测坐标分开。</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">topics/generative-model-evaluation</a></li>
+<li><a class="wikilink" href="../../en/topics/video-generation.html">topics/video-generation</a></li>
+<li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a></li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://openaccess.thecvf.com/content/CVPR2025/html/Sharan_Neuro-Symbolic_Evaluation_of_Text-to-Video_Models_using_Formal_Verification_CVPR_2025_paper.html</li>
+<li>https://openaccess.thecvf.com/content/CVPR2025/papers/Sharan_Neuro-Symbolic_Evaluation_of_Text-to-Video_Models_using_Formal_Verification_CVPR_2025_paper.pdf</li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-14-neuro-symbolic-eval-t2v&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;通过形式化验证评测文本到视频模型的神经符号方法（CVPR 2025）&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-14&quot;,
+  &quot;updated&quot;: &quot;2026-04-17&quot;,
+  &quot;venue&quot;: &quot;CVPR 2025&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;evaluation&quot;,
+    &quot;benchmarking&quot;,
+    &quot;video-generation&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;S P Sharan&quot;,
+    &quot;Minkyu Choi&quot;,
+    &quot;Sahil Shah&quot;,
+    &quot;Harsh Goel&quot;,
+    &quot;Mohammad Omama&quot;,
+    &quot;Sandeep Chinchali&quot;
+  ],
+  &quot;published_at&quot;: &quot;2025-01-01&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/CVPR2025/html/Sharan_Neuro-Symbolic_Evaluation_of_Text-to-Video_Models_using_Formal_Verification_CVPR_2025_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2025/papers/Sharan_Neuro-Symbolic_Evaluation_of_Text-to-Video_Models_using_Formal_Verification_CVPR_2025_paper.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-neuro-symbolic-eval-t2v/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-14-neuro-symbolic-eval-t2v/analysis.md&quot;,
+  &quot;image_index&quot;: &quot;raw/ingest/2026-04-14-neuro-symbolic-eval-t2v/images/index.md&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/generative-model-evaluation&quot;,
+    &quot;topics/video-generation&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: [
+    &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
+  ]
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>C3Net（CVPR 2024）：把 ControlNet 从单条件接口推进到多模态复合条件接口 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-c3net&quot;, &quot;title&quot;: &quot;C3Net（CVPR 2024）：把 ControlNet 从单条件接口推进到多模态复合条件接口&quot;, &quot;title_en&quot;: &quot;C3Net（CVPR 2024）：把 ControlNet 从单条件接口推进到多模态复合条件接口&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-16-c3net.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-16-c3net.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-16</p>
+        <h1>C3Net（CVPR 2024）：把 ControlNet 从单条件接口推进到多模态复合条件接口</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#efficiency">#efficiency</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="c3net-cvpr-2024-把-controlnet-从单条件接口推进到多模态复合条件接口">C3Net（CVPR 2024）：把 ControlNet 从单条件接口推进到多模态复合条件接口</h1>
+<blockquote>会议：CVPR 2024</blockquote>
+<blockquote>发表日期：2023/11/29</blockquote>
+<blockquote>资料加入日期：2026-04-16</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作把 ControlNet 路线继续往接口整合推进：它先把多模态条件对齐到统一语义潜空间，再用一个复合条件 ControlNet 同时驱动多模态内容生成。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>ControlNet 很擅长接单一条件，但真实生成任务里常常会出现图像、文本、音频等多种条件共同约束输出。单条件接口在这种场景下很快碎裂成很多分开的适配器。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>C3Net 先用 modality-specific encoders 把不同条件映射到同一语义潜空间，再通过一个 Control C3-UNet 统一整合这些多模态条件。这样系统可以在一个复合控制接口里完成 joint-modality generation。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>它和 <a class="wikilink" href="../../en/sources/2026-04-16-controlnet.html">sources/2026-04-16-controlnet</a> 形成清晰前后关系：前者建立 ControlNet 侧支接口，C3Net 则把它升级成 compound-conditioned interface。</li>
+<li>这说明 interface consolidation 的一个方向已经很明确：控制条件会从单一输入发展成可对齐、可组合的多模态条件栈。</li>
+<li>在 <a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a> 里，它补上了 adapter-based control 的“多模态统一化”分支。</li>
+<li>它也让 batch-g 里的标准接口候选更完整：prompt/attention、layout、multi-path、compound adapters 现在都已有代表作。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>它关注多模态条件整合，对单一图像质量或低时延推理本身并不是最直接的优化。</li>
+<li>统一潜空间带来更强组合能力，也要求条件对齐足够稳定。</li>
+<li>多模态 joint generation 的真实应用边界仍需要更多后续证据。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2311.17951</li>
+<li>https://arxiv.org/pdf/2311.17951.pdf</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-controlnet.html">sources/2026-04-16-controlnet</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-multidiffusion.html">sources/2026-04-16-multidiffusion</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>它在本库中的价值，是把 control interface consolidation 从“已有很多控制技巧”继续推进到“接口边界、层级分工和闭环控制是否开始成形”这个层面。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-16-c3net&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;C3Net（CVPR 2024）：把 ControlNet 从单条件接口推进到多模态复合条件接口&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-04-16&quot;,
+  &quot;venue&quot;: &quot;CVPR 2024&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-generation&quot;,
+    &quot;diffusion&quot;,
+    &quot;efficiency&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Juntao Zhang&quot;,
+    &quot;Yuehuai Liu&quot;,
+    &quot;Yu‐Wing Tai&quot;,
+    &quot;Chi–Keung Tang&quot;
+  ],
+  &quot;published_at&quot;: &quot;2023/11/29&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2311.17951&quot;,
+    &quot;https://arxiv.org/pdf/2311.17951.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-16-c3net/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-generation&quot;,
+    &quot;topics/diffusion-models&quot;,
+    &quot;topics/diffusion-efficiency-engineering&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

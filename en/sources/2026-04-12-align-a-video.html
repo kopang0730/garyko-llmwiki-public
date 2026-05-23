@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Align-A-Video（CVPR 2025）：面向一致视频编辑的确定性奖励调优 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-12-align-a-video&quot;, &quot;title&quot;: &quot;Align-A-Video（CVPR 2025）：面向一致视频编辑的确定性奖励调优&quot;, &quot;title_en&quot;: &quot;Align-A-Video（CVPR 2025）：面向一致视频编辑的确定性奖励调优&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-12-align-a-video.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-12-align-a-video.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-15</p>
+        <h1>Align-A-Video（CVPR 2025）：面向一致视频编辑的确定性奖励调优</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-editing">#video-editing</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="align-a-video-cvpr-2025-面向一致视频编辑的确定性奖励调优">Align-A-Video（CVPR 2025）：面向一致视频编辑的确定性奖励调优</h1>
+<blockquote>会议：CVPR 2025</blockquote>
+<blockquote>发表日期：2025-06-11</blockquote>
+<blockquote>资料加入日期：&quot;2026-04-12&quot;</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作认为，把 reward tuning 引入视频编辑是可行的，但前提是优化过程必须尽量确定化，并配合跨帧特征传播，才能同时提升编辑质量与时序一致性。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>它要解决的问题是：视频编辑既要更符合指令，又不能破坏时间一致性、真实感和未编辑区域。单帧优化思路直接搬到视频里，往往会带来闪烁、漂移和内容破坏。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>方法上，它先围绕锚帧做确定性奖励微调，再把关键特征向其他帧传播，尽量让语义改动和时序结构一起被保留下来。核心出发点不是单纯追求更强 reward，而是避免 reward 优化把视频时序打散。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>人类反馈式优化开始进入视频编辑，但必须针对视频特性重新设计。</li>
+<li>确定性约束被当作稳定 reward tuning 的关键工具。</li>
+<li>跨帧特征传播说明视频编辑不能把每一帧当作彼此独立的图像处理。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>多了一层额外优化流程，也更依赖奖励监督的质量。</li>
+<li>锚帧传播在高动态场景下可能限制灵活性。</li>
+<li>还需要与真正的视频原生编辑器做更直接对比。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://openaccess.thecvf.com/content/CVPR2025/html/Wang_Align-A-Video_Deterministic_Reward_Tuning_of_Image_Diffusion_Models_for_Consistent_CVPR_2025_paper.html</li>
+<li>https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_Align-A-Video_Deterministic_Reward_Tuning_of_Image_Diffusion_Models_for_Consistent_CVPR_2025_paper.pdf</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/video-editing.html">topics/video-editing</a></li>
+<li><a class="wikilink" href="../../en/topics/video-generation.html">topics/video-generation</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">topics/generative-model-evaluation</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>从 vault 的角度看，这篇论文很重要，因为它把“更会对齐人类偏好”和“别把视频时间结构弄坏”放到了同一优化框架里。它代表的是视频编辑开始吸收 RLHF/奖励建模思路，但实现方式必须比图像任务更谨慎。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-12-align-a-video&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;Align-A-Video（CVPR 2025）：面向一致视频编辑的确定性奖励调优&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-12&quot;,
+  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;venue&quot;: &quot;CVPR 2025&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-12&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-editing&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Shengzhi Wang&quot;,
+    &quot;Yingkang Zhong&quot;,
+    &quot;Jiangchuan Mu&quot;,
+    &quot;Kai Wu&quot;,
+    &quot;Mingliang Xiong&quot;,
+    &quot;Wen Fang&quot;,
+    &quot;Mingqing Liu&quot;,
+    &quot;Hao Deng&quot;,
+    &quot;Bin He&quot;,
+    &quot;Gang Li&quot;,
+    &quot;Qingwen Liu&quot;
+  ],
+  &quot;published_at&quot;: &quot;2025-06-11&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/CVPR2025/html/Wang_Align-A-Video_Deterministic_Reward_Tuning_of_Image_Diffusion_Models_for_Consistent_CVPR_2025_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_Align-A-Video_Deterministic_Reward_Tuning_of_Image_Diffusion_Models_for_Consistent_CVPR_2025_paper.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-12-align-a-video/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/video-editing&quot;,
+    &quot;topics/video-generation&quot;,
+    &quot;topics/generative-model-evaluation&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

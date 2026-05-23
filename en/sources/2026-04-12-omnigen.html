@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OmniGen（CVPR 2025）：统一图像生成 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-12-omnigen&quot;, &quot;title&quot;: &quot;OmniGen（CVPR 2025）：统一图像生成&quot;, &quot;title_en&quot;: &quot;OmniGen（CVPR 2025）：统一图像生成&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-12-omnigen.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-12-omnigen.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-17</p>
+        <h1>OmniGen（CVPR 2025）：统一图像生成</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="omnigen-cvpr-2025-统一图像生成">OmniGen（CVPR 2025）：统一图像生成</h1>
+<blockquote>会议：CVPR 2025</blockquote>
+<blockquote>发表日期：2025-06-11</blockquote>
+<blockquote>资料加入日期：2026-04-12</blockquote>
+<blockquote>深分析稿：<a class="wikilink missing" href="#missing-raw/ingest/2026-04-12-omnigen/analysis">raw/ingest/2026-04-12-omnigen/analysis</a></blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>OmniGen 把图像系统往“统一接口 + 端到端工作流”方向推进了一大步：同一个模型原生覆盖 text-to-image、image editing、subject-driven generation 和 visual-conditional generation，并把插件式工作流简化成统一指令驱动流程。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这篇论文是统一图像模型路线中的“系统接口派”代表作。它主打三个词：<strong>unification、simplicity、knowledge transfer</strong>。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>OmniGen 关注的是图像生成系统长期存在的三个结构性问题：</p>
+<ul>
+<li>图像任务被拆成多个专用流水线</li>
+<li>多条件控制依赖额外插件和中间步骤</li>
+<li>不同任务之间难共享知识与能力</li>
+</ul>
+<p>作者希望把图像任务改写成一个更像 LLM 的统一交互接口。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>论文的核心机制有三层：</p>
+<ol>
+<li><strong>统一框架</strong></li>
+<p>   文本被 token 化，输入图像经 VAE 映射为 embedding，再进入统一 Transformer 式生成流程；Figure 2 明确说明 OmniGen 接受 free-form multi-modal prompts，并通过统一流程生成图像。</p>
+</ol>
+<ol>
+<li><strong>统一任务格式</strong></li>
+<p>   OmniGen 把 image editing、subject-driven generation、visual-conditional generation、few-shot / mixed-modal to image 等任务改写到统一输入输出格式里。</p>
+</ol>
+<ol>
+<li><strong>跨任务知识迁移</strong></li>
+<p>   论文把 knowledge transfer 作为核心主张，认为统一格式训练可让模型更好处理 unseen tasks 与 unseen domains。</p>
+</ol>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>统一模型可以原生覆盖多种图像任务，而不是依赖插件堆叠。</li>
+<li>simplicity 本身就是系统级优势，它直接改善了工作流复杂度。</li>
+<li>统一格式训练被明确当作知识迁移机制，而不只是任务混合。</li>
+<li>论文已经开始讨论 reasoning 和 chain-of-thought，说明统一图像系统正在向更通用能力边界外溢。</li>
+</ul>
+<h2 id="关键图示">关键图示</h2>
+<h3 id="omnigen-框架图">OmniGen 框架图</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-12-omnigen/page-previews/page-2.png">900</a></p>
+<p>Figure 2 是最关键的方法图，展示文本 token、图像 token、Transformer 与 VAE 如何构成统一图像生成框架，并说明 OmniGen 支持 free-form multi-modal prompts。</p>
+<h3 id="统一任务设定与数据格式">统一任务设定与数据格式</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-12-omnigen/page-previews/page-4.png">900</a></p>
+<p>这一页展示 X2I dataset、mixed-modal prompts、subject-driven generation 与 computer vision tasks 等内容，最能解释 OmniGen 统一了哪些任务类型。</p>
+<h3 id="主结果总览">主结果总览</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-12-omnigen/page-previews/page-5.png">900</a></p>
+<p>这一页同时提供多任务质化结果、主体驱动案例和 benchmark 定量结果，是说明 OmniGen 不是概念统一而是有效统一的关键证据。</p>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<ul>
+<li>论文在主结果页同时覆盖 text-to-image、multi-modal-to-image 和 subject-driven generation。</li>
+<li>结果页既有任务广度，也有 benchmark 表格，因此很适合当作统一路线的综合证据页。</li>
+<li>OmniGen 试图用一个更简单的系统结构完成过去需要多条工作流拼接的任务。</li>
+<li>reasoning 与 step-by-step 生成部分说明作者在探索统一图像系统进一步的能力边界。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>统一接口的系统优势很明显，单项任务的峰值性能仍需继续与专用系统对照。</li>
+<li>reasoning / chain-of-thought 相关能力目前更像潜力展示，后续需要更严格验证。</li>
+<li>统一模型在高阶可控性和超复杂场景下的稳定性还值得继续跟踪。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 wiki 判断的影响</h2>
+<ul>
+<li>它强化了 <a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a> 中“图像系统越来越像通用视觉变换模型”的判断。</li>
+<li>它补强了 <a class="wikilink" href="../../en/entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a>：统一路线内部存在一类非常强调接口统一和工作流简化的方法。</li>
+<li>它为 <a class="wikilink" href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">claims/claim-unified-models-may-outcompete-specialized-image-pipelines</a> 提供了系统形态层的支持证据。</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../../en/entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a></li>
+<li><a class="wikilink" href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">claims/claim-unified-models-may-outcompete-specialized-image-pipelines</a></li>
+<li><a class="wikilink" href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a></li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://openaccess.thecvf.com/content/CVPR2025/html/Xiao_OmniGen_Unified_Image_Generation_CVPR_2025_paper.html</li>
+<li>https://openaccess.thecvf.com/content/CVPR2025/papers/Xiao_OmniGen_Unified_Image_Generation_CVPR_2025_paper.pdf</li>
+</ul></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-12-omnigen&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;OmniGen（CVPR 2025）：统一图像生成&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-12&quot;,
+  &quot;updated&quot;: &quot;2026-04-17&quot;,
+  &quot;venue&quot;: &quot;CVPR 2025&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-12&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-generation&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Shitao Xiao&quot;,
+    &quot;Yueze Wang&quot;,
+    &quot;Junjie Zhou&quot;,
+    &quot;Huaying Yuan&quot;,
+    &quot;Xingrun Xing&quot;,
+    &quot;Ruiran Yan&quot;,
+    &quot;Chaofan Li&quot;,
+    &quot;Shuting Wang&quot;,
+    &quot;Tiejun Huang&quot;,
+    &quot;Zheng Liu&quot;
+  ],
+  &quot;published_at&quot;: &quot;2025-06-11&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/CVPR2025/html/Xiao_OmniGen_Unified_Image_Generation_CVPR_2025_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2025/papers/Xiao_OmniGen_Unified_Image_Generation_CVPR_2025_paper.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-12-omnigen/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-12-omnigen/analysis.md&quot;,
+  &quot;image_index&quot;: &quot;raw/ingest/2026-04-12-omnigen/images/index.md&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-generation&quot;,
+    &quot;topics/diffusion-models&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/unified-image-generation-editing&quot;
+  ],
+  &quot;claims&quot;: [
+    &quot;claims/claim-unified-models-may-outcompete-specialized-image-pipelines&quot;
+  ],
+  &quot;questions&quot;: [
+    &quot;questions/question-will-unified-image-models-sustain-their-advantage&quot;
+  ]
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

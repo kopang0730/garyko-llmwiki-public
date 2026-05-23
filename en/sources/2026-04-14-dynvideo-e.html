@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DynVideo-E（CVPR 2024）：利用动态 NeRF 做大尺度运动与视角变化的人体中心视频编辑 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-dynvideo-e&quot;, &quot;title&quot;: &quot;DynVideo-E（CVPR 2024）：利用动态 NeRF 做大尺度运动与视角变化的人体中心视频编辑&quot;, &quot;title_en&quot;: &quot;DynVideo-E（CVPR 2024）：利用动态 NeRF 做大尺度运动与视角变化的人体中心视频编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;video-generation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-dynvideo-e.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-dynvideo-e.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-15</p>
+        <h1>DynVideo-E（CVPR 2024）：利用动态 NeRF 做大尺度运动与视角变化的人体中心视频编辑</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-editing">#video-editing</a><a class="tag" href="../../en/tags.html#video-generation">#video-generation</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="dynvideo-e-cvpr-2024-利用动态-nerf-做大尺度运动与视角变化的人体中心视频编辑">DynVideo-E（CVPR 2024）：利用动态 NeRF 做大尺度运动与视角变化的人体中心视频编辑</h1>
+<blockquote>会议：CVPR 2024</blockquote>
+<blockquote>发表日期：2023/10/16</blockquote>
+<blockquote>资料加入日期：2026-04-14</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作把 dynamic NeRF 接进视频编辑，补强了 human-centric 大运动/视角变化编辑这条路线。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>它要解决的是人体中心视频在大幅运动变化与视角变化下难以稳定编辑的问题。对当前知识库来说，它补的是 video-editing 在 3D/动态表示方向上的一条重要分支。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>DynVideo-E 借助 dynamic NeRF 来支持 large-scale motion- and view-change human-centric video editing，强调结构保持与变化控制。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>它说明视频编辑主线并不只沿 2D diffusion 展开，也有 3D/动态表示路线。</li>
+<li>它把 human-centric editing 和 view-change editing 拉到同一框架里，补厚复杂编辑能力谱。</li>
+<li>它为以后比较 2D 扩散路线和 3D 表示路线提供了很好的对照样本。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>这一路线更聚焦 human-centric 场景。</li>
+<li>系统复杂度与表示成本通常更高。</li>
+<li>它是重要分支，但未必适合所有通用视频编辑任务。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://arxiv.org/abs/2310.10624</li>
+<li>https://arxiv.org/pdf/2310.10624</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/video-editing.html">topics/video-editing</a></li>
+<li><a class="wikilink" href="../../en/topics/video-generation.html">topics/video-generation</a></li>
+<li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">entities/video-editing-understanding</a></li>
+<li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>DynVideo-E 在这套库里的作用，是把动态 NeRF 人体视频编辑路线补成明确分支。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-14-dynvideo-e&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;DynVideo-E（CVPR 2024）：利用动态 NeRF 做大尺度运动与视角变化的人体中心视频编辑&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-14&quot;,
+  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;venue&quot;: &quot;CVPR 2024&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-editing&quot;,
+    &quot;video-generation&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Liu, Jia-Wei&quot;,
+    &quot;Cao, Yan-Pei&quot;,
+    &quot;Wu, Jay Zhangjie&quot;,
+    &quot;Mao, Weijia&quot;,
+    &quot;Gu, Yuchao&quot;,
+    &quot;Zhao, Rui&quot;,
+    &quot;Keppo, Jussi&quot;,
+    &quot;Shan, Ying&quot;,
+    &quot;Shou, Mike Zheng&quot;
+  ],
+  &quot;published_at&quot;: &quot;2023/10/16&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2310.10624&quot;,
+    &quot;https://arxiv.org/pdf/2310.10624&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-dynvideo-e/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/video-editing&quot;,
+    &quot;topics/video-generation&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/video-editing-understanding&quot;
+  ],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: [
+    &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
+  ]
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

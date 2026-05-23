@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FADE（CVPR 2025）：面向视频编辑的频率感知扩散模型分解 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-12-fade&quot;, &quot;title&quot;: &quot;FADE（CVPR 2025）：面向视频编辑的频率感知扩散模型分解&quot;, &quot;title_en&quot;: &quot;FADE（CVPR 2025）：面向视频编辑的频率感知扩散模型分解&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-12-fade.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-12-fade.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-15</p>
+        <h1>FADE（CVPR 2025）：面向视频编辑的频率感知扩散模型分解</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-editing">#video-editing</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="fade-cvpr-2025-面向视频编辑的频率感知扩散模型分解">FADE（CVPR 2025）：面向视频编辑的频率感知扩散模型分解</h1>
+<blockquote>会议：CVPR 2025</blockquote>
+<blockquote>发表日期：2025-06-11</blockquote>
+<blockquote>资料加入日期：&quot;2026-04-12&quot;</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作认为，即使不重新训练模型，视频编辑依然可以很强，前提是把预训练视频扩散模型内部先验按功能拆开，并用频域感知方式调制采样轨迹。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>它要解决的是视频编辑中如何在保持时空结构的同时完成有效修改，尤其要避免信息泄漏、闪烁和原始结构被破坏。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>方法上，它分析视频模型内部注意力与表示模式，将不同成分按角色分解，再在采样过程中加入频谱引导调制。核心逻辑是：不必重训，也能通过更理解模型内部结构来获得更稳的编辑。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>training-free 编辑在视频侧依然是一条很强的路线。</li>
+<li>频域线索被用来减少信息泄漏并稳定编辑结果。</li>
+<li>方法显式强调在编辑时保留基础时空结构，而不是只追求表面改动。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>training-free 方法在高难编辑上可能仍弱于经过调优的模型。</li>
+<li>内部成分可解释不等于在复杂场景下一定更稳。</li>
+<li>还需要与奖励调优和 inversion-heavy 路线做正面对比。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://openaccess.thecvf.com/content/CVPR2025/html/Zhu_FADE_Frequency-Aware_Diffusion_Model_Factorization_for_Video_Editing_CVPR_2025_paper.html</li>
+<li>https://openaccess.thecvf.com/content/CVPR2025/papers/Zhu_FADE_Frequency-Aware_Diffusion_Model_Factorization_for_Video_Editing_CVPR_2025_paper.pdf</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/video-editing.html">topics/video-editing</a></li>
+<li><a class="wikilink" href="../../en/topics/video-generation.html">topics/video-generation</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">topics/generative-model-evaluation</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>FADE 很值得保留，因为它代表了一种不同于“重新训练更强模型”的工程哲学：通过理解已有视频扩散先验内部的结构分工，也能获得有竞争力的视频编辑能力。这让 vault 里的视频编辑路线不至于只剩下调参与重训两种思路。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-12-fade&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;FADE（CVPR 2025）：面向视频编辑的频率感知扩散模型分解&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-12&quot;,
+  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;venue&quot;: &quot;CVPR 2025&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-12&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-editing&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Yixuan Zhu&quot;,
+    &quot;Haolin Wang&quot;,
+    &quot;Shilin Ma&quot;,
+    &quot;Wenliang Zhao&quot;,
+    &quot;Yansong Tang&quot;,
+    &quot;Lei Chen&quot;,
+    &quot;Jie Zhou&quot;
+  ],
+  &quot;published_at&quot;: &quot;2025-06-11&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/CVPR2025/html/Zhu_FADE_Frequency-Aware_Diffusion_Model_Factorization_for_Video_Editing_CVPR_2025_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2025/papers/Zhu_FADE_Frequency-Aware_Diffusion_Model_Factorization_for_Video_Editing_CVPR_2025_paper.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-12-fade/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/video-editing&quot;,
+    &quot;topics/video-generation&quot;,
+    &quot;topics/generative-model-evaluation&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>

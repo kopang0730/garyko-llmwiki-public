@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tune-A-Video（ICCV 2023）：单样本调优图像扩散模型做文本到视频生成 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css">
+  <script defer src="../../assets/wiki.js"></script>
+</head>
+<body data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-tune-a-video&quot;, &quot;title&quot;: &quot;Tune-A-Video（ICCV 2023）：单样本调优图像扩散模型做文本到视频生成&quot;, &quot;title_en&quot;: &quot;Tune-A-Video（ICCV 2023）：单样本调优图像扩散模型做文本到视频生成&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-generation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+  <aside class="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-tune-a-video.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-tune-a-video.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">source · 2026-04-15</p>
+        <h1>Tune-A-Video（ICCV 2023）：单样本调优图像扩散模型做文本到视频生成</h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-generation">#video-generation</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <section class="article-content"><h1 id="tune-a-video-iccv-2023-单样本调优图像扩散模型做文本到视频生成">Tune-A-Video（ICCV 2023）：单样本调优图像扩散模型做文本到视频生成</h1>
+<blockquote>会议：ICCV 2023</blockquote>
+<blockquote>发表日期：2023-01-01</blockquote>
+<blockquote>资料加入日期：2026-04-14</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>这篇工作是早期文本到视频路线的重要锚点，它说明图像扩散模型可以通过极小样本调优被改造成视频生成器。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>它要解决的是文本到视频生成训练成本过高的问题。相较于依赖大规模视频数据直接训练 T2V 模型的路线，Tune-A-Video 提出一种更轻量的设定：只给一个 text-video 对，也能把已有图像扩散模型调到视频生成任务上。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>方法上，它基于预训练图像扩散模型，引入时空注意力机制与 one-shot tuning 策略，并在推理时结合 DDIM inversion 做结构引导。它的重要性不只是效果，而是提供了一个早期“图像模型迁移到视频模型”的方法模板。</p>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>它证明了图像扩散模型到视频生成模型的迁移是可行的。</li>
+<li>它是后续很多 image-to-video / text-to-video 迁移路线的重要前史锚点。</li>
+<li>它补强了当前视频生成主题中的“借已有强图像模型扩张到视频”这条线。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>one-shot tuning 更像探索性设定，不代表最终大规模路线。</li>
+<li>早期方法在长视频、一致性和复杂运动上仍然有限。</li>
+<li>它的历史价值大于当前 SOTA 价值。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li>https://openaccess.thecvf.com/content/ICCV2023/html/Wu_Tune-A-Video_One-Shot_Tuning_of_Image_Diffusion_Models_for_Text-to-Video_Generation_ICCV_2023_paper.html</li>
+<li>https://openaccess.thecvf.com/content/ICCV2023/papers/Wu_Tune-A-Video_One-Shot_Tuning_of_Image_Diffusion_Models_for_Text-to-Video_Generation_ICCV_2023_paper.pdf</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/video-generation.html">topics/video-generation</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../../en/entities/diffusion-transformer.html">entities/diffusion-transformer</a></li>
+<li><a class="wikilink" href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">claims/claim-dit-is-becoming-the-default-scalable-generation-backbone</a></li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>在当前 wiki 中，Tune-A-Video 最重要的意义是把视频生成路线的前史补上：很多后续工作其实都可以理解为在放大、修正或替代它的迁移逻辑。</p></section>
+      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+  &quot;id&quot;: &quot;2026-04-14-tune-a-video&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;Tune-A-Video（ICCV 2023）：单样本调优图像扩散模型做文本到视频生成&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-14&quot;,
+  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;venue&quot;: &quot;ICCV 2023&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-generation&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Jay Zhangjie Wu&quot;,
+    &quot;Yixiao Ge&quot;,
+    &quot;Xintao Wang&quot;,
+    &quot;Stan Weixian Lei&quot;,
+    &quot;Yuchao Gu&quot;,
+    &quot;Yufei Shi&quot;,
+    &quot;Wynne Hsu&quot;,
+    &quot;Ying Shan&quot;,
+    &quot;Xiaohu Qie&quot;,
+    &quot;Mike Zheng Shou&quot;
+  ],
+  &quot;published_at&quot;: &quot;2023-01-01&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/ICCV2023/html/Wu_Tune-A-Video_One-Shot_Tuning_of_Image_Diffusion_Models_for_Text-to-Video_Generation_ICCV_2023_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/ICCV2023/papers/Wu_Tune-A-Video_One-Shot_Tuning_of_Image_Diffusion_Models_for_Text-to-Video_Generation_ICCV_2023_paper.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-tune-a-video/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/video-generation&quot;,
+    &quot;topics/diffusion-models&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/diffusion-transformer&quot;
+  ],
+  &quot;claims&quot;: [
+    &quot;claims/claim-dit-is-becoming-the-default-scalable-generation-backbone&quot;
+  ],
+  &quot;questions&quot;: []
+}</pre></section>
+    </article>
+  </main>
+</body>
+</html>
