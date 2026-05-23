@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BST：面向羽毛球击球类型识别的骨架动作 Transformer · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css">
-  <script defer src="../../assets/wiki.js"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
+  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-16-bst-badminton-stroke-type-transformer&quot;, &quot;title&quot;: &quot;BST：面向羽毛球击球类型识别的骨架动作 Transformer&quot;, &quot;title_en&quot;: &quot;BST：面向羽毛球击球类型识别的骨架动作 Transformer&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;tracking&quot;, &quot;representation-learning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-16-bst-badminton-stroke-type-transformer&quot;, &quot;title&quot;: &quot;BST：面向羽毛球击球类型识别的骨架动作 Transformer&quot;, &quot;title_en&quot;: &quot;BST：面向羽毛球击球类型识别的骨架动作 Transformer&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;tracking&quot;, &quot;representation-learning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
   <aside class="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
@@ -54,15 +54,12 @@
     <article class="article-shell">
       <header class="article-header">
         <p class="eyebrow">source · 2026-05-22</p>
-        <h1>BST：面向羽毛球击球类型识别的骨架动作 Transformer</h1>
+        <h1><span class="title-main">BST</span><span class="title-subtitle">面向羽毛球击球类型识别的骨架动作 Transformer</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>arXiv</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-02-28</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-05-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link" href="https://arxiv.org/abs/2502.21085" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>https://arxiv.org/abs/2502.21085</strong></a><a class="source-link" href="https://arxiv.org/pdf/2502.21085v4" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>https://arxiv.org/pdf/2502.21085v4</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
+        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>arXiv</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-02-28</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-05-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2502.21085" title="https://arxiv.org/abs/2502.21085" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2502.21085</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2502.21085v4" title="https://arxiv.org/pdf/2502.21085v4" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2502.21085v4</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#tracking">#tracking</a><a class="tag" href="../../en/tags.html#representation-learning">#representation-learning</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><blockquote>会议 / 来源：arXiv；CVPRW 2026 / CVSports accepted claim pending official proceedings</blockquote>
-<blockquote>发表日期：2025-02-28；v4 更新：2026-03-31</blockquote>
-<blockquote>资料加入日期：2026-05-16</blockquote>
-<h2 id="一句话结论">一句话结论</h2>
+      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
 <p>BST 把羽毛球分析从 shuttle tracking 推到 stroke-type classification：先围绕 hit frame 截取每个球员的挥拍片段，再把人体骨架、球路轨迹和场上位置送入 Transformer，预测单打场景中的击球类型。</p>
 <h2 id="论文定位">论文定位</h2>
 <p>这篇论文适合作为羽毛球视频理解的“任务拓展”锚点。此前 wiki 已覆盖 <a class="wikilink" href="../../en/sources/2026-05-05-tracknet-high-speed-tiny-objects.html">sources/2026-05-05-tracknet-high-speed-tiny-objects</a>、<a class="wikilink" href="../../en/sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking.html">sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking</a>、<a class="wikilink" href="../../en/sources/2026-04-25-tracknetv3.html">sources/2026-04-25-tracknetv3</a>、<a class="wikilink" href="../../en/sources/2026-05-05-tracknetv4-motion-attention-maps.html">sources/2026-05-05-tracknetv4-motion-attention-maps</a> 与 <a class="wikilink" href="../../en/sources/2026-05-05-monotrack-shuttle-trajectory-reconstruction.html">sources/2026-05-05-monotrack-shuttle-trajectory-reconstruction</a>，它们主要解决 shuttle 2D / 3D 轨迹。BST 进一步说明：当球、场线、人体姿态和球员位置可用后，下游可以进入击球类别、技战术标签和动作纠正。</p>

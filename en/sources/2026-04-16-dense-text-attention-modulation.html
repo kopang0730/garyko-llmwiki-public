@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DenseDiffusion：用 attention modulation 让 dense caption 和布局控制真正可用 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css">
-  <script defer src="../../assets/wiki.js"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
+  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-dense-text-attention-modulation&quot;, &quot;title&quot;: &quot;DenseDiffusion（ICCV 2023）：用 attention modulation 让 dense caption 和布局控制真正可用&quot;, &quot;title_en&quot;: &quot;DenseDiffusion（ICCV 2023）：用 attention modulation 让 dense caption 和布局控制真正可用&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-dense-text-attention-modulation&quot;, &quot;title&quot;: &quot;DenseDiffusion（ICCV 2023）：用 attention modulation 让 dense caption 和布局控制真正可用&quot;, &quot;title_en&quot;: &quot;DenseDiffusion（ICCV 2023）：用 attention modulation 让 dense caption 和布局控制真正可用&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
   <aside class="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
@@ -54,15 +54,12 @@
     <article class="article-shell">
       <header class="article-header">
         <p class="eyebrow">source · 2026-04-16</p>
-        <h1>DenseDiffusion：用 attention modulation 让 dense caption 和布局控制真正可用</h1>
+        <h1><span class="title-main">DenseDiffusion</span><span class="title-subtitle">用 attention modulation 让 dense caption 和布局控制真正可用</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2023/08/24</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link" href="https://arxiv.org/abs/2308.12964" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>https://arxiv.org/abs/2308.12964</strong></a><a class="source-link" href="https://arxiv.org/pdf/2308.12964.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>https://arxiv.org/pdf/2308.12964.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
+        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2023/08/24</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2308.12964" title="https://arxiv.org/abs/2308.12964" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2308.12964</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2308.12964.pdf" title="https://arxiv.org/pdf/2308.12964.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2308.12964.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#efficiency">#efficiency</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><blockquote>会议：ICCV 2023</blockquote>
-<blockquote>发表日期：2023/08/24</blockquote>
-<blockquote>资料加入日期：2026-04-16</blockquote>
-<h2 id="一句话结论">一句话结论</h2>
+      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
 <p>这篇工作把 dense caption generation 和 layout control 接到同一 attention-level guidance 框架里，用训练免费方式让不同区域的细描述更稳定落到指定位置。</p>
 <h2 id="问题定义">问题定义</h2>
 <p>现有 text-to-image diffusion 面对 dense caption 时经常失真：每个区域的详细描述很难准确映射到对应位置，模型更擅长整体 prompt，却不擅长“哪一块区域应该出现什么”。</p>

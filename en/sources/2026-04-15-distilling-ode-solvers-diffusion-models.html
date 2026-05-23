@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Distilling ODE Solvers of Diffusion Models into Smaller Steps：把扩散求解器蒸馏到更少步数 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css">
-  <script defer src="../../assets/wiki.js"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
+  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-15-distilling-ode-solvers-diffusion-models&quot;, &quot;title&quot;: &quot;Distilling ODE Solvers of Diffusion Models into Smaller Steps（CVPR 2024）：把扩散求解器蒸馏到更少步数&quot;, &quot;title_en&quot;: &quot;Distilling ODE Solvers of Diffusion Models into Smaller Steps（CVPR 2024）：把扩散求解器蒸馏到更少步数&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-15-distilling-ode-solvers-diffusion-models&quot;, &quot;title&quot;: &quot;Distilling ODE Solvers of Diffusion Models into Smaller Steps（CVPR 2024）：把扩散求解器蒸馏到更少步数&quot;, &quot;title_en&quot;: &quot;Distilling ODE Solvers of Diffusion Models into Smaller Steps（CVPR 2024）：把扩散求解器蒸馏到更少步数&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
   <aside class="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
@@ -54,15 +54,12 @@
     <article class="article-shell">
       <header class="article-header">
         <p class="eyebrow">source · 2026-04-15</p>
-        <h1>Distilling ODE Solvers of Diffusion Models into Smaller Steps：把扩散求解器蒸馏到更少步数</h1>
+        <h1><span class="title-main">Distilling ODE Solvers of Diffusion Models into Smaller Steps</span><span class="title-subtitle">把扩散求解器蒸馏到更少步数</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2023/09/28</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-15</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link" href="https://arxiv.org/abs/2309.16421" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>https://arxiv.org/abs/2309.16421</strong></a><a class="source-link" href="https://arxiv.org/pdf/2309.16421" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>https://arxiv.org/pdf/2309.16421</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
+        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2023/09/28</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-15</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2309.16421" title="https://arxiv.org/abs/2309.16421" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2309.16421</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2309.16421" title="https://arxiv.org/pdf/2309.16421" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2309.16421</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#efficiency">#efficiency</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><blockquote>会议：CVPR 2024</blockquote>
-<blockquote>发表日期：2023/09/28</blockquote>
-<blockquote>资料加入日期：2026-04-15</blockquote>
-<h2 id="一句话结论">一句话结论</h2>
+      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
 <p>这篇工作把“少步采样”推进得更系统：它不是重新发明采样器，而是把已有 ODE solver 的轨迹知识蒸馏到更小步数版本里。</p>
 <h2 id="问题定义">问题定义</h2>
 <p>扩散模型采样慢，核心原因之一是 function evaluations 太多。纯数值求解器在极少步数时难以忠实跟踪真实轨迹，而传统蒸馏方法又往往训练代价高。论文要解决的正是这两类路线之间的断层。</p>

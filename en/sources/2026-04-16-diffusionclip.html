@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DiffusionCLIP：把文本引导图像操控更早接到 diffusion 路线里 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css">
-  <script defer src="../../assets/wiki.js"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
+  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-diffusionclip&quot;, &quot;title&quot;: &quot;DiffusionCLIP（CVPR 2022）：把文本引导图像操控更早接到 diffusion 路线里&quot;, &quot;title_en&quot;: &quot;DiffusionCLIP（CVPR 2022）：把文本引导图像操控更早接到 diffusion 路线里&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;diffusion&quot;, &quot;conditioning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-diffusionclip&quot;, &quot;title&quot;: &quot;DiffusionCLIP（CVPR 2022）：把文本引导图像操控更早接到 diffusion 路线里&quot;, &quot;title_en&quot;: &quot;DiffusionCLIP（CVPR 2022）：把文本引导图像操控更早接到 diffusion 路线里&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;diffusion&quot;, &quot;conditioning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
   <aside class="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
@@ -54,15 +54,12 @@
     <article class="article-shell">
       <header class="article-header">
         <p class="eyebrow">source · 2026-04-16</p>
-        <h1>DiffusionCLIP：把文本引导图像操控更早接到 diffusion 路线里</h1>
+        <h1><span class="title-main">DiffusionCLIP</span><span class="title-subtitle">把文本引导图像操控更早接到 diffusion 路线里</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2022</dd></div><div class="source-fact"><dt>Published</dt><dd>2021/10/06</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link" href="https://arxiv.org/abs/2110.02711" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>https://arxiv.org/abs/2110.02711</strong></a><a class="source-link" href="https://arxiv.org/pdf/2110.02711.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>https://arxiv.org/pdf/2110.02711.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
+        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2022</dd></div><div class="source-fact"><dt>Published</dt><dd>2021/10/06</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2110.02711" title="https://arxiv.org/abs/2110.02711" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2110.02711</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2110.02711.pdf" title="https://arxiv.org/pdf/2110.02711.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2110.02711.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-editing">#image-editing</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#conditioning">#conditioning</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><blockquote>会议：CVPR 2022</blockquote>
-<blockquote>发表日期：2021/10/06</blockquote>
-<blockquote>资料加入日期：2026-04-16</blockquote>
-<h2 id="一句话结论">一句话结论</h2>
+      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
 <p>这篇工作把文本驱动图像操控更早地接到 diffusion 路线里，说明真实图像属性编辑在 diffusion 时代很早就开始摆脱 GAN-only 范式。</p>
 <h2 id="问题定义">问题定义</h2>
 <p>真实图像编辑需要同时满足两件事：语义改动要准确，原图身份与结构也要尽量保住。论文要解决的是，怎样把文本驱动操控能力稳定迁移到 diffusion 模型上。</p>

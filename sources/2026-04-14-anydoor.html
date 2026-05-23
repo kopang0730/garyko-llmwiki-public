@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AnyDoor：零样本对象级图像定制 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css">
-  <script defer src="../assets/wiki.js"></script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
+  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-anydoor&quot;, &quot;title&quot;: &quot;AnyDoor（CVPR 2024）：零样本对象级图像定制&quot;, &quot;title_en&quot;: &quot;AnyDoor（CVPR 2024）：零样本对象级图像定制&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;image-editing&quot;, &quot;control&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-anydoor&quot;, &quot;title&quot;: &quot;AnyDoor（CVPR 2024）：零样本对象级图像定制&quot;, &quot;title_en&quot;: &quot;AnyDoor（CVPR 2024）：零样本对象级图像定制&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;image-editing&quot;, &quot;control&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
   <aside class="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
@@ -54,15 +54,12 @@
     <article class="article-shell">
       <header class="article-header">
         <p class="eyebrow">source · 2026-04-15</p>
-        <h1>AnyDoor：零样本对象级图像定制</h1>
+        <h1><span class="title-main">AnyDoor</span><span class="title-subtitle">零样本对象级图像定制</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023-07-18</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link" href="https://arxiv.org/abs/2307.09481" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>https://arxiv.org/abs/2307.09481</strong></a><a class="source-link" href="https://arxiv.org/pdf/2307.09481" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>https://arxiv.org/pdf/2307.09481</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
+        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023-07-18</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2307.09481" title="https://arxiv.org/abs/2307.09481" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2307.09481</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2307.09481" title="https://arxiv.org/pdf/2307.09481" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2307.09481</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#image-editing">#image-editing</a><a class="tag" href="../tags.html#control">#control</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><blockquote>会议：CVPR 2024</blockquote>
-<blockquote>发表日期：2023-07-18</blockquote>
-<blockquote>资料加入日期：2026-04-14</blockquote>
-<h2 id="一句话结论">一句话结论</h2>
+      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
 <p>这篇工作把对象级定制能力推到零样本设定里，补强了图像生成主线中的可控定制分支。</p>
 <h2 id="问题定义">问题定义</h2>
 <p>它要解决的是如何在无需额外训练的情况下，把一个给定对象自然地插入或定制到目标场景里。对当前知识库来说，它补的是 image-generation 与 image-editing 之间“对象级控制”这条非常实用的路线。</p>

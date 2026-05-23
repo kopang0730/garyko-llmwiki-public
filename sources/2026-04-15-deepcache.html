@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DeepCache：用特征缓存免费加速扩散模型 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css">
-  <script defer src="../assets/wiki.js"></script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
+  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-15-deepcache&quot;, &quot;title&quot;: &quot;DeepCache（CVPR 2024）：用特征缓存免费加速扩散模型&quot;, &quot;title_en&quot;: &quot;DeepCache（CVPR 2024）：用特征缓存免费加速扩散模型&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-15-deepcache&quot;, &quot;title&quot;: &quot;DeepCache（CVPR 2024）：用特征缓存免费加速扩散模型&quot;, &quot;title_en&quot;: &quot;DeepCache（CVPR 2024）：用特征缓存免费加速扩散模型&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
   <aside class="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
@@ -54,15 +54,12 @@
     <article class="article-shell">
       <header class="article-header">
         <p class="eyebrow">source · 2026-04-15</p>
-        <h1>DeepCache：用特征缓存免费加速扩散模型</h1>
+        <h1><span class="title-main">DeepCache</span><span class="title-subtitle">用特征缓存免费加速扩散模型</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023/12/01</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-15</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link" href="https://arxiv.org/abs/2312.00858" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>https://arxiv.org/abs/2312.00858</strong></a><a class="source-link" href="https://arxiv.org/pdf/2312.00858" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>https://arxiv.org/pdf/2312.00858</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
+        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023/12/01</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-15</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2312.00858" title="https://arxiv.org/abs/2312.00858" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2312.00858</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2312.00858" title="https://arxiv.org/pdf/2312.00858" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2312.00858</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#efficiency">#efficiency</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><blockquote>会议：CVPR 2024</blockquote>
-<blockquote>发表日期：2023/12/01</blockquote>
-<blockquote>资料加入日期：2026-04-15</blockquote>
-<h2 id="一句话结论">一句话结论</h2>
+      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
 <p>这篇论文把扩散提速问题从“重训模型”转到“缓存时序冗余”，说明不少速度收益其实可以直接从推理结构里白拿。</p>
 <h2 id="问题定义">问题定义</h2>
 <p>它要解决的是扩散模型逐步去噪导致的高计算成本。传统加速路线往往依赖蒸馏、剪枝或重训练，但这些方法本身就昂贵、难迁移。对当前 wiki 来说，DeepCache 补的是 diffusion inference engineering 的关键节点：不改权重、少改流程，也能显著提升吞吐。</p>

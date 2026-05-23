@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SportsMOT：多运动场景下的大规模球员多目标跟踪基准 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css">
-  <script defer src="../assets/wiki.js"></script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
+  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-24-sportsmot&quot;, &quot;title&quot;: &quot;SportsMOT（ICCV 2023）：多运动场景下的大规模球员多目标跟踪基准&quot;, &quot;title_en&quot;: &quot;SportsMOT（ICCV 2023）：多运动场景下的大规模球员多目标跟踪基准&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;tracking&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-24-sportsmot&quot;, &quot;title&quot;: &quot;SportsMOT（ICCV 2023）：多运动场景下的大规模球员多目标跟踪基准&quot;, &quot;title_en&quot;: &quot;SportsMOT（ICCV 2023）：多运动场景下的大规模球员多目标跟踪基准&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;tracking&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
   <aside class="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
@@ -54,15 +54,12 @@
     <article class="article-shell">
       <header class="article-header">
         <p class="eyebrow">source · 2026-04-24</p>
-        <h1>SportsMOT：多运动场景下的大规模球员多目标跟踪基准</h1>
+        <h1><span class="title-main">SportsMOT</span><span class="title-subtitle">多运动场景下的大规模球员多目标跟踪基准</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ICCV 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023-04-13</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-24</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link" href="https://arxiv.org/abs/2304.05170" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>https://arxiv.org/abs/2304.05170</strong></a><a class="source-link" href="https://arxiv.org/pdf/2304.05170" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>https://arxiv.org/pdf/2304.05170</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
+        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ICCV 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023-04-13</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-24</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2304.05170" title="https://arxiv.org/abs/2304.05170" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2304.05170</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2304.05170" title="https://arxiv.org/pdf/2304.05170" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2304.05170</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#tracking">#tracking</a><a class="tag" href="../tags.html#benchmarking">#benchmarking</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><blockquote>会议：ICCV 2023</blockquote>
-<blockquote>发表日期：2023-04-13</blockquote>
-<blockquote>资料加入日期：2026-04-24</blockquote>
-<h2 id="一句话结论">一句话结论</h2>
+      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
 <p>SportsMOT 把体育视频 MOT 从通用行人跟踪里独立出来，明确指出团队运动的核心难点是高速非线性运动、遮挡和相似外观共同造成的 association 压力。</p>
 <h2 id="论文定位">论文定位</h2>
 <p>这篇论文属于体育 AI / 体育视频理解主线，和 <a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a> 的长时序理解、对象级关联与 benchmark 设计直接相关。它在 <a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 中承担的角色是：这是 <a class="wikilink" href="../entities/sportsmot.html">entities/sportsmot</a> 的原始 anchor paper，也解释了为什么 <a class="wikilink" href="../sources/2026-04-23-sportmamba.html">sources/2026-04-23-sportmamba</a> 选择 SportsMOT 作为核心验证场景。</p>

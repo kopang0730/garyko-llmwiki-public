@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>RAVE：通过随机噪声重排实现快速且一致的视频编辑 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css">
-  <script defer src="../assets/wiki.js"></script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
+  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-rave-video-editing&quot;, &quot;title&quot;: &quot;RAVE（CVPR 2024）：通过随机噪声重排实现快速且一致的视频编辑&quot;, &quot;title_en&quot;: &quot;RAVE（CVPR 2024）：通过随机噪声重排实现快速且一致的视频编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;video-generation&quot;, &quot;efficiency&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-rave-video-editing&quot;, &quot;title&quot;: &quot;RAVE（CVPR 2024）：通过随机噪声重排实现快速且一致的视频编辑&quot;, &quot;title_en&quot;: &quot;RAVE（CVPR 2024）：通过随机噪声重排实现快速且一致的视频编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;video-generation&quot;, &quot;efficiency&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
   <aside class="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
@@ -54,15 +54,12 @@
     <article class="article-shell">
       <header class="article-header">
         <p class="eyebrow">source · 2026-04-15</p>
-        <h1>RAVE：通过随机噪声重排实现快速且一致的视频编辑</h1>
+        <h1><span class="title-main">RAVE</span><span class="title-subtitle">通过随机噪声重排实现快速且一致的视频编辑</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023-12-07</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link" href="https://arxiv.org/abs/2312.04524" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>https://arxiv.org/abs/2312.04524</strong></a><a class="source-link" href="https://arxiv.org/pdf/2312.04524" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>https://arxiv.org/pdf/2312.04524</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
+        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023-12-07</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2312.04524" title="https://arxiv.org/abs/2312.04524" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2312.04524</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2312.04524" title="https://arxiv.org/pdf/2312.04524" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2312.04524</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-editing">#video-editing</a><a class="tag" href="../tags.html#video-generation">#video-generation</a><a class="tag" href="../tags.html#efficiency">#efficiency</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><blockquote>会议：CVPR 2024</blockquote>
-<blockquote>发表日期：2023-12-07</blockquote>
-<blockquote>资料加入日期：2026-04-14</blockquote>
-<h2 id="一句话结论">一句话结论</h2>
+      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
 <p>这篇工作把视频编辑中的“速度 + 一致性”权衡显式推到前台，是近三年非常典型的工程化节点。</p>
 <h2 id="问题定义">问题定义</h2>
 <p>它要解决的是视频编辑在实际使用里常见的两难：想更快，又不想牺牲跨帧一致性。对当前知识库来说，它补的是 video-editing 走向可用系统时非常关键的一条效率路线。</p>

@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Distilling Parallel Gradients for Fast ODE Solvers of Diffusion Models：把并行梯度蒸馏接进快速 ODE solver 路线 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css">
-  <script defer src="../assets/wiki.js"></script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
+  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-distilling-parallel-gradients-ode-solvers&quot;, &quot;title&quot;: &quot;Distilling Parallel Gradients for Fast ODE Solvers of Diffusion Models（ICCV 2025）：把并行梯度蒸馏接进快速 ODE solver 路线&quot;, &quot;title_en&quot;: &quot;Distilling Parallel Gradients for Fast ODE Solvers of Diffusion Models（ICCV 2025）：把并行梯度蒸馏接进快速 ODE solver 路线&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-distilling-parallel-gradients-ode-solvers&quot;, &quot;title&quot;: &quot;Distilling Parallel Gradients for Fast ODE Solvers of Diffusion Models（ICCV 2025）：把并行梯度蒸馏接进快速 ODE solver 路线&quot;, &quot;title_en&quot;: &quot;Distilling Parallel Gradients for Fast ODE Solvers of Diffusion Models（ICCV 2025）：把并行梯度蒸馏接进快速 ODE solver 路线&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
   <aside class="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
@@ -54,15 +54,12 @@
     <article class="article-shell">
       <header class="article-header">
         <p class="eyebrow">source · 2026-05-22</p>
-        <h1>Distilling Parallel Gradients for Fast ODE Solvers of Diffusion Models：把并行梯度蒸馏接进快速 ODE solver 路线</h1>
+        <h1><span class="title-main">Distilling Parallel Gradients for Fast ODE Solvers of Diffusion Models</span><span class="title-subtitle">把并行梯度蒸馏接进快速 ODE solver 路线</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2025/07/20</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link" href="https://arxiv.org/abs/2507.14797" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>https://arxiv.org/abs/2507.14797</strong></a><a class="source-link" href="https://arxiv.org/pdf/2507.14797.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>https://arxiv.org/pdf/2507.14797.pdf</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
+        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2025/07/20</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2507.14797" title="https://arxiv.org/abs/2507.14797" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2507.14797</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2507.14797.pdf" title="https://arxiv.org/pdf/2507.14797.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2507.14797.pdf</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#efficiency">#efficiency</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><blockquote>会议：ICCV 2025</blockquote>
-<blockquote>发表日期：2025/07/20</blockquote>
-<blockquote>资料加入日期：2026-04-16</blockquote>
-<h2 id="一句话结论">一句话结论</h2>
+      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
 <p>这篇工作把 solver distillation 再推到并行梯度层，说明快速 ODE solver 这条线在 2025 年仍在继续细化和加速。</p>
 <h2 id="问题定义">问题定义</h2>
 <p>已有的 ODE solver acceleration 已经能减少采样步数，但更高效、更并行的梯度利用方式仍然可能进一步压缩时间成本。论文要解决的是，怎样把并行梯度蒸馏进快速 solver 体系。</p>

@@ -4,8 +4,10 @@ async function initSearch(){
   const box=document.getElementById('search-results');
   if(!input||!box) return;
   const lang=document.documentElement.lang==='en' ? 'en' : 'zh';
-  const prefix=document.querySelector('link[rel="stylesheet"]').getAttribute('href').replace(/assets\/wiki\.css$/,'');
-  const res=await fetch(prefix+'assets/search-index.json');
+  const href=document.querySelector('link[rel="stylesheet"]').getAttribute('href');
+  const prefix=href.replace(/assets\/wiki\.css(?:\?v=[^#]+)?$/,'');
+  const version=document.body.dataset.assetVersion || '';
+  const res=await fetch(prefix+'assets/search-index.json'+(version ? '?v='+encodeURIComponent(version) : ''), {cache:'no-cache'});
   const pages=await res.json();
   input.addEventListener('input',()=>{
     const q=input.value.trim().toLowerCase();

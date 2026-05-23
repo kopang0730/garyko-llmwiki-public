@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BadmintonDB：面向球员级比赛分析与预测的羽毛球数据集 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css">
-  <script defer src="../assets/wiki.js"></script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
+  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-17-badmintondb-player-specific-match-analysis&quot;, &quot;title&quot;: &quot;BadmintonDB：面向球员级比赛分析与预测的羽毛球数据集&quot;, &quot;title_en&quot;: &quot;BadmintonDB：面向球员级比赛分析与预测的羽毛球数据集&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;representation-learning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-17-badmintondb-player-specific-match-analysis&quot;, &quot;title&quot;: &quot;BadmintonDB：面向球员级比赛分析与预测的羽毛球数据集&quot;, &quot;title_en&quot;: &quot;BadmintonDB：面向球员级比赛分析与预测的羽毛球数据集&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;representation-learning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
   <aside class="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
@@ -54,15 +54,12 @@
     <article class="article-shell">
       <header class="article-header">
         <p class="eyebrow">source · 2026-05-22</p>
-        <h1>BadmintonDB：面向球员级比赛分析与预测的羽毛球数据集</h1>
+        <h1><span class="title-main">BadmintonDB</span><span class="title-subtitle">面向球员级比赛分析与预测的羽毛球数据集</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ACM MMSports 2022</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2022-10-13</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-05-17</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link" href="https://doi.org/10.1145/3552437.3555696" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>https://doi.org/10.1145/3552437.3555696</strong></a><a class="source-link" href="https://github.com/kwban/badminton-db" target="_blank" rel="noopener noreferrer"><span>代码仓库</span><strong>https://github.com/kwban/badminton-db</strong></a></div></section>
+        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ACM MMSports 2022</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2022-10-13</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-05-17</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://doi.org/10.1145/3552437.3555696" title="https://doi.org/10.1145/3552437.3555696" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>doi.org · 3552437.3555696</strong></a><a class="source-link source-link-code" href="https://github.com/kwban/badminton-db" title="https://github.com/kwban/badminton-db" target="_blank" rel="noopener noreferrer"><span>代码仓库</span><strong>github.com · badminton-db</strong></a></div></section>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#representation-learning">#representation-learning</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><blockquote>会议 / 期刊：ACM MMSports 2022</blockquote>
-<blockquote>发表日期：2022-10-13</blockquote>
-<blockquote>资料加入日期：2026-05-17</blockquote>
-<h2 id="一句话结论">一句话结论</h2>
+      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
 <p>BadmintonDB 的关键价值在于 player-specific：它提醒羽毛球 stroke recognition 最终要经受跨球员、跨比赛和更细 stroke taxonomy 的检验。</p>
 <h2 id="论文定位">论文定位</h2>
 <p>当前 wiki 已经有 <a class="wikilink" href="../sources/2026-05-16-shuttleset-stroke-level-badminton-dataset.html">sources/2026-05-16-shuttleset-stroke-level-badminton-dataset</a> 作为 stroke-level 数据底座，也有 <a class="wikilink" href="../sources/2026-05-16-bst-badminton-stroke-type-transformer.html">sources/2026-05-16-bst-badminton-stroke-type-transformer</a> 作为 stroke-type classifier。BadmintonDB 是 BST 的外部数据集评估对象，用来验证模型能否迁移到另一套羽毛球数据定义。</p>

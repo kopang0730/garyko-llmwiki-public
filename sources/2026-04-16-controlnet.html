@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Adding Conditional Control to Text-to-Image Diffusion Models：把条件控制做成 diffusion 的通用侧支接口 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css">
-  <script defer src="../assets/wiki.js"></script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
+  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-controlnet&quot;, &quot;title&quot;: &quot;Adding Conditional Control to Text-to-Image Diffusion Models（ICCV 2023）：把条件控制做成 diffusion 的通用侧支接口&quot;, &quot;title_en&quot;: &quot;Adding Conditional Control to Text-to-Image Diffusion Models（ICCV 2023）：把条件控制做成 diffusion 的通用侧支接口&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-controlnet&quot;, &quot;title&quot;: &quot;Adding Conditional Control to Text-to-Image Diffusion Models（ICCV 2023）：把条件控制做成 diffusion 的通用侧支接口&quot;, &quot;title_en&quot;: &quot;Adding Conditional Control to Text-to-Image Diffusion Models（ICCV 2023）：把条件控制做成 diffusion 的通用侧支接口&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
   <aside class="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
@@ -54,15 +54,12 @@
     <article class="article-shell">
       <header class="article-header">
         <p class="eyebrow">source · 2026-04-16</p>
-        <h1>Adding Conditional Control to Text-to-Image Diffusion Models：把条件控制做成 diffusion 的通用侧支接口</h1>
+        <h1><span class="title-main">Adding Conditional Control to Text-to-Image Diffusion Models</span><span class="title-subtitle">把条件控制做成 diffusion 的通用侧支接口</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ICCV 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023/02/10</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link" href="https://arxiv.org/abs/2302.05543" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>https://arxiv.org/abs/2302.05543</strong></a><a class="source-link" href="https://arxiv.org/pdf/2302.05543.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>https://arxiv.org/pdf/2302.05543.pdf</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
+        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ICCV 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023/02/10</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2302.05543" title="https://arxiv.org/abs/2302.05543" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2302.05543</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2302.05543.pdf" title="https://arxiv.org/pdf/2302.05543.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2302.05543.pdf</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#efficiency">#efficiency</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><blockquote>会议：ICCV 2023</blockquote>
-<blockquote>发表日期：2023/02/10</blockquote>
-<blockquote>资料加入日期：2026-04-16</blockquote>
-<h2 id="一句话结论">一句话结论</h2>
+      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
 <p>这篇工作用 zero-conv 侧支网络把边缘、深度、分割、姿态等空间条件稳定接到冻结的预训练 diffusion backbone 上，让 controllability 不再必须重训整套生成模型。</p>
 <h2 id="问题定义">问题定义</h2>
 <p>在大规模 text-to-image diffusion 模型已经可用之后，真正的工程难点不再只是“能不能生成”，而是怎样在不破坏原模型能力的情况下，把空间条件、结构提示和多种外部控制安全地接到系统里。传统整体微调成本高，也容易伤害原始生成质量。</p>
