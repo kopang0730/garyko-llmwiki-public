@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../assets/wiki.css">
   <script defer src="../assets/wiki.js"></script>
 </head>
-<body data-page="{&quot;slug&quot;: &quot;topics/video-editing&quot;, &quot;title&quot;: &quot;视频编辑&quot;, &quot;title_en&quot;: &quot;视频编辑&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;diffusion&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh">
+<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/video-editing&quot;, &quot;title&quot;: &quot;视频编辑&quot;, &quot;title_en&quot;: &quot;视频编辑&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;diffusion&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh">
   <aside class="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
@@ -56,10 +56,10 @@
         <p class="eyebrow">topic · 2026-04-14</p>
         <h1>视频编辑</h1>
         <p class="article-summary">追踪以文本驱动和扩散模型为核心的视频编辑方法，重点关注保真度、时序一致性与编辑精度。</p>
+        
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-editing">#video-editing</a><a class="tag" href="../tags.html#diffusion">#diffusion</a></div>
       </header>
-      <section class="article-content"><h1 id="视频编辑">视频编辑</h1>
-<h2 id="概述">概述</h2>
+      <section class="article-content"><h2 id="概述">概述</h2>
 <p>这一页聚焦视频编辑。当前批次里最重要的几条线索是：更精准的视频原生控制、利用视频扩散先验的免训练编辑、通过奖励调优改善编辑质量，以及把“视频编辑理解”本身纳入评测问题。整体来看，视频编辑不只是生成更像的视频，而是要同时兼顾指令遵循、时序一致性和未编辑区域的稳定保留。</p>
 <h2 id="当前综合判断">当前综合判断</h2>
 <p><a class="wikilink" href="../sources/2026-04-14-shape-aware-layered-video-editing.html">sources/2026-04-14-shape-aware-layered-video-editing</a>、<a class="wikilink" href="../sources/2026-04-14-vive3d.html">sources/2026-04-14-vive3d</a>、<a class="wikilink" href="../sources/2026-04-14-fairy-video-to-video.html">sources/2026-04-14-fairy-video-to-video</a> 和 <a class="wikilink" href="../sources/2026-04-14-flowvid.html">sources/2026-04-14-flowvid</a> 进一步把 layered control、3D-aware viewpoint consistency、高效 video-to-video 合成与 flow-guided consistency 这几条分支补厚了。</p>

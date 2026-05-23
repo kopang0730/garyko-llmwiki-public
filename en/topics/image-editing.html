@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../../assets/wiki.css">
   <script defer src="../../assets/wiki.js"></script>
 </head>
-<body data-page="{&quot;slug&quot;: &quot;topics/image-editing&quot;, &quot;title&quot;: &quot;图像编辑&quot;, &quot;title_en&quot;: &quot;图像编辑&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;diffusion&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
+<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/image-editing&quot;, &quot;title&quot;: &quot;图像编辑&quot;, &quot;title_en&quot;: &quot;图像编辑&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;diffusion&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en">
   <aside class="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
@@ -56,10 +56,10 @@
         <p class="eyebrow">topic · 2026-04-17</p>
         <h1>图像编辑</h1>
         <p class="article-summary">追踪 CVPR 2025 范围内基于指令、可控且重视效率的图像编辑方法。</p>
+        
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-editing">#image-editing</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a></div>
       </header>
-      <section class="article-content"><h1 id="图像编辑">图像编辑</h1>
-<h2 id="概述">概述</h2>
+      <section class="article-content"><h2 id="概述">概述</h2>
 <p>这一页聚焦图像编辑方向。当前可以看到的主线包括：更高质量的数据集仍然是性能提升的重要来源；更细粒度的编辑正在越来越依赖视觉-语言 grounding；模型除了“改得对”之外，也越来越强调“保持原图身份与背景一致”；另外，一步式扩散编辑正在把速度推成一个新的竞争维度。</p>
 <h2 id="当前综合判断">当前综合判断</h2>
 <p><a class="wikilink" href="../../en/sources/2026-04-12-anyedit.html">sources/2026-04-12-anyedit</a>、<a class="wikilink" href="../../en/sources/2026-04-12-fireedit.html">sources/2026-04-12-fireedit</a>、<a class="wikilink" href="../../en/sources/2026-04-12-omnigen.html">sources/2026-04-12-omnigen</a>、<a class="wikilink" href="../../en/sources/2026-04-12-dreamomni.html">sources/2026-04-12-dreamomni</a>、<a class="wikilink" href="../../en/sources/2026-04-12-insightedit.html">sources/2026-04-12-insightedit</a>、<a class="wikilink" href="../../en/sources/2026-04-12-swiftedit.html">sources/2026-04-12-swiftedit</a>、<a class="wikilink" href="../../en/sources/2026-04-12-unireal.html">sources/2026-04-12-unireal</a> 与 <a class="wikilink" href="../../en/sources/2026-04-14-pathways-image-manifold.html">sources/2026-04-14-pathways-image-manifold</a> 这三轮按“深分析 + 提图 + 再编译”重做后，也把 image-editing 主线的内部分工看得更清楚了：AnyEdit 更像数据与任务组织驱动的统一编辑系统；FireEdit 代表区域感知 grounding 与 diffusion-stage control 的强架构路线；OmniGen 把编辑收进统一图像接口；DreamOmni 把编辑进一步纳入 synthetic data pipeline 与联合训练协同；InsightEdit 把高质量数据与 MLLM 双流桥接合在一起；SwiftEdit 把近实时一步编辑拉到主线前台；UniReal 与 Pathways 则把编辑重写到真实世界动态和视频生成框架中。这让当前 image-editing 更像多股力量同时竞争的主线：数据工厂、局部 grounding、统一接口、联合训练、推理桥接、低时延编辑、世界动态建模、视频化架构重写。</p>

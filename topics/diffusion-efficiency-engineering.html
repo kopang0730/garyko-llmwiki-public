@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../assets/wiki.css">
   <script defer src="../assets/wiki.js"></script>
 </head>
-<body data-page="{&quot;slug&quot;: &quot;topics/diffusion-efficiency-engineering&quot;, &quot;title&quot;: &quot;扩散效率工程&quot;, &quot;title_en&quot;: &quot;扩散效率工程&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh">
+<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/diffusion-efficiency-engineering&quot;, &quot;title&quot;: &quot;扩散效率工程&quot;, &quot;title_en&quot;: &quot;扩散效率工程&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh">
   <aside class="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
@@ -56,10 +56,10 @@
         <p class="eyebrow">topic · 2026-04-16</p>
         <h1>扩散效率工程</h1>
         <p class="article-summary">追踪扩散模型从主干缩放到采样加速、部署压缩与 guidance 工程化的完整效率技术栈。</p>
+        
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#efficiency">#efficiency</a></div>
       </header>
-      <section class="article-content"><h1 id="扩散效率工程">扩散效率工程</h1>
-<h2 id="概述">概述</h2>
+      <section class="article-content"><h2 id="概述">概述</h2>
 <p>这一页专门整理 diffusion engineering 这条子主线。它关注的核心问题不是“扩散模型能不能生成”，而是“扩散路线怎样成为一个更可扩展、更可部署、更容易挂接控制能力的工程平台”。在当前知识库里，这条线已经从 backbone 选择延伸到了采样提速、训练动力学、部署压缩、以及 guidance 接口工程化。</p>
 <h2 id="当前综合判断">当前综合判断</h2>
 <p>当前证据已经足够把 diffusion efficiency 看成一张完整工程图谱，而不是几篇互相分散的技巧论文。<a class="wikilink" href="../sources/2026-04-15-all-are-worth-words.html">sources/2026-04-15-all-are-worth-words</a> 与 <a class="wikilink" href="../sources/2026-04-15-scalable-diffusion-models-with-transformers.html">sources/2026-04-15-scalable-diffusion-models-with-transformers</a> 负责给出 backbone 与 scaling 的起点；<a class="wikilink" href="../sources/2026-04-15-analyzing-training-dynamics-diffusion-models.html">sources/2026-04-15-analyzing-training-dynamics-diffusion-models</a> 说明训练动力学本身会决定质量上限；<a class="wikilink" href="../sources/2026-04-16-come-closer-diffuse-faster.html">sources/2026-04-16-come-closer-diffuse-faster</a>、<a class="wikilink" href="../sources/2026-04-15-act-diffusion.html">sources/2026-04-15-act-diffusion</a>、<a class="wikilink" href="../sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">sources/2026-04-15-distilling-ode-solvers-diffusion-models</a>、<a class="wikilink" href="../sources/2026-04-16-on-distillation-of-guided-diffusion-models.html">sources/2026-04-16-on-distillation-of-guided-diffusion-models</a>、<a class="wikilink" href="../sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html">sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps</a>、<a class="wikilink" href="../sources/2026-04-15-deepcache.html">sources/2026-04-15-deepcache</a> 与 <a class="wikilink" href="../sources/2026-04-16-sana-sprint.html">sources/2026-04-16-sana-sprint</a> 则把“如何更快生成”拆成更完整的时间纵深：从 2022 年的早期 conditional acceleration，一直到 2025 年的一步一致性蒸馏前沿。</p>
