@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Self-Guided Diffusion Models：把 guidance 从外部条件器部分收回到模型内部结构 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="Self-Guided Diffusion Models：用自监督伪标注替代人工 guidance">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Self-Guided Diffusion Models：用自监督伪标注替代人工 guidance · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-self-guided-diffusion-models&quot;, &quot;title&quot;: &quot;Self-Guided Diffusion Models（CVPR 2023）：把 guidance 从外部条件器部分收回到模型内部结构&quot;, &quot;title_en&quot;: &quot;Self-Guided Diffusion Models（CVPR 2023）：把 guidance 从外部条件器部分收回到模型内部结构&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-self-guided-diffusion-models&quot;, &quot;title&quot;: &quot;Self-Guided Diffusion Models：用自监督伪标注替代人工 guidance&quot;, &quot;title_en&quot;: &quot;Self-Guided Diffusion Models：用自监督伪标注替代人工 guidance&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;conditioning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,60 +60,89 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-16-self-guided-diffusion-models.html">中文</a><a class="" href="../en/sources/2026-04-16-self-guided-diffusion-models.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-16</p>
-        <h1><span class="title-main">Self-Guided Diffusion Models</span><span class="title-subtitle">把 guidance 从外部条件器部分收回到模型内部结构</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Self-Guided Diffusion Models：用自监督伪标注替代人工 guidance</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">Self-Guided Diffusion Models</span><span class="title-subtitle">用自监督伪标注替代人工 guidance</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2022/10/12</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2210.06462" title="https://arxiv.org/abs/2210.06462" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2210.06462</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2210.06462.pdf" title="https://arxiv.org/pdf/2210.06462.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2210.06462.pdf</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#efficiency">#efficiency</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#conditioning">#conditioning</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把 diffusion guidance 的数据依赖明显压低了：它用 self-supervision 产生 guidance signal，让模型在没有 class / box / mask 标注的前提下，也能获得从整体语义到对象框、分割掩码不同粒度的控制能力。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2022-10-12</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2210.06462" title="https://arxiv.org/abs/2210.06462" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2210.06462</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2210.06462.pdf" title="https://arxiv.org/pdf/2210.06462.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2210.06462.pdf</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#实验设置">实验设置</a></li><li><a href="#核心结果">核心结果</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#架构与-dit-证据边界">架构与 DiT 证据边界</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>论文用 DINO 聚类、LOST 框与 STEGO mask 为 U-Net/LDM 自动产生全图、框级、像素级条件；在多个数据集显著优于无 guidance，self-label 甚至优于 class label，但精细空间控制仍落后真值 box/mask，且这不是 DiT 主干证据。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>传统 guidance 往往依赖大量图像-标注对，训练成本、标注质量和偏差都会直接影响 diffusion model 的控制效果与可扩展性。论文要解决的核心问题，是怎样在尽量摆脱人工标注的情况下，仍然为 diffusion reverse process 提供足够有效的 guidance signal。</p>
+<p>guided diffusion 往往依赖 class、box、mask 等人工 image-annotation pairs。论文要验证：冻结的自监督表征与无监督定位/分割器是否能自动构造有用条件，从而在不使用目标数据人工标签时训练 conditional diffusion。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>作者提出 self-guided diffusion framework，通过 feature extraction function 和 self-annotation function 自动构造 guidance。它不是把 guidance 完全外包给人工标注条件器，而是从模型自身可提取的自监督信号里生成不同粒度的控制目标。这样 guidance 从外部监督链路部分回收到内部结构，既保留控制能力，也降低对昂贵标签的依赖。</p>
-<h2 id="关键发现">关键发现</h2>
 <ul>
-<li>它把 <a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a> 里的 guidance 主线补成另一条重要分支：除了蒸馏 guidance、插件化 guidance，还存在 self-guidance 这条低标注成本路线。</li>
-<li>论文报告 self-labeled guidance 稳定优于无 guidance diffusion，并在不平衡数据上还可能优于 ground-truth label guidance，说明 guidance 的有效性并不只取决于人工标注。</li>
-<li>当方法接入 self-supervised box proposal 或 mask proposal 后，模型可以生成语义一致且视觉多样的图像，说明 self-guidance 具备向对象级和区域级控制扩展的潜力。</li>
-<li>它和 <a class="wikilink" href="../sources/2026-04-16-towards-practical-plug-and-play-diffusion-models.html">sources/2026-04-16-towards-practical-plug-and-play-diffusion-models</a> 很互补：后者降低外部 guidance 的接入成本，这篇降低 guidance supervision 本身的数据成本。</li>
+<li><strong>Self-labeled</strong>：DINO/MSN 等特征上做 k-means，cluster ID 作为全图条件。</li>
+<li><strong>Self-boxed</strong>：LOST 产生 class-agnostic box，并结合 cluster ID 注入空间条件。</li>
+<li><strong>Self-segmented</strong>：STEGO 产生 mask；mask 与 noisy input 拼接，并在低分辨率层使用条件 token/cross-attention。</li>
+<li>采样仍用 classifier-free guidance；conditional/unconditional 通过 batch 拼接减少实际前向次数。</li>
+</ul>
+<h2 id="实验设置">实验设置</h2>
+<ul>
+<li>ImageNet32/64、CIFAR-100：DDIM 250 steps；FID/IS，附 precision/recall；ImageNet 完整训练 100 epochs，4×A5000，约 6 天。</li>
+<li>ImageNet-100、LSUN-Churches 256：后者使用缩小版 latent diffusion（294M→108M）。</li>
+<li>Pascal VOC、COCO20K：LOST box，64×64，800 epochs。</li>
+<li>Pascal VOC、COCO-Stuff：STEGO mask，64×64，800/400 epochs。</li>
+</ul>
+<h2 id="核心结果">核心结果</h2>
+<table><thead><tr><th>设置</th><th>Ground truth guidance</th><th>No guidance</th><th>Self-guidance</th></tr></thead><tbody><tr><td>ImageNet32 FID/IS</td><td>9.2/19.0</td><td>14.3/10.8</td><td><strong>7.3/20.3</strong></td></tr><tr><td>ImageNet64 FID/IS</td><td>16.8/18.6</td><td>36.1/10.4</td><td><strong>12.1/23.1</strong></td></tr><tr><td>ImageNet-100 256 FID/IS</td><td>21.2/64.1</td><td>42.1/41.1</td><td><strong>16.1/78.3</strong></td></tr><tr><td>Pascal VOC box FID</td><td>GT box 13.2</td><td>58.6</td><td>self-box 18.4</td></tr><tr><td>COCO20K box FID</td><td>GT box 9.6</td><td>42.5</td><td>self-box 16.0</td></tr><tr><td>COCO-Stuff val mask FID</td><td>GT mask 11.2</td><td>34.1</td><td>self-seg 17.7</td></tr></tbody></table>
+<p>Self-label 在这些设置中超过 class labels；但 self-box/self-seg 虽显著改善无 guidance，仍未达到真值空间标注。</p>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>feature extractor：DINO ViT-B/16 在 ImageNet32 的 FID 19.35，优于 MAE 32.58 与 supervised ResNet/ViT 约 22；选择 DINO。</li>
+<li>cluster 数：增加到 5,000 持续改善，FID 16.4、IS 10.35，优于 GT label 17.9/9.94；10,000 开始语义碎片化。</li>
+<li>CIFAR-100 随机打乱 cluster assignments 后 FID 单调恶化，说明收益来自 pseudo-label 结构。</li>
+<li>Pascal VOC self-box 的 <code>k=21/50/100</code> FID 为 22.5/18.6/18.5，约 100 饱和。</li>
+<li>balanced/unbalanced ImageNet32 上，相对 GT guidance 的最佳 FID 改善约 17.8%/18.7%。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>这篇工作的重点在于 guidance source 的替换，而不是直接减少采样步数或压缩单步网络成本，因此它对整体延迟的改善更偏间接。</li>
-<li>self-annotation 的质量上限会直接影响 guidance 质量，跨数据分布时的稳定性仍值得继续跟踪。</li>
-<li>当前证据主要在图像生成侧，视频扩散或统一生成编辑场景里的自引导扩展仍需要更多材料。</li>
+<li>“annotation-free”只是不使用目标生成数据的人工标签；仍依赖预训练 DINO/LOST/STEGO 及其上游偏差。</li>
+<li>cluster 不一定可自然语言描述，作者仍建议人工查看少量样本命名。</li>
+<li>LOST 只验证 single-object；box/mask pseudo-label 质量形成明确上限。</li>
+<li>多数空间控制仅 64×64，常用 train FID；条件遵循主要靠质化图，跨分布泛化不足。</li>
+<li>训练与 250-step sampling 都很重，论文不是低延迟证据。</li>
+</ul>
+<h2 id="架构与-dit-证据边界">架构与 DiT 证据边界</h2>
+<ul>
+<li><strong>扩散去噪器：traditional U-Net。</strong> 高分辨率 Churches 使用的 latent diffusion 同样是 U-Net 系列。</li>
+<li>DINO/ViT、LOST、STEGO 是 feature extractor / self-annotator，不是 diffusion backbone。</li>
+<li>因此它支持“自监督条件可降低 diffusion 控制的数据标注成本”，只能作为 <a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a> 的通用 controllability 背景；不能将 ViT 条件器误计为 DiT 采用证据。</li>
 </ul>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2210.06462</li>
-<li>https://arxiv.org/pdf/2210.06462.pdf</li>
+<li><a href="https://arxiv.org/abs/2210.06462">arXiv 论文页</a></li>
+<li><a href="https://arxiv.org/pdf/2210.06462.pdf">PDF</a></li>
+<li>本地全文：<code>raw/ingest/2026-04-16-self-guided-diffusion-models/paper-text.md</code></li>
+<li>本地深分析：<code>raw/ingest/2026-04-16-self-guided-diffusion-models/analysis.md</code></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
 <li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
 <li><a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../sources/2026-04-16-on-distillation-of-guided-diffusion-models.html">sources/2026-04-16-on-distillation-of-guided-diffusion-models</a></li>
 <li><a class="wikilink" href="../sources/2026-04-16-towards-practical-plug-and-play-diffusion-models.html">sources/2026-04-16-towards-practical-plug-and-play-diffusion-models</a></li>
-<li><a class="wikilink" href="../sources/2026-04-16-post-training-quantization-on-diffusion-models.html">sources/2026-04-16-post-training-quantization-on-diffusion-models</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>它在本库中的价值，是把 diffusion efficiency / controllability 叙事继续往“低数据成本 guidance”推进。这样 guidance 这条子线已经同时覆盖蒸馏、插件化接入和自监督引导三种不同方向。</p></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+<li><a class="wikilink" href="../sources/2026-04-16-on-distillation-of-guided-diffusion-models.html">sources/2026-04-16-on-distillation-of-guided-diffusion-models</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">6</span></h2><ul><li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a><span>判断</span></li><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-04-16-towards-practical-plug-and-play-diffusion-models.html">Towards Practical Plug-and-Play Diffusion Models：噪声分段外部 guidance 工程</a><span>来源笔记</span></li><li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>主题</span></li><li><a href="../topics/diffusion-models.html">扩散模型</a><span>主题</span></li><li><a href="../topics/image-generation.html">图像生成</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-16-self-guided-diffusion-models&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Self-Guided Diffusion Models（CVPR 2023）：把 guidance 从外部条件器部分收回到模型内部结构&quot;,
+  &quot;title&quot;: &quot;Self-Guided Diffusion Models：用自监督伪标注替代人工 guidance&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-16&quot;,
-  &quot;updated&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2023&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;image-generation&quot;,
     &quot;diffusion&quot;,
-    &quot;efficiency&quot;,
+    &quot;conditioning&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
@@ -119,7 +154,7 @@
     &quot;Burghouts, Gertjan J.&quot;,
     &quot;Snoek, Cees G. M.&quot;
   ],
-  &quot;published_at&quot;: &quot;2022/10/12&quot;,
+  &quot;published_at&quot;: &quot;2022-10-12&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2210.06462&quot;,
     &quot;https://arxiv.org/pdf/2210.06462.pdf&quot;
@@ -132,7 +167,7 @@
   &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

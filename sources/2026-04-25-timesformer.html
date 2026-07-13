@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TimeSformer：TimeSformer 用纯 attention 结构建模视频时空关系，是视频 Transformer 路线的重要基础。 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="TimeSformer：用于视频理解的分解式时空注意力">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>TimeSformer：用于视频理解的分解式时空注意力 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-25-timesformer&quot;, &quot;title&quot;: &quot;TimeSformer（ICML 2021）：TimeSformer 用纯 attention 结构建模视频时空关系，是视频 Transformer 路线的重要基础。&quot;, &quot;title_en&quot;: &quot;TimeSformer（ICML 2021）：TimeSformer 用纯 attention 结构建模视频时空关系，是视频 Transformer 路线的重要基础。&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;reasoning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-25-timesformer&quot;, &quot;title&quot;: &quot;TimeSformer：用于视频理解的分解式时空注意力&quot;, &quot;title_en&quot;: &quot;TimeSformer：用于视频理解的分解式时空注意力&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;reasoning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,46 +60,73 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-25-timesformer.html">中文</a><a class="" href="../en/sources/2026-04-25-timesformer.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-25</p>
-        <h1><span class="title-main">TimeSformer</span><span class="title-subtitle">TimeSformer 用纯 attention 结构建模视频时空关系，是视频 Transformer 路线的重要基础。</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>TimeSformer：用于视频理解的分解式时空注意力</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">TimeSformer</span><span class="title-subtitle">用于视频理解的分解式时空注意力</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ICML 2021</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2021-07-01</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-25</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-pdf" href="https://proceedings.mlr.press/v139/bertasius21a/bertasius21a.pdf" title="https://proceedings.mlr.press/v139/bertasius21a/bertasius21a.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>proceedings.mlr.press · bertasius21a.pdf</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#reasoning">#reasoning</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h1 id="timesformer-icml-2021-timesformer-用纯-attention-结构建模视频时空关系-是视频-transformer-路线的重要基础">TimeSformer（ICML 2021）：TimeSformer 用纯 attention 结构建模视频时空关系，是视频 Transformer 路线的重要基础。</h1>
-<blockquote>资料来源：ICML 2021</blockquote>
-<blockquote>发表 / 发布日期：2021-07-01</blockquote>
-<blockquote>资料加入日期：2026-04-25</blockquote>
-<h2 id="一句话结论">一句话结论</h2>
-<p>TimeSformer 用纯 attention 结构建模视频时空关系，是视频 Transformer 路线的重要基础。</p>
-<h2 id="资料定位">资料定位</h2>
-<p>这是从体育机器视觉文献清单中拆出的独立来源。当前 first-pass 编译先把它放进 raw/source 证据层，后续可按重要性升级为深分析笔记。</p>
-<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
-<p>它为体育视频中的长时序、事件和多主体建模提供通用视频理解背景。</p>
-<h2 id="局限或疑问">局限或疑问</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ICML 2021</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2021-07-01</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-25</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://proceedings.mlr.press/v139/bertasius21a.html" title="https://proceedings.mlr.press/v139/bertasius21a.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>proceedings.mlr.press · bertasius21a.html</strong></a><a class="source-link source-link-pdf" href="https://proceedings.mlr.press/v139/bertasius21a/bertasius21a.pdf" title="https://proceedings.mlr.press/v139/bertasius21a/bertasius21a.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>proceedings.mlr.press · bertasius21a.pdf</strong></a><a class="source-link source-link-code" href="https://github.com/facebookresearch/TimeSformer" title="https://github.com/facebookresearch/TimeSformer" target="_blank" rel="noopener noreferrer"><span>代码仓库</span><strong>github.com · TimeSformer</strong></a></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#数据-协议与结果">数据、协议与结果</a></li><li><a href="#关键消融与计算边界">关键消融与计算边界</a></li><li><a href="#局限与迁移边界">局限与迁移边界</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>TimeSformer 证明纯 self-attention 可以成为有竞争力的视频分类 backbone，divided space-time attention 在长 clip 上比联合时空 attention 更易扩展；但其优势依赖 ImageNet 预训练、较大参数量和分类协议，不能等同于普适长视频理解。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>论文从 ViT 出发，把每帧切成 patch token，系统比较空间、联合时空、分解时空、稀疏局部全局和 axial attention。最终默认方案在每个 block 先做时间 attention，再做空间 attention。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>3D CNN 通过局部卷积逐层扩大感受野，在高分辨率和长视频上成本高。TimeSformer 研究能否完全移除卷积，以更直接的全局依赖建模获得动作分类性能和长 clip 可扩展性。</p>
+<h2 id="方法概述">方法概述</h2>
 <ul>
-<li>当前是 bibliography-driven first-pass source note，优先保证来源可追溯和方向定位。</li>
-<li>重要 paper 后续应补 <code>analysis.md</code>、关键图页、实验设置和指标细节。</li>
+<li>输入 $F$ 帧 RGB clip；每帧分成 $16\times16$ patch，线性投影后加时空位置编码与 class token。</li>
+<li>Divided attention 先让同一空间位置跨帧交互，再让同一帧内各 patch 交互。</li>
+<li>默认输入 $8\times224\times224$，采样率 1/32；默认测试 1 个中心 clip × 3 个空间 crop。</li>
+<li>输出整段视频类别，不提供检测、跟踪、姿态或阶段定位。</li>
 </ul>
-<h2 id="原始材料">原始材料</h2>
+<h2 id="数据-协议与结果">数据、协议与结果</h2>
 <ul>
-<li><code>raw/ingest/2026-04-25-timesformer/source.md</code></li>
-<li><code>raw/ingest/2026-04-25-timesformer/paper-text.md</code></li>
-<li><code>raw/ingest/2026-04-25-timesformer/links.yaml</code></li>
+<li>K400 默认 TimeSformer 为 <strong>78.0 top-1、0.59 TFLOPs、121.4M 参数</strong>；L 版为 <strong>80.7、7.14 TFLOPs</strong>（Table 5 的统一比较协议）。</li>
+<li>相同 ImageNet-1K 初始化下，TimeSformer 416 V100 GPU-hours 达 75.8；SlowFast 3840 GPU-hours 达 75.6，I3D 1440 达 73.4（Table 2）。预训练成本未计入。</li>
+<li>SSv2：L 版 62.4，低于当时最好 65.2；Diving-48：L 版 81.0，高于复现 SlowFast 77.6，但可比基线很少（Table 7）。</li>
+<li>HowTo100M 长任务分类中，8/32/64/96 帧 TimeSformer 为 56.8/61.2/62.2/62.6，均高于对应 SlowFast；96 帧 clip 跨 102.4 秒，但整段 7 分钟视频仍由约 4 个 clip 的分类分数平均（Table 8）。</li>
+</ul>
+<h2 id="关键消融与计算边界">关键消融与计算边界</h2>
+<ul>
+<li>Divided attention 在 K400/SSv2 最优，但同时拥有独立空间/时间参数，容量也更大。</li>
+<li>K400 的 space-only 模型仍较强，SSv2 则明显下降，说明 K400 存在空间场景偏置。</li>
+<li>无 ImageNet 预训练从零训练 K400 只有 64.8；弱归纳偏置在 SSv2 小数据子集上也不占优。</li>
+<li>SSv2 无/空间/时空位置编码为 45.8/52.5/59.5，时间位置对顺序敏感任务关键（Table 4）。</li>
+<li>Joint attention 在 448px 或 32 帧 OOM；divided attention 才能扩展。默认模型参数量仍约为 SlowFast R50 的 3.5 倍。</li>
+</ul>
+<h2 id="局限与迁移边界">局限与迁移边界</h2>
+<ul>
+<li>作者承认模型从零训练困难、SSv2 不领先、显存将实验限制到 96 帧。</li>
+<li>长视频实验是 clip-level prediction averaging，不是对全片事件结构的一次性推理。</li>
+<li>对羽毛球 demo，它可做 RGB clip backbone，但全场低分辨率 patch 容易遗漏羽毛球和球拍头；需要高分辨率球员 crop、pose/trajectory token、阶段定位和轻量化。</li>
+<li>小型羽毛球数据不宜从零训练；更合理的是先用视频自监督方法预训练，再微调。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li>对 <a class="wikilink" href="../topics/video-understanding.html">视频理解</a> 是纯 attention 视频 backbone 和时空分解的<strong>奠基支持</strong>。</li>
+<li>对 <a class="wikilink" href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a> 只是通用 RGB 表征的<strong>背景/基础支持</strong>，没有体育专项实验证据。</li>
+<li>对 <a class="wikilink" href="../topics/sports-ai-roadmap.html">体育 AI 路线图</a> 是 backbone 层证据，同时压力测试“Transformer 天然数据高效”的说法。</li>
+<li>不应据此声称 attention 已全面取代 3D CNN，或已解决长视频推理。</li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
-<li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
-<li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
+<li><a class="wikilink" href="../sources/2026-04-25-videomae.html">VideoMAE</a></li>
+<li><a class="wikilink" href="../sources/2026-04-25-st-gcn.html">ST-GCN</a></li>
+<li><a class="wikilink" href="../sources/2026-04-23-sportmamba.html">SportMamba</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li><li><a class="wikilink" href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li><li><a class="wikilink" href="../topics/video-understanding.html">视频理解</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">8</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-04-25-st-gcn.html">ST-GCN：骨架动作识别的时空图卷积基线</a><span>来源笔记</span></li><li><a href="../sources/2026-04-25-videomae.html">VideoMAE：数据高效的视频掩码自编码预训练</a><span>来源笔记</span></li><li><a href="../sources/2026-06-29-vision-transformer.html">Vision Transformer：把图像切成 token 的通用视觉主干</a><span>来源笔记</span></li><li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a><span>主题</span></li><li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a><span>主题</span></li><li><a href="../topics/video-understanding.html">视频理解</a><span>主题</span></li><li><a href="../topics/vision-backbones.html">主流视觉 Backbone 入门</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-25-timesformer&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;TimeSformer（ICML 2021）：TimeSformer 用纯 attention 结构建模视频时空关系，是视频 Transformer 路线的重要基础。&quot;,
+  &quot;title&quot;: &quot;TimeSformer：用于视频理解的分解式时空注意力&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-25&quot;,
-  &quot;updated&quot;: &quot;2026-04-25&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;ICML 2021&quot;,
   &quot;published_at&quot;: &quot;2021-07-01&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-25&quot;,
@@ -105,9 +138,15 @@
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
-  &quot;authors&quot;: [],
+  &quot;authors&quot;: [
+    &quot;Gedas Bertasius&quot;,
+    &quot;Heng Wang&quot;,
+    &quot;Lorenzo Torresani&quot;
+  ],
   &quot;canonical_links&quot;: [
-    &quot;https://proceedings.mlr.press/v139/bertasius21a/bertasius21a.pdf&quot;
+    &quot;https://proceedings.mlr.press/v139/bertasius21a.html&quot;,
+    &quot;https://proceedings.mlr.press/v139/bertasius21a/bertasius21a.pdf&quot;,
+    &quot;https://github.com/facebookresearch/TimeSformer&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-25-timesformer/&quot;,
   &quot;topics&quot;: [
@@ -115,12 +154,10 @@
     &quot;topics/sports-ai-roadmap&quot;,
     &quot;topics/video-understanding&quot;
   ],
-  &quot;entities&quot;: [
-    &quot;entities/sportsmot&quot;
-  ],
+  &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

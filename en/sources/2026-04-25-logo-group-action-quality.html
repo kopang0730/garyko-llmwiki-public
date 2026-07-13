@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>LOGO：群体动作质量评估锚点 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="LOGO：多人长视频的群体动作质量评估">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>LOGO：多人长视频的群体动作质量评估 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-25-logo-group-action-quality&quot;, &quot;title&quot;: &quot;LOGO（CVPR 2023）：群体动作质量评估锚点&quot;, &quot;title_en&quot;: &quot;LOGO（CVPR 2023）：群体动作质量评估锚点&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-25-logo-group-action-quality&quot;, &quot;title&quot;: &quot;LOGO：多人长视频的群体动作质量评估&quot;, &quot;title_en&quot;: &quot;LOGO：多人长视频的群体动作质量评估&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,77 +60,102 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-25-logo-group-action-quality.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-25-logo-group-action-quality.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-25</p>
-        <h1><span class="title-main">LOGO</span><span class="title-subtitle">群体动作质量评估锚点</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>LOGO：多人长视频的群体动作质量评估</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">LOGO</span><span class="title-subtitle">多人长视频的群体动作质量评估</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2023-06-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-25</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2023/papers/Zhang_LOGO_A_Long-Form_Video_Dataset_for_Group_Action_Quality_Assessment_CVPR_2023_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2023/papers/Zhang_LOGO_A_Long-Form_Video_Dataset_for_Group_Action_Quality_Assessment_CVPR_2023_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Zhang_LOGO_A_Long-Form_Video_Da…</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#benchmarking">#benchmarking</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#evaluation">#evaluation</a><a class="tag" href="../../en/tags.html#benchmarking">#benchmarking</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>把动作质量评估扩展到群体、长视频场景，是从单人技术动作走向团队/群体表现评价的关键样本。</p>
-<h2 id="论文定位">论文定位</h2>
-<p>LOGO 把 action quality assessment 推到长视频和群体运动场景，证明体育表现评价会遇到团队同步、群体结构和长时依赖。</p>
-<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
-<p>它为体育 AI 的团队表现评价提供证据，与 SportsHHI 的人际交互理解形成互补。</p>
-<h2 id="和现有证据的关系">和现有证据的关系</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2023-06-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-25</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2023/html/Zhang_LOGO_A_Long-Form_Video_Dataset_for_Group_Action_Quality_Assessment_CVPR_2023_paper.html" title="https://openaccess.thecvf.com/content/CVPR2023/html/Zhang_LOGO_A_Long-Form_Video_Dataset_for_Group_Action_Quality_Assessment_CVPR_2023_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Zhang_LOGO_A_Long-Form_Video_Da…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2023/papers/Zhang_LOGO_A_Long-Form_Video_Dataset_for_Group_Action_Quality_Assessment_CVPR_2023_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2023/papers/Zhang_LOGO_A_Long-Form_Video_Dataset_for_Group_Action_Quality_Assessment_CVPR_2023_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Zhang_LOGO_A_Long-Form_Video_Da…</strong></a><a class="source-link source-link-code" href="https://github.com/shiyi-zh0408/LOGO" title="https://github.com/shiyi-zh0408/LOGO" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · LOGO</strong></a></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#数据与标签">数据与标签</a></li><li><a href="#方法与接口">方法与接口</a></li><li><a href="#协议与核心结果">协议与核心结果</a></li><li><a href="#消融与边界">消融与边界</a></li><li><a href="#对羽毛球-stroke-correction-的迁移边界">对羽毛球 stroke correction 的迁移边界</a></li><li><a href="#对-wiki-判断的影响">对 Wiki 判断的影响</a></li><li><a href="#原始材料">原始材料</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>LOGO 用 200 个、每段 8 人且平均 204.2 秒的花样游泳视频把 AQA 扩到群体长视频；GOAT 让 CoRe-I3D 的 $\rho$ 从 0.4712 提至 0.4935，但 3:1 sample split 未说明 event/team 隔离，且总分与 attention 都不能解释个体扣分。</p>
+<h2 id="数据与标签">数据与标签</h2>
 <ul>
-<li>与 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它把体育 AI 的证据面从 tracking 扩展到动作、姿态、战术、比赛状态或高速小目标。</li>
-<li>与 <a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：它对应 roadmap 中下一批 batch 的一个证据节点。</li>
+<li>200 videos、26 events、每样本 8 人、平均 204.2 秒、总 11h20m41s。</li>
+<li>12 action types、17 formation types；官方 3 个 sub-scores 和 final score。</li>
+<li>action 25 fps 逐帧标注；formation 1 fps 多边形标注，共 15,764 条。</li>
+<li>8 名领域标注者双人复核，标注超过 600 小时。</li>
+<li>来源限 2018–2022 规则期顶级花样游泳；YouTube consent 在论文发表时仍在确认。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="方法与接口">方法与接口</h2>
+<p>GOAT 对每 clip 检测运动员，以 Inception-V3/RoIAlign 建 actor graph，GCN 得 group features；group features 作 temporal attention 的 query/key，I3D/Swin clip features 作 value，最终接 USDL/CoRe/TSA 回归总分。formation detection 和 action segmentation 是并行/辅助任务，不提供步骤级质量分。</p>
+<h2 id="协议与核心结果">协议与核心结果</h2>
 <ul>
-<li>当前这版 source note 先完成 bibliography-driven 编译，后续可以按 deep-analysis-first 流程补 <code>analysis.md</code>、关键图页和实验细节。</li>
-<li>具体数值和 benchmark 细节应以 <code>raw/ingest/2026-04-25-logo-group-action-quality/paper-text.md</code> 与原始 PDF 为准。</li>
+<li>3:1 train/test；正文未说明 event/team/athlete/source-video 分组。</li>
+<li>I3D：USDL/CoRe/TSA 的 $\rho$ 0.4259/0.4712/0.4518；+GOAT 为 0.4620/0.4935/0.4855。</li>
+<li>Swin：0.4725/0.5002/0.4751；+GOAT 为 0.5349/0.5599/0.4843。</li>
+<li>ASFormer-Swin segmentation：F1@10/25/50 81.7/75.3/71.1，Acc 79.8；+GOAT 为 82.2/80.3/73.6，Acc 81.7。</li>
+</ul>
+<h2 id="消融与边界">消融与边界</h2>
+<ul>
+<li>self-attention 通常优于 average pooling；formation feature 再提升；actor-relation group feature 大多最好。</li>
+<li>segmentation-finetuned features 可帮助 AQA，但仍无阶段扣分监督。</li>
+<li>在三个双人 AQA 子集上 CoRe+GOAT 也提升，支持插件泛化；不等于 8 人长视频跨运动泛化。</li>
+<li>200 样本来自 26 events，若 sample split 未按赛事/队伍隔离，音乐、服装、转播和编排会泄漏。</li>
+</ul>
+<h2 id="对羽毛球-stroke-correction-的迁移边界">对羽毛球 stroke correction 的迁移边界</h2>
+<p>对双打站位、轮转与长回合聚合有中等间接价值；对单拍技术纠错价值弱。羽毛球需 athlete/stroke/phase 级 rubric、pose/racket/ball/contact 特征与个体错误标签。1 fps 队形和三分钟总分过粗，GOAT attention 不能直接解释“哪一拍为何错误”。</p>
+<h2 id="对-wiki-判断的影响">对 Wiki 判断的影响</h2>
+<ul>
+<li>对 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">体育 AI 视频理解</a>：支持多人关系和长时聚合是 AQA 的独立难点。</li>
+<li>对 <a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">体育 AI 路线图</a>：对双打协同评分是方法线索，对单人 stroke correction 仅间接支持。</li>
+<li>对 <a class="wikilink" href="../../en/topics/video-understanding.html">视频理解</a>：提供长视频 segmentation/AQA 共享标注的证据。</li>
 </ul>
 <h2 id="原始材料">原始材料</h2>
 <ul>
+<li><a class="wikilink missing" href="#missing-raw/ingest/2026-04-25-logo-group-action-quality/analysis">全文深分析</a></li>
 <li><code>raw/ingest/2026-04-25-logo-group-action-quality/paper.pdf</code></li>
 <li><code>raw/ingest/2026-04-25-logo-group-action-quality/paper-text.md</code></li>
-<li><code>raw/ingest/2026-04-25-logo-group-action-quality/abstract.md</code></li>
 <li><code>raw/ingest/2026-04-25-logo-group-action-quality/links.yaml</code></li>
-</ul>
-<h2 id="相关页面">相关页面</h2>
-<ul>
-<li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
-<li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
-<li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li><li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li><li><a class="wikilink" href="../../en/topics/video-understanding.html">Video Understanding</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">4</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a><span>Topic</span></li><li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a><span>Topic</span></li><li><a href="../../en/topics/video-understanding.html">Video Understanding</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-25-logo-group-action-quality&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;LOGO（CVPR 2023）：群体动作质量评估锚点&quot;,
+  &quot;title&quot;: &quot;LOGO：多人长视频的群体动作质量评估&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-25&quot;,
-  &quot;updated&quot;: &quot;2026-04-25&quot;,
-  &quot;venue&quot;: &quot;CVPR 2023&quot;,
-  &quot;published_at&quot;: &quot;2023-06-01&quot;,
-  &quot;ingested_at&quot;: &quot;2026-04-25&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;video-understanding&quot;,
+    &quot;evaluation&quot;,
     &quot;benchmarking&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
-  &quot;authors&quot;: [],
+  &quot;venue&quot;: &quot;CVPR 2023&quot;,
+  &quot;authors&quot;: [
+    &quot;Shiyi Zhang&quot;,
+    &quot;Wenxun Dai&quot;,
+    &quot;Sujia Wang&quot;,
+    &quot;Xiangwei Shen&quot;,
+    &quot;Jiwen Lu&quot;,
+    &quot;Jie Zhou&quot;,
+    &quot;Yansong Tang&quot;
+  ],
+  &quot;published_at&quot;: &quot;2023-06-01&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-25&quot;,
   &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/CVPR2023/html/Zhang_LOGO_A_Long-Form_Video_Dataset_for_Group_Action_Quality_Assessment_CVPR_2023_paper.html&quot;,
     &quot;https://openaccess.thecvf.com/content/CVPR2023/papers/Zhang_LOGO_A_Long-Form_Video_Dataset_for_Group_Action_Quality_Assessment_CVPR_2023_paper.pdf&quot;,
-    &quot;https://openaccess.thecvf.com/content/CVPR2023/papers/Zhang_LOGO_A_Long-Form_Video_Dataset_for_Group_Action_Quality_Assessment_CVPR_2023_paper.pdf&quot;
+    &quot;https://github.com/shiyi-zh0408/LOGO&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-25-logo-group-action-quality/&quot;,
   &quot;topics&quot;: [
     &quot;topics/sports-ai-video-understanding&quot;,
     &quot;topics/sports-ai-roadmap&quot;,
-    &quot;topics/video-understanding&quot;,
-    &quot;topics/generative-model-evaluation&quot;
+    &quot;topics/video-understanding&quot;
   ],
-  &quot;entities&quot;: [
-    &quot;entities/sportsmot&quot;
-  ],
+  &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

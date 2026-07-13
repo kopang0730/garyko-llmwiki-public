@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MotionFollower：通过 score-guided diffusion 编辑视频运动">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>MotionFollower：通过 score-guided diffusion 编辑视频运动 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-motionfollower&quot;, &quot;title&quot;: &quot;MotionFollower（ICCV 2025）：通过 score-guided diffusion 编辑视频运动&quot;, &quot;title_en&quot;: &quot;MotionFollower（ICCV 2025）：通过 score-guided diffusion 编辑视频运动&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;video-generation&quot;, &quot;diffusion&quot;, &quot;control&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-motionfollower&quot;, &quot;title&quot;: &quot;MotionFollower：通过 score-guided diffusion 编辑视频运动&quot;, &quot;title_en&quot;: &quot;MotionFollower：通过 score-guided diffusion 编辑视频运动&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;video-generation&quot;, &quot;diffusion&quot;, &quot;control&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,51 +60,101 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-motionfollower.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-motionfollower.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>MotionFollower：通过 score-guided diffusion 编辑视频运动</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
         <h1><span class="title-main">MotionFollower</span><span class="title-subtitle">通过 score-guided diffusion 编辑视频运动</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-01-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/ICCV2025/html/Tu_MotionFollower_Editing_Video_Motion_via_Score-Guided_Diffusion_ICCV_2025_paper.html" title="https://openaccess.thecvf.com/content/ICCV2025/html/Tu_MotionFollower_Editing_Video_Motion_via_Score-Guided_Diffusion_ICCV_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Tu_MotionFollower_Editing_Video…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/ICCV2025/papers/Tu_MotionFollower_Editing_Video_Motion_via_Score-Guided_Diffusion_ICCV_2025_paper.pdf" title="https://openaccess.thecvf.com/content/ICCV2025/papers/Tu_MotionFollower_Editing_Video_Motion_via_Score-Guided_Diffusion_ICCV_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Tu_MotionFollower_Editing_Video…</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-editing">#video-editing</a><a class="tag" href="../../en/tags.html#video-generation">#video-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#control">#control</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把 score-guided diffusion 明确用于视频运动编辑，继续加厚 motion-centric video editing 主线。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>它要解决的是如何更精确地编辑视频运动，而不只是改视频内容表面。对当前知识库来说，它是 MotionEditor 之后又一个更聚焦运动编辑的样本。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>MotionFollower 通过 score-guided diffusion 实现视频运动编辑，强调对运动轨迹和动态表现的定向控制。</p>
-<h2 id="关键发现">关键发现</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-01-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/ICCV2025/html/Tu_MotionFollower_Editing_Video_Motion_via_Score-Guided_Diffusion_ICCV_2025_paper.html" title="https://openaccess.thecvf.com/content/ICCV2025/html/Tu_MotionFollower_Editing_Video_Motion_via_Score-Guided_Diffusion_ICCV_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Tu_MotionFollower_Editing_Video…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/ICCV2025/papers/Tu_MotionFollower_Editing_Video_Motion_via_Score-Guided_Diffusion_ICCV_2025_paper.pdf" title="https://openaccess.thecvf.com/content/ICCV2025/papers/Tu_MotionFollower_Editing_Video_Motion_via_Score-Guided_Diffusion_ICCV_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Tu_MotionFollower_Editing_Video…</strong></a><a class="source-link source-link-code" href="https://github.com/Francis-Rings/MotionFollower" title="https://github.com/Francis-Rings/MotionFollower" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · MotionFollower</strong></a></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#输入-输出与保留目标">输入、输出与保留目标</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#数据与训练预算">数据与训练预算</a></li><li><a href="#核心实验与结果">核心实验与结果</a><ol><li class="toc-sub"><a href="#100-个-wild-cases">100 个 wild cases</a></li><li class="toc-sub"><a href="#motion-transfer-与-consistency">Motion transfer 与 consistency</a></li></ol></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>MotionFollower 用目标视频 pose 替换源视频人体动作，并以轻量卷积控制器和推理时区域 score regularization 保存源人物、背景与镜头运动；100-case protocol 上质量、时序和显存均优于 MotionEditor，但 pseudo-GT 与 pose-driven 设定证明的是控制执行，不是动作语义理解。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这是双视频人体运动编辑：源视频提供身份、服装、背景和相机运动，目标视频提供动作。它区别于单图 animation，也区别于文本属性编辑。关键变量是<strong>换动作、保身份、保背景/镜头</strong>。</p>
+<h2 id="输入-输出与保留目标">输入、输出与保留目标</h2>
 <ul>
-<li>它说明到 2025，motion editing 已经不只是一个子话题，而是在持续长成独立方法线。</li>
-<li>它有助于之后比较 motion enhancement、motion editing、motion following 这几种不同目标的差异。</li>
-<li>它也提示 benchmark 需要更明确地区分运动编辑能力与外观编辑能力。</li>
+<li><strong>输入</strong>：源视频、目标视频，以及两者提取的 pose sequences。</li>
+<li><strong>输出</strong>：源人物执行目标动作的视频。</li>
+<li><strong>要保留</strong>：源人物外观、服装、背景、相机运动。</li>
+<li><strong>要编辑</strong>：人体 pose/motion。</li>
+<li><strong>边界</strong>：人体 pose 驱动，不支持文本定义任意动作或一般对象运动。</li>
 </ul>
+<h2 id="方法概述">方法概述</h2>
+<ol>
+<li><strong>PoCtr</strong>：四个纯卷积 blocks 把目标 pose 编码后加到 latent，替代 ControlNet。</li>
+<li><strong>ReCtr</strong>：四个卷积 blocks 把源帧多尺度特征注入 U-Net encoder，替代重型 reference U-Net 和 inversion。</li>
+<li><strong>两阶段训练</strong>：先在单帧对训练 U-Net 与 controllers，再插入 AnimateDiff temporal layers；第二阶段只训练 temporal layers，并以 40% 图像对/60% 视频 clips 混合训练。</li>
+<li><strong>双分支 score guidance</strong>：重建分支用 source pose，编辑分支用 target pose；$S_{fg}$、$S_{over}$、$S_{body}$、$S_{com}$ 分别约束人物、重叠背景、姿态残影和腾空区域补全。梯度只更新 editing latent，不改模型权重。</li>
+<li>50 个去噪步中仅前 30 步用 guidance，避免后期纹理损伤。</li>
+</ol>
+<h2 id="数据与训练预算">数据与训练预算</h2>
+<ul>
+<li>互联网收集 3K 个 60–90 秒视频；DWPose + 自研轻量人物分割。</li>
+<li>两个训练阶段各 100,000 steps，batch 64 / 4，学习率均 $10^{-5}$。</li>
+<li>训练：4 张 NVIDIA A100；未报告 GPU-hours 和数据许可细节。</li>
+<li>推理：单 A100 编辑 24 帧约 50 秒。</li>
+<li>8 帧显存 9.8G；作者称单 A100 可编辑 56 帧，MotionEditor 为 16 帧。</li>
+</ul>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<h3 id="100-个-wild-cases">100 个 wild cases</h3>
+<p>MotionFollower：L1 $6.31\times10^{-5}$、PSNR* <strong>20.85</strong>、SSIM <strong>0.75</strong>、LPIPS <strong>0.22</strong>、FID <strong>26.30</strong>、FID-VID <strong>12.42</strong>、FVD <strong>276.04</strong>、显存 <strong>9.8G</strong>。MotionEditor 为 17.34 / 0.68 / 0.34 / 31.98 / 20.57 / 395.43 / 42.6G。</p>
+<p>真实 cross-identity 编辑没有 GT，作者把同一测试视频切成两段作为 source/target 构造 pseudo-GT。该 protocol 可计算全参考指标，但不完全代表不同人物动作替换。</p>
+<h3 id="motion-transfer-与-consistency">Motion transfer 与 consistency</h3>
+<p>TikTok motion-transfer protocol 上，MotionFollower 的 SSIM 0.793、LPIPS 0.230、FVD 159.88 最优；PSNR 29.25 不是最高。Optical Flow L2 为 <strong>3.21</strong>，优于 MotionEditor 5.87。100-video pairwise user study 中相对各基线的 motion/temporal/appearance preference 多为 88.6%–96.8%，但参与人数和置信区间未报告。</p>
+<h2 id="关键消融">关键消融</h2>
+<p>完整模型为 PSNR 20.85、SSIM 0.75、LPIPS 0.22、FVD 276.04、9.8G。</p>
+<ul>
+<li>w/o ReCtr：9.03 / 0.42 / 0.45 / 545.39。</li>
+<li>用 ReferenceNet 替代：19.82 / 0.72 / 0.25 / 288.57，显存 17.8G。</li>
+<li>用 ControlNet 替代 PoCtr：18.13 / 0.65 / 0.28 / 381.52，15.2G。</li>
+<li>w/o score guidance：16.50 / 0.61 / 0.36 / 437.69。</li>
+<li>w/o all masks：SSIM 0.53、FID-VID 24.87、FVD 442.34。</li>
+</ul>
+<p>ReCtr、score guidance 和区域 masks 是主要增益来源；轻量卷积 controllers 在当前数据规模下也更省显存。</p>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>运动编辑越细，越容易遇到时序一致性和身份保持问题。</li>
-<li>它更聚焦 motion-specific editing，不覆盖更一般的开放视频编辑。</li>
-<li>它强化了路线厚度，但还需要更多评测支撑它的真实优势。</li>
+<li>没有真实 cross-identity GT；量化依赖同视频分段 pseudo-GT。</li>
+<li>以人体 pose 为中心，不能外推到动物、刚体或非关节运动。</li>
+<li>强依赖 pose alignment 与 segmentation，未报告前置模块失败率。</li>
+<li>24 帧需 50 秒，双分支逐步反向梯度仍不实时。</li>
+<li>600-frame、大镜头运动和多动作类型主要是定性证据。</li>
+<li>用户研究 protocol 细节不足。</li>
+<li>不接受动作语言，只跟随 pose；高性能不等于理解动作名称、意图或因果。</li>
 </ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li>直接支持 <a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a> 中 motion editing 已成为区别于属性编辑的专门任务。</li>
+<li>对 <a class="wikilink" href="../../en/topics/video-generation.html">视频生成</a> 仅是底座/animation 相邻证据，核心仍是编辑。</li>
+<li>对 <a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有 benchmark 是否跟踪真实视频编辑理解</a> 是重要案例：pseudo-GT 难覆盖真实 cross-identity 编辑，高质量 pose following 也不等于语义理解。</li>
+<li>对 <a class="wikilink" href="../../en/entities/video-editing-understanding.html">视频编辑理解</a> 应标为编辑执行和 source preservation，而非通用理解证据。</li>
+</ul>
+<h2 id="证据评级">证据评级</h2>
+<p><strong>B（人体 motion editing 的中等直接证据；对真实视频编辑理解为 C）</strong>。多指标、消融和效率证据扎实，但 protocol 与 pose-driven 本质限制了语义理解结论。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://openaccess.thecvf.com/content/ICCV2025/html/Tu_MotionFollower_Editing_Video_Motion_via_Score-Guided_Diffusion_ICCV_2025_paper.html</li>
-<li>https://openaccess.thecvf.com/content/ICCV2025/papers/Tu_MotionFollower_Editing_Video_Motion_via_Score-Guided_Diffusion_ICCV_2025_paper.pdf</li>
+<li><a href="https://openaccess.thecvf.com/content/ICCV2025/html/Tu_MotionFollower_Editing_Video_Motion_via_Score-Guided_Diffusion_ICCV_2025_paper.html">CVF 论文页</a></li>
+<li><a href="https://openaccess.thecvf.com/content/ICCV2025/papers/Tu_MotionFollower_Editing_Video_Motion_via_Score-Guided_Diffusion_ICCV_2025_paper.pdf">论文 PDF</a></li>
+<li><a href="https://github.com/Francis-Rings/MotionFollower">官方代码</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/video-editing.html">topics/video-editing</a></li>
-<li><a class="wikilink" href="../../en/topics/video-generation.html">topics/video-generation</a></li>
-<li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">entities/video-editing-understanding</a></li>
-<li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>MotionFollower 在这套库里的作用，是把 score-guided motion editing 路线补进视频编辑主线。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a class="wikilink" href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+<li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有 benchmark 是否跟踪真实视频编辑理解</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a></li><li><a class="wikilink" href="../../en/topics/video-generation.html">视频生成</a></li></ul></div><div class="related-group related-entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li></ul></div><div class="related-group related-questions"><h3>Related questions<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">4</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/diffusion-models.html">扩散模型</a><span>Topic</span></li><li><a href="../../en/topics/video-editing.html">视频编辑</a><span>Topic</span></li><li><a href="../../en/topics/video-generation.html">视频生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-motionfollower&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;MotionFollower（ICCV 2025）：通过 score-guided diffusion 编辑视频运动&quot;,
+  &quot;title&quot;: &quot;MotionFollower：通过 score-guided diffusion 编辑视频运动&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;ICCV 2025&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
@@ -125,9 +181,11 @@
   &quot;published_at&quot;: &quot;2025-01-01&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://openaccess.thecvf.com/content/ICCV2025/html/Tu_MotionFollower_Editing_Video_Motion_via_Score-Guided_Diffusion_ICCV_2025_paper.html&quot;,
-    &quot;https://openaccess.thecvf.com/content/ICCV2025/papers/Tu_MotionFollower_Editing_Video_Motion_via_Score-Guided_Diffusion_ICCV_2025_paper.pdf&quot;
+    &quot;https://openaccess.thecvf.com/content/ICCV2025/papers/Tu_MotionFollower_Editing_Video_Motion_via_Score-Guided_Diffusion_ICCV_2025_paper.pdf&quot;,
+    &quot;https://github.com/Francis-Rings/MotionFollower&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-motionfollower/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-14-motionfollower/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/video-editing&quot;,
     &quot;topics/video-generation&quot;
@@ -139,7 +197,7 @@
   &quot;questions&quot;: [
     &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

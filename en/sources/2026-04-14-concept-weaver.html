@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Concept Weaver：在文本到图像模型中实现多概念融合 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="Concept Weaver：模板引导的多概念个性化融合">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Concept Weaver：模板引导的多概念个性化融合 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-concept-weaver&quot;, &quot;title&quot;: &quot;Concept Weaver（CVPR 2024）：在文本到图像模型中实现多概念融合&quot;, &quot;title_en&quot;: &quot;Concept Weaver（CVPR 2024）：在文本到图像模型中实现多概念融合&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;image-editing&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-concept-weaver&quot;, &quot;title&quot;: &quot;Concept Weaver：模板引导的多概念个性化融合&quot;, &quot;title_en&quot;: &quot;Concept Weaver：模板引导的多概念个性化融合&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;conditioning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,70 +60,86 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-concept-weaver.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-concept-weaver.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">Concept Weaver</span><span class="title-subtitle">在文本到图像模型中实现多概念融合</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Concept Weaver：模板引导的多概念个性化融合</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">Concept Weaver</span><span class="title-subtitle">模板引导的多概念个性化融合</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2024/04/05</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2404.03913" title="https://arxiv.org/abs/2404.03913" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2404.03913</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2404.03913" title="https://arxiv.org/pdf/2404.03913" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2404.03913</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#image-editing">#image-editing</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#conditioning">#conditioning</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把多概念融合路线补进库里，进一步强化了 image-generation / image-editing 中的组合概念能力主线。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2024-04-05</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2404.03913" title="https://arxiv.org/abs/2404.03913" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2404.03913</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2404.03913" title="https://arxiv.org/pdf/2404.03913" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2404.03913</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#数据-结果与人评">数据、结果与人评</a></li><li><a href="#消融与成本">消融与成本</a></li><li><a href="#身份与组合边界">身份与组合边界</a></li><li><a href="#相关页面">相关页面</a></li><li><a href="#归属边界">归属边界</a></li><li><a href="#证据评估">证据评估</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>Concept Weaver 先用 SDXL/真实图确定多对象构图，再反演 template、自动分割区域，并在每层每步融合多个 SD2.1 单概念 U-Net 的 cross-attention feature；它在 3–4 概念组合上优于 Mix-of-show，但每概念仍需预训练、推理约 60 秒/RTX3090，计算随概念分支增长。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>它要解决的是文本到图像模型在多个概念融合时容易冲突、退化或失真的问题。对当前知识库来说，它与 Multi-Concept Customization 形成很自然的互补。</p>
+<p>把多个已定制主体直接联合训练或合并权重，常导致同类对象身份混合、漏概念和复杂交互失败。本文把“构图”与“身份写入”拆开：template 负责结构，concept bank 负责外观。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>Concept Weaver 面向 text-to-image models 的 multi-concept fusion，强调在单一生成框架中更稳定地组合多个概念。</p>
-<h2 id="关键发现">关键发现</h2>
+<ol>
+<li>每概念以 3–8 张图做 Custom Diffusion（SD2.1，500 steps，只调 $W_k,W_v$ 与 token；也支持 LoRA）。</li>
+<li>SDXL 生成 template，或使用真实图。</li>
+<li>DDIM inversion 保存 PnP 的 ResNet/self-attention 结构 feature。</li>
+<li>Grounding DINO + SAM 自动生成概念 mask，并做膨胀/重叠处理。</li>
+<li>每个单概念模型使用 concept-aware prompt，在 mask 内融合 cross-attention feature；注入 template 结构 feature，并以 concept-free branch 抑制泄漏。</li>
+</ol>
+<p>无 DiT、flow matching 或单一 unified model。</p>
+<h2 id="数据-结果与人评">数据、结果与人评</h2>
+<p>15 个 CustomConcept101 概念组成 5 组，每组超过 3 概念；每方法 200 图。</p>
+<table><thead><tr><th>方法</th><th>Text-sim ↑</th><th>Image-sim ↑</th></tr></thead><tbody><tr><td>Custom Diffusion</td><td>0.3595</td><td>0.7875</td></tr><tr><td>Mix-of-show</td><td>0.3634</td><td>0.7984</td></tr><tr><td><strong>Concept Weaver</strong></td><td><strong>0.3804</strong></td><td><strong>0.8124</strong></td></tr></tbody></table>
+<p>20 名用户、5 分量表：本文 Text/Concept/Realism 为 4.70/4.64/4.43，Mix-of-show 为 3.44/3.39/3.78。补充还有独立 12 用户调查，不应与主调查人数混算。</p>
+<h2 id="消融与成本">消融与成本</h2>
 <ul>
-<li>它说明多概念能力正在从“定制多个概念”继续走向“更通用的概念融合”。</li>
-<li>它让 image-generation 对组合概念主线的覆盖更细。</li>
-<li>它也有助于以后分析统一模型在复杂概念组合场景下是否仍有优势。</li>
+<li>mask-only 0.3140/0.7544；去 feature injection 0.3489/0.7739；score mix 0.3677/0.8023；去 concept-free suppression 0.3727/0.7936；full 0.3804/0.8124。</li>
+<li>template 约 10 秒；整条 pipeline 单 RTX3090 24GB 约 60 秒，768×768、50 steps。</li>
+<li>“tuning-free”仅指组合阶段；concept bank 仍需逐概念 fine-tuning。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="身份与组合边界">身份与组合边界</h2>
 <ul>
-<li>多概念融合仍然容易遇到概念竞争与语义漂移。</li>
-<li>它更偏生成组合能力，不等于完整编辑控制。</li>
-<li>它是组合能力补层，但不代表全部 personalization 路线。</li>
-</ul>
-<h2 id="原始链接">原始链接</h2>
-<ul>
-<li>https://arxiv.org/abs/2404.03913</li>
-<li>https://arxiv.org/pdf/2404.03913</li>
+<li>自动 mask 失败/重叠过大时会拒绝并换 template；评测还过滤 CLIP&lt;0.3 输出，因此未报告单次成功率。</li>
+<li>Image-sim 只对成功产生全部概念的结果计算，存在选择偏差。</li>
+<li>极复杂/不现实 prompt、错误 template 与更多概念仍会失败；没有 N-concept scaling curve。</li>
+<li>真实图替换是扩展，不构成通用编辑或区域外保持保证。</li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../../en/topics/image-editing.html">topics/image-editing</a></li>
-<li><a class="wikilink" href="../../en/entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a></li>
-<li><a class="wikilink" href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a></li>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-14-multi-concept-customization.html">Custom Diffusion</a>：单概念 bank 与多概念合并基础。</li>
+<li><a class="wikilink" href="../../en/sources/2026-04-14-dreambooth.html">DreamBooth</a>：全模型主体定制对照。</li>
 </ul>
-<h2 id="备注">备注</h2>
-<p>Concept Weaver 在这套库里的作用，是把多概念融合路线补成 image-generation / image-editing 的重要分支。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<h2 id="归属边界">归属边界</h2>
+<p>本文是 template-guided multi-concept personalization composition，不是统一生成—编辑、DiT 或泛化 editing framework；已清除旧 unified entity/question 与 image-editing 主标签。</p>
+<h2 id="证据评估">证据评估</h2>
+<p><strong>B+</strong>：成本、指标、人评和消融完整；组合规模小、过滤评测和失败样本选择偏差限制结论。</p></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">4</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-04-14-multi-concept-customization.html">Custom Diffusion：高效单概念学习与多概念组合</a><span>Source note</span></li><li><a href="../../en/topics/image-editing.html">图像编辑</a><span>Topic</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-concept-weaver&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Concept Weaver（CVPR 2024）：在文本到图像模型中实现多概念融合&quot;,
+  &quot;title&quot;: &quot;Concept Weaver：模板引导的多概念个性化融合&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2024&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;image-generation&quot;,
-    &quot;image-editing&quot;,
+    &quot;diffusion&quot;,
+    &quot;conditioning&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;authors&quot;: [
-    &quot;Kwon, Gihyun&quot;,
-    &quot;Jenni, Simon&quot;,
-    &quot;Li, Dingzeyu&quot;,
-    &quot;Lee, Joon-Young&quot;,
-    &quot;Ye, Jong Chul&quot;,
-    &quot;Heilbron, Fabian Caba&quot;
+    &quot;Gihyun Kwon&quot;,
+    &quot;Simon Jenni&quot;,
+    &quot;Dingzeyu Li&quot;,
+    &quot;Joon-Young Lee&quot;,
+    &quot;Jong Chul Ye&quot;,
+    &quot;Fabian Caba Heilbron&quot;
   ],
-  &quot;published_at&quot;: &quot;2024/04/05&quot;,
+  &quot;published_at&quot;: &quot;2024-04-05&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2404.03913&quot;,
     &quot;https://arxiv.org/pdf/2404.03913&quot;
@@ -125,16 +147,12 @@
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-concept-weaver/&quot;,
   &quot;topics&quot;: [
     &quot;topics/image-generation&quot;,
-    &quot;topics/image-editing&quot;
+    &quot;topics/diffusion-models&quot;
   ],
-  &quot;entities&quot;: [
-    &quot;entities/unified-image-generation-editing&quot;
-  ],
+  &quot;entities&quot;: [],
   &quot;claims&quot;: [],
-  &quot;questions&quot;: [
-    &quot;questions/question-will-unified-image-models-sustain-their-advantage&quot;
-  ]
-}</pre></section>
+  &quot;questions&quot;: []
+}</pre></details>
     </article>
   </main>
 </body>

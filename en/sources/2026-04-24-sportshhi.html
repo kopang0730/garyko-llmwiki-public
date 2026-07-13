@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SportsHHI：体育视频中的高层人-人交互检测基准 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="SportsHHI：体育视频中的高层人—人交互检测基准">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>SportsHHI：体育视频中的高层人—人交互检测基准 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-24-sportshhi&quot;, &quot;title&quot;: &quot;SportsHHI（CVPR 2024）：体育视频中的高层人-人交互检测基准&quot;, &quot;title_en&quot;: &quot;SportsHHI（CVPR 2024）：体育视频中的高层人-人交互检测基准&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-24-sportshhi&quot;, &quot;title&quot;: &quot;SportsHHI：体育视频中的高层人—人交互检测基准&quot;, &quot;title_en&quot;: &quot;SportsHHI：体育视频中的高层人—人交互检测基准&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,53 +60,114 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-24-sportshhi.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-24-sportshhi.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-24</p>
-        <h1><span class="title-main">SportsHHI</span><span class="title-subtitle">体育视频中的高层人-人交互检测基准</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>SportsHHI：体育视频中的高层人—人交互检测基准</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">SportsHHI</span><span class="title-subtitle">体育视频中的高层人—人交互检测基准</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2024-04-06</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-24</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2404.04565" title="https://arxiv.org/abs/2404.04565" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2404.04565</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2404.04565" title="https://arxiv.org/pdf/2404.04565" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2404.04565</strong></a><a class="source-link source-link-code" href="https://github.com/MCG-NJU/SportsHHI" title="https://github.com/MCG-NJU/SportsHHI" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · SportsHHI</strong></a></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#benchmarking">#benchmarking</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>SportsHHI 把体育视频理解从“跟住人”推进到“理解人和人之间发生了什么”，把篮球/排球中的高层交互做成可评测的视觉关系检测任务。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2024-04-06</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-24</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2404.04565" title="https://arxiv.org/abs/2404.04565" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2404.04565</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2404.04565" title="https://arxiv.org/pdf/2404.04565" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2404.04565</strong></a><a class="source-link source-link-code" href="https://github.com/MCG-NJU/SportsHHI" title="https://github.com/MCG-NJU/SportsHHI" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · SportsHHI</strong></a></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#数据集与协议">数据集与协议</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#核心实验与结果">核心实验与结果</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#计算与复现边界">计算与复现边界</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对羽毛球与体育路线的价值">对羽毛球与体育路线的价值</a></li><li><a href="#与同批工作的边界">与同批工作的边界</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#可复核依据">可复核依据</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>SportsHHI 把体育理解从“跟住谁”推进到“哪两个人正在发生何种高层交互”：它以有方向的人对三元组显式标注篮球/排球中的技术动作、配合和对抗，并证明运动、相对位置及多人上下文都不可缺少；但它仍是关键帧级关系检测，不等于整场战术推理。</p>
 <h2 id="论文定位">论文定位</h2>
-<p>这篇论文属于体育 AI / 体育视频理解主线，和 <a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a> 的长时序理解、对象级关联与 benchmark 设计直接相关。它在 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 中承担的角色是：它补上了 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 中“交互理解”这一层，使体育 AI 主线从 tracking 推向 interaction understanding。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>体育视频里的关键语义往往存在于多人的相互作用中，例如防守、封堵、传接配合或身体对抗。通用 visual relation 数据集偏向低层关系，很多类别只靠外观或静态先验就能识别，难以逼迫模型学习细粒度时空上下文。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>论文定义 video human-human interaction detection 任务，并构建 SportsHHI 数据集。数据集来自篮球和排球，包含 34 类高层交互、118,075 个人体框、50,649 个交互实例和 11,398 个关键帧。作者还给出两阶段 baseline，用检测到的人体区域和时空特征预测交互类别。</p>
-<h2 id="关键发现">关键发现</h2>
+<p>这是<strong>视频人—人交互检测（HHI）</strong> benchmark，不是 MOT 数据集。它位于跟踪和高层比赛理解之间：</p>
 <ul>
-<li>SportsHHI 把体育视频分析的粒度从单人动作或全局事件推进到 pairwise human-human interaction。</li>
-<li>34 类高层交互要求模型使用时空上下文，减少只靠静态外观猜关系的捷径。</li>
-<li>它为后续体育视频 MLLM / event reasoning 提供了比 tracking 更接近语义理解的中间层 benchmark。</li>
+<li>相比 AVA/MultiSports 的单人动作标签，显式标出具体人对；</li>
+<li>相比 AG/VidVRD 的通用关系，双方都为人，不能依赖对象类别先验；</li>
+<li>相比 group activity recognition，不给整段视频一个群体标签，而是定位具体参与者与有方向的关系。</li>
 </ul>
+<p>因此它直接补强 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">体育 AI 视频理解</a> 的 interaction layer，对 <a class="wikilink" href="../../en/topics/video-understanding.html">视频理解</a> 则是细粒度关系检测案例。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>每个实例写作 $\langle S,I,O\rangle$：主体人体框、交互类别、客体人体框。论文区分：</p>
+<ul>
+<li><strong>HHICls</strong>：使用 GT 人体框，只评交互分类；</li>
+<li><strong>HHIDet</strong>：从视频与检测框完成定位和分类。</li>
+</ul>
+<p>主体框与客体框都需和对应 GT 达到 IoU $&gt;0.5$ 且类别正确才算真阳性。</p>
+<h2 id="数据集与协议">数据集与协议</h2>
+<table><thead><tr><th>项目</th><th>规模/设置</th></tr></thead><tbody><tr><td>视频</td><td>篮球 80 段、排球 80 段，来自 MultiSports；720p、25 FPS，平均 603 帧</td></tr><tr><td>标注频率</td><td>5 FPS 关键帧</td></tr><tr><td>总规模</td><td>11,398 帧、118,075 人体框、50,649 交互实例</td></tr><tr><td>类别</td><td>34 类：篮球 16、排球 18</td></tr><tr><td>场景密度</td><td>平均每帧 10.36 人</td></tr><tr><td>train/val</td><td>38,527 实例/8,719 帧；12,122 实例/2,679 帧</td></tr><tr><td>主评测类别</td><td>两个 split 都至少 10 个实例的 28 类；排除参与者不可见实例</td></tr></tbody></table>
+<p>交互由专业运动员或资深爱好者双人重复标注，分歧由 meta-annotator 仲裁。类别分布近似 Zipf 长尾；人多但高层交互稀疏，且两人可能相距很远或严重重叠。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>两阶段 baseline 先用离线检测器得到 $N$ 个人体框并枚举 $N(N-1)$ 个有序人对，再融合：</p>
+<ol>
+<li>主体和客体的视频 RoI 运动特征；</li>
+<li>两人 union box 上下文；</li>
+<li>两张独立空间 mask 的相对位置编码；</li>
+<li>所有 proposal 之间的多头自注意力。</li>
+</ol>
+<p>训练使用全部正 proposal 与采样负例，最佳正负比为 1:10。</p>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<p>指标为 mAP 与 Recall@20/50/100/150。</p>
+<ul>
+<li>最强 ViT-B baseline：HHICls mAP <strong>10.69</strong>、R@50 <strong>68.13</strong>；HHIDet mAP <strong>4.93</strong>、R@50 <strong>42.99</strong>。</li>
+<li>同为 SlowFast-R50 时，作者 baseline 的 HHICls mAP <strong>7.52</strong>，优于 SlowFast <strong>5.00</strong> 与 ACARN <strong>5.44</strong>；说明位置与人对上下文在动作特征之外有增益。</li>
+<li>人体框 R@0.5 为 <strong>98.6</strong>、交互 proposal R@0.5 为 <strong>98.4</strong>，但 IoU 0.9 时降到 <strong>58.2/37.7</strong>；精确定位仍会限制完整 HHIDet。</li>
+<li>HHIDet 显著低于 HHICls，说明检测误差会向关系判断传导。</li>
+</ul>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>运动、上下文、位置三类特征全开并交换 proposal 信息：mAP <strong>7.52</strong>；只用运动且无交换：<strong>5.00</strong>。</li>
+<li>分离 subject/object mask 优于单 mask：<strong>7.52 vs 6.77 mAP</strong>，验证有向角色顺序重要。</li>
+<li>MHSA 在不同特征组合下总体都有增益。</li>
+<li>1:10 正负比最佳；背景过多会淹没优化。</li>
+<li>错误分析中，无真实交互的人对假阳性很常见，定位与分类错误也经常共现。</li>
+</ul>
+<h2 id="计算与复现边界">计算与复现边界</h2>
+<p>检测器为 ResNeXt-101-FPN Faster R-CNN；主视频 backbone 为 Kinetics-400 预训练 SlowFast-R50，batch 8、20 epochs。论文没有报告 GPU、训练时长、参数量、FLOPs 或吞吐，不能据此判断部署成本。枚举人对的 proposal 数为 $O(N^2)$。</p>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>当前覆盖篮球和排球，项目范围仍然较窄。</li>
-<li>它以关键帧与交互实例为主，离完整比赛级长时序战术理解还有距离。</li>
+<li>仅篮球与排球；作者因实例稀疏和失衡而排除足球。</li>
+<li>主任务是 5 FPS 关键帧级检测；person ID 可连接 tube，但没有 tube-level benchmark 结果。</li>
+<li>34 类只有 28 类进入主评测，长尾类未被充分验证。</li>
+<li>不可见参与者被排除，off-screen interaction 未覆盖。</li>
+<li>mAP 低说明任务困难，但不能据此把局部关系检测外推为完整战术理解。</li>
 </ul>
-<h2 id="对当前-wiki-判断的影响">对当前 wiki 判断的影响</h2>
-<p>它补上了 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 中“交互理解”这一层，使体育 AI 主线从 tracking 推向 interaction understanding。 它也让 <a class="wikilink" href="../../en/entities/sportsmot.html">entities/sportsmot</a> 从单一数据集条目扩展成体育 MOT / 轨迹理解分支的导航锚点。</p>
+<h2 id="对羽毛球与体育路线的价值">对羽毛球与体育路线的价值</h2>
+<ul>
+<li>对<strong>双打羽毛球人—人关系</strong>有中等直接价值：任务形式、标注流程和有向人对建模可迁移。</li>
+<li>对<strong>单打</strong>价值较间接：两人关系简单，瓶颈更可能是小球、击球时刻和动作细粒度。</li>
+<li>不直接覆盖 shuttlecock 轨迹、球拍、击球质量、姿态纠错或回合因果。</li>
+</ul>
+<h2 id="与同批工作的边界">与同批工作的边界</h2>
+<ul>
+<li><a class="wikilink" href="../../en/sources/2026-04-24-sportsmot.html">SportsMOT</a> / <a class="wikilink" href="../../en/sources/2026-04-24-teamtrack.html">TeamTrack</a> 解决身份连续与轨迹，是 HHI 的上游，但不输出交互语义。</li>
+<li><a class="wikilink" href="../../en/sources/2026-04-24-transportmer.html">TranSPORTmer</a> 用坐标轨迹做预测/补全/状态分类，可提供长期运动上下文，却不输出 SportsHHI 的人对类别。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<p><strong>直接支持</strong>“体育视频理解不能停在 tracking，还需要显式 interaction layer”。对长视频推理、战术智能和羽毛球纠错只属于间接或背景证据。当前没有进入 claim/question 的证据列表。</p>
+<h2 id="可复核依据">可复核依据</h2>
+<ul>
+<li>PDF p.1-2：任务与贡献</li>
+<li>PDF p.4-5：数据构建、规模、长尾与空间分布</li>
+<li>PDF p.5-6：两阶段方法与评测协议</li>
+<li>PDF p.7-8，Tables 2-6：消融、检测与主结果</li>
+<li><code>raw/ingest/2026-04-24-sportshhi/paper-text.md:490-991</code></li>
+</ul>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2404.04565</li>
-<li>https://arxiv.org/pdf/2404.04565</li>
-<li>https://doi.org/10.1109/CVPR52733.2024.01754</li>
-<li>https://github.com/MCG-NJU/SportsHHI</li>
+<li><a href="https://arxiv.org/abs/2404.04565">arXiv 摘要</a></li>
+<li><a href="https://arxiv.org/pdf/2404.04565">论文 PDF</a></li>
+<li><a href="https://doi.org/10.1109/CVPR52733.2024.01754">CVPR DOI</a></li>
+<li><a href="https://github.com/MCG-NJU/SportsHHI">官方代码与数据</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a></li>
-<li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
-<li><a class="wikilink" href="../../en/entities/sportsmot.html">entities/sportsmot</a></li>
+<li><a class="wikilink" href="../../en/topics/video-understanding.html">视频理解</a></li>
+<li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a class="wikilink" href="../../en/entities/sportsmot.html">SportsMOT 与体育轨迹分支</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/video-understanding.html">Video Understanding</a></li><li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li></ul></div><div class="related-group related-entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/sportsmot.html">SportsMOT</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">8</span></h2><ul><li><a href="../../en/entities/sportsmot.html">SportsMOT</a><span>Entity</span></li><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-04-24-sportsmot.html">SportsMOT：多运动场景的大规模球员多目标跟踪基准</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-24-teamtrack.html">TeamTrack：全场视角的多运动多目标跟踪数据集</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-24-transportmer.html">TranSPORTmer：多智能体体育轨迹理解的统一 Transformer 框架</a><span>Source note</span></li><li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a><span>Topic</span></li><li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a><span>Topic</span></li><li><a href="../../en/topics/video-understanding.html">Video Understanding</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-24-sportshhi&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;SportsHHI（CVPR 2024）：体育视频中的高层人-人交互检测基准&quot;,
+  &quot;title&quot;: &quot;SportsHHI：体育视频中的高层人—人交互检测基准&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-24&quot;,
-  &quot;updated&quot;: &quot;2026-04-24&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2024&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-24&quot;,
   &quot;tags&quot;: [
@@ -134,7 +201,7 @@
   ],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

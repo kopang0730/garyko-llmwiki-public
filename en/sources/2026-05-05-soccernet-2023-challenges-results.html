@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SoccerNet 2023 Challenges Results：足球视频多任务挑战结果">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>SoccerNet 2023 Challenges Results：足球视频多任务挑战结果 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-05-soccernet-2023-challenges-results&quot;, &quot;title&quot;: &quot;SoccerNet 2023 Challenges Results：足球视频多任务挑战结果&quot;, &quot;title_en&quot;: &quot;SoccerNet 2023 Challenges Results：足球视频多任务挑战结果&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-05-soccernet-2023-challenges-results&quot;, &quot;title&quot;: &quot;SoccerNet 2023 Challenges Results：足球视频多任务挑战结果&quot;, &quot;title_en&quot;: &quot;SoccerNet 2023 Challenges Results：足球视频多任务挑战结果&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,41 +60,54 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-05-05-soccernet-2023-challenges-results.html">中文</a><a class="selected-lang" href="../../en/sources/2026-05-05-soccernet-2023-challenges-results.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-05-05</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>SoccerNet 2023 Challenges Results：足球视频多任务挑战结果</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
         <h1><span class="title-main">SoccerNet 2023 Challenges Results</span><span class="title-subtitle">足球视频多任务挑战结果</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>arXiv 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2023-09-12</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-05-05</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2309.06006" title="https://arxiv.org/abs/2309.06006" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2309.06006</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2309.06006" title="https://arxiv.org/pdf/2309.06006" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2309.06006</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#benchmarking">#benchmarking</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>SoccerNet 2023 Challenges Results 把足球视频理解拆成多个公开任务，提供从 action spotting、tracking 到比赛状态相关任务的社区基准结果。</p>
-<h2 id="论文定位">论文定位</h2>
-<p>这篇挑战报告适合补 sports-AI roadmap 的公开评测生态层，说明足球视频理解已经从单篇论文走向多任务、可比较、年度迭代的 benchmark program。</p>
-<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
-<p>它能支撑 Event2Tracking / game-state 后续补强：trajectory-event semantics 需要公开任务、排行榜和年度结果来定义可复核进展。</p>
-<h2 id="来源可靠性与可溯源性">来源可靠性与可溯源性</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>arXiv 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2023-09-12</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-05-05</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2309.06006" title="https://arxiv.org/abs/2309.06006" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2309.06006</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2309.06006" title="https://arxiv.org/pdf/2309.06006" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2309.06006</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#七项核心结果">七项核心结果</a></li><li><a href="#协议解释">协议解释</a></li><li><a href="#泄漏与排行榜风险">泄漏与排行榜风险</a></li><li><a href="#系统成本">系统成本</a></li><li><a href="#证据边界">证据边界</a></li><li><a href="#对羽毛球的影响">对羽毛球的影响</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始材料">原始材料</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h1 id="soccernet-2023-challenges-results-七任务挑战结果与评测边界">SoccerNet 2023 Challenges Results：七任务挑战结果与评测边界</h1>
+<blockquote><strong>来源</strong>：arXiv 2023</blockquote>
+<blockquote><strong>全文深读</strong>：<a class="wikilink missing" href="#missing-raw/ingest/2026-05-05-soccernet-2023-challenges-results/analysis">analysis.md</a></blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>2023 官方报告把 SoccerNet 扩成七任务年度评测，并将 tracking 改为真正的 detection+association；榜单证明定制系统显著高于 baseline，但不提供统一成本或统计控制，不能当成单一方法论文。</p>
+<h2 id="七项核心结果">七项核心结果</h2>
+<table><thead><tr><th>任务</th><th>数据/主协议</th><th>私有榜最佳</th></tr></thead><tbody><tr><td>Action spotting</td><td>500 场、110,458 actions、17 类；另 50 场；tight 1–5s</td><td><strong>71.31</strong> tight Avg-mAP</td></tr><tr><td>Ball action spotting</td><td>7 场、11,041 pass/drive；另 2 场；mAP@1</td><td><strong>86.47</strong></td></tr><tr><td>Dense captioning</td><td>471 场、36,894 comments；另 42 场；METEOR@30</td><td><strong>26.66</strong></td></tr><tr><td>Camera calibration</td><td>25,506 images、226,305 polylines；另 2,690 张；accuracy×coverage</td><td><strong>0.55</strong></td></tr><tr><td>Player ReID</td><td>340,993 thumbnails、400 场、6 联赛；mAP</td><td><strong>93.26</strong></td></tr><tr><td>End-to-end tracking</td><td>不提供 GT boxes；HOTA/DetA/AssA</td><td><strong>75.61 / 75.38 / 75.94</strong></td></tr><tr><td>Jersey number</td><td>2,853 tracklets；另 1,211；accuracy</td><td><strong>92.85%</strong></td></tr></tbody></table>
+<h2 id="协议解释">协议解释</h2>
 <ul>
-<li><strong>来源层级</strong>：arXiv 页面可访问；作为 SoccerNet 2023 challenge result 报告，可作为社区 benchmark 证据使用。当前按 arXiv primary paper 处理。</li>
-<li><strong>可溯源材料</strong>：本地已保存 arXiv abstract、PDF 与 <code>paper-text.md</code>；<code>links.yaml</code> 可回到 arXiv abstract / PDF。</li>
-<li><strong>使用边界</strong>：需要结合每个具体挑战的官方页面和任务说明理解指标细节，避免把挑战汇总报告当成单一方法论文。</li>
+<li>2023 tracking 要同时 detection+association，不能与 2022 GT-box association-only HOTA 93.64 直接比较；</li>
+<li>calibration 没有 camera-parameter GT，分数仍混合场线检测、solver accuracy 与 completeness；</li>
+<li>ReID 是同 action 多视角检索，不是跨整场实名；</li>
+<li>caption 的 30 秒容差及文本相似度不保证事实性；</li>
+<li>jersey overall accuracy 未提供号码频率、可见性与 macro recall 分层。</li>
 </ul>
-<h2 id="和现有证据的关系">和现有证据的关系</h2>
+<h2 id="泄漏与排行榜风险">泄漏与排行榜风险</h2>
 <ul>
-<li>与 <a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：它补强 S1 足球轨迹与比赛状态中的年度挑战、公开任务和 tracking 工程证据。</li>
-<li>与 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它把体育视频理解从静态数据集推进到可比较的 challenge / leaderboard / team-system 层。</li>
-<li>与 <a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a> 的关系：它提供真实广播足球长视频、密集事件和多目标跟踪的应用型评测样本。</li>
+<li>private labels 隔离，但报告未逐任务给 game/league/stadium/broadcast-source disjoint 审计；</li>
+<li>ball action 只有 7+2 场却有 102 次提交，jersey 1,211 私有 tracklets 有 157 次提交，反馈式过拟合风险明显；</li>
+<li>CLIP、VideoMAE、ImageNet、ensembles 与 OCR voting 等外部资源未统一；</li>
+<li>winner summaries 经 organizer 审阅规则，不等于独立复现。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="系统成本">系统成本</h2>
+<p>多个冠军依赖多 encoder/大预训练模型/ensemble/重后处理；论文未统一报告 GPU、GPU-hours、参数量、FPS、内存、能耗或重复运行。因此最高榜分不能直接解释为最佳部署方案。</p>
+<h2 id="证据边界">证据边界</h2>
+<p>这是 2023 官方年度快照。七任务 metric、样本单位与容差不同，不能做总分；赢家技术摘要只支持系统构成与私有榜结果，详细因果归因需回到各 team paper。</p>
+<h2 id="对羽毛球的影响">对羽毛球的影响</h2>
+<p>可迁移 private challenge、tight temporal metric、end-to-end MOT、DetA/AssA、calibration accuracy×coverage 与 tracklet-level aggregation。足球球场、球衣号码、pass/drive 类别、广播机位和所有榜单数字都不能外推羽毛球；羽毛球另需 shuttle trajectory coverage、max gap、court error 与 hit-time error。</p>
+<h2 id="证据评级">证据评级</h2>
 <ul>
-<li>需要结合每个具体挑战的官方页面和任务说明理解指标细节，避免把挑战汇总报告当成单一方法论文。</li>
-<li>当前这版先完成轻量 primary-source 编译，后续可按 deep-analysis-first 流程补 <code>analysis.md</code>、关键图页和实验细节。</li>
+<li>官方协议/榜单：<strong>A-</strong></li>
+<li>赢家方法摘要：<strong>B</strong></li>
+<li>成本受控跨队比较：<strong>C</strong></li>
+<li>羽毛球直接证据：<strong>D</strong></li>
 </ul>
 <h2 id="原始材料">原始材料</h2>
 <ul>
-<li><code>raw/ingest/2026-05-05-soccernet-2023-challenges-results/paper.pdf</code></li>
+<li><code>raw/ingest/2026-05-05-soccernet-2023-challenges-results/paper.pdf</code>（20 页）</li>
 <li><code>raw/ingest/2026-05-05-soccernet-2023-challenges-results/paper-text.md</code></li>
-<li><code>raw/ingest/2026-05-05-soccernet-2023-challenges-results/abstract.md</code></li>
-<li><code>raw/ingest/2026-05-05-soccernet-2023-challenges-results/links.yaml</code></li>
+<li><code>raw/ingest/2026-05-05-soccernet-2023-challenges-results/analysis.md</code></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
@@ -97,13 +116,17 @@
 <li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a></li>
 <li><a class="wikilink" href="../../en/entities/sportsmot.html">entities/sportsmot</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li><li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li><li><a class="wikilink" href="../../en/topics/video-understanding.html">Video Understanding</a></li></ul></div><div class="related-group related-entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/sportsmot.html">SportsMOT</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">4</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a><span>Topic</span></li><li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a><span>Topic</span></li><li><a href="../../en/topics/video-understanding.html">Video Understanding</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-05-05-soccernet-2023-challenges-results&quot;,
   &quot;type&quot;: &quot;source&quot;,
   &quot;title&quot;: &quot;SoccerNet 2023 Challenges Results：足球视频多任务挑战结果&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-05-05&quot;,
-  &quot;updated&quot;: &quot;2026-05-05&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;arXiv 2023&quot;,
   &quot;published_at&quot;: &quot;2023-09-12&quot;,
   &quot;ingested_at&quot;: &quot;2026-05-05&quot;,
@@ -224,6 +247,7 @@
     &quot;https://arxiv.org/pdf/2309.06006&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-05-05-soccernet-2023-challenges-results/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-05-05-soccernet-2023-challenges-results/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/sports-ai-video-understanding&quot;,
     &quot;topics/sports-ai-roadmap&quot;,
@@ -234,7 +258,7 @@
   ],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

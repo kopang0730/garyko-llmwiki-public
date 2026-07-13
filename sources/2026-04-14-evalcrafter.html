@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>EvalCrafter：大视频生成模型的评测与基准 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="EvalCrafter：大视频生成模型的多维评测与人工偏好校准">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>EvalCrafter：大视频生成模型的多维评测与人工偏好校准 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-evalcrafter&quot;, &quot;title&quot;: &quot;EvalCrafter（CVPR 2024）：大视频生成模型的评测与基准&quot;, &quot;title_en&quot;: &quot;EvalCrafter（CVPR 2024）：大视频生成模型的评测与基准&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-generation&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-evalcrafter&quot;, &quot;title&quot;: &quot;EvalCrafter：大视频生成模型的多维评测与人工偏好校准&quot;, &quot;title_en&quot;: &quot;EvalCrafter：大视频生成模型的多维评测与人工偏好校准&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-generation&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,51 +60,115 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-14-evalcrafter.html">中文</a><a class="" href="../en/sources/2026-04-14-evalcrafter.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">EvalCrafter</span><span class="title-subtitle">大视频生成模型的评测与基准</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>EvalCrafter：大视频生成模型的多维评测与人工偏好校准</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">EvalCrafter</span><span class="title-subtitle">大视频生成模型的多维评测与人工偏好校准</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023-01-01</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2310.11440" title="https://arxiv.org/abs/2310.11440" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2310.11440</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2310.11440.pdf" title="https://arxiv.org/pdf/2310.11440.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2310.11440.pdf</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-generation">#video-generation</a><a class="tag" href="../tags.html#evaluation">#evaluation</a><a class="tag" href="../tags.html#benchmarking">#benchmarking</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作是视频生成评测线的重要早期锚点，它把“大视频生成模型该怎么评”明确推成独立问题。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023-10-17</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2024/html/Liu_EvalCrafter_Benchmarking_and_Evaluating_Large_Video_Generation_Models_CVPR_2024_paper.html" title="https://openaccess.thecvf.com/content/CVPR2024/html/Liu_EvalCrafter_Benchmarking_and_Evaluating_Large_Video_Generation_Models_CVPR_2024_paper.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>openaccess.thecvf.com · Liu_EvalCrafter_Benchmarking_an…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2024/papers/Liu_EvalCrafter_Benchmarking_and_Evaluating_Large_Video_Generation_Models_CVPR_2024_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2024/papers/Liu_EvalCrafter_Benchmarking_and_Evaluating_Large_Video_Generation_Models_CVPR_2024_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Liu_EvalCrafter_Benchmarking_an…</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#benchmark-与数据">Benchmark 与数据</a></li><li><a href="#方法概述">方法概述</a><ol><li class="toc-sub"><a href="#17-个客观指标">17 个客观指标</a></li><li class="toc-sub"><a href="#人工偏好校准">人工偏好校准</a></li></ol></li><li><a href="#核心实验与结果">核心实验与结果</a><ol><li class="toc-sub"><a href="#四维排名没有统一赢家">四维排名没有统一赢家</a></li><li class="toc-sub"><a href="#指标与人工评分相关性">指标与人工评分相关性</a></li><li class="toc-sub"><a href="#稳定性与成本">稳定性与成本</a></li></ol></li><li><a href="#关键诊断">关键诊断</a></li><li><a href="#消融与证据强度">消融与证据强度</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>EvalCrafter 把 T2V 评测从 FVD/IS 单指标推进到“700 条真实用户分布启发的 prompt + 17 个多维指标 + 人工偏好校准”；它强力支持生成输出质量需要分维度评估，但对真实视频编辑理解只有边界证据。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这是早期综合 T2V benchmark：被测对象是开源模型和黑盒商业服务的<strong>输出视频</strong>，评测覆盖视觉质量、文本—视频对齐、运动质量与时间一致性。与后来的 LMM evaluator 不同，它组合 DOVER、CLIP、RAFT、SAM-Track、VideoMAE 等预训练工具，再用人工评分拟合线性权重。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>它要解决的是大视频生成模型越来越强，但社区缺少一致、系统的评测框架的问题。相比只看单指标或零散样例，EvalCrafter 试图把视频生成评测本身做成一个明确对象。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>从标题与任务设定看，EvalCrafter 面向大视频生成模型构建了 benchmarking and evaluating 框架。它的重要意义是：在 AIGV-Assessor、Video-Bench、FiVE-Bench 之外，它提供了一个更早、更总括的视频生成评测入口。</p>
-<h2 id="关键发现">关键发现</h2>
+<p>FVD、IS 等指标难以同时回答：视频是否清晰、prompt 属性是否满足、运动是否正确、帧间是否一致；闭源服务又无法统一访问内部表征或训练数据。论文因此设计无需模型内部、可离线运行的输出层评测协议。</p>
+<h2 id="benchmark-与数据">Benchmark 与数据</h2>
 <ul>
-<li>它补上了 video-generation 评测线的早期锚点。</li>
-<li>它有助于解释为什么后续会分化出 human-aligned、LMM-assessor、fine-grained video-editing 等不同评测支线。</li>
-<li>它让 generative-model-evaluation 不再只是一堆 2025 论文，而开始具有前史。</li>
+<li>从 FullJourney、PikaLab Discord 收集 <strong>60 万+</strong> prompt/video，清洗后约 <strong>20 万</strong>用于用户分布分析。</li>
+<li>构建 <strong>700+ prompts</strong>，平均 <strong>12.3 words</strong>；四类主体为 human、animal、object、landscape。</li>
+<li>覆盖 50 种 style、20 种 camera motion；约 250 条加入 style/camera-motion 变化。</li>
+<li>GPT-4 生成 prompt 与属性 metadata、做一致性自检，作者再人工筛选；同时纳入真实用户与 T2I benchmark prompt。</li>
+<li>真实用户 prompt 的 90% 长度在 3–40 words，但最终集合是能力覆盖集，不是自然流量分布的直接随机样本。</li>
+</ul>
+<h2 id="方法概述">方法概述</h2>
+<h3 id="17-个客观指标">17 个客观指标</h3>
+<table><thead><tr><th>维度</th><th>主要指标</th></tr></thead><tbody><tr><td>视觉质量</td><td>DOVER aesthetic/technical、IS</td></tr><tr><td>文本—视频对齐</td><td>CLIP、SD-Score、BLIP2-BLEU、Detection/Count/Color、OCR、Celebrity ID</td></tr><tr><td>运动质量</td><td>VideoMAE Action、RAFT Flow、Motion AC</td></tr><tr><td>时间一致性</td><td>Warping Error、CLIP-Temp、Face Consistency</td></tr></tbody></table>
+<h3 id="人工偏好校准">人工偏好校准</h3>
+<ul>
+<li>约 <strong>2,500 videos</strong>，7 名用户给 1–5 分；共 <strong>8,647</strong> 条反馈，过滤后保留 <strong>1,024</strong> 条。</li>
+<li>从四种方法中取 80% 样本拟合每维线性回归权重，20% 做验证。</li>
+<li>人工评测对应最初 512 prompts；集合扩到 700 后没有重做人工评分，作者以分数稳定性为依据沿用。</li>
+</ul>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<h3 id="四维排名没有统一赢家">四维排名没有统一赢家</h3>
+<table><thead><tr><th>维度</th><th>第一名</th><th>分数</th></tr></thead><tbody><tr><td>Visual Quality</td><td>Gen2</td><td>62.51</td></tr><tr><td>Text-Video Alignment</td><td>Show-1</td><td>62.07</td></tr><tr><td>Motion Quality</td><td>Gen2</td><td>56.43</td></tr><tr><td>Temporal Consistency</td><td>PikaLab</td><td>65.41</td></tr></tbody></table>
+<p>VideoCrafter1、PikaLab、Gen2、Show-1 分别在不同维度占优，直接说明单一分数会掩盖能力 trade-off。</p>
+<h3 id="指标与人工评分相关性">指标与人工评分相关性</h3>
+<ul>
+<li>Visual：平均指标 Spearman/Kendall <strong>0.550/0.410</strong>，校准后 <strong>0.554/0.411</strong>。</li>
+<li>Temporal：<strong>0.544/0.389 → 0.567/0.415</strong>。</li>
+<li>T/V Alignment：<strong>0.319/0.227 → 0.323/0.225</strong>，Kendall 略降。</li>
+<li>Motion amplitude：未经校准平均为 <strong>-0.382/-0.277</strong>，校准后 <strong>0.450/0.324</strong>。</li>
+<li>Warping Error 单指标达到 <strong>0.690/0.517</strong>；常用 CLIP-Score 仅 <strong>0.063/0.043</strong>，BLIP-BLEU 为 <strong>0.267/0.190</strong>。</li>
+</ul>
+<p>最强证据不是“所有校准都大幅变好”，而是：异质指标不能盲目平均，尤其运动幅度与用户偏好甚至可能方向相反。</p>
+<h3 id="稳定性与成本">稳定性与成本</h3>
+<ul>
+<li>对 100 条 prompt 做增删换词噪声，大多数总分变化低于 <strong>0.2 points</strong>，排名保持。</li>
+<li>完整 benchmark 约需 <strong>2 hours / A100 / ≥16 GB</strong>，定位是离线评测而非训练时监控。</li>
+</ul>
+<h2 id="关键诊断">关键诊断</h2>
+<ul>
+<li>元类别会改变模型相对排序。</li>
+<li>用户常优先视觉吸引力，而不是严格 T/V 对齐。</li>
+<li>所测模型都不能仅靠开放文本稳定控制 camera motion。</li>
+<li>更高分辨率、更大运动幅度都不自动带来更高偏好。</li>
+<li>可读文本、复杂场景、instruction following 与 entity detail 仍是失败点。</li>
+</ul>
+<h2 id="消融与证据强度">消融与证据强度</h2>
+<p>论文没有生成模型组件消融；评测器层主要验证：</p>
+<ul>
+<li>回归加权 vs 简单平均：除 motion 外增益较小；</li>
+<li>80/20 样本 holdout：不是 unseen-model 验证；</li>
+<li>prompt 数量趋于稳定：支持 700 条的实用规模，不证明长尾全覆盖；</li>
+<li>轻微 prompt 噪声：证明榜单局部稳定，不等于语义改写鲁棒。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>它更偏视频生成总体评测，而不是专门的视频编辑理解 benchmark。</li>
-<li>当前还需要与 Video-Bench、AIGV-Assessor、FiVE-Bench 对读，才能看清各自边界。</li>
-<li>它提供的是框架性评测视角，不等于最终结论。</li>
+<li>作者明确承认 700 prompts 不能覆盖复杂现实、motion quality 难评、人工标注者少、对预训练 evaluator 依赖重。</li>
+<li>仅 1,024/8,647 条评分被保留，过滤准则与人口统计不足，可能有选择偏差。</li>
+<li>80/20 切分可能让同一模型分布进入拟合与验证，跨代模型泛化未证。</li>
+<li>CLIP/DOVER/RAFT/SAM-Track/VideoMAE 的域偏差会传入最终榜单。</li>
+<li>CLIP-Temp 与偏好轻微运动可能奖励近静态视频，时间一致性和动态真实性仍纠缠。</li>
+<li>商业/开源模型版本、长度、分辨率、默认参数不统一，不能用于架构因果归因。</li>
+<li>不覆盖音频、长叙事、镜头剪辑、源视频保持或局部编辑。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<table><thead><tr><th>页面/命题</th><th>证据分类</th><th>影响</th></tr></thead><tbody><tr><td><a class="wikilink" href="../topics/generative-model-evaluation.html">生成模型评测</a></td><td>直接支持</td><td>必须分维度并报告指标—人工相关性；CLIP/FVD 不能替代完整协议</td></tr><tr><td><a class="wikilink" href="../topics/video-generation.html">视频生成</a></td><td>直接诊断</td><td>2023 年模型在画质、对齐、运动、时间一致性上没有统一赢家</td></tr><tr><td>DiT 主干趋势</td><td>当前不应引用</td><td>不统计 backbone，也没有 DiT 专属对照</td></tr><tr><td><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">评测是否刻画真实视频编辑理解</a></td><td>背景/边界证据</td><td>只测 T2V 输出；无源视频、preserve/change、镜头语法和工作流成功率</td></tr></tbody></table>
+<p><strong>证据边界</strong>：低 generation-quality 分数不能直接解释成“模型不理解视频编辑”。EvalCrafter 测的是短 T2V 输出属性与偏好，不是编辑语法或编辑执行。</p>
+<h2 id="证据评级">证据评级</h2>
+<ul>
+<li><strong>T2V 生成质量评测：A-</strong>。benchmark、指标、人工校准、相关性和限制报告较完整。</li>
+<li><strong>真实视频编辑理解：C / 边界证据</strong>。可提供输出质量坐标，但不能承担理解能力结论。</li>
 </ul>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2310.11440</li>
-<li>https://arxiv.org/pdf/2310.11440.pdf</li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2024/html/Liu_EvalCrafter_Benchmarking_and_Evaluating_Large_Video_Generation_Models_CVPR_2024_paper.html">CVF OpenAccess</a></li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Liu_EvalCrafter_Benchmarking_and_Evaluating_Large_Video_Generation_Models_CVPR_2024_paper.pdf">CVF PDF</a></li>
+<li><a href="https://arxiv.org/abs/2310.11440">arXiv</a></li>
+<li><a href="https://arxiv.org/pdf/2310.11440.pdf">arXiv PDF</a></li>
+<li><a href="http://evalcrafter.github.io">Project</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../topics/generative-model-evaluation.html">topics/generative-model-evaluation</a></li>
-<li><a class="wikilink" href="../topics/video-generation.html">topics/video-generation</a></li>
-<li><a class="wikilink" href="../entities/video-editing-understanding.html">entities/video-editing-understanding</a></li>
-<li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>EvalCrafter 的作用，是把 video-generation 的评测脉络往前追溯，让当前 evaluation topic 更像一条演化线，而不是临时拼起来的 2025 层。</p></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+<li><a class="wikilink" href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a class="wikilink" href="../topics/video-generation.html">视频生成</a></li>
+<li><a class="wikilink" href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+<li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../topics/generative-model-evaluation.html">生成模型评测</a></li><li><a class="wikilink" href="../topics/video-generation.html">视频生成</a></li></ul></div><div class="related-group related-entities"><h3>相关实体<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../entities/video-editing-understanding.html">视频编辑理解</a></li></ul></div><div class="related-group related-questions"><h3>相关问题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">4</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a><span>问题</span></li><li><a href="../topics/generative-model-evaluation.html">生成模型评测</a><span>主题</span></li><li><a href="../topics/video-generation.html">视频生成</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-evalcrafter&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;EvalCrafter（CVPR 2024）：大视频生成模型的评测与基准&quot;,
+  &quot;title&quot;: &quot;EvalCrafter：大视频生成模型的多维评测与人工偏好校准&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2024&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
@@ -122,12 +192,15 @@
     &quot;Raymond Chan&quot;,
     &quot;Ying Shan&quot;
   ],
-  &quot;published_at&quot;: &quot;2023-01-01&quot;,
+  &quot;published_at&quot;: &quot;2023-10-17&quot;,
   &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/CVPR2024/html/Liu_EvalCrafter_Benchmarking_and_Evaluating_Large_Video_Generation_Models_CVPR_2024_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2024/papers/Liu_EvalCrafter_Benchmarking_and_Evaluating_Large_Video_Generation_Models_CVPR_2024_paper.pdf&quot;,
     &quot;https://arxiv.org/abs/2310.11440&quot;,
     &quot;https://arxiv.org/pdf/2310.11440.pdf&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-evalcrafter/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-14-evalcrafter/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/generative-model-evaluation&quot;,
     &quot;topics/video-generation&quot;
@@ -139,7 +212,7 @@
   &quot;questions&quot;: [
     &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

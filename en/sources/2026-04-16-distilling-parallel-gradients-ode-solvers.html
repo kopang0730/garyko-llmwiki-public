@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Distilling Parallel Gradients for Fast ODE Solvers of Diffusion Models：把并行梯度蒸馏接进快速 ODE solver 路线 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="Distilling Parallel Gradients for Fast ODE Solvers of Diffusion Models：并行方向蒸馏扩散 ODE 求解器">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Distilling Parallel Gradients for Fast ODE Solvers of Diffusion Models：并行方向蒸馏扩散 ODE 求解器 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-distilling-parallel-gradients-ode-solvers&quot;, &quot;title&quot;: &quot;Distilling Parallel Gradients for Fast ODE Solvers of Diffusion Models（ICCV 2025）：把并行梯度蒸馏接进快速 ODE solver 路线&quot;, &quot;title_en&quot;: &quot;Distilling Parallel Gradients for Fast ODE Solvers of Diffusion Models（ICCV 2025）：把并行梯度蒸馏接进快速 ODE solver 路线&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-distilling-parallel-gradients-ode-solvers&quot;, &quot;title&quot;: &quot;Distilling Parallel Gradients for Fast ODE Solvers of Diffusion Models：并行方向蒸馏扩散 ODE 求解器&quot;, &quot;title_en&quot;: &quot;Distilling Parallel Gradients for Fast ODE Solvers of Diffusion Models：并行方向蒸馏扩散 ODE 求解器&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,50 +60,82 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-16-distilling-parallel-gradients-ode-solvers.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-16-distilling-parallel-gradients-ode-solvers.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-05-22</p>
-        <h1><span class="title-main">Distilling Parallel Gradients for Fast ODE Solvers of Diffusion Models</span><span class="title-subtitle">把并行梯度蒸馏接进快速 ODE solver 路线</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Distilling Parallel Gradients for Fast ODE Solvers of Diffusion Models：并行方向蒸馏扩散 ODE 求解器</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">Distilling Parallel Gradients for Fast ODE Solvers of Diffusion Models</span><span class="title-subtitle">并行方向蒸馏扩散 ODE 求解器</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025/07/20</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2507.14797" title="https://arxiv.org/abs/2507.14797" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2507.14797</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2507.14797.pdf" title="https://arxiv.org/pdf/2507.14797.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2507.14797.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#efficiency">#efficiency</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把 solver distillation 再推到并行梯度层，说明快速 ODE solver 这条线在 2025 年仍在继续细化和加速。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-07-20</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2507.14797" title="https://arxiv.org/abs/2507.14797" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2507.14797</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2507.14797.pdf" title="https://arxiv.org/pdf/2507.14797.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2507.14797.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#核心实验与结果">核心实验与结果</a></li><li><a href="#效率口径">效率口径</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>EPD-Solver 在冻结 denoiser 的前提下，学习每个 ODE 区间的两个并行中间梯度及其组合；它在单张 4090、batch 1 的特定设置中以更多总网络计算换取近似不变的串行延迟，并显著改善 3–5 Para. NFE 的 FID，因此应称为 <strong>solver critical-path parallelization</strong>，不是“免费减少总 NFE”。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这是一篇学习式 ODE solver 论文。与一步模型蒸馏不同，它只学习 6–45 个 solver 标量；与时间步优化不同，它修改一步更新公式并引入并行 denoiser branches；与普通多步 solver 不同，它使用当前积分区间内的梯度而非只复用历史梯度。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>已有的 ODE solver acceleration 已经能减少采样步数，但更高效、更并行的梯度利用方式仍然可能进一步压缩时间成本。论文要解决的是，怎样把并行梯度蒸馏进快速 solver 体系。</p>
+<p>高阶 solver 在极低 NFE 下仍受截断误差限制。EPD 询问：如果每个区间额外选取多个彼此独立的中间点，能否在 GPU 上并行评估并缩短 critical path，同时把积分近似做得更准？</p>
 <h2 id="方法概述">方法概述</h2>
-<p>作者把 parallel gradients 接进 diffusion ODE solver 蒸馏流程，目标是进一步降低 fast solver 路线的计算负担。它的重要性在于把 solver distillation 这条线继续从“少步”推进到“并行高效”。</p>
-<h2 id="关键发现">关键发现</h2>
 <ul>
-<li>它补强了 <a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a> 里的 solver/distillation 子线。</li>
-<li>它和 <a class="wikilink" href="../../en/sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">sources/2026-04-15-distilling-ode-solvers-diffusion-models</a> 构成非常直接的前沿延伸。</li>
-<li>它说明 few-step acceleration 的竞争已经进一步进入 solver 内部结构与梯度组织方式。</li>
+<li>每步学习 $K$ 个中间时刻、simplex 权重、时间偏移和输出缩放。</li>
+<li>各中间 state 都由同一起点做 Euler 预测，因此梯度可以并行。</li>
+<li>用 DPM-Solver-2 的高密 teacher trajectory 蒸馏 solver 参数；noisy states 用 $L_2$，最终图像用 Inception feature distance。</li>
+<li>EPD-Plugin 把相同方向估计嵌入 iPNDM。</li>
+<li>默认 $K=2$；更大 $K$ 的质量收益快速饱和。</li>
+</ul>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<table><thead><tr><th>设置</th><th>Para. NFE</th><th>最相关基线 → EPD-Solver FID</th></tr></thead><tbody><tr><td>CIFAR-10</td><td>5</td><td>AMED 7.59 → 4.33</td></tr><tr><td>FFHQ</td><td>5</td><td>AMED 14.80 → 7.84</td></tr><tr><td>ImageNet 64²</td><td>5</td><td>AMED 10.74 → 6.35</td></tr><tr><td>LSUN Bedroom</td><td>3</td><td>AMED 58.21 → 13.21</td></tr><tr><td>Stable Diffusion v1.5</td><td>20</td><td>DPM-Solver++ 14.58 → 12.17</td></tr></tbody></table>
+<blockquote>依据：PDF pp.6–7，Tables 1–2。摘要中的 4.47/7.97/8.17/8.26 实际对应 EPD-Plugin；不能和 EPD-Solver 行混写。</blockquote>
+<h2 id="效率口径">效率口径</h2>
+<ul>
+<li><strong>Para. NFE</strong>：并行后的串行深度，不是总 denoiser evaluation 数。</li>
+<li><strong>延迟</strong>：$K=1\to2$ 在 CIFAR/FFHQ/ImageNet 的单卡 batch-1 测试中近似不增；LSUN 已有小幅增加。</li>
+<li><strong>总计算/显存</strong>：额外 branches 必然增加并行工作量，论文未给总 FLOPs、峰值显存、能耗与服务吞吐。</li>
+<li><strong>离线蒸馏</strong>：10K images；CIFAR 单 4090 约 3 分钟，LSUN 4×A800 约 30 分钟。</li>
+</ul>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>$K=1\to2$ 明显降低 trajectory error；$K&gt;2$ 收益递减。</li>
+<li>CIFAR 5 Para. NFE：完整 FID 4.33；去输出缩放为 5.84，去时间偏移为 5.47，两者都去为 6.62。</li>
+<li>time-uniform schedule 和 DPM-Solver-2 teacher 在本文设置最好。</li>
+<li>学习的中间点明显优于固定/随机点组合。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>venue 已按外部审计修为 ICCV 2025；本地 primary links 仍以 arXiv 版本为可追溯入口，后续可继续补 official proceedings / DOI。</li>
-<li>它和 one-step consistency 路线之间谁更优，仍然没有定论。</li>
+<li>“无额外 latency”依赖硬件并行余量、batch 1 与当前模型；显存受限或高吞吐部署可能不成立。</li>
+<li>参数需按模型、schedule、NFE 与数据重新蒸馏。</li>
+<li>主要证据是 FID，缺 prompt alignment、人评和能耗。</li>
+<li>实验 backbone 是 EDM pixel model、LDM/Stable Diffusion U-Net；<strong>不提供 DiT adoption 证据</strong>。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li><strong>直接支持</strong> <a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a> 新增“总计算—critical path—wall-clock”三分法。</li>
+<li><strong>直接支持</strong> <a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a> 中“极低 NFE 的积分方向选择决定质量”。</li>
+<li>对 <a class="wikilink" href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 主干趋势</a> 仅是通用 diffusion engineering 背景，不进入正证据。</li>
 </ul>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2507.14797</li>
-<li>https://arxiv.org/pdf/2507.14797.pdf</li>
+<li><a href="https://arxiv.org/abs/2507.14797">arXiv 论文页</a></li>
+<li><a href="https://arxiv.org/pdf/2507.14797.pdf">PDF</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">sources/2026-04-15-distilling-ode-solvers-diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-sana-sprint.html">sources/2026-04-16-sana-sprint</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>它在本库中的价值，是把 solver acceleration 继续往更细粒度、更前沿的并行蒸馏工程层推进。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">Distilling ODE Solvers</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html">Optimized Time Steps</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li><li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">4</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>Topic</span></li><li><a href="../../en/topics/diffusion-models.html">扩散模型</a><span>Topic</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-16-distilling-parallel-gradients-ode-solvers&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Distilling Parallel Gradients for Fast ODE Solvers of Diffusion Models（ICCV 2025）：把并行梯度蒸馏接进快速 ODE solver 路线&quot;,
+  &quot;title&quot;: &quot;Distilling Parallel Gradients for Fast ODE Solvers of Diffusion Models：并行方向蒸馏扩散 ODE 求解器&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-16&quot;,
-  &quot;updated&quot;: &quot;2026-05-22&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;ICCV 2025&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
   &quot;tags&quot;: [
@@ -110,13 +148,13 @@
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;authors&quot;: [
-    &quot;Zhu, Beier&quot;,
-    &quot;Wang, Ruoyu&quot;,
-    &quot;Zhao, Tong&quot;,
-    &quot;Zhang, Hanwang&quot;,
-    &quot;Zhang, Chi&quot;
+    &quot;Beier Zhu&quot;,
+    &quot;Ruoyu Wang&quot;,
+    &quot;Tong Zhao&quot;,
+    &quot;Hanwang Zhang&quot;,
+    &quot;Chi Zhang&quot;
   ],
-  &quot;published_at&quot;: &quot;2025/07/20&quot;,
+  &quot;published_at&quot;: &quot;2025-07-20&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2507.14797&quot;,
     &quot;https://arxiv.org/pdf/2507.14797.pdf&quot;
@@ -130,7 +168,7 @@
   &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

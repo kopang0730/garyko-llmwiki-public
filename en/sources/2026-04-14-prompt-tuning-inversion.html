@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>用于文本驱动图像编辑的 Prompt Tuning Inversion · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="Prompt Tuning Inversion：优化条件嵌入轨迹的真实图像编辑">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Prompt Tuning Inversion：优化条件嵌入轨迹的真实图像编辑 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-prompt-tuning-inversion&quot;, &quot;title&quot;: &quot;用于文本驱动图像编辑的 Prompt Tuning Inversion（ICCV 2023）&quot;, &quot;title_en&quot;: &quot;用于文本驱动图像编辑的 Prompt Tuning Inversion（ICCV 2023）&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-prompt-tuning-inversion&quot;, &quot;title&quot;: &quot;Prompt Tuning Inversion：优化条件嵌入轨迹的真实图像编辑&quot;, &quot;title_en&quot;: &quot;Prompt Tuning Inversion：优化条件嵌入轨迹的真实图像编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;diffusion&quot;, &quot;conditioning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,68 +60,101 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-prompt-tuning-inversion.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-prompt-tuning-inversion.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">用于文本驱动图像编辑的 Prompt Tuning Inversion</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Prompt Tuning Inversion：优化条件嵌入轨迹的真实图像编辑</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">Prompt Tuning Inversion</span><span class="title-subtitle">优化条件嵌入轨迹的真实图像编辑</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2023/05/08</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2305.04441" title="https://arxiv.org/abs/2305.04441" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2305.04441</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2305.04441" title="https://arxiv.org/pdf/2305.04441" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2305.04441</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-editing">#image-editing</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-editing">#image-editing</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#conditioning">#conditioning</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把 prompt tuning 接进 inversion 过程，补强了真实图像编辑里“如何更好进入可编辑空间”的另一条技术线。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2023-05-08</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2305.04441" title="https://arxiv.org/abs/2305.04441" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2305.04441</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2305.04441" title="https://arxiv.org/pdf/2305.04441" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2305.04441</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#成本">成本</a></li><li><a href="#数据-指标与结果">数据、指标与结果</a></li><li><a href="#消融">消融</a></li><li><a href="#人评与保持边界">人评与保持边界</a></li><li><a href="#相关页面">相关页面</a></li><li><a href="#归属边界">归属边界</a></li><li><a href="#证据评估">证据评估</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>该方法先对 SD v1.4 做无条件 DDIM inversion，再逐 timestep 优化 conditional embedding 以追踪原图 latent trajectory，编辑时与 target embedding 插值；它只需输入图和 target prompt、约 1 分钟/V100，比 NTI 收敛更快且接近 VAE 重建上限，但仍是 per-image/per-edit optimization，不是可复用 subject personalization，也无区域/身份严格保持。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>它要解决的是文本驱动图像编辑中，真实图像反演后仍可能不够好编辑、不够稳定的问题。对当前知识库来说，它补的是 inversion 机制进一步细化为 prompt tuning 路线的节点。</p>
+<p>普通 DDIM inversion 在低 CFG 下能较好重建，但有效文本生成需要高 CFG，guidance mismatch 会放大累计误差。本文希望不微调 U-Net、不要求 source prompt 或用户 mask，仅通过优化条件表示同时取得 target editability 与 source fidelity。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>Prompt Tuning Inversion 通过对 prompt 或相关条件进行调优，帮助真实图像在扩散模型中获得更适合后续文本编辑的可编辑表示。</p>
-<h2 id="关键发现">关键发现</h2>
 <ul>
-<li>它说明真实图像编辑并不是单靠一次反演就结束，而是可以围绕条件表示继续优化。</li>
-<li>它让 inversion 主线进一步分叉出 prompt-level 调整，而不只是 latent-level 反演。</li>
-<li>它与 NULL-Text Inversion、Effective Real Image Editing 一起，构成了 image-editing 近三年里很重要的机制改进簇。</li>
+<li><strong>真实主干</strong>：Stable Diffusion v1.4，890M 参数、512×512，cross-attention 卷积 U-Net；VAE、CLIP text encoder 与 U-Net 全冻结，无 DiT。</li>
+<li><strong>Stage 1</strong>：以 $\omega=0$ 的 DDIM inversion 得轨迹 $\{z_t^*\}$；在高 CFG 重建时，每个 timestep 优化 $c_t$，最小化预测 $z_{t-1}$ 与参考轨迹 $z_{t-1}^*$ 的 L2。</li>
+<li><strong>Stage 2</strong>：</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<p>$$</p>
+<p>c_t^{edit}=\eta c^*+(1-\eta)c_t.</p>
+<p>$$</p>
+<p>默认 $\eta=0.9$；$\eta=0$ 重建，$\eta=1$ 退化为 DDIM-Edit。</p>
 <ul>
-<li>这一路线更偏底层机制调优，对最终任务表达的帮助需要结合具体编辑任务看。</li>
-<li>它可能增加编辑链条的复杂度。</li>
-<li>它仍然属于扩散式真实图像编辑范式内部优化。</li>
+<li>可从 target cross-attention 生成 local blending mask；这是内部软区域控制，不是用户 mask。</li>
+<li>与 NTI 不同，本文优化 conditional embedding；与 Imagic 不同，不 fine-tune diffusion model。</li>
 </ul>
-<h2 id="原始链接">原始链接</h2>
+<h2 id="成本">成本</h2>
 <ul>
-<li>https://arxiv.org/abs/2305.04441</li>
-<li>https://arxiv.org/pdf/2305.04441</li>
+<li>DDIM 50 steps，encoding ratio 0.8；默认每 step 1 次 embedding update，$\beta=0.1$。</li>
+<li>单 Tesla V100 <strong>约 1 分钟/图</strong>；需要梯度反传，不是 training-/optimization-free。</li>
+<li>论文未给显存、forward/backward 次数拆分、sampling 延迟或吞吐。</li>
+<li>$\{c_t\}$ 从 target prompt 初始化并为该编辑优化；未证明一次结果可稳定复用于任意新 prompt。</li>
+</ul>
+<h2 id="数据-指标与结果">数据、指标与结果</h2>
+<p>ImageNet 类替换使用 LPIPS（输入保真，低好）与 CSFID（目标类真实性/一致性，低好）绘 trade-off；本文曲线优于 DiffEdit/DDIM-Edit，但正文没有完整逐点数值/方差。DiffEdit 使用当时的非官方实现。</p>
+<p>128 张 COCO reconstruction：</p>
+<table><thead><tr><th>方法</th><th>PSNR ↑</th><th>SSIM ↑</th></tr></thead><tbody><tr><td>AE ceiling</td><td>26.22</td><td>0.8564</td></tr><tr><td>DDIM</td><td>13.64</td><td>0.4641</td></tr><tr><td>NTI</td><td>24.45</td><td>0.8270</td></tr><tr><td><strong>本文</strong></td><td><strong>25.71</strong></td><td><strong>0.8501</strong></td></tr></tbody></table>
+<p>该表配置为 forward CFG 0、sampling CFG 7.5、$N=5,\beta=0.01$。接近 AE ceiling 不等于像素 exact，仍受 VAE 损失限制。</p>
+<h2 id="消融">消融</h2>
+<ul>
+<li>$\beta=0.01$、1–5 updates：PTI PSNR 19.36→25.71，NTI 17.05→24.45；PTI 早期收敛更快。</li>
+<li>$\beta=0.1$ 时 1 update 已达 24.74；5 updates PTI 25.97、NTI 25.91，差距缩小。</li>
+<li>$\eta$ 从 1.0 降到 0.9 改善 CSFID–LPIPS；再降至 0.8/0.7 反而变差。</li>
+<li>latent interpolation 会把 source/target 对象空间叠加成 clutter，condition interpolation 更合适。</li>
+<li>local blending 没有完整独立数值消融，PTI 与 attention-mask 收益未完全解耦。</li>
+</ul>
+<h2 id="人评与保持边界">人评与保持边界</h2>
+<ul>
+<li><strong>无人评</strong>；缺编辑成功率、身份指标、mask 外误差、CI/显著性。</li>
+<li>展示对象类别/颜色编辑，并比 DDIM-Edit 更好保留结构与背景。</li>
+<li>多对象示例只改成功一只 goose；attention localization 是明确瓶颈。</li>
+<li>没有 mask 外硬复制、identity loss 或 exact edit guarantee；$\eta$ 是全局经验 trade-off。</li>
+<li>系统量化集中于 SD v1.4/ImageNet 类替换，复杂姿态、构图、文字、人脸身份、高分辨率和视频均未验证。</li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/image-editing.html">topics/image-editing</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a></li>
-<li><a class="wikilink" href="../../en/questions/question-data-vs-architecture-in-image-editing.html">questions/question-data-vs-architecture-in-image-editing</a></li>
+<li><a class="wikilink" href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-14-null-text-inversion.html">Null-text Inversion</a>：优化 unconditional embedding trajectory。</li>
+<li><a class="wikilink" href="../../en/sources/2026-04-14-effective-real-image-editing.html">AIDI</a>：冻结 condition，以 fixed-point solver 改 inversion。</li>
+<li><a class="wikilink" href="../../en/sources/2026-04-14-imagic.html">Imagic</a>：embedding optimization + full diffusion fine-tuning，成本更高。</li>
 </ul>
-<h2 id="备注">备注</h2>
-<p>Prompt Tuning Inversion 在这套库里的意义，是把真实图像编辑里的 prompt-level inversion 改进补成独立节点。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<h2 id="归属边界">归属边界</h2>
+<p>这里的 prompt tuning 是 image/edit-specific conditional trajectory optimization，不是 Textual Inversion/DreamBooth 式 subject token personalization。本文没有统一生成—编辑、data-vs-architecture 或 DiT 证据；已移除旧 unified-model entity/question 误关联。</p>
+<h2 id="证据评估">证据评估</h2>
+<p><strong>B+</strong>：reconstruction、算法和超参数消融清楚；编辑主结果缺完整数值/方差与人评，DiffEdit 实现非官方，local blending 贡献未充分拆开，任务覆盖也偏窄。</p></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-editing.html">图像编辑</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">5</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-04-14-effective-real-image-editing.html">AIDI：以加速定点迭代改进真实图像扩散反演</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-paint-by-example.html">Paint by Example：以单张参考图控制局部语义编辑</a><span>Source note</span></li><li><a href="../../en/topics/diffusion-models.html">扩散模型</a><span>Topic</span></li><li><a href="../../en/topics/image-editing.html">图像编辑</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-prompt-tuning-inversion&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;用于文本驱动图像编辑的 Prompt Tuning Inversion（ICCV 2023）&quot;,
+  &quot;title&quot;: &quot;Prompt Tuning Inversion：优化条件嵌入轨迹的真实图像编辑&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;ICCV 2023&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;image-editing&quot;,
     &quot;diffusion&quot;,
+    &quot;conditioning&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;authors&quot;: [
-    &quot;Dong, Wenkai&quot;,
-    &quot;Xue, Song&quot;,
-    &quot;Duan, Xiaoyue&quot;,
-    &quot;Han, Shumin&quot;
+    &quot;Wenkai Dong&quot;,
+    &quot;Song Xue&quot;,
+    &quot;Xiaoyue Duan&quot;,
+    &quot;Shumin Han&quot;
   ],
-  &quot;published_at&quot;: &quot;2023/05/08&quot;,
+  &quot;published_at&quot;: &quot;2023-05-08&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2305.04441&quot;,
     &quot;https://arxiv.org/pdf/2305.04441&quot;
@@ -125,14 +164,10 @@
     &quot;topics/image-editing&quot;,
     &quot;topics/diffusion-models&quot;
   ],
-  &quot;entities&quot;: [
-    &quot;entities/unified-image-generation-editing&quot;
-  ],
+  &quot;entities&quot;: [],
   &quot;claims&quot;: [],
-  &quot;questions&quot;: [
-    &quot;questions/question-data-vs-architecture-in-image-editing&quot;
-  ]
-}</pre></section>
+  &quot;questions&quot;: []
+}</pre></details>
     </article>
   </main>
 </body>

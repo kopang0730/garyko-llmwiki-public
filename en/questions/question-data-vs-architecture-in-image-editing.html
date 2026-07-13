@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="图像编辑的进步主要来自数据扩展还是架构升级">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>图像编辑的进步主要来自数据扩展还是架构升级 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-question" data-page="{&quot;slug&quot;: &quot;questions/question-data-vs-architecture-in-image-editing&quot;, &quot;title&quot;: &quot;图像编辑的进步主要来自数据扩展还是架构升级&quot;, &quot;title_en&quot;: &quot;图像编辑的进步主要来自数据扩展还是架构升级&quot;, &quot;kind&quot;: &quot;question&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;image-generation&quot;, &quot;survey-needed&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-question" data-page="{&quot;slug&quot;: &quot;questions/question-data-vs-architecture-in-image-editing&quot;, &quot;title&quot;: &quot;图像编辑的进步主要来自数据扩展还是架构升级&quot;, &quot;title_en&quot;: &quot;图像编辑的进步主要来自数据扩展还是架构升级&quot;, &quot;kind&quot;: &quot;question&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;image-generation&quot;, &quot;survey-needed&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a class="active" href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,13 +60,15 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../questions/question-data-vs-architecture-in-image-editing.html">中文</a><a class="selected-lang" href="../../en/questions/question-data-vs-architecture-in-image-editing.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">question · 2026-04-17</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Question</span><span class="crumb-sep" aria-hidden="true">›</span><strong>图像编辑的进步主要来自数据扩展还是架构升级</strong></nav>
+        <p class="eyebrow">Question · Updated 2026-07-12</p>
         <h1><span class="title-main">图像编辑的进步主要来自数据扩展还是架构升级</span></h1>
-        
         
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-editing">#image-editing</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#survey-needed">#survey-needed</a></div>
       </header>
-      <section class="article-content"><h2 id="问题">问题</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><details class="toc" open><summary>Contents</summary><ol><li><a href="#问题">问题</a></li><li><a href="#这个问题现在为什么变得更重要">这个问题现在为什么变得更重要</a></li><li><a href="#当前证据在说什么">当前证据在说什么</a><ol><li class="toc-sub"><a href="#更偏向-数据先打开上限">更偏向“数据先打开上限”</a></li><li class="toc-sub"><a href="#更偏向-架构决定能不能把数据兑现出来">更偏向“架构决定能不能把数据兑现出来”</a></li><li class="toc-sub"><a href="#更像-数据与架构共同重写任务">更像“数据与架构共同重写任务”</a></li></ol></li><li><a href="#2026-07-12-全文复核-九个可量化归因锚点">2026-07-12 全文复核：九个可量化归因锚点</a></li><li><a href="#为什么还没有被真正解决">为什么还没有被真正解决</a></li><li><a href="#阶段性综合判断">阶段性综合判断</a></li><li><a href="#当前更倾向的结论">当前更倾向的结论</a></li><li><a href="#下一步最有价值的证据">下一步最有价值的证据</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="问题">问题</h2>
 <p>当前图像编辑方向里的性能提升，到底主要来自更大、更干净、覆盖更广的编辑数据，还是来自更强的架构设计、表示分配与多模态控制接口？这个问题并不只是技术归因；它会直接决定后续研究更应该押注数据工厂、主干改造、推理接口，还是这几者的协同设计。</p>
 <h2 id="这个问题现在为什么变得更重要">这个问题现在为什么变得更重要</h2>
 <p><a class="wikilink" href="../../en/topics/image-editing.html">topics/image-editing</a> 已经不再是一条单线升级路线，而是同时出现了数据工厂、区域 grounding、统一接口、低时延编辑、视频化架构重写等多股力量。随着这几条路线都开始拿出看起来显著的提升，单纯说“又变好了”已经不够；更关键的是要判断改进到底来自哪一层，才能知道哪些增益具有可迁移性，哪些只是局部工程套利。</p>
@@ -83,6 +91,27 @@
 <li><a class="wikilink" href="../../en/sources/2026-04-12-dreamomni.html">sources/2026-04-12-dreamomni</a> 说明统一训练与 synthetic data pipeline 往往是一起出现的，难以拆成纯数据或纯架构因素。</li>
 <li><a class="wikilink" href="../../en/sources/2026-04-12-swiftedit.html">sources/2026-04-12-swiftedit</a> 说明当速度成为核心目标时，数据监督、蒸馏目标和一步式架构会紧密耦合，不能单独理解。</li>
 </ul>
+<h2 id="2026-07-12-全文复核-九个可量化归因锚点">2026-07-12 全文复核：九个可量化归因锚点</h2>
+<ul>
+<li><strong>AnyDoor—大规模混合数据与身份/细节接口耦合</strong>：13 组视频、分割、多视角、试衣和显著性来源支撑未见对象泛化；DINOv2 global+patch+去背景把 CLIP/DINO 提到 82.1/67.8，HF-map 与 ATS 又控制保真—变化折中。论文没有同预算数据规模/模块因果比较。</li>
+<li><strong>CDS—固定数据与主干时的目标函数收益</strong>：冻结 SD1.4、无 paired edit data，只加入 self-attention patch contrastive loss；cat→dog 的 Dist/LPIPS 0.023/0.080→0.020/0.079，CLIP 97.9→97.5，展示结构保持与语义编辑的可量化 trade-off。</li>
+</ul>
+<ul>
+<li><strong>Imagen Editor—训练样本组织改变条件使用率</strong>：固定 Imagen Editor 架构，object-detector mask training 相对 random-mask training 获得 68% text-alignment 人工偏好；新条件 encoder/downsampler 又负责 1024×1024 边界保真。它把“数据”细化为 mask-policy/任务难度，把“架构”细化为条件注入与高分辨率重建。</li>
+</ul>
+<ul>
+<li><strong>LDM—表示空间重写系统成本</strong>：同一 A100、同参数量和训练步数下，$f=4$–8 形成压缩 sweet spot；inpainting 的 pixel LDM-1 到 LDM-4 VQ，train/sample@256/sample@512 throughput 从 0.11/0.26/0.07 提升到 0.33/0.97/0.34，FID@epoch6 从 24.74 改善到 14.99。LAION-400M 又决定开放文本概念覆盖，说明表示结构与数据规模共同构成平台能力。</li>
+</ul>
+<ul>
+<li><strong>Null-text Inversion—机制层改变真实图像可编辑性</strong>：固定 Stable Diffusion 权重和训练数据，只以 DDIM pivot 优化 per-timestep unconditional embeddings；250 iterations 约 1 分钟/A100，user study 选择率为 65.1%。它改善 reconstruction/editability，同时没有扩展概念覆盖或复杂结构生成能力。</li>
+</ul>
+<ul>
+<li><strong>InstructPix2Pix—数据打开任务</strong>：454,445 个合成文本三元组建立统一自然语言编辑接口；只用 1%/10% 数据时，大幅结构编辑明显退化。数据量改变能力类型，双条件 CFG 再调节编辑强度与输入保持。</li>
+<li><strong>DiffEditor—专用结构兑现精度</strong>：在同一 SD/DragonDiffusion 家族中，17/68 点拖拽 MSE 从 DragonDiffusion 的 18.51/13.94 降至 17.05/11.52；收益来自区域随机性、局部梯度和 time travel。其图像提示模块仍在 LAION 上训练 100 万步。</li>
+<li><strong>GLIGEN—数据和接口可分开观察</strong>：gated self-attention 相比 cross-attention 的 YOLO AP 为 21.7 vs 16.6；Fourier box embedding 换成 MLP 后 AP 从 21.7 降至 3.2。扩展 grounding 数据又把 LVIS zero-shot AP 从 6.4 提升到 11.1。</li>
+<li><strong>DreamBooth—少样本激活既有先验</strong>：3–5 张主体图即可个性化，正确类别词与 prior-preservation 决定身份绑定和类别遗忘；它更接近“预训练世界知识 + 少样本主体证据 + 优化约束”的三因素组合。</li>
+</ul>
+<p>四篇全文证据共同支持一个可执行分解：<strong>数据决定概念、任务和长尾覆盖；结构与目标函数决定这些监督能否转成空间控制、身份保持和副作用治理。</strong> 后续归因实验应固定基础模型与数据预算，再分别替换 adapter、conditioning、sampler 和 loss。</p>
 <h2 id="为什么还没有被真正解决">为什么还没有被真正解决</h2>
 <p>现在的大多数论文并不是在做干净的归因实验，而是在同时改：数据来源、任务拆分、模型主干、控制接口、训练损失和推理预算。也就是说，我们已经有很多“混合成功案例”，但还缺少足够多“同数据换架构”或“同架构换数据”的强对照证据。因此，当前更适合做结构化判断，而不适合下二选一结论。</p>
 <h2 id="阶段性综合判断">阶段性综合判断</h2>
@@ -108,13 +137,17 @@
 <li><a class="wikilink" href="../../en/entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a></li>
 <li><a class="wikilink" href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">claims/claim-unified-models-may-outcompete-specialized-image-pipelines</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-related_topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-editing.html">图像编辑</a></li><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li></ul></div><div class="related-group related-related_entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li></ul></div><div class="related-group related-candidate_sources"><h3>Candidate sources<span class="related-count">10</span></h3><ul><li><a class="wikilink" href="../../en/sources/2026-04-12-anyedit.html">AnyEdit：面向任意创意的统一高质量图像编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-12-insightedit.html">InsightEdit：迈向更强指令跟随的图像编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-12-fireedit.html">FireEdit：基于区域感知视觉语言模型的细粒度指令图像编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-12-swiftedit.html">SwiftEdit：基于一步扩散的极速文本引导图像编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-12-dreamomni.html">DreamOmni：统一图像生成与编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-12-d2it.html">D²iT：用于高精度图像生成的动态扩散 Transformer</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-pathways-image-manifold.html">Pathways on the Image Manifold：通过视频生成做图像编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-motionstone.html">MotionStone：用 DiT 解耦运动强度调制的图像到视频生成</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-instructpix2pix.html">InstructPix2Pix：用合成监督建立自然语言图像编辑接口</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-diffeditor.html">DiffEditor：以区域采样与图像提示提升细粒度扩散编辑</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">19</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-04-12-anyedit.html">AnyEdit：面向任意创意的统一高质量图像编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-12-fireedit.html">FireEdit：基于区域感知视觉语言模型的细粒度指令图像编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-12-insightedit.html">InsightEdit：迈向更强指令跟随的图像编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-anydoor.html">AnyDoor：训练一次的零样本对象级图像定制</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-contrastive-denoising-score.html">Contrastive Denoising Score：用自注意力对比正则保持编辑结构</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-diffeditor.html">DiffEditor：以区域采样与图像提示提升细粒度扩散编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-dreambooth.html">DreamBooth：以少样本全模型微调实现主体驱动生成</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-gligen.html">GLIGEN：以冻结基础模型和门控适配器实现开放集合 grounded 生成</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-imagen-editor-editbench.html">Imagen Editor 与 EditBench：推进并评测文本引导图像修补</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-instructpix2pix.html">InstructPix2Pix：用合成监督建立自然语言图像编辑接口</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-insvie-1m.html">InsViE-1M：通过精细数据构造实现 instruction-based 视频编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-latent-diffusion-models.html">Latent Diffusion Models：高分辨率图像合成的潜空间扩散框架</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-motionstone.html">MotionStone：用 DiT 解耦运动强度调制的图像到视频生成</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-null-text-inversion.html">NULL-Text Inversion：用 guided diffusion 编辑真实图像</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-pathways-image-manifold.html">Pathways on the Image Manifold：通过视频生成做图像编辑</a><span>Source note</span></li><li><a href="../../en/topics/image-editing.html">图像编辑</a><span>Topic</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li><li><a href="../../en/topics/vision-backbones.html">Mainstream Vision Backbones</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;question-data-vs-architecture-in-image-editing&quot;,
   &quot;type&quot;: &quot;question&quot;,
   &quot;title&quot;: &quot;图像编辑的进步主要来自数据扩展还是架构升级&quot;,
   &quot;status&quot;: &quot;open&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-17&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;image-editing&quot;,
@@ -142,7 +175,7 @@
     &quot;sources/2026-04-14-instructpix2pix&quot;,
     &quot;sources/2026-04-14-diffeditor&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

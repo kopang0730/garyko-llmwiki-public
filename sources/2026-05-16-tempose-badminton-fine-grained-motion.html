@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="TemPose：面向羽毛球细粒度动作识别的骨架 Transformer">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>TemPose：面向羽毛球细粒度动作识别的骨架 Transformer · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-16-tempose-badminton-fine-grained-motion&quot;, &quot;title&quot;: &quot;TemPose：面向羽毛球细粒度动作识别的骨架 Transformer&quot;, &quot;title_en&quot;: &quot;TemPose：面向羽毛球细粒度动作识别的骨架 Transformer&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;representation-learning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-16-tempose-badminton-fine-grained-motion&quot;, &quot;title&quot;: &quot;TemPose：面向羽毛球细粒度动作识别的骨架 Transformer&quot;, &quot;title_en&quot;: &quot;TemPose：面向羽毛球细粒度动作识别的骨架 Transformer&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;representation-learning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,13 +60,15 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-05-16-tempose-badminton-fine-grained-motion.html">中文</a><a class="" href="../en/sources/2026-05-16-tempose-badminton-fine-grained-motion.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-05-16</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>TemPose：面向羽毛球细粒度动作识别的骨架 Transformer</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-05-16</p>
         <h1><span class="title-main">TemPose</span><span class="title-subtitle">面向羽毛球细粒度动作识别的骨架 Transformer</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR Workshop 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023-06-01</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-05-16</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2023W/CVSports/html/Ibh_TemPose_A_New_Skeleton-Based_Transformer_Model_Designed_for_Fine-Grained_Motion_CVPRW_2023_paper.html" title="https://openaccess.thecvf.com/content/CVPR2023W/CVSports/html/Ibh_TemPose_A_New_Skeleton-Based_Transformer_Model_Designed_for_Fine-Grained_Motion_CVPRW_2023_paper.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>openaccess.thecvf.com · Ibh_TemPose_A_New_Skeleton-Base…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2023W/CVSports/papers/Ibh_TemPose_A_New_Skeleton-Based_Transformer_Model_Designed_for_Fine-Grained_Motion_CVPRW_2023_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2023W/CVSports/papers/Ibh_TemPose_A_New_Skeleton-Based_Transformer_Model_Designed_for_Fine-Grained_Motion_CVPRW_2023_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Ibh_TemPose_A_New_Skeleton-Base…</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#representation-learning">#representation-learning</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR Workshop 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023-06-01</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-05-16</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2023W/CVSports/html/Ibh_TemPose_A_New_Skeleton-Based_Transformer_Model_Designed_for_Fine-Grained_Motion_CVPRW_2023_paper.html" title="https://openaccess.thecvf.com/content/CVPR2023W/CVSports/html/Ibh_TemPose_A_New_Skeleton-Based_Transformer_Model_Designed_for_Fine-Grained_Motion_CVPRW_2023_paper.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>openaccess.thecvf.com · Ibh_TemPose_A_New_Skeleton-Base…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2023W/CVSports/papers/Ibh_TemPose_A_New_Skeleton-Based_Transformer_Model_Designed_for_Fine-Grained_Motion_CVPRW_2023_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2023W/CVSports/papers/Ibh_TemPose_A_New_Skeleton-Based_Transformer_Model_Designed_for_Fine-Grained_Motion_CVPRW_2023_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Ibh_TemPose_A_New_Skeleton-Base…</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#关键图示">关键图示</a></li><li><a href="#核心实验与结果">核心实验与结果</a></li><li><a href="#对当前-wiki-判断的影响">对当前 wiki 判断的影响</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#原始材料">原始材料</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
 <p>TemPose 是 BST related work 里最直接的 badminton fine-grained motion 锚点：它用骨架 Transformer 建模多人、可变长度的羽毛球动作序列，并把 shuttlecock position 与 player court position 作为额外输入流，证明羽毛球击球语义可以从球路 tracking 过渡到姿态驱动的细粒度动作识别。</p>
 <h2 id="论文定位">论文定位</h2>
 <p>这篇论文填补 <a class="wikilink" href="../sources/2026-05-16-bst-badminton-stroke-type-transformer.html">sources/2026-05-16-bst-badminton-stroke-type-transformer</a> 前面的关键方法层：BST 更像后续 stroke-type classifier，TemPose 则更清楚地说明“骨架序列 + 时间注意力 + 人际交互层”如何在羽毛球场景中工作。它和 <a class="wikilink" href="../sources/2026-04-25-st-gcn.html">sources/2026-04-25-st-gcn</a> 构成从 ST-GCN 到 Transformer 的方法演化，也和 <a class="wikilink" href="../sources/2026-05-16-protogcn-skeleton-action-recognition.html">sources/2026-05-16-protogcn-skeleton-action-recognition</a> 一起支撑 skeleton-based action recognition 在体育动作中的细粒度化趋势。</p>
@@ -111,7 +119,11 @@
 <li><a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
 <li><a class="wikilink" href="../questions/question-badminton-stroke-correction-demo.html">questions/question-badminton-stroke-correction-demo</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li><li><a class="wikilink" href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li><li><a class="wikilink" href="../topics/video-understanding.html">视频理解</a></li></ul></div><div class="related-group related-entities"><h3>相关实体<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../entities/sportsmot.html">SportsMOT</a></li></ul></div><div class="related-group related-questions"><h3>相关问题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">9</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a><span>问题</span></li><li><a href="../sources/2026-05-16-bst-badminton-stroke-type-transformer.html">BST：面向羽毛球击球类型识别的骨架动作 Transformer</a><span>来源笔记</span></li><li><a href="../sources/2026-05-16-shuttleset-stroke-level-badminton-dataset.html">ShuttleSet：人工标注的羽毛球单打 stroke-level 数据集</a><span>来源笔记</span></li><li><a href="../sources/2026-05-16-skateformer-skeletal-temporal-transformer.html">SkateFormer：用四类骨架—时间分区实现高效联合注意力</a><span>来源笔记</span></li><li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a><span>主题</span></li><li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a><span>主题</span></li><li><a href="../topics/video-understanding.html">视频理解</a><span>主题</span></li><li><a href="../topics/vision-backbones.html">主流视觉 Backbone 入门</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-05-16-tempose-badminton-fine-grained-motion&quot;,
   &quot;type&quot;: &quot;source&quot;,
   &quot;title&quot;: &quot;TemPose：面向羽毛球细粒度动作识别的骨架 Transformer&quot;,
@@ -152,7 +164,7 @@
   &quot;questions&quot;: [
     &quot;questions/question-badminton-stroke-correction-demo&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

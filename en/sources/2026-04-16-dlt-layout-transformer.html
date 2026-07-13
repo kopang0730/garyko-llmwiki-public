@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DLT：把 layout generation 做成离散-连续联合 diffusion · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="DLT：以联合离散—连续 Transformer diffusion 做属性级布局生成">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>DLT：以联合离散—连续 Transformer diffusion 做属性级布局生成 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-dlt-layout-transformer&quot;, &quot;title&quot;: &quot;DLT（ICCV 2023）：把 layout generation 做成离散-连续联合 diffusion&quot;, &quot;title_en&quot;: &quot;DLT（ICCV 2023）：把 layout generation 做成离散-连续联合 diffusion&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-dlt-layout-transformer&quot;, &quot;title&quot;: &quot;DLT：以联合离散—连续 Transformer diffusion 做属性级布局生成&quot;, &quot;title_en&quot;: &quot;DLT：以联合离散—连续 Transformer diffusion 做属性级布局生成&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;conditioning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,59 +60,97 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-16-dlt-layout-transformer.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-16-dlt-layout-transformer.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-16</p>
-        <h1><span class="title-main">DLT</span><span class="title-subtitle">把 layout generation 做成离散-连续联合 diffusion</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>DLT：以联合离散—连续 Transformer diffusion 做属性级布局生成</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">DLT</span><span class="title-subtitle">以联合离散—连续 Transformer diffusion 做属性级布局生成</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2023/03/07</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2303.03755" title="https://arxiv.org/abs/2303.03755" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2303.03755</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2303.03755.pdf" title="https://arxiv.org/pdf/2303.03755.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2303.03755.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#conditioning">#conditioning</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把布局控制本身变成 diffusion 的一个正式建模对象：它同时处理离散类别和连续位置/尺寸，让用户可以对任意属性子集做条件布局生成。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2023-03-07</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2303.03755" title="https://arxiv.org/abs/2303.03755" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2303.03755</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2303.03755.pdf" title="https://arxiv.org/pdf/2303.03755.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2303.03755.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#layout-条件接口">Layout 条件接口</a></li><li><a href="#数据-训练与成本">数据、训练与成本</a></li><li><a href="#核心结果">核心结果</a></li><li><a href="#关键消融">关键消融</a><ol><li class="toc-sub"><a href="#条件机制">条件机制</a></li><li class="toc-sub"><a href="#联合过程">联合过程</a></li></ol></li><li><a href="#backbone-证据边界">Backbone 证据边界</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li><li><a href="#证据评级">证据评级</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>DLT 用同一个 4 层 Transformer encoder 联合去噪离散类别与连续 boxes，并在训练中显式标记任意 class/size/location 条件子集；它在 RICO、PubLayNet、Magazine 多数布局指标上领先，但输出只是结构化 layout，不渲染图像，100-step 推理也不是 image DiT 或通用扩散加速证据。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>真实世界布局生成既有离散变量，如组件类别，也有连续变量，如位置与尺寸。扩散模型虽然强，但如何自然处理这种混合表示，并支持交互式部分条件控制，一直不清楚。</p>
+<p>graphic layout 同时含离散类别与连续位置/尺寸。把几何量化成 token 会损失精度；只在推理期覆盖已知属性，又不能让模型区分固定条件和待生成属性。DLT 将两种随机过程联合训练，并引入属性级 condition embedding。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>DLT 提出 Joint Discrete-Continuous Diffusion Layout Transformer，用 transformer backbone 同时建模类别、位置和尺寸，并通过灵活 conditioning 机制支持对任意属性子集做条件布局生成。</p>
-<h2 id="关键发现">关键发现</h2>
 <ul>
-<li>它把 batch-f 从“图像里的 controllability”推进到“布局本身的 controllability”，说明 composition 并不只是最终渲染阶段的问题。</li>
-<li>DLT 和 <a class="wikilink" href="../../en/sources/2026-04-14-layoutdiffusion.html">sources/2026-04-14-layoutdiffusion</a> 形成一组很有价值的 layout evidence：一个做 layout-to-image，一个做 conditioned layout generation。</li>
-<li>它说明 diffusion 的控制接口可以前移到更抽象的中间表示层，而不是只在像素生成阶段施加约束。</li>
-<li>在本库里，这篇工作帮助我们把 guidance / layout composition 看成同一条更长的控制链。</li>
+<li>boxes $\bar x_0\in\mathbb R^{N\times4}$ 使用 Gaussian diffusion，网络直接预测 clean coordinates。</li>
+<li>classes $\bar y_0$ 使用 [MASK] absorbing discrete diffusion，网络预测 clean class logits。</li>
+<li>联合目标：$L_{model}=5L_{box}+L_{cls}$；两个预测头都读取 noisy boxes/classes 与条件。</li>
+<li>每个组件 embedding 拼接 position、size、class；每个属性若是条件，加入独立 binary condition embedding。</li>
+<li>训练随机采样 category、category+size、unconditional，并只对未条件属性计算 loss。</li>
 </ul>
+<h2 id="layout-条件接口">Layout 条件接口</h2>
+<table><thead><tr><th>接口</th><th>已知输入</th><th>生成输出</th></tr></thead><tbody><tr><td>category</td><td>所有组件类别</td><td>位置与尺寸</td></tr><tr><td>category+size</td><td>类别与尺寸</td><td>位置</td></tr><tr><td>unconditional</td><td>无</td><td>类别、位置、尺寸</td></tr><tr><td>任意属性子集</td><td>部分组件的 class/size/location</td><td>其余属性</td></tr></tbody></table>
+<p>输出不包含元素内容、字体、图标或页面像素；组件数量固定上限，实验排除 &gt;10 components。</p>
+<h2 id="数据-训练与成本">数据、训练与成本</h2>
+<table><thead><tr><th>数据集</th><th>样本</th><th>类别</th><th>划分/过滤</th></tr></thead><tbody><tr><td>RICO</td><td>91K</td><td>27（保留 top 13）</td><td>85/5/10；≤10 elements</td></tr><tr><td>PubLayNet</td><td>330K</td><td>5</td><td>official split；≤10 elements</td></tr><tr><td>Magazine</td><td>4K</td><td>6</td><td>official split</td></tr></tbody></table>
+<ul>
+<li>Transformer encoder：4 layers、8 heads、hidden 512；线性 box/class heads。</li>
+<li>cosine schedule；连续 100 steps，离散步数 $T/10$；$eta=0.15$。</li>
+<li>训练时三种标准条件设置均匀采样；推理 100 steps。</li>
+<li>未报告 GPU、参数量、训练 steps/epochs、wall-clock、显存或绝对延迟。</li>
+<li>相对 LT/BLT/VTN：RICO/PubLayNet 推理约慢 2×，Magazine 约快 1.65×。</li>
+</ul>
+<h2 id="核心结果">核心结果</h2>
+<table><thead><tr><th>数据/条件</th><th>DLT FID↓</th><th>最佳 baseline FID↓</th></tr></thead><tbody><tr><td>PubLayNet category</td><td><strong>10.3</strong></td><td>VTN 22.1</td></tr><tr><td>PubLayNet category+size</td><td><strong>11.4</strong></td><td>VTN 17.9</td></tr><tr><td>PubLayNet unconditional</td><td><strong>13.8</strong></td><td>VTN 14.5</td></tr><tr><td>RICO category / category+size / unconditional</td><td><strong>9.5 / 6.3 / 13.9</strong></td><td>14.3 / 7.1 / 15.2</td></tr><tr><td>Magazine category / category+size / unconditional</td><td><strong>26.2 / 21.7 / 40.9</strong></td><td>37.6 / 27.3 / 42.6</td></tr></tbody></table>
+<p>DLT 在多数 FID、pIOU、Overlap、DocSim 上领先；Alignment 并非所有设置最佳。FID 来自布局分类网络 feature，不可与图像 Inception FID 横向比较。</p>
+<h2 id="关键消融">关键消融</h2>
+<h3 id="条件机制">条件机制</h3>
+<p>PubLayNet category+size + 半数位置固定：仅推理期 editing / 无 condition embedding / 完整 DLT 的 FID 为 <strong>14.1 / 4.3 / 2.9</strong>；Overlap 为 16.6 / 5.3 / 4.5。该设置直接支持训练期 conditioning 与显式属性状态。</p>
+<p>附录同时显示：当所有组件的条件状态一致时，condition embedding 影响很小；其主要价值在同一属性跨组件混合“固定/生成”时消除歧义。</p>
+<h3 id="联合过程">联合过程</h3>
+<p>PubLayNet unconditional FID：class-before-box 50.8，box-before-class 20.5，joint 20.1；joint 推理约比串行快 2×。因此联合优势对第一种顺序很强，对第二种顺序只有小幅质量改善。</p>
+<h2 id="backbone-证据边界">Backbone 证据边界</h2>
+<p>DLT 的 Transformer 是<strong>结构化 layout component denoiser</strong>：不处理 image patches，没有 VAE/VQGAN、U-Net 或 image decoder。它可支持“Transformer 用于 mixed-type layout diffusion”，但不能作为图像 DiT scaling、采用率或画质证据；论文引用 DiT 只是相关背景。</p>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>它更偏布局生成建模，不直接回答最终图像质量与真实感问题。</li>
-<li>与直接对图像采样施加控制的方法相比，它需要一条更长的中间表示链路。</li>
-<li>当前价值更多在方法谱系定位：说明 controllability 还在持续往抽象结构层前移。</li>
+<li>作者明确指出没有建模组件内容，无法用内容语义解决布局歧义。</li>
+<li>只测三类 graphic layout，没有真实用户工作流与下游渲染评估。</li>
+<li>100-step sampling，绝对交互延迟未知。</li>
+<li>过滤复杂页面，长度外推不足。</li>
+<li>Magazine 只有 4K 样本。</li>
+<li>没有参数量和训练成本，也没有与同期 LayoutDiffusion 的直接对照。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li><strong>直接支持</strong>：联合离散—连续 diffusion 与训练期属性状态 embedding 可实现细粒度 layout conditioning。</li>
+<li><strong>有限支持</strong>：joint process 相比串行更快且通常更好，优势依赖串行顺序。</li>
+<li><strong>不支持</strong>：最终图像生成、低延迟、无限长度 layout、image DiT 主干趋势。</li>
+<li>与 efficiency engineering 的关系只限相对 runtime，不应作为通用加速证据。</li>
 </ul>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2303.03755</li>
-<li>https://arxiv.org/pdf/2303.03755.pdf</li>
+<li><a href="https://arxiv.org/abs/2303.03755">arXiv abstract</a></li>
+<li><a href="https://arxiv.org/pdf/2303.03755.pdf">PDF</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-layoutdiffusion.html">sources/2026-04-14-layoutdiffusion</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-multidiffusion.html">sources/2026-04-16-multidiffusion</a></li>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-layoutdiffusion-graphic-layout-generation.html">LayoutDiffusion（graphic layout）</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-14-layoutdiffusion.html">LayoutDiffusion（layout-to-image）</a></li>
 </ul>
-<h2 id="备注">备注</h2>
-<p>它在本库中的价值，是把 control / layout composition 这条长尾从“prompt 可以控制一点生成”推进到“attention、语义覆盖、布局建模和多路径组合都能成为独立接口设计问题”。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<h2 id="证据评级">证据评级</h2>
+<p><strong>A-</strong>：有界 graphic layout 属性级条件生成的强主证据；内容、复杂长度、绝对成本与 image generation 外推受限。</p></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">5</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-04-16-layoutdiffusion-graphic-layout-generation.html">LayoutDiffusion：面向离散 graphic layout 的专用腐化与免重训条件生成</a><span>Source note</span></li><li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>Topic</span></li><li><a href="../../en/topics/diffusion-models.html">扩散模型</a><span>Topic</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-16-dlt-layout-transformer&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;DLT（ICCV 2023）：把 layout generation 做成离散-连续联合 diffusion&quot;,
+  &quot;title&quot;: &quot;DLT：以联合离散—连续 Transformer diffusion 做属性级布局生成&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-16&quot;,
-  &quot;updated&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;ICCV 2023&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;image-generation&quot;,
     &quot;diffusion&quot;,
+    &quot;conditioning&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
@@ -117,7 +161,7 @@
     &quot;Mykola Mykhailych&quot;,
     &quot;Meir Perez&quot;
   ],
-  &quot;published_at&quot;: &quot;2023/03/07&quot;,
+  &quot;published_at&quot;: &quot;2023-03-07&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2303.03755&quot;,
     &quot;https://arxiv.org/pdf/2303.03755.pdf&quot;
@@ -125,13 +169,12 @@
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-16-dlt-layout-transformer/&quot;,
   &quot;topics&quot;: [
     &quot;topics/image-generation&quot;,
-    &quot;topics/diffusion-models&quot;,
-    &quot;topics/diffusion-efficiency-engineering&quot;
+    &quot;topics/diffusion-models&quot;
   ],
   &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

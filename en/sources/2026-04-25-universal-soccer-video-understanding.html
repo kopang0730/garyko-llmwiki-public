@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Universal Soccer Video Understanding：统一足球视频理解锚点 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="SoccerReplay-1988 and MatchVision provide a large soccer multimodal dataset and a shared encoder for events, commentary, and foul recognition.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Towards Universal Soccer Video Understanding · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-25-universal-soccer-video-understanding&quot;, &quot;title&quot;: &quot;Universal Soccer Video Understanding（CVPR 2025）：统一足球视频理解锚点&quot;, &quot;title_en&quot;: &quot;Universal Soccer Video Understanding（CVPR 2025）：统一足球视频理解锚点&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;reasoning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-25-universal-soccer-video-understanding&quot;, &quot;title&quot;: &quot;Towards Universal Soccer Video Understanding：足球专用多任务视觉编码器&quot;, &quot;title_en&quot;: &quot;Towards Universal Soccer Video Understanding&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;reasoning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,51 +60,73 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-25-universal-soccer-video-understanding.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-25-universal-soccer-video-understanding.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-25</p>
-        <h1><span class="title-main">Universal Soccer Video Understanding</span><span class="title-subtitle">统一足球视频理解锚点</span></h1>
-        
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-06-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-25</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2025/papers/Rao_Towards_Universal_Soccer_Video_Understanding_CVPR_2025_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2025/papers/Rao_Towards_Universal_Soccer_Video_Understanding_CVPR_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Rao_Towards_Universal_Soccer_Vi…</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Towards Universal Soccer Video Understanding</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">Towards Universal Soccer Video Understanding</span></h1>
+        <p class="article-summary">SoccerReplay-1988 and MatchVision provide a large soccer multimodal dataset and a shared encoder for events, commentary, and foul recognition.</p>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#reasoning">#reasoning</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>把足球视频、事件、文本解说和统一多模态理解连接起来，是报告中 MatchVision / SoccerReplay-1988 线索的 primary evidence 锚点。</p>
-<h2 id="论文定位">论文定位</h2>
-<p>Towards Universal Soccer Video Understanding 试图把足球视频、事件与语言线索整合成统一理解框架，对应报告中的 MatchVision / SoccerReplay-1988 方向。</p>
-<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
-<p>它把体育 AI 从单任务数据集推向多模态足球理解，适合承接战术检索、事件分类和解说生成。</p>
-<h2 id="和现有证据的关系">和现有证据的关系</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-06-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-25</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2025/html/Rao_Towards_Universal_Soccer_Video_Understanding_CVPR_2025_paper.html" title="https://openaccess.thecvf.com/content/CVPR2025/html/Rao_Towards_Universal_Soccer_Video_Understanding_CVPR_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Rao_Towards_Universal_Soccer_Vi…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2025/papers/Rao_Towards_Universal_Soccer_Video_Understanding_CVPR_2025_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2025/papers/Rao_Towards_Universal_Soccer_Video_Understanding_CVPR_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Rao_Towards_Universal_Soccer_Vi…</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#数据与标注协议">数据与标注协议</a></li><li><a href="#方法与成本">方法与成本</a></li><li><a href="#关键结果">关键结果</a></li><li><a href="#消融与-split-风险">消融与 split 风险</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对羽毛球四层-pipeline-的价值">对羽毛球四层 pipeline 的价值</a></li><li><a href="#深分析与原始材料">深分析与原始材料</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>SoccerReplay-1988 用 1,988 场完整足球比赛训练 MatchVision，使同一时空视觉编码器可接事件分类、解说生成和多视角犯规识别 heads；“universal” 限定在共享 encoder，不包含 tracking、球轨迹、比赛状态或战术闭环。</p>
+<h2 id="数据与标注协议">数据与标注协议</h2>
 <ul>
-<li>与 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它把体育 AI 的证据面从 tracking 扩展到动作、姿态、战术、比赛状态或高速小目标。</li>
-<li>与 <a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：它对应 roadmap 中下一批 batch 的一个证据节点。</li>
+<li><strong>1,988 场、3,323 小时</strong>，2014–15 至 2023–24 六个欧洲顶级赛事；360p–720p、25–30 FPS。</li>
+<li>Train/val/test 按完整 match 为 <strong>1,488/250/250</strong>，优于 frame-level random split。</li>
+<li>约 150K commentaries、150K 自动 event labels、24 类；MatchTime 对齐，LLaMA-3-70B 从 commentary 归纳 event。</li>
+<li>只随机人工核验 2% 标签，报告 <strong>98% accuracy</strong>；没有逐类、时间边界或标注者一致性。</li>
+<li>SoccerReplay-test 为 250 场本数据 test + 50 场 SoccerNet-pro。</li>
 </ul>
+<h2 id="方法与成本">方法与成本</h2>
+<p>MatchVision 以 SigLIP Base-16 初始化，30 秒窗口按 <strong>1 FPS</strong> 采约 30 帧，224×224；交替 temporal/spatial attention 后输出视频特征。支持 supervised event、video-language contrastive 与 hybrid pretraining，下游通常冻结 encoder。</p>
+<p>训练使用 <strong>4× NVIDIA H800</strong>；pretraining 15 epochs、batch 40；downstream 30 epochs；commentary decoder 为 LLaMA-3 8B，联合调优用 rank-16 LoRA。未报告参数量、GPU hours、wall-clock 或吞吐，成本不可完整复核。</p>
+<h2 id="关键结果">关键结果</h2>
+<ul>
+<li>同 supervised soccer data：MatchVision event Top-1 <strong>82.5%</strong>，SigLIP <strong>55.9%</strong>。</li>
+<li>MatchVision supervised + 全数据：Top-1/3/5 <strong>84.0/97.3/99.2</strong>。</li>
+<li>Hybrid + 全数据 commentary：BLEU-1/4 <strong>33.58/9.14</strong>、METEOR <strong>26.82</strong>、ROUGE-L <strong>28.21</strong>、CIDEr <strong>44.18</strong>。</li>
+<li>冻结 MatchVision 在 MVFoul：mean pooling foul Top-1/2、severity Top-1 = <strong>0.44/0.53/0.58</strong>；不同 pooling 有明显 trade-off，并非所有指标都最优。</li>
+</ul>
+<h2 id="消融与-split-风险">消融与 split 风险</h2>
+<p>SoccerReplay-test 上加入 SR 后，event Top-1：supervised 62.67→68.03、contrastive 46.97→57.41、hybrid 56.86→63.59。Commentary 中只训练视觉侧 head 的 CIDEr 30.77→45.85；联合调视觉与 LLM 为 30.81→43.18，说明更多可训练组件不必然更好。</p>
+<p>Match-level split 避免同场直接泄漏，但没有按 team/league/season/broadcast source 隔离；同球队、场馆和转播模板可跨集合。SoccerNet-v2 与 MatchTime 的重叠内容被承认并设标签优先级，但没有给全局视频指纹去重审计。</p>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>当前这版 source note 先完成 bibliography-driven 编译，后续可以按 deep-analysis-first 流程补 <code>analysis.md</code>、关键图页和实验细节。</li>
-<li>具体数值和 benchmark 细节应以 <code>raw/ingest/2026-04-25-universal-soccer-video-understanding/paper-text.md</code> 与原始 PDF 为准。</li>
+<li>只覆盖 event、commentary、foul；tracking 和 dense captioning 尚属未来工作。</li>
+<li>主要欧洲男足顶级联赛；跨地域、女子、业余和非标准视频泛化未知。</li>
+<li>1 FPS 不适合高速球接触、精细姿态或 hit-frame。</li>
+<li>自动文本指标不能保证事实正确；补充样例仍有红牌误说成黄牌。</li>
+<li>2% 标签审计不足以证明稀有类质量；无 calibration/failure taxonomy。</li>
 </ul>
-<h2 id="原始材料">原始材料</h2>
+<h2 id="对羽毛球四层-pipeline-的价值">对羽毛球四层 pipeline 的价值</h2>
+<p>对 <code>shuttle tracking → court/3D reconstruction → hit/phase alignment → action quality assessment</code> 没有直接能力证据。可迁移的是完整 match split、多任务共享 encoder 和自动标注审计思路；不可迁移的是 1 FPS、足球事件 taxonomy 与足球 benchmark 数字。羽毛球必须单独报告 shuttle/hit/3D/quality 各层指标，<strong>足球结果不得外推羽毛球。</strong></p>
+<h2 id="深分析与原始材料">深分析与原始材料</h2>
 <ul>
+<li><code>raw/ingest/2026-04-25-universal-soccer-video-understanding/analysis.md</code></li>
 <li><code>raw/ingest/2026-04-25-universal-soccer-video-understanding/paper.pdf</code></li>
 <li><code>raw/ingest/2026-04-25-universal-soccer-video-understanding/paper-text.md</code></li>
-<li><code>raw/ingest/2026-04-25-universal-soccer-video-understanding/abstract.md</code></li>
 <li><code>raw/ingest/2026-04-25-universal-soccer-video-understanding/links.yaml</code></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
-<li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
-<li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a></li>
+<li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">体育 AI 路线图</a></li>
+<li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a class="wikilink" href="../../en/topics/video-understanding.html">视频理解</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li><li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li><li><a class="wikilink" href="../../en/topics/video-understanding.html">Video Understanding</a></li></ul></div><div class="related-group related-entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/sportsmot.html">SportsMOT</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">4</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a><span>Topic</span></li><li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a><span>Topic</span></li><li><a href="../../en/topics/video-understanding.html">Video Understanding</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-25-universal-soccer-video-understanding&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Universal Soccer Video Understanding（CVPR 2025）：统一足球视频理解锚点&quot;,
+  &quot;title&quot;: &quot;Towards Universal Soccer Video Understanding：足球专用多任务视觉编码器&quot;,
+  &quot;title_en&quot;: &quot;Towards Universal Soccer Video Understanding&quot;,
+  &quot;summary_en&quot;: &quot;SoccerReplay-1988 and MatchVision provide a large soccer multimodal dataset and a shared encoder for events, commentary, and foul recognition.&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-25&quot;,
-  &quot;updated&quot;: &quot;2026-04-25&quot;,
-  &quot;venue&quot;: &quot;CVPR 2025&quot;,
-  &quot;published_at&quot;: &quot;2025-06-01&quot;,
-  &quot;ingested_at&quot;: &quot;2026-04-25&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;video-understanding&quot;,
@@ -107,10 +135,22 @@
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
-  &quot;authors&quot;: [],
+  &quot;venue&quot;: &quot;CVPR 2025&quot;,
+  &quot;authors&quot;: [
+    &quot;Jiayuan Rao&quot;,
+    &quot;Haoning Wu&quot;,
+    &quot;Hao Jiang&quot;,
+    &quot;Ya Zhang&quot;,
+    &quot;Yanfeng Wang&quot;,
+    &quot;Weidi Xie&quot;
+  ],
+  &quot;published_at&quot;: &quot;2025-06-01&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-25&quot;,
   &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/CVPR2025/html/Rao_Towards_Universal_Soccer_Video_Understanding_CVPR_2025_paper.html&quot;,
     &quot;https://openaccess.thecvf.com/content/CVPR2025/papers/Rao_Towards_Universal_Soccer_Video_Understanding_CVPR_2025_paper.pdf&quot;,
-    &quot;https://openaccess.thecvf.com/content/CVPR2025/papers/Rao_Towards_Universal_Soccer_Video_Understanding_CVPR_2025_paper.pdf&quot;
+    &quot;https://arxiv.org/abs/2412.01820&quot;,
+    &quot;https://jyrao.github.io/UniSoccer/&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-25-universal-soccer-video-understanding/&quot;,
   &quot;topics&quot;: [
@@ -123,7 +163,7 @@
   ],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

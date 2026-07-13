@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="DreamOmni：统一图像生成与编辑">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>DreamOmni：统一图像生成与编辑 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-12-dreamomni&quot;, &quot;title&quot;: &quot;DreamOmni（CVPR 2025）：统一图像生成与编辑&quot;, &quot;title_en&quot;: &quot;DreamOmni（CVPR 2025）：统一图像生成与编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;image-editing&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-12-dreamomni&quot;, &quot;title&quot;: &quot;DreamOmni（CVPR 2025）：统一图像生成与编辑&quot;, &quot;title_en&quot;: &quot;DreamOmni（CVPR 2025）：统一图像生成与编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;image-editing&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,13 +60,15 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-12-dreamomni.html">中文</a><a class="" href="../en/sources/2026-04-12-dreamomni.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-17</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>DreamOmni：统一图像生成与编辑</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-04-17</p>
         <h1><span class="title-main">DreamOmni</span><span class="title-subtitle">统一图像生成与编辑</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2025</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2025-06-11</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-12</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2025/html/Xia_DreamOmni_Unified_Image_Generation_and_Editing_CVPR_2025_paper.html" title="https://openaccess.thecvf.com/content/CVPR2025/html/Xia_DreamOmni_Unified_Image_Generation_and_Editing_CVPR_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>openaccess.thecvf.com · Xia_DreamOmni_Unified_Image_Gen…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2025/papers/Xia_DreamOmni_Unified_Image_Generation_and_Editing_CVPR_2025_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2025/papers/Xia_DreamOmni_Unified_Image_Generation_and_Editing_CVPR_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Xia_DreamOmni_Unified_Image_Gen…</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#image-editing">#image-editing</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2025</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2025-06-11</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-12</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2025/html/Xia_DreamOmni_Unified_Image_Generation_and_Editing_CVPR_2025_paper.html" title="https://openaccess.thecvf.com/content/CVPR2025/html/Xia_DreamOmni_Unified_Image_Generation_and_Editing_CVPR_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>openaccess.thecvf.com · Xia_DreamOmni_Unified_Image_Gen…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2025/papers/Xia_DreamOmni_Unified_Image_Generation_and_Editing_CVPR_2025_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2025/papers/Xia_DreamOmni_Unified_Image_Generation_and_Editing_CVPR_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Xia_DreamOmni_Unified_Image_Gen…</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#关键发现">关键发现</a></li><li><a href="#关键图示">关键图示</a><ol><li class="toc-sub"><a href="#统一框架与-synthetic-data-pipeline-总览">统一框架与 synthetic data pipeline 总览</a></li><li class="toc-sub"><a href="#instruction-editing-与-drag-editing-结果">instruction editing 与 drag editing 结果</a></li><li class="toc-sub"><a href="#条件控制与主体驱动能力">条件控制与主体驱动能力</a></li></ol></li><li><a href="#核心实验与结果">核心实验与结果</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 wiki 判断的影响</a></li><li><a href="#相关页面">相关页面</a></li><li><a href="#原始链接">原始链接</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
 <p>DreamOmni 证明了统一图像系统可以同时建立在共享框架、共享训练和共享数据工厂之上：当 T2I generation 与 editing 被联合训练，并有 synthetic data pipeline 支持 instruction editing 与 drag editing 数据扩展时，统一路线会更具可用性和编辑性能。</p>
 <h2 id="论文定位">论文定位</h2>
 <p>这篇论文是统一图像生成-编辑路线中的“联合训练 + synthetic data pipeline”代表作，重点在于把框架统一和数据扩展放在同一张设计图里。</p>
@@ -135,7 +143,11 @@
 <li>https://openaccess.thecvf.com/content/CVPR2025/html/Xia_DreamOmni_Unified_Image_Generation_and_Editing_CVPR_2025_paper.html</li>
 <li>https://openaccess.thecvf.com/content/CVPR2025/papers/Xia_DreamOmni_Unified_Image_Generation_and_Editing_CVPR_2025_paper.pdf</li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li><li><a class="wikilink" href="../topics/image-editing.html">图像编辑</a></li></ul></div><div class="related-group related-entities"><h3>相关实体<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li></ul></div><div class="related-group related-claims"><h3>相关判断<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li></ul></div><div class="related-group related-questions"><h3>相关问题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">9</span></h2><ul><li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a><span>判断</span></li><li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a><span>实体</span></li><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a><span>问题</span></li><li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a><span>问题</span></li><li><a href="../topics/diffusion-models.html">扩散模型</a><span>主题</span></li><li><a href="../topics/image-editing.html">图像编辑</a><span>主题</span></li><li><a href="../topics/image-generation.html">图像生成</a><span>主题</span></li><li><a href="../topics/vision-language.html">视觉-语言</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-12-dreamomni&quot;,
   &quot;type&quot;: &quot;source&quot;,
   &quot;title&quot;: &quot;DreamOmni（CVPR 2025）：统一图像生成与编辑&quot;,
@@ -184,7 +196,7 @@
   &quot;questions&quot;: [
     &quot;questions/question-will-unified-image-models-sustain-their-advantage&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

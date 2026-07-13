@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Towards Practical Plug-and-Play Diffusion Models：把 diffusion 提速做成可插拔工程模块 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="Towards Practical Plug-and-Play Diffusion Models：噪声分段外部 guidance 工程">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Towards Practical Plug-and-Play Diffusion Models：噪声分段外部 guidance 工程 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-towards-practical-plug-and-play-diffusion-models&quot;, &quot;title&quot;: &quot;Towards Practical Plug-and-Play Diffusion Models（CVPR 2023）：把 diffusion 提速做成可插拔工程模块&quot;, &quot;title_en&quot;: &quot;Towards Practical Plug-and-Play Diffusion Models（CVPR 2023）：把 diffusion 提速做成可插拔工程模块&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-towards-practical-plug-and-play-diffusion-models&quot;, &quot;title&quot;: &quot;Towards Practical Plug-and-Play Diffusion Models：噪声分段外部 guidance 工程&quot;, &quot;title_en&quot;: &quot;Towards Practical Plug-and-Play Diffusion Models：噪声分段外部 guidance 工程&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;control&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,60 +60,90 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-16-towards-practical-plug-and-play-diffusion-models.html">中文</a><a class="" href="../en/sources/2026-04-16-towards-practical-plug-and-play-diffusion-models.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-16</p>
-        <h1><span class="title-main">Towards Practical Plug-and-Play Diffusion Models</span><span class="title-subtitle">把 diffusion 提速做成可插拔工程模块</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Towards Practical Plug-and-Play Diffusion Models：噪声分段外部 guidance 工程</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">Towards Practical Plug-and-Play Diffusion Models</span><span class="title-subtitle">噪声分段外部 guidance 工程</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2022/12/12</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2212.05973" title="https://arxiv.org/abs/2212.05973" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2212.05973</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2212.05973.pdf" title="https://arxiv.org/pdf/2212.05973.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2212.05973.pdf</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#efficiency">#efficiency</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#control">#control</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把 plug-and-play guidance 从“能接上去”推进到“能实际用起来”：它用多专家噪声分段指导、参数高效微调和 data-free knowledge transfer，让公开 diffusion 模型更容易接入分类、深度估计和分割等外部 guidance 模块。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2022-12-12</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2212.05973" title="https://arxiv.org/abs/2212.05973" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2212.05973</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2212.05973.pdf" title="https://arxiv.org/pdf/2212.05973.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2212.05973.pdf</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#实验设置">实验设置</a></li><li><a href="#核心结果">核心结果</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#架构与-dit-证据边界">架构与 DiT 证据边界</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>PPAP 用 timestep 分段 experts、LoRA/BN/bias 适配和 500k 合成样本知识迁移，让现成分类/深度/分割模型能引导 ADM/GLIDE；它降低人工标签和 adapter 参数成本，但并非零训练、无损或直接提速，也不是 DiT 证据。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>diffusion 的一个强点，是可以让外部模型以 guidance 的形式插入 reverse process，从而实现无需重训 diffusion backbone 的条件控制。真正的落地难点在于，现成的 off-the-shelf guidance model 面对 noisy input 时表现很差，而传统做法往往要求用带噪标注数据重新微调 guidance model，这会抬高任务扩展成本，也限制 plug-and-play 的可扩展性。</p>
+<p>clean-image off-the-shelf model 面对 noisy diffusion states 时置信度低、梯度失效；单个 noise-aware model 又难覆盖从粗结构到细节的全部噪声区间。若为每个任务重新收集带标签 noisy data 并全量微调，plug-and-play 很难扩展。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>作者提出 PPAP（Practical Plug-And-Play）框架。核心思路有三层：先承认不同噪声区间需要不同专长，因此用多个 expert 分别处理对应 timestep；再用 parameter-efficient fine-tuning 降低可训练参数规模；最后用 data-free knowledge transfer 避免为每个新 guidance 任务准备带标签数据。这样就把 plug-and-play diffusion 从依赖重数据和重微调的流程，改造成更轻量、更可迁移的工程模块。</p>
-<h2 id="关键发现">关键发现</h2>
+<ol>
+<li><strong>Multi-experts</strong>：将 <code>T=1000</code> 分成 N 个噪声区间，每个 expert 负责一段；高噪声塑造粗结构，低噪声补细节。</li>
+<li><strong>Parameter-efficient adaptation</strong>：冻结 backbone，只训练 LoRA、bias、batch norm；反向时按 timestep 切 adapter，每步只运行一个 expert。</li>
+<li><strong>Data-free knowledge transfer</strong>：diffusion 先生成 clean images，冻结 off-the-shelf teacher 产生 soft targets，各 noisy expert 模仿 teacher；“data-free”指无原训练集/人工标签，不是无数据。</li>
+</ol>
+<h2 id="实验设置">实验设置</h2>
 <ul>
-<li>它把 <a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a> 里的 efficiency 主线补到模块化控制层：提速与部署优化现在已经覆盖步数压缩、solver/guidance 蒸馏、量化和 plug-and-play guidance 工程化。</li>
-<li>论文说明单一 guidance model 很难覆盖极宽的 noise range，因此“按 timestep 分工”的多专家结构是 practical plug-and-play 的关键。</li>
-<li>它和 <a class="wikilink" href="../sources/2026-04-16-on-distillation-of-guided-diffusion-models.html">sources/2026-04-16-on-distillation-of-guided-diffusion-models</a> 形成互补：后者压缩 guided sampling 本身，这篇降低把外部 guidance 接进系统的工程门槛。</li>
-<li>论文展示 image classifier、depth estimator、semantic segmentation model 都可以通过这个框架去引导公开 GLIDE，说明 diffusion 的控制接口开始具备更通用的插件化潜力。</li>
+<li>生成 backbone：ImageNet unconditional <strong>ADM 256×256</strong>；DDIM 25 与 DDPM 250。</li>
+<li>Guidance：ResNet50、DeiT-S；variants 包含 naive、single noise-aware、supervised multi-experts、PPAP-5/10。</li>
+<li>训练：500k generated images、300k iterations、AdamW、8×A100；10k samples 上测 FID/IS/precision/recall。</li>
+<li>下游：unconditional <strong>GLIDE</strong> generator + ResNet50/MiDaS/DeepLabv3；只有质化评测。</li>
+</ul>
+<h2 id="核心结果">核心结果</h2>
+<table><thead><tr><th>ADM 设置</th><th>No</th><th>Single noise-aware</th><th>Supervised 5 experts</th><th>PPAP-5</th><th>PPAP-10</th></tr></thead><tbody><tr><td>ResNet50, DDIM25 FID/IS</td><td>40.24/34.53</td><td>30.42/43.05</td><td><strong>19.98/74.78</strong></td><td>29.65/44.23</td><td>27.86/46.74</td></tr><tr><td>ResNet50, DDPM250 FID/IS</td><td>28.97/40.34</td><td>38.15/31.29</td><td><strong>16.37/81.47</strong></td><td>22.70/52.74</td><td>21.00/57.38</td></tr><tr><td>DeiT-S, DDPM250 FID/IS</td><td>28.97/40.34</td><td>36.01/31.90</td><td><strong>14.95/83.26</strong></td><td>22.30/53.62</td><td>20.07/60.62</td></tr></tbody></table>
+<p>PPAP 显著优于 naive/single model，但仍落后有标签 full multi-experts。guidance 提高 precision 时常牺牲 recall，不能只看 FID/IS。</p>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>expert 数 1→10 总体持续改善，支持噪声分段 specialization。</li>
+<li>参数公平：5×ResNet18（58.4M）优于单 ResNet152（60M），DDIM25 FID 20.38 vs 29.63。</li>
+<li>单模型加入 timestep embedding 不改善：single FID 30.08/30.42；multi-expert 19.98/19.54。</li>
+<li>data-free 有清楚代价：参数高效 5 experts，ImageNet supervision FID 20.32，而 data-free 29.65。</li>
+<li>50k→500k synthetic data 持续改善；低数据时 parameter-efficient 比 full fine-tuning 更稳。</li>
+<li>guidance scale 约 7.5 是质量与控制折中 sweet spot。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>这篇工作的主轴更偏 guidance framework，而不是直接压缩 backbone 或 sampling solver，因此整体延迟改善会依赖具体任务链路。</li>
-<li>多专家结构提升了噪声区间适配能力，也会带来系统编排复杂度，真实部署中的收益还要看实现细节。</li>
-<li>当前证据主要在图像侧 guidance 任务，视频与更大规模多模态系统里的插件化控制仍值得继续补证。</li>
+<li>GLIDE 训练数据不可得，论文明确认为 reference batch 不适合定量评测，因此 GLIDE 结果只能作为质化可行性。</li>
+<li>仍需 500k 合成图、300k iterations 和多个 adapters；plug-and-play 不等于零训练。</li>
+<li>多 expert 增加训练/存储/编排复杂度，论文没有端到端 latency、显存或能耗实测。</li>
+<li>论文指出 diffusion 与 guidance model 的训练域 mismatch 会限制外部控制；只验证单图输入 guidance。</li>
+<li>视频、多模态、长序列没有证据。</li>
+</ul>
+<h2 id="架构与-dit-证据边界">架构与 DiT 证据边界</h2>
+<ul>
+<li><strong>生成主干：ADM 与 GLIDE，均属于 U-Net diffusion 系列。</strong></li>
+<li>DeiT-S 是外部 classifier guidance，不是 diffusion denoiser；不能把“用了 Transformer classifier”写成“用了 DiT”。</li>
+<li>该论文支持的是通用 diffusion control-interface 工程：外部模型需要 timestep-aware adaptation。它不能支持 DiT 的默认地位、采用率或 scaling；迁移到 DiT 仍需单独实验。</li>
 </ul>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2212.05973</li>
-<li>https://arxiv.org/pdf/2212.05973.pdf</li>
+<li><a href="https://arxiv.org/abs/2212.05973">arXiv 论文页</a></li>
+<li><a href="https://arxiv.org/pdf/2212.05973.pdf">PDF</a></li>
+<li><a href="https://github.com/riiid/PPAP">官方代码</a></li>
+<li>本地全文：<code>raw/ingest/2026-04-16-towards-practical-plug-and-play-diffusion-models/paper-text.md</code></li>
+<li>本地深分析：<code>raw/ingest/2026-04-16-towards-practical-plug-and-play-diffusion-models/analysis.md</code></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
 <li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
 <li><a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a></li>
+<li><a class="wikilink" href="../sources/2026-04-16-self-guided-diffusion-models.html">sources/2026-04-16-self-guided-diffusion-models</a></li>
 <li><a class="wikilink" href="../sources/2026-04-16-on-distillation-of-guided-diffusion-models.html">sources/2026-04-16-on-distillation-of-guided-diffusion-models</a></li>
-<li><a class="wikilink" href="../sources/2026-04-16-post-training-quantization-on-diffusion-models.html">sources/2026-04-16-post-training-quantization-on-diffusion-models</a></li>
-<li><a class="wikilink" href="../sources/2026-04-15-deepcache.html">sources/2026-04-15-deepcache</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>它在本库中的价值，是把 diffusion efficiency 从“更快采样”继续推到“更容易挂接外部能力”。这样这条主线已经同时覆盖算法加速、部署压缩和控制接口工程化。</p></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">6</span></h2><ul><li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a><span>判断</span></li><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-04-16-self-guided-diffusion-models.html">Self-Guided Diffusion Models：用自监督伪标注替代人工 guidance</a><span>来源笔记</span></li><li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>主题</span></li><li><a href="../topics/diffusion-models.html">扩散模型</a><span>主题</span></li><li><a href="../topics/image-generation.html">图像生成</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-16-towards-practical-plug-and-play-diffusion-models&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Towards Practical Plug-and-Play Diffusion Models（CVPR 2023）：把 diffusion 提速做成可插拔工程模块&quot;,
+  &quot;title&quot;: &quot;Towards Practical Plug-and-Play Diffusion Models：噪声分段外部 guidance 工程&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-16&quot;,
-  &quot;updated&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2023&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;image-generation&quot;,
     &quot;diffusion&quot;,
-    &quot;efficiency&quot;,
+    &quot;control&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
@@ -121,7 +157,7 @@
     &quot;Lee, Hyun Seung&quot;,
     &quot;Choi, Seungtaek&quot;
   ],
-  &quot;published_at&quot;: &quot;2022/12/12&quot;,
+  &quot;published_at&quot;: &quot;2022-12-12&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2212.05973&quot;,
     &quot;https://arxiv.org/pdf/2212.05973.pdf&quot;
@@ -134,7 +170,7 @@
   &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

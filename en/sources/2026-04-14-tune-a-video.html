@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tune-A-Video：单样本调优图像扩散模型做文本到视频生成">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>Tune-A-Video：单样本调优图像扩散模型做文本到视频生成 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-tune-a-video&quot;, &quot;title&quot;: &quot;Tune-A-Video（ICCV 2023）：单样本调优图像扩散模型做文本到视频生成&quot;, &quot;title_en&quot;: &quot;Tune-A-Video（ICCV 2023）：单样本调优图像扩散模型做文本到视频生成&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-generation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-tune-a-video&quot;, &quot;title&quot;: &quot;Tune-A-Video（ICCV 2023）：单样本调优图像扩散模型做文本到视频生成&quot;, &quot;title_en&quot;: &quot;Tune-A-Video（ICCV 2023）：单样本调优图像扩散模型做文本到视频生成&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-generation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,51 +60,99 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-tune-a-video.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-tune-a-video.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Tune-A-Video：单样本调优图像扩散模型做文本到视频生成</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
         <h1><span class="title-main">Tune-A-Video</span><span class="title-subtitle">单样本调优图像扩散模型做文本到视频生成</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2023-01-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/ICCV2023/html/Wu_Tune-A-Video_One-Shot_Tuning_of_Image_Diffusion_Models_for_Text-to-Video_Generation_ICCV_2023_paper.html" title="https://openaccess.thecvf.com/content/ICCV2023/html/Wu_Tune-A-Video_One-Shot_Tuning_of_Image_Diffusion_Models_for_Text-to-Video_Generation_ICCV_2023_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Wu_Tune-A-Video_One-Shot_Tuning…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/ICCV2023/papers/Wu_Tune-A-Video_One-Shot_Tuning_of_Image_Diffusion_Models_for_Text-to-Video_Generation_ICCV_2023_paper.pdf" title="https://openaccess.thecvf.com/content/ICCV2023/papers/Wu_Tune-A-Video_One-Shot_Tuning_of_Image_Diffusion_Models_for_Text-to-Video_Generation_ICCV_2023_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Wu_Tune-A-Video_One-Shot_Tuning…</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-generation">#video-generation</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作是早期文本到视频路线的重要锚点，它说明图像扩散模型可以通过极小样本调优被改造成视频生成器。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>它要解决的是文本到视频生成训练成本过高的问题。相较于依赖大规模视频数据直接训练 T2V 模型的路线，Tune-A-Video 提出一种更轻量的设定：只给一个 text-video 对，也能把已有图像扩散模型调到视频生成任务上。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>方法上，它基于预训练图像扩散模型，引入时空注意力机制与 one-shot tuning 策略，并在推理时结合 DDIM inversion 做结构引导。它的重要性不只是效果，而是提供了一个早期“图像模型迁移到视频模型”的方法模板。</p>
-<h2 id="关键发现">关键发现</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2023-01-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/ICCV2023/html/Wu_Tune-A-Video_One-Shot_Tuning_of_Image_Diffusion_Models_for_Text-to-Video_Generation_ICCV_2023_paper.html" title="https://openaccess.thecvf.com/content/ICCV2023/html/Wu_Tune-A-Video_One-Shot_Tuning_of_Image_Diffusion_Models_for_Text-to-Video_Generation_ICCV_2023_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Wu_Tune-A-Video_One-Shot_Tuning…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/ICCV2023/papers/Wu_Tune-A-Video_One-Shot_Tuning_of_Image_Diffusion_Models_for_Text-to-Video_Generation_ICCV_2023_paper.pdf" title="https://openaccess.thecvf.com/content/ICCV2023/papers/Wu_Tune-A-Video_One-Shot_Tuning_of_Image_Diffusion_Models_for_Text-to-Video_Generation_ICCV_2023_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Wu_Tune-A-Video_One-Shot_Tuning…</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#方法">方法</a></li><li><a href="#数据与协议">数据与协议</a></li><li><a href="#核心结果">核心结果</a></li><li><a href="#消融与边界">消融与边界</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始材料">原始材料</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h1 id="tune-a-video-单样本视频调优与结构反演">Tune-A-Video：单样本视频调优与结构反演</h1>
+<blockquote><strong>会议</strong>：ICCV 2023</blockquote>
+<blockquote><strong>全文深读</strong>：<a class="wikilink missing" href="#missing-raw/ingest/2026-04-14-tune-a-video/analysis">analysis.md</a></blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>Tune-A-Video 把 Stable Diffusion/LDM 的 convolutional U-Net 扩展到时空域，只用一个 32-frame source video 做 500-step attention tuning，再以 DDIM inversion 保留 source motion；单视频约 10 分钟训练、1 分钟采样。它是图像 prior 迁移到视频的早期锚点，同时明确属于 U-Net 路线。</p>
+<h2 id="方法">方法</h2>
 <ul>
-<li>它证明了图像扩散模型到视频生成模型的迁移是可行的。</li>
-<li>它是后续很多 image-to-video / text-to-video 迁移路线的重要前史锚点。</li>
-<li>它补强了当前视频生成主题中的“借已有强图像模型扩张到视频”这条线。</li>
+<li>2D convolution inflation 为 $1\times3\times3$；</li>
+<li>加入 temporal self-attention；</li>
+<li>Sparse ST-Attention：第 $i$ 帧 query 只访问第一帧与前一帧的 key/value；</li>
+<li>复杂度从 full attention 的 $O((mN)^2)$ 降至 $O(2mN^2)$；</li>
+<li>只更新 ST-Attn $W^Q$、新增 temporal-attention 和 cross-attention query projection；</li>
+<li>对 source video 做一次无文本 DDIM inversion，edited prompt 从该 noise 起点采样。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="数据与协议">数据与协议</h2>
 <ul>
-<li>one-shot tuning 更像探索性设定，不代表最终大规模路线。</li>
-<li>早期方法在长视频、一致性和复杂运动上仍然有限。</li>
-<li>它的历史价值大于当前 SOTA 价值。</li>
+<li>DAVIS 42 个 source videos；</li>
+<li>BLIP-2 自动生成 source caption；</li>
+<li>人工设计 140 个 edited prompts；</li>
+<li>每视频 32 帧、512×512；</li>
+<li>500 steps，learning rate $3\times10^{-5}$，batch 1；</li>
+<li>单张 A100：约 10 分钟 fine-tuning、1 分钟 sampling；</li>
+<li>user study 每例 5 人，多数票。</li>
 </ul>
-<h2 id="原始链接">原始链接</h2>
+<h2 id="核心结果">核心结果</h2>
+<table><thead><tr><th>方法</th><th>Frame consistency CLIP ↑</th><th>Text faithfulness CLIP ↑</th></tr></thead><tbody><tr><td>CogVideo</td><td>90.64</td><td>23.91</td></tr><tr><td>Plug-and-Play</td><td>88.89</td><td>27.56</td></tr><tr><td>Tune-A-Video</td><td><strong>92.40</strong></td><td><strong>27.58</strong></td></tr></tbody></table>
+<p>用户偏好：</p>
 <ul>
-<li>https://openaccess.thecvf.com/content/ICCV2023/html/Wu_Tune-A-Video_One-Shot_Tuning_of_Image_Diffusion_Models_for_Text-to-Video_Generation_ICCV_2023_paper.html</li>
-<li>https://openaccess.thecvf.com/content/ICCV2023/papers/Wu_Tune-A-Video_One-Shot_Tuning_of_Image_Diffusion_Models_for_Text-to-Video_Generation_ICCV_2023_paper.pdf</li>
+<li>Frame consistency：相对 CogVideo <strong>87.86%</strong>，相对 Plug-and-Play <strong>62.14%</strong>；</li>
+<li>Text faithfulness：相对 CogVideo <strong>85.00%</strong>，相对 Plug-and-Play <strong>76.43%</strong>。</li>
+</ul>
+<p>CogVideo 是纯文本 T2V，Plug-and-Play 是逐帧编辑，Tune-A-Video 使用 source video、per-video tuning 与 inversion。输入和预算差异意味着主表属于系统比较，不能做单因素归因。</p>
+<h2 id="消融与边界">消融与边界</h2>
+<p>Figure 8 只提供定性消融：</p>
+<ul>
+<li>去掉 ST-Attn：内容跨帧不一致；</li>
+<li>去掉 inversion：难复制 source motion；</li>
+<li>去掉 fine-tuning：内容保持，但运动闪烁；</li>
+<li>完整系统结合三项。</li>
+</ul>
+<p>局限：</p>
+<ul>
+<li>多对象、遮挡和交互会导致对象混合；</li>
+<li>source dynamics 主要靠 inversion 复制，未证明可组合运动建模；</li>
+<li>每个视频都需要约 10 分钟 tuning；</li>
+<li>32 帧不覆盖长视频、多镜头和叙事；</li>
+<li>frame-pair CLIP consistency 可能奖励低运动输出；</li>
+<li>user study 每例仅 5 人，未报告显著性；</li>
+<li>论文采用 Stable Diffusion/LDM convolutional U-Net，出现 attention block 不代表 DiT。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<p>Tune-A-Video 建立“统一图像生成底座 + per-video temporal adapter + inversion”的早期模板。它同时支持基础模型复用价值与专用时序/反演工具的持续必要性。</p>
+<p>其 benchmark 评估 output consistency 和 prompt similarity，没有覆盖 source preserve/change、unintended change、编辑依据推理、多步计划或工作流成功率，因此属于视频编辑执行的历史证据。</p>
+<h2 id="证据评级">证据评级</h2>
+<ul>
+<li>One-shot video tuning：<strong>A- 历史锚点</strong></li>
+<li>Source-guided video generation/editing：<strong>B+</strong></li>
+<li>Unified foundation platform：<strong>B</strong></li>
+<li>Video-editing understanding：<strong>C / 背景</strong></li>
+<li>DiT adoption：<strong>不支持</strong></li>
+</ul>
+<h2 id="原始材料">原始材料</h2>
+<ul>
+<li><code>raw/ingest/2026-04-14-tune-a-video/paper.pdf</code>（11 页）</li>
+<li><code>raw/ingest/2026-04-14-tune-a-video/paper-text.md</code>（727 行）</li>
+<li><code>raw/ingest/2026-04-14-tune-a-video/analysis.md</code></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
 <li><a class="wikilink" href="../../en/topics/video-generation.html">topics/video-generation</a></li>
 <li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/entities/diffusion-transformer.html">entities/diffusion-transformer</a></li>
-<li><a class="wikilink" href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">claims/claim-dit-is-becoming-the-default-scalable-generation-backbone</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>在当前 wiki 中，Tune-A-Video 最重要的意义是把视频生成路线的前史补上：很多后续工作其实都可以理解为在放大、修正或替代它的迁移逻辑。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a></li>
+<li><a class="wikilink" href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/video-generation.html">视频生成</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li></ul></div><div class="related-group related-questions"><h3>Related questions<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li><li><a class="wikilink" href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">2</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/video-generation.html">视频生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-tune-a-video&quot;,
   &quot;type&quot;: &quot;source&quot;,
   &quot;title&quot;: &quot;Tune-A-Video（ICCV 2023）：单样本调优图像扩散模型做文本到视频生成&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;ICCV 2023&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
@@ -126,18 +180,18 @@
     &quot;https://openaccess.thecvf.com/content/ICCV2023/papers/Wu_Tune-A-Video_One-Shot_Tuning_of_Image_Diffusion_Models_for_Text-to-Video_Generation_ICCV_2023_paper.pdf&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-tune-a-video/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-14-tune-a-video/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/video-generation&quot;,
     &quot;topics/diffusion-models&quot;
   ],
-  &quot;entities&quot;: [
-    &quot;entities/diffusion-transformer&quot;
-  ],
-  &quot;claims&quot;: [
-    &quot;claims/claim-dit-is-becoming-the-default-scalable-generation-backbone&quot;
-  ],
-  &quot;questions&quot;: []
-}</pre></section>
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: [
+    &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;,
+    &quot;questions/question-will-unified-image-models-sustain-their-advantage&quot;
+  ]
+}</pre></details>
     </article>
   </main>
 </body>

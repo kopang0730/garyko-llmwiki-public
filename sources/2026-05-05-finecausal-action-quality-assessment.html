@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="FineCausal：可解释细粒度动作质量评估">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>FineCausal：可解释细粒度动作质量评估 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-05-finecausal-action-quality-assessment&quot;, &quot;title&quot;: &quot;FineCausal（arXiv 2025）：可解释细粒度动作质量评估&quot;, &quot;title_en&quot;: &quot;FineCausal（arXiv 2025）：可解释细粒度动作质量评估&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;evaluation&quot;, &quot;reasoning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-05-finecausal-action-quality-assessment&quot;, &quot;title&quot;: &quot;FineCausal：可解释细粒度动作质量评估&quot;, &quot;title_en&quot;: &quot;FineCausal：可解释细粒度动作质量评估&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;evaluation&quot;, &quot;reasoning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,59 +60,80 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-05-05-finecausal-action-quality-assessment.html">中文</a><a class="" href="../en/sources/2026-05-05-finecausal-action-quality-assessment.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-05-05</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>FineCausal：可解释细粒度动作质量评估</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
         <h1><span class="title-main">FineCausal</span><span class="title-subtitle">可解释细粒度动作质量评估</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>arXiv 2025</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2025/03/31</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-05-05</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2503.23911" title="https://arxiv.org/abs/2503.23911" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2503.23911</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2503.23911" title="https://arxiv.org/pdf/2503.23911" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2503.23911</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#evaluation">#evaluation</a><a class="tag" href="../tags.html#reasoning">#reasoning</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>把细粒度动作质量评估接到因果框架，目标是让体育技术动作评分不只给分，还能解释哪些动作阶段导致表现变化。</p>
-<h2 id="论文定位">论文定位</h2>
-<p>这篇论文位于 sports action quality assessment / interpretable feedback 交叉点，适合补 roadmap 中“姿态与训练反馈”以及“可解释输出”的证据层。</p>
-<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
-<p>它能把 FineDiving、LOGO、Temporal Parsing Transformer 这条评分线推进到“为什么扣分/为什么表现好”的解释层，更接近训练反馈和教练使用。</p>
-<h2 id="和现有证据的关系">和现有证据的关系</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>arXiv 2025</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2025-03-31</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-05-05</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2503.23911" title="https://arxiv.org/abs/2503.23911" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2503.23911</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2503.23911" title="https://arxiv.org/pdf/2503.23911" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2503.23911</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位与任务边界">论文定位与任务边界</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#数据与实验">数据与实验</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#因果解释-审计">“因果解释”审计</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#真实-10-样本羽毛球-demo-价值">真实 10 样本羽毛球 demo 价值</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>FineCausal 以 GAT 特征重加权和 temporal causal attention 联合跳水评分与阶段解析，在 FineDiving-HM 达到 ρ=0.9447、R-L2=0.2338；它提供有价值的阶段化 AQA 设计，但 attention 不能证明因果，且没有羽毛球或专家可用性验证。</p>
+<h2 id="论文定位与任务边界">论文定位与任务边界</h2>
+<p>这是 <strong>action quality assessment</strong>，不是 shuttle tracking，也不恢复球轨迹。输入 query/exemplar 跳水视频与 human-centric masks，输出 query 分数和 forward/twist/entry 阶段。它与 TrackNet 的连接必须经过 hit-frame、pose、trajectory 和动作阶段对齐，不能把二维 shuttle xy 直接当质量分数。</p>
+<h2 id="方法概述">方法概述</h2>
 <ul>
-<li>与 <a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：它补强 roadmap 中近期 batch 的一个缺口，让体育 AI 从 tracking / 数据集扩展到交互检索、可解释评分或端到端系统。</li>
-<li>与 <a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它把体育视频理解继续推向事件语义、训练反馈、可解释输出和 human-in-the-loop 工作流。</li>
-<li>与 <a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a> 的关系：它提供真实长视频、多主体和应用约束下的视频理解样本。</li>
+<li>I3D 提取 query/exemplar 原视频与 mask 特征，沿用 FineParser 的 SAP/TAP/对比回归框架。</li>
+<li>设定 <code>O -&gt; F -&gt; S -&gt; Y</code> DAG：原始特征、融合特征、阶段特征、动作分数。</li>
+<li>两层 GAT 学习融合 foreground 与有益 background，并声称抑制环境伪相关。</li>
+<li>masked Transformer 建模 forward→twist→entry 的顺序依赖，以 attention 权重作为阶段解释。</li>
+<li><code>L_SAP + L_TAP + L_Reg</code> 联合训练，并用 uncertainty weighting 平衡 mask、边界和分数任务。</li>
 </ul>
-<h2 id="来源可靠性与可溯源性">来源可靠性与可溯源性</h2>
-<ul>
-<li><strong>来源层级</strong>：arXiv preprint。arXiv 页面可访问，主题属于 <code>cs.CV</code>，但当前未看到 journal-ref 或 DOI。</li>
-<li><strong>可溯源材料</strong>：本地已保存 arXiv abstract、PDF 与 <code>paper-text.md</code>；可从 <code>links.yaml</code> 回到 arXiv abstract / PDF。</li>
-<li><strong>使用建议</strong>：适合作为“可解释动作质量评估 / 因果评分”方向的候选证据，当前在 wiki 中应按 preprint 处理；涉及 SOTA、因果有效性和专家可用性的判断需要后续找同行评审版本、代码或独立复现实验增强置信度。</li>
-</ul>
+<p>“causal intervention”实际是 feature aggregation；没有真实干预、confounder 控制、反事实或可识别 causal effect。正文对 causal mask 方向还有公式/文字不一致，需代码核验。</p>
+<h2 id="数据与实验">数据与实验</h2>
+<p>FineDiving-HM：3,000 视频、52 action types、29 sub-actions、23 difficulty levels、312,256 mask frames，含时序边界与官方分数。75/25 train/test；每视频抽 96 帧、9 snippets。AQA 用 Spearman ρ 与 relative L2；阶段解析用 AIoU@0.5/0.75。</p>
+<p>表 1：FineCausal ρ=0.9447，略高于 FineParser 0.9435；R-L2=0.2338，优于 0.2602（作者称相对改善 10.16%）。TAP 略低于 FineParser。正文把最终 AIoU@0.5 写成 0.9907，但表/消融为 0.9937，存在内部不一致；AIoU@0.75 为 0.9453。</p>
+<h2 id="关键消融">关键消融</h2>
+<table><thead><tr><th>配置</th><th>ρ</th><th>R-L2</th><th>AIoU@0.5</th><th>AIoU@0.75</th></tr></thead><tbody><tr><td>GAT only</td><td>0.9425</td><td>0.2572</td><td>0.9920</td><td>0.9069</td></tr><tr><td>TCA only</td><td>0.9382</td><td>0.2707</td><td><strong>0.9973</strong></td><td><strong>0.9666</strong></td></tr><tr><td>GAT + TCA</td><td><strong>0.9447</strong></td><td><strong>0.2338</strong></td><td>0.9937</td><td>0.9453</td></tr></tbody></table>
+<p>组合对分数最优，TCA-only 对边界最优，说明 scoring 与 temporal parsing 有 trade-off。论文缺少 causal mask vs 双向 attention、背景交换/OOD、图结构、随机种子和显著性消融。</p>
+<h2 id="因果解释-审计">“因果解释”审计</h2>
+<p>图 4–5 的 attention 和零分失败案例只显示模型依赖与叙事一致性，不能等价于 <code>P(S_{t+1}|do(S_t))</code>。要支持因果诊断，应编辑/替换单阶段、交换背景或场馆，检查分数与后续阶段变化，并与教练标注比较。当前更准确的称谓是<strong>因果图启发的阶段注意力 AQA</strong>。</p>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>后续要核对它的因果变量是否真正来自可观测动作阶段，以及解释结果是否经过专家或运动员评估。</li>
-<li>当前这版先完成轻量 primary-source 编译，后续可按 deep-analysis-first 流程补 <code>analysis.md</code>、关键图页和实验细节。</li>
-<li>具体数值和 benchmark 细节应以 <code>raw/ingest/2026-05-05-finecausal-action-quality-assessment/paper-text.md</code> 与原始 PDF 为准。</li>
+<li>作者承认 causal structure 需要专家知识，精细 mask/阶段标注昂贵。</li>
+<li>只验证 FineDiving-HM；无跨赛事、跨场馆、跨运动泛化。</li>
+<li>ρ 仅 +0.0012 且无多 seed/显著性；R-L2 改善更可信。</li>
+<li>背景可能携带赛事/评分偏差，未用 domain shift 证明已去混杂。</li>
+<li>没有教练/运动员用户研究、解释准确率或 actionable feedback 评估。</li>
+<li>跳水三阶段不能直接映射羽毛球 preparation–swing–contact–follow-through。</li>
 </ul>
-<h2 id="原始材料">原始材料</h2>
+<h2 id="真实-10-样本羽毛球-demo-价值">真实 10 样本羽毛球 demo 价值</h2>
+<p><strong>概念价值中等，直接复用低。</strong> 可借鉴 query–exemplar、阶段化评分和阶段贡献可视化，但 10 个样本不足以训练/验证 FineCausal。MVP 应由专家定义 stroke-specific rubric，先对齐 pose、shuttle trajectory 与 hit frame，再输出与 exemplar 的阶段差异；attention 只能称“模型关注”，不能称“因果错误”。</p>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
 <ul>
-<li><code>raw/ingest/2026-05-05-finecausal-action-quality-assessment/paper.pdf</code></li>
-<li><code>raw/ingest/2026-05-05-finecausal-action-quality-assessment/paper-text.md</code></li>
-<li><code>raw/ingest/2026-05-05-finecausal-action-quality-assessment/abstract.md</code></li>
-<li><code>raw/ingest/2026-05-05-finecausal-action-quality-assessment/links.yaml</code></li>
+<li><strong>直接支持</strong>：细粒度 mask、阶段解析与分数回归可联合建模；GAT+TCA 在单一跳水 benchmark 降低回归误差。</li>
+<li><strong>间接支持</strong>：训练反馈产品应给阶段解释，而非只给总分。</li>
+<li><strong>不支持</strong>：已识别真实因果关系；已适用于羽毛球；解释已通过专家验证。</li>
+<li>Roadmap 必须分开 tracking/trajectory 感知与 AQA 高层判断，并增加 hit/pose/trajectory alignment 桥接。</li>
+</ul>
+<p><strong>证据评级：B-（单 benchmark 方法证据；因果与跨运动主张需降级）</strong>。</p>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/2503.23911">arXiv</a></li>
+<li><a href="https://arxiv.org/pdf/2503.23911">PDF</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
 <li><a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
 <li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
 <li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
-<li><a class="wikilink" href="../entities/sportsmot.html">entities/sportsmot</a></li>
+<li><a class="wikilink" href="../sources/2026-04-25-tracknetv3.html">sources/2026-04-25-tracknetv3</a></li>
+<li><a class="wikilink" href="../sources/2026-05-05-tracknetv4-motion-attention-maps.html">sources/2026-05-05-tracknetv4-motion-attention-maps</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li><li><a class="wikilink" href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li><li><a class="wikilink" href="../topics/video-understanding.html">视频理解</a></li></ul></div><div class="related-group related-entities"><h3>相关实体<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../entities/sportsmot.html">SportsMOT</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">7</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a><span>问题</span></li><li><a href="../sources/2026-05-12-trackmae.html">TrackMAE：用轨迹遮挡与预测学习运动敏感的视频表征</a><span>来源笔记</span></li><li><a href="../sources/2026-05-16-protogcn-skeleton-action-recognition.html">ProtoGCN：用运动原型重构放大相似骨架动作的局部差异</a><span>来源笔记</span></li><li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a><span>主题</span></li><li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a><span>主题</span></li><li><a href="../topics/video-understanding.html">视频理解</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-05-05-finecausal-action-quality-assessment&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;FineCausal（arXiv 2025）：可解释细粒度动作质量评估&quot;,
+  &quot;title&quot;: &quot;FineCausal：可解释细粒度动作质量评估&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-05-05&quot;,
-  &quot;updated&quot;: &quot;2026-05-05&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;arXiv 2025&quot;,
-  &quot;published_at&quot;: &quot;2025/03/31&quot;,
+  &quot;published_at&quot;: &quot;2025-03-31&quot;,
   &quot;ingested_at&quot;: &quot;2026-05-05&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
@@ -139,7 +166,7 @@
   ],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

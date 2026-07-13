@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Latent Diffusion Models：高分辨率图像合成的潜空间扩散框架">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>Latent Diffusion Models：高分辨率图像合成的潜空间扩散框架 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-latent-diffusion-models&quot;, &quot;title&quot;: &quot;Latent Diffusion Models（CVPR 2022）：高分辨率图像合成的潜空间扩散框架&quot;, &quot;title_en&quot;: &quot;Latent Diffusion Models（CVPR 2022）：高分辨率图像合成的潜空间扩散框架&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-latent-diffusion-models&quot;, &quot;title&quot;: &quot;Latent Diffusion Models（CVPR 2022）：高分辨率图像合成的潜空间扩散框架&quot;, &quot;title_en&quot;: &quot;Latent Diffusion Models（CVPR 2022）：高分辨率图像合成的潜空间扩散框架&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,52 +60,96 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-14-latent-diffusion-models.html">中文</a><a class="" href="../en/sources/2026-04-14-latent-diffusion-models.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Latent Diffusion Models：高分辨率图像合成的潜空间扩散框架</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
         <h1><span class="title-main">Latent Diffusion Models</span><span class="title-subtitle">高分辨率图像合成的潜空间扩散框架</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2022</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2022-01-01</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2112.10752" title="https://arxiv.org/abs/2112.10752" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2112.10752</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2112.10752.pdf" title="https://arxiv.org/pdf/2112.10752.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2112.10752.pdf</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作是现代图像生成主线的关键前史锚点，它把高分辨率扩散生成从像素空间转到潜空间，大幅改变了后续模型的可扩展性讨论。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>它要解决的是像素空间扩散模型在高分辨率生成上成本过高、训练和采样都很重的问题。对当前知识库来说，它的重要意义不只是效果，而是它改变了后续“扩散模型能否成为主线”的工程前提。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>论文把扩散过程搬到自动编码器的潜空间里，在保留视觉质量的同时显著降低计算成本。这个设计给后来大量文本到图像与条件生成模型提供了更可扩展的底座。</p>
-<h2 id="关键发现">关键发现</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2022</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2022-01-01</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2112.10752" title="https://arxiv.org/abs/2112.10752" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2112.10752</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2112.10752.pdf" title="https://arxiv.org/pdf/2112.10752.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2112.10752.pdf</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#系统方法">系统方法</a></li><li><a href="#压缩率与效率锚点">压缩率与效率锚点</a></li><li><a href="#核心结果">核心结果</a><ol><li class="toc-sub"><a href="#生成与条件合成">生成与条件合成</a></li><li class="toc-sub"><a href="#inpainting">Inpainting</a></li></ol></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限与证据边界">局限与证据边界</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a><ol><li class="toc-sub"><a href="#diffusion-工程">Diffusion 工程</a></li><li class="toc-sub"><a href="#dit-claim">DiT claim</a></li><li class="toc-sub"><a href="#数据与架构问题">数据与架构问题</a></li></ol></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始材料">原始材料</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h1 id="latent-diffusion-models-潜空间扩散与通用条件接口">Latent Diffusion Models：潜空间扩散与通用条件接口</h1>
+<blockquote><strong>会议</strong>：CVPR 2022</blockquote>
+<blockquote><strong>arXiv</strong>：2112.10752</blockquote>
+<blockquote><strong>全文深读</strong>：<a class="wikilink missing" href="#missing-raw/ingest/2026-04-14-latent-diffusion-models/analysis">analysis.md</a></blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>LDM 将扩散从 RGB 像素空间迁移到轻度压缩的二维 latent，并用 U-Net cross-attention 统一接入文本、语义图和图像条件。固定预算实验显示 $f=4$–8 是效率与重建质量的 sweet spot；inpainting 中 latent diffusion 相对 pixel diffusion 至少提速 2.7×。本文主干是 convolutional U-Net，属于 DiT 的历史前置平台证据。</p>
+<h2 id="系统方法">系统方法</h2>
+<ol>
+<li>Autoencoder 以 perceptual + patch adversarial loss 学习轻度压缩表示；</li>
+<li>比较 KL 与 VQ regularization，以及 $f\in\{1,2,4,8,16,32\}$ 的空间压缩率；</li>
+<li>time-conditioned U-Net 在 latent 中预测噪声；</li>
+<li>domain encoder 将文本、semantic maps 等条件编码成 tokens；</li>
+<li>U-Net feature 作 query、条件 token 作 key/value，形成通用 cross-attention 接口；</li>
+<li>最终 latent 通过一次 decoder pass 恢复图像。</li>
+</ol>
+<h2 id="压缩率与效率锚点">压缩率与效率锚点</h2>
 <ul>
-<li>它为后续高质量文本到图像扩散模型奠定了工程基础。</li>
-<li>它说明架构与表示空间设计本身会重写生成模型可扩展性边界。</li>
-<li>它是 image-generation 前史中非常关键的一块地基。</li>
+<li>$f=1,2$ 计算密集、训练慢；$f=32$ 的重建 bottleneck 限制上限；$f=4$–8 最平衡。</li>
+<li>ImageNet 同一 A100、同参数量、同训练步数下，2M steps 后 pixel LDM-1 与 LDM-8 的 FID 差距约 38。</li>
+<li>DIV2K 512² 重建示例：本文 $f=4$ autoencoder PSNR 27.4、R-FID 0.58。</li>
+<li>Inpainting protocol：LDM-1 train/sample@256/sample@512 为 0.11/0.26/0.07 samples/s；LDM-4 VQ 为 0.33/0.97/0.34，epoch 时间 20.66→7.04 小时，FID@epoch6 为 24.74→14.99。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<p>论文的 2.7× 以上提速来自相同协议下的训练和采样 throughput。系统总成本仍包含 autoencoder 训练、encoding 和 decoding。</p>
+<h2 id="核心结果">核心结果</h2>
+<h3 id="生成与条件合成">生成与条件合成</h3>
+<table><thead><tr><th>任务</th><th>配置</th><th>结果</th></tr></thead><tbody><tr><td>CelebA-HQ 256²</td><td>LDM-4</td><td>FID 5.11</td></tr><tr><td>FFHQ 256²</td><td>LDM-4</td><td>FID 4.98</td></tr><tr><td>LSUN Bedrooms</td><td>LDM-4</td><td>FID 2.95；ADM 为 1.90</td></tr><tr><td>COCO text-to-image</td><td>LDM-KL-8-G</td><td>FID 12.63、IS 30.29±0.42、1.45B params</td></tr><tr><td>ImageNet class conditional</td><td>LDM-4-G</td><td>FID 3.60、IS 247.67±5.59、400M params</td></tr><tr><td>ImageNet ×4 SR</td><td>LDM-4 100 steps</td><td>FID 2.8/4.8、169M params、4.62 samples/s</td></tr></tbody></table>
+<p>COCO 对照 GLIDE/Make-A-Scene 的 FID 为 12.24/11.84；LDM 参数更少，FID 略低于两者。ImageNet 上 LDM-4-G 的 recall 0.48 低于 ADM-G 0.52，说明 classifier-free guidance 提升 fidelity 时牺牲部分 coverage。</p>
+<h3 id="inpainting">Inpainting</h3>
+<p>Places 512²、40–50% hard masks：large fine-tuned LDM FID 9.39、LPIPS 0.246；LaMa recomputed 为 12.31/0.243。LDM 在 FID 领先，LPIPS 略弱。</p>
+<h2 id="关键消融">关键消融</h2>
 <ul>
-<li>它更像底座性工作，不直接回答后期统一生成/编辑问题。</li>
-<li>潜空间设计虽然高效，但也会引入解码器与表示瓶颈。</li>
-<li>它和后续 DiT 路线之间仍有代际差异，需要在 topic 层显式说明。</li>
+<li>Compression-factor sweep 是最直接的系统消融，支持 $f=4$–8 sweet spot。</li>
+<li>VQ 重建略弱，但 diffusion sample quality 有时优于 KL，说明 reconstruction metric 与 prior quality 并非一一对应。</li>
+<li>Inpainting autoencoder 移除 attention 后 throughput 略升，FID 14.99→15.95。</li>
+<li>CFG 将 COCO FID 23.31→12.63，同时增加 sampling cost 并改变 precision/recall。</li>
 </ul>
-<h2 id="原始链接">原始链接</h2>
+<h2 id="局限与证据边界">局限与证据边界</h2>
 <ul>
-<li>https://arxiv.org/abs/2112.10752</li>
-<li>https://arxiv.org/pdf/2112.10752.pdf</li>
+<li>顺序采样仍慢于 GAN；主结果常使用 200–250 DDIM steps。</li>
+<li>Autoencoder 会限制 fine-grained pixel accuracy，super-resolution 和精确编辑尤其敏感。</li>
+<li>256² 训练向 512² 泛化时可能出现 attention feature-statistics mismatch，需要额外微调。</li>
+<li>LAION-400M caption 噪声、数据授权、隐私、记忆和偏差风险没有系统解决。</li>
+<li>更低生成成本会降低 deepfake、spam 和操纵内容的门槛。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<h3 id="diffusion-工程">Diffusion 工程</h3>
+<p>本文增加“表示空间压缩”这一层：效率报告应同时覆盖 autoencoder reconstruction ceiling、latent prior quality、训练 throughput 和端到端 sampling cost。</p>
+<h3 id="dit-claim">DiT claim</h3>
+<p>论文使用 convolutional U-Net。它直接支持 latent diffusion 成为可扩展生成平台，也解释后续 DiT 为何在 latent 中运行；它不支持 <a class="wikilink" href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">claims/claim-dit-is-becoming-the-default-scalable-generation-backbone</a> 的采用率或 backbone superiority，原 frontmatter 的 DiT entity/claim 关系已撤销。</p>
+<h3 id="数据与架构问题">数据与架构问题</h3>
+<p>对 <a class="wikilink" href="../questions/question-data-vs-architecture-in-image-editing.html">questions/question-data-vs-architecture-in-image-editing</a>，LDM 证明表示空间与条件接口能够改变效率和任务复用边界；LAION-400M 与任务数据又决定概念覆盖。证据支持“数据与系统结构共同决定能力”。</p>
+<h2 id="证据评级">证据评级</h2>
+<ul>
+<li>潜空间扩散与条件接口：<strong>A</strong></li>
+<li>高分辨率效率：<strong>A-</strong></li>
+<li>DiT adoption：<strong>不应引用</strong></li>
+<li>统一生成/编辑：<strong>B- 背景证据</strong></li>
+</ul>
+<h2 id="原始材料">原始材料</h2>
+<ul>
+<li><code>raw/ingest/2026-04-14-latent-diffusion-models/paper.pdf</code>（45 页）</li>
+<li><code>raw/ingest/2026-04-14-latent-diffusion-models/paper-text.md</code>（1667 行）</li>
+<li><code>raw/ingest/2026-04-14-latent-diffusion-models/analysis.md</code></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
 <li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
 <li><a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../entities/diffusion-transformer.html">entities/diffusion-transformer</a></li>
-<li><a class="wikilink" href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">claims/claim-dit-is-becoming-the-default-scalable-generation-backbone</a></li>
+<li><a class="wikilink" href="../topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a></li>
 <li><a class="wikilink" href="../questions/question-data-vs-architecture-in-image-editing.html">questions/question-data-vs-architecture-in-image-editing</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>LDM 在这套库中的作用，是把 image-generation 主线真正往前接上：没有它，很多后续生成与编辑路线会像突然冒出来的一样。</p></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li></ul></div><div class="related-group related-questions"><h3>相关问题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">7</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-04-14-wavelet-diffusion-models.html">Wavelet Diffusion Models：在小波空间压缩少步扩散 GAN</a><span>来源笔记</span></li><li><a href="../sources/2026-04-16-bbdm-brownian-bridge-diffusion.html">BBDM：以 Brownian Bridge 端点过程建模成对图像翻译</a><span>来源笔记</span></li><li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>主题</span></li><li><a href="../topics/diffusion-models.html">扩散模型</a><span>主题</span></li><li><a href="../topics/image-generation.html">图像生成</a><span>主题</span></li><li><a href="../topics/vision-backbones.html">主流视觉 Backbone 入门</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-latent-diffusion-models&quot;,
   &quot;type&quot;: &quot;source&quot;,
   &quot;title&quot;: &quot;Latent Diffusion Models（CVPR 2022）：高分辨率图像合成的潜空间扩散框架&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2022&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
@@ -123,20 +173,17 @@
     &quot;https://arxiv.org/pdf/2112.10752.pdf&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-latent-diffusion-models/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-14-latent-diffusion-models/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/image-generation&quot;,
     &quot;topics/diffusion-models&quot;
   ],
-  &quot;entities&quot;: [
-    &quot;entities/diffusion-transformer&quot;
-  ],
-  &quot;claims&quot;: [
-    &quot;claims/claim-dit-is-becoming-the-default-scalable-generation-backbone&quot;
-  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
   &quot;questions&quot;: [
     &quot;questions/question-data-vs-architecture-in-image-editing&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Video-P2P：基于 cross-attention control 的视频编辑 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="Video-P2P：用 shared-null inversion 与解耦 guidance 做 attention-control 视频编辑">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Video-P2P：用 shared-null inversion 与解耦 guidance 做 attention-control 视频编辑 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-video-p2p&quot;, &quot;title&quot;: &quot;Video-P2P（CVPR 2024）：基于 cross-attention control 的视频编辑&quot;, &quot;title_en&quot;: &quot;Video-P2P（CVPR 2024）：基于 cross-attention control 的视频编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;video-generation&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-video-p2p&quot;, &quot;title&quot;: &quot;Video-P2P：用 shared-null inversion 与解耦 guidance 做 attention-control 视频编辑&quot;, &quot;title_en&quot;: &quot;Video-P2P：用 shared-null inversion 与解耦 guidance 做 attention-control 视频编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;diffusion&quot;, &quot;editing&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,78 +60,113 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-video-p2p.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-video-p2p.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-05-22</p>
-        <h1><span class="title-main">Video-P2P</span><span class="title-subtitle">基于 cross-attention control 的视频编辑</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Video-P2P：用 shared-null inversion 与解耦 guidance 做 attention-control 视频编辑</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">Video-P2P</span><span class="title-subtitle">用 shared-null inversion 与解耦 guidance 做 attention-control 视频编辑</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2023-03-08</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2303.04761" title="https://arxiv.org/abs/2303.04761" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2303.04761</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2303.04761" title="https://arxiv.org/pdf/2303.04761" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2303.04761</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-editing">#video-editing</a><a class="tag" href="../../en/tags.html#video-generation">#video-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-editing">#video-editing</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#editing">#editing</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把 Prompt-to-Prompt 式 cross-attention control 明确迁移到视频编辑，补上了早期“图像编辑技巧如何扩到视频”的关键环节。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>它要解决的是文本驱动视频编辑里如何在保持时序一致性的同时，沿用图像扩散编辑中已经很有效的 attention 控制能力。对当前 topic 来说，它是 FateZero 旁边非常关键的另一条早期锚点。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>Video-P2P 将 Prompt-to-Prompt 风格的 cross-attention control 引入视频扩散编辑，通过在视频生成过程中控制文本条件与注意力注入，尽量实现可控编辑同时减小时序漂移。</p>
-<h2 id="关键发现">关键发现</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2023-03-08</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2303.04761" title="https://arxiv.org/abs/2303.04761" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2303.04761</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2303.04761" title="https://arxiv.org/pdf/2303.04761" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2303.04761</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#输入-输出与方法">输入、输出与方法</a></li><li><a href="#数据-成本与接口">数据、成本与接口</a></li><li><a href="#自动指标与人评">自动指标与人评</a></li><li><a href="#消融-失败与边界">消融、失败与边界</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>Video-P2P 把 SD1.5 U-Net inflation 成 Text-to-Set model，逐视频微调后用所有帧共享的 null embedding 精确 inversion，再以 source/target 两套 guidance 融合 Prompt-to-Prompt attention；它提升对象语义一致与局部编辑，但 8 帧约需 12 分钟、不能改 motion，且 10-video 评测与未披露 protocol 的人评限制证据。</p>
+<h2 id="输入-输出与方法">输入、输出与方法</h2>
 <ul>
-<li>它说明 video-editing 的早期发展很大程度上是在“把图像编辑中的可控注入技巧迁移到视频”这一思路上前进。</li>
-<li>它为后续 RAVE、MotionEditor、CAMEL 一类工作提供了清晰前史：先解决可控性，再逐步补时序一致性与运动质量。</li>
-<li>它也提醒我们，很多视频编辑改进并不是完全新问题，而是图像编辑控制机制在时序域的重构。</li>
+<li>输入 real video、source prompt、target prompt；输出 8 或 24 帧、$512^2$ 编辑视频。</li>
+<li>SD1.5 2D conv inflation 为 $1\times3\times3$，加入 temporal attention；每帧 frame-attention 以第一帧提供 K/V。</li>
+<li>对目标视频微调 query projections/temporal attention 500 steps，得到 approximate inversion model。</li>
+<li>DDIM inversion 后逐 step 优化所有帧共享的 unconditional embedding，以较小参数量重建视频并稳定跨帧语义。</li>
+<li>source branch 用 optimized null 保 reconstruction；target branch 用 initialized null 保 editability；早期 denoising steps 做 cross-attention replacement，并用 token attention binary mask 混合 source/target latents。</li>
+<li>支持 word swap、prompt refinement、attention re-weighting、局部/全局编辑；不能 motion editing 或复杂对象注入。</li>
+<li>架构是 Stable Diffusion v1.5 latent <strong>U-Net</strong>，不是 DiT；这是 real-video inversion editing，不是通用 text-to-video generation。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="数据-成本与接口">数据、成本与接口</h2>
 <ul>
-<li>这一路线天然容易受时序漂移和跨帧不一致影响。</li>
-<li>它更像强控制基线，不代表后续视频原生模型已经被它解决。</li>
-<li>仅凭这类方法很难证明模型真的“理解”了视频编辑任务。</li>
+<li>无 dataset-level video training；每个测试视频逐视频优化。</li>
+<li>10 个 YouTube videos；论文未给 prompt 总数、清单、许可或 split。</li>
+<li>单 V100、8 帧：model tuning <strong>5 分钟</strong>、inversion <strong>6 分钟</strong>、editing inference <strong>1 分钟</strong>，总约 <strong>12 分钟</strong>。</li>
+<li>未报告 24 帧 runtime、sampling steps、峰值显存、总参数或 scaling。</li>
+<li>attention replacement ratio 0.4、threshold 0.3、prompt refinement ratio 0.4，并可按案例调节；固定调参协议不清楚。</li>
 </ul>
+<h2 id="自动指标与人评">自动指标与人评</h2>
+<table><thead><tr><th>方法</th><th>CLIP↑</th><th>M.PSNR↑</th><th>LPIPS↓</th><th>OSV↓</th></tr></thead><tbody><tr><td>TAV+DDIM</td><td>0.3322</td><td>17.32</td><td>0.4625</td><td>55.12</td></tr><tr><td>Image-P2P</td><td>0.3269</td><td><strong>22.99</strong></td><td><strong>0.3065</strong></td><td>76.50</td></tr><tr><td>Ours w/o DG</td><td>0.3224</td><td>18.96</td><td>0.3864</td><td>68.76</td></tr><tr><td><strong>Video-P2P</strong></td><td><strong>0.3361</strong></td><td>20.54</td><td>0.3297</td><td><strong>47.57</strong></td></tr></tbody></table>
+<ul>
+<li>Video-P2P text alignment 与 OSV 最好，但背景保持的 M.PSNR/LPIPS 不如逐帧 Image-P2P；不是四项全胜。</li>
+<li>OSV 是论文新提的对象语义方差，外部效度未验证；低 variance 也可能奖励静态/欠编辑。</li>
+<li>人评中 Video-P2P 的 structure/text/realism preference 为 <strong>69.02%/62.50%/69.02%</strong>，平均 rank 1.39/1.54/1.43。</li>
+<li>但论文没有报告参与者人数、样本数、rating 数、显著性或 inter-rater agreement，人评只能视为有限支持。</li>
+</ul>
+<h2 id="消融-失败与边界">消融、失败与边界</h2>
+<ul>
+<li>inversion：TAV+DDIM 15.43 dB/0.13M；multi-uncond 22.97 dB/22.68M；shared-uncond <strong>22.75 dB/2.94M</strong>。shared 的核心优势是少约 7.7× embedding 参数，质量只低 0.22 dB。</li>
+<li>去 decoupled guidance 后，CLIP 0.3224→0.3361、M.PSNR 18.96→20.54、LPIPS 0.3864→0.3297、OSV 68.76→47.57，支持双 branch guidance。</li>
+<li>无 500-step initialization 时，inflated T2S 的单帧质量和背景 reconstruction 明显下降；仅定性。</li>
+<li>第一帧 K/V 设计对首帧不可见面、遮挡后出现对象不稳；仅 8/24 帧，无长视频/跨镜头测试。</li>
+<li>local mask 来自模型 attention，再在其补集测 source preservation，存在循环性。</li>
+<li>Dreamix 只用官方 demo 定性比较，后续更强基线未覆盖。</li>
+<li>不能改变动作是论文明确边界；token attention 不证明对象关系或时序因果理解。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li>对 <a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a>：Video-P2P 是“图像 Prompt-to-Prompt → 视频逐视频 inversion”的早期节点，局部控制强但预处理慢。</li>
+<li>对 <a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a>：shared-null 与 decoupled guidance 解决 U-Net reconstruction/editability 张力，不涉及 DiT。</li>
+<li>对 <a class="wikilink" href="../../en/entities/video-editing-understanding.html">视频编辑理解</a>：OSV 与 attention locality 只测语义稳定/区域保持，不能覆盖动作重写、遮挡逻辑与复杂意图。</li>
+</ul>
+<h2 id="证据评级">证据评级</h2>
+<p><strong>B-（历史方法贡献与 DG 消融清楚；数据小、人评不透明、成本高且 motion/长视频边界明显）</strong>。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2303.04761</li>
-<li>https://arxiv.org/pdf/2303.04761</li>
+<li><a href="https://arxiv.org/abs/2303.04761">arXiv</a></li>
+<li><a href="https://arxiv.org/pdf/2303.04761">论文 PDF</a></li>
+<li><a href="https://video-p2p.github.io/">项目页</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/video-editing.html">topics/video-editing</a></li>
-<li><a class="wikilink" href="../../en/topics/video-generation.html">topics/video-generation</a></li>
-<li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">entities/video-editing-understanding</a></li>
-<li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>Video-P2P 在这套库里的作用，是把视频编辑主线中的“attention 控制迁移路线”补成明确历史节点。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+<li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有 benchmark 是否跟踪真实视频编辑理解</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li></ul></div><div class="related-group related-entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li></ul></div><div class="related-group related-questions"><h3>Related questions<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">2</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/video-editing.html">视频编辑</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-video-p2p&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Video-P2P（CVPR 2024）：基于 cross-attention control 的视频编辑&quot;,
+  &quot;title&quot;: &quot;Video-P2P：用 shared-null inversion 与解耦 guidance 做 attention-control 视频编辑&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-05-22&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2024&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;video-editing&quot;,
-    &quot;video-generation&quot;,
     &quot;diffusion&quot;,
+    &quot;editing&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;authors&quot;: [
-    &quot;Liu, Shaoteng&quot;,
-    &quot;Zhang, Yuechen&quot;,
-    &quot;Li, Wenbo&quot;,
-    &quot;Lin, Zhe&quot;,
-    &quot;Jia, Jiaya&quot;
+    &quot;Shaoteng Liu&quot;,
+    &quot;Yuechen Zhang&quot;,
+    &quot;Wenbo Li&quot;,
+    &quot;Zhe Lin&quot;,
+    &quot;Jiaya Jia&quot;
   ],
   &quot;published_at&quot;: &quot;2023-03-08&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2303.04761&quot;,
-    &quot;https://arxiv.org/pdf/2303.04761&quot;
+    &quot;https://arxiv.org/pdf/2303.04761&quot;,
+    &quot;https://video-p2p.github.io/&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-video-p2p/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-14-video-p2p/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/video-editing&quot;,
-    &quot;topics/video-generation&quot;
+    &quot;topics/diffusion-models&quot;
   ],
   &quot;entities&quot;: [
     &quot;entities/video-editing-understanding&quot;
@@ -134,7 +175,7 @@
   &quot;questions&quot;: [
     &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

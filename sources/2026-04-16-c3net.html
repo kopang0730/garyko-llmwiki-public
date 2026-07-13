@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>C3Net：把 ControlNet 从单条件接口推进到多模态复合条件接口 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="C3Net：CoDi U-Net 上的图像、文本与音频复合条件协调">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>C3Net：CoDi U-Net 上的图像、文本与音频复合条件协调 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-c3net&quot;, &quot;title&quot;: &quot;C3Net（CVPR 2024）：把 ControlNet 从单条件接口推进到多模态复合条件接口&quot;, &quot;title_en&quot;: &quot;C3Net（CVPR 2024）：把 ControlNet 从单条件接口推进到多模态复合条件接口&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-c3net&quot;, &quot;title&quot;: &quot;C3Net：CoDi U-Net 上的图像、文本与音频复合条件协调&quot;, &quot;title_en&quot;: &quot;C3Net：CoDi U-Net 上的图像、文本与音频复合条件协调&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;conditioning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,60 +60,105 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-16-c3net.html">中文</a><a class="" href="../en/sources/2026-04-16-c3net.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-16</p>
-        <h1><span class="title-main">C3Net</span><span class="title-subtitle">把 ControlNet 从单条件接口推进到多模态复合条件接口</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>C3Net：CoDi U-Net 上的图像、文本与音频复合条件协调</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">C3Net</span><span class="title-subtitle">CoDi U-Net 上的图像、文本与音频复合条件协调</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023/11/29</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2311.17951" title="https://arxiv.org/abs/2311.17951" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2311.17951</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2311.17951.pdf" title="https://arxiv.org/pdf/2311.17951.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2311.17951.pdf</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#efficiency">#efficiency</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#conditioning">#conditioning</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把 ControlNet 路线继续往接口整合推进：它先把多模态条件对齐到统一语义潜空间，再用一个复合条件 ControlNet 同时驱动多模态内容生成。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023-11-29</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2311.17951" title="https://arxiv.org/abs/2311.17951" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2311.17951</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2311.17951.pdf" title="https://arxiv.org/pdf/2311.17951.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2311.17951.pdf</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#复合条件接口">复合条件接口</a></li><li><a href="#训练数据与评测集">训练数据与评测集</a></li><li><a href="#backbone-与成本">Backbone 与成本</a></li><li><a href="#核心结果">核心结果</a></li><li><a href="#关键消融与鲁棒性">关键消融与鲁棒性</a></li><li><a href="#backbone-证据边界">Backbone 证据边界</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li><li><a href="#证据评级">证据评级</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>C3Net 在 CoDi 的 latent U-Net 上加入共享 Control C3-UNet：各输入模态先对齐到 CLIP 空间，基础 U-Net 接收 latent 平均，侧支逐模态补回复合条件信息；它在 2,000 个合成 tri-modal tuples 上多数指标小幅优于 CoDi，但各输出模态仍需独立 U-Net/decoder，且成本、空间控制和 DiT 适配均未验证。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>ControlNet 很擅长接单一条件，但真实生成任务里常常会出现图像、文本、音频等多种条件共同约束输出。单条件接口在这种场景下很快碎裂成很多分开的适配器。</p>
+<p>CoDi 已支持 any-to-any generation，但用 latent 线性插值融合多个条件，容易把不同主体混成中间态；高质量跨模态配对数据也稀缺。C3Net尝试用可学习侧支协调 image/text/audio 复合条件，并以单模态预训练提升音频对齐。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>C3Net 先用 modality-specific encoders 把不同条件映射到同一语义潜空间，再通过一个 Control C3-UNet 统一整合这些多模态条件。这样系统可以在一个复合控制接口里完成 joint-modality generation。</p>
-<h2 id="关键发现">关键发现</h2>
+<ol>
+<li>image/text/audio encoder 把条件映射到共享 CLIP latent space $\xi$。</li>
+<li>音频 encoder 先在大规模单模态音频上做 masked-autoencoder 预训练，再用 audio-caption pairs 对齐到冻结文本 encoder。</li>
+<li>基础 C3-UNet 接收各条件 latent 的加权平均。</li>
+<li>共享 Control C3-UNet 逐个读取各模态 latent，并在 12 个 skip levels 与 middle block 注入 residual；复合条件 control scale 经验设为 0.1，单条件时置 0。</li>
+<li>音频、文本、图像各自由对应 latent diffusion model 和 decoder 输出。</li>
+</ol>
+<h2 id="复合条件接口">复合条件接口</h2>
+<table><thead><tr><th>维度</th><th>论文证据</th></tr></thead><tbody><tr><td>输入模态</td><td>image / text / audio 的任意组合</td></tr><tr><td>输出模态</td><td>image / text / audio 的任意组合</td></tr><tr><td>对齐</td><td>CLIP shared latent；音频先单模态预训练再对比对齐</td></tr><tr><td>融合</td><td>latent 平均 + learned Control C3-UNet residual</td></tr><tr><td>冲突处理</td><td>补充材料仅做 male/female singer 定性案例</td></tr><tr><td>空间 layout</td><td>不支持 box/mask/pose/pixel-aligned control</td></tr><tr><td>单条件</td><td>Control C3-UNet scale 置零，退回基础生成器</td></tr></tbody></table>
+<p>“any-to-any”是模态组合层面的接口，不是一个共享 decoder 一次产生所有原始模态。</p>
+<h2 id="训练数据与评测集">训练数据与评测集</h2>
 <ul>
-<li>它和 <a class="wikilink" href="../sources/2026-04-16-controlnet.html">sources/2026-04-16-controlnet</a> 形成清晰前后关系：前者建立 ControlNet 侧支接口，C3Net 则把它升级成 compound-conditioned interface。</li>
-<li>这说明 interface consolidation 的一个方向已经很明确：控制条件会从单一输入发展成可对齐、可组合的多模态条件栈。</li>
-<li>在 <a class="wikilink" href="../topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a> 里，它补上了 adapter-based control 的“多模态统一化”分支。</li>
-<li>它也让 batch-g 里的标准接口候选更完整：prompt/attention、layout、multi-path、compound adapters 现在都已有代表作。</li>
+<li>音频 encoder：AudioCaps、Epidemic Sound、从 AudioSet 筛选的 <strong>100 万个 10 秒片段</strong>。</li>
+<li>image/text Control C3-UNet：COCO + 部分 LAION-400M。</li>
+<li>audio Control C3-UNet：AudioCaps + AudioSet。</li>
+<li>tri-modal test set：AudioCaps 音频/文本 + Stable Diffusion 合成图像，经 CLIP/质量筛选得 <strong>2,000 tuples</strong>。</li>
 </ul>
+<p>测试图像并非自然三模态同步 ground truth，而是由 Stable Diffusion 生成并经 CLIP 筛选，可能偏向模型共享对齐空间。</p>
+<h2 id="backbone-与成本">Backbone 与成本</h2>
+<ul>
+<li>生成 backbone 是 CoDi <strong>latent U-Net</strong>：12 encoder + middle + 12 decoder blocks，共 25 blocks。</li>
+<li>Control C3-UNet 复制 12 encoder blocks 与 middle，并经 zero convolution 注入。</li>
+<li>CLIP、SSAST/MAE、文本 Transformer 只是条件 encoder，不是生成去噪 backbone。</li>
+<li>每个输出模态仍使用独立 C3-UNet/Control C3-UNet pair 与 decoder。</li>
+<li>未报告参数量、GPU 型号/数量、训练步数、wall-clock、显存或推理延迟。</li>
+</ul>
+<p>论文的“效率”只指避免为每种输入模态组合训练专用 controller，不能解释为低训练成本或低延迟。</p>
+<h2 id="核心结果">核心结果</h2>
+<table><thead><tr><th>输出/指标</th><th>CoDi</th><th>C3Net</th></tr></thead><tbody><tr><td>compound image FID↓</td><td>11.39</td><td><strong>10.97</strong></td></tr><tr><td>compound image CLIP↑</td><td>25.17</td><td><strong>25.29</strong></td></tr><tr><td>text BLEU-1 / ROUGE-L↑</td><td>0.1059 / 0.1019</td><td><strong>0.1104 / 0.1045</strong></td></tr><tr><td>text CIDEr-D / SPIDEr↑</td><td>0.0651 / 0.0631</td><td><strong>0.0713 / 0.0665</strong></td></tr><tr><td>audio OVL / REL↑</td><td>62.91 / 59.01</td><td><strong>63.25 / 59.83</strong></td></tr><tr><td>audio FAD↓</td><td><strong>11.4</strong></td><td>11.7</td></tr><tr><td>ESC-50 audio-text accuracy↑</td><td>21.05%</td><td><strong>23.25%</strong></td></tr></tbody></table>
+<p>多数语义相关指标小幅领先，但音频 FAD 变差，说明条件相关性与生成 fidelity 存在 trade-off。论文未报告置信区间或多 seed。</p>
+<h2 id="关键消融与鲁棒性">关键消融与鲁棒性</h2>
+<ul>
+<li>单模态预训练把 audio→text CIDEr-D 从 0.0654 提到 0.0704，audio→image CLIP 23.192→23.325；绝对幅度有限。</li>
+<li>与 CoDi 的主比较同时改变音频 encoder 初始化与 Control C3-UNet，两个贡献未完全正交分离。</li>
+<li>矛盾模态只做定性例子：C3Net通常遵循多数条件或折中音色，CoDi 更易产生中间态/语义漂移；没有冲突强度、权重或统计量。</li>
+<li>未系统消融 control scale 0.1、条件数量与缺失模式。</li>
+</ul>
+<h2 id="backbone-证据边界">Backbone 证据边界</h2>
+<p>C3Net 的生成去噪器明确是 U-Net。论文中 CLIP/SSAST/T5/Transformer 的出现属于外部表征或文本生成组件，不能作为 DiT 主干证据。它直接支持的是 <strong>U-Net + ControlNet-style side branch 的复合语义条件接口</strong>，不是 image DiT scaling/adoption。</p>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>它关注多模态条件整合，对单一图像质量或低时延推理本身并不是最直接的优化。</li>
-<li>统一潜空间带来更强组合能力，也要求条件对齐足够稳定。</li>
-<li>多模态 joint generation 的真实应用边界仍需要更多后续证据。</li>
+<li>CLIP shared space 对音频未必最优；contrastive alignment 可能牺牲模态特有信息。</li>
+<li>唯一强 baseline 是 CoDi，多项提升较小。</li>
+<li>合成 tri-modal test set 继承 Stable Diffusion/CLIP 偏差。</li>
+<li>不含 box/mask/pose，不能支持空间或 layout controllability 主张。</li>
+<li>缺完整参数与算力披露。</li>
+<li>不支持视频，复杂冲突也没有定量验证。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li><strong>直接支持</strong>：复合多模态条件可由共享语义空间与 U-Net learned side branch 协调。</li>
+<li><strong>有限支持</strong>：共享侧支减少输入模态专用 controller；端到端成本未知。</li>
+<li><strong>不支持</strong>：DiT/Transformer backbone、空间 layout control、全指标 SOTA、低延迟 any-to-any。</li>
 </ul>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2311.17951</li>
-<li>https://arxiv.org/pdf/2311.17951.pdf</li>
+<li><a href="https://arxiv.org/abs/2311.17951">arXiv abstract</a></li>
+<li><a href="https://arxiv.org/pdf/2311.17951.pdf">PDF</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a></li>
-<li><a class="wikilink" href="../sources/2026-04-16-controlnet.html">sources/2026-04-16-controlnet</a></li>
-<li><a class="wikilink" href="../sources/2026-04-16-multidiffusion.html">sources/2026-04-16-multidiffusion</a></li>
+<li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../sources/2026-04-16-controlnet.html">ControlNet</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-codi.html">CoDi</a></li>
 </ul>
-<h2 id="备注">备注</h2>
-<p>它在本库中的价值，是把 control interface consolidation 从“已有很多控制技巧”继续推进到“接口边界、层级分工和闭环控制是否开始成形”这个层面。</p></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+<h2 id="证据评级">证据评级</h2>
+<p><strong>B+</strong>：CoDi U-Net 上复合 image/text/audio 条件协调的中强证据；基线、评测集、消融独立性、成本和跨 backbone 证据有限。</p></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">4</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>主题</span></li><li><a href="../topics/diffusion-models.html">扩散模型</a><span>主题</span></li><li><a href="../topics/image-generation.html">图像生成</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-16-c3net&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;C3Net（CVPR 2024）：把 ControlNet 从单条件接口推进到多模态复合条件接口&quot;,
+  &quot;title&quot;: &quot;C3Net：CoDi U-Net 上的图像、文本与音频复合条件协调&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-16&quot;,
-  &quot;updated&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2024&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;image-generation&quot;,
     &quot;diffusion&quot;,
-    &quot;efficiency&quot;,
+    &quot;conditioning&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
@@ -115,10 +166,10 @@
   &quot;authors&quot;: [
     &quot;Juntao Zhang&quot;,
     &quot;Yuehuai Liu&quot;,
-    &quot;Yu‐Wing Tai&quot;,
-    &quot;Chi–Keung Tang&quot;
+    &quot;Yu-Wing Tai&quot;,
+    &quot;Chi-Keung Tang&quot;
   ],
-  &quot;published_at&quot;: &quot;2023/11/29&quot;,
+  &quot;published_at&quot;: &quot;2023-11-29&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2311.17951&quot;,
     &quot;https://arxiv.org/pdf/2311.17951.pdf&quot;
@@ -126,13 +177,12 @@
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-16-c3net/&quot;,
   &quot;topics&quot;: [
     &quot;topics/image-generation&quot;,
-    &quot;topics/diffusion-models&quot;,
-    &quot;topics/diffusion-efficiency-engineering&quot;
+    &quot;topics/diffusion-models&quot;
   ],
   &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

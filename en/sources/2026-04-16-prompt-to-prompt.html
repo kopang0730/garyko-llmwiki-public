@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Prompt-to-Prompt：把 cross-attention 直接变成文本编辑控制面板 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="Prompt-to-Prompt：用 cross-attention 控制文本驱动图像编辑">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Prompt-to-Prompt：用 cross-attention 控制文本驱动图像编辑 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-prompt-to-prompt&quot;, &quot;title&quot;: &quot;Prompt-to-Prompt（arXiv 2022）：把 cross-attention 直接变成文本编辑控制面板&quot;, &quot;title_en&quot;: &quot;Prompt-to-Prompt（arXiv 2022）：把 cross-attention 直接变成文本编辑控制面板&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-prompt-to-prompt&quot;, &quot;title&quot;: &quot;Prompt-to-Prompt：用 cross-attention 控制文本驱动图像编辑&quot;, &quot;title_en&quot;: &quot;Prompt-to-Prompt：用 cross-attention 控制文本驱动图像编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;diffusion&quot;, &quot;control&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,59 +60,84 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-16-prompt-to-prompt.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-16-prompt-to-prompt.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-16</p>
-        <h1><span class="title-main">Prompt-to-Prompt</span><span class="title-subtitle">把 cross-attention 直接变成文本编辑控制面板</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Prompt-to-Prompt：用 cross-attention 控制文本驱动图像编辑</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">Prompt-to-Prompt</span><span class="title-subtitle">用 cross-attention 控制文本驱动图像编辑</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>arXiv</dd></div><div class="source-fact"><dt>Published</dt><dd>2022/08/03</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2208.01626" title="https://arxiv.org/abs/2208.01626" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2208.01626</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2208.01626.pdf" title="https://arxiv.org/pdf/2208.01626.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2208.01626.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-editing">#image-editing</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-editing">#image-editing</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#control">#control</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把图像编辑里的 prompt 改写问题，直接下沉到 cross-attention 控制：通过替换、精炼和重权重化注意力图，可以在尽量保留原图结构的同时完成文本驱动编辑。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>arXiv</dd></div><div class="source-fact"><dt>Published</dt><dd>2022-08-03</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2208.01626" title="https://arxiv.org/abs/2208.01626" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2208.01626</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2208.01626.pdf" title="https://arxiv.org/pdf/2208.01626.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2208.01626.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#核心实验与结果">核心实验与结果</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>Prompt-to-Prompt 直接复用、选择性注入或重权重源生成的 cross-attention，使少量 prompt 修改尽可能保留原构图；它强力奠定了 attention control 接口，但论文没有定量 benchmark，也没有验证 DiT 或“语义理解”。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这是 inference-time attention editing 的机制锚点。实验使用 Imagen 的 64×64 文本到图像扩散阶段，模型权重、超分阶段和训练数据都不改；输入仍需要源/目标 prompt 与固定 seed。真实图路径额外依赖 DDIM inversion。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>text-to-image diffusion 很擅长从零生成，但文本编辑真正困难的地方在于“改一部分、保留大部分”。只要 prompt 稍微变化，模型通常就会整张图一起漂移；而依赖人工 mask 的方法又会破坏原始结构与内容。</p>
+<p>只改一个词，即使固定随机种子，也会让整张图的结构和背景漂移。作者把原因定位到 token—空间交互，并把 cross-attention map 当作“改词但保构图”的控制变量。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>作者深入分析 text-conditioned diffusion 的 cross-attention，指出它决定了词语和空间布局的对应关系。基于这一点，Prompt-to-Prompt 在推理时直接操控 cross-attention map，实现 word swap、prompt refinement 和 attention re-weighting，让文本编辑尽量沿着原始布局轨道前进。</p>
-<h2 id="关键发现">关键发现</h2>
 <ul>
-<li>它为 <a class="wikilink" href="../../en/topics/image-editing.html">topics/image-editing</a> 补上了一个非常关键的机制锚点：后续大量 attention-based editing / guidance 工作，基本都默认继承了“cross-attention 可以直接编程”的前提。</li>
-<li>这篇工作和 <a class="wikilink" href="../../en/sources/2026-04-16-a-star.html">sources/2026-04-16-a-star</a>、<a class="wikilink" href="../../en/sources/2026-04-14-video-p2p.html">sources/2026-04-14-video-p2p</a> 形成清晰谱系：先是把 attention 用作图像编辑控制接口，再扩到语义修复与视频编辑。</li>
-<li>它说明 controllability 不一定非要靠新训练分支，prompt 本身也可以通过 attention 注入方式获得更精细的编辑行为。</li>
-<li>在本库里，它把 batch-f 的 control / layout composition 主线与 image-editing 主线真正接上了。</li>
+<li><strong>Word swap</strong>：把源 attention 注入目标 prompt；截止步控制源保真与目标语义的权衡。</li>
+<li><strong>Prompt refinement</strong>：只对不变 token 注入源 attention，让新增修饰词使用目标 attention。</li>
+<li><strong>Attention re-weighting</strong>：对指定词的 attention 乘 $c\in[-2,2]$，形成连续 fader。</li>
+<li>两条去噪路径可批处理；论文称相对普通推理约增加一个 step。</li>
+</ul>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<p>论文以定性应用为主，<strong>未报告 CLIP/FID、用户研究、标准 benchmark 或样本总量</strong>：</p>
+<ul>
+<li>图 2 的同 seed 对照显示，不注入 attention 时结构彻底变化，注入后构图明显保持。</li>
+<li>图 6 扫描注入时长：更多注入通常更保源图，但全程注入会过度约束，例如目标 car 仍保留 bicycle 几何。</li>
+<li>图 5、7–9 展示局部 token 保留、局部/全局 refinement 与连续强度控制。</li>
+<li>图 10–12 展示真实图编辑，但 DDIM inversion 经常不能准确重建。</li>
+</ul>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li><strong>固定 seed vs attention 注入</strong>：直接支持 attention intervention 的必要性。</li>
+<li><strong>注入步数扫描</strong>：显示保真—编辑是非单调权衡。</li>
+<li><strong>只注入单一 token</strong>：定性支持局部对象保持；没有像素级效应量。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
-<ul>
-<li>它更像一种推理期控制机制，而不是完整的统一编辑系统，因此对复杂编辑链条的覆盖有限。</li>
-<li>方法强依赖 cross-attention 的可解释性和可操作性，对非 attention 主干并不天然适配。</li>
-<li>当前证据主要强调语义与布局保留，对真实世界复杂遮挡、局部几何变化的鲁棒性仍有限。</li>
-</ul>
+<ol>
+<li>真实图 inversion 会失真，且要求用户提供合适源 prompt。</li>
+<li>bottleneck attention 分辨率低，限制精细局部编辑。</li>
+<li>大幅改写、多 token 实体与关系变化时 token 对齐脆弱。</li>
+<li>attention 可干预不等于 attention 是完备因果解释。</li>
+<li>缺少定量和跨 backbone 实验，不能外推为通用编辑 SOTA。</li>
+</ol>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<table><thead><tr><th>判断</th><th>证据分类</th><th>边界</th></tr></thead><tbody><tr><td>attention 可成为编辑控制接口</td><td><strong>直接支持</strong></td><td>Imagen/attention diffusion，定性机制证据</td></tr><tr><td>semantic completeness</td><td>背景证据</td><td>不是漏主体 benchmark</td></tr><tr><td>spatial guidance</td><td>奠基/间接支持</td><td>无 box、无定位指标</td></tr><tr><td>closed-loop correction</td><td>当前不应引用</td><td>无输出检测与迭代纠错</td></tr><tr><td>支持 DiT</td><td>当前不应引用</td><td>未做 DiT 实验</td></tr><tr><td>支持“理解”</td><td>当前不应引用</td><td>证明控制执行，不证明关系/计数理解</td></tr></tbody></table>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2208.01626</li>
-<li>https://arxiv.org/pdf/2208.01626.pdf</li>
+<li><a href="https://arxiv.org/abs/2208.01626">arXiv</a></li>
+<li><a href="https://arxiv.org/pdf/2208.01626.pdf">PDF</a></li>
+<li><a class="wikilink missing" href="#missing-raw/ingest/2026-04-16-prompt-to-prompt/analysis">全文深分析与可复核定位</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/image-editing.html">topics/image-editing</a></li>
-<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-a-star.html">sources/2026-04-16-a-star</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-video-p2p.html">sources/2026-04-14-video-p2p</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>它在本库中的价值，是把 control / layout composition 这条长尾从“prompt 可以控制一点生成”推进到“attention、语义覆盖、布局建模和多路径组合都能成为独立接口设计问题”。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-attend-and-excite.html">Attend-and-Excite</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-a-star.html">A-STAR</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-boxdiff.html">BoxDiff</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">4</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-editing.html">图像编辑</a></li><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li><li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">6</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-04-16-attend-and-excite.html">Attend-and-Excite：用 attention guidance 修复主体遗漏</a><span>Source note</span></li><li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>Topic</span></li><li><a href="../../en/topics/diffusion-models.html">扩散模型</a><span>Topic</span></li><li><a href="../../en/topics/image-editing.html">图像编辑</a><span>Topic</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-16-prompt-to-prompt&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Prompt-to-Prompt（arXiv 2022）：把 cross-attention 直接变成文本编辑控制面板&quot;,
+  &quot;title&quot;: &quot;Prompt-to-Prompt：用 cross-attention 控制文本驱动图像编辑&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-16&quot;,
-  &quot;updated&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;arXiv&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;image-editing&quot;,
     &quot;diffusion&quot;,
+    &quot;control&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
@@ -119,7 +150,7 @@
     &quot;Yael Pritch&quot;,
     &quot;Daniel Cohen‐Or&quot;
   ],
-  &quot;published_at&quot;: &quot;2022/08/03&quot;,
+  &quot;published_at&quot;: &quot;2022-08-03&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2208.01626&quot;,
     &quot;https://arxiv.org/pdf/2208.01626.pdf&quot;
@@ -134,7 +165,7 @@
   &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

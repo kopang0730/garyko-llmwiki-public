@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>扩散 Transformer 正在成为默认的可扩展生成主干 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="DiT 的 scaling 与图像、视频侧改造已有直接证据；“整个生成领域的默认主干”仍需采用率统计和 DiT 专属工程证据。">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-claim" data-page="{&quot;slug&quot;: &quot;claims/claim-dit-is-becoming-the-default-scalable-generation-backbone&quot;, &quot;title&quot;: &quot;扩散 Transformer 正在成为默认的可扩展生成主干&quot;, &quot;title_en&quot;: &quot;扩散 Transformer 正在成为默认的可扩展生成主干&quot;, &quot;kind&quot;: &quot;claim&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;open-claim&quot;, &quot;diffusion&quot;, &quot;high-confidence&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-claim" data-page="{&quot;slug&quot;: &quot;claims/claim-dit-is-becoming-the-default-scalable-generation-backbone&quot;, &quot;title&quot;: &quot;DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一&quot;, &quot;title_en&quot;: &quot;DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones&quot;, &quot;kind&quot;: &quot;claim&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;open-claim&quot;, &quot;diffusion&quot;, &quot;needs-verification&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a class="active" href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a class="active" href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,55 +60,60 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">中文</a><a class="" href="../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">claim · 2026-04-17</p>
-        <h1><span class="title-main">扩散 Transformer 正在成为默认的可扩展生成主干</span></h1>
-        
-        
-        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#open-claim">#open-claim</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#high-confidence">#high-confidence</a></div>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>判断</span><span class="crumb-sep" aria-hidden="true">›</span><strong>DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</strong></nav>
+        <p class="eyebrow">判断 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</span></h1>
+        <p class="article-summary">DiT 的 scaling 与图像、视频侧改造已有直接证据；“整个生成领域的默认主干”仍需采用率统计和 DiT 专属工程证据。</p>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#open-claim">#open-claim</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#needs-verification">#needs-verification</a></div>
       </header>
-      <section class="article-content"><h2 id="命题">命题</h2>
-<p>在当前 vault 涵盖的材料里，DiT 风格主干越来越像图像生成和视频生成共同采用的默认底座。很多论文并不是另起炉灶，而是在 DiT 上继续做结构优化、控制注入、长时序扩展和部署工程化，这说明它正在从“一个方法选择”变成“一个主流平台”。</p>
-<h2 id="为什么这条-claim-很关键">为什么这条 claim 很关键</h2>
-<p>如果这条判断成立，后续 ingest 新论文时就不该把这些工作看成彼此孤立的技巧，而应当把它们组织成同一条技术谱系。这样更利于判断：哪些创新是在替换底座，哪些创新其实只是沿着 DiT 主线继续加速、压缩、控制或扩张。</p>
-<h2 id="当前支持证据在说什么">当前支持证据在说什么</h2>
-<h3 id="前史已经从-vit-可行-推进到-dit-scaling-成立">前史已经从“ViT 可行”推进到“DiT scaling 成立”</h3>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="claim-evidence-panel"><h2>证据状态</h2><p><span>判断状态</span><strong>持续复核</strong></p><div class="claim-evidence-counts"><div><span>支持证据</span><strong>4</strong></div><div><span>反对证据</span><strong>1</strong></div></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#审计结论">审计结论</a></li><li><a href="#命题">命题</a></li><li><a href="#直接支持证据">直接支持证据</a><ol><li class="toc-sub"><a href="#transformer-扩散主干的可行性与-scaling">Transformer 扩散主干的可行性与 scaling</a></li><li class="toc-sub"><a href="#图像与视频侧的-dit-直接改造">图像与视频侧的 DiT 直接改造</a></li></ol></li><li><a href="#混合与边界证据">混合与边界证据</a></li><li><a href="#有效反证">有效反证</a></li><li><a href="#通用-diffusion-工程背景">通用 Diffusion 工程背景</a></li><li><a href="#阶段性评估">阶段性评估</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="审计结论">审计结论</h2>
+<p><strong>Verdict：部分支持，中等置信。</strong></p>
+<p>当前证据支持把 DiT / Transformer 风格去噪器视为前沿图像与视频生成中的主要可扩展平台之一。现有样本尚未提供跨年份、venue、任务和代表模型的采用率统计，因此“整个生成领域的默认主干”仍属于待验证的趋势判断。</p>
+<p>本页于 2026-07-10 按论文 PDF、全文文本和现有深分析重新核验。详细审计见 <code>docs/evidence-audit/claim-semantic-audit-2026-07-10.md</code>。</p>
+<h2 id="命题">命题</h2>
+<p>U-ViT 与 DiT 分别提供了 Transformer 扩散主干的可行性和 ImageNet scaling 证据；D²iT 与 Tora 表明，后续图像和视频生成工作确实会在 DiT 底座上继续改造表示粒度与控制接口。这些材料共同支持“DiT 已成为重要可扩展主干之一”。</p>
+<h2 id="直接支持证据">直接支持证据</h2>
+<h3 id="transformer-扩散主干的可行性与-scaling">Transformer 扩散主干的可行性与 scaling</h3>
 <ul>
-<li><a class="wikilink" href="../sources/2026-04-15-all-are-worth-words.html">sources/2026-04-15-all-are-worth-words</a> 提前把 ViT 主干带进扩散建模，说明 Transformer 化底座并非临时分支，而是更早就成形的方向。</li>
-<li><a class="wikilink" href="../sources/2026-04-15-scalable-diffusion-models-with-transformers.html">sources/2026-04-15-scalable-diffusion-models-with-transformers</a> 则把 DiT 与 scaling 直接绑定起来，说明这条主干不只是可行，而且会随着模型规模提升而稳定获益。</li>
+<li><a class="wikilink" href="../sources/2026-04-15-all-are-worth-words.html">sources/2026-04-15-all-are-worth-words</a> 提出 U-ViT，以 ViT 替代 CNN U-Net，并报告具有竞争力的扩散生成表现。它支持 Transformer backbone 的可行性，没有单独证明后续采用率已经收敛。</li>
+<li><a class="wikilink" href="../sources/2026-04-15-scalable-diffusion-models-with-transformers.html">sources/2026-04-15-scalable-diffusion-models-with-transformers</a> 系统扩展 DiT 的深度、宽度和 token 数，在 ImageNet 类条件生成中观察到计算量增加与 FID 改善的稳定关系。它直接支持 scaling 子命题。</li>
 </ul>
-<h3 id="图像侧与视频侧都在把-dit-当作可改造平台">图像侧与视频侧都在把 DiT 当作可改造平台</h3>
+<h3 id="图像与视频侧的-dit-直接改造">图像与视频侧的 DiT 直接改造</h3>
 <ul>
-<li><a class="wikilink" href="../sources/2026-04-12-d2it.html">sources/2026-04-12-d2it</a> 展示了图像侧围绕 DiT 的内部表示与算力分配优化。</li>
-<li><a class="wikilink" href="../sources/2026-04-12-lingen.html">sources/2026-04-12-lingen</a> 展示了视频侧为了覆盖更长序列而对这一主干路线做结构改造。</li>
-<li><a class="wikilink" href="../sources/2026-04-12-tora.html">sources/2026-04-12-tora</a> 展示了控制与轨迹条件如何嵌入这一类生成框架。</li>
+<li><a class="wikilink" href="../sources/2026-04-12-d2it.html">sources/2026-04-12-d2it</a> 在标准 DiT 上加入 Dynamic Grain Transformer 与 Dynamic Content Transformer，是明确的 DiT 内部结构改造。</li>
+<li><a class="wikilink" href="../sources/2026-04-12-tora.html">sources/2026-04-12-tora</a> 以 OpenSora 的 Spatial-Temporal DiT 为基础模型，并向 DiT block 注入轨迹条件，是视频侧控制接口的直接证据。</li>
 </ul>
-<h3 id="工程配套正在围绕这条主线持续长出来">工程配套正在围绕这条主线持续长出来</h3>
+<h2 id="混合与边界证据">混合与边界证据</h2>
+<p><a class="wikilink" href="../sources/2026-04-12-lingen.html">sources/2026-04-12-lingen</a> 把 vanilla DiT 作为参照框架，同时用双向 Mamba2 与 Temporal Swin Attention 替换标准自注意力。它说明 DiT 已经成为重要基线，也暴露了纯 attention DiT 在长视频中的二次复杂度边界。</p>
+<h2 id="有效反证">有效反证</h2>
+<p><a class="wikilink" href="../sources/2026-04-15-diffusion-models-without-attention.html">sources/2026-04-15-diffusion-models-without-attention</a> 使用 state-space backbone 替代 attention，并直接与 DiT 比较计算扩展性。这说明可扩展 diffusion backbone 仍存在具有竞争力的替代路线。</p>
+<h2 id="通用-diffusion-工程背景">通用 Diffusion 工程背景</h2>
+<p>以下工作证明 diffusion 范式已经形成成熟的加速、压缩与控制工程生态。它们的实验主干分别是 U-Net、ADM、Stable Diffusion 或 GLIDE，因此不计入 DiT 专属 <code>evidence_for</code>：</p>
 <ul>
-<li><a class="wikilink" href="../sources/2026-04-16-on-distillation-of-guided-diffusion-models.html">sources/2026-04-16-on-distillation-of-guided-diffusion-models</a>、<a class="wikilink" href="../sources/2026-04-16-post-training-quantization-on-diffusion-models.html">sources/2026-04-16-post-training-quantization-on-diffusion-models</a>、<a class="wikilink" href="../sources/2026-04-16-towards-practical-plug-and-play-diffusion-models.html">sources/2026-04-16-towards-practical-plug-and-play-diffusion-models</a> 与 <a class="wikilink" href="../sources/2026-04-16-self-guided-diffusion-models.html">sources/2026-04-16-self-guided-diffusion-models</a> 共同补强了一层很关键的间接证据：当一条生成路线开始同时积累 guidance 蒸馏、量化部署、插件化控制和自监督 guidance 这类工程配套时，它就更像一个默认平台，而不只是几篇方法论文的偶然集合。</li>
+<li><a class="wikilink" href="../sources/2026-04-16-on-distillation-of-guided-diffusion-models.html">sources/2026-04-16-on-distillation-of-guided-diffusion-models</a> — guidance distillation，teacher/student 使用 U-Net。</li>
+<li><a class="wikilink" href="../sources/2026-04-16-post-training-quantization-on-diffusion-models.html">sources/2026-04-16-post-training-quantization-on-diffusion-models</a> — PTQ 对象是 U-Net-like CNN。</li>
+<li><a class="wikilink" href="../sources/2026-04-16-towards-practical-plug-and-play-diffusion-models.html">sources/2026-04-16-towards-practical-plug-and-play-diffusion-models</a> — 在 ADM 与 GLIDE 上研究外部 guidance。</li>
+<li><a class="wikilink" href="../sources/2026-04-16-self-guided-diffusion-models.html">sources/2026-04-16-self-guided-diffusion-models</a> — 采用 traditional U-Net noise predictor。</li>
 </ul>
-<h2 id="当前反证与边界条件在说什么">当前反证与边界条件在说什么</h2>
-<ul>
-<li><a class="wikilink" href="../sources/2026-04-15-diffusion-models-without-attention.html">sources/2026-04-15-diffusion-models-without-attention</a> 提供了一个重要反向对照：高分辨率扩散并不一定非要沿 attention / DiT 主干继续扩展，state space backbone 仍可能形成替代路线。</li>
-<li>目前 evidence 仍来自精选样本，不代表整个生成领域已经完成主干收敛。</li>
-<li>“默认主干”也不等于“唯一主干”；某些资源、分辨率或部署约束下，其他主干仍可能更优。</li>
-</ul>
-<h2 id="这条-claim-为什么还不能完全封口">这条 claim 为什么还不能完全封口</h2>
-<p>因为“默认可扩展主干”是一个趋势判断，而不是单次 SOTA 判断。它需要的不只是几篇代表作，而是持续看到后续工作更愿意在这条底座上加模块、做扩展、造工具，而不是频繁更换根主干。从当前证据看，这个趋势已经很强，但仍需要继续观察替代架构是否会在某些场景里形成反向收敛。</p>
+<p>2026-07-12 已完成以上四篇全文深分析。架构核验结果一致：生成去噪器分别是 U-Net、U-Net-like CNN、ADM/GLIDE 与 traditional U-Net/LDM；论文里出现的 ViT/DeiT/DINO 属于外部表征器或 guidance model。该批证据强化了“diffusion 工程生态成熟”这一背景判断，同时进一步确认它们不承担 DiT 主干趋势的直接证明责任。</p>
+<p>新增四篇效率全文复核延续该边界：Optimized Time Steps 在 DiT-XL/2 与 PixArt-α 上证明 schedule 可迁移，但固定 backbone，不能比较主干；ACT 与 D-ODE 使用 DDPM/ADM/EDM U-Net；EDM2 将 U-Net 的 ImageNet-512 无 CFG FID 从 8.00 推到 2.56，并明确把 DiT/RIN 迁移列为未来工作。这组证据表明 U-Net 训练、sampling 与 solver 工程仍有强改善空间，也进一步要求 DiT-default claim 使用真实采用率和同预算主干对照。</p>
+<p>Spatial/control wave 也不构成 DiT 证据：ControlNet、MultiDiffusion、DenseDiffusion 都直接操作 Stable Diffusion U-Net，DC-ControlNet 控制 SDXL U-Net；后者的 FLUX 只承担合成数据生成。它们显示 U-Net 生态在条件侧支、采样路径融合和 attention modulation 上仍成熟活跃。</p>
+<p>Feature/guidance wave 延续同一边界：FreeU 明确依赖 U-Net decoder skip；DiffusionCLIP 微调整个 DDPM U-Net；GradOP+ 优化 LDM U-Net latent；PnP 注入 Stable Diffusion U-Net decoder/self-attention features。CLIP/DINO/Transformer 只承担监督、评测或内部表征，四篇均不证明 DiT adoption。</p>
+<p>Inversion/editing P4 同样不构成 DiT 证据：Blended Diffusion 是 pixel U-Net DDPM，Diff-AE 训练 guided-diffusion U-Net，EDICT 重写 SD1.4 U-Net sampler，Imagic 在 Imagen/SD U-Net 上做 per-image adaptation。它们证明 U-Net editing/inversion 生态成熟，进一步要求 DiT-default claim 使用真实采用率。</p>
+<p>P5 继续清理误关联：AIDI/Paint by Example/PTI 都在 diffusion U-Net 上验证；VIVE3D 是 EG3D/GAN；DynVideo-E 是 dynamic NeRF；Fairy/Video-P2P 才是 latent U-Net；Shape-aware 的 SD 只做 frozen guidance。出现 Transformer、NeRF 或 GAN 都不构成 image DiT adoption。</p>
+<p>CoDi、CommonCanvas、LayoutDiffusion 也都是 U-Net 证据：CoDi 为每任务 LDM U-Net/ControlNet-style adapter 做 few-step distillation；CommonCanvas 的 Small/Large 分别是 SD2/SDXL-style U-Net；LayoutDiffusion 是 ADM-style pixel U-Net。其条件 encoder 或数据工程均不构成 DiT adoption。</p>
+<p>P6 再加入四条边界：EPD-Solver 测试 EDM pixel models 与 LDM/Stable Diffusion U-Net；S-CFG 依赖 SD/IF U-Net cross/self-attention；CoDi 复制 LDM U-Net encoder 做 conditional distillation；WaveDiff 是 NCSN++/DDGAN-style U-Net。它们分别证明 solver parallelization、guidance governance、task adapter distillation 和 wavelet representation engineering，却都不进入 DiT <code>evidence_for</code>。尤其是论文里出现 CLIP ViT 评测器、attention map 或“scalable”措辞，都不能替代生成 denoiser 身份核验。</p>
 <h2 id="阶段性评估">阶段性评估</h2>
-<p>基于当前 vault 中的证据，最稳的阶段性判断是：<strong>DiT 已经非常像当前生成研究里的默认可扩展底座，而且这条趋势正在被 backbone scaling 证据与工程子生态同时强化。</strong></p>
-<p>也就是说，这条 claim 现在的强度已经不只是“DiT 很流行”，而是“越来越多工作把 DiT 当作一个值得继续加速、压缩、控制、扩展的共同平台”。当一条主线同时拥有 canonical paper、横跨图像与视频的适配案例，以及完整工程配套时，它继续吸走后续工作的概率会明显提高。</p>
-<h2 id="当前更倾向的结论">当前更倾向的结论</h2>
-<ul>
-<li>这条 claim 在目前三条核心 claim 中属于证据最扎实的一条。</li>
-<li>它仍不该被写成“所有替代主干都已失去机会”，但趋势上已经接近高置信判断。</li>
-<li>因此当前最合理的状态仍是 <code>monitored</code>，但在解释层面可以把它视为一条已经很强的主线判断。</li>
-</ul>
-<h2 id="研究含义">研究含义</h2>
-<ul>
-<li>如果后续要做生成模型研究，优先把新方法理解成“围绕 DiT 平台做什么扩展”通常会更有效。</li>
-<li>如果要寻找真正高价值的替代路线，就不能只做局部改进，而需要证明自己能挑战 DiT 的平台性地位。</li>
-<li>对知识库组织来说，这条 claim 的作用是把大量看似分散的 backbone、控制、效率与部署工作收束成同一技术谱系。</li>
-</ul>
+<p>最稳妥的当前判断是：<strong>DiT 的可扩展性和跨图像、视频的改造能力已有直接证据，它是主要生成主干之一；“默认主干”仍需要采用率统计和更多 DiT 专属工程证据。</strong></p>
+<p>要把该判断升级为高置信，需要补充：</p>
+<ol>
+<li>跨年份与 venue 的 backbone 采用率统计；</li>
+<li>代表性图像、视频生成模型的主干清单；</li>
+<li>DiT / MM-DiT / ST-DiT 上直接验证的蒸馏、量化、缓存和控制工程；</li>
+<li>与 SSM、CNN/U-Net 和混合架构在统一预算下的比较。</li>
+</ol>
 <h2 id="相关页面">相关页面</h2>
 <ul>
 <li><a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a></li>
@@ -110,18 +121,25 @@
 <li><a class="wikilink" href="../topics/video-generation.html">topics/video-generation</a></li>
 <li><a class="wikilink" href="../entities/diffusion-transformer.html">entities/diffusion-transformer</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-evidence_for"><h3>支持证据<span class="related-count">4</span></h3><ul><li><a class="wikilink" href="../sources/2026-04-15-all-are-worth-words.html">All Are Worth Words：把 ViT 直接变成扩散模型主干</a></li><li><a class="wikilink" href="../sources/2026-04-15-scalable-diffusion-models-with-transformers.html">Scalable Diffusion Models with Transformers：DiT 把 Transformer 真正坐实为可扩展扩散主干</a></li><li><a class="wikilink" href="../sources/2026-04-12-d2it.html">D²iT：用于高精度图像生成的动态扩散 Transformer</a></li><li><a class="wikilink" href="../sources/2026-04-12-tora.html">Tora：面向视频生成的轨迹导向扩散 Transformer</a></li></ul></div><div class="related-group related-evidence_against"><h3>反对证据<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../sources/2026-04-15-diffusion-models-without-attention.html">Diffusion Models Without Attention：不用注意力也能做高分辨率扩散</a></li></ul></div><div class="related-group related-related_topics"><h3>相关主题<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li><li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../topics/video-generation.html">视频生成</a></li></ul></div><div class="related-group related-related_entities"><h3>相关实体<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../entities/diffusion-transformer.html">扩散 Transformer</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">13</span></h2><ul><li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a><span>实体</span></li><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-04-12-lingen.html">LinGen：面向高分辨率分钟级文本到视频生成的线性复杂度框架</a><span>来源笔记</span></li><li><a href="../sources/2026-04-12-tora.html">Tora：面向视频生成的轨迹导向扩散 Transformer</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-latent-diffusion-models.html">Latent Diffusion Models：高分辨率图像合成的潜空间扩散框架</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-motionstone.html">MotionStone：用 DiT 解耦运动强度调制的图像到视频生成</a><span>来源笔记</span></li><li><a href="../sources/2026-04-15-all-are-worth-words.html">All Are Worth Words：把 ViT 直接变成扩散模型主干</a><span>来源笔记</span></li><li><a href="../sources/2026-04-15-diffusion-models-without-attention.html">Diffusion Models Without Attention：不用注意力也能做高分辨率扩散</a><span>来源笔记</span></li><li><a href="../sources/2026-04-15-scalable-diffusion-models-with-transformers.html">Scalable Diffusion Models with Transformers：DiT 把 Transformer 真正坐实为可扩展扩散主干</a><span>来源笔记</span></li><li><a href="../sources/2026-04-16-distilling-parallel-gradients-ode-solvers.html">Distilling Parallel Gradients for Fast ODE Solvers of Diffusion Models：并行方向蒸馏扩散 ODE 求解器</a><span>来源笔记</span></li><li><a href="../sources/2026-04-16-rethinking-spatial-inconsistency-cfg.html">Rethinking the Spatial Inconsistency in Classifier-Free Diffusion Guidance：语义区域自适应 CFG</a><span>来源笔记</span></li><li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>主题</span></li><li><a href="../topics/vision-backbones.html">主流视觉 Backbone 入门</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;claim-dit-is-becoming-the-default-scalable-generation-backbone&quot;,
   &quot;type&quot;: &quot;claim&quot;,
-  &quot;title&quot;: &quot;扩散 Transformer 正在成为默认的可扩展生成主干&quot;,
+  &quot;title&quot;: &quot;DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一&quot;,
+  &quot;title_en&quot;: &quot;DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones&quot;,
+  &quot;summary&quot;: &quot;DiT 的 scaling 与图像、视频侧改造已有直接证据；“整个生成领域的默认主干”仍需采用率统计和 DiT 专属工程证据。&quot;,
+  &quot;summary_en&quot;: &quot;Direct evidence supports DiT scaling and downstream image/video adaptations, while default adoption across generative research remains unverified.&quot;,
   &quot;status&quot;: &quot;monitored&quot;,
   &quot;created&quot;: &quot;2026-04-12&quot;,
-  &quot;updated&quot;: &quot;2026-04-17&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;open-claim&quot;,
     &quot;diffusion&quot;,
-    &quot;high-confidence&quot;
+    &quot;needs-verification&quot;
   ],
   &quot;claim_status&quot;: &quot;monitored&quot;,
   &quot;claim_type&quot;: &quot;trend&quot;,
@@ -129,12 +147,7 @@
     &quot;sources/2026-04-15-all-are-worth-words&quot;,
     &quot;sources/2026-04-15-scalable-diffusion-models-with-transformers&quot;,
     &quot;sources/2026-04-12-d2it&quot;,
-    &quot;sources/2026-04-12-lingen&quot;,
-    &quot;sources/2026-04-12-tora&quot;,
-    &quot;sources/2026-04-16-on-distillation-of-guided-diffusion-models&quot;,
-    &quot;sources/2026-04-16-post-training-quantization-on-diffusion-models&quot;,
-    &quot;sources/2026-04-16-towards-practical-plug-and-play-diffusion-models&quot;,
-    &quot;sources/2026-04-16-self-guided-diffusion-models&quot;
+    &quot;sources/2026-04-12-tora&quot;
   ],
   &quot;evidence_against&quot;: [
     &quot;sources/2026-04-15-diffusion-models-without-attention&quot;
@@ -147,7 +160,7 @@
   &quot;related_entities&quot;: [
     &quot;entities/diffusion-transformer&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

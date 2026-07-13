@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DiffusionCLIP：把文本引导图像操控更早接到 diffusion 路线里 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="DiffusionCLIP：CLIP 引导的 diffusion U-Net 文本图像操控">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>DiffusionCLIP：CLIP 引导的 diffusion U-Net 文本图像操控 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-diffusionclip&quot;, &quot;title&quot;: &quot;DiffusionCLIP（CVPR 2022）：把文本引导图像操控更早接到 diffusion 路线里&quot;, &quot;title_en&quot;: &quot;DiffusionCLIP（CVPR 2022）：把文本引导图像操控更早接到 diffusion 路线里&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;diffusion&quot;, &quot;conditioning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-diffusionclip&quot;, &quot;title&quot;: &quot;DiffusionCLIP：CLIP 引导的 diffusion U-Net 文本图像操控&quot;, &quot;title_en&quot;: &quot;DiffusionCLIP：CLIP 引导的 diffusion U-Net 文本图像操控&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;diffusion&quot;, &quot;conditioning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,51 +60,69 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-16-diffusionclip.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-16-diffusionclip.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-16</p>
-        <h1><span class="title-main">DiffusionCLIP</span><span class="title-subtitle">把文本引导图像操控更早接到 diffusion 路线里</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>DiffusionCLIP：CLIP 引导的 diffusion U-Net 文本图像操控</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">DiffusionCLIP</span><span class="title-subtitle">CLIP 引导的 diffusion U-Net 文本图像操控</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2022</dd></div><div class="source-fact"><dt>Published</dt><dd>2021/10/06</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2110.02711" title="https://arxiv.org/abs/2110.02711" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2110.02711</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2110.02711.pdf" title="https://arxiv.org/pdf/2110.02711.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2110.02711.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-editing">#image-editing</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#conditioning">#conditioning</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把文本驱动图像操控更早地接到 diffusion 路线里，说明真实图像属性编辑在 diffusion 时代很早就开始摆脱 GAN-only 范式。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2022</dd></div><div class="source-fact"><dt>Published</dt><dd>2021-10-06</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2110.02711" title="https://arxiv.org/abs/2110.02711" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2110.02711</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2110.02711.pdf" title="https://arxiv.org/pdf/2110.02711.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2110.02711.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#backbone-数据与优化">Backbone、数据与优化</a></li><li><a href="#核心结果">核心结果</a></li><li><a href="#真实成本">真实成本</a></li><li><a href="#消融与边界">消融与边界</a></li><li><a href="#相关页面">相关页面</a></li><li><a href="#备注">备注</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>DiffusionCLIP 用 DDIM inversion 保留真实图像细节，再按目标文本以 directional CLIP loss 微调整个 DDPM U-Net；它建立了早期 diffusion 编辑优势，但不是 training-free，也不是 Stable Diffusion/DiT 方法。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>真实图像编辑需要同时满足两件事：语义改动要准确，原图身份与结构也要尽量保住。论文要解决的是，怎样把文本驱动操控能力稳定迁移到 diffusion 模型上。</p>
+<p>GAN inversion 对 novel pose、手部、背景和高方差数据重建不稳，导致编辑时身份/结构漂移。论文尝试把 diffusion 的近似可逆性与 CLIP 的开放文本方向结合，让一个目标属性模型复用于同一预训练域内多张图像。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>作者围绕预训练 diffusion model 做文本引导编辑，让模型在保留原图核心内容的同时按文本做语义变换。它的重要性在于给后续 image-editing 主线补上一个早期 diffusion text-guided manipulation 锚点。</p>
-<h2 id="关键发现">关键发现</h2>
+<ol>
+<li>原 U-Net 做 deterministic forward DDIM inversion 到 return step $t_0$。</li>
+<li>复制 U-Net，最小化 directional CLIP loss + L1/face identity loss。</li>
+<li>每个目标编辑方向得到一份微调模型；推理时原模型 inversion、微调模型 reverse DDIM。</li>
+<li>多属性可混合多个微调模型的噪声预测，在一次 sampling 中完成组合编辑。</li>
+</ol>
+<h2 id="backbone-数据与优化">Backbone、数据与优化</h2>
+<table><thead><tr><th>维度</th><th>全文核验</th></tr></thead><tbody><tr><td>256² backbone</td><td>Wide-ResNet 风格 DDPM/improved-DDPM <strong>U-Net</strong></td></tr><tr><td>512² backbone</td><td>ImageNet improved-DDPM U-Net；8/16/32 分辨率加 self-attention</td></tr><tr><td>外部模型</td><td>CLIP 用于 loss；face/segmentation 网络用于 identity 与评测</td></tr><tr><td>预训练域</td><td>CelebA-HQ、AFHQ-Dog、LSUN-Bedroom、LSUN-Church、ImageNet</td></tr><tr><td>训练设置</td><td>50 张 latent；Adam，$4\times10^{-6}$；1–10 epochs/目标属性</td></tr><tr><td>diffusion 配置</td><td>$T=1000$；$t_0=300$–600；训练 $(S_{for},S_{gen})=(40,6)$；测试 $(200,40)$</td></tr></tbody></table>
+<h2 id="核心结果">核心结果</h2>
+<p>CelebA-HQ 1,500 张重建：$t_0=300$ 时 MAE <strong>0.020</strong>、LPIPS <strong>0.073</strong>、SSIM <strong>0.914</strong>，优于 HFGI+e4e 的 0.062/0.127/0.877；$t_0$ 增至 600 后为 0.024/0.087/0.893，显示大编辑空间与重建的权衡。</p>
+<p>1,000 张/域编辑评测：</p>
+<table><thead><tr><th>方法</th><th>CelebA $S_{dir}$↑</th><th>SC↑</th><th>ID↑</th><th>Church $S_{dir}$↑</th><th>SC↑</th></tr></thead><tbody><tr><td>StyleCLIP</td><td>0.13</td><td>86.8%</td><td>0.35</td><td>0.13</td><td>67.9%</td></tr><tr><td>StyleGAN-NADA</td><td>0.16</td><td>89.4%</td><td>0.42</td><td>0.15</td><td>73.2%</td></tr><tr><td>DiffusionCLIP</td><td><strong>0.17</strong></td><td><strong>93.7%</strong></td><td><strong>0.70</strong></td><td><strong>0.20</strong></td><td><strong>78.1%</strong></td></tr></tbody></table>
+<p>50 人 6,000 票中，out-of-domain 相对 StyleCLIP 偏好为一般样本 88.90%、hard cases 94.60%。这些比较主要针对同期 GAN 编辑器，不能替代对后续 diffusion editing 的比较。</p>
+<h2 id="真实成本">真实成本</h2>
 <ul>
-<li>它说明 2022 年时 diffusion 就已经开始争夺真实图像操控这条路线。</li>
-<li>它和 <a class="wikilink" href="../../en/sources/2026-04-16-blended-diffusion.html">sources/2026-04-16-blended-diffusion</a> 一起构成早期 diffusion editing 双节点：一个更偏自然图像区域编辑，一个更偏文本驱动属性操控。</li>
-<li>它能帮助解释后续 <a class="wikilink" href="../../en/sources/2026-04-14-null-text-inversion.html">sources/2026-04-14-null-text-inversion</a>、<a class="wikilink" href="../../en/sources/2026-04-14-imagic.html">sources/2026-04-14-imagic</a>、<a class="wikilink" href="../../en/sources/2026-04-14-diffeditor.html">sources/2026-04-14-diffeditor</a> 为什么会继续沿真实图像 diffusion 编辑深挖。</li>
+<li>50 张 latent 预计算：82.2 s，一次性，约 6 GB。</li>
+<li>标准微调：41.3 s/epoch；1–10 epochs 即 <strong>41.3 s–7 min/目标属性</strong>；需 23 GB VRAM。</li>
+<li>GPU-efficient 微调：12 GB，但约 2× 时间。</li>
+<li>单图编辑：快配 $(40,6)$ 为 <strong>1.958 s</strong>；高保真 $(200,40)$ 为 <strong>10.132 s</strong>（Quadro RTX 6000，256²）。</li>
+<li>512² 相对 256²：约 4× 时间、2× 显存。</li>
+<li>每个目标方向需要独立 checkpoint；多属性单次 sampling 仍需先训练/存储多个模型。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="消融与边界">消融与边界</h2>
 <ul>
-<li>它仍处在早期文本驱动编辑阶段，距离后来的多对象、复杂指令编辑还有明显距离。</li>
-<li>这条路线和 inversion-based 编辑、plug-and-play feature 编辑的关系，还需要更多跨年份证据串起来。</li>
-</ul>
-<h2 id="原始链接">原始链接</h2>
-<ul>
-<li>https://arxiv.org/abs/2110.02711</li>
-<li>https://arxiv.org/pdf/2110.02711.pdf</li>
+<li>增加 inversion/generation steps 提高重建；$S_{for}&lt;S_{gen}$ 易出 artifacts。</li>
+<li>identity loss 保身份但妨碍大形状/风格变化；$t_0$ 必须按目标调节。</li>
+<li>预计算图像数从 5 增到 100 时属性变化更充分。</li>
+<li>CLIP 不理解或表示不足的目标（人脸→电脑/椅子、近期概念）会失败。</li>
+<li>迁移仅验证 DDPM U-Net 及给定预训练域；不是 LDM/DiT 证据。</li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/image-editing.html">topics/image-editing</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-blended-diffusion.html">sources/2026-04-16-blended-diffusion</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-null-text-inversion.html">sources/2026-04-14-null-text-inversion</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-imagic.html">sources/2026-04-14-imagic</a></li>
+<li><a class="wikilink" href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-blended-diffusion.html">Blended Diffusion</a> — 同期 diffusion 文本编辑的区域引导支线。</li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-plug-and-play-diffusion-features.html">Plug-and-Play Diffusion Features</a> — 后续以 feature injection 换掉每目标微调，但增加 inversion/双分支采样成本。</li>
 </ul>
 <h2 id="备注">备注</h2>
-<p>它在本库中的价值，是把“文本引导真实图像 diffusion 编辑”这条线往前接到 2022 年，使后续编辑谱系更完整。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<p>实体边界：CLIP 是监督器，self-attention 是 U-Net 内部模块；生成主干仍是卷积 U-Net。</p></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-editing.html">图像编辑</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">7</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-04-14-domain-expansion-image-generators.html">Domain Expansion of Image Generators：图像生成器的领域扩展</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-bbdm-brownian-bridge-diffusion.html">BBDM：以 Brownian Bridge 端点过程建模成对图像翻译</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-plug-and-play-diffusion-features.html">Plug-and-Play Diffusion Features：用 U-Net 内部特征控制文本图像翻译</a><span>Source note</span></li><li><a href="../../en/topics/diffusion-models.html">扩散模型</a><span>Topic</span></li><li><a href="../../en/topics/image-editing.html">图像编辑</a><span>Topic</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-16-diffusionclip&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;DiffusionCLIP（CVPR 2022）：把文本引导图像操控更早接到 diffusion 路线里&quot;,
+  &quot;title&quot;: &quot;DiffusionCLIP：CLIP 引导的 diffusion U-Net 文本图像操控&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-16&quot;,
-  &quot;updated&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2022&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
   &quot;tags&quot;: [
@@ -115,7 +139,7 @@
     &quot;Kwon, Taesung&quot;,
     &quot;Ye, Jong Chul&quot;
   ],
-  &quot;published_at&quot;: &quot;2021/10/06&quot;,
+  &quot;published_at&quot;: &quot;2021-10-06&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2110.02711&quot;,
     &quot;https://arxiv.org/pdf/2110.02711.pdf&quot;
@@ -128,7 +152,7 @@
   &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

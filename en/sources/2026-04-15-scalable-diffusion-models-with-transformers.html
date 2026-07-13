@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Scalable Diffusion Models with Transformers：DiT 把 Transformer 真正坐实为可扩展扩散主干">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>Scalable Diffusion Models with Transformers：DiT 把 Transformer 真正坐实为可扩展扩散主干 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-15-scalable-diffusion-models-with-transformers&quot;, &quot;title&quot;: &quot;Scalable Diffusion Models with Transformers（ICCV 2023）：DiT 把 Transformer 真正坐实为可扩展扩散主干&quot;, &quot;title_en&quot;: &quot;Scalable Diffusion Models with Transformers（ICCV 2023）：DiT 把 Transformer 真正坐实为可扩展扩散主干&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-15-scalable-diffusion-models-with-transformers&quot;, &quot;title&quot;: &quot;Scalable Diffusion Models with Transformers（ICCV 2023）：DiT 把 Transformer 真正坐实为可扩展扩散主干&quot;, &quot;title_en&quot;: &quot;Scalable Diffusion Models with Transformers（ICCV 2023）：DiT 把 Transformer 真正坐实为可扩展扩散主干&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,52 +60,81 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-15-scalable-diffusion-models-with-transformers.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-15-scalable-diffusion-models-with-transformers.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Scalable Diffusion Models with Transformers：DiT 把 Transformer 真正坐实为可扩展扩散主干</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
         <h1><span class="title-main">Scalable Diffusion Models with Transformers</span><span class="title-subtitle">DiT 把 Transformer 真正坐实为可扩展扩散主干</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2022/12/19</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-15</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2212.09748" title="https://arxiv.org/abs/2212.09748" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2212.09748</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2212.09748" title="https://arxiv.org/pdf/2212.09748" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2212.09748</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇论文是当前库里最关键的 DiT 正统锚点：它不再只是证明 ViT 可以做扩散主干，而是进一步把“Transformer 主干会随算力扩张而稳定变强”这件事做成了清晰的 scaling 叙事。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2022/12/19</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-15</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2212.09748" title="https://arxiv.org/abs/2212.09748" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2212.09748</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2212.09748" title="https://arxiv.org/pdf/2212.09748" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2212.09748</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#实验设置">实验设置</a></li><li><a href="#核心-scaling-证据">核心 scaling 证据</a></li><li><a href="#主实验结果">主实验结果</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>DiT 的核心贡献不是单个 FID 2.27，而是在统一 ImageNet latent diffusion 设置下，用 12 个模型规模 × patch size 配置证明前向 Gflops 与 FID 强相关（相关系数 -0.93）；它直接支持 Transformer 去噪器的 scaling 子命题，但不单独证明 DiT 已是跨任务“默认”主干。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这是 <a class="wikilink" href="../../en/entities/diffusion-transformer.html">Diffusion Transformer</a> 的 canonical scaling paper。相较 <a class="wikilink" href="../../en/sources/2026-04-15-all-are-worth-words.html">U-ViT</a> 主要证明 ViT 去噪器可行，DiT 把模型深度/宽度、token 数、训练计算与生成质量放进统一实验网格，形成可复核的 scaling 叙事。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>它要解决的是扩散模型主干虽然已经开始从 CNN U-Net 向 Transformer 演化，但社区还缺少一个足够干净、足够有说服力的答案：如果把 Transformer 认真当作 latent diffusion 的底座，它是否真的具备比传统设计更好的可扩展性，而不是只是一种可行替代品。</p>
+<p>当 U-Net 被标准 Transformer 替代后，扩散模型能否继承 Transformer 随模型/计算扩张而稳定改善的性质？论文选择前向 Gflops 而非参数量作为复杂度主轴，因为 patch size 会显著改变 token 与计算，却几乎不改变参数数（PDF pp.3–4）。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>方法上，论文提出 DiT（Diffusion Transformer），把潜空间图像切成 patch token 后交给纯 Transformer 主干处理，并系统比较不同深度、宽度、patch 粒度带来的计算量与质量变化。它的关键不只是换 backbone，而是把 Gflops 明确当成 scaling 观察轴，展示更大的 DiT 会稳定带来更低的 FID。</p>
-<h2 id="关键发现">关键发现</h2>
 <ul>
-<li>它为 <a class="wikilink" href="../../en/entities/diffusion-transformer.html">entities/diffusion-transformer</a> 提供了真正意义上的 canonical paper：从这里开始，DiT 不再只是“Transformer 化扩散”的泛称，而是一条有明确命名和 scaling 证据的主干路线。</li>
-<li>它显著补强了 <a class="wikilink" href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">claims/claim-dit-is-becoming-the-default-scalable-generation-backbone</a>：后续很多图像/视频生成工作沿着 DiT 做压缩、控制和长序列扩展，更像是建立在这篇论文已经坐实的可扩展底座之上。</li>
-<li>它与 <a class="wikilink" href="../../en/sources/2026-04-15-all-are-worth-words.html">sources/2026-04-15-all-are-worth-words</a> 形成清晰分工：前者更像 ViT 主干可行性的前史起点，后者则把 DiT 作为正式架构谱系推到主舞台。</li>
+<li>图像经冻结 Stable Diffusion VAE 压缩为 latent；256×256 对应 32×32×4（PDF pp.4, 6）。</li>
+<li>latent patchify 为 token；patch size $p=8/4/2$，减半使 token 数约四倍（PDF p.4，Figure 4）。</li>
+<li>S/B/L/XL 联合扩展层数、宽度与 heads，并与三种 patch size 组成 12 个配置（PDF p.5，Table 1）。</li>
+<li>条件接口比较 in-context、cross-attention、adaLN、adaLN-Zero；最终采用零初始化残差门控的 adaLN-Zero（PDF pp.4–6）。</li>
+</ul>
+<h2 id="实验设置">实验设置</h2>
+<p>ImageNet 类条件 256×256 / 512×512；AdamW、固定学习率 $10^{-4}$、batch 256、无 weight decay，只做水平翻转；所有模型复用相同超参数。FID-50K 使用 250 DDPM steps，scaling 结果除特别标注外不使用 CFG（PDF pp.5–6）。</p>
+<h2 id="核心-scaling-证据">核心 scaling 证据</h2>
+<ul>
+<li>12 个配置在 400K steps 下，Gflops 与 FID-50K 相关系数 <strong>-0.93</strong>（PDF p.8，Figure 8）。</li>
+<li>固定 patch 时，增大深度/宽度在训练全过程改善 FID；固定参数规模时，减小 patch、增加 token 同样改善（PDF pp.6–8，Figures 6–8）。</li>
+<li>相近 Gflops 的不同配置得到相近 FID，说明参数量不是唯一解释变量（PDF p.8）。</li>
+<li>大模型在总训练计算上更高效，小模型训练更久也会落后（PDF p.8，Figure 9）。</li>
+<li>更多 sampling steps 不能补偿小模型：L/2 用 1000 steps、80.7 Tflops/图，仍不及 XL/2 用 128 steps、15.2 Tflops/图（FID-10K 25.9 vs 23.7；PDF p.9，Figure 10）。</li>
+</ul>
+<h2 id="主实验结果">主实验结果</h2>
+<table><thead><tr><th>设置</th><th>DiT-XL/2</th><th>关键对照</th><th>定位</th></tr></thead><tbody><tr><td>ImageNet 256，无 CFG</td><td>FID 9.62</td><td>LDM-4 10.56</td><td>PDF p.9，Table 2</td></tr><tr><td>ImageNet 256，CFG 1.5</td><td>FID <strong>2.27</strong></td><td>LDM-4 CFG 1.5：3.60</td><td>sFID 4.60、IS 278.24；PDF p.9</td></tr><tr><td>ImageNet 512，CFG 1.5</td><td>FID <strong>3.04</strong></td><td>ADM-G+U 3.85</td><td>PDF p.9，Table 3</td></tr><tr><td>512 前向计算</td><td>524.6 Gflops</td><td>ADM 1983；ADM-U 2813</td><td>PDF p.9 正文</td></tr></tbody></table>
+<p>无 CFG 与有 CFG 的差距说明最终 SOTA 数字不是 backbone 单变量结果；最强 backbone 结论仍来自完整 scaling 网格。</p>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>adaLN-Zero 在训练各阶段优于 in-context、cross-attention 和普通 adaLN；400K steps 时 FID 约为 in-context 的一半（PDF pp.5–6，Figure 5）。</li>
+<li>模型规模 × patch size 网格同时隔离“更多参数”和“更多 token”两条扩展路径（PDF pp.6–8）。</li>
+<li>附录 VAE decoder 消融表明 decoder 会改变绝对 FID，但不改变整体 scaling 排序（PDF p.13，Table 4）。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>它的证据核心仍集中在图像生成 benchmark，并不能直接推出视频长时序、复杂编辑控制和多模态条件注入下同样最优。</li>
-<li>它强调的是 scaling 优势，不等于所有部署场景都会优先选择 DiT；在高分辨率效率、注意力成本和推理工程上，仍可能被其他 backbone 挑战。</li>
-<li>它把“更大更强”讲清楚了，但训练稳定性、蒸馏、一致性训练和缓存加速等后续工程问题还需要其他论文补齐。</li>
+<li>只覆盖类条件 ImageNet 图像生成；文本到图像在 Conclusion 中仍是未来方向（PDF p.9）。</li>
+<li>Gflops 不等于跨硬件真实 latency、显存或能耗；论文也承认复杂度指标依应用而变（PDF p.3）。</li>
+<li>系统依赖卷积 VAE，因此不是全 Transformer pipeline。</li>
+<li>强结果使用 CFG，并伴随 precision/recall 权衡。</li>
+<li>没有与后来的 SSM/Mamba/线性 attention 竞争路线比较。</li>
 </ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<p>对 <a class="wikilink" href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT / Transformer 主干 claim</a> 的分类是：<strong>直接支持，但严格限定于 scaling 子命题</strong>。</p>
+<p>论文证明 DiT 是可扩展主干，不证明跨任务采用率已达到“默认”，也不证明 attention 是唯一可扩展方案。因此 claim 维持“主要可扩展主干之一”最符合证据范围。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2212.09748</li>
-<li>https://arxiv.org/pdf/2212.09748</li>
-<li>https://doi.org/10.1109/ICCV51070.2023.00387</li>
+<li><a href="https://arxiv.org/abs/2212.09748">arXiv</a></li>
+<li><a href="https://arxiv.org/pdf/2212.09748">PDF</a></li>
+<li><a href="https://doi.org/10.1109/ICCV51070.2023.00387">DOI</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/entities/diffusion-transformer.html">entities/diffusion-transformer</a></li>
-<li><a class="wikilink" href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">claims/claim-dit-is-becoming-the-default-scalable-generation-backbone</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>在这套库里，这篇论文的价值主要不是单个 ImageNet FID 数字，而是把“DiT 之所以成为后续默认主干候选，不只是因为它新，而是因为它在 scaling 维度上更像一条可持续扩张的路线”这件事提前讲清楚。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/entities/diffusion-transformer.html">Diffusion Transformer</a></li>
+<li><a class="wikilink" href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT / Transformer 主干趋势</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li></ul></div><div class="related-group related-entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li></ul></div><div class="related-group related-claims"><h3>Related claims<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">10</span></h2><ul><li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a><span>Claim</span></li><li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a><span>Entity</span></li><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-04-14-condition-aware-neural-network.html">Condition-Aware Neural Network：以动态权重控制扩散 Transformer</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-15-all-are-worth-words.html">All Are Worth Words：把 ViT 直接变成扩散模型主干</a><span>Source note</span></li><li><a href="../../en/sources/2026-06-29-vision-transformer.html">Vision Transformer：把图像切成 token 的通用视觉主干</a><span>Source note</span></li><li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>Topic</span></li><li><a href="../../en/topics/diffusion-models.html">扩散模型</a><span>Topic</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li><li><a href="../../en/topics/vision-backbones.html">Mainstream Vision Backbones</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-15-scalable-diffusion-models-with-transformers&quot;,
   &quot;type&quot;: &quot;source&quot;,
   &quot;title&quot;: &quot;Scalable Diffusion Models with Transformers（ICCV 2023）：DiT 把 Transformer 真正坐实为可扩展扩散主干&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-15&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;ICCV 2023&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-15&quot;,
   &quot;tags&quot;: [
@@ -132,7 +167,7 @@
     &quot;claims/claim-dit-is-becoming-the-default-scalable-generation-backbone&quot;
   ],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

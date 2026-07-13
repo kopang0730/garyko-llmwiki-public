@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Text Embedding Knows How to Quantize Text-Guided Diffusion Models：把文本嵌入直接拉进 text-guided diffusion 量化链路 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="Text Embedding Knows How to Quantize：用文本条件动态分配扩散激活位宽">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Text Embedding Knows How to Quantize：用文本条件动态分配扩散激活位宽 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-text-embedding-quantization-diffusion&quot;, &quot;title&quot;: &quot;Text Embedding Knows How to Quantize Text-Guided Diffusion Models（ICCV 2025）：把文本嵌入直接拉进 text-guided diffusion 量化链路&quot;, &quot;title_en&quot;: &quot;Text Embedding Knows How to Quantize Text-Guided Diffusion Models（ICCV 2025）：把文本嵌入直接拉进 text-guided diffusion 量化链路&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-text-embedding-quantization-diffusion&quot;, &quot;title&quot;: &quot;Text Embedding Knows How to Quantize：用文本条件动态分配扩散激活位宽&quot;, &quot;title_en&quot;: &quot;Text Embedding Knows How to Quantize：用文本条件动态分配扩散激活位宽&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,49 +60,105 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-16-text-embedding-quantization-diffusion.html">中文</a><a class="" href="../en/sources/2026-04-16-text-embedding-quantization-diffusion.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-05-22</p>
-        <h1><span class="title-main">Text Embedding Knows How to Quantize Text-Guided Diffusion Models</span><span class="title-subtitle">把文本嵌入直接拉进 text-guided diffusion 量化链路</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Text Embedding Knows How to Quantize：用文本条件动态分配扩散激活位宽</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">Text Embedding Knows How to Quantize</span><span class="title-subtitle">用文本条件动态分配扩散激活位宽</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2025/07/14</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2507.10340" title="https://arxiv.org/abs/2507.10340" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2507.10340</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2507.10340.pdf" title="https://arxiv.org/pdf/2507.10340.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2507.10340.pdf</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#efficiency">#efficiency</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把量化问题从噪声网络本体继续推进到文本引导链路，说明 text-guided diffusion 的 deployment 问题已经细化到 embedding 级别。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2025-07-14</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2507.10340" title="https://arxiv.org/abs/2507.10340" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2507.10340</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2507.10340.pdf" title="https://arxiv.org/pdf/2507.10340.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2507.10340.pdf</strong></a><a class="source-link source-link-code" href="https://github.com/jimmy9704/QLIP" title="https://github.com/jimmy9704/QLIP" target="_blank" rel="noopener noreferrer"><span>代码仓库</span><strong>github.com · QLIP</strong></a></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#核心实验与结果">核心实验与结果</a><ol><li class="toc-sub"><a href="#协议">协议</a></li><li class="toc-sub"><a href="#proxy-complexity-quality">Proxy complexity / quality</a></li><li class="toc-sub"><a href="#rtx-3090-真实-runtime">RTX 3090 真实 runtime</a></li><li class="toc-sub"><a href="#sdxl-flux-补充">SDXL / FLUX 补充</a></li></ol></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>QLIP 并不量化 text embedding；它用 CLIP text embedding 预测 prompt 对应图像的质量/量化敏感度，再为 denoising U-Net 的每层、每 timestep 动态分配 activation bits。RTX 3090 上相对同质量 W4A16，runtime 5.58→4.85s（约 1.15×），而 W4A8 更快但 FID 明显更差，说明价值是质量—位宽折中，不是大幅端到端加速。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这是 condition-aware mixed-precision PTQ 插件。Q-Diffusion/PTQD/PCR 提供基础量化模型和 calibration；QLIP 学习 prompt × layer × timestep 的 bit policy。文本 embedding 是控制信号，CLIP text encoder 本身不是主要量化对象。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>text-guided diffusion 的量化难点不只在模型权重和中间激活，也在文本条件本身如何参与量化而不严重损伤质量。论文要解决的是，怎样让文本嵌入在量化后仍保留足够有效的引导能力。</p>
+<p>静态 diffusion PTQ 对不同 prompts 使用相同位宽，但细节丰富 prompt 生成的图像通常更依赖高精度。论文问：能否从 prompt 预估 quantization sensitivity，在容易的输入上省 bits，在复杂输入上保精度？</p>
 <h2 id="方法概述">方法概述</h2>
-<p>作者把 text embedding 显式拉进 quantization 设计，让 text-guided diffusion 的低比特部署更完整。它的重要性在于把 deployment compression 从“模型压缩”继续推进到“条件链路压缩”。</p>
-<h2 id="关键发现">关键发现</h2>
 <ul>
-<li>它补强了 <a class="wikilink" href="../topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a> 里的 quantization 子线。</li>
-<li>它和 <a class="wikilink" href="../sources/2026-04-16-post-training-quantization-on-diffusion-models.html">sources/2026-04-16-post-training-quantization-on-diffusion-models</a> 构成自然前后关系：前者是一般 diffusion PTQ，后者是 text-guided diffusion 的条件链路量化深化。</li>
-<li>它说明部署路线已经从 generic compression 进入 task-aware / condition-aware compression 阶段。</li>
+<li><strong>T2Q</strong>：三层线性网络读取 CLIP text embedding，以 full-precision 生成图的 GIQA pseudo-label 学习质量分数；训练后冻结。</li>
+<li><strong>Q2B</strong>：将预测质量映射为 low/medium/high bit 概率，并叠加 layer-、timestep-specific parameters。</li>
+<li>仅在小 calibration set 上训练 Q2B；diffusion、T2Q 与基础 quantizer 冻结。</li>
+<li>损失同时最小化 full-precision/quantized noise prediction 误差和平均 bit penalty。</li>
+<li>主实验为 W4 权重，动态 activation options 如 {6,8,10} 或 {8,16,32}。</li>
+</ul>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<h3 id="协议">协议</h3>
+<ul>
+<li>Stable Diffusion v1.4、BK-SDM-Tiny-2M，512²；COCO2017 validation、Conceptual Captions。</li>
+<li>指标：FID/sFID/CLIP、FAB、BitOPs。</li>
+<li>RTX 3090 + CUTLASS 测 runtime，包含 T2Q/Q2B；补充测试 SDXL 768² 与 FLUX 1024²。</li>
+</ul>
+<h3 id="proxy-complexity-quality">Proxy complexity / quality</h3>
+<ul>
+<li>BK-SDM / COCO：Q-Diffusion W4A16 为 FAB 16、1.03T BitOPs、FID 30.02；+QLIP 为 <strong>12.14、0.88T、30.01</strong>。</li>
+<li>BK-SDM / Conceptual Captions：FAB 16→<strong>10.58</strong>，BitOPs 1.03→<strong>0.82T</strong>，FID 24.68→24.72。</li>
+<li>SD v1.4 / COCO：Q-Diffusion W4A8 FID 23.40、FAB 8；+QLIP {6,8,10} 为 <strong>21.61/7.86</strong>。CLIP 0.3126→0.3120，未改善。</li>
+<li>PTQD / Conceptual Captions：FID 25.40→20.42，FAB 8→7.77；full-precision FID 15.67 仍明显更好。</li>
+</ul>
+<h3 id="rtx-3090-真实-runtime">RTX 3090 真实 runtime</h3>
+<ul>
+<li>FP32 BK-SDM：6.50s，FID 20.00；</li>
+<li>W4A8：4.53s，FID 28.32；</li>
+<li>W4A16：5.58s，FID 24.68；</li>
+<li>QLIP W4A{8,16,32}：<strong>4.85s</strong>，FID 24.72。</li>
+</ul>
+<p>QLIP 相对 W4A16 为约 1.15×，相对 FP32 为约 1.34×；但比 W4A8 慢约 7%，换来 FID 改善 3.6。</p>
+<h3 id="sdxl-flux-补充">SDXL / FLUX 补充</h3>
+<ul>
+<li>SDXL COCO：FAB 16→12.68，FID 28.46→28.16；Conceptual Captions FAB 16→11.34。</li>
+<li>FLUX+PCR（500 COCO prompts）：FAB 9.60→7.92，ImageReward 0.9986→1.0214，PickScore 22.97→23.01。</li>
+<li>这两组未给真实 latency，只能支持可插拔性与 proxy 改善。</li>
+</ul>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>GIQA T2Q 的 SROCC/PLCC 0.8047/0.8108，优于 CLIP-IQA 与 Realism score。</li>
+<li>只用 prompt quality/high-time policy 虽可把 FAB 降至 6.73–7.57，但 FID 恶化到 29.37/26.91；完整 Q2B 才达 FAB 7.86/FID 21.61。</li>
+<li>image-quality criterion 优于 prompt length 与 image complexity。</li>
+<li>加入 6-bit option 将 FAB 10.58→9.24，但 FID 24.72→25.22，显示清晰质量代价。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>venue 已按外部审计修为 ICCV 2025；本地 primary links 仍以 arXiv 版本为可追溯入口，后续可继续补 official proceedings / DOI。</li>
-<li>embedding-level quantization 的收益是否能稳定转化成端到端系统收益，仍需要更多部署证据。</li>
+<li>T2Q 需 full-precision 生成图和 GIQA pseudo-label，存在离线成本与预测偏差。</li>
+<li>“prompt richer→更需高 bit”是经验相关，跨语言、风格、长文本和分布外输入未验证。</li>
+<li>主实验是 U-Net；SDXL/FLUX 仅补充 proxy 结果。</li>
+<li>FAB/BitOPs 不等于 latency；真实硬件仅 RTX 3090/CUTLASS，实际收益约 1.15×。</li>
+<li>不覆盖文本编码器、VAE、scheduler 与端到端数据移动。</li>
+<li>作者另承认恶意伪造风险，并计划扩展图像/分割等条件。</li>
 </ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li>对 <a class="wikilink" href="../topics/diffusion-efficiency-engineering.html">Diffusion 效率工程</a>：直接支持 prompt-adaptive mixed precision 是 diffusion PTQ 的细分路线。</li>
+<li>对 <a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a>：限定支持 deployment 从静态压缩走向输入条件自适应。</li>
+<li>对 DiT：FLUX 结果只是小规模补充，不足以称 DiT quantization 已解决。</li>
+<li>Wiki 应避免“量化文本嵌入”的误读：被动态量化的是 denoiser activation，embedding 用来决定策略。</li>
+</ul>
+<h2 id="证据评级">证据评级</h2>
+<p><strong>B+</strong>：多 base quantizer/backbone、RTX 3090 runtime 与消融完整；边界是主要依赖 proxy cost、实际加速中等、需 pseudo-label 校准且端到端组件未覆盖。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2507.10340</li>
-<li>https://arxiv.org/pdf/2507.10340.pdf</li>
+<li><a href="https://arxiv.org/abs/2507.10340">arXiv</a></li>
+<li><a href="https://arxiv.org/pdf/2507.10340.pdf">PDF</a></li>
+<li><a href="https://github.com/jimmy9704/QLIP">Code</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a></li>
-<li><a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../sources/2026-04-16-post-training-quantization-on-diffusion-models.html">sources/2026-04-16-post-training-quantization-on-diffusion-models</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>它在本库中的价值，是把 quantization 从模型层继续补到文本条件层，让 deployment compression 叙事更完整。</p></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+<li><a class="wikilink" href="../topics/diffusion-efficiency-engineering.html">Diffusion 效率工程</a></li>
+<li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../sources/2026-04-16-post-training-quantization-on-diffusion-models.html">Post-Training Quantization on Diffusion Models</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li><li><a class="wikilink" href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li><li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">4</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>主题</span></li><li><a href="../topics/diffusion-models.html">扩散模型</a><span>主题</span></li><li><a href="../topics/image-generation.html">图像生成</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-16-text-embedding-quantization-diffusion&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Text Embedding Knows How to Quantize Text-Guided Diffusion Models（ICCV 2025）：把文本嵌入直接拉进 text-guided diffusion 量化链路&quot;,
+  &quot;title&quot;: &quot;Text Embedding Knows How to Quantize：用文本条件动态分配扩散激活位宽&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-16&quot;,
-  &quot;updated&quot;: &quot;2026-05-22&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;ICCV 2025&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
   &quot;tags&quot;: [
@@ -114,10 +176,11 @@
     &quot;Kang, Dongjea&quot;,
     &quot;Jung, Seung-Won&quot;
   ],
-  &quot;published_at&quot;: &quot;2025/07/14&quot;,
+  &quot;published_at&quot;: &quot;2025-07-14&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2507.10340&quot;,
-    &quot;https://arxiv.org/pdf/2507.10340.pdf&quot;
+    &quot;https://arxiv.org/pdf/2507.10340.pdf&quot;,
+    &quot;https://github.com/jimmy9704/QLIP&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-16-text-embedding-quantization-diffusion/&quot;,
   &quot;topics&quot;: [
@@ -128,7 +191,7 @@
   &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

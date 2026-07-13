@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MAPLM：面向地图与交通场景理解的真实世界大规模视觉语言基准 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="MAPLM：地图与交通场景的真实世界多模态问答基准">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>MAPLM：地图与交通场景的真实世界多模态问答基准 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-maplm&quot;, &quot;title&quot;: &quot;MAPLM（CVPR 2024）：面向地图与交通场景理解的真实世界大规模视觉语言基准&quot;, &quot;title_en&quot;: &quot;MAPLM（CVPR 2024）：面向地图与交通场景理解的真实世界大规模视觉语言基准&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;vision-language&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-maplm&quot;, &quot;title&quot;: &quot;MAPLM：地图与交通场景的真实世界多模态问答基准&quot;, &quot;title_en&quot;: &quot;MAPLM：地图与交通场景的真实世界多模态问答基准&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;vision-language&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,50 +60,59 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-maplm.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-maplm.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">MAPLM</span><span class="title-subtitle">面向地图与交通场景理解的真实世界大规模视觉语言基准</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>MAPLM：地图与交通场景的真实世界多模态问答基准</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">MAPLM</span><span class="title-subtitle">地图与交通场景的真实世界多模态问答基准</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2024-01-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2024/html/Cao_MAPLM_A_Real-World_Large-Scale_Vision-Language_Benchmark_for_Map_and_Traffic_CVPR_2024_paper.html" title="https://openaccess.thecvf.com/content/CVPR2024/html/Cao_MAPLM_A_Real-World_Large-Scale_Vision-Language_Benchmark_for_Map_and_Traffic_CVPR_2024_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Cao_MAPLM_A_Real-World_Large-Sc…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2024/papers/Cao_MAPLM_A_Real-World_Large-Scale_Vision-Language_Benchmark_for_Map_and_Traffic_CVPR_2024_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2024/papers/Cao_MAPLM_A_Real-World_Large-Scale_Vision-Language_Benchmark_for_Map_and_Traffic_CVPR_2024_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Cao_MAPLM_A_Real-World_Large-Sc…</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#evaluation">#evaluation</a><a class="tag" href="../../en/tags.html#benchmarking">#benchmarking</a><a class="tag" href="../../en/tags.html#vision-language">#vision-language</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把真实世界视觉语言 benchmark 补进库里，增强了 vision-language 页对现实场景任务的覆盖。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>它要解决的是很多视觉语言 benchmark 与真实复杂场景仍有距离的问题。对当前知识库来说，它补的是更现实、更场景化的 benchmark 层。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>MAPLM 构建真实世界大规模 vision-language benchmark，围绕地图和交通场景理解测试模型在复杂现实任务中的多模态能力。</p>
-<h2 id="关键发现">关键发现</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2024-01-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2024/html/Cao_MAPLM_A_Real-World_Large-Scale_Vision-Language_Benchmark_for_Map_and_Traffic_CVPR_2024_paper.html" title="https://openaccess.thecvf.com/content/CVPR2024/html/Cao_MAPLM_A_Real-World_Large-Scale_Vision-Language_Benchmark_for_Map_and_Traffic_CVPR_2024_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Cao_MAPLM_A_Real-World_Large-Sc…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2024/papers/Cao_MAPLM_A_Real-World_Large-Scale_Vision-Language_Benchmark_for_Map_and_Traffic_CVPR_2024_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2024/papers/Cao_MAPLM_A_Real-World_Large-Scale_Vision-Language_Benchmark_for_Map_and_Traffic_CVPR_2024_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Cao_MAPLM_A_Real-World_Large-Sc…</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#接口-数据与模型">接口、数据与模型</a></li><li><a href="#指标与结果">指标与结果</a></li><li><a href="#成本-judge-与污染">成本、judge 与污染</a></li><li><a href="#能力边界与评级">能力边界与评级</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>MAPLM 将六路环视 RGB、LiDAR-BEV 与 HD-map 文本接入 7B VLM；13,775-frame QA 上领域微调达到 QNS 85.52%/FRM 57.99%，高于 Nov-2023 GPT-4V，但随机 frame split、地图上下文不对称、开放答案 parser 与污染审计均不透明，不能外推到闭环驾驶。</p>
+<h2 id="接口-数据与模型">接口、数据与模型</h2>
 <ul>
-<li>它让 vision-language 页多了一类“真实世界场景 benchmark”样本，而不只是更抽象的推理或个性化任务。</li>
-<li>它能帮助后续比较模型在实验室式 benchmark 和现实场景 benchmark 上是否存在明显能力落差。</li>
-<li>它对以后构造更贴近真实应用的视频/视觉研究方向很有参考价值。</li>
+<li>原始池约 200 万帧；过滤 510K image–map-text pairs 预训练 BEV encoder。</li>
+<li>MAPLM-QA：13,775 frames；SCN/QLT/LAN/INT 各 13,775 问，DES 5,643，合计 60,743 QA。</li>
+<li>split 10,775/1,500/1,500 frames；论文未说明 route/city/time group split。</li>
+<li>输入 panoramic RGB、LiDAR 灰度 BEV、HD-map context、问题；输出道路类型、点云质量、路口、车道数与车道属性描述。</li>
+<li>实际 backbone：双 CLIP ViT-L/14-336 + projection + LLaMA-2-7B/Vicuna-7B；LoRA rank 128。不是原生 point-cloud LLM。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="指标与结果">指标与结果</h2>
+<p>QNS 是问题级正确率，FRM 是一帧所有问题全对的严格联合成功率。最佳 MAPLM baseline+LoRA/Vicuna-7B：LAN 78.53、DES 70.60、INT 83.20、QLT 84.33、SCN 96.00、FRM 57.99、QNS 85.52。GPT-4V 0-shot 为 FRM 18.75/QNS 57.81，5-shot 为 20.18/60.94。</p>
+<p>对比并非等信息量：GPT-4V 获得 RGB+BEV，领域 baseline 还能使用 HD-map text。RGB+BEV 相比仅 BEV 改善 baseline FRM/QNS 45.47/80.25→57.99/85.52，但缺 HD-map on/off 消融。</p>
+<h2 id="成本-judge-与污染">成本、judge 与污染</h2>
 <ul>
-<li>它更偏地图与交通场景，不直接对应视频编辑。</li>
-<li>领域场景较强，泛化到其他任务仍需谨慎。</li>
-<li>它适合作为现实场景 benchmark 补层。</li>
+<li>510K 预训练：8×V100、2 epochs；QA 微调：2×A100、10 epochs。无 wall-clock/GPU-hours/显存。</li>
+<li>无 LLM judge/human baseline；开放 DES 的规范化与语义复核未详述；无置信区间或多 seed。</li>
+<li>两支受雇标注团队，但无人数、报酬、IAA、错误率或隐私/许可细节。</li>
+<li>未审计 GPS/route/邻帧跨 split、MAPLM 预训练与 QA test 场景重叠、公开模型训练污染。</li>
 </ul>
+<h2 id="能力边界与评级">能力边界与评级</h2>
+<p>只评静态 frame 的交通/地图问答；不评时序、轨迹、规划、控制与安全。最佳 FRM 仍约 42% frame 至少一问失败。</p>
+<p><strong>证据评级：B-</strong>（接口和领域数据有价值；split 独立性、公平性、评分与成本证据不足）。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://openaccess.thecvf.com/content/CVPR2024/html/Cao_MAPLM_A_Real-World_Large-Scale_Vision-Language_Benchmark_for_Map_and_Traffic_CVPR_2024_paper.html</li>
-<li>https://openaccess.thecvf.com/content/CVPR2024/papers/Cao_MAPLM_A_Real-World_Large-Scale_Vision-Language_Benchmark_for_Map_and_Traffic_CVPR_2024_paper.pdf</li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2024/html/Cao_MAPLM_A_Real-World_Large-Scale_Vision-Language_Benchmark_for_Map_and_Traffic_CVPR_2024_paper.html">CVF 页面</a></li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Cao_MAPLM_A_Real-World_Large-Scale_Vision-Language_Benchmark_for_Map_and_Traffic_CVPR_2024_paper.pdf">论文 PDF</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">topics/generative-model-evaluation</a></li>
-<li><a class="wikilink" href="../../en/topics/vision-language.html">topics/vision-language</a></li>
-<li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>MAPLM 在这套库里的作用，是把现实场景 vision-language benchmark 补入 evaluation / vision-language 层。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/topics/vision-language.html">视觉语言模型</a></li>
+<li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有 benchmark 是否跟踪真实视频编辑理解</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li><li><a class="wikilink" href="../../en/topics/vision-language.html">视觉-语言</a></li></ul></div><div class="related-group related-questions"><h3>Related questions<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">3</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a><span>Topic</span></li><li><a href="../../en/topics/vision-language.html">视觉-语言</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-maplm&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;MAPLM（CVPR 2024）：面向地图与交通场景理解的真实世界大规模视觉语言基准&quot;,
+  &quot;title&quot;: &quot;MAPLM：地图与交通场景的真实世界多模态问答基准&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2024&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
@@ -128,6 +143,7 @@
     &quot;https://openaccess.thecvf.com/content/CVPR2024/papers/Cao_MAPLM_A_Real-World_Large-Scale_Vision-Language_Benchmark_for_Map_and_Traffic_CVPR_2024_paper.pdf&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-maplm/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-14-maplm/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/generative-model-evaluation&quot;,
     &quot;topics/vision-language&quot;
@@ -137,7 +153,7 @@
   &quot;questions&quot;: [
     &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

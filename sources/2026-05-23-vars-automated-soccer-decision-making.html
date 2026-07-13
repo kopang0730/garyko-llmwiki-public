@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>VARS：多视角足球视频助理裁判系统 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="VARS：SoccerNet-MVFoul 多视角犯规分类与裁判辅助">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>VARS：SoccerNet-MVFoul 多视角犯规分类与裁判辅助 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-23-vars-automated-soccer-decision-making&quot;, &quot;title&quot;: &quot;VARS：多视角足球视频助理裁判系统&quot;, &quot;title_en&quot;: &quot;VARS：多视角足球视频助理裁判系统&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;vision-language&quot;, &quot;reasoning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-23-vars-automated-soccer-decision-making&quot;, &quot;title&quot;: &quot;VARS：SoccerNet-MVFoul 多视角犯规分类与裁判辅助&quot;, &quot;title_en&quot;: &quot;VARS：SoccerNet-MVFoul 多视角犯规分类与裁判辅助&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;reasoning&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,41 +60,75 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-05-23-vars-automated-soccer-decision-making.html">中文</a><a class="" href="../en/sources/2026-05-23-vars-automated-soccer-decision-making.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-05-23</p>
-        <h1><span class="title-main">VARS</span><span class="title-subtitle">多视角足球视频助理裁判系统</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>VARS：SoccerNet-MVFoul 多视角犯规分类与裁判辅助</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">VARS</span><span class="title-subtitle">SoccerNet-MVFoul 多视角犯规分类与裁判辅助</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR Workshop 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023-04-10</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-05-23</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2023W/CVSports/html/Held_VARS_Video_Assistant_Referee_System_for_Automated_Soccer_Decision_Making_CVPRW_2023_paper.html" title="https://openaccess.thecvf.com/content/CVPR2023W/CVSports/html/Held_VARS_Video_Assistant_Referee_System_for_Automated_Soccer_Decision_Making_CVPRW_2023_paper.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>openaccess.thecvf.com · Held_VARS_Video_Assistant_Refer…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2023W/CVSports/papers/Held_VARS_Video_Assistant_Referee_System_for_Automated_Soccer_Decision_Making_CVPRW_2023_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2023W/CVSports/papers/Held_VARS_Video_Assistant_Referee_System_for_Automated_Soccer_Decision_Making_CVPRW_2023_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Held_VARS_Video_Assistant_Refer…</strong></a><a class="source-link source-link-code" href="https://github.com/SoccerNet/sn-mvfoul" title="https://github.com/SoccerNet/sn-mvfoul" target="_blank" rel="noopener noreferrer"><span>代码仓库</span><strong>github.com · sn-mvfoul</strong></a></div></section>
-        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#vision-language">#vision-language</a><a class="tag" href="../tags.html#reasoning">#reasoning</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#reasoning">#reasoning</a><a class="tag" href="../tags.html#benchmarking">#benchmarking</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>VARS 把足球 VAR workflow 具体化为多视角 foul recognition 和 severity classification，并提出 SoccerNet-MVFoul 数据集，是 <a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 中 rule-grounded officiating 线在 X-VARS 之前的关键系统锚点。</p>
-<h2 id="论文定位">论文定位</h2>
-<p>这篇论文提出 Video Assistant Referee System for automated soccer decision making from multiple views。它的核心贡献有两层：一是 SoccerNet-MVFoul，多视角足球犯规视频数据集，由专业裁判给出犯规属性和严重程度标注；二是一个多摄像机视频识别系统，用于判断 foul type 和 sanction severity。</p>
-<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR Workshop 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023-04-10</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-05-23</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2023W/CVSports/html/Held_VARS_Video_Assistant_Referee_System_for_Automated_Soccer_Decision_Making_CVPRW_2023_paper.html" title="https://openaccess.thecvf.com/content/CVPR2023W/CVSports/html/Held_VARS_Video_Assistant_Referee_System_for_Automated_Soccer_Decision_Making_CVPRW_2023_paper.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>openaccess.thecvf.com · Held_VARS_Video_Assistant_Refer…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2023W/CVSports/papers/Held_VARS_Video_Assistant_Referee_System_for_Automated_Soccer_Decision_Making_CVPRW_2023_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2023W/CVSports/papers/Held_VARS_Video_Assistant_Referee_System_for_Automated_Soccer_Decision_Making_CVPRW_2023_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Held_VARS_Video_Assistant_Refer…</strong></a><a class="source-link source-link-code" href="https://github.com/SoccerNet/sn-mvfoul" title="https://github.com/SoccerNet/sn-mvfoul" target="_blank" rel="noopener noreferrer"><span>代码仓库</span><strong>github.com · sn-mvfoul</strong></a></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#数据与-split">数据与 split</a></li><li><a href="#类别分布">类别分布</a></li><li><a href="#方法-结果与成本">方法、结果与成本</a></li><li><a href="#泄漏与部署风险">泄漏与部署风险</a></li><li><a href="#primary-secondary">Primary / secondary</a></li><li><a href="#羽毛球边界">羽毛球边界</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始材料">原始材料</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>VARS 在已知 foul candidate 和人工对齐 contact frame 的多视角 5 秒 clips 上，MViT foul-type top-1 47%、severity multitask BA 34%；它建立了有价值的 SoccerNet-MVFoul 数据集，但不是整场 foul detector、实时系统或可自动执法的 VAR。</p>
+<h2 id="数据与-split">数据与 split</h2>
 <ul>
-<li>与 <a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它把视频理解从事件识别推进到“多角度证据 + 裁判决策”的结构化场景。</li>
-<li>与 <a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：它让 roadmap 的 VAR workflow 更完整：<a class="wikilink" href="../sources/2026-04-25-automated-offside-detection.html">sources/2026-04-25-automated-offside-detection</a> 偏几何越位，VARS 偏多视角犯规分类，<a class="wikilink" href="../sources/2026-05-05-x-vars-explainable-football-refereeing.html">sources/2026-05-05-x-vars-explainable-football-refereeing</a> 再把解释和 VLM 接上。</li>
-<li>与 <a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a> 的关系：它是专用 VideoQA / reasoning 之外的强应用样本，任务输出直接影响人类复核流程。</li>
+<li>500 场、6 个欧洲联赛、2014–2017；</li>
+<li>3,901 actions / 8,923 clips；平均 2.29 views/action；</li>
+<li>每段事件前 3 秒、后 2 秒，至少 live + replay；</li>
+<li>一名 6 年/300+ 场经验 professional referee 看全部视角、逐帧同步并标 10 properties；</li>
+<li>无第二 expert、kappa、adjudication 或 annotation hours；</li>
+<li>官方 repo（二级实现来源）给 split：2,916 train / 411 val / 301 test / 273 challenge；论文未说明是否 match-disjoint；</li>
+<li>视频下载需 NDA/password。</li>
 </ul>
-<h2 id="来源可靠性与可溯源性">来源可靠性与可溯源性</h2>
+<p>样本全部始于现场裁判已吹且有 replay 的 foul，368 个被 expert 改为 no offence。它们是 hard negatives，不代表整场真实低基率负样本。</p>
+<h2 id="类别分布">类别分布</h2>
 <ul>
-<li><strong>来源层级</strong>：CVPR Workshop 2023 / CVSports primary paper；CVF OpenAccess 页面、CVF PDF、arXiv 页面和官方 SoccerNet-MVFoul repo 均可访问。</li>
-<li><strong>可溯源材料</strong>：本地已保存 <code>abstract.md</code>、<code>paper.pdf</code>、<code>paper-text.md</code>、<code>meta.yaml</code> 与 <code>links.yaml</code>；PDF 本地从 arXiv mirror 保存，SHA256：<code>b0a6873d4de030ed16368cfe01ab15241451dfbd2fb154cc3d434918149eecfa</code>。</li>
-<li><strong>使用边界</strong>：适合作为 multi-view foul recognition / automated referee assistance 的 strong primary evidence；正式比赛中的责任边界、延迟、可解释性和裁判一致性仍要结合 X-VARS 与后续 challenge results 判断。</li>
+<li>Standing tackling 43.6%，Dive 0.9%；</li>
+<li>No card 55.3%，Red 1.1%；</li>
+<li>Offence 85.8%，No offence 10.7%，Between 3.4%；</li>
+<li>handball 约 1%，contact 97%；</li>
+<li>severity task 删除 Between 与 Borderline，简化了最关键的规则灰区。</li>
 </ul>
-<h2 id="和现有证据的关系">和现有证据的关系</h2>
-<p>这篇是 <a class="wikilink" href="../sources/2026-05-05-x-vars-explainable-football-refereeing.html">sources/2026-05-05-x-vars-explainable-football-refereeing</a> 的前置路线。VARS 建立 SoccerNet-MVFoul 和多视角识别任务，X-VARS 在此基础上引入 SoccerNet-XFoul、自然语言解释和多模态大模型。两者一起把 rule-grounded officiating 从“分类”推进到“解释 + 复核”。</p>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="方法-结果与成本">方法、结果与成本</h2>
+<p>每 view 用 ResNet/R(2+1)D/MViT，mean/max pool 聚合，single/multitask heads。默认 16 frames、1 秒、224×398，Adam、lr 1e-4、batch 8；V100 约 9 小时，约 10 epochs 后过拟合。</p>
 <ul>
-<li>VARS 的输出仍以 foul type / severity 为主，解释链和规则文本 grounding 需要 X-VARS 或后续系统补强。</li>
-<li>多视角视频更接近职业赛事环境，低级别比赛或单机位训练场的可用性需要另行验证。</li>
+<li>foul type：MViT+max top-1 <strong>0.47</strong>、top-2 <strong>0.69</strong>、BA 0.43；MViT+mean BA <strong>0.45</strong>；</li>
+<li>severity：multitask MViT+max top-1 <strong>0.43</strong>、BA <strong>0.34</strong>；</li>
+<li>三视角 subset：live-only foul top-1 0.31；live+2 replay 0.57，但 BA 仅 0.39；</li>
+<li>固定 16 frames 时，1 秒/16 FPS 比 3.2 秒/5 FPS 更好，细节集中在 contact 附近。</li>
+</ul>
+<p>未报告 inference FPS、端到端 stream synchronization、内存、confidence calibration 或 total annotation cost。</p>
+<h2 id="泄漏与部署风险">泄漏与部署风险</h2>
+<ul>
+<li>split 是否按 match 隔离未知；球队、球衣、球场和 broadcast style 可能泄漏；</li>
+<li>replay selection、slow motion 和 close-up 可能成为 severity shortcut；</li>
+<li>输入已经 contact-centered，系统不负责整场事件 discovery；</li>
+<li>single expert + 删除 grey areas 低估判罚分歧；</li>
+<li>Red/Dive/handball 极少，overall accuracy 不可靠；</li>
+<li>多视角 replay 条件不适用于多数业余/低级别比赛；</li>
+<li>34% severity BA 远不足以自动判罚；应只定位为 human referee assistance research。</li>
+</ul>
+<h2 id="primary-secondary">Primary / secondary</h2>
+<ul>
+<li>CVF/arXiv paper：数据定义、方法、实验 primary evidence；</li>
+<li>官方 GitHub：split、NDA、weights 和运行方式的 secondary implementation evidence；</li>
+<li>repo 不应覆盖论文中的性能/任务边界。</li>
+</ul>
+<h2 id="羽毛球边界">羽毛球边界</h2>
+<p>可借用多视角 contact clips、expert rule labels、grey-area class、BA、视角/帧率消融。足球 foul taxonomy、replay 条件和数字不能外推羽毛球。羽毛球需 high-FPS racket/shuttle/contact、match/player/court/camera-disjoint、多裁判/教练一致率、真实 negatives 和 abstention/复核流程。</p>
+<h2 id="证据评级">证据评级</h2>
+<ul>
+<li>数据资源：<strong>A-</strong></li>
+<li>多视角 baseline：<strong>B+</strong></li>
+<li>自动判罚：<strong>C</strong></li>
+<li>实时/业余部署：<strong>C-</strong></li>
+<li>羽毛球直接证据：<strong>D</strong></li>
 </ul>
 <h2 id="原始材料">原始材料</h2>
 <ul>
-<li><code>raw/ingest/2026-05-23-vars-automated-soccer-decision-making/paper.pdf</code></li>
-<li><code>raw/ingest/2026-05-23-vars-automated-soccer-decision-making/paper-text.md</code></li>
-<li><code>raw/ingest/2026-05-23-vars-automated-soccer-decision-making/abstract.md</code></li>
-<li><code>raw/ingest/2026-05-23-vars-automated-soccer-decision-making/links.yaml</code></li>
+<li><code>raw/ingest/2026-05-23-vars-automated-soccer-decision-making/paper.pdf</code>（17 页）</li>
+<li><code>raw/ingest/2026-05-23-vars-automated-soccer-decision-making/paper-text.md</code>（1,645 行）</li>
+<li><code>raw/ingest/2026-05-23-vars-automated-soccer-decision-making/analysis.md</code></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
@@ -96,22 +136,27 @@
 <li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
 <li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
 <li><a class="wikilink" href="../entities/sportsmot.html">entities/sportsmot</a></li>
+<li><a class="wikilink" href="../questions/question-badminton-stroke-correction-demo.html">questions/question-badminton-stroke-correction-demo</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li><li><a class="wikilink" href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li><li><a class="wikilink" href="../topics/video-understanding.html">视频理解</a></li></ul></div><div class="related-group related-entities"><h3>相关实体<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../entities/sportsmot.html">SportsMOT</a></li></ul></div><div class="related-group related-questions"><h3>相关问题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">4</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-04-25-automated-offside-detection.html">Automated Offside Detection：基于双固定广角相机的时空越位检测原型</a><span>来源笔记</span></li><li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a><span>主题</span></li><li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-05-23-vars-automated-soccer-decision-making&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;VARS：多视角足球视频助理裁判系统&quot;,
+  &quot;title&quot;: &quot;VARS：SoccerNet-MVFoul 多视角犯规分类与裁判辅助&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-05-23&quot;,
-  &quot;updated&quot;: &quot;2026-05-23&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR Workshop 2023&quot;,
   &quot;published_at&quot;: &quot;2023-04-10&quot;,
   &quot;ingested_at&quot;: &quot;2026-05-23&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;video-understanding&quot;,
-    &quot;vision-language&quot;,
     &quot;reasoning&quot;,
+    &quot;benchmarking&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
@@ -131,6 +176,7 @@
     &quot;https://github.com/SoccerNet/sn-mvfoul&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-05-23-vars-automated-soccer-decision-making/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-05-23-vars-automated-soccer-decision-making/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/sports-ai-video-understanding&quot;,
     &quot;topics/sports-ai-roadmap&quot;,
@@ -140,8 +186,10 @@
     &quot;entities/sportsmot&quot;
   ],
   &quot;claims&quot;: [],
-  &quot;questions&quot;: []
-}</pre></section>
+  &quot;questions&quot;: [
+    &quot;questions/question-badminton-stroke-correction-demo&quot;
+  ]
+}</pre></details>
     </article>
   </main>
 </body>

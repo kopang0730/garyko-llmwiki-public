@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>STI-Bench：多模态大模型是否已准备好进行精确时空世界理解 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="STI-Bench：精确时空世界理解基准">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>STI-Bench：精确时空世界理解基准 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-sti-bench&quot;, &quot;title&quot;: &quot;STI-Bench（ICCV 2025）：多模态大模型是否已准备好进行精确时空世界理解&quot;, &quot;title_en&quot;: &quot;STI-Bench（ICCV 2025）：多模态大模型是否已准备好进行精确时空世界理解&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;benchmarking&quot;, &quot;vision-language&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-sti-bench&quot;, &quot;title&quot;: &quot;STI-Bench：精确时空世界理解基准&quot;, &quot;title_en&quot;: &quot;STI-Bench：精确时空世界理解基准&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;benchmarking&quot;, &quot;vision-language&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,35 +60,62 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-14-sti-bench.html">中文</a><a class="" href="../en/sources/2026-04-14-sti-bench.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">STI-Bench</span><span class="title-subtitle">多模态大模型是否已准备好进行精确时空世界理解</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>STI-Bench：精确时空世界理解基准</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">STI-Bench</span><span class="title-subtitle">精确时空世界理解基准</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2025-01-01</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/ICCV2025/html/Li_STI-Bench_Are_MLLMs_Ready_for_Precise_Spatial-Temporal_World_Understanding_ICCV_2025_paper.html" title="https://openaccess.thecvf.com/content/ICCV2025/html/Li_STI-Bench_Are_MLLMs_Ready_for_Precise_Spatial-Temporal_World_Understanding_ICCV_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>openaccess.thecvf.com · Li_STI-Bench_Are_MLLMs_Ready_fo…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/ICCV2025/papers/Li_STI-Bench_Are_MLLMs_Ready_for_Precise_Spatial-Temporal_World_Understanding_ICCV_2025_paper.pdf" title="https://openaccess.thecvf.com/content/ICCV2025/papers/Li_STI-Bench_Are_MLLMs_Ready_for_Precise_Spatial-Temporal_World_Understanding_ICCV_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Li_STI-Bench_Are_MLLMs_Ready_fo…</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#benchmarking">#benchmarking</a><a class="tag" href="../tags.html#vision-language">#vision-language</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把精确时空世界理解 benchmark 补进库里，强化了 video-understanding 对“是否真正理解时空关系”的测试层。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>它要解决的是多模态大模型看起来会做视频任务，但未必具备精确空间-时间理解的问题。对当前知识库来说，它正好补上比 MVBench 更尖锐的一类诊断基准。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>STI-Bench 通过精确 spatial-temporal world understanding 任务来测试 MLLMs，强调模型是否真的理解了视频中的时空关系而不是只抓浅层线索。</p>
-<h2 id="关键发现">关键发现</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2025-01-01</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/ICCV2025/html/Li_STI-Bench_Are_MLLMs_Ready_for_Precise_Spatial-Temporal_World_Understanding_ICCV_2025_paper.html" title="https://openaccess.thecvf.com/content/ICCV2025/html/Li_STI-Bench_Are_MLLMs_Ready_for_Precise_Spatial-Temporal_World_Understanding_ICCV_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>openaccess.thecvf.com · Li_STI-Bench_Are_MLLMs_Ready_fo…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/ICCV2025/papers/Li_STI-Bench_Are_MLLMs_Ready_for_Precise_Spatial-Temporal_World_Understanding_ICCV_2025_paper.pdf" title="https://openaccess.thecvf.com/content/ICCV2025/papers/Li_STI-Bench_Are_MLLMs_Ready_for_Precise_Spatial-Temporal_World_Understanding_ICCV_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Li_STI-Bench_Are_MLLMs_Ready_fo…</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#方法与数据">方法与数据</a><ol><li class="toc-sub"><a href="#数据与任务设计">数据与任务设计</a></li></ol></li><li><a href="#核心结果">核心结果</a></li><li><a href="#错误诊断">错误诊断</a></li><li><a href="#消融-诊断边界">消融/诊断边界</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对-benchmark-question-的证据分类">对 benchmark question 的证据分类</a></li><li><a href="#对当前-wiki-判断的影响">对当前 wiki 判断的影响</a></li><li><a href="#相关页面">相关页面</a></li><li><a href="#原始链接">原始链接</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>STI-Bench 证明“能做视频语义 QA”不等于“能量化理解物理世界”：最佳 MLLM 仅 41.4%，主要失败在空间量化、时间动力学和跨模态 grounding。</p>
+<h2 id="论文定位">论文定位</h2>
 <ul>
-<li>它把 video-understanding 里的“精确时空理解”单独拉成 benchmark 维度。</li>
-<li>它对以后判断编辑理解是否建立在真实时空理解之上非常有帮助。</li>
-<li>它与 MVBench、LVBench、ANetQA 形成互补：综合、长视频、组合推理、精确时空理解。</li>
+<li><strong>直接测量</strong>：从 RGB 视频推断尺寸、距离、方向、速度、加速度、轨迹和相机位姿。</li>
+<li><strong>与其他基准的区别</strong>：MVBench 测通用短视频时序；LVBench 测长时记忆；STI-Bench 测精确物理/几何量。</li>
+<li><strong>不直接测量</strong>：生成质量、人类偏好、长视频或编辑执行。</li>
 </ul>
+<h2 id="方法与数据">方法与数据</h2>
+<h3 id="数据与任务设计">数据与任务设计</h3>
+<ul>
+<li>300 余个真实视频、2,064 个五选一 QA，随机基线 20%。</li>
+<li>Waymo 室外驾驶、ScanNet 室内、Omni6DPose 桌面三种尺度。</li>
+<li>原数据的点云、相机参数和 3D 标注用于计算真值；模型只接收 RGB 视频。</li>
+<li>GPT 辅助生成描述/问答，人工多轮过滤；数值干扰项按桌面 0.5–5 cm、室内 5–50 cm、室外 0.5–5 m 的尺度构造。</li>
+<li>八任务：Dimensional Measurement、Spatial Relation、3D Video Grounding、Displacement &amp; Path Length、Speed &amp; Acceleration、Ego-Centric Orientation、Trajectory Description、Pose Estimation。</li>
+</ul>
+<h2 id="核心结果">核心结果</h2>
+<ul>
+<li>Gemini-2.5-Pro 41.4%，Qwen2.5-VL-72B 40.7%，Claude-3.7 40.5%；所有模型虽高于随机，离可靠具身应用仍远。</li>
+<li>Spatial Relation 最佳 53.8%、Pose Estimation 最佳 62.6%，但精确数值更难：Dimensional Measurement 最佳 38.7%，Displacement &amp; Path Length 最佳 33.9%。</li>
+<li>Qwen2.5-VL 是最强开源模型且接近闭源模型，表明开放/闭源或规模不是唯一因素。</li>
+<li>场景差异明显：Gemini-2.5-Pro 室外 48.7%、室内 37.1%、桌面 35.8%；尺度与训练分布影响显著。</li>
+</ul>
+<h2 id="错误诊断">错误诊断</h2>
+<p>对 Gemini-2.5-Pro 的错误抽样分类：</p>
+<ul>
+<li><strong>空间量化不准 56.44%</strong>：缺尺度参照、单目深度困难、近邻数值难区分；</li>
+<li><strong>时间动力学错误 23.08%</strong>：跨帧跟踪、位移/速度计算、相机与物体运动分离失败；</li>
+<li><strong>跨模态 grounding/整合弱 16.68%</strong>：误读时间范围、初始位姿、坐标/时间戳与视觉对象的对应；</li>
+<li>其他约 3.8%。</li>
+</ul>
+<p>模型会产生看似合理的代码和物理解释，却因自设尺度/半径答错，说明“有推理链”不等于 grounded quantity reasoning。</p>
+<h2 id="消融-诊断边界">消融/诊断边界</h2>
+<p>论文主要做跨模型、任务、场景和错误类型分析，没有系统改变帧率、输入传感器、数值容差或显式相机参数。统一 30 帧便于比较，但无法分离稀疏采样、单目不可辨识与推理能力的贡献；Claude 仅 20 帧又造成轻微不一致。</p>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>它更偏理解诊断，不直接面向生成或编辑控制。</li>
-<li>精确时空 benchmark 的任务设计本身也会影响结论。</li>
-<li>它是关键诊断层，但不是全部视频理解能力。</li>
+<li>五选一准确率不是连续数值误差，干扰项间距会改变难度。</li>
+<li>单目 RGB 的绝对尺度有天然歧义；部分低分反映信息不足而非纯推理失败。</li>
+<li>只有三类数据源/300 余视频；复杂交互、遮挡、真实机器人操作不足。</li>
+<li>缺少人类表现、SLAM/几何基线和深度/点云上界。</li>
+<li>GPT 辅助 QA 即使人工审核仍可能有模板偏差。</li>
+<li>统一 30 帧可能伤害高速运动，且重点不是长上下文。</li>
 </ul>
-<h2 id="原始链接">原始链接</h2>
-<ul>
-<li>https://openaccess.thecvf.com/content/ICCV2025/html/Li_STI-Bench_Are_MLLMs_Ready_for_Precise_Spatial-Temporal_World_Understanding_ICCV_2025_paper.html</li>
-<li>https://openaccess.thecvf.com/content/ICCV2025/papers/Li_STI-Bench_Are_MLLMs_Ready_for_Precise_Spatial-Temporal_World_Understanding_ICCV_2025_paper.pdf</li>
-</ul>
+<h2 id="对-benchmark-question-的证据分类">对 benchmark question 的证据分类</h2>
+<table><thead><tr><th>维度</th><th>分类</th><th>解释</th></tr></thead><tbody><tr><td>视频理解</td><td>直接强证据</td><td>量化时空/物理能力</td></tr><tr><td>生成质量</td><td>非目标</td><td>不评估生成输出</td></tr><tr><td>人类偏好</td><td>非目标</td><td>无偏好标注</td></tr><tr><td>长视频</td><td>非目标/有限</td><td>统一 30 帧，重点非长上下文</td></tr><tr><td>时空世界理解</td><td>直接最强证据</td><td>3D、尺度、速度、轨迹、位姿</td></tr><tr><td>视频编辑理解</td><td>间接机制证据</td><td>位置/运动是必要基础，但无编辑任务</td></tr></tbody></table>
+<h2 id="对当前-wiki-判断的影响">对当前 wiki 判断的影响</h2>
+<p>STI-Bench 支持把“语义视频理解”与“精确时空世界理解”拆成两层。对 <a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a>，它提供机制性必要条件：连对象/相机运动和尺度都不稳的模型，很难可靠执行复杂空间/运动编辑；但 STI-Bench 本身仍不能证明编辑意图理解。</p>
 <h2 id="相关页面">相关页面</h2>
 <ul>
 <li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
@@ -90,15 +123,22 @@
 <li><a class="wikilink" href="../topics/vision-language.html">topics/vision-language</a></li>
 <li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a></li>
 </ul>
-<h2 id="备注">备注</h2>
-<p>STI-Bench 在这套库里的作用，是把精确时空世界理解 benchmark 补成 video-understanding 的重要分支。</p></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li><a href="https://openaccess.thecvf.com/content/ICCV2025/html/Li_STI-Bench_Are_MLLMs_Ready_for_Precise_Spatial-Temporal_World_Understanding_ICCV_2025_paper.html">CVF 论文页</a></li>
+<li><a href="https://openaccess.thecvf.com/content/ICCV2025/papers/Li_STI-Bench_Are_MLLMs_Ready_for_Precise_Spatial-Temporal_World_Understanding_ICCV_2025_paper.pdf">PDF</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../topics/video-understanding.html">视频理解</a></li><li><a class="wikilink" href="../topics/generative-model-evaluation.html">生成模型评测</a></li><li><a class="wikilink" href="../topics/vision-language.html">视觉-语言</a></li></ul></div><div class="related-group related-questions"><h3>相关问题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">5</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a><span>问题</span></li><li><a href="../topics/generative-model-evaluation.html">生成模型评测</a><span>主题</span></li><li><a href="../topics/video-understanding.html">视频理解</a><span>主题</span></li><li><a href="../topics/vision-language.html">视觉-语言</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-sti-bench&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;STI-Bench（ICCV 2025）：多模态大模型是否已准备好进行精确时空世界理解&quot;,
+  &quot;title&quot;: &quot;STI-Bench：精确时空世界理解基准&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;ICCV 2025&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
@@ -125,6 +165,7 @@
     &quot;https://openaccess.thecvf.com/content/ICCV2025/papers/Li_STI-Bench_Are_MLLMs_Ready_for_Precise_Spatial-Temporal_World_Understanding_ICCV_2025_paper.pdf&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-sti-bench/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-14-sti-bench/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/video-understanding&quot;,
     &quot;topics/generative-model-evaluation&quot;,
@@ -135,7 +176,7 @@
   &quot;questions&quot;: [
     &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

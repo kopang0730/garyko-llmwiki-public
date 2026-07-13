@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Plug-and-Play Diffusion Features：把 diffusion feature 直接变成文本驱动图像翻译接口 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="Plug-and-Play Diffusion Features：用 U-Net 内部特征控制文本图像翻译">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Plug-and-Play Diffusion Features：用 U-Net 内部特征控制文本图像翻译 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-plug-and-play-diffusion-features&quot;, &quot;title&quot;: &quot;Plug-and-Play Diffusion Features（CVPR 2023）：把 diffusion feature 直接变成文本驱动图像翻译接口&quot;, &quot;title_en&quot;: &quot;Plug-and-Play Diffusion Features（CVPR 2023）：把 diffusion feature 直接变成文本驱动图像翻译接口&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;diffusion&quot;, &quot;conditioning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-plug-and-play-diffusion-features&quot;, &quot;title&quot;: &quot;Plug-and-Play Diffusion Features：用 U-Net 内部特征控制文本图像翻译&quot;, &quot;title_en&quot;: &quot;Plug-and-Play Diffusion Features：用 U-Net 内部特征控制文本图像翻译&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;diffusion&quot;, &quot;editing&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,58 +60,73 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-16-plug-and-play-diffusion-features.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-16-plug-and-play-diffusion-features.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-16</p>
-        <h1><span class="title-main">Plug-and-Play Diffusion Features</span><span class="title-subtitle">把 diffusion feature 直接变成文本驱动图像翻译接口</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Plug-and-Play Diffusion Features：用 U-Net 内部特征控制文本图像翻译</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">Plug-and-Play Diffusion Features</span><span class="title-subtitle">用 U-Net 内部特征控制文本图像翻译</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2022/11/22</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2211.12572" title="https://arxiv.org/abs/2211.12572" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2211.12572</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2211.12572.pdf" title="https://arxiv.org/pdf/2211.12572.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2211.12572.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-editing">#image-editing</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#conditioning">#conditioning</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-editing">#image-editing</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#editing">#editing</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把 diffusion feature 本身变成文本驱动图像翻译接口，说明 editing/control 不只靠外接 guidance 模块，也可以直接借用扩散过程中的内部特征。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2022-11-22</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2211.12572" title="https://arxiv.org/abs/2211.12572" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2211.12572</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2211.12572.pdf" title="https://arxiv.org/pdf/2211.12572.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2211.12572.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#backbone-数据与设置">Backbone、数据与设置</a></li><li><a href="#核心定量消融">核心定量消融</a></li><li><a href="#真实推理成本">真实推理成本</a></li><li><a href="#迁移与失败边界">迁移与失败边界</a></li><li><a href="#相关页面">相关页面</a></li><li><a href="#备注">备注</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>PnP 从输入图像的 Stable Diffusion U-Net 轨迹抽取 decoder layer-4 spatial feature 与多层 self-attention，再注入目标文本分支，以无参数训练方式保结构地做 I2I；但真实图 inversion 和双 U-Net 分支使它 training-free 而非 cost-free。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>文本驱动图像到图像翻译需要既改语义又保结构。论文要解决的是，怎样直接利用 diffusion model 已有特征完成编辑，而不必为每种任务都重新训练一条完整生成链。</p>
+<p>文本驱动 I2I 需要既大幅改变外观/语义，又保留输入形状、姿态、对象数量与布局。SDEdit 受 noising-level 权衡限制，Prompt-to-Prompt 依赖 source/target word alignment 且真实图 inversion 不稳。论文追问预训练 diffusion 内部 feature 能否直接成为结构控制接口。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>作者把 diffusion features 作为可插拔的控制资源来用，让文本驱动图像翻译能够借到扩散过程中的内部表示。它的重要性在于把 plug-and-play 思想进一步从 guidance module 扩展到 feature layer。</p>
-<h2 id="关键发现">关键发现</h2>
+<ol>
+<li>对真实输入做 DDIM inversion，并让 source/target 分支共用 $x_T$。</li>
+<li>source 分支每步提取 decoder layer 4 feature $f_t^4$ 与 self-attention $A_t^l$。</li>
+<li>target 文本分支覆盖对应 feature/attention；$\tau_f$、$\tau_A$ 控制注入时段。</li>
+<li>negative prompt 帮助 textureless primitive input 偏离原外观。</li>
+</ol>
+<p>layer-4 feature 提供源/目标局部语义对应；更深 self-attention 保持细粒度结构。仅 feature 不够稳，仅 attention 缺语义对应，注入过深 feature 又会泄漏原外观。</p>
+<h2 id="backbone-数据与设置">Backbone、数据与设置</h2>
+<table><thead><tr><th>维度</th><th>全文核验</th></tr></thead><tbody><tr><td>生成 backbone</td><td>Stable Diffusion v1.4 latent diffusion <strong>U-Net</strong>；非 DiT</td></tr><tr><td>外部评测器</td><td>DINO-ViT 衡量结构；CLIP 衡量文本；都不是生成主干</td></tr><tr><td>Wild-TI2I</td><td>148 pairs；53% real web guidance，其余为生成图</td></tr><tr><td>ImageNet-R-TI2I</td><td>10 类×3 图×5 prompts = 150 pairs</td></tr><tr><td>sampling</td><td>deterministic DDIM translation 50 steps；默认 $\tau_A=25,\tau_f=40$</td></tr><tr><td>CFG</td><td>real 15.0；generated 7.5</td></tr><tr><td>训练</td><td>0；无微调、无新增参数</td></tr></tbody></table>
+<h2 id="核心定量消融">核心定量消融</h2>
+<table><thead><tr><th>配置</th><th>Wild Real Self-Sim↓</th><th>CLIP↑</th><th>LPIPS↑</th><th>Wild Gen Self-Sim↓</th><th>CLIP↑</th><th>LPIPS↑</th></tr></thead><tbody><tr><td>无 feature</td><td>0.090</td><td><strong>0.288</strong></td><td>0.584</td><td>0.084</td><td><strong>0.297</strong></td><td>0.633</td></tr><tr><td>无 self-attn</td><td>0.097</td><td>0.286</td><td><strong>0.597</strong></td><td>0.090</td><td>0.295</td><td><strong>0.657</strong></td></tr><tr><td>完整方法</td><td><strong>0.058</strong></td><td>0.282</td><td>0.521</td><td><strong>0.048</strong></td><td>0.289</td><td>0.542</td></tr></tbody></table>
+<p>完整方法优化的是结构保持与文本/变化幅度的折中，不是所有单项最大。ImageNet-R 上完整方法为 0.051/0.275/0.462；无 feature 为 0.076/0.281/0.534，无 self-attn 为 0.089/0.278/0.564。</p>
+<h2 id="真实推理成本">真实推理成本</h2>
 <ul>
-<li>它是 <a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a> 里很自然的补点：把插件化控制从外部模块继续推进到内部 feature 复用。</li>
-<li>它和 <a class="wikilink" href="../../en/sources/2026-04-16-towards-practical-plug-and-play-diffusion-models.html">sources/2026-04-16-towards-practical-plug-and-play-diffusion-models</a> 形成前后呼应：一个偏 feature-level plug-and-play，一个偏 guidance framework-level plug-and-play。</li>
-<li>它也补强了 image-editing 主线中“控制接口工程化”这条支线。</li>
+<li>参数训练/微调：0。</li>
+<li>真实图实现使用 1000-step deterministic DDIM inversion；实现细节另报告 1000-step backward reconstruction，translation 为 50 steps。</li>
+<li>translation 每 timestep 运行 source/guidance 与 target 两条 U-Net 分支，约为普通单分支 50-step 采样的 <strong>2× U-Net forward count</strong>，另有 feature/attention 读写。</li>
+<li>论文未报告 wall-clock、峰值显存或吞吐。因此不能用“plug-and-play/training-free”推导“高效”。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="迁移与失败边界">迁移与失败边界</h2>
 <ul>
-<li>它更强调 feature reuse 与编辑接口，不直接回答部署压缩或大规模 few-step 加速。</li>
-<li>feature-level plug-and-play 和 inversion-based 编辑之间的优先关系，还需要更多证据比较。</li>
-</ul>
-<h2 id="原始链接">原始链接</h2>
-<ul>
-<li>https://arxiv.org/abs/2211.12572</li>
-<li>https://arxiv.org/pdf/2211.12572.pdf</li>
+<li>依赖 source/target 在 diffusion feature space 具有语义对应；任意颜色 segmentation mask 会失败。</li>
+<li>textureless input 的 inversion 可能保留主导低频外观，造成 appearance leakage。</li>
+<li>换 checkpoint 需重新选择 decoder layer、attention 层与阈值。</li>
+<li>纯 DiT 没有同构 U-Net decoder layer 4/skip 接口，不能直接迁移。</li>
+<li>未验证视频、长序列一致性、精确局部编辑或高分辨率部署。</li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/image-editing.html">topics/image-editing</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-towards-practical-plug-and-play-diffusion-models.html">sources/2026-04-16-towards-practical-plug-and-play-diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-edict-exact-diffusion-inversion.html">sources/2026-04-16-edict-exact-diffusion-inversion</a></li>
+<li><a class="wikilink" href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-diffusionclip.html">DiffusionCLIP</a> — 以每目标 U-Net 微调换复用；PnP 免训练但增加 inversion/双分支成本。</li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-edict-exact-diffusion-inversion.html">EDICT</a> — 代表后续更精确 inversion 接口。</li>
 </ul>
 <h2 id="备注">备注</h2>
-<p>它在本库中的价值，是把插件化控制思路往 diffusion feature 层补进去，让后续 control engineering 的谱系更细。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<p>本库将其定位为 <strong>Stable Diffusion U-Net feature injection editing</strong>；DINO/CLIP 是评测实体，不能误挂为生成 backbone；source 不再关联 diffusion efficiency topic。</p></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-editing.html">图像编辑</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">6</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-04-16-diffusionclip.html">DiffusionCLIP：CLIP 引导的 diffusion U-Net 文本图像操控</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-high-fidelity-guided-image-synthesis.html">High-Fidelity Guided Image Synthesis：笔触约束下的 latent diffusion 测试时优化</a><span>Source note</span></li><li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>Topic</span></li><li><a href="../../en/topics/diffusion-models.html">扩散模型</a><span>Topic</span></li><li><a href="../../en/topics/image-editing.html">图像编辑</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-16-plug-and-play-diffusion-features&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Plug-and-Play Diffusion Features（CVPR 2023）：把 diffusion feature 直接变成文本驱动图像翻译接口&quot;,
+  &quot;title&quot;: &quot;Plug-and-Play Diffusion Features：用 U-Net 内部特征控制文本图像翻译&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-16&quot;,
-  &quot;updated&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2023&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;image-editing&quot;,
     &quot;diffusion&quot;,
-    &quot;conditioning&quot;,
+    &quot;editing&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
@@ -116,7 +137,7 @@
     &quot;Bagon, Shai&quot;,
     &quot;Dekel, Tali&quot;
   ],
-  &quot;published_at&quot;: &quot;2022/11/22&quot;,
+  &quot;published_at&quot;: &quot;2022-11-22&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2211.12572&quot;,
     &quot;https://arxiv.org/pdf/2211.12572.pdf&quot;
@@ -124,13 +145,12 @@
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-16-plug-and-play-diffusion-features/&quot;,
   &quot;topics&quot;: [
     &quot;topics/image-editing&quot;,
-    &quot;topics/diffusion-models&quot;,
-    &quot;topics/diffusion-efficiency-engineering&quot;
+    &quot;topics/diffusion-models&quot;
   ],
   &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

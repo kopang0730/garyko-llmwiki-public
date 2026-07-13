@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SoccerNet-v2：广播足球视频整体理解基准 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="SoccerNet-v2：广播足球内容、剪辑与回放理解基准">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>SoccerNet-v2：广播足球内容、剪辑与回放理解基准 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-05-soccernet-v2-holistic-understanding&quot;, &quot;title&quot;: &quot;SoccerNet-v2（arXiv 2020）：广播足球视频整体理解基准&quot;, &quot;title_en&quot;: &quot;SoccerNet-v2（arXiv 2020）：广播足球视频整体理解基准&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-05-soccernet-v2-holistic-understanding&quot;, &quot;title&quot;: &quot;SoccerNet-v2：广播足球内容、剪辑与回放理解基准&quot;, &quot;title_en&quot;: &quot;SoccerNet-v2：广播足球内容、剪辑与回放理解基准&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,41 +60,63 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-05-05-soccernet-v2-holistic-understanding.html">中文</a><a class="selected-lang" href="../../en/sources/2026-05-05-soccernet-v2-holistic-understanding.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-05-05</p>
-        <h1><span class="title-main">SoccerNet-v2</span><span class="title-subtitle">广播足球视频整体理解基准</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>SoccerNet-v2：广播足球内容、剪辑与回放理解基准</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">SoccerNet-v2</span><span class="title-subtitle">广播足球内容、剪辑与回放理解基准</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>arXiv 2020</dd></div><div class="source-fact"><dt>Published</dt><dd>2020-11-26</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-05-05</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2011.13367" title="https://arxiv.org/abs/2011.13367" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2011.13367</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2011.13367" title="https://arxiv.org/pdf/2011.13367" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2011.13367</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#benchmarking">#benchmarking</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>SoccerNet-v2 把足球视频从单一 action spotting 推进到更完整的广播比赛理解数据层，是后续 SoccerNet 任务生态、足球事件语义和比赛状态研究的重要前置锚点。</p>
-<h2 id="论文定位">论文定位</h2>
-<p>这篇论文是 SoccerNet 系列的核心扩展，适合补 sports-AI roadmap 中“事件语义 / 足球公开数据生态 / 多任务 benchmark”的基础证据。</p>
-<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
-<p>它给 Universal Soccer Video Understanding、SoccerNet Game State Reconstruction、action spotting 官方任务提供上游数据背景，让 roadmap 从单篇系统样本回到公开 benchmark 演化脉络。</p>
-<h2 id="来源可靠性与可溯源性">来源可靠性与可溯源性</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR Workshop 2021</dd></div><div class="source-fact"><dt>Published</dt><dd>2020-11-26</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-05-05</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2011.13367" title="https://arxiv.org/abs/2011.13367" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2011.13367</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2011.13367" title="https://arxiv.org/pdf/2011.13367" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2011.13367</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#数据与标注">数据与标注</a></li><li><a href="#任务与结果">任务与结果</a><ol><li class="toc-sub"><a href="#action-spotting">Action spotting</a></li><li class="toc-sub"><a href="#camera-understanding">Camera understanding</a></li><li class="toc-sub"><a href="#replay-grounding">Replay grounding</a></li></ol></li><li><a href="#泄漏与成本审计">泄漏与成本审计</a></li><li><a href="#任务边界">任务边界</a></li><li><a href="#羽毛球边界">羽毛球边界</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始材料">原始材料</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>SoccerNet-v2 在 500 场、764 小时足球转播上用约 1,600 人时生成约 30 万标注，建立 action spotting、camera understanding 与 replay grounding；它奠定 SoccerNet 生态，但 2 FPS features、point labels 和 5–60 秒 spotting 容差不能支持精细接触或羽毛球纠错结论。</p>
+<h2 id="数据与标注">数据与标注</h2>
 <ul>
-<li><strong>来源层级</strong>：arXiv 页面可访问，当前页面未显示 journal-ref / DOI；作为 SoccerNet 生态基础论文可溯源，但在本 wiki 中按 arXiv primary paper 处理。</li>
-<li><strong>可溯源材料</strong>：本地已保存 arXiv abstract、PDF 与 <code>paper-text.md</code>；<code>links.yaml</code> 可回到 arXiv abstract / PDF。</li>
-<li><strong>使用边界</strong>：后续若用于强 venue 归属，应补官方 CVPRW / challenge proceedings 页面或 DOI 证据。</li>
+<li>500 场欧洲职业足球、764 小时；官方 game-level split；</li>
+<li>33 annotators，约 1,600 小时；有重复比赛 consensus 检查，但无 kappa/费用；</li>
+<li>110,458 actions、17 类；18% unshown；</li>
+<li>158,493 camera changes；仅 200 场有完整 camera segmentation；</li>
+<li>32,932 replay shots 链到原 action；</li>
+<li>提供 high/low quality video 与 2 FPS PCA-512 ResNet/I3D/C3D features。</li>
 </ul>
-<h2 id="和现有证据的关系">和现有证据的关系</h2>
+<h2 id="任务与结果">任务与结果</h2>
+<h3 id="action-spotting">Action spotting</h3>
+<p>Average-mAP 先按 $\delta=5\ldots60$s 求 mAP，再取 AUC。</p>
+<table><thead><tr><th>方法</th><th>overall</th><th>shown</th><th>unshown</th></tr></thead><tbody><tr><td>MaxPool</td><td>18.6</td><td>21.5</td><td>15.0</td></tr><tr><td>NetVLAD</td><td>31.4</td><td>34.3</td><td>23.3</td></tr><tr><td>AudioVid</td><td>39.9</td><td><strong>43.0</strong></td><td>23.3</td></tr><tr><td>CALF</td><td><strong>40.7</strong></td><td>42.1</td><td><strong>29.0</strong></td></tr></tbody></table>
+<h3 id="camera-understanding">Camera understanding</h3>
 <ul>
-<li>与 <a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：它补强 SoccerNet 基础数据生态、全场空间理解或低标注事件定位这类 roadmap 缺口。</li>
-<li>与 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它把体育视频理解从已有 tracking / interaction / trajectory 继续接到足球事件、球场几何和数据协议。</li>
-<li>与 <a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a> 的关系：它提供真实长视频、密集事件和结构化评测下的视频理解样本。</li>
+<li>segmentation mIoU：Basic 35.8，CALF 47.3；</li>
+<li>boundary overall mAP：CALF 59.6，Intensity 64.0，Content 62.2，Histogram 78.5；</li>
+<li>简单 histogram 对 abrupt/logo 强，CALF 对 fading 更稳。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h3 id="replay-grounding">Replay grounding</h3>
+<p>最佳 CALF + S2 negatives + 60 秒 chunks，Average-AP <strong>41.8</strong>，说明任务可行但远未解决。</p>
+<h2 id="泄漏与成本审计">泄漏与成本审计</h2>
 <ul>
-<li>后续若用于强 venue 归属，应补官方 CVPRW / challenge proceedings 页面或 DOI 证据。</li>
-<li>当前这版先完成轻量 primary-source 编译，后续可按 deep-analysis-first 流程补 <code>analysis.md</code>、关键图页和实验细节。</li>
+<li>game-level split 优于帧级，但联赛/球队/转播域跨 split 的泛化未知；</li>
+<li>多任务共享 500 场，后续预训练必须防 test-game annotations 跨任务泄漏；</li>
+<li>300k timestamps 是 game-clustered，不是独立样本；</li>
+<li>unshown timestamp 依赖插值；少数类无 CI/多 seeds；</li>
+<li>标注成本清楚，但未报视频许可成本、GPU、训练时间、显存、feature storage 和实时 FPS；</li>
+<li>“自动转播”是研究目标，不是部署结果。</li>
+</ul>
+<h2 id="任务边界">任务边界</h2>
+<p>“Holistic”仅覆盖内容事件、camera editing 和 replay linking，不含逐帧 player/ball tracking、pitch coordinates、姿态、战术因果或裁判规则。后续 SoccerNet-Tracking/GSR/MVFoul 的能力不能归给 v2。</p>
+<h2 id="羽毛球边界">羽毛球边界</h2>
+<p>可迁移 game-level split、shown/unshown、point spotting、camera transition 和 replay grounding 协议。足球 17 类、2 FPS、5–60 秒容差及所有数字不得外推羽毛球。羽毛球应标 stroke interval/contact frame，并加入 player/racket/shuttle/court state 与 match/player/camera-disjoint。</p>
+<h2 id="证据评级">证据评级</h2>
+<ul>
+<li>数据与任务定义：<strong>A</strong></li>
+<li>baseline：<strong>A-</strong></li>
+<li>精细时序：<strong>B-</strong></li>
+<li>跨域部署：<strong>C</strong></li>
+<li>羽毛球直接证据：<strong>D</strong></li>
 </ul>
 <h2 id="原始材料">原始材料</h2>
 <ul>
-<li><code>raw/ingest/2026-05-05-soccernet-v2-holistic-understanding/paper.pdf</code></li>
-<li><code>raw/ingest/2026-05-05-soccernet-v2-holistic-understanding/paper-text.md</code></li>
-<li><code>raw/ingest/2026-05-05-soccernet-v2-holistic-understanding/abstract.md</code></li>
-<li><code>raw/ingest/2026-05-05-soccernet-v2-holistic-understanding/links.yaml</code></li>
+<li><code>raw/ingest/2026-05-05-soccernet-v2-holistic-understanding/paper.pdf</code>（17 页）</li>
+<li><code>raw/ingest/2026-05-05-soccernet-v2-holistic-understanding/paper-text.md</code>（1,535 行）</li>
+<li><code>raw/ingest/2026-05-05-soccernet-v2-holistic-understanding/analysis.md</code></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
@@ -96,15 +124,20 @@
 <li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
 <li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a></li>
 <li><a class="wikilink" href="../../en/entities/sportsmot.html">entities/sportsmot</a></li>
+<li><a class="wikilink" href="../../en/questions/question-badminton-stroke-correction-demo.html">questions/question-badminton-stroke-correction-demo</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li><li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li><li><a class="wikilink" href="../../en/topics/video-understanding.html">Video Understanding</a></li></ul></div><div class="related-group related-entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/sportsmot.html">SportsMOT</a></li></ul></div><div class="related-group related-questions"><h3>Related questions<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">4</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a><span>Topic</span></li><li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a><span>Topic</span></li><li><a href="../../en/topics/video-understanding.html">Video Understanding</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-05-05-soccernet-v2-holistic-understanding&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;SoccerNet-v2（arXiv 2020）：广播足球视频整体理解基准&quot;,
+  &quot;title&quot;: &quot;SoccerNet-v2：广播足球内容、剪辑与回放理解基准&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-05-05&quot;,
-  &quot;updated&quot;: &quot;2026-05-05&quot;,
-  &quot;venue&quot;: &quot;arXiv 2020&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
+  &quot;venue&quot;: &quot;CVPR Workshop 2021&quot;,
   &quot;published_at&quot;: &quot;2020-11-26&quot;,
   &quot;ingested_at&quot;: &quot;2026-05-05&quot;,
   &quot;tags&quot;: [
@@ -116,21 +149,22 @@
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;authors&quot;: [
-    &quot;Deliège, Adrien&quot;,
-    &quot;Cioppa, Anthony&quot;,
-    &quot;Giancola, Silvio&quot;,
-    &quot;Seikavandi, Meisam J.&quot;,
-    &quot;Dueholm, Jacob V.&quot;,
-    &quot;Nasrollahi, Kamal&quot;,
-    &quot;Ghanem, Bernard&quot;,
-    &quot;Moeslund, Thomas B.&quot;,
-    &quot;Van Droogenbroeck, Marc&quot;
+    &quot;Adrien Deliège&quot;,
+    &quot;Anthony Cioppa&quot;,
+    &quot;Silvio Giancola&quot;,
+    &quot;Meisam J. Seikavandi&quot;,
+    &quot;Jacob V. Dueholm&quot;,
+    &quot;Kamal Nasrollahi&quot;,
+    &quot;Bernard Ghanem&quot;,
+    &quot;Thomas B. Moeslund&quot;,
+    &quot;Marc Van Droogenbroeck&quot;
   ],
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2011.13367&quot;,
     &quot;https://arxiv.org/pdf/2011.13367&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-05-05-soccernet-v2-holistic-understanding/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-05-05-soccernet-v2-holistic-understanding/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/sports-ai-video-understanding&quot;,
     &quot;topics/sports-ai-roadmap&quot;,
@@ -140,8 +174,10 @@
     &quot;entities/sportsmot&quot;
   ],
   &quot;claims&quot;: [],
-  &quot;questions&quot;: []
-}</pre></section>
+  &quot;questions&quot;: [
+    &quot;questions/question-badminton-stroke-correction-demo&quot;
+  ]
+}</pre></details>
     </article>
   </main>
 </body>

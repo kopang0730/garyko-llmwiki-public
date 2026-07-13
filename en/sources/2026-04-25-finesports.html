@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FineSports：多人层级细粒度体育动作数据锚点 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="FineSports：多人篮球的层级细粒度时空动作定位">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>FineSports：多人篮球的层级细粒度时空动作定位 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-25-finesports&quot;, &quot;title&quot;: &quot;FineSports（CVPR 2024）：多人层级细粒度体育动作数据锚点&quot;, &quot;title_en&quot;: &quot;FineSports（CVPR 2024）：多人层级细粒度体育动作数据锚点&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-25-finesports&quot;, &quot;title&quot;: &quot;FineSports：多人篮球的层级细粒度时空动作定位&quot;, &quot;title_en&quot;: &quot;FineSports：多人篮球的层级细粒度时空动作定位&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;benchmarking&quot;, &quot;vision-language&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,62 +60,82 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-25-finesports.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-25-finesports.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-25</p>
-        <h1><span class="title-main">FineSports</span><span class="title-subtitle">多人层级细粒度体育动作数据锚点</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>FineSports：多人篮球的层级细粒度时空动作定位</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">FineSports</span><span class="title-subtitle">多人篮球的层级细粒度时空动作定位</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2024-06-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-25</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2024/papers/Xu_FineSports_A_Multi-person_Hierarchical_Sports_Video_Dataset_for_Fine-grained_Action_CVPR_2024_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2024/papers/Xu_FineSports_A_Multi-person_Hierarchical_Sports_Video_Dataset_for_Fine-grained_Action_CVPR_2024_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Xu_FineSports_A_Multi-person_Hi…</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#benchmarking">#benchmarking</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#benchmarking">#benchmarking</a><a class="tag" href="../../en/tags.html#vision-language">#vision-language</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>在篮球场景中构建层级细粒度动作数据，连接 FineGym 式动作结构与 SportsHHI 式交互理解。</p>
-<h2 id="论文定位">论文定位</h2>
-<p>FineSports 用篮球视频建立层级细粒度动作理解数据，强调多人、动作/子动作层级和时序定位。</p>
-<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
-<p>它把 FineGym 的层级动作思想推进到更接近多人对抗的团队运动场景。</p>
-<h2 id="和现有证据的关系">和现有证据的关系</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2024-06-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-25</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2024/papers/Xu_FineSports_A_Multi-person_Hierarchical_Sports_Video_Dataset_for_Fine-grained_Action_CVPR_2024_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2024/papers/Xu_FineSports_A_Multi-person_Hierarchical_Sports_Video_Dataset_for_Fine-grained_Action_CVPR_2024_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Xu_FineSports_A_Multi-person_Hi…</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#数据与标签">数据与标签</a></li><li><a href="#方法与接口">方法与接口</a></li><li><a href="#协议与核心结果">协议与核心结果</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#对羽毛球-stroke-correction-的迁移边界">对羽毛球 stroke correction 的迁移边界</a></li><li><a href="#对-wiki-判断的影响">对 Wiki 判断的影响</a></li><li><a href="#原始材料">原始材料</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>FineSports 用 10,000 个 NBA 片段、12→52 类动作层级和目标人 action tubes 建立多人细粒度定位 benchmark；PoSTAL 达 frame-mAP@0.5 21.54、video-mAP@0.5 24.31，但颜色/号码提示与不透明 split 带来身份捷径风险，且它不是 caption 或 AQA。</p>
+<h2 id="数据与标签">数据与标签</h2>
 <ul>
-<li>与 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它把体育 AI 的证据面从 tracking 扩展到动作、姿态、战术、比赛状态或高速小目标。</li>
-<li>与 <a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：它对应 roadmap 中下一批 batch 的一个证据节点。</li>
+<li>10,000 clips，平均 11.74 秒；16,000 action instances。</li>
+<li>12 个 action types、52 个 sub-action types；123,014 个空间框、32,096 个时间边界。</li>
+<li>空间标注覆盖持球人、队友、对手；时间标注覆盖有效 action segment 与步骤切换帧。</li>
+<li>FIBA 规则 lexicon，由 3 名篮球协会运动员参与；MixSort-OC 初始化 track/框后人工纠错。</li>
+<li>数据仅 NBA 全景转播；类别长尾，未报告标注一致性、球员/赛事 split 或身份统计。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="方法与接口">方法与接口</h2>
+<p>PoSTAL 输入视频和“球衣颜色 + 号码”提示。PTA 用文本—视频 cross-attention锁定目标人；ATD 用 6 个 tube queries 直接回归逐帧框、边界和 sub-action 类别。训练用 frozen BLIP + Kinetics-400 预训练 CSN-152。</p>
+<p>它输出类别化 action tube，不输出自然语言 caption、质量分、步骤扣分、球轨迹或接触点。</p>
+<h2 id="协议与核心结果">协议与核心结果</h2>
+<table><thead><tr><th>方法</th><th>frame-mAP@0.5</th><th>video-mAP@0.2</th><th>video-mAP@0.5</th></tr></thead><tbody><tr><td>MOC</td><td>19.21</td><td>--</td><td>--</td></tr><tr><td>TubeR</td><td>19.48</td><td>28.91</td><td>17.76</td></tr><tr><td><strong>PoSTAL</strong></td><td><strong>21.54</strong></td><td><strong>31.18</strong></td><td><strong>24.31</strong></td></tr></tbody></table>
+<p>正文未说明 train/val/test 比例或 competition/player/source-video 分组，不能把结果当跨球员/跨赛季泛化证据。</p>
+<h2 id="关键消融">关键消融</h2>
 <ul>
-<li>当前这版 source note 先完成 bibliography-driven 编译，后续可以按 deep-analysis-first 流程补 <code>analysis.md</code>、关键图页和实验细节。</li>
-<li>具体数值和 benchmark 细节应以 <code>raw/ingest/2026-04-25-finesports/paper-text.md</code> 与原始 PDF 为准。</li>
+<li>去 descriptive words：frame-mAP 20.67、video-mAP@0.5 12.44；完整 PTA 为 21.54/24.31。</li>
+<li>tube queries 2/6/10 的 video-mAP@0.5 为 21.34/24.31/23.46，6 最均衡。</li>
+<li>未隔离球衣身份、读号错误、tracking 质量和类别提示的贡献。</li>
+</ul>
+<h2 id="对羽毛球-stroke-correction-的迁移边界">对羽毛球 stroke correction 的迁移边界</h2>
+<p>可迁移“选定目标运动员→定位 stroke tube→层级分步骤”的前端，双打遮挡尤其受益。不可直接用于纠错：需新增 pose/racket/ball/contact 与 coach rubric，并把颜色/号码提示改为点选人或 track/re-ID。评测必须 athlete/session/court/camera-disjoint；tube/class 置信度不能冒充动作质量。</p>
+<h2 id="对-wiki-判断的影响">对 Wiki 判断的影响</h2>
+<ul>
+<li>对 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">体育 AI 视频理解</a>：多人目标人细粒度 tube 是直接支持。</li>
+<li>对 <a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">体育 AI 路线图</a>：适合作为“先定位谁何时做了什么”的动作层前端，不支持评分层。</li>
+<li>对 <a class="wikilink" href="../../en/topics/video-understanding.html">视频理解</a>：提供层级语义、身份条件和多人遮挡压力测试。</li>
 </ul>
 <h2 id="原始材料">原始材料</h2>
 <ul>
+<li><a class="wikilink missing" href="#missing-raw/ingest/2026-04-25-finesports/analysis">全文深分析</a></li>
 <li><code>raw/ingest/2026-04-25-finesports/paper.pdf</code></li>
 <li><code>raw/ingest/2026-04-25-finesports/paper-text.md</code></li>
-<li><code>raw/ingest/2026-04-25-finesports/abstract.md</code></li>
 <li><code>raw/ingest/2026-04-25-finesports/links.yaml</code></li>
-</ul>
-<h2 id="相关页面">相关页面</h2>
-<ul>
-<li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
-<li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
-<li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li><li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li><li><a class="wikilink" href="../../en/topics/video-understanding.html">Video Understanding</a></li></ul></div><div class="related-group related-entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/sportsmot.html">SportsMOT</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">4</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a><span>Topic</span></li><li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a><span>Topic</span></li><li><a href="../../en/topics/video-understanding.html">Video Understanding</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-25-finesports&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;FineSports（CVPR 2024）：多人层级细粒度体育动作数据锚点&quot;,
+  &quot;title&quot;: &quot;FineSports：多人篮球的层级细粒度时空动作定位&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-25&quot;,
-  &quot;updated&quot;: &quot;2026-04-25&quot;,
-  &quot;venue&quot;: &quot;CVPR 2024&quot;,
-  &quot;published_at&quot;: &quot;2024-06-01&quot;,
-  &quot;ingested_at&quot;: &quot;2026-04-25&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;video-understanding&quot;,
     &quot;benchmarking&quot;,
+    &quot;vision-language&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
-  &quot;authors&quot;: [],
+  &quot;venue&quot;: &quot;CVPR 2024&quot;,
+  &quot;authors&quot;: [
+    &quot;Jinglin Xu&quot;,
+    &quot;Guohao Zhao&quot;,
+    &quot;Sibo Yin&quot;,
+    &quot;Wenhao Zhou&quot;,
+    &quot;Yuxin Peng&quot;
+  ],
+  &quot;published_at&quot;: &quot;2024-06-01&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-25&quot;,
   &quot;canonical_links&quot;: [
-    &quot;https://openaccess.thecvf.com/content/CVPR2024/papers/Xu_FineSports_A_Multi-person_Hierarchical_Sports_Video_Dataset_for_Fine-grained_Action_CVPR_2024_paper.pdf&quot;,
     &quot;https://openaccess.thecvf.com/content/CVPR2024/papers/Xu_FineSports_A_Multi-person_Hierarchical_Sports_Video_Dataset_for_Fine-grained_Action_CVPR_2024_paper.pdf&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-25-finesports/&quot;,
@@ -123,7 +149,7 @@
   ],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

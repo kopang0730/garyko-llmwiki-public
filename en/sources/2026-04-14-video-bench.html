@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Video-Bench：面向视频生成的人类对齐评测基准 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="Video-Bench：人类偏好对齐的视频生成评测">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Video-Bench：人类偏好对齐的视频生成评测 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-video-bench&quot;, &quot;title&quot;: &quot;Video-Bench（CVPR 2025）：面向视频生成的人类对齐评测基准&quot;, &quot;title_en&quot;: &quot;Video-Bench（CVPR 2025）：面向视频生成的人类对齐评测基准&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-generation&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-video-bench&quot;, &quot;title&quot;: &quot;Video-Bench：人类偏好对齐的视频生成评测&quot;, &quot;title_en&quot;: &quot;Video-Bench：人类偏好对齐的视频生成评测&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-generation&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,74 +60,71 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-video-bench.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-video-bench.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-17</p>
-        <h1><span class="title-main">Video-Bench</span><span class="title-subtitle">面向视频生成的人类对齐评测基准</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Video-Bench：人类偏好对齐的视频生成评测</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">Video-Bench</span><span class="title-subtitle">人类偏好对齐的视频生成评测</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-06-11</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2504.04907" title="https://arxiv.org/abs/2504.04907" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2504.04907</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2504.04907.pdf" title="https://arxiv.org/pdf/2504.04907.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2504.04907.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-generation">#video-generation</a><a class="tag" href="../../en/tags.html#evaluation">#evaluation</a><a class="tag" href="../../en/tags.html#benchmarking">#benchmarking</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>Video-Bench 把 human-aligned benchmark 单独拉成一条主线，说明视频生成评测已经不再满足于纯自动指标，而开始围绕人类偏好、条件对齐和多维质量构建新的评测协议。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-06-11</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2504.04907" title="https://arxiv.org/abs/2504.04907" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2504.04907</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2504.04907.pdf" title="https://arxiv.org/pdf/2504.04907.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2504.04907.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#数据与评测维度">数据与评测维度</a></li><li><a href="#方法">方法</a><ol><li class="toc-sub"><a href="#chain-of-query">Chain-of-query</a></li><li class="toc-sub"><a href="#few-shot-scoring">Few-shot scoring</a></li><li class="toc-sub"><a href="#实现">实现</a></li></ol></li><li><a href="#核心结果">核心结果</a></li><li><a href="#消融与诊断">消融与诊断</a></li><li><a href="#关键图示">关键图示</a><ol><li class="toc-sub"><a href="#评测框架与维度">评测框架与维度</a></li><li class="toc-sub"><a href="#chain-of-query-与-few-shot-scoring">Chain-of-query 与 few-shot scoring</a></li><li class="toc-sub"><a href="#主结果与人类对齐证据">主结果与人类对齐证据</a></li></ol></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对-benchmark-question-的证据分类">对 benchmark question 的证据分类</a></li><li><a href="#对当前-wiki-判断的影响">对当前 wiki 判断的影响</a></li><li><a href="#相关页面">相关页面</a></li><li><a href="#原始链接">原始链接</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>Video-Bench 证明 MLLM evaluator 不能靠一句 prompt 直接打总分：chain-of-query 与 few-shot scoring 显著提高对人工评分的相关性；但 human-aligned generation evaluation 仍不等于 video-editing understanding。</p>
 <h2 id="论文定位">论文定位</h2>
-<p>这篇论文是“human preference aligned benchmark”路线里的代表作。它最重要的贡献是重做评测协议，而不是单纯增加一个新分数。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>作者指出视频生成评测存在几种结构性不足：</p>
+<p>它代表<strong>人类偏好对齐的视频生成评测</strong>路线：以 MLLM 同时评估条件对齐与质量，并用人工评分验证。与 VBench 的专用指标工具箱相比，Video-Bench 更像一个经过流程设计和标尺校准的通用视频裁判。</p>
+<h2 id="数据与评测维度">数据与评测维度</h2>
 <ul>
-<li>自动指标和真实人类偏好常常不一致</li>
-<li>只看视觉质量不足以评估视频条件对齐</li>
-<li>让 MLLM 直接粗粒度打总分也不稳定</li>
+<li>419 个 prompt，每维约 70–90 个，每 prompt 生成 3 次。</li>
+<li>10 名标注者、每视频 4 份评分，共 35,196 次人工评价。</li>
+<li>主要评估 LaVie、Show-1、VideoCrafter2、CogVideoX、Pika-Beta、Kling、Gen3。</li>
+<li><strong>Video Quality</strong>：Imaging、Aesthetic、Temporal Consistency、Motion Effects。</li>
+<li><strong>Video-Condition Alignment</strong>：Object Class、Action、Color、Scene、Video-text Consistency。</li>
 </ul>
-<p>因此需要一个更贴近 human preference 的多维 benchmark。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>Video-Bench 有三层关键设计：</p>
-<ol>
-<li><strong>两大评测维度</strong></li>
-<p>   将评测拆成 Video Quality 与 Video-Condition Alignment 两大类，再细分成多个子维度。</p>
-</ol>
-<ol>
-<li><strong>human-preference-aligned benchmark</strong></li>
-<p>   通过人工偏好/标注设计，让评测标准更接近真实人类判断。</p>
-</ol>
-<ol>
-<li><strong>chain-of-query + few-shot scoring</strong></li>
-<p>   用 query decomposition 与 few-shot calibration 稳定 MLLM 评测流程，使其更可解释、更稳定。</p>
-</ol>
-<h2 id="关键发现">关键发现</h2>
+<h2 id="方法">方法</h2>
+<h3 id="chain-of-query">Chain-of-query</h3>
+<p>用于条件对齐：先由 MLLM 描述视频，再由 LLM 针对目标维度生成细化问题，MLLM 重新观察并回答，最后综合对话与评分规则。它把一次性跨模态比较拆成可审计的多轮核对。</p>
+<h3 id="few-shot-scoring">Few-shot scoring</h3>
+<p>用于质量评分：同一 prompt 的多段生成视频成批作为相互参照，缓解“文字规则模糊导致所有视频都得中间分”。它保持 O(N) rating 成本，避免 pairwise O(N²)。</p>
+<h3 id="实现">实现</h3>
+<p>GPT-4o-2024-08-06 处理视频帧，GPT-4o-mini 生成文本 query。论文公开详细评分 rubric 和完整 prompt，有助复现，但结果对闭源模型版本敏感。</p>
+<h2 id="核心结果">核心结果</h2>
 <ul>
-<li>benchmark 本身可以通过方法设计更接近人类偏好，而不只是依赖人工总评。</li>
-<li>条件对齐评测与感知质量评测需要同时存在。</li>
-<li>直接让 MLLM 打总分不够，query 设计和 scoring calibration 都很重要。</li>
-<li>这篇论文让“human-aligned evaluation”变成了可执行协议，而不是口号。</li>
+<li>Gen3 总体第一：Imaging 4.66、Aesthetic 4.44、Temporal 4.74、Motion 3.99；CogVideoX 条件对齐平均排名第一。</li>
+<li>相对人类的 Spearman 相关为 0.402–0.750，九维均优于对照自动指标；时间一致性仍最低 0.402。</li>
+<li>人—人 Krippendorff α 平均 0.52，人—Video-Bench 0.50，人—裸 GPT 0.41。</li>
+<li>三次重复精确同分率 67%，但 α=0.867；说明分数不是完全确定，却有较高等级一致性。</li>
+<li>人机并非无偏：时间一致性平均差 +0.31，运动效果 -0.26，99% CI 均不含 0。</li>
+</ul>
+<h2 id="消融与诊断">消融与诊断</h2>
+<ul>
+<li>Few-shot scoring：质量平均相关性约 0.561→0.620；成像 0.639→0.733、美学 0.627→0.702。</li>
+<li>Chain-of-query：条件对齐平均约 0.679→0.734；Video-text 0.671→0.732。</li>
+<li>1/3/5/7-shot 平均质量相关性 0.404/0.511/0.517/0.545，更多参照总体更好但不完全单调。</li>
+<li>GPT-4o-0806 优于 Gemini1.5-Pro、Qwen2-VL 和其他 GPT-4o 版本；更新版本不必然更好，Motion Effects 在 1120 版明显回退。</li>
+<li>Gaussian blur 下 Video-text 相对误差低于 5%；简单/复杂 prompt 的若干维度近似，提供有限鲁棒性证据。</li>
+<li>mini-split 上 Sora 9 维中 5 维第一，但仅 25 prompt，且仍有文本不符、时序断裂和运动轨迹异常。</li>
 </ul>
 <h2 id="关键图示">关键图示</h2>
-<h3 id="video-bench-总览图">Video-Bench 总览图</h3>
+<h3 id="评测框架与维度">评测框架与维度</h3>
 <p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-14-video-bench/page-previews/page-1.png">900</a></p>
-<p>这一页展示 benchmark 的两大评测维度以及 human-aligned 的整体设计，是 source note 最适合的首图。</p>
-<h3 id="chain-of-query-与-few-shot-scoring-方法图">Chain-of-query 与 few-shot scoring 方法图</h3>
+<h3 id="chain-of-query-与-few-shot-scoring">Chain-of-query 与 few-shot scoring</h3>
 <p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-14-video-bench/page-previews/page-5.png">900</a></p>
-<p>这一页解释 Video-Bench 如何通过 chain-of-query 和 few-shot scoring 稳定 MLLM 的评测过程，是理解其“人类偏好对齐机制”的关键方法图。</p>
-<h3 id="主结果与人工对齐证据">主结果与人工对齐证据</h3>
+<h3 id="主结果与人类对齐证据">主结果与人类对齐证据</h3>
 <p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-14-video-bench/page-previews/page-18.png">900</a></p>
-<p>这一页同时包含多模型结果表和 human vs. MLLM 对照案例，是说明 benchmark 实际有效性的关键证据页。</p>
-<h2 id="核心实验与结果">核心实验与结果</h2>
-<ul>
-<li>Video-Bench 给出了多维度、多模型的系统评测结果。</li>
-<li>结果页说明它不仅能区分模型优劣，还能在多个维度上更贴近人类偏好。</li>
-<li>chain-of-query 与 few-shot scoring 共同构成其方法优势。</li>
-<li>这篇论文使“human-aligned video benchmark”从概念变成了有方法和结果支撑的评测路线。</li>
-</ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>human-aligned 不等于真实任务理解。</li>
-<li>更贴近人类偏好，不代表已经覆盖所有用户价值与复杂任务完成度。</li>
-<li>它补的是评测协议层，不是对生成模型本身的直接改进。</li>
+<li>evaluator 上限受 GPT-4o 动态细节/时间理解能力约束，Temporal 相关性只有 0.402。</li>
+<li>闭源版本变化会改分；论文“使用最优版本”可能带选择偏差。</li>
+<li>few-shot 分数依赖同批参照集合，不一定可跨批绝对比较。</li>
+<li>“human-aligned”对齐的是特定 rubric/标注群体，不是全部用户价值；人工自身语义一致性也低。</li>
+<li>419 prompt、短 T2V 输出，不含源视频保持、局部编辑、镜头选择、音频或长叙事。</li>
+<li>精选的人机分歧案例不足以支持“机器整体比人更客观”的强主张。</li>
+<li>闭源 API 带来成本、隐私、版本与可复现性问题。</li>
 </ul>
+<h2 id="对-benchmark-question-的证据分类">对 benchmark question 的证据分类</h2>
+<table><thead><tr><th>维度</th><th>分类</th><th>解释</th></tr></thead><tbody><tr><td>视频理解</td><td>evaluator 依赖证据</td><td>MLLM 用来打分，不是被测对象</td></tr><tr><td>生成质量</td><td>直接强证据</td><td>九维质量与条件对齐</td></tr><tr><td>人类偏好</td><td>直接强但有偏</td><td>35,196 人工评分、相关性与 inter-rater</td></tr><tr><td>长视频</td><td>非目标</td><td>短生成视频</td></tr><tr><td>时空世界理解</td><td>间接输出证据</td><td>可发现运动/物理错误，不证明世界模型</td></tr><tr><td>视频编辑理解</td><td>边界证据</td><td>可复用部分协议，但无源视频和编辑约束</td></tr></tbody></table>
 <h2 id="对当前-wiki-判断的影响">对当前 wiki 判断的影响</h2>
-<ul>
-<li>它显著补强了 <code>topics/generative-model-evaluation</code> 中“评测协议本身也在快速进化”这条判断。</li>
-<li>对 <code>questions/question-do-benchmarks-track-real-video-editing-understanding</code> 来说，它提供了一条和 AIGV-Assessor、Neuro-Symbolic Evaluation 不同的第三种评测立场：人类偏好对齐。</li>
-<li>这篇论文让我们更清楚地把“感知质量评测、human alignment、任务理解评测”区分开来。</li>
-</ul>
+<p>Video-Bench 进一步确认评测要区分：<strong>感知质量、条件对齐、人类偏好、真实编辑理解</strong>。它支持 <a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a> 中“human preference 更强不自动等于更懂编辑”的判断，并给出量化依据：即使与人工平均一致性接近，人机在时间与运动维度仍存在系统偏差。</p>
 <h2 id="相关页面">相关页面</h2>
 <ul>
 <li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">topics/generative-model-evaluation</a></li>
@@ -133,16 +136,20 @@
 </ul>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2504.04907</li>
-<li>https://arxiv.org/pdf/2504.04907.pdf</li>
+<li><a href="https://arxiv.org/abs/2504.04907">论文页面</a></li>
+<li><a href="https://arxiv.org/pdf/2504.04907.pdf">PDF</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li><li><a class="wikilink" href="../../en/topics/video-generation.html">视频生成</a></li><li><a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a></li></ul></div><div class="related-group related-entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li></ul></div><div class="related-group related-claims"><h3>Related claims<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li></ul></div><div class="related-group related-questions"><h3>Related questions<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">7</span></h2><ul><li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a><span>Claim</span></li><li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a><span>Entity</span></li><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a><span>Question</span></li><li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a><span>Topic</span></li><li><a href="../../en/topics/video-editing.html">视频编辑</a><span>Topic</span></li><li><a href="../../en/topics/video-generation.html">视频生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-video-bench&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Video-Bench（CVPR 2025）：面向视频生成的人类对齐评测基准&quot;,
+  &quot;title&quot;: &quot;Video-Bench：人类偏好对齐的视频生成评测&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-17&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2025&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
@@ -160,6 +167,7 @@
     &quot;Jiaqi Chen&quot;,
     &quot;Yiwen Yuan&quot;,
     &quot;Yuling Wu&quot;,
+    &quot;Yufan Deng&quot;,
     &quot;Chak Tou Leong&quot;,
     &quot;Hanwen Du&quot;,
     &quot;Junchen Fu&quot;,
@@ -191,7 +199,7 @@
   &quot;questions&quot;: [
     &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

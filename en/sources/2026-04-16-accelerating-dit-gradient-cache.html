@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Accelerating Diffusion Transformer via Gradient-Optimized Cache：用梯度优化缓存继续压缩 DiT 推理成本 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="Accelerating Diffusion Transformer via Gradient-Optimized Cache：修正 DiT 缓存误差">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Accelerating Diffusion Transformer via Gradient-Optimized Cache：修正 DiT 缓存误差 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-accelerating-dit-gradient-cache&quot;, &quot;title&quot;: &quot;Accelerating Diffusion Transformer via Gradient-Optimized Cache（ICCV 2025）：用梯度优化缓存继续压缩 DiT 推理成本&quot;, &quot;title_en&quot;: &quot;Accelerating Diffusion Transformer via Gradient-Optimized Cache（ICCV 2025）：用梯度优化缓存继续压缩 DiT 推理成本&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-accelerating-dit-gradient-cache&quot;, &quot;title&quot;: &quot;Accelerating Diffusion Transformer via Gradient-Optimized Cache：修正 DiT 缓存误差&quot;, &quot;title_en&quot;: &quot;Accelerating Diffusion Transformer via Gradient-Optimized Cache：修正 DiT 缓存误差&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,50 +60,98 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-16-accelerating-dit-gradient-cache.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-16-accelerating-dit-gradient-cache.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-05-22</p>
-        <h1><span class="title-main">Accelerating Diffusion Transformer via Gradient-Optimized Cache</span><span class="title-subtitle">用梯度优化缓存继续压缩 DiT 推理成本</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Accelerating Diffusion Transformer via Gradient-Optimized Cache：修正 DiT 缓存误差</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">Accelerating Diffusion Transformer via Gradient-Optimized Cache</span><span class="title-subtitle">修正 DiT 缓存误差</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025/03/07</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2503.05156" title="https://arxiv.org/abs/2503.05156" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2503.05156</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2503.05156.pdf" title="https://arxiv.org/pdf/2503.05156.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2503.05156.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#efficiency">#efficiency</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把 cache acceleration 继续推进到 DiT 主干内部，用梯度优化缓存策略进一步压缩 transformer-style diffusion 的推理成本。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-03-07</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2503.05156" title="https://arxiv.org/abs/2503.05156" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2503.05156</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2503.05156.pdf" title="https://arxiv.org/pdf/2503.05156.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2503.05156.pdf</strong></a><a class="source-link source-link-code" href="https://github.com/qiujx0520/GOC_ICCV2025" title="https://github.com/qiujx0520/GOC_ICCV2025" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · GOC_ICCV2025</strong></a></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#核心实验与结果">核心实验与结果</a><ol><li class="toc-sub"><a href="#协议">协议</a></li><li class="toc-sub"><a href="#imagenet-dit">ImageNet / DiT</a></li><li class="toc-sub"><a href="#真实-a40-latency">真实 A40 latency</a></li><li class="toc-sub"><a href="#pixart-coco">PixArt / COCO</a></li></ol></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>GOC 的核心贡献不是再制造一份 2× 加速，而是在 FORA/L2C 已跳 block 的相同 FLOPs 下，用跨 timestep feature 差分和统计选择器把缓存质量拉回：50% FORA 的 FID 6.857→3.907，A40 latency 仅增加约 2%；但仍差于 No Cache 的 3.484，且 2× 来自 FORA 缓存比例本身。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这是 <strong>DiT cache error correction</strong>。FORA/Δ-DiT/L2C 决定缓存或跳过哪些 attention/MLP block；GOC 利用最近两次真实 feature 的数值差分预测下一步，并避开方向反转位置。它是缓存器上的插件，不是新 backbone，也不是独立 sampler。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>DiT 主干带来更强 scaling 能力，也带来更重的推理成本。论文要解决的是，怎样在不完全重写主干的前提下，让 DiT 的中间状态缓存更有效率。</p>
+<p>DiT 各层 token 形状不变，便于跨 timestep 复用，但简单直接复用会累计 feature drift。缓存超过 50% blocks 时，几何结构、纹理和 FID 明显恶化。论文要用几乎零额外 FLOPs 修复这一误差。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>作者围绕缓存策略做优化，把梯度信息引入缓存设计，让 DiT 在推理时更少重复计算。它的重要性在于把 cache-friendly acceleration 从 U-Net/一般 diffusion 继续推进到 DiT 专用工程层。</p>
-<h2 id="关键发现">关键发现</h2>
 <ul>
-<li>它补强了 <a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a> 里的 deployment/cache 路线。</li>
-<li>它和 <a class="wikilink" href="../../en/sources/2026-04-15-deepcache.html">sources/2026-04-15-deepcache</a> 形成直接前后关系：前者是更早的 free acceleration 代表，后者是更贴近 DiT 主干的缓存优化延伸。</li>
-<li>它也进一步支撑 <a class="wikilink" href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">claims/claim-dit-is-becoming-the-default-scalable-generation-backbone</a>，因为平台主干通常会长出更专门化的工程优化。</li>
+<li><strong>Gradient Cache</strong>：保存最近两次完整计算的 $g_{t-1}^l,g_t^l$，外推 $\hat g_{t+1}^l=g_t^l+\eta(g_t^l-g_{t-1}^l)$；这里的 gradient 是时间有限差分，不是反向传播。</li>
+<li><strong>Model statistics</strong>：在校准 prompts 上统计每层每步 feature，计算方向反转 block 数 $N(t)$。</li>
+<li><strong>GOD selector</strong>：将 $N(t)$ 与 step 位置组合为 $B(t)$，只在阈值允许时使用外推，避免后期错误与反向差分。</li>
+</ul>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<h3 id="协议">协议</h3>
+<ul>
+<li>DiT + DDIM 20 steps：ImageNet 256²，50K samples；</li>
+<li>PixArt-α + DPM-Solver 20 steps：MS-COCO，30K prompts；</li>
+<li>单张 NVIDIA A40；指标为 IS/FID/sFID/Precision/Recall；</li>
+<li>每份 cache 最多复用一次；FORA 25%/50%，L2C 22%。</li>
+</ul>
+<h3 id="imagenet-dit">ImageNet / DiT</h3>
+<ul>
+<li>No Cache：11.868T FLOPs，FID 3.484，IS 223.490。</li>
+<li>FORA 50%：5.934T、2.0000×，FID 6.857；+GOC：相同 5.934T/1.9999×，FID <strong>3.907</strong>、IS 216.280。</li>
+<li>FORA 25%：FID 3.870；+GOC <strong>3.524</strong>。</li>
+<li>L2C 22%：FID 3.539；+GOC <strong>3.192</strong>，但 Recall 0.563→0.559，不能说所有指标都提升。</li>
+</ul>
+<h3 id="真实-a40-latency">真实 A40 latency</h3>
+<ul>
+<li>FORA 50%：1.789±0.046s；+GOC 1.824±0.029s（约 +2.0%）。</li>
+<li>FORA 25%：2.271±0.032s；+GOC 2.305±0.016s（约 +1.5%）。</li>
+<li>L2C 22%：1.992±0.011s；+GOC 2.016±0.004s（约 +1.2%）。</li>
+</ul>
+<p>Table 5 没有 No-Cache latency，所以 wall-clock 2×并未在同表闭环验证。</p>
+<h3 id="pixart-coco">PixArt / COCO</h3>
+<p>25% FORA 的 FID 21.984，+GOC 21.971，No Cache 21.964。可移植性成立，但增益仅 0.013，远弱于 ImageNet。</p>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>GC 累积到 step 17 后出现 artifacts 和 IS/Precision 暴跌，证明不能无选择外推。</li>
+<li>FORA+GC 50% 的 FID 3.964；GOD 选择后 3.907，但 Recall 从 0.593 降到 0.574，仍是指标折中。</li>
+<li>η 随策略变化：50% FORA/25% FORA/L2C 22% 最佳约 1.2/1.9/1.0。</li>
+<li>同时适用于 rule-based FORA 与 training-based L2C，是插件性主要证据。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>venue 已按外部审计修为 ICCV 2025；本地 primary links 仍以 arXiv 版本为可追溯入口，后续可继续补 official proceedings / DOI。</li>
-<li>缓存路线与 quantization / few-step / solver distillation 组合后的整体收益边界还不清楚。</li>
+<li>作者承认固定参数和 bounded steps 限制通用性。</li>
+<li>每 cache 只复用一次，未覆盖长间隔、递归缓存或视频。</li>
+<li>统计选择器和 η 依模型/策略 calibration，不是无调参方案。</li>
+<li>摘要“IS +26.3%、FID -43% compared to baseline DiT”与 Table 1 内部不一致：FID 6.857→3.907 相对 50% FORA 约降 43%，但 IS 190.056→216.280 只升约 13.8%；相对 No Cache DiT（223.490/3.484）两项都未改善，故不能直接引用摘要百分比。</li>
+<li>只有 256²、20 steps、A40；无高分辨率、显存/能耗或服务端 batch 协议。</li>
 </ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li>对 <a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">Diffusion 效率工程</a>：直接支持 DiT cache 已进入误差建模与修正阶段。</li>
+<li>对 <a class="wikilink" href="../../en/entities/diffusion-transformer.html">Diffusion Transformer</a>：间接支持 DiT 已形成专门工程生态，不直接证明 backbone 优势。</li>
+<li>对 <a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a>：是 ImageNet 强、PixArt/COCO 弱的限定案例。</li>
+<li>不应再写成“梯度缓存进一步压缩推理成本”；准确说法是“在相同缓存成本下恢复质量”。</li>
+</ul>
+<h2 id="证据评级">证据评级</h2>
+<p><strong>B+</strong>：FLOPs、A40 latency、多个 cache ratio 和基础缓存器齐全；但 PixArt 增益极小、缺 No-Cache latency、每次只复用一次，且摘要比较对象容易误导。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2503.05156</li>
-<li>https://arxiv.org/pdf/2503.05156.pdf</li>
+<li><a href="https://arxiv.org/abs/2503.05156">arXiv</a></li>
+<li><a href="https://arxiv.org/pdf/2503.05156.pdf">PDF</a></li>
+<li><a href="https://github.com/qiujx0520/GOC_ICCV2025">Code</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-15-deepcache.html">sources/2026-04-15-deepcache</a></li>
-<li><a class="wikilink" href="../../en/entities/diffusion-transformer.html">entities/diffusion-transformer</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>它在本库中的价值，是把 cache acceleration 明确推进到 DiT-aware 工程优化层。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">Diffusion 效率工程</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/entities/diffusion-transformer.html">Diffusion Transformer</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-15-deepcache.html">DeepCache</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li><li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li></ul></div><div class="related-group related-entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">5</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-04-15-deepcache.html">DeepCache：用高层特征缓存免费加速 U-Net 扩散模型</a><span>Source note</span></li><li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>Topic</span></li><li><a href="../../en/topics/diffusion-models.html">扩散模型</a><span>Topic</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-16-accelerating-dit-gradient-cache&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Accelerating Diffusion Transformer via Gradient-Optimized Cache（ICCV 2025）：用梯度优化缓存继续压缩 DiT 推理成本&quot;,
+  &quot;title&quot;: &quot;Accelerating Diffusion Transformer via Gradient-Optimized Cache：修正 DiT 缓存误差&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-16&quot;,
-  &quot;updated&quot;: &quot;2026-05-22&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;ICCV 2025&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
   &quot;tags&quot;: [
@@ -117,11 +171,13 @@
     &quot;Chen, Kezhou&quot;,
     &quot;Hao, Yanbin&quot;
   ],
-  &quot;published_at&quot;: &quot;2025/03/07&quot;,
+  &quot;published_at&quot;: &quot;2025-03-07&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2503.05156&quot;,
-    &quot;https://arxiv.org/pdf/2503.05156.pdf&quot;
+    &quot;https://arxiv.org/pdf/2503.05156.pdf&quot;,
+    &quot;https://github.com/qiujx0520/GOC_ICCV2025&quot;
   ],
+  &quot;authors_note&quot;: &quot;论文 v2 作者与单位已按 PDF 核验&quot;,
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-16-accelerating-dit-gradient-cache/&quot;,
   &quot;topics&quot;: [
     &quot;topics/diffusion-models&quot;,
@@ -133,7 +189,7 @@
   ],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

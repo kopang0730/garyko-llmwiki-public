@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Human-in-the-loop Adaptation：团队运动检索的人机闭环适配 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="Human-in-the-loop Adaptation：团队运动示例检索的人机适配">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Human-in-the-loop Adaptation：团队运动示例检索的人机适配 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-05-human-in-loop-team-sports-retrieval&quot;, &quot;title&quot;: &quot;Human-in-the-loop Adaptation（arXiv 2026）：团队运动检索的人机闭环适配&quot;, &quot;title_en&quot;: &quot;Human-in-the-loop Adaptation（arXiv 2026）：团队运动检索的人机闭环适配&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;vision-language&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-05-human-in-loop-team-sports-retrieval&quot;, &quot;title&quot;: &quot;Human-in-the-loop Adaptation：团队运动示例检索的人机适配&quot;, &quot;title_en&quot;: &quot;Human-in-the-loop Adaptation：团队运动示例检索的人机适配&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;vision-language&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,59 +60,90 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-05-05-human-in-loop-team-sports-retrieval.html">中文</a><a class="" href="../en/sources/2026-05-05-human-in-loop-team-sports-retrieval.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-05-05</p>
-        <h1><span class="title-main">Human-in-the-loop Adaptation</span><span class="title-subtitle">团队运动检索的人机闭环适配</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Human-in-the-loop Adaptation：团队运动示例检索的人机适配</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">Human-in-the-loop Adaptation</span><span class="title-subtitle">团队运动示例检索的人机适配</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>arXiv 2026</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2026/02/03</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-05-05</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2602.03157" title="https://arxiv.org/abs/2602.03157" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2602.03157</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2602.03157" title="https://arxiv.org/pdf/2602.03157" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2602.03157</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#vision-language">#vision-language</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>把人类反馈接入团队运动视频检索的特征学习过程，让体育 AI 从离线 benchmark 进一步靠近教练/分析师可交互的检索系统。</p>
-<h2 id="论文定位">论文定位</h2>
-<p>这篇论文关注 team sports video retrieval，用 human-in-the-loop adaptation 改善 group activity feature learning，适合补 roadmap 中“部署闭环”和“人工复核”的证据层。</p>
-<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
-<p>它把体育 AI 的目标从“模型一次性输出结果”推进到“用户反馈可以改变表示和检索结果”，对 coach-assist、视频检索、失败案例复核都更贴近实际工作流。</p>
-<h2 id="和现有证据的关系">和现有证据的关系</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>Computer Vision and Image Understanding 263 (2026) 104577</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2026-01-01</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-05-05</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2602.03157" title="https://arxiv.org/abs/2602.03157" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2602.03157</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2602.03157" title="https://arxiv.org/pdf/2602.03157" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2602.03157</strong></a><a class="source-link source-link-code" href="https://github.com/chihina/GAFL-FINE-CVIU" title="https://github.com/chihina/GAFL-FINE-CVIU" target="_blank" rel="noopener noreferrer"><span>代码仓库</span><strong>github.com · GAFL-FINE-CVIU</strong></a></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#任务与方法">任务与方法</a></li><li><a href="#数据与评估">数据与评估</a></li><li><a href="#核心结果">核心结果</a></li><li><a href="#成本-人评与证据边界">成本、人评与证据边界</a></li><li><a href="#对羽毛球-demo-的影响">对羽毛球 demo 的影响</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始材料">原始材料</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>用户用 3 个 query clips 定义目标活动，并对 5 个系统候选做正/负判断后 fine-tune GAFL；Volleyball P@10 original 从 0.533 升至 0.647，但反馈由数据集类标签模拟、没有真实用户或在线成本，<code>others</code> 泛化增益仅 0.535→0.564。</p>
+<h2 id="任务与方法">任务与方法</h2>
+<p>这是 visual-example group activity retrieval，不是 supervised recognition 或文本检索。预训练 GAFL 用 VGG/RoIAlign person appearance、bbox location 与时空 Transformer 自监督学习多人活动表示；仍依赖上游 person boxes。</p>
+<p>Query-aware selection 同时用：</p>
 <ul>
-<li>与 <a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：它补强 roadmap 中近期 batch 的一个缺口，让体育 AI 从 tracking / 数据集扩展到交互检索、可解释评分或端到端系统。</li>
-<li>与 <a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它把体育视频理解继续推向事件语义、训练反馈、可解释输出和 human-in-the-loop 工作流。</li>
-<li>与 <a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a> 的关系：它提供真实长视频、多主体和应用约束下的视频理解样本。</li>
+<li>全局 query cosine similarity；</li>
+<li>随机遮蔽 2 人后的相似度方差，表示 local dissimilarity；</li>
+<li>Core-set 从预选候选中选 5 个多样 clips。</li>
 </ul>
-<h2 id="来源可靠性与可溯源性">来源可靠性与可溯源性</h2>
+<p>二元反馈通过 triplet contrastive loss 更新 GAF，另用 pretrain feature MSE 抑制遗忘。每个新目标都需单独 fine-tune。</p>
+<h2 id="数据与评估">数据与评估</h2>
 <ul>
-<li><strong>来源层级</strong>：arXiv + journal article。arXiv 页面带有 <code>journal-ref: Computer Vision and Image Understanding 263 (2026) 104577</code> 与 DOI <code>10.1016/j.cviu.2025.104577</code>，因此这篇是本轮三篇里来源等级最高的一篇。</li>
-<li><strong>可溯源材料</strong>：本地已保存 arXiv abstract、PDF 与 <code>paper-text.md</code>；可从 <code>links.yaml</code> 回到 arXiv abstract / PDF，也可从 arXiv 页面继续跳到 DOI。</li>
-<li><strong>使用建议</strong>：适合作为 sports-AI roadmap 中 human-in-the-loop 检索 / coach-assist 工作流的可靠证据，但具体实验细节仍应以论文 PDF 为准。</li>
+<li>Volleyball：4,830 clips / 55 games；3,493 train、1,337 test；8 类；</li>
+<li>NBA：9,172 sequences / 181 matches；7,624 train、1,548 test；9 类；</li>
+<li>CAD：44 videos，作为非体育补充；</li>
+<li>每类重复 10 次；每次 3 个同类 test query，从 train 选 5 个 clips；</li>
+<li>“用户标签”由数据集 class 自动生成；检索库是 train；</li>
+<li>original 用参与适配的 query 评分，others 用其余 test queries。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<p>论文未重新证明 match/team/source-broadcast disjoint，存在队服、场馆、阵容和相邻 play 泄漏风险。</p>
+<h2 id="核心结果">核心结果</h2>
+<p>Volleyball：</p>
+<table><thead><tr><th>方法</th><th>P@10 original</th><th>P@10 others</th><th>H@10 original</th><th>H@10 others</th></tr></thead><tbody><tr><td>GAFL</td><td>0.533</td><td>0.535</td><td>0.962</td><td>0.936</td></tr><tr><td>Ours</td><td><strong>0.647</strong></td><td><strong>0.564</strong></td><td><strong>0.993</strong></td><td><strong>0.950</strong></td></tr></tbody></table>
+<p>NBA 的 GAFL→Ours：P@10 original 0.206→0.233，H@10 original 0.798→0.839。CAD P@10 为 0.814 最优，但 H@10 0.840 低于 B1-Compact128 的 0.925，且 CAD 经验性移除了 regularizer。</p>
+<p>选择消融 P@10 original：Random 0.565、K-means 0.568、Core-set 0.560、w/o global similarity 0.566、w/o local dissimilarity 0.640、完整 0.647。local term 的边际贡献为 0.007，不能夸大为全部增益来源。</p>
+<h2 id="成本-人评与证据边界">成本、人评与证据边界</h2>
 <ul>
-<li>当前需要后续深读确认交互反馈的标注成本、在线适配稳定性，以及跨球队/跨赛事泛化。</li>
-<li>当前这版先完成轻量 primary-source 编译，后续可按 deep-analysis-first 流程补 <code>analysis.md</code>、关键图页和实验细节。</li>
-<li>具体数值和 benchmark 细节应以 <code>raw/ingest/2026-05-05-human-in-loop-team-sports-retrieval/paper-text.md</code> 与原始 PDF 为准。</li>
+<li>每次反馈预算是 5 个二元 labels，但没有真实标注秒数、费用、错误率或 agreement；</li>
+<li>无真实 analyst user study，multi-user majority vote 仅是讨论；</li>
+<li>original query 同时参与适配和评估，others 更接近泛化证据；</li>
+<li>3 个 query 被保证来自同一粗类，真实细粒度战术意图可能不符合这种标签；</li>
+<li>无 epochs、GPU、wall-clock、单次交互延迟、参数/存储成本；</li>
+<li>表格无标准差、CI 或显著性；</li>
+<li>最终方法增加弱监督，不能称为完全无标注检索。</li>
+</ul>
+<h2 id="对羽毛球-demo-的影响">对羽毛球 demo 的影响</h2>
+<p>可借用 exemplar query + 少量二元教练反馈的个性化检索接口。Volleyball/NBA Precision/Hit 不得外推羽毛球；迁移需真实教练、athlete/session/rally/court/camera-disjoint，并围绕击球/战术而非粗 group class 评测。</p>
+<h2 id="证据评级">证据评级</h2>
+<ul>
+<li>团队运动检索个性化：<strong>A-</strong></li>
+<li>真实 human-in-the-loop 可用性：<strong>B-</strong></li>
+<li>羽毛球迁移：<strong>C+ 方法学邻近</strong></li>
 </ul>
 <h2 id="原始材料">原始材料</h2>
 <ul>
-<li><code>raw/ingest/2026-05-05-human-in-loop-team-sports-retrieval/paper.pdf</code></li>
-<li><code>raw/ingest/2026-05-05-human-in-loop-team-sports-retrieval/paper-text.md</code></li>
-<li><code>raw/ingest/2026-05-05-human-in-loop-team-sports-retrieval/abstract.md</code></li>
-<li><code>raw/ingest/2026-05-05-human-in-loop-team-sports-retrieval/links.yaml</code></li>
+<li><code>raw/ingest/2026-05-05-human-in-loop-team-sports-retrieval/paper.pdf</code>（13 页）</li>
+<li><code>raw/ingest/2026-05-05-human-in-loop-team-sports-retrieval/paper-text.md</code>（1,758 行）</li>
+<li><code>raw/ingest/2026-05-05-human-in-loop-team-sports-retrieval/analysis.md</code></li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/2602.03157">arXiv</a></li>
+<li><a href="https://doi.org/10.1016/j.cviu.2025.104577">DOI</a></li>
+<li><a href="https://github.com/chihina/GAFL-FINE-CVIU">Code</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
 <li><a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
 <li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
 <li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
-<li><a class="wikilink" href="../entities/sportsmot.html">entities/sportsmot</a></li>
+<li><a class="wikilink" href="../questions/question-badminton-stroke-correction-demo.html">questions/question-badminton-stroke-correction-demo</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li><li><a class="wikilink" href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li><li><a class="wikilink" href="../topics/video-understanding.html">视频理解</a></li></ul></div><div class="related-group related-entities"><h3>相关实体<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../entities/sportsmot.html">SportsMOT</a></li></ul></div><div class="related-group related-questions"><h3>相关问题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">4</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a><span>主题</span></li><li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a><span>主题</span></li><li><a href="../topics/video-understanding.html">视频理解</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-05-05-human-in-loop-team-sports-retrieval&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Human-in-the-loop Adaptation（arXiv 2026）：团队运动检索的人机闭环适配&quot;,
+  &quot;title&quot;: &quot;Human-in-the-loop Adaptation：团队运动示例检索的人机适配&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-05-05&quot;,
-  &quot;updated&quot;: &quot;2026-05-05&quot;,
-  &quot;venue&quot;: &quot;arXiv 2026&quot;,
-  &quot;published_at&quot;: &quot;2026/02/03&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
+  &quot;venue&quot;: &quot;Computer Vision and Image Understanding 263 (2026) 104577&quot;,
+  &quot;published_at&quot;: &quot;2026-01-01&quot;,
   &quot;ingested_at&quot;: &quot;2026-05-05&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
@@ -117,15 +154,18 @@
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;authors&quot;: [
-    &quot;Nakatani, Chihiro&quot;,
-    &quot;Kawashima, Hiroaki&quot;,
-    &quot;Ukita, Norimichi&quot;
+    &quot;Chihiro Nakatani&quot;,
+    &quot;Hiroaki Kawashima&quot;,
+    &quot;Norimichi Ukita&quot;
   ],
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2602.03157&quot;,
-    &quot;https://arxiv.org/pdf/2602.03157&quot;
+    &quot;https://arxiv.org/pdf/2602.03157&quot;,
+    &quot;https://doi.org/10.1016/j.cviu.2025.104577&quot;,
+    &quot;https://github.com/chihina/GAFL-FINE-CVIU&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-05-05-human-in-loop-team-sports-retrieval/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-05-05-human-in-loop-team-sports-retrieval/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/sports-ai-video-understanding&quot;,
     &quot;topics/sports-ai-roadmap&quot;,
@@ -135,8 +175,10 @@
     &quot;entities/sportsmot&quot;
   ],
   &quot;claims&quot;: [],
-  &quot;questions&quot;: []
-}</pre></section>
+  &quot;questions&quot;: [
+    &quot;questions/question-badminton-stroke-correction-demo&quot;
+  ]
+}</pre></details>
     </article>
   </main>
 </body>

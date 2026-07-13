@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>QK-Edit：在 MM-DiT 中重新审视图像与视频编辑的 attention 注入 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="QK-Edit：在 MM-DiT 中重构图像与视频编辑的 attention 注入">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>QK-Edit：在 MM-DiT 中重构图像与视频编辑的 attention 注入 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-qk-edit&quot;, &quot;title&quot;: &quot;QK-Edit（ICCV 2025）：在 MM-DiT 中重新审视图像与视频编辑的 attention 注入&quot;, &quot;title_en&quot;: &quot;QK-Edit（ICCV 2025）：在 MM-DiT 中重新审视图像与视频编辑的 attention 注入&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;video-editing&quot;, &quot;image-generation&quot;, &quot;control&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-qk-edit&quot;, &quot;title&quot;: &quot;QK-Edit：在 MM-DiT 中重构图像与视频编辑的 attention 注入&quot;, &quot;title_en&quot;: &quot;QK-Edit：在 MM-DiT 中重构图像与视频编辑的 attention 注入&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;video-editing&quot;, &quot;control&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,61 +60,96 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-qk-edit.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-qk-edit.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">QK-Edit</span><span class="title-subtitle">在 MM-DiT 中重新审视图像与视频编辑的 attention 注入</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>QK-Edit：在 MM-DiT 中重构图像与视频编辑的 attention 注入</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">QK-Edit</span><span class="title-subtitle">在 MM-DiT 中重构图像与视频编辑的 attention 注入</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-01-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/ICCV2025/html/Shen_QK-Edit_Revisiting_Attention-based_Injection_in_MM-DiT_for_Image_and_Video_ICCV_2025_paper.html" title="https://openaccess.thecvf.com/content/ICCV2025/html/Shen_QK-Edit_Revisiting_Attention-based_Injection_in_MM-DiT_for_Image_and_Video_ICCV_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Shen_QK-Edit_Revisiting_Attenti…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/ICCV2025/papers/Shen_QK-Edit_Revisiting_Attention-based_Injection_in_MM-DiT_for_Image_and_Video_ICCV_2025_paper.pdf" title="https://openaccess.thecvf.com/content/ICCV2025/papers/Shen_QK-Edit_Revisiting_Attention-based_Injection_in_MM-DiT_for_Image_and_Video_ICCV_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Shen_QK-Edit_Revisiting_Attenti…</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-editing">#image-editing</a><a class="tag" href="../../en/tags.html#video-editing">#video-editing</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#control">#control</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-editing">#image-editing</a><a class="tag" href="../../en/tags.html#video-editing">#video-editing</a><a class="tag" href="../../en/tags.html#control">#control</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把 MM-DiT 时代的 attention-based editing 机制单独拎出来重做，补上了图像/视频编辑进入多模态 DiT 主干后的关键方法节点。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>它要解决的是传统 U-Net 时代常见的 attention manipulation 方法在 MM-DiT 框架下失效的问题。对当前知识库来说，它补的是统一图像/视频编辑系统在新主干上如何继续保持可编辑性的关键路线。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>QK-Edit 提出 training-free 的 query-key manipulation 策略，利用 MM-DiT 的多模态自注意力动态，在推理阶段实现文本引导的图像与视频编辑，强调在 prompt fidelity 与结构一致性之间取得平衡。</p>
-<h2 id="关键发现">关键发现</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-01-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/ICCV2025/html/Shen_QK-Edit_Revisiting_Attention-based_Injection_in_MM-DiT_for_Image_and_Video_ICCV_2025_paper.html" title="https://openaccess.thecvf.com/content/ICCV2025/html/Shen_QK-Edit_Revisiting_Attention-based_Injection_in_MM-DiT_for_Image_and_Video_ICCV_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Shen_QK-Edit_Revisiting_Attenti…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/ICCV2025/papers/Shen_QK-Edit_Revisiting_Attention-based_Injection_in_MM-DiT_for_Image_and_Video_ICCV_2025_paper.pdf" title="https://openaccess.thecvf.com/content/ICCV2025/papers/Shen_QK-Edit_Revisiting_Attention-based_Injection_in_MM-DiT_for_Image_and_Video_ICCV_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Shen_QK-Edit_Revisiting_Attenti…</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位与接口">论文定位与接口</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#核心结果">核心结果</a><ol><li class="toc-sub"><a href="#pie-bench-图像">PIE-Bench 图像</a></li><li class="toc-sub"><a href="#tgve-生成式视频-同-hunyuanvideo">TGVE+ 生成式视频（同 HunyuanVideo）</a></li><li class="toc-sub"><a href="#tgve-真实视频">TGVE+ 真实视频</a></li></ol></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>QK-Edit 发现 MM-DiT 的 vision→text 与 vision→vision attention 需要联动控制，并以源轨迹 Q/K replacement 在 FLUX 与 HunyuanVideo 上实现 training-free 编辑；结果总体强，但真实视频 Table 3 是四项中三项最优，而非正文所称“全指标领先”。</p>
+<h2 id="论文定位与接口">论文定位与接口</h2>
 <ul>
-<li>它说明进入 MM-DiT 时代后，编辑方法并没有消失，而是在 attention 注入机制层面发生了重写。</li>
-<li>它把 image-editing 与 video-editing 再次拉到同一技术接口上，强化了统一生成-编辑主线。</li>
-<li>它也为之后分析 DiT/MM-DiT 是否真的会成为默认可扩展编辑主干提供了强证据。</li>
+<li>输入：源/目标 prompt；真实视频需先 inversion。</li>
+<li>输出：文本驱动图像/视频编辑，覆盖添加、删除、替换、背景、颜色、材质与风格。</li>
+<li>方法不训练模型，只在去噪早期替换 vision query/key。</li>
+<li>它是跨两个 MM-DiT 底座的共享机制，不是统一单模型。</li>
+</ul>
+<h2 id="方法概述">方法概述</h2>
+<p>MM-SA 四 quadrant 中：$Q_{vision}K_{text}$ 负责 region-token 语义关系，$Q_{vision}K_{vision}$ 负责空间/时序 affinity；$Q_{text}K_{vision}$ 在作者 pilot 中影响很小。QK-Edit 因此缓存源轨迹的 vision Q/K，并替换目标轨迹对应项，间接同时干预第三、四 quadrant，无需解包 FlashAttention map。</p>
+<ul>
+<li>图像：FLUX.1-dev，前 30% diffusion steps 替换。</li>
+<li>视频：HunyuanVideo，前 20% steps；320×320/65 帧至 1280×720/129 帧。</li>
+</ul>
+<h2 id="核心结果">核心结果</h2>
+<h3 id="pie-bench-图像">PIE-Bench 图像</h3>
+<table><thead><tr><th>方法</th><th>CLIP-T ↑</th><th>DINO ↑</th><th>PickScore ↑</th></tr></thead><tbody><tr><td>RF-Solver</td><td>0.257</td><td>0.769</td><td>21.98</td></tr><tr><td><strong>QK-Edit</strong></td><td><strong>0.264</strong></td><td><strong>0.776</strong></td><td><strong>22.33</strong></td></tr></tbody></table>
+<h3 id="tgve-生成式视频-同-hunyuanvideo">TGVE+ 生成式视频（同 HunyuanVideo）</h3>
+<table><thead><tr><th>方法</th><th>CLIPframes ↑</th><th>Pick ↑</th><th>ViCLIPdir ↑</th><th>ViCLIPout ↑</th></tr></thead><tbody><tr><td>DiTCtrl</td><td>0.904</td><td>20.01</td><td>0.141</td><td>0.242</td></tr><tr><td><strong>QK-Edit</strong></td><td><strong>0.951</strong></td><td><strong>21.24</strong></td><td><strong>0.217</strong></td><td><strong>0.268</strong></td></tr></tbody></table>
+<h3 id="tgve-真实视频">TGVE+ 真实视频</h3>
+<table><thead><tr><th>方法</th><th>ViCLIPdir ↑</th><th>ViCLIPout ↑</th><th>CLIPframes ↑</th><th>Pick ↑</th></tr></thead><tbody><tr><td>Flatten</td><td><strong>0.204</strong></td><td>0.236</td><td>0.887</td><td>19.91</td></tr><tr><td>AnyV2V</td><td>0.117</td><td>0.228</td><td>0.906</td><td>20.28</td></tr><tr><td><strong>QK-Edit</strong></td><td>0.196</td><td><strong>0.258</strong></td><td><strong>0.921</strong></td><td><strong>20.52</strong></td></tr></tbody></table>
+<p>QK-Edit 在真实视频四项中三项最优；ViCLIPdir 低于 Flatten，正文“all metrics”结论不成立。</p>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>Replace KV/V：结构保留强，但可能不跟 prompt。</li>
+<li>Replace Q/K：更跟 prompt，但易破坏源结构。</li>
+<li>Replace QK：折中最好。</li>
+<li>HiLo-Benchmark（43 个 &gt;1K、&gt;100 帧视频）：QKreplace 的 CLIPframes/Pick 为 0.908/20.08，优于 KVconcat 0.896/19.87、Vreplace 0.900/19.94、KVreplace 0.901/19.92。</li>
+<li>未报告 20%/30% ratio、block selection 或 inversion 方法的完整数值消融。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>它更偏机制层创新，不直接回答数据构造问题。</li>
-<li>training-free 注入策略的泛化边界还需要更多模型和任务验证。</li>
-<li>它强化了编辑可行性，但不等于已经解决更高层的编辑理解问题。</li>
+<li>作者承认复杂运动的真实视频 inversion 仍不准，并会污染编辑。</li>
+<li>无 mask 会轻微改动本应不变区域；底座文本渲染与体操等复杂运动缺陷会被继承。</li>
+<li>quadrant 功能只在 FLUX/HunyuanVideo pilot 验证，不能视作所有 MM-DiT 定理。</li>
+<li>HiLo 仅 43 个精选视频，两项代理指标；没有失败率、显著性或用户研究。</li>
+<li>training-free 仍需双轨迹、Q/K cache 与 inversion，高分辨率成本未报告。</li>
+<li>CLIPframes 可能奖励小改动；ViCLIP/Pick 不测局部不变性、物理或多步指令。</li>
 </ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li>对 <a class="wikilink" href="../../en/topics/image-editing.html">图像编辑</a>：<strong>直接支持</strong>MM-DiT 时代的新 attention injection 接口。</li>
+<li>对 <a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a>：<strong>直接支持</strong>同一机制可迁移到生成式/真实视频，但只覆盖文本内容变换。</li>
+<li>对 <a class="wikilink" href="../../en/topics/video-generation.html">视频生成</a>：<strong>压力测试/间接支持</strong>，底座 prior 可复用，但 inversion 与复杂运动仍是瓶颈。</li>
+<li>对 <a class="wikilink" href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一模型优势问题</a>：<strong>中性/替代路线</strong>；共享机制跨两个模型不等于统一模型整体胜过专用系统。</li>
+<li>对 <a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">视频编辑理解评测问题</a>：<strong>压力测试证据</strong>。TGVE+/HiLo 指标不测剪辑语法、依据推理、叙事功能或编辑计划，且正文与 Table 3 已出现结论冲突。</li>
+</ul>
+<h2 id="证据评级">证据评级</h2>
+<p><strong>B（机制证据中等偏强）</strong>。同底座生成视频比较、多 benchmark 与 QKV 消融有价值；但真实视频并非全指标最优，HiLo 小且自建，机制普适性和 inversion 成本未充分验证。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://openaccess.thecvf.com/content/ICCV2025/html/Shen_QK-Edit_Revisiting_Attention-based_Injection_in_MM-DiT_for_Image_and_Video_ICCV_2025_paper.html</li>
-<li>https://openaccess.thecvf.com/content/ICCV2025/papers/Shen_QK-Edit_Revisiting_Attention-based_Injection_in_MM-DiT_for_Image_and_Video_ICCV_2025_paper.pdf</li>
+<li><a href="https://openaccess.thecvf.com/content/ICCV2025/html/Shen_QK-Edit_Revisiting_Attention-based_Injection_in_MM-DiT_for_Image_and_Video_ICCV_2025_paper.html">CVF 论文页</a></li>
+<li><a href="https://openaccess.thecvf.com/content/ICCV2025/papers/Shen_QK-Edit_Revisiting_Attention-based_Injection_in_MM-DiT_for_Image_and_Video_ICCV_2025_paper.pdf">PDF</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/image-editing.html">topics/image-editing</a></li>
-<li><a class="wikilink" href="../../en/topics/video-editing.html">topics/video-editing</a></li>
-<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../../en/entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a></li>
-<li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">entities/video-editing-understanding</a></li>
-<li><a class="wikilink" href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a></li>
-<li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>QK-Edit 在这套库里的作用，是把 MM-DiT 时代的统一图像/视频编辑机制补成明确节点。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a class="wikilink" href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a class="wikilink" href="../../en/entities/unified-image-generation-editing.html">统一图像生成—编辑</a></li>
+<li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+<li><a class="wikilink" href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型能否持续占优</a></li>
+<li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">Benchmark 是否追踪真实视频编辑理解</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-editing.html">图像编辑</a></li><li><a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a></li><li><a class="wikilink" href="../../en/topics/video-generation.html">视频生成</a></li></ul></div><div class="related-group related-entities"><h3>Related entities<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li><li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li></ul></div><div class="related-group related-questions"><h3>Related questions<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li><li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">5</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/image-editing.html">图像编辑</a><span>Topic</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li><li><a href="../../en/topics/video-editing.html">视频编辑</a><span>Topic</span></li><li><a href="../../en/topics/video-generation.html">视频生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-qk-edit&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;QK-Edit（ICCV 2025）：在 MM-DiT 中重新审视图像与视频编辑的 attention 注入&quot;,
+  &quot;title&quot;: &quot;QK-Edit：在 MM-DiT 中重构图像与视频编辑的 attention 注入&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;ICCV 2025&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;image-editing&quot;,
     &quot;video-editing&quot;,
-    &quot;image-generation&quot;,
     &quot;control&quot;,
     &quot;diffusion&quot;,
     &quot;primary-source&quot;
@@ -135,7 +176,7 @@
   &quot;topics&quot;: [
     &quot;topics/image-editing&quot;,
     &quot;topics/video-editing&quot;,
-    &quot;topics/image-generation&quot;
+    &quot;topics/video-generation&quot;
   ],
   &quot;entities&quot;: [
     &quot;entities/unified-image-generation-editing&quot;,
@@ -146,7 +187,7 @@
     &quot;questions/question-will-unified-image-models-sustain-their-advantage&quot;,
     &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

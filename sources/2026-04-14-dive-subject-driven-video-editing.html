@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="DIVE：用 DINO 做主体驱动视频编辑">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>DIVE：用 DINO 做主体驱动视频编辑 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-dive-subject-driven-video-editing&quot;, &quot;title&quot;: &quot;DIVE（ICCV 2025）：用 DINO 做主体驱动视频编辑&quot;, &quot;title_en&quot;: &quot;DIVE（ICCV 2025）：用 DINO 做主体驱动视频编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;image-editing&quot;, &quot;image-generation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-dive-subject-driven-video-editing&quot;, &quot;title&quot;: &quot;DIVE：用 DINO 做主体驱动视频编辑&quot;, &quot;title_en&quot;: &quot;DIVE：用 DINO 做主体驱动视频编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;image-editing&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,60 +60,100 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-14-dive-subject-driven-video-editing.html">中文</a><a class="" href="../en/sources/2026-04-14-dive-subject-driven-video-editing.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>DIVE：用 DINO 做主体驱动视频编辑</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
         <h1><span class="title-main">DIVE</span><span class="title-subtitle">用 DINO 做主体驱动视频编辑</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2024/12/04</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2412.03347" title="https://arxiv.org/abs/2412.03347" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2412.03347</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2412.03347" title="https://arxiv.org/pdf/2412.03347" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2412.03347</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-editing">#video-editing</a><a class="tag" href="../tags.html#image-editing">#image-editing</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-editing">#video-editing</a><a class="tag" href="../tags.html#image-editing">#image-editing</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把 subject-driven editing 正式推入视频侧，补强了个体主体保持与视频编辑结合的路线。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>它要解决的是视频编辑中如何围绕特定主体进行稳定修改的问题。对当前知识库来说，它把 DreamBooth/主体驱动图像生成那条线继续往视频编辑方向延伸。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>DIVE 通过引入 DINO 等表征来支撑 subject-driven video editing，强调在视频编辑过程中保持主体身份与相关特征的一致性。</p>
-<h2 id="关键发现">关键发现</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2024/12/04</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2412.03347" title="https://arxiv.org/abs/2412.03347" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2412.03347</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2412.03347" title="https://arxiv.org/pdf/2412.03347" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2412.03347</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#输入-输出与保留目标">输入、输出与保留目标</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#数据与训练预算">数据与训练预算</a></li><li><a href="#核心实验与结果">核心实验与结果</a><ol><li class="toc-sub"><a href="#参考图驱动">参考图驱动</a></li><li class="toc-sub"><a href="#文本驱动">文本驱动</a></li></ol></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>DIVE 用 DINOv2 特征将“源视频动作 correspondence”和“目标主体身份注册”接入 SD1.5，在 30-video 自建集合上显著提升身份、时序和用户偏好；它证明了专用主体替换 pipeline 的可行性，但逐视频/逐身份优化和小规模代理评测限制了通用结论。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>给定源视频，再用 3–5 张参考图或目标主体文本指定新身份，DIVE 输出“新主体执行源动作、背景尽量不变”的视频。它是主体替换，不是开放式视频编辑；其关键变量是<strong>换身份、保动作、保背景</strong>。</p>
+<h2 id="输入-输出与保留目标">输入、输出与保留目标</h2>
 <ul>
-<li>它说明主体驱动路线已经不再只停留在图像生成，而是在向视频编辑扩张。</li>
-<li>它把 image-generation 中的个性化/主体保持问题，重新带进了 video-editing。</li>
-<li>它为未来比较“统一主体驱动生成编辑系统”提供了很好的跨模态样本。</li>
+<li><strong>输入</strong>：源视频；目标身份参考图或文本。</li>
+<li><strong>输出</strong>：目标身份替换源主体的视频。</li>
+<li><strong>要保留</strong>：源动作轨迹和背景。</li>
+<li><strong>要移除</strong>：源主体外观，避免与目标身份混合。</li>
+<li><strong>边界</strong>：对象/动物主体替换；不覆盖动作重写、场景重构或多轮指令。</li>
 </ul>
+<h2 id="方法概述">方法概述</h2>
+<ol>
+<li><strong>Temporal motion modeling</strong>：DINOv2 ViT-g/14 提取源视频语义特征，PCA + threshold 隔离前景，四组 MLP 投影到 U-Net encoder scales；只在高噪声半程、前景 mask 内优化。</li>
+<li><strong>Identity registration</strong>：对 3–5 张目标参考图提取 DINO 前景特征并训练 LoRA，注册目标身份。</li>
+<li><strong>Inference</strong>：逐帧 DDIM inversion；注入 motion MLP 和 identity LoRA；用 P2P 前景 mask latent blending 保护背景。</li>
+<li>文本模式跳过 identity registration，只替换 prompt 中主体词。</li>
+</ol>
+<p>相比 flow/depth 的 dense correspondence，DINO 特征更有部件语义；相比 VideoSwap，无需人工 semantic points。</p>
+<h2 id="数据与训练预算">数据与训练预算</h2>
+<ul>
+<li>DAVIS + 互联网整理 30 个视频，每个 16 帧、stride 4。</li>
+<li>$512\times512$ 或 $512\times896$；8 个目标 identity 类，每类 3–5 张图。</li>
+<li>Stage 1：50–100 iterations，学习率 $5\times10^{-4}$。</li>
+<li>Stage 2：800–1000 iterations，学习率 $10^{-4}$。</li>
+<li>50-step inversion + 50-step denoising；单张 RTX 3090。</li>
+<li>未报告 wall-clock、总 GPU-hours、参数量和显存。</li>
+</ul>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<h3 id="参考图驱动">参考图驱动</h3>
+<p>DIVE：Text Alignment <strong>29.43</strong>、Image Alignment <strong>84.27</strong>、Temporal Consistency <strong>92.33</strong>、Overall Video Quality <strong>0.775</strong>、50 人用户偏好 <strong>65.6%</strong>。所选基线 Overall 最高 0.683，用户偏好最高 13.2%。</p>
+<h3 id="文本驱动">文本驱动</h3>
+<p>DIVE：Text <strong>32.29</strong>、Temporal <strong>95.89</strong>、Overall <strong>0.614</strong>、用户偏好 <strong>52.8%</strong>；对应基线最高为 31.57、95.35、0.588、19.9%。</p>
+<p>CLIP temporal similarity 能测部分闪烁，却不能直接证明动作轨迹与源视频一致；论文也未报告背景像素保持、遮挡或长视频 identity drift。</p>
+<h2 id="关键消融">关键消融</h2>
+<p>完整 DINO motion guidance（$\lambda=1$）为 29.43 / 84.27 / 92.33 / 0.775；$\lambda=0$ 时为 28.78 / 79.50 / 87.24 / 0.581。无 DINO identity guidance 时 Image Alignment 77.36、Overall 0.722；加入后为 84.27、0.775。</p>
+<p>DINO 对动作/身份 proxy 均有效，但“无 DINO”运动变体也改变了 motion module 是否训练，并非单一控制变量。</p>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>主体驱动视频编辑通常更容易受到时序一致性和身份漂移挑战。</li>
-<li>它更聚焦 subject-driven 场景，不等于覆盖一般视频编辑。</li>
-<li>它是扩展路线的重要节点，但还不够构成完整统一框架。</li>
+<li>仅 30 个视频、8 类目标身份、16 帧窗口。</li>
+<li>每个源视频需 50–100 次优化，每个参考身份需 800–1000 次 LoRA 训练。</li>
+<li>PCA foreground 与 P2P mask 对遮挡、相似多实例、小目标较脆弱。</li>
+<li>缺少动作轨迹误差、背景 preservation、runtime 和多随机种子。</li>
+<li>用户研究未给统计显著性与完整 protocol。</li>
 </ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li>直接支持 <a class="wikilink" href="../topics/video-editing.html">视频编辑</a> 中主体驱动编辑已成为独立路线。</li>
+<li>对 <a class="wikilink" href="../topics/image-editing.html">图像编辑</a> 与 <a class="wikilink" href="../topics/image-generation.html">图像生成</a> 是个性化技术迁移到视频的相邻证据。</li>
+<li>对 <a class="wikilink" href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型能否持续保持优势</a> 是专用、多阶段 pipeline 的压力测试，不是统一模型的受控反证。</li>
+<li>对 <a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有 benchmark 是否跟踪真实视频编辑理解</a> 表明 CLIP 指标难分离身份、动作和背景保持。</li>
+</ul>
+<h2 id="证据评级">证据评级</h2>
+<p><strong>B（窄任务中的中等直接证据；对真实视频编辑理解为 C+）</strong>。它直接执行并评测主体替换，但小型自建集合、逐实例优化和 proxy metrics 不足以证明通用主体/动作理解。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2412.03347</li>
-<li>https://arxiv.org/pdf/2412.03347</li>
+<li><a href="https://arxiv.org/abs/2412.03347">arXiv</a></li>
+<li><a href="https://arxiv.org/pdf/2412.03347">论文 PDF</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../topics/video-editing.html">topics/video-editing</a></li>
-<li><a class="wikilink" href="../topics/image-editing.html">topics/image-editing</a></li>
-<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../entities/video-editing-understanding.html">entities/video-editing-understanding</a></li>
-<li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a></li>
-<li><a class="wikilink" href="../questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>DIVE 在这套库里的作用，是把主体驱动生成/编辑主线进一步延伸到视频侧。</p></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+<li><a class="wikilink" href="../topics/video-editing.html">视频编辑</a></li>
+<li><a class="wikilink" href="../topics/image-editing.html">图像编辑</a></li>
+<li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+<li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有 benchmark 是否跟踪真实视频编辑理解</a></li>
+<li><a class="wikilink" href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型能否持续保持优势</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../topics/video-editing.html">视频编辑</a></li><li><a class="wikilink" href="../topics/image-editing.html">图像编辑</a></li><li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li></ul></div><div class="related-group related-entities"><h3>相关实体<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../entities/video-editing-understanding.html">视频编辑理解</a></li></ul></div><div class="related-group related-questions"><h3>相关问题<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li><li><a class="wikilink" href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">4</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../topics/image-editing.html">图像编辑</a><span>主题</span></li><li><a href="../topics/image-generation.html">图像生成</a><span>主题</span></li><li><a href="../topics/video-editing.html">视频编辑</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-dive-subject-driven-video-editing&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;DIVE（ICCV 2025）：用 DINO 做主体驱动视频编辑&quot;,
+  &quot;title&quot;: &quot;DIVE：用 DINO 做主体驱动视频编辑&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;ICCV 2025&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;video-editing&quot;,
     &quot;image-editing&quot;,
-    &quot;image-generation&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
@@ -127,6 +173,7 @@
     &quot;https://arxiv.org/pdf/2412.03347&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-dive-subject-driven-video-editing/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-14-dive-subject-driven-video-editing/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/video-editing&quot;,
     &quot;topics/image-editing&quot;,
@@ -140,7 +187,7 @@
     &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;,
     &quot;questions/question-will-unified-image-models-sustain-their-advantage&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

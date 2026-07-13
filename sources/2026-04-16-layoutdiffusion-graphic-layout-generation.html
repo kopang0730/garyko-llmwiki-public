@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>LayoutDiffusion：把 graphic layout generation 做成离散 diffusion 的标准接口 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="LayoutDiffusion：面向离散 graphic layout 的专用腐化与免重训条件生成">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>LayoutDiffusion：面向离散 graphic layout 的专用腐化与免重训条件生成 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-layoutdiffusion-graphic-layout-generation&quot;, &quot;title&quot;: &quot;LayoutDiffusion（ICCV 2023）：把 graphic layout generation 做成离散 diffusion 的标准接口&quot;, &quot;title_en&quot;: &quot;LayoutDiffusion（ICCV 2023）：把 graphic layout generation 做成离散 diffusion 的标准接口&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-layoutdiffusion-graphic-layout-generation&quot;, &quot;title&quot;: &quot;LayoutDiffusion：面向离散 graphic layout 的专用腐化与免重训条件生成&quot;, &quot;title_en&quot;: &quot;LayoutDiffusion：面向离散 graphic layout 的专用腐化与免重训条件生成&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;conditioning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,59 +60,103 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-16-layoutdiffusion-graphic-layout-generation.html">中文</a><a class="" href="../en/sources/2026-04-16-layoutdiffusion-graphic-layout-generation.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-16</p>
-        <h1><span class="title-main">LayoutDiffusion</span><span class="title-subtitle">把 graphic layout generation 做成离散 diffusion 的标准接口</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>LayoutDiffusion：面向离散 graphic layout 的专用腐化与免重训条件生成</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">LayoutDiffusion</span><span class="title-subtitle">面向离散 graphic layout 的专用腐化与免重训条件生成</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ICCV 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023/03/21</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2303.11589" title="https://arxiv.org/abs/2303.11589" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2303.11589</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2303.11589.pdf" title="https://arxiv.org/pdf/2303.11589.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2303.11589.pdf</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#conditioning">#conditioning</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把 graphic layout generation 直接建模成离散扩散过程，为 layout controllability 提供了一个更标准、更独立的生成接口。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ICCV 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023-03-21</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2303.11589" title="https://arxiv.org/abs/2303.11589" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2303.11589</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2303.11589.pdf" title="https://arxiv.org/pdf/2303.11589.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2303.11589.pdf</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#条件-layout-接口">条件 layout 接口</a></li><li><a href="#数据-训练与成本">数据、训练与成本</a></li><li><a href="#核心结果">核心结果</a></li><li><a href="#用户研究">用户研究</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#backbone-证据边界">Backbone 证据边界</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li><li><a href="#证据评级">证据评级</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>本篇 LayoutDiffusion 用 block-wise transition matrix 与 piece-wise schedule 分别处理类别和量化坐标，再由 BERT-base 风格 Transformer 迭代去噪；同一个无条件模型可免重训完成 type-conditioned generation 与 refinement，但输出只是离散 layout，50–200 次 Transformer pass 也不能当作最终图像生成、实时系统或 image DiT 证据。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>graphic layout 主要由离散 token 序列表示，既要保证布局合法性，又要保持坐标邻近和类型扰动可控。传统扩散大多围绕连续图像空间展开，这让 layout 任务的接口地位一直不够清晰。</p>
+<p>layout sequence 同时含 categorical type tokens 与 ordinal coordinate tokens。generic discrete diffusion 会产生类别/坐标互换的非法序列、忽略坐标邻近性，并过早破坏类别结构。论文设计一个相邻步更平滑、随时间逐渐混乱的专用 forward process。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>作者把 layout generation 表达为 discrete denoising diffusion process，并围绕 legality、coordinate proximity 和 type disruption 设计 block-wise transition matrix 与 piece-wise linear noise schedule，让离散布局序列也能稳定做扩散建模。</p>
-<h2 id="关键发现">关键发现</h2>
 <ul>
-<li>它和 <a class="wikilink" href="../sources/2026-04-16-dlt-layout-transformer.html">sources/2026-04-16-dlt-layout-transformer</a> 形成互补：一个强调 conditioned layout generation，一个强调 graphic layout generation 的离散 diffusion 基础建模。</li>
-<li>这说明 layout interface 已经开始有自己独立的方法主线，而不只是 image generation 的附属约束。</li>
-<li>在 batch-g 里，这篇工作负责把“layout control”进一步收敛成可单独命名的标准接口层。</li>
-<li>它也补强了 <a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a> 里“控制接口前移到抽象中间表示层”的证据。</li>
+<li>每个元素为 $\{c_i,l_i,t_i,r_i,b_i\}$ 五个离散 token；box coordinates 均匀量化。</li>
+<li>block-wise transition 禁止 type/coordinate token 跨块转换，保证 legality。</li>
+<li>坐标块用 discretized Gaussian transition，近坐标更易互转。</li>
+<li>type block 用 delayed absorbing-mask schedule，使 reverse 先确定类别、再细化坐标。</li>
+<li>12 层、12 heads、hidden 768 的 BERT-base 风格 Transformer 预测 clean $x_0$。</li>
+<li>训练目标是 discrete VLB + 权重 $10^{-4}$ 的 clean-token auxiliary loss。</li>
 </ul>
+<h2 id="条件-layout-接口">条件 layout 接口</h2>
+<table><thead><tr><th>任务</th><th>输入</th><th>推理</th></tr></thead><tbody><tr><td>Un-Gen</td><td>采样元素数；types=MASK、coordinates=random</td><td>200 steps</td></tr><tr><td>Gen-Type</td><td>固定 type set</td><td>160 steps，生成坐标</td></tr><tr><td>Refinement</td><td>用户 flawed layout</td><td>从中间 timestep 继续 50 steps</td></tr></tbody></table>
+<p>条件任务免重训，但接口只验证 type set 和 full-layout refinement；不是 DLT 那种训练期任意 class/size/location 子集 conditioning。</p>
+<h2 id="数据-训练与成本">数据、训练与成本</h2>
+<table><thead><tr><th>数据集</th><th>原始规模</th><th>类别</th><th>处理</th></tr></thead><tbody><tr><td>RICO</td><td>66K+</td><td>25</td><td>过滤 &gt;20 elements；90/5/5</td></tr><tr><td>PubLayNet</td><td>360K+</td><td>5</td><td>同上</td></tr></tbody></table>
+<ul>
+<li>AdamW，lr $4\times10^{-5}$，batch 64，EMA 0.9999。</li>
+<li>RICO：2×V100、175,000 steps。</li>
+<li>PubLayNet：4×V100、350,000 steps。</li>
+<li>未报告 wall-clock、V100 型号、参数量、显存、GPU-hours或单 layout 延迟。</li>
+</ul>
+<p>条件任务省的是<strong>重新训练专用模型</strong>，不是省掉 iterative inference。</p>
+<h2 id="核心结果">核心结果</h2>
+<table><thead><tr><th>任务</th><th>数据</th><th>LayoutDiffusion FID↓</th><th>最佳专用 baseline FID↓</th></tr></thead><tbody><tr><td>Un-Gen</td><td>RICO</td><td><strong>2.490</strong></td><td>LayoutFormer++ 20.198</td></tr><tr><td>Un-Gen</td><td>PubLayNet</td><td><strong>8.625</strong></td><td>LayoutTransformer 30.048</td></tr><tr><td>Gen-Type</td><td>RICO</td><td><strong>1.557</strong></td><td>LayoutFormer++ 2.483</td></tr><tr><td>Gen-Type</td><td>PubLayNet</td><td><strong>3.731</strong></td><td>LayoutFormer++ 10.151</td></tr><tr><td>Refinement</td><td>RICO</td><td><strong>0.549</strong></td><td>LayoutFormer++ 3.666</td></tr><tr><td>Refinement</td><td>PubLayNet</td><td><strong>2.045</strong></td><td>LayoutFormer++ 2.937</td></tr></tbody></table>
+<p>FID 优势明显，但并非每项指标都最佳：Gen-Type RICO mIoU 0.345，低于 LayoutFormer++ 0.377。Overlap/Alignment 应接近真实布局分布，不能机械解释为越低越好。</p>
+<h2 id="用户研究">用户研究</h2>
+<p>10 个 task/data/evaluation groups；每组 15 人、每人标 50 组 layouts。LayoutDiffusion 在质量和尤其多样性上获得较高偏好。论文没有参与者背景、inter-rater agreement、置信区间或显著性检验，故“significantly”应保守理解为偏好差距明显，而非已完成统计显著性验证。</p>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>完整 RICO unconditional：mIoU 0.620、Overlap 0.502、Align 0.069、FID 2.490。</li>
+<li>uniform/absorbing coordinate transition：FID 3.174/3.672，支持 coordinate proximity。</li>
+<li>uniform type transition：mIoU 0.593、FID 2.534，支持 delayed type disruption。</li>
+<li>linear type/coordinate schedule：Align 0.156/0.202，完整方法 0.069。</li>
+<li>100/200/500/1000/2000 steps FID：3.875/2.490/2.387/2.295/2.360；200 步接近饱和但并非数值最优。</li>
+</ul>
+<h2 id="backbone-证据边界">Backbone 证据边界</h2>
+<p>这里的 backbone 是<strong>离散 layout sequence Transformer encoder</strong>，没有 VAE latent、image patches、AdaLN 或 image decoder；它既不是 U-Net，也不是 Peebles-Xie 式 image DiT。论文支持 Transformer diffusion 处理结构化 layout tokens，不能进入 image DiT scaling/adoption 的直接证据集合。</p>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>它更偏布局生成基础建模，对最终图像渲染质量不直接给答案。</li>
-<li>离散布局任务的应用场景相对专门，和开放世界图像生成之间还有桥接成本。</li>
-<li>当前价值主要在谱系定位：layout control 已经足够独立，值得与 region/prompt control 并列观察。</li>
+<li>坐标量化带来精度上限；不生成内容、样式和页面像素。</li>
+<li>只支持 type-conditioned generation 与 refinement，更多条件被列为未来工作。</li>
+<li>过滤 &gt;20 elements，复杂长布局扩展未知。</li>
+<li>50–200 次 Transformer pass；绝对 latency 未报告。</li>
+<li>只测 RICO/PubLayNet，跨域设计工作流未知。</li>
+<li>人评统计信息不足，训练总成本也未完整披露。</li>
+<li>必须与同名 <a class="wikilink" href="../sources/2026-04-14-layoutdiffusion.html">layout-to-image LayoutDiffusion</a> 严格区分。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li><strong>直接支持</strong>：layout-aware transition/schedule 优于 generic discrete diffusion，并可复用到两个免重训条件任务。</li>
+<li><strong>有限支持</strong>：“标准接口”只覆盖 type set 与 refinement，而非任意设计约束。</li>
+<li><strong>不支持</strong>：最终图像生成、实时推理、任意长度 layout、image DiT 主干趋势。</li>
+<li>与 efficiency engineering 的关系仅是条件任务免重训与步数较早饱和，不是通用 diffusion acceleration。</li>
 </ul>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2303.11589</li>
-<li>https://arxiv.org/pdf/2303.11589.pdf</li>
+<li><a href="https://arxiv.org/abs/2303.11589">arXiv abstract</a></li>
+<li><a href="https://arxiv.org/pdf/2303.11589.pdf">PDF</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a></li>
-<li><a class="wikilink" href="../sources/2026-04-16-dlt-layout-transformer.html">sources/2026-04-16-dlt-layout-transformer</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-layoutdiffusion.html">sources/2026-04-14-layoutdiffusion</a></li>
+<li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../sources/2026-04-16-dlt-layout-transformer.html">DLT</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-layoutdiffusion.html">LayoutDiffusion（layout-to-image）</a></li>
 </ul>
-<h2 id="备注">备注</h2>
-<p>它在本库中的价值，是把 control interface consolidation 从“已有很多控制技巧”继续推进到“接口边界、层级分工和闭环控制是否开始成形”这个层面。</p></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+<h2 id="证据评级">证据评级</h2>
+<p><strong>A-</strong>：离散 graphic layout generation/refinement 的强主证据；条件范围、坐标精度、长度、成本与 image generation 外推受限。</p></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">6</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-04-14-layoutdiffusion.html">LayoutDiffusion：以对象框控制像素 U-Net 的 layout-to-image 生成</a><span>来源笔记</span></li><li><a href="../sources/2026-04-16-dlt-layout-transformer.html">DLT：以联合离散—连续 Transformer diffusion 做属性级布局生成</a><span>来源笔记</span></li><li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>主题</span></li><li><a href="../topics/diffusion-models.html">扩散模型</a><span>主题</span></li><li><a href="../topics/image-generation.html">图像生成</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-16-layoutdiffusion-graphic-layout-generation&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;LayoutDiffusion（ICCV 2023）：把 graphic layout generation 做成离散 diffusion 的标准接口&quot;,
+  &quot;title&quot;: &quot;LayoutDiffusion：面向离散 graphic layout 的专用腐化与免重训条件生成&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-16&quot;,
-  &quot;updated&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;ICCV 2023&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;image-generation&quot;,
     &quot;diffusion&quot;,
+    &quot;conditioning&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
@@ -115,10 +165,10 @@
     &quot;Junyi Zhang&quot;,
     &quot;Jiaqi Guo&quot;,
     &quot;Shizhao Sun&quot;,
-    &quot;Jian–Guang Lou&quot;,
+    &quot;Jian-Guang Lou&quot;,
     &quot;Dongmei Zhang&quot;
   ],
-  &quot;published_at&quot;: &quot;2023/03/21&quot;,
+  &quot;published_at&quot;: &quot;2023-03-21&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2303.11589&quot;,
     &quot;https://arxiv.org/pdf/2303.11589.pdf&quot;
@@ -126,13 +176,12 @@
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-16-layoutdiffusion-graphic-layout-generation/&quot;,
   &quot;topics&quot;: [
     &quot;topics/image-generation&quot;,
-    &quot;topics/diffusion-models&quot;,
-    &quot;topics/diffusion-efficiency-engineering&quot;
+    &quot;topics/diffusion-models&quot;
   ],
   &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

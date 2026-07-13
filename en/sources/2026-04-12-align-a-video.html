@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Align-A-Video：面向一致视频编辑的确定性奖励调优">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>Align-A-Video：面向一致视频编辑的确定性奖励调优 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-12-align-a-video&quot;, &quot;title&quot;: &quot;Align-A-Video（CVPR 2025）：面向一致视频编辑的确定性奖励调优&quot;, &quot;title_en&quot;: &quot;Align-A-Video（CVPR 2025）：面向一致视频编辑的确定性奖励调优&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-12-align-a-video&quot;, &quot;title&quot;: &quot;Align-A-Video：面向一致视频编辑的确定性奖励调优&quot;, &quot;title_en&quot;: &quot;Align-A-Video：面向一致视频编辑的确定性奖励调优&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,56 +60,88 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-12-align-a-video.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-12-align-a-video.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Align-A-Video：面向一致视频编辑的确定性奖励调优</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
         <h1><span class="title-main">Align-A-Video</span><span class="title-subtitle">面向一致视频编辑的确定性奖励调优</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-06-11</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-12</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2025/html/Wang_Align-A-Video_Deterministic_Reward_Tuning_of_Image_Diffusion_Models_for_Consistent_CVPR_2025_paper.html" title="https://openaccess.thecvf.com/content/CVPR2025/html/Wang_Align-A-Video_Deterministic_Reward_Tuning_of_Image_Diffusion_Models_for_Consistent_CVPR_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Wang_Align-A-Video_Deterministi…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_Align-A-Video_Deterministic_Reward_Tuning_of_Image_Diffusion_Models_for_Consistent_CVPR_2025_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_Align-A-Video_Deterministic_Reward_Tuning_of_Image_Diffusion_Models_for_Consistent_CVPR_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Wang_Align-A-Video_Deterministi…</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-editing">#video-editing</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-editing">#video-editing</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作认为，把 reward tuning 引入视频编辑是可行的，但前提是优化过程必须尽量确定化，并配合跨帧特征传播，才能同时提升编辑质量与时序一致性。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>它要解决的问题是：视频编辑既要更符合指令，又不能破坏时间一致性、真实感和未编辑区域。单帧优化思路直接搬到视频里，往往会带来闪烁、漂移和内容破坏。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>方法上，它先围绕锚帧做确定性奖励微调，再把关键特征向其他帧传播，尽量让语义改动和时序结构一起被保留下来。核心出发点不是单纯追求更强 reward，而是避免 reward 优化把视频时序打散。</p>
-<h2 id="关键发现">关键发现</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-06-11</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-12</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2025/html/Wang_Align-A-Video_Deterministic_Reward_Tuning_of_Image_Diffusion_Models_for_Consistent_CVPR_2025_paper.html" title="https://openaccess.thecvf.com/content/CVPR2025/html/Wang_Align-A-Video_Deterministic_Reward_Tuning_of_Image_Diffusion_Models_for_Consistent_CVPR_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Wang_Align-A-Video_Deterministi…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_Align-A-Video_Deterministic_Reward_Tuning_of_Image_Diffusion_Models_for_Consistent_CVPR_2025_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_Align-A-Video_Deterministic_Reward_Tuning_of_Image_Diffusion_Models_for_Consistent_CVPR_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Wang_Align-A-Video_Deterministi…</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义与接口">问题定义与接口</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#核心实验与结果">核心实验与结果</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>Align-A-Video 证明，在 Stable Diffusion 1.5 的单视频编辑设定中，对一个锚帧做固定噪声的 LoRA reward tuning，再把其特征传播到全片，可以显著提高 DOVER、PickScore 与文本对齐，同时保持接近强特征注入基线的时序分数；它是实例级优化，不是通用视频 RLHF。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这篇论文位于“图像扩散底座做视频编辑”的延长线上。它不训练视频生成模型，而是把 HPSv2 图像偏好 reward 用于单个视频/提示词，并显式处理 reward 优化与跨帧一致性的冲突。</p>
+<h2 id="问题定义与接口">问题定义与接口</h2>
 <ul>
-<li>人类反馈式优化开始进入视频编辑，但必须针对视频特性重新设计。</li>
-<li>确定性约束被当作稳定 reward tuning 的关键工具。</li>
-<li>跨帧特征传播说明视频编辑不能把每一帧当作彼此独立的图像处理。</li>
+<li>输入：源视频与目标编辑提示词。</li>
+<li>输出：保留源运动、按提示改变前景/背景/风格的编辑视频。</li>
+<li>V2VBench 覆盖 50 个视频、每视频 3 个提示词，共 150 个组合、4 类任务。</li>
+<li>核心难点：强结构注入保时序但压制编辑语义；弱约束又容易漂移、闪烁和失真。</li>
+</ul>
+<h2 id="方法概述">方法概述</h2>
+<ol>
+<li>对锚帧做 DDIM inversion，固定初始噪声，消除单提示词 reward tuning 中由采样噪声引起的梯度波动。</li>
+<li>只更新 attention 投影的 LoRA 参数，以 HPSv2 最大化锚帧偏好分数。</li>
+<li>关键帧以 query 查询锚帧 key/value，再沿源视频特征对应关系传播到其他帧。</li>
+<li>使用 Stable Diffusion 1.5、DDIM、PnP diffusion；没有大规模新训练数据。</li>
+</ol>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<table><thead><tr><th>指标</th><th>本文</th><th>最强基线</th><th>结论</th></tr></thead><tbody><tr><td>PickScore ↑</td><td>21.847</td><td>21.039</td><td>约 +3.84%</td></tr><tr><td>DOVER ↑</td><td>0.761</td><td>0.708</td><td>约 +7.49%</td></tr><tr><td>CLIP / ViCLIP ↑</td><td>0.284 / 0.265</td><td>0.282 / 0.263</td><td>小幅最优</td></tr><tr><td>CLIP consistency ↑</td><td>0.955</td><td>0.957</td><td>略低于 TokenFlow</td></tr><tr><td>DINO consistency ↑</td><td>0.944</td><td>0.956</td><td>略低于 TokenFlow</td></tr></tbody></table>
+<p>论文明确写道没有方法在全部指标上横扫。最可靠结论是质量—语义—一致性折中改善，而非全面 SOTA。效率测试中 TokenFlow、ControlVideo 更快且更省显存；本文只是具有竞争力。</p>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>去掉 reward tuning：示例保住冲浪动作，却不能完成“man→Captain America”；证据为质化图。</li>
+<li>用 extended attention 替换锚帧 cross-frame attention：输出更模糊；仍是质化证据。</li>
+<li>PickScore 和 LAION aesthetic reward 也能改善观感，但 LAION reward 不具文本对齐能力，说明 reward 决定优化方向。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>多了一层额外优化流程，也更依赖奖励监督的质量。</li>
-<li>锚帧传播在高动态场景下可能限制灵活性。</li>
-<li>还需要与真正的视频原生编辑器做更直接对比。</li>
+<li>HPSv2 是图像 reward，只优化单锚帧，不能直接评分运动、闪烁和时序因果。</li>
+<li>核心组件缺少完整数值消融、方差和多随机种子。</li>
+<li>单锚帧传播在遮挡、视角大变、多对象交互和非刚体运动中可能偏置全片。</li>
+<li>每个视频/提示词仍需 LoRA 调优，不能称 training-free。</li>
+<li>50 个短视频不覆盖长视频、镜头切换与动作重写；EPE 的负值/方向说明也不充分。</li>
 </ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li>对 <a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a>：直接支持“reward tuning 是独立工程路线”，但应限定为单实例图像奖励适配。</li>
+<li>对 <a class="wikilink" href="../../en/topics/video-generation.html">视频生成</a>：仅为背景/间接证据，论文不训练或评测纯 T2V。</li>
+<li>对 <a class="wikilink" href="../../en/topics/generative-model-evaluation.html">生成模型评测</a>：支持把视觉质量、语义对齐与时序一致性分开报告。</li>
+<li>对 <a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">视频编辑理解评测问题</a>：仅为背景证据。输出质量低不等于语言/编辑意图理解不足；V2VBench 也不测试剪辑语法、依据推理或叙事功能。</li>
+</ul>
+<h2 id="证据评级">证据评级</h2>
+<p><strong>B（中等偏强，任务内直接证据）</strong>。8 个指标、5 个基线和明确主表支持质量收益；但关键消融主要质化、规模有限，且不构成“真实视频编辑理解”的直接证据。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://openaccess.thecvf.com/content/CVPR2025/html/Wang_Align-A-Video_Deterministic_Reward_Tuning_of_Image_Diffusion_Models_for_Consistent_CVPR_2025_paper.html</li>
-<li>https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_Align-A-Video_Deterministic_Reward_Tuning_of_Image_Diffusion_Models_for_Consistent_CVPR_2025_paper.pdf</li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2025/html/Wang_Align-A-Video_Deterministic_Reward_Tuning_of_Image_Diffusion_Models_for_Consistent_CVPR_2025_paper.html">CVF 论文页</a></li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_Align-A-Video_Deterministic_Reward_Tuning_of_Image_Diffusion_Models_for_Consistent_CVPR_2025_paper.pdf">PDF</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/video-editing.html">topics/video-editing</a></li>
-<li><a class="wikilink" href="../../en/topics/video-generation.html">topics/video-generation</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">topics/generative-model-evaluation</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>从 vault 的角度看，这篇论文很重要，因为它把“更会对齐人类偏好”和“别把视频时间结构弄坏”放到了同一优化框架里。它代表的是视频编辑开始吸收 RLHF/奖励建模思路，但实现方式必须比图像任务更谨慎。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a class="wikilink" href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">Benchmark 是否追踪真实视频编辑理解</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a></li><li><a class="wikilink" href="../../en/topics/video-generation.html">视频生成</a></li><li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li></ul></div><div class="related-group related-questions"><h3>Related questions<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">3</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a><span>Question</span></li><li><a href="../../en/topics/video-editing.html">视频编辑</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-12-align-a-video&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Align-A-Video（CVPR 2025）：面向一致视频编辑的确定性奖励调优&quot;,
+  &quot;title&quot;: &quot;Align-A-Video：面向一致视频编辑的确定性奖励调优&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-12&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2025&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-12&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;video-editing&quot;,
+    &quot;diffusion&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
@@ -134,8 +172,10 @@
   ],
   &quot;entities&quot;: [],
   &quot;claims&quot;: [],
-  &quot;questions&quot;: []
-}</pre></section>
+  &quot;questions&quot;: [
+    &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
+  ]
+}</pre></details>
     </article>
   </main>
 </body>

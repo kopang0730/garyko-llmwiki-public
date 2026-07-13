@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BlockGCN：重新强化骨架动作识别中的拓扑意识 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="BlockGCN：保留骨架拓扑并轻量建模多种关节关系">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>BlockGCN：保留骨架拓扑并轻量建模多种关节关系 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition&quot;, &quot;title&quot;: &quot;BlockGCN：重新强化骨架动作识别中的拓扑意识&quot;, &quot;title_en&quot;: &quot;BlockGCN：重新强化骨架动作识别中的拓扑意识&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;representation-learning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition&quot;, &quot;title&quot;: &quot;BlockGCN：保留骨架拓扑并轻量建模多种关节关系&quot;, &quot;title_en&quot;: &quot;BlockGCN：保留骨架拓扑并轻量建模多种关节关系&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;representation-learning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,54 +60,92 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition.html">中文</a><a class="selected-lang" href="../../en/sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-05-16</p>
-        <h1><span class="title-main">BlockGCN</span><span class="title-subtitle">重新强化骨架动作识别中的拓扑意识</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>BlockGCN：保留骨架拓扑并轻量建模多种关节关系</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">BlockGCN</span><span class="title-subtitle">保留骨架拓扑并轻量建模多种关节关系</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2024-06-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-05-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2024/html/Zhou_BlockGCN_Redefine_Topology_Awareness_for_Skeleton-Based_Action_Recognition_CVPR_2024_paper.html" title="https://openaccess.thecvf.com/content/CVPR2024/html/Zhou_BlockGCN_Redefine_Topology_Awareness_for_Skeleton-Based_Action_Recognition_CVPR_2024_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Zhou_BlockGCN_Redefine_Topology…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2024/papers/Zhou_BlockGCN_Redefine_Topology_Awareness_for_Skeleton-Based_Action_Recognition_CVPR_2024_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2024/papers/Zhou_BlockGCN_Redefine_Topology_Awareness_for_Skeleton-Based_Action_Recognition_CVPR_2024_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Zhou_BlockGCN_Redefine_Topology…</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#representation-learning">#representation-learning</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>BlockGCN 指出很多 skeleton GCN 在训练中会逐渐淡化真实骨架拓扑，于是用 graph distance 与 persistent homology 保留骨骼连接结构，并用更轻量的 BlockGC 提升动作识别精度和效率。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2024-06-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-05-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2024/html/Zhou_BlockGCN_Redefine_Topology_Awareness_for_Skeleton-Based_Action_Recognition_CVPR_2024_paper.html" title="https://openaccess.thecvf.com/content/CVPR2024/html/Zhou_BlockGCN_Redefine_Topology_Awareness_for_Skeleton-Based_Action_Recognition_CVPR_2024_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Zhou_BlockGCN_Redefine_Topology…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2024/papers/Zhou_BlockGCN_Redefine_Topology_Awareness_for_Skeleton-Based_Action_Recognition_CVPR_2024_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2024/papers/Zhou_BlockGCN_Redefine_Topology_Awareness_for_Skeleton-Based_Action_Recognition_CVPR_2024_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Zhou_BlockGCN_Redefine_Topology…</strong></a><a class="source-link source-link-code" href="https://github.com/ZhouYuxuanYX/BlockGCN" title="https://github.com/ZhouYuxuanYX/BlockGCN" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · BlockGCN</strong></a></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#数据与实验">数据与实验</a></li><li><a href="#核心结果">核心结果</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对羽毛球动作纠正-demo-的影响">对羽毛球动作纠正 demo 的影响</a></li><li><a href="#wiki-证据分类">Wiki 证据分类</a></li><li><a href="#原始材料">原始材料</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>BlockGCN用 graph-distance静态编码、persistent-homology动态编码和 block-diagonal graph convolution，在NTU120 X-Sub单关节消融中把85.2%提高到86.9%，同时把参数从2.1M降至1.3M；它适合作为羽毛球姿态encoder候选，纠正系统仍需球拍/球、动作阶段与错误标签。</p>
 <h2 id="论文定位">论文定位</h2>
-<p>BST 将 BlockGCN 作为 skeleton-based action recognition 的强基线之一。对当前 wiki 来说，它填在 <a class="wikilink" href="../../en/sources/2026-04-25-st-gcn.html">sources/2026-04-25-st-gcn</a> 与 <a class="wikilink" href="../../en/sources/2026-05-16-protogcn-skeleton-action-recognition.html">sources/2026-05-16-protogcn-skeleton-action-recognition</a> 之间：ST-GCN 建立骨架图卷积起点，BlockGCN 重新强调拓扑编码和轻量图卷积，ProtoGCN 再把细粒度差异推进到 prototype-level representation。</p>
+<p>这是一篇通用 skeleton-based action recognition GCN。核心贡献是保留物理骨架先验与高效多关系建模，连接 <a class="wikilink" href="../../en/sources/2026-04-25-st-gcn.html">ST-GCN</a> 的固定物理图与后续 adaptive topology方法。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>可学习 adjacency虽然灵活，却会在训练后偏离bone-connectivity初始化；多个并行GC用于表达不同joint relations时又增加参数。论文用不同邻接初始化最终精度接近与权重可视化证明“初始化本身无法稳定保留拓扑”，再设计独立的Topological Encoding持续注入结构。</p>
 <h2 id="方法概述">方法概述</h2>
+<ol>
+<li><strong>Static Topological Encoding</strong>：按骨架最短路径距离为joint pair查表得到可学习embedding，joint-pair分组固定。</li>
+<li><strong>Dynamic Topological Encoding</strong>：对pose sequence的joint-distance graph做Vietoris–Rips filtration，以0D persistent-homology barcode形成input-dependent feature。</li>
+<li><strong>BlockGC</strong>：通道分组，各组使用独立adjacency与projection；projections组成block-diagonal matrix，复杂度约缩为原GC的$1/K$。</li>
+<li><strong>完整网络</strong>：BlockGC与multi-scale temporal convolution交替堆叠10层，最后时空pooling分类。</li>
+</ol>
+<p>可复核依据：PDF Fig.4–6、Eq.2–6，pp.4–6；<code>paper-text.md</code> 264–422。</p>
+<h2 id="数据与实验">数据与实验</h2>
 <ul>
-<li><strong>问题定义</strong>：GCN 通过可学习邻接矩阵建模骨架，但训练过程中可能丢失真实 bone connectivity 信息。</li>
-<li><strong>Topological Encoding</strong>：用 joint-pair graph distance 表达物理骨架拓扑。</li>
-<li><strong>Persistent homology</strong>：刻画 action-specific topological representation，增强动态结构描述。</li>
-<li><strong>BlockGC</strong>：减少多关系图卷积中的冗余参数，在轻量模型设置下保持或提升性能。</li>
+<li>NTU RGB+D 60、NTU RGB+D 120、NW-UCLA。</li>
+<li>主结果采用4-stream：joint、bone、joint motion、bone motion，独立训练后融合。</li>
+<li>关键消融采用NTU120 X-Sub single-joint modality。</li>
+<li>64帧、SGD Nesterov、标准cross-entropy、Tesla V100。</li>
 </ul>
-<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
-<p>体育动作纠正需要知道“哪个身体部位的连接关系和阶段性运动出了问题”。BlockGCN 给 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 增加了一个结构化骨架建模视角：动作分类不只看关键点轨迹，也要保留肢体拓扑和局部连接关系。它可以和 <a class="wikilink" href="../../en/sources/2026-05-16-tempose-badminton-fine-grained-motion.html">sources/2026-05-16-tempose-badminton-fine-grained-motion</a>、<a class="wikilink" href="../../en/sources/2026-05-16-bst-badminton-stroke-type-transformer.html">sources/2026-05-16-bst-badminton-stroke-type-transformer</a> 组合，用于羽毛球挥拍中的姿态阶段和局部关节链路分析。</p>
+<h2 id="核心结果">核心结果</h2>
+<table><thead><tr><th>方法</th><th>参数</th><th>NTU60 X-Sub / X-View</th><th>NTU120 X-Sub / X-Set</th><th>NW-UCLA</th></tr></thead><tbody><tr><td>FR-Head</td><td>2.0M</td><td>92.8 / 96.9</td><td>89.5 / 90.9</td><td>--</td></tr><tr><td>BlockGCN</td><td>1.3M</td><td>93.1 / 97.0</td><td>90.3 / 91.5</td><td>96.8</td></tr></tbody></table>
+<p>相对FR-Head四个NTU split分别为+0.3、+0.1、+0.8、+0.6，参数减少约35%。single-joint比较的平均增益约0.8点；4-stream融合压缩了方法差距，并带来多模型部署成本。</p>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>邻接初始化：CTR-GCN在bone/identity/ones/Kaiming下为84.9/85.0/84.8/84.8，差异≤0.2。</li>
+<li>完整组件：85.2→86.9（+1.7），参数2.1M→1.3M；static encoding贡献大于dynamic encoding，二者组合最佳。</li>
+<li>BlockGC 8 groups：1.2M/85.8；DecouplingGC 8 groups：2.2M/85.6。</li>
+<li>Topological Encoding注入0/1/5/10层：86.0/86.4/86.7/86.9。</li>
+<li>Barcode vector dim 32/64/128：86.5/86.9/86.4。</li>
+</ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>BlockGCN 是通用 SAR 方法，迁移到羽毛球时仍需结合 shuttle trajectory、court position 和 stroke label。</li>
-<li>topology-aware representation 能否直接转成教练可读错误说明，还需要额外的错误模式映射。</li>
-<li>对真实视频部署而言，上游 pose estimator 在遮挡、运动模糊和极端姿态下的稳定性仍是瓶颈。</li>
+<li>“catastrophic forgetting”由初始化不敏感与权重偏离支撑；部分偏离也可能是有益的任务适应，因果命名强于实验。</li>
+<li>没有报告persistent-homology模块的独立latency、预处理成本与pose-noise鲁棒性。</li>
+<li>标准Kinect骨架无法覆盖真实广播视频的遮挡、运动模糊和2D/3D pose误差。</li>
+<li>主结果依赖4个modality模型。</li>
+<li>global pooling分类无法直接定位错误阶段，也不输出教练建议。</li>
+<li>人体骨架图缺少球拍、羽毛球、场地与击球接触关系。</li>
+</ul>
+<h2 id="对羽毛球动作纠正-demo-的影响">对羽毛球动作纠正 demo 的影响</h2>
+<p><strong>可迁移</strong>：STE保留肩—肘—腕与躯干/下肢链路；BlockGC以较小参数表达多种身体协同；适合作为pose baseline。</p>
+<p><strong>专用改造</strong>：hit-frame与动作阶段切分、racket/shuttle/court异构节点、左右手/视角规范化、pose confidence、错误标签和标准动作参照。建议先在同一羽毛球pose输入上与CTR-GCN做受控对比，再评估DTE带来的准确率与延迟收益。</p>
+<h2 id="wiki-证据分类">Wiki 证据分类</h2>
+<ul>
+<li>对 <a class="wikilink" href="../../en/topics/vision-backbones.html">主流视觉 Backbone</a>：直接支持轻量topology-aware GCN。</li>
+<li>对 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">体育 AI 视频理解</a>：方法候选证据。</li>
+<li>对 <a class="wikilink" href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球动作纠正 demo</a>：支持人体链路encoder选择，对纠正反馈属于待验证迁移。</li>
+<li>最终评级：<strong>A-（通用SAR）/ B-（羽毛球纠正迁移）</strong>。</li>
 </ul>
 <h2 id="原始材料">原始材料</h2>
 <ul>
 <li><code>raw/ingest/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition/paper.pdf</code></li>
 <li><code>raw/ingest/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition/paper-text.md</code></li>
+<li><code>raw/ingest/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition/analysis.md</code></li>
 <li><code>raw/ingest/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition/abstract.md</code></li>
 <li><code>raw/ingest/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition/links.yaml</code></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/sources/2026-04-25-st-gcn.html">sources/2026-04-25-st-gcn</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-05-16-bst-badminton-stroke-type-transformer.html">sources/2026-05-16-bst-badminton-stroke-type-transformer</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-05-16-protogcn-skeleton-action-recognition.html">sources/2026-05-16-protogcn-skeleton-action-recognition</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-05-16-skateformer-skeletal-temporal-transformer.html">sources/2026-05-16-skateformer-skeletal-temporal-transformer</a></li>
-<li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
-<li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-25-st-gcn.html">ST-GCN</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-05-16-protogcn-skeleton-action-recognition.html">ProtoGCN</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-05-16-skateformer-skeletal-temporal-transformer.html">SkateFormer</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-05-16-bst-badminton-stroke-type-transformer.html">BST</a></li>
+<li><a class="wikilink" href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球动作纠正 demo</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">4</span></h3><ul><li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li><li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li><li><a class="wikilink" href="../../en/topics/video-understanding.html">Video Understanding</a></li><li><a class="wikilink" href="../../en/topics/vision-backbones.html">Mainstream Vision Backbones</a></li></ul></div><div class="related-group related-questions"><h3>Related questions<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">8</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a><span>Question</span></li><li><a href="../../en/sources/2026-05-16-protogcn-skeleton-action-recognition.html">ProtoGCN：用运动原型重构放大相似骨架动作的局部差异</a><span>Source note</span></li><li><a href="../../en/sources/2026-05-16-skateformer-skeletal-temporal-transformer.html">SkateFormer：用四类骨架—时间分区实现高效联合注意力</a><span>Source note</span></li><li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a><span>Topic</span></li><li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a><span>Topic</span></li><li><a href="../../en/topics/video-understanding.html">Video Understanding</a><span>Topic</span></li><li><a href="../../en/topics/vision-backbones.html">Mainstream Vision Backbones</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-05-16-blockgcn-topology-aware-skeleton-action-recognition&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;BlockGCN：重新强化骨架动作识别中的拓扑意识&quot;,
+  &quot;title&quot;: &quot;BlockGCN：保留骨架拓扑并轻量建模多种关节关系&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-05-16&quot;,
-  &quot;updated&quot;: &quot;2026-05-16&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2024&quot;,
   &quot;published_at&quot;: &quot;2024-06-01&quot;,
   &quot;ingested_at&quot;: &quot;2026-05-16&quot;,
@@ -123,20 +167,22 @@
   ],
   &quot;canonical_links&quot;: [
     &quot;https://openaccess.thecvf.com/content/CVPR2024/html/Zhou_BlockGCN_Redefine_Topology_Awareness_for_Skeleton-Based_Action_Recognition_CVPR_2024_paper.html&quot;,
-    &quot;https://openaccess.thecvf.com/content/CVPR2024/papers/Zhou_BlockGCN_Redefine_Topology_Awareness_for_Skeleton-Based_Action_Recognition_CVPR_2024_paper.pdf&quot;
+    &quot;https://openaccess.thecvf.com/content/CVPR2024/papers/Zhou_BlockGCN_Redefine_Topology_Awareness_for_Skeleton-Based_Action_Recognition_CVPR_2024_paper.pdf&quot;,
+    &quot;https://github.com/ZhouYuxuanYX/BlockGCN&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition/&quot;,
   &quot;topics&quot;: [
     &quot;topics/sports-ai-video-understanding&quot;,
     &quot;topics/sports-ai-roadmap&quot;,
-    &quot;topics/video-understanding&quot;
+    &quot;topics/video-understanding&quot;,
+    &quot;topics/vision-backbones&quot;
   ],
-  &quot;entities&quot;: [
-    &quot;entities/sportsmot&quot;
-  ],
+  &quot;entities&quot;: [],
   &quot;claims&quot;: [],
-  &quot;questions&quot;: []
-}</pre></section>
+  &quot;questions&quot;: [
+    &quot;questions/question-badminton-stroke-correction-demo&quot;
+  ]
+}</pre></details>
     </article>
   </main>
 </body>

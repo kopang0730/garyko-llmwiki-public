@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="FateZero：融合注意力做零样本文本视频编辑">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>FateZero：融合注意力做零样本文本视频编辑 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-fatezero&quot;, &quot;title&quot;: &quot;FateZero（ICCV 2023）：融合注意力做零样本文本视频编辑&quot;, &quot;title_en&quot;: &quot;FateZero（ICCV 2023）：融合注意力做零样本文本视频编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-fatezero&quot;, &quot;title&quot;: &quot;FateZero：融合注意力做零样本文本视频编辑&quot;, &quot;title_en&quot;: &quot;FateZero：融合注意力做零样本文本视频编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,57 +60,103 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-fatezero.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-fatezero.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>FateZero：融合注意力做零样本文本视频编辑</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
         <h1><span class="title-main">FateZero</span><span class="title-subtitle">融合注意力做零样本文本视频编辑</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2023-01-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2303.09535" title="https://arxiv.org/abs/2303.09535" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2303.09535</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2303.09535.pdf" title="https://arxiv.org/pdf/2303.09535.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2303.09535.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-editing">#video-editing</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-editing">#video-editing</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作是早期文本驱动视频编辑的重要锚点，说明零样本 attention 注入就能把图像扩散编辑思路迁移到视频上。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>它要解决的是视频编辑需要重新训练成本高、跨帧一致性难保持的问题。相比更重型的专门训练路线，FateZero 代表的是早期“能否尽量少训练就把视频编辑做出来”的方向。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>方法核心是通过融合注意力，把文本驱动编辑控制注入到视频扩散过程中，并在零样本设定下尽量保持跨帧一致性。它的重要意义在于：早期视频编辑并不是先靠大规模数据，而是先靠 clever attention manipulation 把路线跑通。</p>
-<h2 id="关键发现">关键发现</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2023-10-11</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2303.09535" title="https://arxiv.org/abs/2303.09535" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2303.09535</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2303.09535.pdf" title="https://arxiv.org/pdf/2303.09535.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2303.09535.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义与接口">问题定义与接口</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#数据与实验">数据与实验</a></li><li><a href="#核心结果">核心结果</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>FateZero 是早期零样本文本视频编辑的重要锚点：保存 inversion 阶段 attention，并用 cross-attention mask 融合源/目标 self-attention，可在无需目标提示词再训练的条件下改善时序与主观质量；但形状编辑仍需每视频 Tune-A-Video 训练 100 iterations，因此不能把整套方法概括为完全 training-free。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>它把 Prompt-to-Prompt、DDIM inversion 和 Stable Diffusion 的注意力控制迁移到视频：源结构/运动来自 inversion attention，新语义来自目标 attention，二者通过自动 mask 局部融合。其价值是确立“源保真 vs 新形状自由度”的核心张力，而不是证明 attention 操作等于视频编辑理解。</p>
+<h2 id="问题定义与接口">问题定义与接口</h2>
 <ul>
-<li>它提供了 video-editing 的早期历史锚点。</li>
-<li>它说明 attention 控制本身是视频编辑里一个重要可迁移机制。</li>
-<li>它有助于把当前视频编辑路线往 2023 年回溯，而不是只看 2025 一年的成熟系统。</li>
+<li>输入：源视频、源 prompt、目标 prompt；无需用户 mask。</li>
+<li>输出：风格、属性、对象替换或形状编辑视频。</li>
+<li>外观/风格用 Stable Diffusion 1.4；大形状改变使用 per-video Tune-A-Video 底座。</li>
+</ul>
+<h2 id="方法概述">方法概述</h2>
+<ol>
+<li>DDIM inversion 每步保存源 cross/self-attention。</li>
+<li>cross-attention 阈值化得到编辑区 mask。</li>
+<li>mask 内使用目标 self-attention，mask 外使用源 inversion self-attention，减少语义泄漏。</li>
+<li>不更新权重地把二维 self-attention 改为当前帧查询“当前帧+warped 中间帧”，增加跨帧对应。</li>
+<li>风格/属性在 50 DDIM 步的 $[0.2T,T]$ 融合；形状编辑在 $[0.5T,T]$ 融合，并先对源视频训练 Tune-A-Video 100 iterations。</li>
+</ol>
+<h2 id="数据与实验">数据与实验</h2>
+<ul>
+<li>DAVIS 与 in-the-wild 视频；论文未报告总视频数和固定公开划分。</li>
+<li>源 prompt 由 caption model 生成，目标 prompt 由作者替换/新增词。</li>
+<li>20 名用户，每项 9 组比较；自动指标为 CLIP Tem-Con 与 Frame-Acc。</li>
+</ul>
+<h2 id="核心结果">核心结果</h2>
+<table><thead><tr><th>方法</th><th>Tem-Con ↑</th><th>Frame-Acc ↑</th><th>Edit ↓</th><th>Image ↓</th><th>Temp ↓</th></tr></thead><tbody><tr><td>最佳基线</td><td>0.958</td><td><strong>0.958</strong></td><td>2.78</td><td>2.80</td><td>2.60</td></tr><tr><td><strong>FateZero</strong></td><td><strong>0.965</strong></td><td>0.903</td><td><strong>1.82</strong></td><td><strong>1.79</strong></td><td><strong>1.69</strong></td></tr></tbody></table>
+<ul>
+<li>Tem-Con 只比 Tune-A-Video 高 0.007。</li>
+<li>Frame-Acc 低于逐帧 Null + P2P（0.903 vs 0.958），所以编辑准确率并非全面最优。</li>
+<li>用户排名显著更好：相对 Tune-A-Video，Edit 约改善 34.5%，Image 约改善 36.1%；Temp 相对最佳基线 NLA 改善 35%。</li>
+</ul>
+<h2 id="关键消融">关键消融</h2>
+<p>消融主要是质化，没有数值表：</p>
+<ul>
+<li>reconstruction attention 无法稳定定位首尾帧的船，inversion attention 更稳定。</li>
+<li>去掉 self-attention fusion 会丢背景细节和对象身份。</li>
+<li>全量融合、不用 mask 会泄漏源 jeep 几何，使目标 Porsche 仍像源对象。</li>
+<li>时空 self-attention 的独立数值贡献没有被隔离。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>零样本路线的上限通常受限于原始生成模型能力。</li>
-<li>复杂编辑与强时序保持仍然困难。</li>
-<li>它更像奠基性方法，而不是当前最终形态。</li>
+<li>作者明确承认难以产生全新动作（<code>swim→fly</code>）和巨大形状变化（<code>swan→pterosaur</code>）。</li>
+<li>形状编辑依赖每视频 Tune-A-Video，zero-shot 只指目标 prompt 阶段无新增优化。</li>
+<li>测试规模、分辨率、失败率、随机性和显著性均未完整报告。</li>
+<li>cross-attention 阈值 mask 对小物体、多对象、遮挡和漏 caption 的鲁棒性未知。</li>
+<li>CLIP Tem-Con 可能奖励静态/少变化画面，不等价于真实运动或 3D 一致。</li>
 </ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li>对 <a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a>：奠基/直接支持早期 attention fusion 路线。</li>
+<li>对 <a class="wikilink" href="../../en/topics/video-generation.html">视频生成</a>：只作间接支持，论文借生成先验做编辑，不评测开放式生成。</li>
+<li>对 <a class="wikilink" href="../../en/entities/video-editing-understanding.html">视频编辑理解</a>：是任务执行案例，不是显式编辑语义理解证据。</li>
+<li>对 <a class="wikilink" href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型的视频编辑理解缺口</a>：<strong>背景/压力测试，不是直接正证据</strong>。新动作和巨大形变失败也可由底座先验与控制机制造成。</li>
+<li>对 <a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">视频编辑理解评测问题</a>：背景证据。Table 1 测输出相似、一致和偏好，不测剪辑元素识别、依据推理、叙事功能或多步规划。</li>
+</ul>
+<p>frontmatter 保留 claim/question 链接用于追踪，但本论文不应列入该 claim 的直接 <code>evidence_for</code>。</p>
+<h2 id="证据评级">证据评级</h2>
+<p><strong>B-（重要奠基证据，定量严谨性中等）</strong>。历史和方法影响大，主表与用户研究支持优势；但数据规模不透明、消融无数字、形状路线不完全 training-free，对真实视频编辑理解仅为背景证据。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2303.09535</li>
-<li>https://arxiv.org/pdf/2303.09535.pdf</li>
+<li><a href="https://arxiv.org/abs/2303.09535">arXiv</a></li>
+<li><a href="https://arxiv.org/pdf/2303.09535.pdf">PDF</a></li>
+<li><a href="https://fate-zero-edit.github.io">项目页</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/video-editing.html">topics/video-editing</a></li>
-<li><a class="wikilink" href="../../en/topics/video-generation.html">topics/video-generation</a></li>
-<li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">entities/video-editing-understanding</a></li>
-<li><a class="wikilink" href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">claims/claim-current-models-still-struggle-to-understand-video-editing</a></li>
-<li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>FateZero 在这套知识库里最重要的价值是历史定位：它说明视频编辑主线很早就已经围绕 attention control 与一致性问题展开。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a class="wikilink" href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+<li><a class="wikilink" href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型的视频编辑理解缺口</a></li>
+<li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">Benchmark 是否追踪真实视频编辑理解</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a></li><li><a class="wikilink" href="../../en/topics/video-generation.html">视频生成</a></li></ul></div><div class="related-group related-entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li></ul></div><div class="related-group related-claims"><h3>Related claims<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li></ul></div><div class="related-group related-questions"><h3>Related questions<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">4</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a><span>Question</span></li><li><a href="../../en/sources/2026-04-12-fade.html">FADE：面向视频编辑的频率感知扩散模型分解</a><span>Source note</span></li><li><a href="../../en/topics/video-editing.html">视频编辑</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-fatezero&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;FateZero（ICCV 2023）：融合注意力做零样本文本视频编辑&quot;,
+  &quot;title&quot;: &quot;FateZero：融合注意力做零样本文本视频编辑&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;ICCV 2023&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;video-editing&quot;,
+    &quot;diffusion&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
@@ -118,7 +170,7 @@
     &quot;Ying Shan&quot;,
     &quot;Qifeng Chen&quot;
   ],
-  &quot;published_at&quot;: &quot;2023-01-01&quot;,
+  &quot;published_at&quot;: &quot;2023-10-11&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2303.09535&quot;,
     &quot;https://arxiv.org/pdf/2303.09535.pdf&quot;
@@ -137,7 +189,7 @@
   &quot;questions&quot;: [
     &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>A Video is Worth 256 Bases：零样本视频编辑的时空 EM 反演 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="A Video is Worth 256 Bases：以时空 EM 低秩基改进零样本视频反演">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>A Video is Worth 256 Bases：以时空 EM 低秩基改进零样本视频反演 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-video-worth-256-bases&quot;, &quot;title&quot;: &quot;A Video is Worth 256 Bases：零样本视频编辑的时空 EM 反演&quot;, &quot;title_en&quot;: &quot;A Video is Worth 256 Bases：零样本视频编辑的时空 EM 反演&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-video-worth-256-bases&quot;, &quot;title&quot;: &quot;A Video is Worth 256 Bases：以时空 EM 低秩基改进零样本视频反演&quot;, &quot;title_en&quot;: &quot;A Video is Worth 256 Bases：以时空 EM 低秩基改进零样本视频反演&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,54 +60,64 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-video-worth-256-bases.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-video-worth-256-bases.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">A Video is Worth 256 Bases</span><span class="title-subtitle">零样本视频编辑的时空 EM 反演</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>A Video is Worth 256 Bases：以时空 EM 低秩基改进零样本视频反演</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">A Video is Worth 256 Bases</span><span class="title-subtitle">以时空 EM 低秩基改进零样本视频反演</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2023/12/10</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2024/html/Li_A_Video_is_Worth_256_Bases_Spatial-Temporal_Expectation-Maximization_Inversion_for_CVPR_2024_paper.html" title="https://openaccess.thecvf.com/content/CVPR2024/html/Li_A_Video_is_Worth_256_Bases_Spatial-Temporal_Expectation-Maximization_Inversion_for_CVPR_2024_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Li_A_Video_is_Worth_256_Bases_S…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2024/papers/Li_A_Video_is_Worth_256_Bases_Spatial-Temporal_Expectation-Maximization_Inversion_for_CVPR_2024_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2024/papers/Li_A_Video_is_Worth_256_Bases_Spatial-Temporal_Expectation-Maximization_Inversion_for_CVPR_2024_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Li_A_Video_is_Worth_256_Bases_S…</strong></a><a class="source-link source-link-code" href="https://github.com/STEM-Inv/STEM-Inv" title="https://github.com/STEM-Inv/STEM-Inv" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · STEM-Inv</strong></a></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-editing">#video-editing</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把时空 EM inversion 推到零样本视频编辑里，补强了 video-editing 的 inversion / reconstruction 路线。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>它要解决的是零样本视频编辑中如何更稳地反演和操控视频表示的问题。对当前知识库来说，它补的是 video-editing 里与图像编辑 inversion 路线相呼应的一支。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>该工作通过 spatial-temporal expectation-maximization inversion 来支持 zero-shot video editing，让视频内容更好进入可编辑状态。</p>
-<h2 id="关键发现">关键发现</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2023-12-10</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2024/html/Li_A_Video_is_Worth_256_Bases_Spatial-Temporal_Expectation-Maximization_Inversion_for_CVPR_2024_paper.html" title="https://openaccess.thecvf.com/content/CVPR2024/html/Li_A_Video_is_Worth_256_Bases_Spatial-Temporal_Expectation-Maximization_Inversion_for_CVPR_2024_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Li_A_Video_is_Worth_256_Bases_S…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2024/papers/Li_A_Video_is_Worth_256_Bases_Spatial-Temporal_Expectation-Maximization_Inversion_for_CVPR_2024_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2024/papers/Li_A_Video_is_Worth_256_Bases_Spatial-Temporal_Expectation-Maximization_Inversion_for_CVPR_2024_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Li_A_Video_is_Worth_256_Bases_S…</strong></a><a class="source-link source-link-code" href="https://github.com/STEM-Inv/STEM-Inv" title="https://github.com/STEM-Inv/STEM-Inv" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · STEM-Inv</strong></a></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#接口-方法与底座">接口、方法与底座</a></li><li><a href="#数据-结果与成本">数据、结果与成本</a></li><li><a href="#human-污染与边界">Human、污染与边界</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>STEM Inversion 用每视频 EM 将全局 diffusion feature 压成 256 个固定 basis，替换 FateZero/TokenFlow 的 DDIM inversion；显著改善重建与 warp error，但 CLIP 几乎不变、比 1/2-frame DDIM 更慢，且评测视频数与人评人数均未披露。</p>
+<h2 id="接口-方法与底座">接口、方法与底座</h2>
 <ul>
-<li>它说明 inversion 并不是图像编辑独有问题，视频编辑也在发展自己的时空反演路线。</li>
-<li>它和 NULL-Text Inversion、Effective Real Image Editing 形成跨图像/视频的机制对照。</li>
-<li>它有助于以后比较“训练式编辑”和“零样本反演式编辑”的边界。</li>
+<li>输入 40–200 帧源视频、source/target prompt；输出由 FateZero/TokenFlow 产生的编辑视频。</li>
+<li>backbone：Stable Diffusion 1.5；50-step inversion/sampling，CFG 7.5；单 A100。</li>
+<li>EM 默认 3 iterations、temperature .05、K=256；basis 作为所有 U-Net self-attention 的全局 K/V。</li>
+<li>理论复杂度约 $O(NHWK)$，但串行 EM 使 wall-clock 不一定低于局部 DDIM。</li>
+<li>本文是 inversion 组件，不是独立语义编辑器或视频理解模型。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="数据-结果与成本">数据、结果与成本</h2>
+<p>数据来自 DAVIS+Internet，40–200 帧、512² 或 360×640；论文未报视频总数、URL、prompt 数或固定 manifest。</p>
+<p>编辑结果：TokenFlow CLIP/.warp .31/4.9，STEM-TokenFlow .31/3.5；FateZero .29/7.2，STEM-FateZero .30/4.3。收益主要是时序 proxy，不是 prompt alignment。</p>
+<p>5-video 重建补充实验：1/2/all-frame DDIM PSNR 24.122/25.967/26.464，STEM 31.572；SSIM .8137/.8595/.8700 vs .9606。K=256 与 512 接近，128 的编辑较弱，因此 256 是经验折中。</p>
+<p>48 帧 640×360 inversion：1-frame .80min、2-frame 1.12、all-frame 5.04；STEM-128/256/512 为 1.02/1.50/2.26。STEM-256 比 all-frame 快约 70%，但比 2-frame 慢约 34%。无全编辑时间、显存 GB、能耗或方差。</p>
+<h2 id="human-污染与边界">Human、污染与边界</h2>
 <ul>
-<li>零样本反演方法通常仍然受效率和稳定性约束。</li>
-<li>它更偏反演机制，不覆盖更开放的高层语义编辑。</li>
-<li>它是机制层锚点，但不等于完整视频编辑系统。</li>
+<li>用户研究给出 STEM 对原 editor 的 67–83% preference，但不报参与者人数、总判断、盲测、IAA/置信区间；无 LLM judge。</li>
+<li>CLIP 与 RAFT warp 会奖励小改/不编辑；无 identity、背景、locality、结构 edit success 指标。</li>
+<li>DAVIS/Internet 选择和污染未审计；reconstruction 是同输入保真，不是生成泛化。</li>
+<li>FateZero 单 A100 超过 20 帧受 attention-map 显存限制，项目页用采样结果，长视频对比不完整。</li>
+<li>不支持新运动、多镜头、audio、多轮编辑或“256 bases 普遍足够”。</li>
 </ul>
+<h2 id="证据评级">证据评级</h2>
+<p><strong>B-</strong>（同-editor inversion 替换与重建证据明确；数据规模、人评、指标与长视频成本证据有限）。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>论文原文（CVF OpenAccess）：https://openaccess.thecvf.com/content/CVPR2024/html/Li_A_Video_is_Worth_256_Bases_Spatial-Temporal_Expectation-Maximization_Inversion_for_CVPR_2024_paper.html</li>
-<li>官方 PDF（CVF）：https://openaccess.thecvf.com/content/CVPR2024/papers/Li_A_Video_is_Worth_256_Bases_Spatial-Temporal_Expectation-Maximization_Inversion_for_CVPR_2024_paper.pdf</li>
-<li>arXiv：https://arxiv.org/abs/2312.05856</li>
-<li>arXiv PDF：https://arxiv.org/pdf/2312.05856</li>
-<li>代码仓库：https://github.com/STEM-Inv/STEM-Inv</li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2024/html/Li_A_Video_is_Worth_256_Bases_Spatial-Temporal_Expectation-Maximization_Inversion_for_CVPR_2024_paper.html">CVF 页面</a></li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Li_A_Video_is_Worth_256_Bases_Spatial-Temporal_Expectation-Maximization_Inversion_for_CVPR_2024_paper.pdf">论文 PDF</a></li>
+<li><a href="https://arxiv.org/abs/2312.05856">arXiv</a></li>
+<li><a href="https://github.com/STEM-Inv/STEM-Inv">代码</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/video-editing.html">topics/video-editing</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">entities/video-editing-understanding</a></li>
-<li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>这篇工作在库里的意义，是把 video-editing 的时空 inversion 路线补成明确节点。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+<li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有 benchmark 是否跟踪真实视频编辑理解</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li></ul></div><div class="related-group related-entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li></ul></div><div class="related-group related-questions"><h3>Related questions<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">3</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/diffusion-models.html">扩散模型</a><span>Topic</span></li><li><a href="../../en/topics/video-editing.html">视频编辑</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-video-worth-256-bases&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;A Video is Worth 256 Bases：零样本视频编辑的时空 EM 反演&quot;,
+  &quot;title&quot;: &quot;A Video is Worth 256 Bases：以时空 EM 低秩基改进零样本视频反演&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2024&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
@@ -121,7 +137,7 @@
     &quot;Lin, Zhihui&quot;,
     &quot;Xu, Dong&quot;
   ],
-  &quot;published_at&quot;: &quot;2023/12/10&quot;,
+  &quot;published_at&quot;: &quot;2023-12-10&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://openaccess.thecvf.com/content/CVPR2024/html/Li_A_Video_is_Worth_256_Bases_Spatial-Temporal_Expectation-Maximization_Inversion_for_CVPR_2024_paper.html&quot;,
     &quot;https://openaccess.thecvf.com/content/CVPR2024/papers/Li_A_Video_is_Worth_256_Bases_Spatial-Temporal_Expectation-Maximization_Inversion_for_CVPR_2024_paper.pdf&quot;,
@@ -130,6 +146,7 @@
     &quot;https://github.com/STEM-Inv/STEM-Inv&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-video-worth-256-bases/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-14-video-worth-256-bases/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/video-editing&quot;,
     &quot;topics/diffusion-models&quot;
@@ -141,7 +158,7 @@
   &quot;questions&quot;: [
     &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

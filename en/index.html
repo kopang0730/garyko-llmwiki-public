@@ -3,19 +3,25 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Index · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="A Chinese-first research encyclopedia with an English navigation layer, compiled from Markdown files by Hermes.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>LLMWIKI Main Page · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-root" data-page="{&quot;slug&quot;: &quot;index&quot;, &quot;title&quot;: &quot;索引&quot;, &quot;title_en&quot;: &quot;Index&quot;, &quot;kind&quot;: &quot;root&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-portal" data-page="{&quot;slug&quot;: &quot;main&quot;, &quot;title&quot;: &quot;LLMWIKI Main Page&quot;, &quot;title_en&quot;: &quot;LLMWIKI Main Page&quot;, &quot;kind&quot;: &quot;portal&quot;, &quot;tags&quot;: [], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
 <h2>Entry</h2><ul>
-<li><a class="active" href="../en/index.html">Index</a></li>
+<li><a href="../en/index.html">Index</a></li>
 <li><a href="../en/llm-wiki.html">LLM Wiki Pattern</a></li>
-<li><a href="../en/main.html">Main page</a></li>
+<li><a class="active" href="../en/main.html">Main page</a></li>
 </ul>
 <h2>Topics</h2><ul>
 <li><a href="../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
@@ -38,325 +44,50 @@
 <li><a href="../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
   <main class="wiki-page">
-    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../index.html">中文</a><a class="selected-lang" href="../en/index.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../en/main.html">Main page</a></header>
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../main.html">中文</a><a class="selected-lang" href="../en/main.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">root · 2026-05-23</p>
-        <h1><span class="title-main">Index</span></h1>
-        <p class="article-summary">Entry point for the generative vision, video understanding, and sports AI research wiki.</p>
         
-        <div class="tag-row"><a class="tag" href="../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a></div>
+        <p class="eyebrow">Portal</p>
+        <h1><span class="title-main">LLMWIKI Main Page</span></h1>
+        
+        <div class="tag-row"></div>
       </header>
-      <section class="article-content"><blockquote>这是视觉生成、视频理解与体育 AI 研究 wiki 的总入口。</blockquote>
-<blockquote>想看长期内容目录，从这里开始；想看当前操作面板、backlog 和下一步，请转到 <a class="wikilink missing" href="#missing-dashboard">dashboard</a>。</blockquote>
-<blockquote>最后更新：2026-05-23 | Topics：12 | lint 编译页：227 | public build：462 bilingual HTML</blockquote>
-<h2 id="总览入口">总览入口</h2>
-<ul>
-<li><a class="wikilink" href="../en/llm-wiki.html">llm-wiki</a> — Karpathy 提出的 LLM Wiki 概念说明，也是本知识库的设计理念入口。</li>
-<li>公开站双语层 — <code>wiki.garyko.com/en/</code> 现在作为英文导航 pilot，优先读取 <code>title_en</code> / <code>summary_en</code>，中文 Markdown 仍然是唯一知识源。</li>
-<li><a class="wikilink missing" href="#missing-docs/superpowers/specs/2026-04-12-cvpr-2025-hermes-kb-design">docs/superpowers/specs/2026-04-12-cvpr-2025-hermes-kb-design</a> — 第一阶段设计方案与范围界定。</li>
-<li><a class="wikilink missing" href="#missing-AGENTS">AGENTS</a> — Hermes 在本 vault 中的编译职责、工作流程与操作规则。</li>
-<li><a class="wikilink missing" href="#missing-SCHEMA">SCHEMA</a> — 页面结构规范、frontmatter 要求、标签体系与 lint 检查标准。</li>
-<li><a class="wikilink missing" href="#missing-dashboard">dashboard</a> — 当前知识库进度、backlog、优先级与下一步建议动作。</li>
-<li><a class="wikilink missing" href="#missing-docs/evidence-audit/evidence-audit-final-report">docs/evidence-audit/evidence-audit-final-report</a> — 老师展示前的证据层审计总报告。</li>
-<li><a class="wikilink missing" href="#missing-docs/evidence-audit/evidence-repair-status">docs/evidence-audit/evidence-repair-status</a> — 证据修复 pass 的 live gate 状态与 artifact 修复结果。</li>
-<li><a class="wikilink missing" href="#missing-log">log</a> — 按时间记录的 ingest、编译、修复与结构调整历史。</li>
-</ul>
-<h2 id="中文阅读路线">中文阅读路线</h2>
-<ul>
-<li><strong>看当前工作状态</strong>：按 <code><a class="wikilink missing" href="#missing-dashboard">dashboard</a> → 当前优先问题 → 下一轮推荐动作</code> 阅读。</li>
-<li><strong>看 backbone 基础</strong>：按 <code><a class="wikilink" href="../en/topics/vision-backbones.html">topics/vision-backbones</a> → <a class="wikilink" href="../en/topics/diffusion-models.html">topics/diffusion-models</a> → <a class="wikilink" href="../en/topics/video-understanding.html">topics/video-understanding</a> → <a class="wikilink" href="../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></code> 阅读。</li>
-<li><strong>看生成式视觉主线</strong>：按 <code><a class="wikilink" href="../en/topics/image-generation.html">topics/image-generation</a> → <a class="wikilink" href="../en/topics/image-editing.html">topics/image-editing</a> → <a class="wikilink" href="../en/topics/video-generation.html">topics/video-generation</a> → <a class="wikilink" href="../en/topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a> → <a class="wikilink" href="../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">claims/claim-dit-is-becoming-the-default-scalable-generation-backbone</a></code> 阅读。</li>
-<li><strong>看视频理解 / 评测主线</strong>：按 <code><a class="wikilink" href="../en/topics/video-understanding.html">topics/video-understanding</a> → <a class="wikilink" href="../en/topics/generative-model-evaluation.html">topics/generative-model-evaluation</a> → <a class="wikilink" href="../en/topics/video-editing.html">topics/video-editing</a> → <a class="wikilink" href="../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">claims/claim-current-models-still-struggle-to-understand-video-editing</a></code> 阅读。</li>
-<li><strong>看体育 AI 主线</strong>：按 <code><a class="wikilink" href="../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> → <a class="wikilink" href="../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> → <a class="wikilink" href="../en/questions/question-badminton-stroke-correction-demo.html">questions/question-badminton-stroke-correction-demo</a> → <a class="wikilink" href="../en/entities/sportsmot.html">entities/sportsmot</a></code> 阅读。</li>
-<li><strong>看图像生成与编辑的一体化路线</strong>：按 <code><a class="wikilink" href="../en/topics/image-generation.html">topics/image-generation</a> → <a class="wikilink" href="../en/topics/image-editing.html">topics/image-editing</a> → <a class="wikilink" href="../en/entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a> → <a class="wikilink" href="../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">claims/claim-unified-models-may-outcompete-specialized-image-pipelines</a></code> 阅读。</li>
-<li><strong>直接查论文</strong>：从下面的 <code>论文来源</code> 区块按中文简介筛选，再进入对应 source note。</li>
-</ul>
-<h2 id="主题页">主题页</h2>
-<ul>
-<li><a class="wikilink" href="../en/topics/diffusion-models.html">topics/diffusion-models</a> — 扩散模型基础、结构扩展、效率权衡，以及在图像/视频任务中的复用关系。</li>
-<li><a class="wikilink" href="../en/topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a> — 扩散效率工程主线，整理 backbone、采样提速、部署压缩与 guidance 工程化。</li>
-<li><a class="wikilink" href="../en/topics/generative-model-evaluation.html">topics/generative-model-evaluation</a> — 生成模型评测方式、基准设计、盲点，以及证据质量问题。</li>
-<li><a class="wikilink" href="../en/topics/image-editing.html">topics/image-editing</a> — 图像编辑主题，关注指令编辑、控制能力、保真度和推理效率。</li>
-<li><a class="wikilink" href="../en/topics/image-generation.html">topics/image-generation</a> — 图像生成主题，覆盖图像合成、编辑一体化、可控性与条件机制。</li>
-<li><a class="wikilink" href="../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> — 体育 AI 研究路线图，把感知、跟踪、交互、轨迹、战术、评估与部署组织成公开阅读路径。</li>
-<li><a class="wikilink" href="../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> — 体育 AI 视频理解主题，聚焦球员跟踪、人-人交互、全场轨迹与多智能体状态理解。</li>
-<li><a class="wikilink" href="../en/topics/video-editing.html">topics/video-editing</a> — 视频编辑主题，关注文本驱动编辑、时序一致性、保真度与评测。</li>
-<li><a class="wikilink" href="../en/topics/video-generation.html">topics/video-generation</a> — 视频生成主题，关注长时生成、运动控制、速度与一致性。</li>
-<li><a class="wikilink" href="../en/topics/video-understanding.html">topics/video-understanding</a> — 视频理解主题，聚焦时序推理、长上下文建模与视频评测问题。</li>
-<li><a class="wikilink" href="../en/topics/vision-backbones.html">topics/vision-backbones</a> — 小白友好的主流视觉主干选型页，解释 CNN、U-Net、Transformer/DiT、GCN、Mamba/SSM 在生成、视频理解与体育 AI 里的角色。</li>
-<li><a class="wikilink" href="../en/topics/vision-language.html">topics/vision-language</a> — 视觉-语言主题，聚焦多模态条件控制、对齐与语言驱动推理。</li>
-</ul>
-<h2 id="论文来源">论文来源</h2>
-<ul>
-<li><a class="wikilink" href="../en/sources/2026-04-12-align-a-video.html">sources/2026-04-12-align-a-video</a> — CVPR 2025；用确定性 reward tuning 提升视频编辑质量，并尽量稳住时序一致性。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-12-anyedit.html">sources/2026-04-12-anyedit</a> — CVPR 2025；通过大规模多类型编辑数据和任务路由做统一图像编辑。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-12-d2it.html">sources/2026-04-12-d2it</a> — CVPR 2025；用动态区域压缩改进图像生成中的局部细节与全局一致性平衡。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-12-dreamomni.html">sources/2026-04-12-dreamomni</a> — CVPR 2025；通过合成编辑数据扩展，把图像生成和编辑放进同一训练框架。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-12-fade.html">sources/2026-04-12-fade</a> — CVPR 2025；借助视频扩散先验和频域调制做免训练视频编辑。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-12-fireedit.html">sources/2026-04-12-fireedit</a> — CVPR 2025；用区域感知视觉语言 grounding 提升细粒度图像编辑。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-12-insightedit.html">sources/2026-04-12-insightedit</a> — CVPR 2025；用更好的数据集和双流多模态引导提升指令跟随与背景保持。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-12-lingen.html">sources/2026-04-12-lingen</a> — CVPR 2025；把长视频生成的核心复杂度降到线性，冲击分钟级生成。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-12-omnigen.html">sources/2026-04-12-omnigen</a> — CVPR 2025；用一个更简洁的统一模型覆盖生成、编辑和视觉条件控制。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-12-osv.html">sources/2026-04-12-osv</a> — CVPR 2025；一步式 image-to-video 生成，并保留可选 refinement 作为速度-质量旋钮。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-12-streamingt2v.html">sources/2026-04-12-streamingt2v</a> — CVPR 2025；通过短期/长期记忆模块保持长视频生成的一致性。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-12-swiftedit.html">sources/2026-04-12-swiftedit</a> — CVPR 2025；用一步式扩散把文本引导图像编辑加速到接近实时。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-12-tora.html">sources/2026-04-12-tora</a> — CVPR 2025；把轨迹作为显式条件输入，强化视频运动控制与保真度。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-12-unireal.html">sources/2026-04-12-unireal</a> — CVPR 2025；把图像生成和编辑统一重写成非连续视频生成问题。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-12-veu-bench.html">sources/2026-04-12-veu-bench</a> — CVPR 2025；面向视频编辑理解的 benchmark，用来揭示当前模型短板。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-12-videodirector.html">sources/2026-04-12-videodirector</a> — CVPR 2025；通过时空解耦引导实现更精确的视频编辑与内容保留。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-aigv-assessor.html">sources/2026-04-14-aigv-assessor</a> — CVPR 2025；用大模型和专家评分体系评测文本到视频生成的感知质量。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-encapsulated-composition-t2i-t2v.html">sources/2026-04-14-encapsulated-composition-t2i-t2v</a> — CVPR 2025；用 T2I 与 T2V 模块封装组合提高视频合成质量、运动平滑度与速度。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-pathways-image-manifold.html">sources/2026-04-14-pathways-image-manifold</a> — CVPR 2025；把图像编辑重写为视频生成的连续路径搜索过程。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-motionstone.html">sources/2026-04-14-motionstone</a> — CVPR 2025；用 DiT 的运动强度调制强化图像到视频生成中的结构控制。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-sketchvideo.html">sources/2026-04-14-sketchvideo</a> — CVPR 2025；以草图为核心控制接口的视频生成与编辑工作。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-video-bench.html">sources/2026-04-14-video-bench</a> — CVPR 2025；面向视频生成的人类对齐评测基准。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-diffeditor.html">sources/2026-04-14-diffeditor</a> — CVPR 2024；提升扩散式图像编辑精度与灵活性的代表性工作。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-instructpix2pix.html">sources/2026-04-14-instructpix2pix</a> — CVPR 2023；早期 instruction-based image editing 的关键锚点。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-tune-a-video.html">sources/2026-04-14-tune-a-video</a> — ICCV 2023；通过单样本调优把图像扩散模型迁移到视频生成。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-videocrafter2.html">sources/2026-04-14-videocrafter2</a> — CVPR 2024；面向高质量视频扩散模型的数据与训练方案工作。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-evalcrafter.html">sources/2026-04-14-evalcrafter</a> — CVPR 2024；大视频生成模型评测线的重要早期锚点。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-fatezero.html">sources/2026-04-14-fatezero</a> — ICCV 2023；早期零样本文本视频编辑的重要方法锚点。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-five-bench.html">sources/2026-04-14-five-bench</a> — ICCV 2025；细粒度视频编辑评测基准。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-dreambooth.html">sources/2026-04-14-dreambooth</a> — CVPR 2023；主体驱动生成与个性化扩散微调的重要锚点。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-gligen.html">sources/2026-04-14-gligen</a> — CVPR 2023；开放集合 grounded 文本到图像生成。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-latent-diffusion-models.html">sources/2026-04-14-latent-diffusion-models</a> — CVPR 2022；高分辨率图像生成的潜空间扩散框架。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-imagen-editor-editbench.html">sources/2026-04-14-imagen-editor-editbench</a> — CVPR 2023；把图像编辑方法与 EditBench 评测基准放到同一历史节点。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-video-p2p.html">sources/2026-04-14-video-p2p</a> — CVPR 2024；以 cross-attention control 为核心的视频编辑早期锚点。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-flasheval.html">sources/2026-04-14-flasheval</a> — CVPR 2024；面向文本到图像扩散模型的快速评测方法。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-anydoor.html">sources/2026-04-14-anydoor</a> — CVPR 2024；零样本对象级图像定制，补强可控生成与局部编辑路线。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-motioneditor.html">sources/2026-04-14-motioneditor</a> — CVPR 2024；把视频编辑推进到运动编辑专门化阶段。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-rave-video-editing.html">sources/2026-04-14-rave-video-editing</a> — CVPR 2024；强调快速且一致的视频编辑工程路线。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-verifiable-human-eval-t2i.html">sources/2026-04-14-verifiable-human-eval-t2i</a> — CVPR 2023；关注文本到图像生成人工评测的可验证与可复现性。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-paint-by-example.html">sources/2026-04-14-paint-by-example</a> — CVPR 2023；用参考示例而不是纯文本做图像编辑。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-null-text-inversion.html">sources/2026-04-14-null-text-inversion</a> — CVPR 2023；强化真实图像扩散编辑中的 inversion 机制。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-ccedit.html">sources/2026-04-14-ccedit</a> — CVPR 2024；强调创意变化与可控性平衡的视频编辑。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-maskint.html">sources/2026-04-14-maskint</a> — CVPR 2024；用 masked transformer 走视频编辑的非扩散路线。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-effective-real-image-editing.html">sources/2026-04-14-effective-real-image-editing</a> — ICCV 2023；继续加速真实图像扩散反演。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-prompt-tuning-inversion.html">sources/2026-04-14-prompt-tuning-inversion</a> — ICCV 2023；用 prompt tuning 改善文本驱动图像编辑反演。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-framepainter.html">sources/2026-04-14-framepainter</a> — ICCV 2025；用视频扩散先验增强交互式图像编辑。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-dive-subject-driven-video-editing.html">sources/2026-04-14-dive-subject-driven-video-editing</a> — ICCV 2025；把主体驱动路线进一步推到视频编辑。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-qk-edit.html">sources/2026-04-14-qk-edit</a> — ICCV 2025；在 MM-DiT 中重做图像与视频编辑的 attention 注入。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-insvie-1m.html">sources/2026-04-14-insvie-1m</a> — ICCV 2025；通过精细数据构造强化 instruction-based 视频编辑。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-veggie.html">sources/2026-04-14-veggie</a> — ICCV 2025；把视频编辑与视频概念推理接到同一 grounded generation 框架。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-hallusionbench.html">sources/2026-04-14-hallusionbench</a> — CVPR 2024；诊断大型视觉语言模型中的幻觉与视觉错觉。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-camel-video-editing.html">sources/2026-04-14-camel-video-editing</a> — CVPR 2024；用因果运动增强提升文本驱动视频编辑。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-vidtome.html">sources/2026-04-14-vidtome</a> — CVPR 2024；用 token merging 加速零样本视频编辑。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-motionfollower.html">sources/2026-04-14-motionfollower</a> — ICCV 2025；用 score-guided diffusion 做视频运动编辑。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-reangle-a-video.html">sources/2026-04-14-reangle-a-video</a> — ICCV 2025；把 4D 视频生成重写为视频到视频翻译。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-stablevideo.html">sources/2026-04-14-stablevideo</a> — ICCV 2023；面向一致性感知的文本驱动扩散视频编辑。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-pix2video.html">sources/2026-04-14-pix2video</a> — ICCV 2023；利用图像扩散能力做视频编辑。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-video-worth-256-bases.html">sources/2026-04-14-video-worth-256-bases</a> — CVPR 2024；用时空 EM inversion 支持零样本视频编辑。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-glitchbench.html">sources/2026-04-14-glitchbench</a> — CVPR 2024；用视频故障诊断测试多模态模型的视频理解能力。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-avid-video-inpainting.html">sources/2026-04-14-avid-video-inpainting</a> — CVPR 2024；基于扩散模型的任意长度视频修补。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-dynvideo-e.html">sources/2026-04-14-dynvideo-e</a> — CVPR 2024；利用动态 NeRF 做大运动/视角变化的人体中心视频编辑。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-language-driven-video-inpainting.html">sources/2026-04-14-language-driven-video-inpainting</a> — CVPR 2024；把多模态大模型接入语言驱动视频修补。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-imagic.html">sources/2026-04-14-imagic</a> — CVPR 2023；扩散时代真实图像文本编辑的重要早期锚点。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-layoutdiffusion.html">sources/2026-04-14-layoutdiffusion</a> — CVPR 2023；面向布局到图像生成的可控扩散模型。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-mvbench.html">sources/2026-04-14-mvbench</a> — CVPR 2024；综合性的多模态视频理解基准。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-vbench.html">sources/2026-04-14-vbench</a> — CVPR 2024；面向视频生成模型的综合评测套件。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-shape-aware-layered-video-editing.html">sources/2026-04-14-shape-aware-layered-video-editing</a> — CVPR 2023；形状感知的分层文本视频编辑。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-vive3d.html">sources/2026-04-14-vive3d</a> — CVPR 2023；基于 3D-aware GAN 的视角无关视频编辑。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-fairy-video-to-video.html">sources/2026-04-14-fairy-video-to-video</a> — CVPR 2024；快速并行的指令引导视频到视频合成。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-flowvid.html">sources/2026-04-14-flowvid</a> — CVPR 2024；利用光流一致性做视频到视频合成。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-lvbench.html">sources/2026-04-14-lvbench</a> — ICCV 2025；极限长视频理解基准。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-sok-bench.html">sources/2026-04-14-sok-bench</a> — CVPR 2024；带开放世界知识对齐的情境视频推理基准。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-anetqa.html">sources/2026-04-14-anetqa</a> — CVPR 2023；面向未裁剪视频细粒度组合推理的大规模基准。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-neuro-symbolic-eval-t2v.html">sources/2026-04-14-neuro-symbolic-eval-t2v</a> — CVPR 2025；用形式化验证评测文本到视频模型。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-sti-bench.html">sources/2026-04-14-sti-bench</a> — ICCV 2025；测试 MLLMs 精确时空世界理解能力的 benchmark。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-mmmu.html">sources/2026-04-14-mmmu</a> — CVPR 2024；大规模多学科多模态理解与推理基准。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-maplm.html">sources/2026-04-14-maplm</a> — CVPR 2024；面向地图与交通场景理解的真实世界视觉语言基准。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-concon-chi.html">sources/2026-04-14-concon-chi</a> — CVPR 2024；面向个性化视觉语言任务的概念-上下文嵌合基准。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-reco.html">sources/2026-04-14-reco</a> — CVPR 2023；区域控制的文本到图像生成。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-multi-concept-customization.html">sources/2026-04-14-multi-concept-customization</a> — CVPR 2023；文本到图像扩散中的多概念定制。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-specialist-diffusion.html">sources/2026-04-14-specialist-diffusion</a> — CVPR 2023；可插拔且样本高效的文本到图像扩散微调。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-image-specific-prompt-learning.html">sources/2026-04-14-image-specific-prompt-learning</a> — CVPR 2023；通过图像特定提示学习实现零样本生成模型适配。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-domain-expansion-image-generators.html">sources/2026-04-14-domain-expansion-image-generators</a> — CVPR 2023；图像生成器的领域扩展。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-wavelet-diffusion-models.html">sources/2026-04-14-wavelet-diffusion-models</a> — CVPR 2023；快速且可扩展的 wavelet diffusion 图像生成器。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-commoncanvas.html">sources/2026-04-14-commoncanvas</a> — CVPR 2024；在 Creative Commons 图像上训练的开放扩散模型。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-concept-weaver.html">sources/2026-04-14-concept-weaver</a> — CVPR 2024；面向文本到图像模型的多概念融合。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-codi.html">sources/2026-04-14-codi</a> — CVPR 2024；用条件扩散蒸馏实现更高保真且更快的图像生成。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-conform.html">sources/2026-04-14-conform</a> — CVPR 2024；用对比式训练提升高保真文本到图像扩散模型。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-check-locate-rectify.html">sources/2026-04-14-check-locate-rectify</a> — CVPR 2024；文本到图像生成的训练免费布局校准系统。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-customization-assistant.html">sources/2026-04-14-customization-assistant</a> — CVPR 2024；面向文本到图像生成的定制辅助系统。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-attention-calibration-personalization.html">sources/2026-04-14-attention-calibration-personalization</a> — CVPR 2024；解耦式文本到图像个性化的注意力校准。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-condition-aware-neural-network.html">sources/2026-04-14-condition-aware-neural-network</a> — CVPR 2024；面向可控图像生成的条件感知网络。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-contrastive-denoising-score.html">sources/2026-04-14-contrastive-denoising-score</a> — CVPR 2024；用对比去噪评分改进文本引导潜扩散图像编辑。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-14-cosmicman.html">sources/2026-04-14-cosmicman</a> — CVPR 2024；面向人物的文本到图像基础模型。</li>
-</ul>
-<ul>
-<li><a class="wikilink" href="../en/sources/2026-04-15-all-are-worth-words.html">sources/2026-04-15-all-are-worth-words</a> — CVPR 2023；用 U-ViT 证明 ViT 可以直接成为扩散模型主干。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-15-scalable-diffusion-models-with-transformers.html">sources/2026-04-15-scalable-diffusion-models-with-transformers</a> — ICCV 2023；正式提出 DiT，并把 Transformer 主干的 scaling 优势坐实为主线证据。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-15-act-diffusion.html">sources/2026-04-15-act-diffusion</a> — CVPR 2024；用对抗一致性训练降低一步扩散的训练资源门槛。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-15-analyzing-training-dynamics-diffusion-models.html">sources/2026-04-15-analyzing-training-dynamics-diffusion-models</a> — CVPR 2024；通过校正训练动力学提升扩散模型质量上限。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-15-deepcache.html">sources/2026-04-15-deepcache</a> — CVPR 2024；通过缓存相邻去噪步特征做训练免费的扩散加速。</li>
-</ul>
-<ul>
-<li><a class="wikilink" href="../en/sources/2026-04-15-freeu.html">sources/2026-04-15-freeu</a> — CVPR 2024；通过重加权 U-Net 主干与跳连，在不重训的前提下提升扩散质量。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">sources/2026-04-15-distilling-ode-solvers-diffusion-models</a> — CVPR 2024；把扩散 ODE 求解器蒸馏到更少步数版本。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-16-on-distillation-of-guided-diffusion-models.html">sources/2026-04-16-on-distillation-of-guided-diffusion-models</a> — CVPR 2023；把 classifier-free guidance 与 progressive distillation 接到一起，推动极少步扩散采样。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-16-blended-diffusion.html">sources/2026-04-16-blended-diffusion</a> — CVPR 2022；把文本驱动自然图像编辑更早地接进 diffusion 生成过程。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-16-diffusion-autoencoders.html">sources/2026-04-16-diffusion-autoencoders</a> — CVPR 2022；为 diffusion 提供更可解释、可解码的语义表示层。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-16-high-fidelity-guided-image-synthesis.html">sources/2026-04-16-high-fidelity-guided-image-synthesis</a> — CVPR 2023；把 latent diffusion 上的 guidance 质量推进到更高保真。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-16-diffusionclip.html">sources/2026-04-16-diffusionclip</a> — CVPR 2022；把文本引导图像操控更早接到 diffusion 路线里。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-16-plug-and-play-diffusion-features.html">sources/2026-04-16-plug-and-play-diffusion-features</a> — CVPR 2023；把 diffusion feature 直接变成文本驱动图像翻译接口。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-16-edict-exact-diffusion-inversion.html">sources/2026-04-16-edict-exact-diffusion-inversion</a> — CVPR 2023；把精确 diffusion inversion 变成真实图像编辑的关键接口。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-16-bbdm-brownian-bridge-diffusion.html">sources/2026-04-16-bbdm-brownian-bridge-diffusion</a> — CVPR 2023；把 Brownian Bridge diffusion 接成图像到图像翻译主线。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-16-come-closer-diffuse-faster.html">sources/2026-04-16-come-closer-diffuse-faster</a> — CVPR 2022；用随机收缩把条件扩散的采样路径压得更短。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-16-rethinking-spatial-inconsistency-cfg.html">sources/2026-04-16-rethinking-spatial-inconsistency-cfg</a> — CVPR 2024；把 CFG 的空间不一致问题拉到前台。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-16-sana-sprint.html">sources/2026-04-16-sana-sprint</a> — ICCV 2025；用连续时间一致性蒸馏把一步扩散再往前推。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-16-accelerating-dit-gradient-cache.html">sources/2026-04-16-accelerating-dit-gradient-cache</a> — ICCV 2025；用梯度优化缓存继续压缩 DiT 推理成本。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-16-distilling-parallel-gradients-ode-solvers.html">sources/2026-04-16-distilling-parallel-gradients-ode-solvers</a> — ICCV 2025；把并行梯度蒸馏接进快速 ODE solver 路线。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-16-text-embedding-quantization-diffusion.html">sources/2026-04-16-text-embedding-quantization-diffusion</a> — ICCV 2025；把文本嵌入直接拉进 text-guided diffusion 量化链路。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-16-post-training-quantization-on-diffusion-models.html">sources/2026-04-16-post-training-quantization-on-diffusion-models</a> — CVPR 2023；把扩散模型推到 training-free 的 8-bit 量化部署，补上单步网络成本压缩路线。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-16-towards-practical-plug-and-play-diffusion-models.html">sources/2026-04-16-towards-practical-plug-and-play-diffusion-models</a> — CVPR 2023；把多专家 guidance、参数高效微调和 data-free transfer 组合成可插拔 diffusion 控制框架。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-16-self-guided-diffusion-models.html">sources/2026-04-16-self-guided-diffusion-models</a> — CVPR 2023；用自监督信号代替人工标签，为 diffusion 提供多粒度 guidance。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-16-controlnet.html">sources/2026-04-16-controlnet</a> — ICCV 2023；用冻结主干 + zero-conv 侧支把空间条件控制做成 diffusion 的通用接口。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-16-a-star.html">sources/2026-04-16-a-star</a> — ICCV 2023；在测试时直接约束 cross-attention，减少多概念生成里的冲突与遗忘。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-16-boxdiff.html">sources/2026-04-16-boxdiff</a> — ICCV 2023；把 box / scribble 空间约束直接塞进采样期 guidance，不用额外训练。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-16-dense-text-attention-modulation.html">sources/2026-04-16-dense-text-attention-modulation</a> — ICCV 2023；用训练免费的 attention modulation 把 dense caption 与布局控制接进 diffusion。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-16-prompt-to-prompt.html">sources/2026-04-16-prompt-to-prompt</a> — arXiv 2022；把 cross-attention 直接变成文本编辑控制面板。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-16-attend-and-excite.html">sources/2026-04-16-attend-and-excite</a> — SIGGRAPH 2023；在推理时主动修复 diffusion 的语义遗漏与主体漏生。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-16-multidiffusion.html">sources/2026-04-16-multidiffusion</a> — arXiv 2023；把多条 diffusion 轨迹融合成统一的受控生成框架。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-16-dlt-layout-transformer.html">sources/2026-04-16-dlt-layout-transformer</a> — ICCV 2023；把 layout generation 做成离散-连续联合 diffusion。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-16-self-correcting-llm-controlled-diffusion-models.html">sources/2026-04-16-self-correcting-llm-controlled-diffusion-models</a> — CVPR 2024；把 diffusion 生成改成 LLM 驱动的闭环自纠错系统。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-16-c3net.html">sources/2026-04-16-c3net</a> — CVPR 2024；把 ControlNet 推进到多模态复合条件接口。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-16-layoutdiffusion-graphic-layout-generation.html">sources/2026-04-16-layoutdiffusion-graphic-layout-generation</a> — ICCV 2023；把 graphic layout generation 做成离散 diffusion 的标准接口。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-16-dc-controlnet.html">sources/2026-04-16-dc-controlnet</a> — ICCV 2025；把多元素条件控制拆成 inter-element / intra-element 两层接口。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-23-sportmamba.html">sources/2026-04-23-sportmamba</a> — CVPR Workshop 2025 / arXiv；用 Mamba-attention 与高度自适应关联度量处理团队运动中的非线性多目标跟踪。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-24-sportsmot.html">sources/2026-04-24-sportsmot</a> — ICCV 2023；多运动场景下的大规模球员 MOT 数据集，是 SportsMOT 的原始基准论文。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-24-sportshhi.html">sources/2026-04-24-sportshhi</a> — CVPR 2024；体育视频中高层人-人交互检测数据集，把理解粒度从 tracking 推向 interaction。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-24-teamtrack.html">sources/2026-04-24-teamtrack</a> — CVPR Workshop 2024；全场视角多运动 MOT 数据集，补强 full-pitch tracking 与空间理解。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-24-transportmer.html">sources/2026-04-24-transportmer</a> — ACCV 2024 / arXiv；统一预测、补全、球推断和比赛状态分类的多智能体轨迹理解框架。</li>
-<li>体育机器视觉文献清单 — - <a class="wikilink" href="../en/sources/2026-04-25-finegym.html">sources/2026-04-25-finegym</a> — CVPR 2020；层级细粒度体育动作理解数据集，是体育动作语义结构的早期锚点。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-multisports.html">sources/2026-04-25-multisports</a> — ICCV 2021；多人、多运动、时空动作定位数据集，补上体育 AI 的 action localization 层。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-finediving.html">sources/2026-04-25-finediving</a> — CVPR 2022；过程感知动作质量评估数据集，连接技术动作评分和可解释训练反馈。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-logo-group-action-quality.html">sources/2026-04-25-logo-group-action-quality</a> — CVPR 2023；长视频群体动作质量评估数据集，补上团队/群体表现评价证据。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-tacticai.html">sources/2026-04-25-tacticai</a> — Nature Communications 2024；足球角球战术 AI 助手，把体育 AI 推到专家评估和战术建议。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-soccernet-game-state-reconstruction.html">sources/2026-04-25-soccernet-game-state-reconstruction</a> — CVPR Workshop 2024；足球比赛状态重建，统一追踪、身份识别、号码识别与俯视图坐标。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-finesports.html">sources/2026-04-25-finesports</a> — CVPR 2024；多人层级细粒度篮球动作数据，连接动作理解与团队运动场景。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-athletepose3d.html">sources/2026-04-25-athletepose3d</a> — CVPR Workshop 2025；真实竞技动作 3D 姿态与生物力学数据集，补上姿态/训练反馈证据。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-universal-soccer-video-understanding.html">sources/2026-04-25-universal-soccer-video-understanding</a> — CVPR 2025；统一足球视频理解方向，连接事件、视频和文本语义。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-tracknetv3.html">sources/2026-04-25-tracknetv3</a> — technical report；羽毛球高速小目标轨迹追踪，补上球/器械 tracking 难点。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-wear-outdoor-sports-dataset.html">sources/2026-04-25-wear-outdoor-sports-dataset</a> — arXiv 2023；WEAR 提供户外运动中的第一视角视频与可穿戴传感器数据，用来研究视频、IMU 与活动识别的多模态融合。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-soccernet-action-spotting.html">sources/2026-04-25-soccernet-action-spotting</a> — SoccerNet official task；SoccerNet action spotting 是足球视频事件定位的核心公开任务入口。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-sportscap.html">sources/2026-04-25-sportscap</a> — arXiv 2021；SportsCap 研究单目体育视频中的 3D 人体运动捕捉和细粒度动作理解。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-automated-offside-detection.html">sources/2026-04-25-automated-offside-detection</a> — ACM MM Workshop 2021；这项工作把足球越位判定转成时空视频分析问题，强调规则、时刻同步和几何位置。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-opencap.html">sources/2026-04-25-opencap</a> — PLOS Computational Biology / PMC 2023；OpenCap 用智能手机视频估计人体运动学与动力学，降低实验室级运动捕捉门槛。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-temporal-parsing-transformer-aqa.html">sources/2026-04-25-temporal-parsing-transformer-aqa</a> — ECCV 2022；Temporal Parsing Transformer 把动作质量评估拆成时序解析问题，在打分类体育动作中强调过程结构。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-timesformer.html">sources/2026-04-25-timesformer</a> — ICML 2021；TimeSformer 用纯 attention 结构建模视频时空关系，是视频 Transformer 路线的重要基础。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-st-gcn.html">sources/2026-04-25-st-gcn</a> — AAAI 2018 / arXiv；ST-GCN 用时空图卷积建模骨架动作，是姿态驱动动作识别的经典基线。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-videomae.html">sources/2026-04-25-videomae</a> — NeurIPS 2022 / arXiv；VideoMAE 用 masked autoencoding 做视频自监督预训练，强调数据效率。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-sportsmot-dataset-page.html">sources/2026-04-25-sportsmot-dataset-page</a> — DeeperAction dataset page；SportsMOT 官方数据页记录数据下载、许可和基准说明。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-finediving-repository.html">sources/2026-04-25-finediving-repository</a> — GitHub repository；FineDiving 仓库提供数据集与代码入口。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-athleticspose.html">sources/2026-04-25-athleticspose</a> — arXiv 2025；AthleticsPose 聚焦真实田径动作中的 3D 姿态估计与泛化评估。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-sports-ai-review-2025.html">sources/2026-04-25-sports-ai-review-2025</a> — Artificial Intelligence Review 2025；这篇综述讨论体育视觉、分析和 AI 系统的发展趋势。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-ap-nfl-hawkeye-first-down.html">sources/2026-04-25-ap-nfl-hawkeye-first-down</a> — Associated Press 2025；AP 报道 NFL 引入基于 Hawk-Eye 的首攻测量技术。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-mmaction2.html">sources/2026-04-25-mmaction2</a> — GitHub repository；MMAction2 是 OpenMMLab 视频理解工具箱，支持动作识别、检测和骨架动作等任务。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-reuters-premier-league-semi-automated-offside.html">sources/2026-04-25-reuters-premier-league-semi-automated-offside</a> — Reuters 2025；Reuters 报道英超启用半自动越位技术。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-genius-sports-second-spectrum.html">sources/2026-04-25-genius-sports-second-spectrum</a> — Company newsroom；Genius Sports 收购 Second Spectrum 的公告展示了光学追踪、联赛数据和媒体可视化的商业链路。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-catapult-athlete-monitoring.html">sources/2026-04-25-catapult-athlete-monitoring</a> — Company product page；Catapult athlete monitoring 页面展示运动员负荷、训练监测和多模态数据产品。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-kinexon-player-tracking.html">sources/2026-04-25-kinexon-player-tracking</a> — Company product page；KINEXON player tracking 页面展示 UWB/GPS/LPS 球员追踪系统。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-homecourt.html">sources/2026-04-25-homecourt</a> — Product page；HomeCourt 代表手机相机驱动的消费级训练反馈应用。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-openpose.html">sources/2026-04-25-openpose</a> — GitHub repository；OpenPose 是早期多人 2D 关键点检测工具。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-mmpose.html">sources/2026-04-25-mmpose</a> — GitHub repository；MMPose 提供 2D/3D 姿态估计工具链，RTMPose 强调实时部署。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-mediapipe-pose.html">sources/2026-04-25-mediapipe-pose</a> — Google AI Edge documentation；MediaPipe Pose / BlazePose 提供移动端友好的 3D landmarks 姿态估计。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-deeplabcut.html">sources/2026-04-25-deeplabcut</a> — GitHub repository；DeepLabCut 是少量标注即可训练的无标记关键点追踪工具。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-25-nist-ai-risk-management-framework.html">sources/2026-04-25-nist-ai-risk-management-framework</a> — NIST；NIST AI RMF 提供 AI 风险管理框架。</li>
-<li><a class="wikilink" href="../en/sources/2026-05-05-human-in-loop-team-sports-retrieval.html">sources/2026-05-05-human-in-loop-team-sports-retrieval</a> — arXiv 2026；团队运动视频检索的人机闭环适配样本，补强 coach-assist 和人工复核工作流。</li>
-<li><a class="wikilink" href="../en/sources/2026-05-05-finecausal-action-quality-assessment.html">sources/2026-05-05-finecausal-action-quality-assessment</a> — arXiv 2025；可解释细粒度动作质量评估，把体育训练反馈推进到因果解释层。</li>
-<li><a class="wikilink" href="../en/sources/2026-05-05-ai-driven-soccer-analysis.html">sources/2026-05-05-ai-driven-soccer-analysis</a> — arXiv 2026；足球视频分析系统样本，补强端到端 soccer analysis pipeline。</li>
-<li><a class="wikilink" href="../en/sources/2026-05-05-soccernet-v2-holistic-understanding.html">sources/2026-05-05-soccernet-v2-holistic-understanding</a> — arXiv 2020；SoccerNet-v2 广播足球视频整体理解基准，补强足球公开数据生态。</li>
-<li><a class="wikilink" href="../en/sources/2026-05-05-soccernet-v2-camera-calibration-player-localization.html">sources/2026-05-05-soccernet-v2-camera-calibration-player-localization</a> — arXiv 2021；把足球场标定与球员定位接成 full-pitch understanding 的关键桥。</li>
-<li><a class="wikilink" href="../en/sources/2026-05-05-active-learning-action-spotting-football.html">sources/2026-05-05-active-learning-action-spotting-football</a> — CVPR Workshop 2023；足球事件定位的主动学习低标注路线。</li>
-<li><a class="wikilink" href="../en/sources/2026-05-05-soccernet-2022-challenges-results.html">sources/2026-05-05-soccernet-2022-challenges-results</a> — arXiv 2022；SoccerNet 2022 多任务挑战结果，补足球视频理解评测生态前史。</li>
-<li><a class="wikilink" href="../en/sources/2026-05-05-soccernet-2023-challenges-results.html">sources/2026-05-05-soccernet-2023-challenges-results</a> — arXiv 2023；SoccerNet 2023 多任务挑战结果，连接 action spotting、tracking 与公开 leaderboard。</li>
-<li><a class="wikilink" href="../en/sources/2026-05-05-soccernet-2023-tracking-mot4mot.html">sources/2026-05-05-soccernet-2023-tracking-mot4mot</a> — arXiv 2023；SoccerNet tracking challenge 团队报告，补球员轨迹系统工程样本。</li>
-<li><a class="wikilink" href="../en/sources/2026-05-05-event2tracking.html">sources/2026-05-05-event2tracking</a> — AAAI 2025；用长时多模态上下文和 event data 重建足球多智能体轨迹，补上 trajectory-event semantics 关键桥。</li>
-<li><a class="wikilink" href="../en/sources/2026-05-05-x-vars-explainable-football-refereeing.html">sources/2026-05-05-x-vars-explainable-football-refereeing</a> — CVPR Workshop 2024；可解释足球 VAR / referee assistant，把视频证据、规则和判罚解释接起来。</li>
-<li><a class="wikilink" href="../en/sources/2026-05-05-refereebench-multi-sport-referees.html">sources/2026-05-05-refereebench-multi-sport-referees</a> — arXiv 2026；多运动项目裁判能力 benchmark，测试 Video MLLM 的规则化判罚推理。</li>
-<li><a class="wikilink" href="../en/sources/2026-05-05-sports-qa-video-question-answering.html">sources/2026-05-05-sports-qa-video-question-answering</a> — IJCV 2026；复杂专业体育 VideoQA benchmark，补 sports MLLM reasoning 基础层。</li>
-<li><a class="wikilink" href="../en/sources/2026-05-05-tracknet-high-speed-tiny-objects.html">sources/2026-05-05-tracknet-high-speed-tiny-objects</a> — AVSS 2019 / arXiv；TrackNet 原始高速小目标追踪网络，建立球类小目标 heatmap tracking 基线。</li>
-<li><a class="wikilink" href="../en/sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking.html">sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking</a> — ICPAI 2020；TrackNetV2 针对羽毛球 shuttle tracking 优化效率、显存和精度。</li>
-<li><a class="wikilink" href="../en/sources/2026-05-05-monotrack-shuttle-trajectory-reconstruction.html">sources/2026-05-05-monotrack-shuttle-trajectory-reconstruction</a> — CVPR Workshop 2022；从单目羽毛球视频恢复 3D shuttle trajectory。</li>
-<li><a class="wikilink" href="../en/sources/2026-05-05-tracknetv4-motion-attention-maps.html">sources/2026-05-05-tracknetv4-motion-attention-maps</a> — ICASSP 2025 / arXiv；用 motion attention maps 增强 TrackNet 系列的快速小目标追踪。</li>
-<li><a class="wikilink" href="../en/sources/2026-05-12-trackmae.html">sources/2026-05-12-trackmae</a> — arXiv；CVPR 2026 accepted claim pending official proceedings；把 point-tracking 轨迹加入 masked video modeling，补强体育动作识别的 motion-aware 表征底座。</li>
-<li><a class="wikilink" href="../en/sources/2026-05-12-videoauto-r1.html">sources/2026-05-12-videoauto-r1</a> — arXiv；CVPR 2026 accepted claim pending official proceedings；用 confidence-based early exit 做按需视频推理，适合作为动作纠正的解释策略。</li>
-<li><a class="wikilink" href="../en/sources/2026-05-16-bst-badminton-stroke-type-transformer.html">sources/2026-05-16-bst-badminton-stroke-type-transformer</a> — arXiv；CVPRW 2026 / CVSports accepted claim pending official proceedings；把羽毛球视频理解从 TrackNet/MonoTrack 球路追踪推进到骨架动作识别和 stroke-type classification，并追溯 TemPose、ShuttleSet、BlockGCN、SkateFormer、ProtoGCN 等 related work。</li>
-<li><a class="wikilink" href="../en/sources/2026-05-16-shuttleset-stroke-level-badminton-dataset.html">sources/2026-05-16-shuttleset-stroke-level-badminton-dataset</a> — KDD 2023；羽毛球单打 stroke-level 数据集，提供 shot type、hit frame、击球位置和双方球员位置标注。</li>
-<li><a class="wikilink" href="../en/sources/2026-05-16-tempose-badminton-fine-grained-motion.html">sources/2026-05-16-tempose-badminton-fine-grained-motion</a> — CVPR Workshop 2023；用 skeleton Transformer 做羽毛球细粒度动作识别，并接入 shuttle position。</li>
-<li><a class="wikilink" href="../en/sources/2026-05-16-protogcn-skeleton-action-recognition.html">sources/2026-05-16-protogcn-skeleton-action-recognition</a> — CVPR 2025；用 motion prototypes 强化骨架动作识别中的局部细节差异判别。</li>
-<li><a class="wikilink" href="../en/sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition.html">sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition</a> — CVPR 2024；重新编码骨架拓扑，减少 GCN 中 bone connectivity 信息衰减。</li>
-<li><a class="wikilink" href="../en/sources/2026-05-16-skateformer-skeletal-temporal-transformer.html">sources/2026-05-16-skateformer-skeletal-temporal-transformer</a> — ECCV 2024；用 skeletal-temporal partition attention 高效建模关键关节和关键帧。</li>
-<li><a class="wikilink" href="../en/sources/2026-05-17-badmintondb-player-specific-match-analysis.html">sources/2026-05-17-badmintondb-player-specific-match-analysis</a> — ACM MMSports 2022；面向 player-specific match analysis / prediction 的羽毛球数据集，是 BST 跨数据集评估和 stroke taxonomy 扩展的重要参照。</li>
-<li><a class="wikilink" href="../en/sources/2026-05-17-structured-analysis-broadcast-badminton-videos.html">sources/2026-05-17-structured-analysis-broadcast-badminton-videos</a> — WACV 2018；广播羽毛球视频结构化分析早期系统，把 point segmentation、player tracking / identification 和 stroke annotation 连成 pipeline。</li>
-<li><a class="wikilink" href="../en/sources/2026-05-17-multisensebadminton-biomechanical-dataset.html">sources/2026-05-17-multisensebadminton-biomechanical-dataset</a> — Scientific Data 2024；多传感器羽毛球挥拍数据集，覆盖眼动、身体追踪、肌电、足压、视频、落点与技能水平，是训练反馈 demo 的高质量数据形态参照。</li>
-<li><a class="wikilink" href="../en/sources/2026-05-23-soccernet-tracking.html">sources/2026-05-23-soccernet-tracking</a> — CVPR Workshop 2022；足球球员、裁判和球的多目标跟踪数据集与 benchmark，是 SoccerNet-GSR 的底层 tracking substrate。</li>
-<li><a class="wikilink" href="../en/sources/2026-05-23-vars-automated-soccer-decision-making.html">sources/2026-05-23-vars-automated-soccer-decision-making</a> — CVPR Workshop 2023；多视角足球 VAR / foul recognition 系统，提出 SoccerNet-MVFoul 并补上 X-VARS 之前的判罚工作流锚点。</li>
-<li><a class="wikilink" href="../en/sources/2026-05-23-broadcast2pitch-game-state-reconstruction.html">sources/2026-05-23-broadcast2pitch-game-state-reconstruction</a> — WACV 2026；从非受控足球转播视频重建 pitch-space game state，是 SoccerNet-GSR 的直接 follow-up。</li>
-<li><a class="wikilink" href="../en/sources/2026-05-23-pathcrf-soccer-event-detection.html">sources/2026-05-23-pathcrf-soccer-event-detection</a> — arXiv 2026；从 player trajectories 推断 possession path，用控球路径变化识别足球事件。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html">sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps</a> — CVPR 2024；用优化时间步替代均匀步长，提高少步采样表现。</li>
-<li><a class="wikilink" href="../en/sources/2026-04-15-diffusion-models-without-attention.html">sources/2026-04-15-diffusion-models-without-attention</a> — CVPR 2024；用 state space 主干给出非 DiT 的高分辨率扩散路线。</li>
-</ul>
-<h2 id="实体页">实体页</h2>
-<ul>
-<li><a class="wikilink" href="../en/entities/diffusion-transformer.html">entities/diffusion-transformer</a> — 图像与视频生成论文中反复出现的 DiT 主干架构族。</li>
-<li><a class="wikilink" href="../en/entities/sportsmot.html">entities/sportsmot</a> — 团队运动多目标跟踪数据集，把体育视频中的时序理解与目标关联补成具体证据锚点。</li>
-<li><a class="wikilink" href="../en/entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a> — 将图像生成和编辑放进同一框架的方法家族。</li>
-<li><a class="wikilink" href="../en/entities/video-editing-understanding.html">entities/video-editing-understanding</a> — 用于衡量视频编辑操作理解与结果判断能力的评测方向。</li>
-</ul>
-<h2 id="判断页">判断页</h2>
-<ul>
-<li><a class="wikilink" href="../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">claims/claim-current-models-still-struggle-to-understand-video-editing</a> — 当前视频语言模型在“理解视频编辑”这件事上仍然偏弱。</li>
-<li><a class="wikilink" href="../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">claims/claim-dit-is-becoming-the-default-scalable-generation-backbone</a> — DiT 正在成为可扩展生成模型的通用主干。</li>
-<li><a class="wikilink" href="../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">claims/claim-unified-models-may-outcompete-specialized-image-pipelines</a> — 统一的生成-编辑模型长期可能优于专用流水线。</li>
-</ul>
-<h2 id="问题页">问题页</h2>
-<ul>
-<li><a class="wikilink" href="../en/questions/question-data-vs-architecture-in-image-editing.html">questions/question-data-vs-architecture-in-image-editing</a> — 图像编辑进步究竟主要来自数据扩展还是架构升级。</li>
-<li><a class="wikilink" href="../en/questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a> — 统一图像生成编辑模型能否持续压过专用流水线。</li>
-<li><a class="wikilink" href="../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a> — 现有评测是否真的刻画了视频编辑理解能力。</li>
-<li><a class="wikilink" href="../en/questions/question-badminton-stroke-correction-demo.html">questions/question-badminton-stroke-correction-demo</a> — 羽毛球挥拍动作纠正 demo 的最小任务定义、错误模式和反馈输出格式。</li>
-</ul>
-<h2 id="模板">模板</h2>
-<ul>
-<li><a class="wikilink missing" href="#missing-templates/source-note-template">templates/source-note-template</a> — 结构化 source note 模板。</li>
-<li><a class="wikilink missing" href="#missing-templates/topic-template">templates/topic-template</a> — topic 综合页模板。</li>
-<li><a class="wikilink missing" href="#missing-templates/entity-template">templates/entity-template</a> — 模型、数据集、实验室等实体页模板。</li>
-<li><a class="wikilink missing" href="#missing-templates/claim-template">templates/claim-template</a> — 待验证或存在争议的 claim 页模板。</li>
-<li><a class="wikilink missing" href="#missing-templates/question-template">templates/question-template</a> — 开放研究问题页模板。</li>
-<li><a class="wikilink missing" href="#missing-templates/raw-meta-template">templates/raw-meta-template</a> — raw ingest 元数据模板。</li>
-<li><a class="wikilink missing" href="#missing-templates/raw-links-template">templates/raw-links-template</a> — primary / secondary 链接模板。</li>
-</ul>
-<h2 id="工具">工具</h2>
-<ul>
-<li><code>scripts/lint_wiki.py</code> — 用于检查 frontmatter、标签、索引覆盖、链接和 raw 链接一致性的首轮 lint 脚本。</li>
-<li><a class="wikilink missing" href="#missing-docs/linting">docs/linting</a> — 本地 lint 工作流说明，包含默认命令、<code>--strict / --quiet / --json</code> 模式、severity 解释与建议动作摘要的用法。</li>
-<li><a class="wikilink missing" href="#missing-docs/tools/paper-search-cli-bridge">docs/tools/paper-search-cli-bridge</a> — paper-search-cli 的 llmwiki wrapper，用于论文发现、metadata enrichment 和 raw ingest 草稿生成。</li>
-</ul></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
-  &quot;title&quot;: &quot;索引&quot;,
-  &quot;title_en&quot;: &quot;Index&quot;,
-  &quot;summary&quot;: &quot;视觉生成、视频理解与体育 AI 研究 wiki 的总入口。&quot;,
-  &quot;summary_en&quot;: &quot;Entry point for the generative vision, video understanding, and sports AI research wiki.&quot;,
-  &quot;updated&quot;: &quot;2026-05-23&quot;,
-  &quot;tags&quot;: [
-    &quot;near-cvpr-2025&quot;
-  ]
-}</pre></section>
+      <div class="article-layout">
+        
+        <section class="article-content">
+<h1>Welcome to LLMWIKI</h1>
+<p class="lead">A Chinese-first research encyclopedia with an English navigation layer, compiled from Markdown files by Hermes.</p>
+<p class="portal-actions"><a href="../en/catalog.html">Full paper catalog</a></p>
+<div class="portal-stats">
+  <div class="portal-stat"><strong>233</strong><span>pages</span></div>
+  <div class="portal-stat"><strong>12</strong><span>topics</span></div>
+  <div class="portal-stat"><strong>208</strong><span>source notes</span></div>
+</div>
+<div class="portal-grid">
+  <section class="portal-panel feature"><h2>Featured route</h2><p>Start with Sports AI Video Understanding, then move through Video Understanding and the source notes that anchor each claim. <a href="../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a> → <a href="../en/topics/video-understanding.html">Video Understanding</a></p></section>
+  <section class="portal-panel"><h2>Browse by topic</h2><ul><li><a href="../en/topics/vision-backbones.html">Mainstream Vision Backbones</a></li><li><a href="../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li><li><a href="../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li><li><a href="../en/topics/video-understanding.html">Video Understanding</a></li><li><a href="../en/topics/image-generation.html">图像生成</a></li><li><a href="../en/topics/image-editing.html">图像编辑</a></li><li><a href="../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li><li><a href="../en/topics/diffusion-models.html">扩散模型</a></li><li><a href="../en/topics/generative-model-evaluation.html">生成模型评测</a></li><li><a href="../en/topics/vision-language.html">视觉-语言</a></li><li><a href="../en/topics/video-generation.html">视频生成</a></li><li><a href="../en/topics/video-editing.html">视频编辑</a></li></ul></section>
+  <section class="portal-panel wide"><h2>Recently updated</h2><ul><li><a href="../en/index.html">Index</a><small>2026-07-13</small></li><li><a href="../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a><small>2026-07-12</small></li><li><a href="../en/topics/diffusion-models.html">扩散模型</a><small>2026-07-12</small></li><li><a href="../en/topics/generative-model-evaluation.html">生成模型评测</a><small>2026-07-12</small></li><li><a href="../en/topics/image-editing.html">图像编辑</a><small>2026-07-12</small></li><li><a href="../en/topics/image-generation.html">图像生成</a><small>2026-07-12</small></li><li><a href="../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a><small>2026-07-12</small></li><li><a href="../en/topics/video-editing.html">视频编辑</a><small>2026-07-12</small></li><li><a href="../en/topics/video-generation.html">视频生成</a><small>2026-07-12</small></li><li><a href="../en/topics/video-understanding.html">Video Understanding</a><small>2026-07-12</small></li><li><a href="../en/sources/2026-04-12-align-a-video.html">Align-A-Video：面向一致视频编辑的确定性奖励调优</a><small>2026-07-12</small></li><li><a href="../en/sources/2026-04-12-fade.html">FADE：面向视频编辑的频率感知扩散模型分解</a><small>2026-07-12</small></li></ul></section>
+</div>
+</section>
+      </div>
+      
+      
+      
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{}</pre></details>
     </article>
   </main>
 </body>

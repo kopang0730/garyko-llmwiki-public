@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Imagen Editor 与 EditBench：推进并评测文本引导图像修补">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>Imagen Editor 与 EditBench：推进并评测文本引导图像修补 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-imagen-editor-editbench&quot;, &quot;title&quot;: &quot;Imagen Editor 与 EditBench（CVPR 2023）：推进并评测文本引导图像修补&quot;, &quot;title_en&quot;: &quot;Imagen Editor 与 EditBench（CVPR 2023）：推进并评测文本引导图像修补&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-imagen-editor-editbench&quot;, &quot;title&quot;: &quot;Imagen Editor 与 EditBench（CVPR 2023）：推进并评测文本引导图像修补&quot;, &quot;title_en&quot;: &quot;Imagen Editor 与 EditBench（CVPR 2023）：推进并评测文本引导图像修补&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,34 +60,88 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-imagen-editor-editbench.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-imagen-editor-editbench.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Imagen Editor 与 EditBench：推进并评测文本引导图像修补</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
         <h1><span class="title-main">Imagen Editor 与 EditBench</span><span class="title-subtitle">推进并评测文本引导图像修补</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2022-12-13</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2212.06909" title="https://arxiv.org/abs/2212.06909" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2212.06909</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2212.06909" title="https://arxiv.org/pdf/2212.06909" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2212.06909</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-editing">#image-editing</a><a class="tag" href="../../en/tags.html#evaluation">#evaluation</a><a class="tag" href="../../en/tags.html#benchmarking">#benchmarking</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把“编辑模型”和“编辑 benchmark”同时推进，说明图像编辑不只是方法问题，也已经进入系统化评测阶段。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>它要解决的是文本引导图像修补里两个核心问题：一是编辑结果如何既跟随文本又尽量保住原图细节；二是这类编辑能力到底应该如何稳定评测。对当前知识库来说，它同时补了 image-editing 方法线与 evaluation 评测线。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>作者在 Imagen 基础上微调出 Imagen Editor，用 object detector 产生训练时的修补 mask，并在级联扩散流程里继续保留原始高分辨率图像条件。同时提出 EditBench，用自然图像和生成图像上的对象、属性、场景编辑来系统评估文本引导图像修补。</p>
-<h2 id="关键发现">关键发现</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2022-12-13</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2212.06909" title="https://arxiv.org/abs/2212.06909" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2212.06909</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2212.06909" title="https://arxiv.org/pdf/2212.06909" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2212.06909</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#imagen-editor-接口与方法">Imagen Editor 接口与方法</a></li><li><a href="#editbench">EditBench</a></li><li><a href="#人工评测结果">人工评测结果</a></li><li><a href="#自动指标边界">自动指标边界</a></li><li><a href="#局限与证据边界">局限与证据边界</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a><ol><li class="toc-sub"><a href="#数据-vs-架构">数据 vs 架构</a></li><li class="toc-sub"><a href="#unified-generation-editing">Unified generation/editing</a></li><li class="toc-sub"><a href="#evaluation">Evaluation</a></li></ol></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始材料">原始材料</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h1 id="imagen-editor-与-editbench-文本引导局部修补与细粒度评测">Imagen Editor 与 EditBench：文本引导局部修补与细粒度评测</h1>
+<blockquote><strong>会议</strong>：CVPR 2023</blockquote>
+<blockquote><strong>全文深读</strong>：<a class="wikilink missing" href="#missing-raw/ingest/2026-04-14-imagen-editor-editbench/analysis">analysis.md</a></blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>Imagen Editor 在 Imagen 级联扩散模型上增加高分辨率图像/mask 条件，并用 object-detector masks 迫使模型依赖文本；相同架构下，object-mask training 相对 random-mask training 获得 <strong>68%</strong> text-alignment 人工偏好。EditBench 用 240 图和细粒度 object/attribute/binding 人评证明，CLIPScore 适合开发筛选，仍无法替代人类评测。</p>
+<h2 id="imagen-editor-接口与方法">Imagen Editor 接口与方法</h2>
+<p>输入为 1024×1024 图像、用户二值 mask 与文本 prompt，输出局部 inpainting 图像。</p>
 <ul>
-<li>它说明高质量图像编辑早期就已经明显依赖“训练数据/训练协议 + 编辑评测设计”的联动，而不只是推理时的小技巧。</li>
-<li>它把 EditBench 作为显式 benchmark 推上台面，说明图像编辑能力评估本身已经是独立问题。</li>
-<li>它为后续统一生成-编辑系统提供了一个重要参照：不仅要会编辑，还要能被可重复地评测。</li>
+<li>微调 Imagen 的 64×64 base 和两级 super-resolution diffusion；</li>
+<li>所有阶段接收高分辨率图像和 mask；</li>
+<li>新卷积 encoder/downsampler 参数以 0 初始化；</li>
+<li>参数化 downsampling 减少 mask-boundary artifacts；</li>
+<li>SSD MobileNet v2 产生训练 object boxes/masks；</li>
+<li>Base stage 使用 1–30 oscillating CFG。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<p>Object masks 完整遮住语义对象，使图像上下文不足以直接重建原内容，从而提高 text-conditioning 使用率。它是一套专用 editor checkpoint，mask 仍由用户提供。</p>
+<h2 id="editbench">EditBench</h2>
 <ul>
-<li>它更偏向图像修补场景，不等于覆盖全部 instruction-based image editing。</li>
-<li>评测主要围绕 text-guided inpainting，和更开放的多类型编辑任务仍有距离。</li>
-<li>它是重要锚点，但还不能回答统一模型长期一定优于专用流水线。</li>
+<li><strong>240 images</strong>；自然/合成各 50%；</li>
+<li>自然图像来自 Visual Genome/Open Images；</li>
+<li>合成图像来自 Imagen/Parti；</li>
+<li>每图一个 free-form、non-hinting mask；</li>
+<li>每组有 Mask-Simple、Mask-Rich、Full 三种 prompts；</li>
+<li>Attributes：material/color/shape/size/count；</li>
+<li>Objects：common/rare/text rendering；</li>
+<li>Scenes：indoor/outdoor/realistic/painting。</li>
 </ul>
-<h2 id="原始链接">原始链接</h2>
+<p>评测四个系统：Imagen Editor、random-mask Imagen Editor、Stable Diffusion 1.5、DALL-E 2。每个 prompt 每模型采样 4 张。</p>
+<h2 id="人工评测结果">人工评测结果</h2>
 <ul>
-<li>https://arxiv.org/abs/2212.06909</li>
-<li>https://arxiv.org/pdf/2212.06909</li>
+<li>18 名美国 annotators；</li>
+<li>11.5K single-model tasks；</li>
+<li>Mask-Simple 分开判断 object、attribute 和 binding；</li>
+<li>Mask-Rich 对三组 object-attribute pairs 做 9 个 binary judgments。</li>
+</ul>
+<p>Text-alignment side-by-side preference：</p>
+<table><thead><tr><th>比较</th><th>Imagen Editor 偏好</th></tr></thead><tbody><tr><td>vs Stable Diffusion</td><td><strong>78%</strong></td></tr><tr><td>vs DALL-E 2</td><td><strong>77%</strong></td></tr><tr><td>vs random-mask Imagen Editor</td><td><strong>68%</strong></td></tr></tbody></table>
+<p>Image-quality 差异约 0–6 个百分点。Imagen Editor 在多数单图分层中领先第二名 10–13%；对 count 的优势最小，Mask-Rich 的绝对正确率明显下降。</p>
+<p>Object-mask 与 random-mask 的比较固定主要模型架构，是数据组织改变条件使用率的直接证据。跨模型比较同时改变底座、数据、规模和实现，不能做单因素归因。</p>
+<h2 id="自动指标边界">自动指标边界</h2>
+<p>同 prompt pairwise agreement：</p>
+<table><thead><tr><th>Prompt/crop</th><th>T2I CLIP</th><th>I2I</th><th>T2I+I2I</th><th>R-Prec</th><th>Random</th></tr></thead><tbody><tr><td>Full/full</td><td>70.1</td><td>58.6</td><td>66.8</td><td>53.3</td><td>50.0</td></tr><tr><td>Mask-Simple/crop</td><td><strong>76.0</strong></td><td>55.3</td><td>66.4</td><td>71.0</td><td>50.0</td></tr><tr><td>Mask-Rich/crop</td><td><strong>68.4</strong></td><td>56.4</td><td>64.1</td><td>63.3</td><td>50.0</td></tr></tbody></table>
+<p>T2I CLIPScore 是表中最有用的开发指标；四模型 winner selection agreement 约 38.5–48.1%，仍无法稳定替代人评。Reference I2I similarity 也不适合存在多种正确输出的编辑任务。</p>
+<h2 id="局限与证据边界">局限与证据边界</h2>
+<ul>
+<li>需要用户 mask，不评编辑区域发现；</li>
+<li>SSD box policy 继承类别覆盖与框偏差；</li>
+<li>Count、shape、复杂 attribute binding 仍弱；</li>
+<li>训练数据量、参数、GPU-hours、latency 未公开；</li>
+<li>240 图与 18 名美国 annotators 的覆盖有限；</li>
+<li>自然/合成各半不代表真实用户频率；</li>
+<li>Stable Diffusion/DALL-E 2 是 2022 版本快照；</li>
+<li>只覆盖局部 inpainting，不覆盖 drag、global geometry、身份编辑、视频或多轮工作流。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<h3 id="数据-vs-架构">数据 vs 架构</h3>
+<p>相同 Imagen Editor 架构下，object-mask policy 获得 68% preference。数据维度包括 mask-policy、任务难度和条件是否被迫使用；架构维度负责高分辨率条件注入与边界保真。</p>
+<h3 id="unified-generation-editing">Unified generation/editing</h3>
+<p>Imagen foundation 可通过条件 encoder 与微调扩展到 editing，支持统一底座的平台价值。独立 checkpoint 与用户 mask 又支持“统一底座 + 任务 adapter + 高精度工具”的三层系统。</p>
+<h3 id="evaluation">Evaluation</h3>
+<p>编辑 benchmark 至少需要拆分 object presence、attribute presence、attribute binding、image quality 与 automatic-human agreement。CLIPScore 可用于筛选，最终比较仍需人评。</p>
+<h2 id="证据评级">证据评级</h2>
+<ul>
+<li>Mask-guided inpainting：<strong>A-</strong></li>
+<li>Object-mask data-policy：<strong>A-</strong></li>
+<li>EditBench：<strong>B+</strong></li>
+<li>Unified model superiority：<strong>B / 平台支持</strong></li>
+<li>开放 instruction editing：<strong>C / 不直接覆盖</strong></li>
+</ul>
+<h2 id="原始材料">原始材料</h2>
+<ul>
+<li><code>raw/ingest/2026-04-14-imagen-editor-editbench/paper.pdf</code>（22 页）</li>
+<li><code>raw/ingest/2026-04-14-imagen-editor-editbench/paper-text.md</code>（738 行）</li>
+<li><code>raw/ingest/2026-04-14-imagen-editor-editbench/analysis.md</code></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
@@ -90,16 +150,19 @@
 <li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">topics/generative-model-evaluation</a></li>
 <li><a class="wikilink" href="../../en/entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a></li>
 <li><a class="wikilink" href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>Imagen Editor / EditBench 在这套库里的价值，是把图像编辑主线中的“方法推进”和“专门 benchmark 建立”接到同一历史节点上。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/questions/question-data-vs-architecture-in-image-editing.html">questions/question-data-vs-architecture-in-image-editing</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../../en/topics/image-editing.html">图像编辑</a></li><li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li></ul></div><div class="related-group related-entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li></ul></div><div class="related-group related-questions"><h3>Related questions<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li><li><a class="wikilink" href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">4</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a><span>Topic</span></li><li><a href="../../en/topics/image-editing.html">图像编辑</a><span>Topic</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-imagen-editor-editbench&quot;,
   &quot;type&quot;: &quot;source&quot;,
   &quot;title&quot;: &quot;Imagen Editor 与 EditBench（CVPR 2023）：推进并评测文本引导图像修补&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2023&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
@@ -133,6 +196,7 @@
     &quot;https://arxiv.org/pdf/2212.06909&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-imagen-editor-editbench/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-14-imagen-editor-editbench/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/image-generation&quot;,
     &quot;topics/image-editing&quot;,
@@ -143,9 +207,10 @@
   ],
   &quot;claims&quot;: [],
   &quot;questions&quot;: [
-    &quot;questions/question-will-unified-image-models-sustain-their-advantage&quot;
+    &quot;questions/question-will-unified-image-models-sustain-their-advantage&quot;,
+    &quot;questions/question-data-vs-architecture-in-image-editing&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

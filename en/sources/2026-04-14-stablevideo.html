@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>StableVideo：文本驱动且一致性感知的扩散视频编辑 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="StableVideo：用 layered atlas 稳定扩散视频外观编辑">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>StableVideo：用 layered atlas 稳定扩散视频外观编辑 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-stablevideo&quot;, &quot;title&quot;: &quot;StableVideo（ICCV 2023）：文本驱动且一致性感知的扩散视频编辑&quot;, &quot;title_en&quot;: &quot;StableVideo（ICCV 2023）：文本驱动且一致性感知的扩散视频编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;video-generation&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-stablevideo&quot;, &quot;title&quot;: &quot;StableVideo：用 layered atlas 稳定扩散视频外观编辑&quot;, &quot;title_en&quot;: &quot;StableVideo：用 layered atlas 稳定扩散视频外观编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,77 +60,109 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-stablevideo.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-stablevideo.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">StableVideo</span><span class="title-subtitle">文本驱动且一致性感知的扩散视频编辑</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>StableVideo：用 layered atlas 稳定扩散视频外观编辑</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">StableVideo</span><span class="title-subtitle">用 layered atlas 稳定扩散视频外观编辑</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2023/08/18</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2308.09592" title="https://arxiv.org/abs/2308.09592" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2308.09592</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2308.09592" title="https://arxiv.org/pdf/2308.09592" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2308.09592</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-editing">#video-editing</a><a class="tag" href="../../en/tags.html#video-generation">#video-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-editing">#video-editing</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把 consistency-aware 扩散明确推成文本驱动视频编辑的核心诉求，补强了时序一致性路线。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>它要解决的是文本驱动视频编辑常常会破坏跨帧一致性的问题。对当前知识库来说，它补的是 video-editing 主线里“编辑正确”之外的一条长期主矛盾。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>StableVideo 通过 consistency-aware diffusion 机制来做 text-driven video editing，强调在执行编辑指令的同时更好保持时序一致性。</p>
-<h2 id="关键发现">关键发现</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2023-08-18</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2308.09592" title="https://arxiv.org/abs/2308.09592" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2308.09592</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2308.09592" title="https://arxiv.org/pdf/2308.09592" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2308.09592</strong></a><a class="source-link source-link-code" href="https://github.com/wenhaochai/StableVideo" title="https://github.com/wenhaochai/StableVideo" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · StableVideo</strong></a></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#输入-输出与方法">输入、输出与方法</a></li><li><a href="#数据-指标与人评">数据、指标与人评</a></li><li><a href="#主要结果">主要结果</a></li><li><a href="#消融与成本">消融与成本</a></li><li><a href="#关键局限">关键局限</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>StableVideo 用 Neural Layered Atlas 固定跨帧几何对应，再在关键帧间传播扩散编辑并聚合回前景 atlas；它在少量 DAVIS 短视频上降低 Tune-A-Video 的时序偏差，但证据集中于单个量化案例，且一致性主要来自 atlas 映射，不是视频理解。</p>
+<h2 id="输入-输出与方法">输入、输出与方法</h2>
 <ul>
-<li>它说明视频编辑里“一致性”并不是附加优化，而是核心竞争维度。</li>
-<li>它和 RAVE、CAMEL、MotionEditor 一起，让视频编辑的时序质量主线更完整。</li>
-<li>它也帮助我们区分“运动质量”和“跨帧一致性”这两个相关但不同的目标。</li>
+<li>输入自然视频和前景/背景 prompt；输出同长度的对象外观、背景、组合或风格编辑视频。</li>
+<li>NLA 提取前景/背景 atlas、逐帧 UV 映射与 opacity；MiDaS depth 控背景，Canny/ControlNet 控前景结构。</li>
+<li>第一关键帧独立编辑；后续帧经共享 partial atlas 继承前一帧外观，再加噪/去噪补全新可见区域。</li>
+<li>两层卷积 aggregation network 将 partial atlases 合成完整前景 atlas，以关键帧重建 $L_1$ 训练。</li>
+<li>任务是 appearance/style video-to-video editing；运动与镜头来自源视频，不生成新动作，也不测语言推理。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="数据-指标与人评">数据、指标与人评</h2>
 <ul>
-<li>一致性感知方法未必自动提升更复杂编辑的可控性。</li>
-<li>它更偏扩散式时序稳定化，不代表其他架构路线。</li>
-<li>它强化了质量目标，但仍需要细粒度 benchmark 来验证。</li>
+<li>DAVIS 若干视频，每个 50–70 帧，$768\times432$；前景 atlas $2000\times2000$。论文未报告确切视频/prompt 总数。</li>
+<li>Farneback dense-flow difference 测源运动相似；CLIP 测文本；LPIPS-P/T 测源帧偏差和相邻帧偏差。</li>
+<li>论文没有正式用户研究、参与人数或偏好比例。</li>
+<li>定量集中在 <code>car-turn</code>，重复次数、标准差和置信区间未披露。</li>
 </ul>
+<h2 id="主要结果">主要结果</h2>
+<table><thead><tr><th>方法</th><th>光流差-前景 ↓</th><th>光流差-组合 ↓</th><th>CLIP ↑</th><th>LPIPS-P ↓</th><th>LPIPS-T ↓</th></tr></thead><tbody><tr><td>Text2LIVE</td><td><strong>1.99</strong></td><td><strong>7.39</strong></td><td>--</td><td>--</td><td>--</td></tr><tr><td>Tune-A-Video</td><td>4.63</td><td>12.74</td><td><strong>0.2787</strong></td><td>0.6346</td><td>0.1851</td></tr><tr><td>StableVideo</td><td>3.34</td><td>11.48</td><td>0.2713</td><td><strong>0.1613</strong></td><td><strong>0.0386</strong></td></tr></tbody></table>
+<p>StableVideo 比 Tune-A-Video 更稳定，但光流一致性不如 Text2LIVE、CLIP 略低。它的贡献是内容丰富度—一致性折中，不是所有指标最优。</p>
+<h2 id="消融与成本">消融与成本</h2>
+<ul>
+<li>直接编辑扭曲 atlas 会让 diffusion 产生畸变；关键帧编辑更稳，但只有定性证据。</li>
+<li>random/fixed-latent/sequential generation 都不如 partial-atlas inter-frame propagation，主要是定性比较。</li>
+<li>噪声强度 $t_0\approx0.8$ 是外观忠实与真实感的经验 sweet spot。</li>
+<li>DDIM 20 steps；单张 A40，正文报告约 <strong>10GB、30 秒/视频</strong>，但是否含 NLA/aggregation 前处理不清楚。</li>
+<li>aggregation network 的参数量、训练数据/步数/时间，以及 NLA 前处理时间均未报告；正文称 2D conv，图注又称 3D network。</li>
+</ul>
+<h2 id="关键局限">关键局限</h2>
+<ul>
+<li>大幅非刚性形变会使 NLA mapping 失败；人/动物也受图像扩散底座能力限制。</li>
+<li>视频短、总数不透明；无长视频、镜头切换、复杂遮挡与多实例身份测试。</li>
+<li>低 LPIPS 可能奖励“少编辑”，Farneback flow 不是动作语义或轨迹指标。</li>
+<li>无人评、统计显著性、identity/locality 或遮挡后恢复指标。</li>
+<li>“StableVideo”是 atlas 辅助 Stable Diffusion 编辑，不是 Stable Video Diffusion 模型。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li>对 <a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a>：是 atlas correspondence + image diffusion 的一致性路线。</li>
+<li>对 <a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a>：说明 frozen image prior 仍需外部几何传播器才能稳定处理视频。</li>
+<li>对 <a class="wikilink" href="../../en/entities/video-editing-understanding.html">视频编辑理解</a> 与 <a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">benchmark 问题</a>：LPIPS/flow 稳定不代表对象身份或编辑意图理解。</li>
+</ul>
+<h2 id="证据评级">证据评级</h2>
+<p><strong>C+（小规模短视频外观编辑的直接证据；对视频编辑理解为 C-/无直接推理证据）</strong>。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2308.09592</li>
-<li>https://arxiv.org/pdf/2308.09592</li>
+<li><a href="https://arxiv.org/abs/2308.09592">arXiv</a></li>
+<li><a href="https://arxiv.org/pdf/2308.09592">论文 PDF</a></li>
+<li><a href="https://github.com/wenhaochai/StableVideo">官方代码</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/video-editing.html">topics/video-editing</a></li>
-<li><a class="wikilink" href="../../en/topics/video-generation.html">topics/video-generation</a></li>
-<li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">entities/video-editing-understanding</a></li>
-<li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>StableVideo 在这套库里的作用，是把 consistency-aware 视频编辑路线补成明确节点。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+<li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有 benchmark 是否跟踪真实视频编辑理解</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li></ul></div><div class="related-group related-entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li></ul></div><div class="related-group related-questions"><h3>Related questions<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">5</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-04-14-vive3d.html">VIVE3D：多帧个性化 EG3D 的视角无关人脸视频编辑</a><span>Source note</span></li><li><a href="../../en/topics/diffusion-models.html">扩散模型</a><span>Topic</span></li><li><a href="../../en/topics/video-editing.html">视频编辑</a><span>Topic</span></li><li><a href="../../en/topics/video-generation.html">视频生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-stablevideo&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;StableVideo（ICCV 2023）：文本驱动且一致性感知的扩散视频编辑&quot;,
+  &quot;title&quot;: &quot;StableVideo：用 layered atlas 稳定扩散视频外观编辑&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;ICCV 2023&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;video-editing&quot;,
-    &quot;video-generation&quot;,
     &quot;diffusion&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;authors&quot;: [
-    &quot;Chai, Wenhao&quot;,
-    &quot;Guo, Xun&quot;,
-    &quot;Wang, Gaoang&quot;,
-    &quot;Lu, Yan&quot;
+    &quot;Wenhao Chai&quot;,
+    &quot;Xun Guo&quot;,
+    &quot;Gaoang Wang&quot;,
+    &quot;Yan Lu&quot;
   ],
-  &quot;published_at&quot;: &quot;2023/08/18&quot;,
+  &quot;published_at&quot;: &quot;2023-08-18&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2308.09592&quot;,
-    &quot;https://arxiv.org/pdf/2308.09592&quot;
+    &quot;https://arxiv.org/pdf/2308.09592&quot;,
+    &quot;https://github.com/wenhaochai/StableVideo&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-stablevideo/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-14-stablevideo/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/video-editing&quot;,
-    &quot;topics/video-generation&quot;
+    &quot;topics/diffusion-models&quot;
   ],
   &quot;entities&quot;: [
     &quot;entities/video-editing-understanding&quot;
@@ -133,7 +171,7 @@
   &quot;questions&quot;: [
     &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

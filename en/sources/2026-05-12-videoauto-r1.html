@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="VideoAuto-R1（arXiv；CVPR 2026 accepted claim pending proceedings）：按需推理的视频理解框架">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>VideoAuto-R1（arXiv；CVPR 2026 accepted claim pending proceedings）：按需推理的视频理解框架 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-12-videoauto-r1&quot;, &quot;title&quot;: &quot;VideoAuto-R1（arXiv；CVPR 2026 accepted claim pending proceedings）：按需推理的视频理解框架&quot;, &quot;title_en&quot;: &quot;VideoAuto-R1（arXiv；CVPR 2026 accepted claim pending proceedings）：按需推理的视频理解框架&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;vision-language&quot;, &quot;reasoning&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-12-videoauto-r1&quot;, &quot;title&quot;: &quot;VideoAuto-R1（arXiv；CVPR 2026 accepted claim pending proceedings）：按需推理的视频理解框架&quot;, &quot;title_en&quot;: &quot;VideoAuto-R1（arXiv；CVPR 2026 accepted claim pending proceedings）：按需推理的视频理解框架&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;vision-language&quot;, &quot;reasoning&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,36 +60,69 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-05-12-videoauto-r1.html">中文</a><a class="selected-lang" href="../../en/sources/2026-05-12-videoauto-r1.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-05-22</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>VideoAuto-R1（arXiv；CVPR 2026 accepted claim pending proceedings）：按需推理的视频理解框架</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
         <h1><span class="title-main">VideoAuto-R1（arXiv；CVPR 2026 accepted claim pending proceedings）</span><span class="title-subtitle">按需推理的视频理解框架</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>arXiv / CVPR 2026 accepted claim pending proceedings</dd></div><div class="source-fact"><dt>Published</dt><dd>2026-03-21</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-05-12</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2601.05175" title="https://arxiv.org/abs/2601.05175" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2601.05175</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2601.05175" title="https://arxiv.org/pdf/2601.05175" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2601.05175</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#vision-language">#vision-language</a><a class="tag" href="../../en/tags.html#reasoning">#reasoning</a><a class="tag" href="../../en/tags.html#efficiency">#efficiency</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>VideoAuto-R1 给体育动作纠正提供“按需解释”机制：简单感知错误直接给短反馈，复杂因果/规则问题再进入推理和复核。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>arXiv / CVPR 2026 accepted claim pending proceedings</dd></div><div class="source-fact"><dt>Published</dt><dd>2026-03-21</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-05-12</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2601.05175" title="https://arxiv.org/abs/2601.05175" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2601.05175</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2601.05175" title="https://arxiv.org/pdf/2601.05175" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2601.05175</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#核心实验与结果">核心实验与结果</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对体育-ai-子线的影响">对体育 AI 子线的影响</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始材料">原始材料</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h1 id="videoauto-r1-按需推理的视频理解框架">VideoAuto-R1：按需推理的视频理解框架</h1>
+<blockquote>会议 / 来源：arXiv preprint；CVPR 2026 accepted claim pending official proceedings</blockquote>
+<blockquote>发表日期：2026-03-21</blockquote>
+<blockquote>资料加入日期：2026-05-12</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>VideoAuto-R1 用“初始回答—推理—复核回答”训练与置信度 early exit，把语言 CoT 集中给真正困难的视频问题；Qwen2.5-VL 版本把 VideoMMMU 从 54.7% 提升到 58.6%，平均响应为 44 tokens。</p>
 <h2 id="论文定位">论文定位</h2>
-<p>这篇论文被纳入体育 AI roadmap 的“动作识别 / 动作纠正 / 可解释反馈”小批量补强。它的价值不是替代现有体育数据集，而是补上一个可复用方法层：如何学到更强运动表征，或如何把视频理解输出转成按需解释。</p>
-<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
-<p>体育训练反馈需要两种输出：高置信度的短纠正，以及低置信度或多因素错误的解释型建议。VideoAuto-R1 的 confidence-based early exit 和 answer→think→answer 训练范式，正好可以把体育动作纠正拆成“先判断哪里错，再决定是否解释为什么错”。</p>
-<h2 id="和现有证据的关系">和现有证据的关系</h2>
-<p>它可以和 <a class="wikilink" href="../../en/sources/2026-05-12-trackmae.html">sources/2026-05-12-trackmae</a> 形成上下游：TrackMAE 负责 motion-aware 表征和异常轨迹检测，VideoAuto-R1 负责把动作阶段、置信度和错误候选转成可复核解释。它也补强 <a class="wikilink" href="../../en/sources/2026-05-05-sports-qa-video-question-answering.html">sources/2026-05-05-sports-qa-video-question-answering</a>、<a class="wikilink" href="../../en/sources/2026-05-05-refereebench-multi-sport-referees.html">sources/2026-05-05-refereebench-multi-sport-referees</a> 与 <a class="wikilink" href="../../en/sources/2026-05-05-finecausal-action-quality-assessment.html">sources/2026-05-05-finecausal-action-quality-assessment</a> 的解释/推理层。</p>
-<h2 id="来源可靠性与可溯源性">来源可靠性与可溯源性</h2>
+<p>这篇论文关注视频 MLLM 的推理预算。它发现固定 CoT 在多数感知型视频问题上会增加数百 token，并可能降低精度；真正稳定受益的样本主要涉及数学、物理、符号和多步推理。论文覆盖 VideoQA、temporal grounding 与 grounding QA，体育动作纠正属于迁移应用设想。</p>
+<h2 id="方法概述">方法概述</h2>
+<ol>
+<li><strong>Answer–Think–Answer</strong>：统一输出初始短答案、<code>&lt;think&gt;</code> 推理和复核答案，困难样本允许 fallback。</li>
+<li><strong>Dual-answer GRPO</strong>：初始/复核答案权重为 0.9/1.1，加入格式奖励和 0.3 fallback bonus。</li>
+<li><strong>Confidence early exit</strong>：先解码初始答案，平均 token probability 达到阈值 0.97 时直接返回，低置信样本继续推理。</li>
+</ol>
+<p>训练使用过滤后的 83K text/image/video 样本；Qwen2.5-VL-7B 与 Qwen3-VL-8B 基座冻结视觉编码器，训练 projector 和 LLM。训练成本为 32×H100、约 35 小时。</p>
+<h2 id="核心实验与结果">核心实验与结果</h2>
 <ul>
-<li><strong>来源层级</strong>：arXiv primary paper；project repository / arXiv comments 标注 CVPR 2026 accepted claim，但 official proceedings / DOI pending。当前本地已保存用户上传 PDF 与 <code>paper-text.md</code>。可作为视频推理系统设计候选证据，尤其适合 efficiency / explanation policy，不作为 confirmed proceedings evidence 使用。</li>
-<li><strong>可溯源材料</strong>：本地保存 <code>paper.pdf</code>、<code>paper-text.md</code>、<code>abstract.md</code>、<code>links.yaml</code>。</li>
-<li><strong>使用建议</strong>：适合进入 <a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的动作纠正构想层；后续若做 demo，应再补数据集、错误模式标注和专家评估。</li>
+<li>Qwen2.5-VL：VideoMME 66.0→67.3，VideoMMMU 54.7→58.6，MVP 36.5→39.4。</li>
+<li>平均响应长度 44 tokens；MVBench think ratio 25%，VideoMMMU 51%。</li>
+<li>Charades-STA mIoU 52.9→60.0，ActivityNet 26.9→47.6，NExT-GQA accuracy/mIoU 53.3/20.2→80.6/36.7。</li>
+<li>Temporal grounding 的初始答案、复核答案和 auto 模式结果完全相同，说明语言 CoT 没有继续修正时间边界。</li>
+</ul>
+<p>依据：PDF Table 3、4、6、8、9、16；详细定位见 <code>raw/ingest/2026-05-12-videoauto-r1/analysis.md</code>。</p>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>Fixed CoT 在 VideoMME/LongVideoBench 上常与 direct answering 持平或更差。</li>
+<li>Fixed-CoT RL 响应 149 tokens，VideoAuto-R1 为 44 tokens，并在 VideoMMMU 上更高。</li>
+<li>训练期 think/no-think 分类出现 mode collapse；测试时置信度路由更稳定。</li>
+<li>VideoMMMU 初始平均置信度 0.874、think ratio 51%，获得约 +4 点；MVBench 初始置信度 0.948、think ratio 25%，只提升 0.1 点。</li>
+<li>低质量 CoT SFT 将 VideoMME/MVBench/VideoMMMU 降至 60.1/64.0/53.8。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>论文主要针对 VideoQA、temporal grounding 和 MLLM 推理效率，体育动作纠正需要额外的动作错误标签和专家反馈协议。</li>
-<li>CoT 文本解释可能听起来合理但未必 biomechanically correct，需要和姿态、轨迹、规则库或专家标注绑定。</li>
-<li>early-exit 阈值在训练反馈场景需要校准，避免高置信度错误反馈。</li>
+<li>置信度没有在训练目标中显式校准，跨领域阈值可靠性需要验证。</li>
+<li>语言 CoT 对视觉漏检和精确 temporal boundary 的修正能力有限。</li>
+<li>响应 token 下降无法代表完整系统延迟；64–2048 帧视觉编码成本仍然存在。</li>
+<li>主结果同时受 83K 数据、GRPO、dual-answer reward 和路由机制影响。</li>
+<li>体育动作纠正需要额外的姿态、轨迹、错误模式和教练反馈标注。</li>
+<li>CVPR 2026 accepted claim 等待 official proceedings 核验。</li>
+</ul>
+<h2 id="对体育-ai-子线的影响">对体育 AI 子线的影响</h2>
+<p>这篇论文支持“按需解释”机制：第一阶段输出 stroke/error 候选与置信度，高置信样本给短反馈，低置信或多因素样本进入解释和复核。它与 <a class="wikilink" href="../../en/sources/2026-05-12-trackmae.html">sources/2026-05-12-trackmae</a> 的关系属于潜在上下游组合；当前没有联合实验。</p>
+<p>对于 <a class="wikilink" href="../../en/questions/question-badminton-stroke-correction-demo.html">questions/question-badminton-stroke-correction-demo</a>，early exit 可以作为产品策略，教练标注需要同时校准答案正确性、解释正确性和误导风险。</p>
+<h2 id="证据评级">证据评级</h2>
+<ul>
+<li>视频 QA / temporal grounding：直接证据，中等偏强。</li>
+<li>按需推理的 token 效率：直接证据，中等。</li>
+<li>体育动作纠正：间接方法证据。</li>
+<li>CVPR 2026 venue：待官方 proceedings 核验。</li>
 </ul>
 <h2 id="原始材料">原始材料</h2>
 <ul>
 <li><code>raw/ingest/2026-05-12-videoauto-r1/paper.pdf</code></li>
 <li><code>raw/ingest/2026-05-12-videoauto-r1/paper-text.md</code></li>
+<li><code>raw/ingest/2026-05-12-videoauto-r1/analysis.md</code></li>
 <li><code>raw/ingest/2026-05-12-videoauto-r1/abstract.md</code></li>
 <li><code>raw/ingest/2026-05-12-videoauto-r1/links.yaml</code></li>
 </ul>
@@ -92,15 +131,20 @@
 <li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
 <li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
 <li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a></li>
-<li><a class="wikilink" href="../../en/entities/sportsmot.html">entities/sportsmot</a></li>
+<li><a class="wikilink" href="../../en/questions/question-badminton-stroke-correction-demo.html">questions/question-badminton-stroke-correction-demo</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-05-12-trackmae.html">sources/2026-05-12-trackmae</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li><li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li><li><a class="wikilink" href="../../en/topics/video-understanding.html">Video Understanding</a></li></ul></div><div class="related-group related-entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/sportsmot.html">SportsMOT</a></li></ul></div><div class="related-group related-questions"><h3>Related questions<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">5</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a><span>Question</span></li><li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a><span>Topic</span></li><li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a><span>Topic</span></li><li><a href="../../en/topics/video-understanding.html">Video Understanding</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-05-12-videoauto-r1&quot;,
   &quot;type&quot;: &quot;source&quot;,
   &quot;title&quot;: &quot;VideoAuto-R1（arXiv；CVPR 2026 accepted claim pending proceedings）：按需推理的视频理解框架&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-05-12&quot;,
-  &quot;updated&quot;: &quot;2026-05-22&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;arXiv / CVPR 2026 accepted claim pending proceedings&quot;,
   &quot;published_at&quot;: &quot;2026-03-21&quot;,
   &quot;ingested_at&quot;: &quot;2026-05-12&quot;,
@@ -153,8 +197,10 @@
     &quot;entities/sportsmot&quot;
   ],
   &quot;claims&quot;: [],
-  &quot;questions&quot;: []
-}</pre></section>
+  &quot;questions&quot;: [
+    &quot;questions/question-badminton-stroke-correction-demo&quot;
+  ]
+}</pre></details>
     </article>
   </main>
 </body>

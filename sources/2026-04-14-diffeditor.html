@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DiffEditor：提升扩散式图像编辑的精度与灵活性 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="DiffEditor：以区域采样与图像提示提升细粒度扩散编辑">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>DiffEditor：以区域采样与图像提示提升细粒度扩散编辑 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-diffeditor&quot;, &quot;title&quot;: &quot;DiffEditor（CVPR 2024）：提升扩散式图像编辑的精度与灵活性&quot;, &quot;title_en&quot;: &quot;DiffEditor（CVPR 2024）：提升扩散式图像编辑的精度与灵活性&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-diffeditor&quot;, &quot;title&quot;: &quot;DiffEditor：以区域采样与图像提示提升细粒度扩散编辑&quot;, &quot;title_en&quot;: &quot;DiffEditor：以区域采样与图像提示提升细粒度扩散编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,56 +60,84 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-14-diffeditor.html">中文</a><a class="" href="../en/sources/2026-04-14-diffeditor.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">DiffEditor</span><span class="title-subtitle">提升扩散式图像编辑的精度与灵活性</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>DiffEditor：以区域采样与图像提示提升细粒度扩散编辑</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">DiffEditor</span><span class="title-subtitle">以区域采样与图像提示提升细粒度扩散编辑</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2024-01-01</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2402.02583" title="https://arxiv.org/abs/2402.02583" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2402.02583</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2402.02583.pdf" title="https://arxiv.org/pdf/2402.02583.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2402.02583.pdf</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-editing">#image-editing</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-editing">#image-editing</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作说明，在 instruction-based image editing 进入成熟阶段后，性能提升已经明显转向更细的架构与采样设计，而不只是继续堆训练数据。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2024-01-01</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2402.02583" title="https://arxiv.org/abs/2402.02583" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2402.02583</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2402.02583.pdf" title="https://arxiv.org/pdf/2402.02583.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2402.02583.pdf</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#核心实验与结果">核心实验与结果</a><ol><li class="toc-sub"><a href="#人脸点拖拽">人脸点拖拽</a></li><li class="toc-sub"><a href="#其他任务">其他任务</a></li></ol></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a><ol><li class="toc-sub"><a href="#数据还是架构">数据还是架构</a></li><li class="toc-sub"><a href="#统一还是专用-模块化">统一还是专用/模块化</a></li></ol></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>DiffEditor 证明，在固定 SD 1.5/DragonDiffusion 家族中，图像提示、区域随机采样、梯度作用域与确定性 time travel 能继续提高点拖拽等细粒度编辑；但它是依赖 mask/点/参考图和迭代 guidance 的专用流水线，不能证明架构胜过数据或统一模型已失去优势。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这是一篇<strong>细粒度交互式图像编辑</strong>论文，覆盖 content dragging、对象移动/缩放、对象粘贴和外观替换。它不是“图像 + 自然语言指令”的通用编辑器：精确控制来自编辑 mask、点、参考图以及源图/参考图 inversion 的 memory bank。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>它要解决的是现有扩散式图像编辑在复杂场景下经常编辑不准、出现伪影、并且难以灵活组合编辑操作的问题。相对早期工作的“先把任务做出来”，它更像是在回答“如何把编辑做得更精、更稳、更灵活”。</p>
+<p>DragDiffusion/DragonDiffusion 的确定性 ODE 采样和视觉一致性约束有利于守住原图，却会抑制编辑区补画新内容；全局 score guidance 又可能污染未编辑区域。论文试图把随机性和编辑梯度局部化，在灵活性、几何精度和背景保持之间取得更好的平衡（PDF pp.1–2、4–5）。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>论文在编辑中引入图像提示，与文本提示协同描述编辑目标；同时把 SDE 局部结合进 ODE 采样，并叠加区域 score guidance 与 time-travel 策略，以改善局部编辑质量和灵活性。核心价值在于，它把收益来源更多放在采样策略、局部约束和结构机制上。</p>
-<h2 id="关键发现">关键发现</h2>
 <ul>
-<li>它提供了更成熟阶段的证据：编辑性能可以通过架构与采样机制继续提升。</li>
-<li>与 InstructPix2Pix 相比，它更像在优化“怎么编辑得更准”，而不是“先把指令编辑任务建立起来”。</li>
-<li>它支持当前 question 中“架构改写会逐渐成为拉开差距关键”的判断。</li>
+<li>冻结 SD 与 CLIP image encoder，用 8 层 Q-Former、64 个 learnable queries 把 257 个图像 tokens 压到 64 个细节条件 tokens；仅训练线性层和 Q-Former。</li>
+<li>沿用 DragonDiffusion 的 DDIM inversion 与 feature memory bank。</li>
+<li>regional SDE 只在编辑区/指定时间引入随机性；regional score guidance 让编辑区使用 $E_{edit}$、背景使用 $E_{content}$。</li>
+<li>accurate time travel 通过确定性 DDIM inversion 回滚并重复 guidance，避免随机回滚损害内容一致性。</li>
+<li>图像提示模块在 LAION、512×512、4×A100 上训练 1,000,000 steps；所以系统并非纯 training-free（PDF pp.4–6）。</li>
+</ul>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<h3 id="人脸点拖拽">人脸点拖拽</h3>
+<p>CelebA-HQ training split 800 张 aligned faces（PDF p.6，Table 1）：</p>
+<table><thead><tr><th>方法</th><th>17点 MSE↓</th><th>68点 MSE↓</th><th>FID 17/68↓</th><th>准备/推理</th></tr></thead><tbody><tr><td>DragDiffusion</td><td>22.95</td><td>17.32</td><td>38.06/36.55</td><td>42.37s/19.52s</td></tr><tr><td>DragonDiffusion</td><td>18.51</td><td>13.94</td><td>35.75/34.58</td><td>3.53s/15.00s</td></tr><tr><td><strong>DiffEditor</strong></td><td><strong>17.05</strong></td><td><strong>11.52</strong></td><td><strong>33.10/33.02</strong></td><td><strong>3.53s/13.88s</strong></td></tr></tbody></table>
+<h3 id="其他任务">其他任务</h3>
+<p>每项仅 16 例的 CLIP 相似度（PDF p.7，Table 2）：pasting 0.274、moving 0.288、replacing 0.281，均高于所列任务基线。由于样本少且 CLIP 不直接测局部几何/背景保持，这些结果只能视为有限支持。</p>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>image prompt 改善 DDIM 重建与纹理一致性（Fig.10）；</li>
+<li>regional gradient 避免编辑梯度扭曲无关背景（Fig.11）；</li>
+<li>accurate time travel 比无回滚或随机回滚更稳（Fig.12）；</li>
+<li>这些大多是定性消融，缺少完整数值 factorial ablation，不能精确分离每一组件的独立贡献。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>它仍建立在已经很强的基础扩散模型之上，并不是完全脱离数据红利。</li>
-<li>论文强调的是方法和采样细节，系统级成本与泛化边界仍需继续观察。</li>
-<li>当前证据更适合说明成熟阶段改进方向，而不是否定数据的重要性。</li>
+<li>大角度旋转等需要 3D 感知/大量补画的任务仍失败；作者明确归因于 SD 的单体 3D 先验不足（PDF p.8）。</li>
+<li>图像提示编码器与具体 SD checkpoint 绑定；SDXL guidance 成本高。</li>
+<li>主评估集中于人脸训练集和极小规模对象编辑样本；缺少标准真实图编辑 benchmark、用户研究和置信区间。</li>
+<li>新模块同时改变训练、条件和采样，不能据此做“架构 &gt; 数据”的因果结论。</li>
 </ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<h3 id="数据还是架构">数据还是架构</h3>
+<p><strong>直接但有限支持架构/采样接口的重要性。</strong> 在强预训练底座上，局部随机性、梯度 mask 和 time travel 能带来可见增益；但图像提示仍依赖 LAION 百万步训练。因此更准确的结论是：数据提供生成先验，专用结构决定先验能否被局部、精确地兑现。</p>
+<h3 id="统一还是专用-模块化">统一还是专用/模块化</h3>
+<p>这是专用路线的压力测试：精确编辑仍受益于 mask、点、参考图和 iterative guidance。论文没有与统一生成—编辑模型做同预算对照，不能推出统一模型总体失利；它只说明统一接口未必自动覆盖强局部控制。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2402.02583</li>
-<li>https://arxiv.org/pdf/2402.02583.pdf</li>
+<li><a href="https://arxiv.org/abs/2402.02583">arXiv</a></li>
+<li><a href="https://arxiv.org/pdf/2402.02583.pdf">PDF</a></li>
+<li><a href="https://github.com/MC-E/DragonDiffusion">代码（DragonDiffusion 仓库）</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../topics/image-editing.html">topics/image-editing</a></li>
-<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a></li>
-<li><a class="wikilink" href="../questions/question-data-vs-architecture-in-image-editing.html">questions/question-data-vs-architecture-in-image-editing</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>DiffEditor 在这套知识库中的作用很明确：它把 image-editing 路线从 InstructPix2Pix 式的任务建立阶段，推进到“精度与灵活性优化阶段”。</p></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+<li><a class="wikilink" href="../topics/image-editing.html">图像编辑</a></li>
+<li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../entities/unified-image-generation-editing.html">统一图像生成与编辑</a></li>
+<li><a class="wikilink" href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑进步来自数据还是架构</a></li>
+<li><a class="wikilink" href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用/模块化系统如何分工</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../topics/image-editing.html">图像编辑</a></li><li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li></ul></div><div class="related-group related-entities"><h3>相关实体<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li></ul></div><div class="related-group related-questions"><h3>相关问题<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li><li><a class="wikilink" href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">5</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a><span>问题</span></li><li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a><span>问题</span></li><li><a href="../topics/image-editing.html">图像编辑</a><span>主题</span></li><li><a href="../topics/image-generation.html">图像生成</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-diffeditor&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;DiffEditor（CVPR 2024）：提升扩散式图像编辑的精度与灵活性&quot;,
+  &quot;title&quot;: &quot;DiffEditor：以区域采样与图像提示提升细粒度扩散编辑&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2024&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;image-editing&quot;,
+    &quot;diffusion&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
@@ -130,9 +164,10 @@
   ],
   &quot;claims&quot;: [],
   &quot;questions&quot;: [
-    &quot;questions/question-data-vs-architecture-in-image-editing&quot;
+    &quot;questions/question-data-vs-architecture-in-image-editing&quot;,
+    &quot;questions/question-will-unified-image-models-sustain-their-advantage&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

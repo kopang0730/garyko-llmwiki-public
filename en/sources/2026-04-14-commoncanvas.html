@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CommonCanvas：在 Creative Commons 图像上训练的开放扩散模型 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="CommonCanvas：Creative Commons 数据上的开放 T2I 扩散训练">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>CommonCanvas：Creative Commons 数据上的开放 T2I 扩散训练 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-commoncanvas&quot;, &quot;title&quot;: &quot;CommonCanvas（CVPR 2024）：在 Creative Commons 图像上训练的开放扩散模型&quot;, &quot;title_en&quot;: &quot;CommonCanvas（CVPR 2024）：在 Creative Commons 图像上训练的开放扩散模型&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-commoncanvas&quot;, &quot;title&quot;: &quot;CommonCanvas：Creative Commons 数据上的开放 T2I 扩散训练&quot;, &quot;title_en&quot;: &quot;CommonCanvas：Creative Commons 数据上的开放 T2I 扩散训练&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,51 +60,64 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-commoncanvas.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-commoncanvas.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">CommonCanvas</span><span class="title-subtitle">在 Creative Commons 图像上训练的开放扩散模型</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>CommonCanvas：Creative Commons 数据上的开放 T2I 扩散训练</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">CommonCanvas</span><span class="title-subtitle">Creative Commons 数据上的开放 T2I 扩散训练</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2024-01-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2024/html/Gokaslan_CommonCanvas_Open_Diffusion_Models_Trained_on_Creative-Commons_Images_CVPR_2024_paper.html" title="https://openaccess.thecvf.com/content/CVPR2024/html/Gokaslan_CommonCanvas_Open_Diffusion_Models_Trained_on_Creative-Commons_Images_CVPR_2024_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Gokaslan_CommonCanvas_Open_Diff…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2024/papers/Gokaslan_CommonCanvas_Open_Diffusion_Models_Trained_on_Creative-Commons_Images_CVPR_2024_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2024/papers/Gokaslan_CommonCanvas_Open_Diffusion_Models_Trained_on_Creative-Commons_Images_CVPR_2024_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Gokaslan_CommonCanvas_Open_Diff…</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把开放数据训练的扩散模型路线补进库里，强化了 image-generation 中开放训练语料与模型开放性的主线。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>它要解决的是高质量扩散模型通常依赖封闭数据和不透明训练流程的问题。对当前知识库来说，它补的是 open diffusion / open-data 这条很有长期价值的路线。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>CommonCanvas 在 Creative Commons 图像上训练开放扩散模型，强调数据来源与模型开放性的结合。</p>
-<h2 id="关键发现">关键发现</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2024-01-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2024/html/Gokaslan_CommonCanvas_Open_Diffusion_Models_Trained_on_Creative-Commons_Images_CVPR_2024_paper.html" title="https://openaccess.thecvf.com/content/CVPR2024/html/Gokaslan_CommonCanvas_Open_Diffusion_Models_Trained_on_Creative-Commons_Images_CVPR_2024_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Gokaslan_CommonCanvas_Open_Diff…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2024/papers/Gokaslan_CommonCanvas_Open_Diffusion_Models_Trained_on_Creative-Commons_Images_CVPR_2024_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2024/papers/Gokaslan_CommonCanvas_Open_Diffusion_Models_Trained_on_Creative-Commons_Images_CVPR_2024_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Gokaslan_CommonCanvas_Open_Diff…</strong></a><a class="source-link source-link-code" href="https://github.com/mosaicml/diffusion/blob/main/assets/common-canvas.md" title="https://github.com/mosaicml/diffusion/blob/main/assets/common-canvas.md" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · common-canvas.md</strong></a></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#数据与许可">数据与许可</a></li><li><a href="#backbone-与接口">Backbone 与接口</a></li><li><a href="#训练成本">训练成本</a></li><li><a href="#结果与消融">结果与消融</a></li><li><a href="#证据边界">证据边界</a></li><li><a href="#相关页面">相关页面</a></li><li><a href="#备注">备注</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>CommonCanvas 证明约 67M 个明确允许衍生的 CC 图像配合 BLIP-2 synthetic captions，可以从头训练出在人类 PartiPrompts 偏好上接近 SD2 的 <strong>SD-style latent diffusion U-Net</strong>；贡献是数据 provenance、caption transfer 与训练系统，不是 DiT 或新 generation interface。</p>
+<h2 id="数据与许可">数据与许可</h2>
+<table><thead><tr><th>split</th><th>图像数</th><th>许可构成</th><th>使用边界</th></tr></thead><tbody><tr><td>CommonCatalog-C</td><td>26,232,417</td><td>CC-BY、CC-BY-SA</td><td>可商业，但需 attribution；SA 有 share-alike</td></tr><tr><td>CommonCatalog-NC</td><td>67,015,331</td><td>C + CC-BY-NC、CC-BY-NC-SA</td><td>包含 NC 内容，不能概括为可商用</td></tr><tr><td>ND evaluation</td><td>约 30.6M</td><td>CC-BY-ND、CC-BY-NC-ND</td><td>不用于训练，只发布 BLIP-2 captions 供评测</td></tr></tbody></table>
+<p>作者按 YFCC100M Flickr IDs 重新抓取高分辨率原图，排除 ND。BLIP-2 OPT-2.7B 为全量图像生成 caption，耗约 1,120 A100-hours；captioning 用 512 crop，diffusion 训练用高分辨率图。</p>
+<p>“只用 CC images”准确，但“所有组件只依赖 CC 数据”不准确：BLIP-2 和 OpenCLIP 都在 LAION 上预训练。论文的法律分析是论证，不是许可无风险结论。</p>
+<h2 id="backbone-与接口">Backbone 与接口</h2>
 <ul>
-<li>它让 image-generation 页多了一条“开放训练资源与开放模型”路线，而不只是方法结构比较。</li>
-<li>它对未来做可复现、可开源方向探索很有意义。</li>
-<li>它也能帮助区分性能改进来自方法本身还是数据资产优势。</li>
+<li>Small：与 SD2 同结构/参数命名的约 866M U-Net，SD2 VAE/tokenizer/OpenCLIP。</li>
+<li>Large：约 2.567B SDXL U-Net，cross-attention 改配 SD2 text hidden size，并用 SDXL VAE。</li>
+<li>输入文本、输出图像；没有 editing、layout control、参考图条件或 any-to-any。</li>
+<li>全部是 latent diffusion <strong>U-Net</strong>，不是 DiT；Large 也只是更大的 U-Net。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="训练成本">训练成本</h2>
+<p>FlashAttention、latent precompute、fp16 norm、FSDP 与仅最后 50K steps 做 EMA，累计带来 <strong>2.71×</strong> speed-up。SD2 U-Net 单 run 成本表约为：</p>
+<table><thead><tr><th>A100</th><th>天数</th><th>成本</th></tr></thead><tbody><tr><td>8</td><td>101.04</td><td>$38.8K</td></tr><tr><td>32</td><td>25.01</td><td>$38.4K</td></tr><tr><td>128</td><td>6.79</td><td>$41.7K</td></tr></tbody></table>
+<p>约 19.4K–20.9K A100-hours/run。该表不是整个项目总成本，也没有分别披露所有 CommonCanvas final runs 和 Large 的总成本。</p>
+<h2 id="结果与消融">结果与消融</h2>
 <ul>
-<li>开放数据路线常常面临质量上限问题。</li>
-<li>它更偏训练资源与开放性，不直接对应编辑控制或个性化。</li>
-<li>它适合作为生态路线补层。</li>
+<li>LAION 1.1B/90M/10M 子集在 MS COCO FID/KID/CLIP proxy 上接近，1M 开始发散，说明当前 SD2 U-Net 在这一协议下 10M–90M 已接近数据饱和。</li>
+<li>BLIP-2 captions 在 FID/KID 上接近 LAION captions；CLIP-FID 结果随 COCO human-written 与 Conceptual Captions web-style domain 改变。</li>
+<li>PartiPrompts 配对人评：S-C 约 37%、S-NC 约 38% 胜过 SD2；L-NC 与 SD2 差异不显著、约 50%。只有 Large 可称在该协议下“comparable”。</li>
+<li>CommonCanvas 在 faces、general photography、paintings 等 Conceptual Captions 子域较弱。</li>
 </ul>
-<h2 id="原始链接">原始链接</h2>
+<h2 id="证据边界">证据边界</h2>
 <ul>
-<li>https://openaccess.thecvf.com/content/CVPR2024/html/Gokaslan_CommonCanvas_Open_Diffusion_Models_Trained_on_Creative-Commons_Images_CVPR_2024_paper.html</li>
-<li>https://openaccess.thecvf.com/content/CVPR2024/papers/Gokaslan_CommonCanvas_Open_Diffusion_Models_Trained_on_Creative-Commons_Images_CVPR_2024_paper.pdf</li>
+<li>支持开放许可 image-side provenance 能训练高质量 T2I；不证明完整供应链完全脱离 web scrape。</li>
+<li>C/NC 同时改变规模与内容，不能把差异纯归因许可。</li>
+<li>Large 只在 NC split 上训练，容量与数据 split 没有全因子交叉。</li>
+<li>对 iconic characters 的减少主要是定性例子，不是系统 copyright/memorization benchmark；仍能生成近似角色与名人。</li>
+<li>YFCC 图像约十年前，时效性、覆盖与偏差有限；CC 许可仍附带 attribution/SA/NC 条款。</li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a></li>
-<li><a class="wikilink" href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a></li>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
 </ul>
 <h2 id="备注">备注</h2>
-<p>CommonCanvas 在这套库里的作用，是把开放扩散模型训练路线补成 image-generation 的生态分支。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<p>本库将 CommonCanvas 定位为 <strong>开放数据与训练透明度</strong>证据，已移除统一生成编辑实体和 DiT 暗示。</p></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">3</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/diffusion-models.html">扩散模型</a><span>Topic</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-commoncanvas&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;CommonCanvas（CVPR 2024）：在 Creative Commons 图像上训练的开放扩散模型&quot;,
+  &quot;title&quot;: &quot;CommonCanvas：Creative Commons 数据上的开放 T2I 扩散训练&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2024&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
@@ -123,21 +142,19 @@
   &quot;published_at&quot;: &quot;2024-01-01&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://openaccess.thecvf.com/content/CVPR2024/html/Gokaslan_CommonCanvas_Open_Diffusion_Models_Trained_on_Creative-Commons_Images_CVPR_2024_paper.html&quot;,
-    &quot;https://openaccess.thecvf.com/content/CVPR2024/papers/Gokaslan_CommonCanvas_Open_Diffusion_Models_Trained_on_Creative-Commons_Images_CVPR_2024_paper.pdf&quot;
+    &quot;https://openaccess.thecvf.com/content/CVPR2024/papers/Gokaslan_CommonCanvas_Open_Diffusion_Models_Trained_on_Creative-Commons_Images_CVPR_2024_paper.pdf&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2024/supplemental/Gokaslan_CommonCanvas_Open_Diffusion_CVPR_2024_supplemental.pdf&quot;,
+    &quot;https://github.com/mosaicml/diffusion/blob/main/assets/common-canvas.md&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-commoncanvas/&quot;,
   &quot;topics&quot;: [
     &quot;topics/image-generation&quot;,
     &quot;topics/diffusion-models&quot;
   ],
-  &quot;entities&quot;: [
-    &quot;entities/unified-image-generation-editing&quot;
-  ],
+  &quot;entities&quot;: [],
   &quot;claims&quot;: [],
-  &quot;questions&quot;: [
-    &quot;questions/question-will-unified-image-models-sustain-their-advantage&quot;
-  ]
-}</pre></section>
+  &quot;questions&quot;: []
+}</pre></details>
     </article>
   </main>
 </body>

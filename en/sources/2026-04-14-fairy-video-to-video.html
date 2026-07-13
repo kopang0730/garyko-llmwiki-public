@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fairy：快速并行的指令引导视频到视频合成 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="Fairy：用 anchor cross-frame attention 并行加速指令视频编辑">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Fairy：用 anchor cross-frame attention 并行加速指令视频编辑 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-fairy-video-to-video&quot;, &quot;title&quot;: &quot;Fairy（CVPR 2024）：快速并行的指令引导视频到视频合成&quot;, &quot;title_en&quot;: &quot;Fairy（CVPR 2024）：快速并行的指令引导视频到视频合成&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;video-generation&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-fairy-video-to-video&quot;, &quot;title&quot;: &quot;Fairy：用 anchor cross-frame attention 并行加速指令视频编辑&quot;, &quot;title_en&quot;: &quot;Fairy：用 anchor cross-frame attention 并行加速指令视频编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,82 +60,117 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-fairy-video-to-video.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-fairy-video-to-video.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">Fairy</span><span class="title-subtitle">快速并行的指令引导视频到视频合成</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Fairy：用 anchor cross-frame attention 并行加速指令视频编辑</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">Fairy</span><span class="title-subtitle">用 anchor cross-frame attention 并行加速指令视频编辑</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2023/12/20</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2312.13834" title="https://arxiv.org/abs/2312.13834" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2312.13834</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2312.13834" title="https://arxiv.org/pdf/2312.13834" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2312.13834</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-editing">#video-editing</a><a class="tag" href="../../en/tags.html#video-generation">#video-generation</a><a class="tag" href="../../en/tags.html#efficiency">#efficiency</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-editing">#video-editing</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#efficiency">#efficiency</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把 instruction-guided video-to-video synthesis 和并行加速结合起来，补强了视频编辑里的高效视频到视频路线。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>它要解决的是 instruction-guided video-to-video synthesis 速度慢、可用性差的问题。对当前知识库来说，它补的是 RAVE / VidToMe 之外另一条效率导向路线。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>Fairy 通过 fast parallelized 的方式实现 instruction-guided video-to-video synthesis，使视频编辑/转换更接近高效可用系统。</p>
-<h2 id="关键发现">关键发现</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2023-12-20</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2312.13834" title="https://arxiv.org/abs/2312.13834" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2312.13834</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2312.13834" title="https://arxiv.org/pdf/2312.13834" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2312.13834</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#输入-输出与方法">输入、输出与方法</a></li><li><a href="#数据-训练与成本">数据、训练与成本</a></li><li><a href="#评测-指标与人评">评测、指标与人评</a></li><li><a href="#消融-失败与边界">消融、失败与边界</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>Fairy 把 instruction image-editing U-Net 的 self-attention 改成三 anchor cross-frame attention，并用图像 pair 的等变增强训练，不做 inversion 或逐视频 tuning；它以 8×A100 在 13.8 秒编辑 120 帧，效率证据很强，但质量对 Rerender 只小幅占优、自动时序差距极小，且不能生成雨火等动态效果或镜头运动。</p>
+<h2 id="输入-输出与方法">输入、输出与方法</h2>
 <ul>
-<li>它说明视频编辑的效率路线不只在 token merging 或噪声重排，也在并行化 video-to-video 合成。</li>
-<li>它把 instruction-based editing、video-to-video interface 和效率优化三件事接到一起。</li>
-<li>它为以后讨论哪些路线更接近工程可用性提供了很好的补充样本。</li>
+<li>输入任意长度源视频与 editing instruction；逐帧输出同时间轴、原宽高比视频，长边 resize 512，不做 temporal downsampling。</li>
+<li>均匀选默认 3 个 anchors，编辑并缓存各 diffusion step/layer 的 key/value；每个普通帧保留自身 K/V，同时 cross-attend 到 anchor cache。</li>
+<li>因非 anchor 帧只依赖固定 cache，可跨 GPU 独立并行，避免全帧 attention 的显存增长。</li>
+<li>对 image-edit pairs 同时施加 rotation/translation/scale/shear/crop，做 50K-step equivariant finetuning，鼓励输入小空间变化对应输出同变化。</li>
+<li>支持 stylization、character swap、local/attribute edit；无 flow、mask、DDIM inversion 或 per-video tuning。</li>
+<li>底座是类似 InstructPix2Pix 的 latent diffusion <strong>U-Net</strong>，不是 DiT；源帧提供运动/镜头，因此不是从零 video generation。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="数据-训练与成本">数据、训练与成本</h2>
 <ul>
-<li>并行化收益常常伴随质量折中。</li>
-<li>它更偏系统效率路线，不直接代表能力上限。</li>
-<li>它需要和一致性/保真度指标一起看。</li>
+<li>训练沿用未披露名称/规模的 image editing dataset；不需要视频 pair。</li>
+<li>50,000 steps、batch 128、8×A100-80GB、<strong>30 小时</strong>（约 240 A100 GPU-hours）。</li>
+<li>Euler ancestral 10 steps，默认 3 anchors。</li>
+<li>4 秒/120 帧/$512\times384$/30 FPS：8×A100 <strong>13.8 秒</strong>；单 A100 <strong>78 秒</strong>。</li>
+<li>27 秒/664 帧：6×A100 少于 <strong>71.89 秒</strong>。</li>
+<li>未报告参数量、峰值显存、anchor cache 大小、数据许可或分辨率 scaling。</li>
 </ul>
+<h2 id="评测-指标与人评">评测、指标与人评</h2>
+<ul>
+<li>1,000 Shutterstock video-instruction samples：50 videos×10 instructions + 10 videos×50 instructions；Gen-1 仅评 100 samples。</li>
+<li>每 A/B pair 由 3 annotators majority vote；论文未报告独立参与者总数、置信区间或 inter-rater agreement。</li>
+</ul>
+<table><thead><tr><th>对手</th><th>Fairy</th><th>Baseline</th><th>Both good</th><th>Both bad</th></tr></thead><tbody><tr><td>Rerender</td><td><strong>41%</strong></td><td>36%</td><td>17%</td><td>6%</td></tr><tr><td>TokenFlow</td><td><strong>73%</strong></td><td>16%</td><td>10%</td><td>1%</td></tr><tr><td>Gen-1</td><td><strong>72%</strong></td><td>26%</td><td>0%</td><td>2%</td></tr></tbody></table>
+<p>Fairy 对 Rerender 只领先 5 points；附录承认 Rerender 单帧质量更好。standalone success 为 frame quality 0.59、temporal 0.62、prompt 0.78、input 0.89。</p>
+<table><thead><tr><th>方法</th><th>Latency s↓</th><th>Frame-Acc↑</th><th>Tem-Con↑</th></tr></thead><tbody><tr><td>TokenFlow</td><td>744</td><td>0.537</td><td>0.973</td></tr><tr><td>Rerender</td><td>608</td><td>0.775</td><td>0.972</td></tr><tr><td><strong>Fairy</strong></td><td><strong>13.8</strong></td><td><strong>0.819</strong></td><td><strong>0.974</strong></td></tr></tbody></table>
+<p>Tem-Con 只高 0.001–0.002，且 CLIP 相邻帧相似会奖励保守/静态结果；44×–53× 的多 GPU速度优势更可信。基线结果来自二级比较材料、prompt 形式不同，严格公平性有限。</p>
+<h2 id="消融-失败与边界">消融、失败与边界</h2>
+<ul>
+<li>frame-wise / +anchor / +equivariant 的 Tem-Con：<strong>0.959 / 0.968 / 0.974</strong>（150 videos）。</li>
+<li>1 anchor 全局特征不足，默认 3 最佳，anchor 太多会丢细节；10 steps 是质量—速度折中，均缺完整数表。</li>
+<li>image editor 的脸/文字畸变会继承；无 reference identity 或局部 mask，locality 不能保证。</li>
+<li>等变微调会过度偏向静态一致，雨、闪电、火焰成为静态图案；zoom in/out 等 camera-motion instruction 失败。</li>
+<li>“arbitrary length”只指 cache/并行架构可扩展；最长证据约 27 秒，缺分钟级 identity drift/语义一致曲线。</li>
+<li>attention 的 TAP-Vid 粗追踪在 U-Net 前后层达 $\delta=16/32$ 下 &gt;60%/&gt;70%，但不证明遮挡推理或对象身份理解。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li>对 <a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a>：Fairy 表明“固定少量 anchor features + 帧并行”可把 120 帧编辑降到十几秒，但动态效果能力受无视频训练限制。</li>
+<li>对 <a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a>：这里是 U-Net attention engineering 与 image-data adaptation，不是 DiT 或视频原生生成模型。</li>
+<li>对 <a class="wikilink" href="../../en/entities/video-editing-understanding.html">视频编辑理解</a>：高 input faithfulness 与 Tem-Con 可来自锚点传播/静态偏置，不能替代动态图效和镜头指令测试。</li>
+</ul>
+<h2 id="证据评级">证据评级</h2>
+<p><strong>B（效率、千样本人评和组件消融较强；比较公平性、动态图效和长时语义边界限制质量结论）</strong>。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2312.13834</li>
-<li>https://arxiv.org/pdf/2312.13834</li>
+<li><a href="https://arxiv.org/abs/2312.13834">arXiv</a></li>
+<li><a href="https://arxiv.org/pdf/2312.13834">论文 PDF</a></li>
+<li><a href="https://fairy-video2video.github.io/">项目页</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/video-editing.html">topics/video-editing</a></li>
-<li><a class="wikilink" href="../../en/topics/video-generation.html">topics/video-generation</a></li>
-<li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">entities/video-editing-understanding</a></li>
-<li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>Fairy 在这套库里的作用，是把高效 instruction-guided video-to-video synthesis 路线补成明确节点。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+<li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有 benchmark 是否跟踪真实视频编辑理解</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li></ul></div><div class="related-group related-entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li></ul></div><div class="related-group related-questions"><h3>Related questions<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">3</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/video-editing.html">视频编辑</a><span>Topic</span></li><li><a href="../../en/topics/video-generation.html">视频生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-fairy-video-to-video&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Fairy（CVPR 2024）：快速并行的指令引导视频到视频合成&quot;,
+  &quot;title&quot;: &quot;Fairy：用 anchor cross-frame attention 并行加速指令视频编辑&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2024&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;video-editing&quot;,
-    &quot;video-generation&quot;,
+    &quot;diffusion&quot;,
     &quot;efficiency&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;authors&quot;: [
-    &quot;Wu, Bichen&quot;,
-    &quot;Chuang, Ching-Yao&quot;,
-    &quot;Wang, Xiaoyan&quot;,
-    &quot;Jia, Yichen&quot;,
-    &quot;Krishnakumar, Kapil&quot;,
-    &quot;Xiao, Tong&quot;,
-    &quot;Liang, Feng&quot;,
-    &quot;Yu, Licheng&quot;,
-    &quot;Vajda, Peter&quot;
+    &quot;Bichen Wu&quot;,
+    &quot;Ching-Yao Chuang&quot;,
+    &quot;Xiaoyan Wang&quot;,
+    &quot;Yichen Jia&quot;,
+    &quot;Kapil Krishnakumar&quot;,
+    &quot;Tong Xiao&quot;,
+    &quot;Feng Liang&quot;,
+    &quot;Licheng Yu&quot;,
+    &quot;Peter Vajda&quot;
   ],
-  &quot;published_at&quot;: &quot;2023/12/20&quot;,
+  &quot;published_at&quot;: &quot;2023-12-20&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2312.13834&quot;,
-    &quot;https://arxiv.org/pdf/2312.13834&quot;
+    &quot;https://arxiv.org/pdf/2312.13834&quot;,
+    &quot;https://fairy-video2video.github.io/&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-fairy-video-to-video/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-14-fairy-video-to-video/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/video-editing&quot;,
-    &quot;topics/video-generation&quot;
+    &quot;topics/diffusion-models&quot;
   ],
   &quot;entities&quot;: [
     &quot;entities/video-editing-understanding&quot;
@@ -138,7 +179,7 @@
   &quot;questions&quot;: [
     &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

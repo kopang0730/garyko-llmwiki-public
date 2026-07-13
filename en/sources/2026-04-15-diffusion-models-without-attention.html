@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Diffusion Models Without Attention：不用注意力也能做高分辨率扩散">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>Diffusion Models Without Attention：不用注意力也能做高分辨率扩散 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-15-diffusion-models-without-attention&quot;, &quot;title&quot;: &quot;Diffusion Models Without Attention（CVPR 2024）：不用注意力也能做高分辨率扩散&quot;, &quot;title_en&quot;: &quot;Diffusion Models Without Attention（CVPR 2024）：不用注意力也能做高分辨率扩散&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-15-diffusion-models-without-attention&quot;, &quot;title&quot;: &quot;Diffusion Models Without Attention（CVPR 2024）：不用注意力也能做高分辨率扩散&quot;, &quot;title_en&quot;: &quot;Diffusion Models Without Attention（CVPR 2024）：不用注意力也能做高分辨率扩散&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,51 +60,73 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-15-diffusion-models-without-attention.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-15-diffusion-models-without-attention.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Diffusion Models Without Attention：不用注意力也能做高分辨率扩散</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
         <h1><span class="title-main">Diffusion Models Without Attention</span><span class="title-subtitle">不用注意力也能做高分辨率扩散</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2023/11/30</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-15</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2311.18257" title="https://arxiv.org/abs/2311.18257" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2311.18257</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2311.18257" title="https://arxiv.org/pdf/2311.18257" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2311.18257</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇论文是当前库里很有价值的反向对照：它表明高分辨率扩散未必一定要沿 Transformer/attention 主干走下去，state space backbone 也可能给出更省 FLOPs 的替代路线。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2023/11/30</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-15</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2311.18257" title="https://arxiv.org/abs/2311.18257" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2311.18257</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2311.18257" title="https://arxiv.org/pdf/2311.18257" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2311.18257</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#实验设置">实验设置</a></li><li><a href="#核心实验与结果">核心实验与结果</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>DiffuSSM 用 gated bidirectional SSM 在全分辨率序列上建模长程依赖，只把高成本 MLP 放入 hourglass；它以更低训练 Gflops 在 ImageNet 256 上匹敌 DiT，是“attention/DiT 是唯一可扩展扩散主干”的有效反证。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这篇论文不是一般提速技巧，而是 <a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a> 主干竞争的结构性对照。它证明 scaling 改善可以来自 state-space backbone，而非 Transformer attention 独占。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>高保真图像生成中的扩散模型在高分辨率下计算代价很大。现有 UNet 和 Transformer 路线经常通过 patchify 或全局压缩来换速度，但这会伤害表示能力。论文要解决的是：能否用更可扩展的状态空间主干替换注意力，同时保住高分辨率表示能力。</p>
+<p>高分辨率 self-attention 对序列长度呈平方复杂度。U-Net 通过低分辨率 attention，Transformer 通过 patchification 降 token，但都可能损失细节。论文目标是在不压缩全局序列表示的前提下处理长程依赖（PDF pp.1–2, 4）。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>作者提出 DiffuSSM，用 state space model backbone 取代 attention 机制，让扩散训练在高分辨率下保持更好的 FLOP 效率。它的关键价值不是再造一个局部 trick，而是给出一条与 DiT 不同的 backbone 分支。</p>
-<h2 id="关键发现">关键发现</h2>
 <ul>
-<li>它是 <a class="wikilink" href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">claims/claim-dit-is-becoming-the-default-scalable-generation-backbone</a> 当前最有价值的早期反例之一，因为它明确表明“可扩展主干”并不只剩 attention/DiT 一条路。</li>
-<li>它让 <a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a> 的 backbone 叙事更平衡：Transformer 化很强，但 state space 也在尝试吃掉高分辨率扩散这一块。</li>
-<li>它提醒我们，未来的 backbone 竞争可能不是 U-Net vs DiT，而是更广义的高效序列/状态空间主干竞争。</li>
+<li>图像/latent 展平为序列，使用 S4D 类双向 SSM，长卷积/FFT 复杂度约 $O(L\log L)$（PDF p.4）。</li>
+<li>全长序列上运行 gated bidirectional SSM；仅在 position-wise MLP 分支用 $M=2$ hourglass 降长度（PDF p.4，Figure 2）。</li>
+<li>估算默认层主导成本约 $7.5LD^2$；全长 attention 还会增加 $2DL^2$（PDF p.5）。</li>
+<li>类标签、时间步和输出 decoder 尽量沿用 DiT recipe，以便主干比较（PDF p.5）。</li>
+</ul>
+<h2 id="实验设置">实验设置</h2>
+<p>ImageNet 256/512 latent 序列长度分别为 1024/4096；DiffuSSM-XL 约 673M 参数、29 层、hidden 1152。FID-50K 使用 250 DDPM steps，另报 sFID、IS、Precision/Recall。训练使用 8×A100 80GB、global batch 256（PDF pp.5–6）。</p>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<table><thead><tr><th>设置</th><th>DiffuSSM</th><th>DiT-XL/2</th><th>解释</th></tr></thead><tbody><tr><td>ImageNet 256，无 CFG</td><td>FID <strong>9.07</strong> / sFID <strong>5.52</strong></td><td>9.62 / 6.85</td><td>PDF p.7，Table 1</td></tr><tr><td>训练总 Gflops</td><td>1.85×10^11</td><td>2.13×10^11</td><td>DiffuSSM 看 660M images，DiT 1792M</td></tr><tr><td>ImageNet 256，有 CFG</td><td>FID 2.28 / sFID <strong>4.49</strong></td><td><strong>2.27</strong> / 4.60</td><td>FID 仅差 0.01；PDF p.7</td></tr><tr><td>ImageNet 512，有 CFG</td><td>FID 3.41 / sFID 5.84</td><td><strong>3.04</strong> / <strong>5.02</strong></td><td>DiffuSSM 仍落后，但训练更少；PDF p.7</td></tr></tbody></table>
+<p>512 设置下 DiffuSSM 看 302M images、总 Gflops 3.22×10^11；DiT 为 768M 与 4.03×10^11（PDF p.7，Table 1）。因此结论应是“更低预算下竞争”，不是“全面超过 DiT”。</p>
+<p>LSUN Church/Bedroom FID 为 3.94/3.02，接近 LDM 4.02/2.95；论文明确不宣称击败最强 GAN（PDF p.8，Table 2）。</p>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>S/L/XL 规模增加在前 400K steps 持续改善 FID，说明 scaling 不是 attention 专属（PDF p.8，Figure 6 left）。</li>
+<li>P=2 patching 比默认无 patch 的 hourglass 方案更差，且差距随训练扩大；支持“全局表示压缩损失细节”的解释（PDF p.8，Figure 6 right）。</li>
+<li>相同初始噪声的定性比较中，无 patching 的空间重建更稳（PDF p.8，Figure 5）。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
+<p>作者在 Conclusion 明示（PDF p.9）：</p>
 <ul>
-<li>它证明了无 attention 路线的潜力，但还没有说明这条路线在多模态控制、视频长时序或统一生成-编辑系统里是否同样有优势。</li>
-<li>它更偏高分辨率图像生成，不直接触及当前库里大量视频编辑/统一系统证据。</li>
-<li>作为反证，它削弱的是“默认唯一主干”这件事，而不是否定 DiT 当前仍很强。</li>
+<li>只做（无）类条件图像生成，没有完整文本到图像。</li>
+<li>未结合 masked image training 等可能增益。</li>
+<li>视频、音频、3D 只是未来方向。</li>
 </ul>
+<p>进一步边界：FLOPs 不等于真实硬件 latency；512×512 仍落后 DiT；强结果依赖 latent VAE 与 CFG；若完整 T2I 引入 cross-attention，“without attention”边界会改变。</p>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<p>对 <a class="wikilink" href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT / Transformer 主干 claim</a> 的分类是：<strong>有效反证（针对排他性/默认唯一版本）</strong>，也是修订后温和 claim 的边界证据。</p>
+<p>它不否认 DiT 是主要路线之一，但要求 wiki 把结论写成“DiT 与 SSM/混合主干竞争”，而非“可扩展主干只剩 DiT”。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2311.18257</li>
-<li>https://arxiv.org/pdf/2311.18257</li>
+<li><a href="https://arxiv.org/abs/2311.18257">arXiv</a></li>
+<li><a href="https://arxiv.org/pdf/2311.18257">PDF</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">claims/claim-dit-is-becoming-the-default-scalable-generation-backbone</a></li>
-<li><a class="wikilink" href="../../en/entities/diffusion-transformer.html">entities/diffusion-transformer</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>这篇论文在本库里的位置非常关键：它不是补“又一个扩散提速技巧”，而是补“DiT 主干叙事的结构性对照证据”。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT / Transformer 主干趋势</a></li>
+<li><a class="wikilink" href="../../en/entities/diffusion-transformer.html">Diffusion Transformer</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li></ul></div><div class="related-group related-claims"><h3>Related claims<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">7</span></h2><ul><li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a><span>Claim</span></li><li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a><span>Entity</span></li><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>Topic</span></li><li><a href="../../en/topics/diffusion-models.html">扩散模型</a><span>Topic</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li><li><a href="../../en/topics/vision-backbones.html">Mainstream Vision Backbones</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-15-diffusion-models-without-attention&quot;,
   &quot;type&quot;: &quot;source&quot;,
   &quot;title&quot;: &quot;Diffusion Models Without Attention（CVPR 2024）：不用注意力也能做高分辨率扩散&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-15&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2024&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-15&quot;,
   &quot;tags&quot;: [
@@ -129,7 +157,7 @@
     &quot;claims/claim-dit-is-becoming-the-default-scalable-generation-backbone&quot;
   ],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

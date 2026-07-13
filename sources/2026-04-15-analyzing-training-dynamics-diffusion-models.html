@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Analyzing and Improving the Training Dynamics of Diffusion Models：修正扩散训练动力学的缩放失衡 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="Analyzing and Improving the Training Dynamics of Diffusion Models：EDM2 的幅值保持训练与 Post-hoc EMA">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Analyzing and Improving the Training Dynamics of Diffusion Models：EDM2 的幅值保持训练与 Post-hoc EMA · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-15-analyzing-training-dynamics-diffusion-models&quot;, &quot;title&quot;: &quot;Analyzing and Improving the Training Dynamics of Diffusion Models（CVPR 2024）：修正扩散训练动力学的缩放失衡&quot;, &quot;title_en&quot;: &quot;Analyzing and Improving the Training Dynamics of Diffusion Models（CVPR 2024）：修正扩散训练动力学的缩放失衡&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-15-analyzing-training-dynamics-diffusion-models&quot;, &quot;title&quot;: &quot;Analyzing and Improving the Training Dynamics of Diffusion Models：EDM2 的幅值保持训练与 Post-hoc EMA&quot;, &quot;title_en&quot;: &quot;Analyzing and Improving the Training Dynamics of Diffusion Models：EDM2 的幅值保持训练与 Post-hoc EMA&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,82 +60,132 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-15-analyzing-training-dynamics-diffusion-models.html">中文</a><a class="" href="../en/sources/2026-04-15-analyzing-training-dynamics-diffusion-models.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">Analyzing and Improving the Training Dynamics of Diffusion Models</span><span class="title-subtitle">修正扩散训练动力学的缩放失衡</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Analyzing and Improving the Training Dynamics of Diffusion Models：EDM2 的幅值保持训练与 Post-hoc EMA</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">Analyzing and Improving the Training Dynamics of Diffusion Models</span><span class="title-subtitle">EDM2 的幅值保持训练与 Post-hoc EMA</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023/12/05</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-15</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2312.02696" title="https://arxiv.org/abs/2312.02696" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2312.02696</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2312.02696" title="https://arxiv.org/pdf/2312.02696" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2312.02696</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#efficiency">#efficiency</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇论文提醒我们，扩散模型的性能上限不只取决于 backbone 选型，也强烈取决于训练动力学是否稳定；很多收益来自把激活、权重和更新尺度重新校正，而不是简单堆算力。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023-12-05</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-15</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2024/html/Karras_Analyzing_and_Improving_the_Training_Dynamics_of_Diffusion_Models_CVPR_2024_paper.html" title="https://openaccess.thecvf.com/content/CVPR2024/html/Karras_Analyzing_and_Improving_the_Training_Dynamics_of_Diffusion_Models_CVPR_2024_paper.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>openaccess.thecvf.com · Karras_Analyzing_and_Improving_…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2024/papers/Karras_Analyzing_and_Improving_the_Training_Dynamics_of_Diffusion_Models_CVPR_2024_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2024/papers/Karras_Analyzing_and_Improving_the_Training_Dynamics_of_Diffusion_Models_CVPR_2024_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Karras_Analyzing_and_Improving_…</strong></a><a class="source-link source-link-code" href="https://github.com/NVlabs/edm2" title="https://github.com/NVlabs/edm2" target="_blank" rel="noopener noreferrer"><span>代码仓库</span><strong>github.com · edm2</strong></a></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#核心实验与结果">核心实验与结果</a><ol><li class="toc-sub"><a href="#config-a-g-imagenet-512-无-cfg">Config A→G（ImageNet-512，无 CFG）</a></li><li class="toc-sub"><a href="#scaling">Scaling</a></li></ol></li><li><a href="#效率口径">效率口径</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>EDM2 通过校正 ADM U-Net 的激活、权重、更新幅值和 EMA，把 ImageNet-512 的质量—模型/训练/采样计算前沿显著推进；但绝对训练预算约 2.147B seen images，且作者明确把 DiT/RIN 迁移列为未来工作，所以它是 U-Net 训练动力学证据，不是 DiT 证据。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>论文保留 ADM U-Net 的高层 encoder–decoder/skip/conditioning 结构，但重写内部层、归一化、残差组合和有效学习率，并提出 post-hoc EMA。它改善训练质量—计算前沿，不是采样 schedule 或 solver distillation。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>它要解决的是流行 ADM 扩散架构在训练过程中存在幅值漂移和不平衡，导致训练效率不均、同等算力下模型学得不够好。对当前 wiki 来说，这篇论文补的是 diffusion 主线里偏“训练机制”的基础证据：扩散系统的 scaling 既是模型结构问题，也是优化动力学问题。</p>
+<p>ADM residual/skip 路径会让 activation magnitude 随训练增长；weight normalization 又会使 weight norm 增长，令 effective learning rate 隐式衰减且层间失衡。固定 EMA 还会把架构、训练时长与 CFG 的差异混入最终指标。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>论文并没有推翻高层架构，而是系统检查训练过程中激活、权重和更新量的失衡来源，然后重写网络层，使这些量在期望上保持更稳定的尺度；同时还提出 post-hoc 调 EMA 的方法，让训练结束后也能精细选择更合适的 EMA 长度。</p>
-<h2 id="关键发现">关键发现</h2>
 <ul>
-<li>它把 diffusion 质量提升的一部分来源从“更大模型/更多数据”转回到“更健康的训练动力学”。</li>
-<li>它让 <a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a> 里的扩散演化叙事更完整：除了主干和推理，训练层本身也是关键优化面。</li>
-<li>它和 <a class="wikilink" href="../sources/2026-04-15-all-are-worth-words.html">sources/2026-04-15-all-are-worth-words</a> 形成互补：前者偏 backbone 改写，后者偏 optimization / scaling 改写。</li>
+<li>对卷积/线性层按输出通道归一化，保持 activation magnitude。</li>
+<li>强制 weight normalization，并将梯度投影到单位球切平面。</li>
+<li>显式控制 effective learning rate 并使用 inverse-square-root decay。</li>
+<li>移除大部分 group norm，校正 SiLU、Fourier feature、残差加和与 skip concatenation 幅值。</li>
+<li>维护两组 power-function averaged weights 与周期 snapshots，训练后重构任意 EMA profile。</li>
+</ul>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<h3 id="config-a-g-imagenet-512-无-cfg">Config A→G（ImageNet-512，无 CFG）</h3>
+<table><thead><tr><th>配置</th><th>FID</th><th>参数</th><th>GFLOPs/eval</th></tr></thead><tbody><tr><td>EDM baseline</td><td>8.00</td><td>295.9M</td><td>110.4</td></tr><tr><td>minor improvements</td><td>7.24</td><td>291.8M</td><td>100.4</td></tr><tr><td>streamlining</td><td>6.96</td><td>277.8M</td><td>100.3</td></tr><tr><td>MP learned layers</td><td>3.75</td><td>277.8M</td><td>101.2</td></tr><tr><td>controlled effective LR</td><td>3.02</td><td>277.8M</td><td>101.2</td></tr><tr><td>remove group norms</td><td>2.71</td><td>280.2M</td><td>102.1</td></tr><tr><td>EDM2-S</td><td>2.56</td><td>280.2M</td><td>102.2</td></tr></tbody></table>
+<h3 id="scaling">Scaling</h3>
+<ul>
+<li>EDM2-S：FID 2.56/2.23（无/有 CFG），280M，102 GFLOPs/eval。</li>
+<li>EDM2-XXL：FID 1.91/1.81，1523M，552 GFLOPs/eval。</li>
+<li>所有 EDM2 表中采样为 63 NFE deterministic。</li>
+<li>ImageNet-64：相近复杂度下 EDM 2.22 → EDM2 1.58，scale 后 1.33。</li>
+</ul>
+<h2 id="效率口径">效率口径</h2>
+<ul>
+<li><strong>训练预算</strong>：约 2.147B seen images；绝对成本很高。</li>
+<li><strong>NFE</strong>：63；相对许多表中 250–1000 NFE baseline 更低，但 sampling setup 也贡献了差异。</li>
+<li><strong>单步 FLOPs</strong>：46–552 GFLOPs/eval，随模型 scale 增长。</li>
+<li><strong>训练 compute</strong>：附录用 zettaFLOPs 估算，假设 iteration 为 evaluation 的 3×。</li>
+<li><strong>sampling compute</strong>：附录用 TFLOPs/image，latent 模型计入 VAE decoder 1260.9 GFLOPs。</li>
+<li><strong>latency</strong>：仅有约 0–7 天收敛图，缺完整硬件环境；不能换算为通用 wall-clock speedup。</li>
+<li><strong>post-hoc EMA</strong>：节省的是 EMA sweep/重复训练成本，不是单次主训练 FLOPs。</li>
+</ul>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>最大单步 FID 改进来自 magnitude-preserving learned layers：6.96→3.75。</li>
+<li>大模型需 dropout：XXL 无 dropout 约 537M images 后过拟合；10% dropout 初期稍慢但能继续改善，XS/S 则不应使用。</li>
+<li>EMA optimum 随架构、训练时长和 CFG 变化。</li>
+<li>FID 与 FDDINOv2 对最佳 EMA/CFG 严重分歧，说明单一 FID 最优不是普遍感知最优。</li>
+<li>用 XS unconditional model 引导 XXL conditional model 已足够，可将常见 CFG 额外计算近乎减半。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>它主要围绕 ADM 这类图像生成设置，不直接回答 DiT、视频扩散或复杂多模态条件下是否同样成立。</li>
-<li>它证明训练动力学很重要，但并不直接告诉我们哪些结论能迁移到现代统一生成/编辑系统。</li>
-<li>post-hoc EMA 很实用，但与不同架构和 guidance 的交互仍需要更多跨体系验证。</li>
+<li>主要只有 ImageNet class-conditional 图像，没有文本 prompt、人评、编辑或视频。</li>
+<li>一次最终 run 的预算未计入整个研究中的架构/超参搜索成本。</li>
+<li>“高层结构不变”不等于只改 optimizer；内部网络实现被系统重构。</li>
+<li>作者明确说 RIN、DiT 与其他应用能否受益尚未知；<strong>不应把本文写成 DiT 训练改进或 DiT 默认 backbone 证据</strong>。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li><strong>直接支持</strong> <a class="wikilink" href="../topics/diffusion-efficiency-engineering.html">Diffusion Efficiency Engineering</a> 中“training dynamics 与 EMA 是独立优化层”。</li>
+<li><strong>直接支持</strong> <a class="wikilink" href="../topics/diffusion-models.html">Diffusion Models</a> 中“同一高层 U-Net 的幅值和 EMA 可大幅改变质量—计算前沿”。</li>
+<li>对 DiT 默认化 claim 是<strong>压力测试/背景证据</strong>：U-Net 经系统训练改造后仍有强 compute frontier，但不构成受控 U-Net vs DiT 结论。</li>
+<li>反对把 diffusion 进步只归因于 backbone；训练动态、sampling 与 metric sweep 同样关键。</li>
 </ul>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2312.02696</li>
-<li>https://arxiv.org/pdf/2312.02696</li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2024/html/Karras_Analyzing_and_Improving_the_Training_Dynamics_of_Diffusion_Models_CVPR_2024_paper.html">CVF 论文页</a></li>
+<li><a href="https://arxiv.org/abs/2312.02696">arXiv</a></li>
+<li><a href="https://github.com/NVlabs/edm2">官方代码</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../sources/2026-04-15-all-are-worth-words.html">sources/2026-04-15-all-are-worth-words</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>它在本库中的价值，是把 diffusion 的“为什么变强”从单一架构故事拓展成“backbone + training dynamics + inference engineering”三条并行主线。</p></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+<li><a class="wikilink" href="../topics/diffusion-efficiency-engineering.html">Diffusion Efficiency Engineering</a></li>
+<li><a class="wikilink" href="../topics/diffusion-models.html">Diffusion Models</a></li>
+<li><a class="wikilink" href="../topics/image-generation.html">Image Generation</a></li>
+<li><a class="wikilink" href="../sources/2026-04-15-act-diffusion.html">ACT-Diffusion</a></li>
+<li><a class="wikilink" href="../sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html">Optimized Time Steps</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li><li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li><li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">5</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-04-15-act-diffusion.html">ACT-Diffusion：面向一步扩散模型的高效对抗一致性训练</a><span>来源笔记</span></li><li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>主题</span></li><li><a href="../topics/diffusion-models.html">扩散模型</a><span>主题</span></li><li><a href="../topics/image-generation.html">图像生成</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-15-analyzing-training-dynamics-diffusion-models&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Analyzing and Improving the Training Dynamics of Diffusion Models（CVPR 2024）：修正扩散训练动力学的缩放失衡&quot;,
+  &quot;title&quot;: &quot;Analyzing and Improving the Training Dynamics of Diffusion Models：EDM2 的幅值保持训练与 Post-hoc EMA&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-15&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2024&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-15&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;image-generation&quot;,
     &quot;diffusion&quot;,
+    &quot;efficiency&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;authors&quot;: [
-    &quot;Karras, Tero&quot;,
-    &quot;Aittala, Miika&quot;,
-    &quot;Lehtinen, Jaakko&quot;,
-    &quot;Hellsten, Janne&quot;,
-    &quot;Aila, Timo&quot;,
-    &quot;Laine, Samuli&quot;
+    &quot;Tero Karras&quot;,
+    &quot;Miika Aittala&quot;,
+    &quot;Jaakko Lehtinen&quot;,
+    &quot;Janne Hellsten&quot;,
+    &quot;Timo Aila&quot;,
+    &quot;Samuli Laine&quot;
   ],
-  &quot;published_at&quot;: &quot;2023/12/05&quot;,
+  &quot;published_at&quot;: &quot;2023-12-05&quot;,
   &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/CVPR2024/html/Karras_Analyzing_and_Improving_the_Training_Dynamics_of_Diffusion_Models_CVPR_2024_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2024/papers/Karras_Analyzing_and_Improving_the_Training_Dynamics_of_Diffusion_Models_CVPR_2024_paper.pdf&quot;,
     &quot;https://arxiv.org/abs/2312.02696&quot;,
-    &quot;https://arxiv.org/pdf/2312.02696&quot;
+    &quot;https://arxiv.org/pdf/2312.02696&quot;,
+    &quot;https://github.com/NVlabs/edm2&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-15-analyzing-training-dynamics-diffusion-models/&quot;,
   &quot;topics&quot;: [
-    &quot;topics/image-generation&quot;,
-    &quot;topics/diffusion-models&quot;
+    &quot;topics/diffusion-efficiency-engineering&quot;,
+    &quot;topics/diffusion-models&quot;,
+    &quot;topics/image-generation&quot;
   ],
   &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

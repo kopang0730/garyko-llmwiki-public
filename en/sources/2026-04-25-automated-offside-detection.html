@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Automated Offside Detection：这项工作把足球越位判定转成时空视频分析问题，强调规则、时刻同步和几何位置。 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="Automated Offside Detection：基于双固定广角相机的时空越位检测原型">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Automated Offside Detection：基于双固定广角相机的时空越位检测原型 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-25-automated-offside-detection&quot;, &quot;title&quot;: &quot;Automated Offside Detection（ACM MM Workshop 2021）：这项工作把足球越位判定转成时空视频分析问题，强调规则、时刻同步和几何位置。&quot;, &quot;title_en&quot;: &quot;Automated Offside Detection（ACM MM Workshop 2021）：这项工作把足球越位判定转成时空视频分析问题，强调规则、时刻同步和几何位置。&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;reasoning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-25-automated-offside-detection&quot;, &quot;title&quot;: &quot;Automated Offside Detection：基于双固定广角相机的时空越位检测原型&quot;, &quot;title_en&quot;: &quot;Automated Offside Detection：基于双固定广角相机的时空越位检测原型&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;reasoning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,31 +60,83 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-25-automated-offside-detection.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-25-automated-offside-detection.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-25</p>
-        <h1><span class="title-main">Automated Offside Detection</span><span class="title-subtitle">这项工作把足球越位判定转成时空视频分析问题，强调规则、时刻同步和几何位置。</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Automated Offside Detection：基于双固定广角相机的时空越位检测原型</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">Automated Offside Detection</span><span class="title-subtitle">基于双固定广角相机的时空越位检测原型</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ACM MM Workshop 2021</dd></div><div class="source-fact"><dt>Published</dt><dd>2021-10-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-25</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://dl.acm.org/doi/10.1145/3475722.3482796" title="https://dl.acm.org/doi/10.1145/3475722.3482796" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>dl.acm.org · 3475722.3482796</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#reasoning">#reasoning</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h1 id="automated-offside-detection-acm-mm-workshop-2021-这项工作把足球越位判定转成时空视频分析问题-强调规则-时刻同步和几何位置">Automated Offside Detection（ACM MM Workshop 2021）：这项工作把足球越位判定转成时空视频分析问题，强调规则、时刻同步和几何位置。</h1>
-<blockquote>资料来源：ACM MM Workshop 2021</blockquote>
-<blockquote>发表 / 发布日期：2021-10-01</blockquote>
-<blockquote>资料加入日期：2026-04-25</blockquote>
-<h2 id="一句话结论">一句话结论</h2>
-<p>这项工作把足球越位判定转成时空视频分析问题，强调规则、时刻同步和几何位置。</p>
-<h2 id="资料定位">资料定位</h2>
-<p>这是从体育机器视觉文献清单中拆出的独立来源。当前 first-pass 编译先把它放进 raw/source 证据层，后续可按重要性升级为深分析笔记。</p>
-<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
-<p>它补上体育 AI 当前最薄的 rule-grounded officiating 证据层，可作为未来裁判辅助 benchmark 的线索。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>MMSports 2021</dd></div><div class="source-fact"><dt>Published</dt><dd>2021-10-20</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-25</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://dl.acm.org/doi/10.1145/3475722.3482796" title="https://dl.acm.org/doi/10.1145/3475722.3482796" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>dl.acm.org · 3475722.3482796</strong></a><a class="source-link source-link-pdf" href="https://dl.acm.org/doi/pdf/10.1145/3475722.3482796" title="https://dl.acm.org/doi/pdf/10.1145/3475722.3482796" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>dl.acm.org · 3475722.3482796</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#关键图示">关键图示</a><ol><li class="toc-sub"><a href="#总-pipeline-与方法入口">总 pipeline 与方法入口</a></li><li class="toc-sub"><a href="#规则算法-结果与失败分析">规则算法、结果与失败分析</a></li></ol></li><li><a href="#核心实验与结果">核心实验与结果</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#原始材料">原始材料</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>这篇论文的价值是把越位检测写成 <code>标定 → 检测/投影 → 传球时刻 → 队伍/身份 → 规则函数</code> 的可审计 pipeline；20 个平衡片段上的 F1 只有 63.1%，且正文把 precision 与 recall 的报告顺序写反，因此只支持早期受控原型，不支持实时自动执法。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>它是 rule-grounded sports vision 的早期奠基样本，不是端到端 Video MLLM。相比只画静态越位线的方法，它加入传球时刻、跨帧 player ID 和 candidate 是否接球的时序条件；相比现代 VAR/VLM 系统，它更透明，但数据和泛化证据弱得多。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>越位不是单帧几何分类。系统至少要知道：</p>
+<ul>
+<li>传球发生在哪一帧；</li>
+<li>球员、球和 second-last defender 在球场坐标中的位置；</li>
+<li>passer、receiver 和双方队伍身份；</li>
+<li>处于越位位置的球员是否参与后续事件。</li>
+</ul>
+<p>作者因此放弃普通广播镜头，使用两台固定广角相机覆盖全场（PDF pp.1–2）。</p>
+<h2 id="方法概述">方法概述</h2>
+<ol>
+<li>用棋盘格与 Zhang calibration 修正两台固定相机畸变；人工 pitch keypoints 建 homography。</li>
+<li>用 YOLOv5 检测球员和球，以 bounding box 右下点投到 pitch plane。</li>
+<li>从球速最大/最小值推断踢球与接球帧；异常高速度区间用阈值删除、线性插值和 moving average 修复。</li>
+<li>从球员框提取颜色，以五类模板和 25 人约束的 General Assignment Problem 分配队伍/裁判/门将。</li>
+<li>用 pitch-coordinate Kalman filter + Hungarian assignment 保持球员/球 ID。</li>
+<li>在传球帧找 second-last defender；若越位线前方 candidate 随后成为 receiver，则判越位（PDF pp.3–7，Figs.2–7、Algorithm 1）。</li>
+</ol>
+<h2 id="关键图示">关键图示</h2>
+<h3 id="总-pipeline-与方法入口">总 pipeline 与方法入口</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-25-automated-offside-detection/page-previews/page-03-method.png">900</a></p>
+<p>PDF p.3 展示总流程，并进入 calibration / localization；核心不是某个 backbone，而是模块间的结构化状态传递。</p>
+<h3 id="规则算法-结果与失败分析">规则算法、结果与失败分析</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-25-automated-offside-detection/page-previews/page-07-results.png">900</a></p>
+<p>PDF p.7 同时给出 Algorithm 1、Table 1 confusion matrix、结果和 projection / ID-switch 失败来源。</p>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<ul>
+<li>两台 AXIS P1447-LE 4K 相机，30 FPS，固定在中线附近、距边线约 10 m；</li>
+<li>3 场 × 90 分钟；</li>
+<li>20 个 30 秒片段：10 offside、10 non-offside；事件约位于第 15 秒；</li>
+<li>排除 corner kicks 与 throw-ins；</li>
+<li>作者正文：precision 60%、recall 66.7%、F1 63.1%（PDF pp.6–7）。</li>
+</ul>
+<p>Table 1 给出 TP=6、FP=3、FN=4、TN=7。按标准定义复算应为 precision 66.7%、recall 60.0%、F1 约 63.2%。因此作者正文把 precision / recall 的数值顺序互换；F1 基本一致。</p>
+<h2 id="关键消融">关键消融</h2>
+<p>论文没有模块消融，也没有分别报告 detector、team classification、pass detection、tracking 或 calibration 指标。无法量化双机位、Kalman、GAP 或球速插值各自的贡献，这是证据链的主要缺口。</p>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>当前是 bibliography-driven first-pass source note，优先保证来源可追溯和方向定位。</li>
-<li>重要 paper 后续应补 <code>analysis.md</code>、关键图页、实验设置和指标细节。</li>
+<li>20 个平衡片段、无置信区间、无比赛级 split，不足以估计真实比赛 false-alarm burden。</li>
+<li>固定双机位、手工 pitch keypoints、颜色模板与人数约束限制跨场地迁移。</li>
+<li>作者确认远端投影误差和 ID switch 是主要失败来源（PDF p.7）。</li>
+<li>Algorithm 1 只检查 receiver，未覆盖干扰对手、反弹/扑救获利等完整 involvement 条件。</li>
+<li>伪代码未显式比较 candidate 与球的位置；bbox 右下点也不能严格实现 body-part rule。</li>
+<li>“为未来在线处理设计”不等于实时：论文没有 runtime / latency。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的 referee-assist 链应明确为 <code>可校准感知 → 时序事件 → 场地坐标/身份 → 规则状态 → 不确定性 → 人工复核</code>，不能从检测分数直接跳到自动执法。</li>
+<li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 应把本文视为结构化规则 pipeline 的奠基案例，同时用它说明级联误差与模块级指标的重要性。</li>
+<li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a> 可借本文强调：专业视频决策的瓶颈往往是时间同步、对象连续性与结构化状态，而不只是语言推理。</li>
+<li>本文不支持三条生成式视觉 claims，也不应被外推成通用模型已经具备可靠 referee reasoning。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li><a href="https://dl.acm.org/doi/10.1145/3475722.3482796">ACM 论文页</a></li>
+<li><a href="https://dl.acm.org/doi/pdf/10.1145/3475722.3482796">ACM PDF（当前环境 403）</a></li>
+<li><a href="https://www.scribd.com/document/738933719/3475722-3482796">公开同文镜像</a></li>
+<li><a href="https://speakerdeck.com/ikumauchida/automated-offside-detection-by-spatio-temporal-analysis-of-football-videos">作者公开 slides</a></li>
 </ul>
 <h2 id="原始材料">原始材料</h2>
 <ul>
-<li><code>raw/ingest/2026-04-25-automated-offside-detection/source.md</code></li>
+<li><code>raw/ingest/2026-04-25-automated-offside-detection/paper.pdf</code></li>
 <li><code>raw/ingest/2026-04-25-automated-offside-detection/paper-text.md</code></li>
+<li><code>raw/ingest/2026-04-25-automated-offside-detection/analysis.md</code></li>
+<li><code>raw/ingest/2026-04-25-automated-offside-detection/slides.pdf</code></li>
 <li><code>raw/ingest/2026-04-25-automated-offside-detection/links.yaml</code></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
@@ -86,16 +144,23 @@
 <li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
 <li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
 <li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-05-23-vars-automated-soccer-decision-making.html">sources/2026-05-23-vars-automated-soccer-decision-making</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-05-05-x-vars-explainable-football-refereeing.html">sources/2026-05-05-x-vars-explainable-football-refereeing</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-05-05-refereebench-multi-sport-referees.html">sources/2026-05-05-refereebench-multi-sport-referees</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li><li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li><li><a class="wikilink" href="../../en/topics/video-understanding.html">Video Understanding</a></li></ul></div><div class="related-group related-entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/sportsmot.html">SportsMOT</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">4</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a><span>Topic</span></li><li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a><span>Topic</span></li><li><a href="../../en/topics/video-understanding.html">Video Understanding</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-25-automated-offside-detection&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Automated Offside Detection（ACM MM Workshop 2021）：这项工作把足球越位判定转成时空视频分析问题，强调规则、时刻同步和几何位置。&quot;,
+  &quot;title&quot;: &quot;Automated Offside Detection：基于双固定广角相机的时空越位检测原型&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-25&quot;,
-  &quot;updated&quot;: &quot;2026-04-25&quot;,
-  &quot;venue&quot;: &quot;ACM MM Workshop 2021&quot;,
-  &quot;published_at&quot;: &quot;2021-10-01&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
+  &quot;venue&quot;: &quot;MMSports 2021&quot;,
+  &quot;published_at&quot;: &quot;2021-10-20&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-25&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
@@ -105,11 +170,20 @@
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
-  &quot;authors&quot;: [],
+  &quot;authors&quot;: [
+    &quot;Ikuma Uchida&quot;,
+    &quot;Atom Scott&quot;,
+    &quot;Hidehiko Shishido&quot;,
+    &quot;Yoshinari Kameda&quot;
+  ],
   &quot;canonical_links&quot;: [
-    &quot;https://dl.acm.org/doi/10.1145/3475722.3482796&quot;
+    &quot;https://dl.acm.org/doi/10.1145/3475722.3482796&quot;,
+    &quot;https://dl.acm.org/doi/pdf/10.1145/3475722.3482796&quot;,
+    &quot;https://www.scribd.com/document/738933719/3475722-3482796&quot;,
+    &quot;https://speakerdeck.com/ikumauchida/automated-offside-detection-by-spatio-temporal-analysis-of-football-videos&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-25-automated-offside-detection/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-25-automated-offside-detection/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/sports-ai-video-understanding&quot;,
     &quot;topics/sports-ai-roadmap&quot;,
@@ -120,7 +194,7 @@
   ],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

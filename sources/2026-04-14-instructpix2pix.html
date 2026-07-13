@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>InstructPix2Pix：学习遵循图像编辑指令 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="InstructPix2Pix：用合成监督建立自然语言图像编辑接口">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>InstructPix2Pix：用合成监督建立自然语言图像编辑接口 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-instructpix2pix&quot;, &quot;title&quot;: &quot;InstructPix2Pix（CVPR 2023）：学习遵循图像编辑指令&quot;, &quot;title_en&quot;: &quot;InstructPix2Pix（CVPR 2023）：学习遵循图像编辑指令&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-instructpix2pix&quot;, &quot;title&quot;: &quot;InstructPix2Pix：用合成监督建立自然语言图像编辑接口&quot;, &quot;title_en&quot;: &quot;InstructPix2Pix：用合成监督建立自然语言图像编辑接口&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,57 +60,90 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-14-instructpix2pix.html">中文</a><a class="" href="../en/sources/2026-04-14-instructpix2pix.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">InstructPix2Pix</span><span class="title-subtitle">学习遵循图像编辑指令</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>InstructPix2Pix：用合成监督建立自然语言图像编辑接口</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">InstructPix2Pix</span><span class="title-subtitle">用合成监督建立自然语言图像编辑接口</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023-01-01</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2211.09800" title="https://arxiv.org/abs/2211.09800" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2211.09800</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2211.09800.pdf" title="https://arxiv.org/pdf/2211.09800.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2211.09800.pdf</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-editing">#image-editing</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-editing">#image-editing</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把“按自然语言指令直接编辑图像”变成了一个清晰可训练的问题，是现代 instruction-based image editing 路线的重要起点。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023-01-01</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2211.09800" title="https://arxiv.org/abs/2211.09800" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2211.09800</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2211.09800.pdf" title="https://arxiv.org/pdf/2211.09800.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2211.09800.pdf</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述-数据工厂与编辑器">方法概述：数据工厂与编辑器</a><ol><li class="toc-sub"><a href="#数据工厂">数据工厂</a></li><li class="toc-sub"><a href="#编辑模型">编辑模型</a></li></ol></li><li><a href="#核心实验与结果">核心实验与结果</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a><ol><li class="toc-sub"><a href="#数据还是架构">数据还是架构</a></li><li class="toc-sub"><a href="#统一还是专用-模块化">统一还是专用/模块化</a></li></ol></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>InstructPix2Pix 的核心突破是用 GPT-3、Stable Diffusion 与 Prompt-to-Prompt 制造 45 万级配对监督，把“输入图 + 自然语言指令 → 输出图”变成一次前向推理任务；它强力证明数据工厂和统一接口的价值，但模型仍是专用编辑器，且精确空间控制、计数和身份保持仍有限。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这篇论文是 instruction-based image editing 的任务定义锚点。它取消了逐例 inversion、mask、额外示例图和 finetuning，让用户只需描述“做什么”，而非写完整目标图 caption（PDF pp.1–2）。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>它要解决的是：用户希望用自然语言直接修改图像，但过去的图像编辑系统往往依赖更硬的条件形式、复杂反演或逐例调优，既慢也不够通用。InstructPix2Pix 的关键意义在于，它把图像编辑正式重写为“输入图像 + 指令 → 输出编辑结果”的统一任务。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>方法上，论文结合 GPT-3 与 Stable Diffusion 自动构造大规模图像编辑训练数据，再训练一个条件扩散模型，让它在前向推理时直接完成指令编辑。相比需要 inversion 或 per-example finetuning 的路线，它强调的是统一训练范式和快速执行能力。</p>
-<h2 id="关键发现">关键发现</h2>
+<p>真实的前图—指令—后图三元组难以规模采集。论文利用两个现成大模型的互补知识：GPT-3 生成编辑指令与输出 caption，Stable Diffusion + Prompt-to-Prompt 生成尽量对齐的 before/after 图像，再训练一个双条件 latent diffusion 编辑器。</p>
+<h2 id="方法概述-数据工厂与编辑器">方法概述：数据工厂与编辑器</h2>
+<h3 id="数据工厂">数据工厂</h3>
 <ul>
-<li>它为 instruction-based image editing 提供了非常有影响力的早期任务定义。</li>
-<li>它的收益高度依赖合成数据构造，这让它成为“数据设计决定上限”的关键证据。</li>
-<li>它也说明统一输入输出形式本身会改变后续方法演化。</li>
+<li>700 条人工文本三元组微调 GPT-3 Davinci 1 epoch；</li>
+<li>扩展成 <strong>454,445</strong> 个文本编辑三元组；</li>
+<li>每对 caption 生成 100 对候选图，Prompt-to-Prompt 共享比例随机取 $U(0.1,0.9)$；</li>
+<li>用 image-image CLIP ≥0.75、image-caption ≥0.2、directional CLIP ≥0.2 过滤，每对 caption 最多保留 4 例（PDF pp.3–4；supp. p.14）。</li>
+</ul>
+<h3 id="编辑模型">编辑模型</h3>
+<ul>
+<li>Stable Diffusion 主干；输入图 latent 与 noisy latent 在首层通道拼接，新通道置零初始化；文本 cross-attention 改接编辑指令。</li>
+<li>双条件 CFG 分别控制输入保持 $s_I$ 和指令强度 $s_T$；经验范围为 $s_I=1$–1.5、$s_T=5$–10。</li>
+<li>训练 10,000 steps、8×40GB A100、25.5 小时、batch 1024、256×256；512×512、100-step 推理在 A100 上约 9 秒（supp. pp.13–14）。</li>
+</ul>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<ul>
+<li>真实照片、艺术图像上展示对象替换、天气/季节、背景、材质和媒介变换（PDF pp.5–10）。</li>
+<li>与 SDEdit 的定量结果是 CLIP Pareto 曲线：在相同 directional similarity 下，本文保持更高 input-image similarity（PDF p.7，Fig.8），但论文没有给统一汇总数字。</li>
+<li>与 SDEdit/Text2Live 的输入接口不同：基线收到完整输出 caption，本文收到编辑指令；比较说明可用性差异，不是严格同接口架构对照。</li>
+</ul>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>用全量数据的 10% 或 1% 时，模型难以做大幅结构编辑，更偏轻微/风格变化；说明数据量改变能力类型，不只是平均分数（PDF p.7，Fig.10）。</li>
+<li>去掉 CLIP filtering 会降低输入图一致性。</li>
+<li>增大 $s_T$ 强化编辑，增大 $s_I$ 强化结构保持；统一接口内部仍存在需要调节的编辑—保真折中（Fig.4）。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>自动合成数据会把偏差与噪音一并带入模型。</li>
-<li>早期能力虽强，但复杂局部编辑与高保真保持仍有明显不足。</li>
-<li>它更像路线起点，不是当前性能上限。</li>
+<li>上限受 Stable Diffusion、GPT-3、Prompt-to-Prompt、初始 700 条人工数据和 CLIP 筛选共同限制（PDF p.8）。</li>
+<li>对计数、空间推理、对象移动/交换、视角变化弱；会过度修改或不能隔离目标对象（Fig.13）。</li>
+<li>继承训练数据与模型偏差，例如职业—性别关联（Fig.14）。</li>
+<li>评估强依赖 CLIP，缺少标准 benchmark、人工偏好统计和稳定失败率。</li>
 </ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<h3 id="数据还是架构">数据还是架构</h3>
+<p>这是数据侧的直接锚点：1%/10% 数据和无过滤消融都显著改变表现。但模型也新增图像通道与双条件 CFG，没有同数据换架构实验。最稳判断是：<strong>合成数据工厂打开任务上限，架构把“保留输入”与“执行指令”变成可调控制。</strong></p>
+<h3 id="统一还是专用-模块化">统一还是专用/模块化</h3>
+<p>它支持统一自然语言<strong>接口</strong>，但不直接支持统一生成—编辑<strong>单模型</strong>：最终 checkpoint 专门做编辑，GPT-3/Prompt-to-Prompt 是离线数据流水线。其空间推理失败也说明纯文本接口未必替代 box/mask/point 等专用控制。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2211.09800</li>
-<li>https://arxiv.org/pdf/2211.09800.pdf</li>
+<li><a href="https://arxiv.org/abs/2211.09800">arXiv</a></li>
+<li><a href="https://arxiv.org/pdf/2211.09800.pdf">PDF</a></li>
+<li><a href="https://www.timothybrooks.com/instruct-pix2pix/">项目页</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../topics/image-editing.html">topics/image-editing</a></li>
-<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a></li>
-<li><a class="wikilink" href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">claims/claim-unified-models-may-outcompete-specialized-image-pipelines</a></li>
-<li><a class="wikilink" href="../questions/question-data-vs-architecture-in-image-editing.html">questions/question-data-vs-architecture-in-image-editing</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>在当前 wiki 里，InstructPix2Pix 的价值主要是历史定位：很多后续 instruction-based image editing 工作都可以视为在修补它留下的精度、保真度和数据质量问题。</p></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+<li><a class="wikilink" href="../topics/image-editing.html">图像编辑</a></li>
+<li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../entities/unified-image-generation-editing.html">统一图像生成与编辑</a></li>
+<li><a class="wikilink" href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一模型可能超过专用图像流水线</a></li>
+<li><a class="wikilink" href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑进步来自数据还是架构</a></li>
+<li><a class="wikilink" href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用/模块化系统如何分工</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../topics/image-editing.html">图像编辑</a></li><li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li></ul></div><div class="related-group related-entities"><h3>相关实体<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li></ul></div><div class="related-group related-claims"><h3>相关判断<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li></ul></div><div class="related-group related-questions"><h3>相关问题<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li><li><a class="wikilink" href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">5</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a><span>问题</span></li><li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a><span>问题</span></li><li><a href="../topics/image-editing.html">图像编辑</a><span>主题</span></li><li><a href="../topics/image-generation.html">图像生成</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-instructpix2pix&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;InstructPix2Pix（CVPR 2023）：学习遵循图像编辑指令&quot;,
+  &quot;title&quot;: &quot;InstructPix2Pix：用合成监督建立自然语言图像编辑接口&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2023&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;image-editing&quot;,
+    &quot;diffusion&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
@@ -131,9 +170,10 @@
     &quot;claims/claim-unified-models-may-outcompete-specialized-image-pipelines&quot;
   ],
   &quot;questions&quot;: [
-    &quot;questions/question-data-vs-architecture-in-image-editing&quot;
+    &quot;questions/question-data-vs-architecture-in-image-editing&quot;,
+    &quot;questions/question-will-unified-image-models-sustain-their-advantage&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

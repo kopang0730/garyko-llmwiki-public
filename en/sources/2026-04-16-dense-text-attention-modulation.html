@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DenseDiffusion：用 attention modulation 让 dense caption 和布局控制真正可用 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="DenseDiffusion：Stable Diffusion 的 training-free 区域文本 attention modulation">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>DenseDiffusion：Stable Diffusion 的 training-free 区域文本 attention modulation · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-dense-text-attention-modulation&quot;, &quot;title&quot;: &quot;DenseDiffusion（ICCV 2023）：用 attention modulation 让 dense caption 和布局控制真正可用&quot;, &quot;title_en&quot;: &quot;DenseDiffusion（ICCV 2023）：用 attention modulation 让 dense caption 和布局控制真正可用&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-dense-text-attention-modulation&quot;, &quot;title&quot;: &quot;DenseDiffusion：Stable Diffusion 的 training-free 区域文本 attention modulation&quot;, &quot;title_en&quot;: &quot;DenseDiffusion：Stable Diffusion 的 training-free 区域文本 attention modulation&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;control&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,61 +60,87 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-16-dense-text-attention-modulation.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-16-dense-text-attention-modulation.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-16</p>
-        <h1><span class="title-main">DenseDiffusion</span><span class="title-subtitle">用 attention modulation 让 dense caption 和布局控制真正可用</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>DenseDiffusion：Stable Diffusion 的 training-free 区域文本 attention modulation</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">DenseDiffusion</span><span class="title-subtitle">Stable Diffusion 的 training-free 区域文本 attention modulation</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2023/08/24</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2308.12964" title="https://arxiv.org/abs/2308.12964" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2308.12964</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2308.12964.pdf" title="https://arxiv.org/pdf/2308.12964.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2308.12964.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#efficiency">#efficiency</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#control">#control</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把 dense caption generation 和 layout control 接到同一 attention-level guidance 框架里，用训练免费方式让不同区域的细描述更稳定落到指定位置。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>现有 text-to-image diffusion 面对 dense caption 时经常失真：每个区域的详细描述很难准确映射到对应位置，模型更擅长整体 prompt，却不擅长“哪一块区域应该出现什么”。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2023-08-24</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2308.12964" title="https://arxiv.org/abs/2308.12964" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2308.12964</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2308.12964.pdf" title="https://arxiv.org/pdf/2308.12964.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2308.12964.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位与问题定义">论文定位与问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#成本-空间控制与-backbone">成本、空间控制与 backbone</a></li><li><a href="#核心实验与结果">核心实验与结果</a><ol><li class="toc-sub"><a href="#文本忠实度">文本忠实度</a></li><li class="toc-sub"><a href="#布局忠实度">布局忠实度</a></li></ol></li><li><a href="#关键消融">关键消融</a></li><li><a href="#空间控制-组合与高分辨率判断">空间控制、组合与高分辨率判断</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li><li><a href="#证据评级">证据评级</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>DenseDiffusion 在 Stable Diffusion 早期去噪阶段同时调制 cross/self-attention logits，把 dense caption 的文本片段绑定到 segmentation mask；它无需训练且不为每个对象额外跑完整 denoiser path，但受 base model 和粗 attention resolution 限制，不能处理精细边界、复杂重叠或未经验证的 DiT。</p>
+<h2 id="论文定位与问题定义">论文定位与问题定义</h2>
+<p>多对象长描述常导致对象遗漏和属性混合，纯文本也难控制“哪个对象在哪”。方法接受多个非重叠 $(文本片段, mask)$，直接操纵预训练 U-Net 内部 attention，使同 segment 的 query-key 更强、不同 segment 的交互更弱。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>DenseDiffusion 先分析中间 attention map 与布局的关系，再在采样期加入 attention modulation，把对象引导到给定区域。这样无需额外数据和微调，也能让 dense caption 和 layout guidance 进入已有预训练模型。</p>
-<h2 id="关键发现">关键发现</h2>
 <ul>
-<li>它把 attention 直接变成 layout guidance 接口，说明 <a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a> 里的 controllability 正越来越依赖对中间表示的显式操控。</li>
-<li>DenseDiffusion 和 <a class="wikilink" href="../../en/sources/2026-04-16-boxdiff.html">sources/2026-04-16-boxdiff</a> 很互补：前者面向 dense caption + layout，后者面向 box / scribble 约束，二者都属于 training-free spatial guidance。</li>
-<li>它也和 <a class="wikilink" href="../../en/sources/2026-04-16-a-star.html">sources/2026-04-16-a-star</a> 一起说明，attention 不只是解释工具，而是可直接编程的 guidance 机制。</li>
-<li>在 <a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a> 这条主线里，这意味着 controllability 已经越来越像 inference-time interface design，而不只是训练数据问题。</li>
+<li><strong>cross-attention modulation</strong>：提高指定区域图像 token 与对应文本 token 的 logit，降低不匹配 pair。</li>
+<li><strong>self-attention modulation</strong>：强化同一区域 image tokens，抑制不同对象间 feature mixing。</li>
+<li><strong>value-range adaptive</strong>：按原 logit max/min 范围限制修改幅度。</li>
+<li><strong>mask-area adaptive</strong>：小 mask 加强、大 mask 减弱，平衡区域尺寸。</li>
+<li><strong>time decay</strong>：50-step DDIM 中只调制早期 $t=1\rightarrow0.7$；$p=5,w_c=1,w_s=0.3$。</li>
 </ul>
+<h2 id="成本-空间控制与-backbone">成本、空间控制与 backbone</h2>
+<table><thead><tr><th>维度</th><th>论文证据</th></tr></thead><tbody><tr><td>训练</td><td>0；无新数据/参数更新</td></tr><tr><td>输入</td><td>dense caption + non-overlapping segmentation masks</td></tr><tr><td>推理</td><td>在已有 attention logits 上操作，无每对象完整 denoiser loop；论文未报 wall-clock</td></tr><tr><td>base model</td><td>LAION 训练的 Stable Diffusion latent U-Net</td></tr><tr><td>attention 空间</td><td>分析/可视化主要为 $16\times16$ maps</td></tr><tr><td>未验证</td><td>SDXL、DiT/FLUX、视频、panorama、任意高分辨率</td></tr></tbody></table>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<p>评测从 COCO val 选 250 个含至少两个对象的 captions，每方法生成 1,000 图。</p>
+<h3 id="文本忠实度">文本忠实度</h3>
+<p>DenseDiffusion 的 SOA-I <strong>77.61</strong>、CLIP <strong>0.2814</strong>；Stable Diffusion 为 73.08/0.2732，SD-Pww 为 73.92/0.2800。AMT 中用户相对 SD、Composable、Structure、SD-Pww 偏好 DenseDiffusion 的比例分别为 62%、83%、58%、53%。</p>
+<h3 id="布局忠实度">布局忠实度</h3>
+<p>DenseDiffusion IoU <strong>34.99</strong>、Local CLIP <strong>0.2176</strong>；SD-Pww 为 23.76/0.2125，63% 用户偏好本文结果。作者同时提醒 SOA-I 与人评相关性有限，原因之一是 LAION 与 YOLOv7/COCO 的域差异。</p>
+<h2 id="关键消融">关键消融</h2>
+<table><thead><tr><th>变体</th><th>SOA-I</th><th>IoU</th><th>解释</th></tr></thead><tbody><tr><td>去 cross-attn</td><td>72.27</td><td>18.35</td><td>布局/文本绑定损失最大</td></tr><tr><td>去 self-attn</td><td>75.60</td><td>29.57</td><td>对象间混合增加</td></tr><tr><td>去 value-range</td><td>76.51</td><td>29.88</td><td>条件忠实与质量均下降</td></tr><tr><td>去 mask-area</td><td>73.62</td><td><strong>38.00</strong></td><td>IoU 更高但对象出现更差、背景单调</td></tr><tr><td>完整</td><td><strong>77.61</strong></td><td>34.99</td><td>文本/自然度/布局折中</td></tr></tbody></table>
+<p>去 mask-area 后 IoU 反而更高是关键证据：分割型指标会奖励单调、易检测图像，不能只凭 IoU 判定生成更好。</p>
+<h2 id="空间控制-组合与高分辨率判断">空间控制、组合与高分辨率判断</h2>
+<p>区域级 phrase-mask 绑定有定量支持；可组合多个非重叠 segment。重叠、遮挡顺序与关系逻辑没有显式接口。作者承认 attention map 太粗，叶片等 thin structures 无法贴合。论文没有 panorama 或高分辨率扩展机制。</p>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>方法擅长区域级描述与布局控制，但更高层的关系推理、组合逻辑和复杂全局约束仍未彻底解决。</li>
-<li>训练免费并不等于零代价：attention modulation 仍可能增加推理复杂度。</li>
-<li>它主要补强 dense caption / layout 方向，对多帧一致性或视频任务还没有直接证据。</li>
+<li>base model 生成不了“juggling bear”时，attention modulation 也无法补出能力。</li>
+<li>需要用户给 segmentation mask，且假设 segments 不重叠。</li>
+<li>250 captions、每对 3 个人评，规模有限。</li>
+<li>与 MAS/SpaText 因模型不可用，只比较论文示例，不是公平定量 SOTA。</li>
+<li>对 Stable Diffusion attention API 依赖强，不能直接外推到 AdaLN 为主或 attention topology 不同的 DiT。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li><strong>直接支持</strong>：Stable Diffusion 的 self/cross attention 可作为 training-free region-text control interface。</li>
+<li><strong>有限支持</strong>：可视上接近部分 layout-trained 方法，但严格量化对照范围有限。</li>
+<li><strong>不支持</strong>：精细 mask、重叠关系、高分辨率、DiT 或零推理开销已解决。</li>
 </ul>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2308.12964</li>
-<li>https://arxiv.org/pdf/2308.12964.pdf</li>
+<li><a href="https://arxiv.org/abs/2308.12964">arXiv abstract</a></li>
+<li><a href="https://arxiv.org/pdf/2308.12964.pdf">PDF</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-boxdiff.html">sources/2026-04-16-boxdiff</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-a-star.html">sources/2026-04-16-a-star</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-controlnet.html">sources/2026-04-16-controlnet</a></li>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-controlnet.html">ControlNet</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-multidiffusion.html">MultiDiffusion</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-dc-controlnet.html">DC-ControlNet</a></li>
 </ul>
-<h2 id="备注">备注</h2>
-<p>它在本库中的价值，是把 diffusion guidance engineering 从“模块能否接入”继续推进到“空间控制、attention 治理与训练免费接口能否系统化成立”。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<h2 id="证据评级">证据评级</h2>
+<p><strong>A-</strong>：Stable Diffusion 区域级 attention control 的强主证据；精细空间、跨架构和大规模评测不足。</p></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li><li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">7</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-04-16-controlnet.html">Adding Conditional Control to Text-to-Image Diffusion Models：冻结 U-Net 主干的空间条件侧支</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-dc-controlnet.html">DC-ControlNet：SDXL U-Net 上的元素内/元素间层次化多条件控制</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-multidiffusion.html">MultiDiffusion：用最小二乘融合多条去噪路径的 training-free 组合控制</a><span>Source note</span></li><li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>Topic</span></li><li><a href="../../en/topics/diffusion-models.html">扩散模型</a><span>Topic</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-16-dense-text-attention-modulation&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;DenseDiffusion（ICCV 2023）：用 attention modulation 让 dense caption 和布局控制真正可用&quot;,
+  &quot;title&quot;: &quot;DenseDiffusion：Stable Diffusion 的 training-free 区域文本 attention modulation&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-16&quot;,
-  &quot;updated&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;ICCV 2023&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;image-generation&quot;,
     &quot;diffusion&quot;,
-    &quot;efficiency&quot;,
+    &quot;control&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
@@ -120,7 +152,7 @@
     &quot;Jung-Woo Ha&quot;,
     &quot;Jun-Yan Zhu&quot;
   ],
-  &quot;published_at&quot;: &quot;2023/08/24&quot;,
+  &quot;published_at&quot;: &quot;2023-08-24&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2308.12964&quot;,
     &quot;https://arxiv.org/pdf/2308.12964.pdf&quot;
@@ -134,7 +166,7 @@
   &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

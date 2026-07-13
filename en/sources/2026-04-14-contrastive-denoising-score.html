@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contrastive Denoising Score：用于文本引导潜扩散图像编辑的对比去噪评分 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="Contrastive Denoising Score：用自注意力对比正则保持编辑结构">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Contrastive Denoising Score：用自注意力对比正则保持编辑结构 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-contrastive-denoising-score&quot;, &quot;title&quot;: &quot;Contrastive Denoising Score（CVPR 2024）：用于文本引导潜扩散图像编辑的对比去噪评分&quot;, &quot;title_en&quot;: &quot;Contrastive Denoising Score（CVPR 2024）：用于文本引导潜扩散图像编辑的对比去噪评分&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-contrastive-denoising-score&quot;, &quot;title&quot;: &quot;Contrastive Denoising Score：用自注意力对比正则保持编辑结构&quot;, &quot;title_en&quot;: &quot;Contrastive Denoising Score：用自注意力对比正则保持编辑结构&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;diffusion&quot;, &quot;editing&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,73 +60,103 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-contrastive-denoising-score.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-contrastive-denoising-score.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">Contrastive Denoising Score</span><span class="title-subtitle">用于文本引导潜扩散图像编辑的对比去噪评分</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Contrastive Denoising Score：用自注意力对比正则保持编辑结构</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">Contrastive Denoising Score</span><span class="title-subtitle">用自注意力对比正则保持编辑结构</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2023/11/30</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2311.18608" title="https://arxiv.org/abs/2311.18608" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2311.18608</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2311.18608" title="https://arxiv.org/pdf/2311.18608" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2311.18608</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-editing">#image-editing</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-editing">#image-editing</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#editing">#editing</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把 contrastive denoising score 路线补进库里，强化了文本引导潜扩散图像编辑的机制层主线。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>它要解决的是文本引导潜扩散图像编辑里，如何更有效地驱动编辑方向并保持结果质量的问题。对当前知识库来说，它补的是 image-editing 里机制层优化的一条重要路线。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2023-11-30</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2024/html/Nam_Contrastive_Denoising_Score_for_Text-guided_Latent_Diffusion_Image_Editing_CVPR_2024_paper.html" title="https://openaccess.thecvf.com/content/CVPR2024/html/Nam_Contrastive_Denoising_Score_for_Text-guided_Latent_Diffusion_Image_Editing_CVPR_2024_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Nam_Contrastive_Denoising_Score…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2024/papers/Nam_Contrastive_Denoising_Score_for_Text-guided_Latent_Diffusion_Image_Editing_CVPR_2024_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2024/papers/Nam_Contrastive_Denoising_Score_for_Text-guided_Latent_Diffusion_Image_Editing_CVPR_2024_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Nam_Contrastive_Denoising_Score…</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位与任务接口">论文定位与任务接口</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#数据-主干与实验">数据、主干与实验</a></li><li><a href="#核心结果">核心结果</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a><ol><li class="toc-sub"><a href="#数据还是架构">数据还是架构</a></li><li class="toc-sub"><a href="#统一模型边界">统一模型边界</a></li></ol></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>CDS 不训练新编辑模型，而是在冻结 Stable Diffusion 1.4 的 DDS 逐图优化中加入自注意力 patch 对比损失，以少量语义分数代价改善源图结构保持；它是专用推理目标，不是统一生成—编辑架构。</p>
+<h2 id="论文定位与任务接口">论文定位与任务接口</h2>
+<p>输入源图、source prompt 与 target prompt，经 DDS 迭代优化目标 latent。training-free 指不微调 SD 权重，不表示一次前向或低延迟；论文未报告单图迭代成本。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>该工作通过 contrastive denoising score 来改进 text-guided latent diffusion image editing，使编辑过程在语义方向上更稳定、更有效。</p>
-<h2 id="关键发现">关键发现</h2>
 <ul>
-<li>它说明 image-editing 的持续进步还在来自各种细粒度的去噪/评分机制设计。</li>
-<li>它让 image-editing 页对“机制层优化”这条路线更完整，而不只停留在 inversion 或数据集。</li>
-<li>它能帮助以后把“架构 vs 数据”进一步拆成“主干/去噪机制/数据”三层。</li>
+<li>DDS 用 reference/target 两分支噪声预测差产生语义编辑方向，但缺少显式结构约束。</li>
+<li>CDS 直接取冻结 LDM self-attention hidden states，把相同空间 patch 设为正对、随机其他 patch 为负对，加入 InfoNCE/CUT loss。</li>
+<li>无额外 encoder 训练。直接约束 score output 会过度限制语义，cross-attention 不能正确保结构，自注意力特征效果最好（PDF pp.3–7）。</li>
+</ul>
+<h2 id="数据-主干与实验">数据、主干与实验</h2>
+<ul>
+<li>Stable Diffusion v1.4；从 LAION-5B 采 250 张猫图，任务为 cat→dog/cow/pig。</li>
+<li>对比 SDEdit、DiffuseIT、DDPM inversion+P2P/PnP、DDS。</li>
+<li>指标：CLIP Accuracy、DINO-ViT structure distance、LPIPS；20 人对 6 组结果做 1–5 分人评。</li>
+<li>无编辑训练数据，但能力来自 SD 预训练；GPU、步数、时长和显存未报告。</li>
+</ul>
+<h2 id="核心结果">核心结果</h2>
+<p>Table 1（PDF p.6）：</p>
+<table><thead><tr><th>任务</th><th>方法</th><th>CLIP Acc↑</th><th>Dist↓</th><th>LPIPS↓</th></tr></thead><tbody><tr><td>cat→dog</td><td>DDS</td><td><strong>97.9%</strong></td><td>0.023</td><td>0.080</td></tr><tr><td>cat→dog</td><td>CDS</td><td>97.5%</td><td><strong>0.020</strong></td><td><strong>0.079</strong></td></tr><tr><td>cat→cow</td><td>DDS</td><td><strong>99.6%</strong></td><td>0.040</td><td>0.116</td></tr><tr><td>cat→cow</td><td>CDS</td><td>97.9%</td><td><strong>0.033</strong></td><td><strong>0.112</strong></td></tr></tbody></table>
+<p>CDS 的结构指标小幅更好，语义分类略降，不是全指标免费提升。用户研究 CDS 的 text/structure/quality 为 <strong>4.43/4.65/4.20</strong>，DDS 为 4.06/4.05/3.64（Table 2）。</p>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>移除 contrastive loss 即 DDS，姿态/腿部与梯度空间细节更易丢失（Fig.4–5）。</li>
+<li>self-attention feature 优于 score output 与 cross-attention feature（Fig.6）。</li>
+<li>更高 loss weight 增强对象/背景保持，却削弱语义编辑；权重明确控制 editability–consistency trade-off（Fig.7）。</li>
+<li>PnP-style feature injection 容易对大编辑过约束；CDS 以语义 patch similarity 做软正则，定性更平衡（Fig.8）。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>它更偏内部机制改进，不一定改变任务边界。</li>
-<li>机制设计的收益可能依赖特定 latent diffusion 框架。</li>
-<li>它适合作为编辑机制分支补层。</li>
+<li>作者明确指出随机 patch 选择不利或源对象姿态非常规（如回头）会失败。</li>
+<li>量化只覆盖 250 张猫图和三种类别转换；对人脸、材质、多对象、局部指令的泛化未知。</li>
+<li>DINO/LPIPS 会奖励少改，必须与语义指标联合解释。</li>
+<li>需要 source prompt 且逐图优化；对 DiT、flow 或统一多模态模型的迁移未验证。</li>
 </ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<h3 id="数据还是架构">数据还是架构</h3>
+<p>在固定 SD 1.4、无新增 paired editing data、无权重更新的条件下，仅改变优化目标和特征层就改善结构指标与人评。这是“机制设计也能推动编辑”的局部直接证据；但特征来自大规模预训练，不能推出数据不重要或损失设计普遍优于数据扩充。</p>
+<h3 id="统一模型边界">统一模型边界</h3>
+<p>旧 source 将 CDS 归入 <code>unified-image-generation-editing</code> 是误分类，现已移除。CDS 是通用 T2I 先验之上的 DDS + contrastive regularizer 专用编辑器，更支持“统一先验可被专门推理模块复用”。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2311.18608</li>
-<li>https://arxiv.org/pdf/2311.18608</li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2024/html/Nam_Contrastive_Denoising_Score_for_Text-guided_Latent_Diffusion_Image_Editing_CVPR_2024_paper.html">CVF 论文页</a></li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Nam_Contrastive_Denoising_Score_for_Text-guided_Latent_Diffusion_Image_Editing_CVPR_2024_paper.pdf">CVF PDF</a></li>
+<li><a href="https://arxiv.org/abs/2311.18608">arXiv</a></li>
+<li><a href="https://hyelinnam.github.io/CDS/">项目页</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/image-editing.html">topics/image-editing</a></li>
-<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a></li>
-<li><a class="wikilink" href="../../en/questions/question-data-vs-architecture-in-image-editing.html">questions/question-data-vs-architecture-in-image-editing</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>Contrastive Denoising Score 在这套库里的作用，是把文本引导潜扩散编辑的机制优化路线补成明确节点。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑进步来自数据还是架构</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-editing.html">图像编辑</a></li><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li></ul></div><div class="related-group related-questions"><h3>Related questions<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">4</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/diffusion-models.html">扩散模型</a><span>Topic</span></li><li><a href="../../en/topics/image-editing.html">图像编辑</a><span>Topic</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-contrastive-denoising-score&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Contrastive Denoising Score（CVPR 2024）：用于文本引导潜扩散图像编辑的对比去噪评分&quot;,
+  &quot;title&quot;: &quot;Contrastive Denoising Score：用自注意力对比正则保持编辑结构&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2024&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;image-editing&quot;,
-    &quot;image-generation&quot;,
     &quot;diffusion&quot;,
+    &quot;editing&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;authors&quot;: [
-    &quot;Nam, Hyelin&quot;,
-    &quot;Kwon, Gihyun&quot;,
-    &quot;Park, Geon Yeong&quot;,
-    &quot;Ye, Jong Chul&quot;
+    &quot;Hyelin Nam&quot;,
+    &quot;Gihyun Kwon&quot;,
+    &quot;Geon Yeong Park&quot;,
+    &quot;Jong Chul Ye&quot;
   ],
-  &quot;published_at&quot;: &quot;2023/11/30&quot;,
+  &quot;published_at&quot;: &quot;2023-11-30&quot;,
   &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/CVPR2024/html/Nam_Contrastive_Denoising_Score_for_Text-guided_Latent_Diffusion_Image_Editing_CVPR_2024_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2024/papers/Nam_Contrastive_Denoising_Score_for_Text-guided_Latent_Diffusion_Image_Editing_CVPR_2024_paper.pdf&quot;,
     &quot;https://arxiv.org/abs/2311.18608&quot;,
-    &quot;https://arxiv.org/pdf/2311.18608&quot;
+    &quot;https://arxiv.org/pdf/2311.18608&quot;,
+    &quot;https://hyelinnam.github.io/CDS/&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-contrastive-denoising-score/&quot;,
   &quot;topics&quot;: [
@@ -128,14 +164,12 @@
     &quot;topics/image-generation&quot;,
     &quot;topics/diffusion-models&quot;
   ],
-  &quot;entities&quot;: [
-    &quot;entities/unified-image-generation-editing&quot;
-  ],
+  &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: [
     &quot;questions/question-data-vs-architecture-in-image-editing&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

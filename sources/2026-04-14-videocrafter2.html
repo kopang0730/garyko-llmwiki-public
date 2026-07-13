@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>VideoCrafter2：突破数据限制的高质量视频扩散模型 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="VideoCrafter2：低质量视频与高质量图像协同训练的视频扩散模型">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>VideoCrafter2：低质量视频与高质量图像协同训练的视频扩散模型 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-videocrafter2&quot;, &quot;title&quot;: &quot;VideoCrafter2（CVPR 2024）：突破数据限制的高质量视频扩散模型&quot;, &quot;title_en&quot;: &quot;VideoCrafter2（CVPR 2024）：突破数据限制的高质量视频扩散模型&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-generation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-videocrafter2&quot;, &quot;title&quot;: &quot;VideoCrafter2：低质量视频与高质量图像协同训练的视频扩散模型&quot;, &quot;title_en&quot;: &quot;VideoCrafter2：低质量视频与高质量图像协同训练的视频扩散模型&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-generation&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,57 +60,128 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-14-videocrafter2.html">中文</a><a class="" href="../en/sources/2026-04-14-videocrafter2.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">VideoCrafter2</span><span class="title-subtitle">突破数据限制的高质量视频扩散模型</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>VideoCrafter2：低质量视频与高质量图像协同训练的视频扩散模型</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">VideoCrafter2</span><span class="title-subtitle">低质量视频与高质量图像协同训练的视频扩散模型</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2024-01-01</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2401.09047" title="https://arxiv.org/abs/2401.09047" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2401.09047</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2401.09047.pdf" title="https://arxiv.org/pdf/2401.09047.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2401.09047.pdf</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-generation">#video-generation</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-generation">#video-generation</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作表明，即使社区拿不到商业级高质量视频数据，也可以通过更聪明的训练策略与高质量图像补充，把视频扩散模型往更高质量方向推进。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2024-01-17</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2024/html/Chen_VideoCrafter2_Overcoming_Data_Limitations_for_High-Quality_Video_Diffusion_Models_CVPR_2024_paper.html" title="https://openaccess.thecvf.com/content/CVPR2024/html/Chen_VideoCrafter2_Overcoming_Data_Limitations_for_High-Quality_Video_Diffusion_Models_CVPR_2024_paper.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>openaccess.thecvf.com · Chen_VideoCrafter2_Overcoming_D…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2024/papers/Chen_VideoCrafter2_Overcoming_Data_Limitations_for_High-Quality_Video_Diffusion_Models_CVPR_2024_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2024/papers/Chen_VideoCrafter2_Overcoming_Data_Limitations_for_High-Quality_Video_Diffusion_Models_CVPR_2024_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Chen_VideoCrafter2_Overcoming_D…</strong></a><a class="source-link source-link-code" href="https://github.com/AILab-CVC/VideoCrafter" title="https://github.com/AILab-CVC/VideoCrafter" target="_blank" rel="noopener noreferrer"><span>代码仓库</span><strong>github.com · VideoCrafter</strong></a></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a><ol><li class="toc-sub"><a href="#1-full-vs-partial-training">1. Full vs partial training</a></li><li class="toc-sub"><a href="#2-两阶段数据层解耦">2. 两阶段数据层解耦</a></li><li class="toc-sub"><a href="#3-合成图像迁移概念组合">3. 合成图像迁移概念组合</a></li></ol></li><li><a href="#架构-数据与训练">架构、数据与训练</a></li><li><a href="#核心实验与结果">核心实验与结果</a><ol><li class="toc-sub"><a href="#evalcrafter-四维结果">EvalCrafter 四维结果</a></li><li class="toc-sub"><a href="#50-prompt-专家偏好">50-prompt 专家偏好</a></li></ol></li><li><a href="#关键消融">关键消融</a><ol><li class="toc-sub"><a href="#full-partial-base-与扰动">Full/partial base 与扰动</a></li><li class="toc-sub"><a href="#微调模块选择">微调模块选择</a></li><li class="toc-sub"><a href="#图像数据选择">图像数据选择</a></li></ol></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>VideoCrafter2 证明，在 SD-based 3D U-Net 上，先用低质量视频全量联合训练空间/时间模块，再用高质量合成图像只微调空间模块，可以显著提升画质与概念组合并较好保住运动；这是“数据质量 + 模块耦合 + 训练接口”的联合证据，不是 DiT 趋势证据。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>论文处理公开视频数据不足下的高质量 T2V 训练。它不是新 Transformer/DiT backbone，而是围绕 Stable Diffusion 膨胀出的 factorized 3D U-Net，研究 full/partial training 如何改变空间—时间模块对后续图像微调的耐受性。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>它要解决的是公开视频训练集质量不够高，导致社区视频生成模型始终难以逼近商业系统质量的问题。相比早期“能不能做视频生成”，它更关注“在数据条件受限下，怎样把视频质量真正拉起来”。</p>
+<p>WebVid-10M 片段丰富、单镜头，但多数约 320p；商业模型依赖无法公开获得的高质量视频。作者问：不使用高质量视频，能否让低质视频负责 motion、高质图像负责 appearance 与 concept composition，从而得到通用高质量 T2V 模型？</p>
 <h2 id="方法概述">方法概述</h2>
-<p>论文研究由 Stable Diffusion 扩展出的视频模型训练方案，分析时空模块与低质量视频分布之间的耦合关系，再通过高质量图像微调空间模块，把整体分布往更高质量方向拉而不明显伤害运动能力。这个方法同时把数据问题和结构耦合问题摆到台面上。</p>
-<h2 id="关键发现">关键发现</h2>
+<h3 id="1-full-vs-partial-training">1. Full vs partial training</h3>
 <ul>
-<li>它提供了很强的数据侧证据：训练数据质量确实会限制视频扩散模型上限。</li>
-<li>但它又不是简单堆更多视频，而是通过模块耦合分析和训练策略设计把图像质量迁移进视频模型。</li>
-<li>它适合放进 video-generation 主线，也适合帮助 evaluation 页面理解“为什么高质量结果难得”。</li>
+<li><strong>Full</strong>：视频训练时同时更新 spatial 与 temporal modules。</li>
+<li><strong>Partial</strong>：冻结 SD spatial modules，只训练 temporal modules。</li>
+<li>同一架构/数据下，用 JDB 图像对 spatial/temporal 模块做 LoRA 扰动；partial base 画质更容易迁移，但运动快速变静或闪烁，full base 更能容忍参数变化。</li>
 </ul>
+<p>作者据此推断 full training 形成更强 spatial-temporal coupling。这里的“耦合强”是扰动后的行为解释，不是直接表示量测。</p>
+<h3 id="2-两阶段数据层解耦">2. 两阶段数据层解耦</h3>
+<ol>
+<li>WebVid-10M + LAION-COCO 对视频模型做 full training；</li>
+<li>用 JDB/JourneyDB 高质量图像直接微调 <strong>spatial modules only</strong>，冻结 temporal modules。</li>
+</ol>
+<p>Direct spatial-only 在画质—运动折中上优于 LoRA、temporal-only 或 spatial+temporal 联调；后者虽画质接近，但会产生 foreground/background flash。</p>
+<h3 id="3-合成图像迁移概念组合">3. 合成图像迁移概念组合</h3>
+<p>第二阶段用约 400 万张 Midjourney 合成图的 JDB，而不是只依赖 web 真实图。作者希望把强 T2I 模型的复杂概念组合能力迁到视频模型。</p>
+<h2 id="架构-数据与训练">架构、数据与训练</h2>
+<ul>
+<li>主干：SD 2.1 初始化的 latent video diffusion / factorized 3D U-Net，沿用 VideoCrafter1 并加入 ModelScope temporal convolution。</li>
+<li>Base：WebVid-10M 约 1,000 万 text-video pairs；LAION-COCO 6 亿 image-caption pairs 防 concept forgetting。</li>
+<li>Quality finetune：JDB 约 400 万 Midjourney 图像；LAION Aesthetics V2 作图像数据对照。</li>
+<li>Base 训练：32×A100、270K iterations、batch 128、$5\times10^{-5}$、512×320。</li>
+<li>Finetune：8×A100、30K iterations、batch 256、512×512。</li>
+</ul>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<h3 id="evalcrafter-四维结果">EvalCrafter 四维结果</h3>
+<table><thead><tr><th>模型</th><th>Visual</th><th>T/V Alignment</th><th>Motion</th><th>Temporal</th></tr></thead><tbody><tr><td>PikaLab</td><td>63.52</td><td>54.11</td><td>57.74</td><td>69.35</td></tr><tr><td>Gen2</td><td>67.35</td><td>52.30</td><td>62.53</td><td>69.71</td></tr><tr><td>VideoCrafter1</td><td>61.64</td><td>66.76</td><td>56.06</td><td>60.36</td></tr><tr><td>Show-1</td><td>52.19</td><td>62.07</td><td>53.74</td><td>60.83</td></tr><tr><td>AnimateDiff</td><td>58.89</td><td><strong>74.79</strong></td><td>51.38</td><td>56.61</td></tr><tr><td><strong>VideoCrafter2</strong></td><td><strong>63.28</strong></td><td>64.67</td><td>53.95</td><td>62.02</td></tr></tbody></table>
+<p>VideoCrafter2 的 visual 接近 Pika、超过 VideoCrafter1；T/V alignment 较强但非第一；motion 只略高 Show-1/AnimateDiff，明显落后商业模型；temporal 优于开源对照但落后 Pika/Gen2。它证明的是画质迁移并未造成大幅运动崩坏，不是四维全面 SOTA。</p>
+<h3 id="50-prompt-专家偏好">50-prompt 专家偏好</h3>
+<p>“选择 VideoCrafter2”的概率：</p>
+<table><thead><tr><th>对手</th><th>T/V</th><th>Motion</th><th>Visual</th></tr></thead><tbody><tr><td>Gen2</td><td>56%</td><td>46%</td><td>34%</td></tr><tr><td>AnimateDiff</td><td>55%</td><td>64%</td><td>69%</td></tr><tr><td>Show-1</td><td>59%</td><td>59%</td><td>82%</td></tr><tr><td>VideoCrafter1</td><td>61%</td><td>63%</td><td>61%</td></tr></tbody></table>
+<p>50 prompts、3 位视频制作专家；未报告置信区间。对 Gen2 的 motion/visual 明显落后，因此“媲美商业模型”只能作部分维度与质化判断。</p>
+<h2 id="关键消融">关键消融</h2>
+<h3 id="full-partial-base-与扰动">Full/partial base 与扰动</h3>
+<ul>
+<li>P-base DOVER Aesthetic/Technical：<strong>34.32/42.69</strong>；F-base：<strong>46.55/51.76</strong>。</li>
+<li>P-Spa-LoRA：<strong>78.25/72.74</strong>；F-Spa-LoRA：<strong>77.97/59.60</strong>。</li>
+<li>但 motion preference：F-Spa-LoRA 胜 P-Spa-LoRA <strong>87%</strong>；F-Temp-LoRA 胜 P-Temp-LoRA <strong>73%</strong>。</li>
+</ul>
+<p>Partial base 更容易迁移画质，full base 的运动更耐扰动；两类证据共同支撑论文的耦合解释。</p>
+<h3 id="微调模块选择">微调模块选择</h3>
+<ul>
+<li>F-Spa-DIR：<strong>82.57/70.35</strong></li>
+<li>F-Temp-DIR：<strong>82.77/65.34</strong></li>
+<li>F-Spa&amp;Temp-DIR：<strong>83.59/67.75</strong></li>
+<li>F-Spa&amp;Temp-LoRA：<strong>80.44/63.61</strong></li>
+<li>F-Spa-DIR 相对 F-Spa&amp;Temp-DIR 的 motion preference：<strong>67%</strong></li>
+</ul>
+<p>Spatial+temporal 联调 aesthetic 略高，但 spatial-only technical 更高、运动更稳，因此最终选择是质量—运动折中。</p>
+<h3 id="图像数据选择">图像数据选择</h3>
+<ul>
+<li>JDB F-Spa-DIR：<strong>82.57/70.35</strong></li>
+<li>LAION F-Spa-DIR：<strong>67.83/54.26</strong></li>
+</ul>
+<p>JDB 在该协议下显著领先，但图像来源、合成性、caption、审美与分布同时变化，不能把差异唯一归因于“合成图像”。</p>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>它主要面向视频生成质量，不直接回答视频编辑理解问题。</li>
-<li>论文更偏训练方案与分布迁移，仍需和更强调控制或推理的路线对读。</li>
-<li>它说明数据质量重要，但也说明结构耦合设计同样关键。</li>
+<li>结论只在一种 SD-based factorized 3D U-Net 上验证，不能自动外推到 DiT/MM-DiT、flow matching 或 autoregressive 模型。</li>
+<li>“耦合强度”由扰动后画质/运动行为推断，没有独立的表示或梯度量化。</li>
+<li>Full training 更新更多参数，未做同算力/同参数预算控制。</li>
+<li>WebVid、LAION-COCO、JDB 同时改变质量、规模、caption、风格和合成性，数据因素没有完全解耦。</li>
+<li>JDB 会继承 Midjourney 的审美、伪影及数据 provenance 风险。</li>
+<li>只测短 T2V；没有长叙事、复杂物理、音频或镜头切换。</li>
+<li>商业模型的训练数据、规模、采样设置未知，比较不能支持架构因果结论。</li>
+<li>用户研究仅 50 prompts、3 experts，缺显著性与标注一致性。</li>
+<li>使用同团队 EvalCrafter；后者对轻微稳定运动存在偏好，应由独立 benchmark 复核。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<table><thead><tr><th>页面/命题</th><th>证据分类</th><th>影响</th></tr></thead><tbody><tr><td><a class="wikilink" href="../topics/video-generation.html">视频生成</a></td><td>直接支持</td><td>低质视频、高质图像、full-training 耦合与 spatial-only finetuning共同决定画质—运动折中</td></tr><tr><td><a class="wikilink" href="../topics/generative-model-evaluation.html">生成模型评测</a></td><td>中性案例/压力测试</td><td>同一模型画质接近商业系统但 motion 落后，不能压成“高质量”单总分</td></tr><tr><td>DiT 主干趋势</td><td>当前不应引用</td><td>本文去噪器是 SD-based 3D U-Net，不是 DiT；原 source 的 DiT entity/claim 关联已撤销</td></tr><tr><td><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">评测是否刻画真实视频编辑理解</a></td><td>背景/中性案例</td><td>只有生成输出质量，无源视频、编辑指令、preserve/change 或编辑成功率</td></tr></tbody></table>
+<p><strong>证据边界</strong>：本文支持“数据质量与训练接口共同影响视频质量”，不支持“数据比架构更重要”，也不能用其 EvalCrafter 分数推断视频编辑理解能力。</p>
+<h2 id="证据评级">证据评级</h2>
+<ul>
+<li><strong>SD-based 视频生成训练策略：A-</strong>。有同架构 full/partial 诊断、模块选择和图像数据对照。</li>
+<li><strong>生成评测主题：C / 使用案例</strong>。使用 EvalCrafter，不提出新评测协议。</li>
+<li><strong>DiT claim：不应引用</strong>。</li>
 </ul>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2401.09047</li>
-<li>https://arxiv.org/pdf/2401.09047.pdf</li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2024/html/Chen_VideoCrafter2_Overcoming_Data_Limitations_for_High-Quality_Video_Diffusion_Models_CVPR_2024_paper.html">CVF OpenAccess</a></li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Chen_VideoCrafter2_Overcoming_Data_Limitations_for_High-Quality_Video_Diffusion_Models_CVPR_2024_paper.pdf">CVF PDF</a></li>
+<li><a href="https://arxiv.org/abs/2401.09047">arXiv</a></li>
+<li><a href="https://arxiv.org/pdf/2401.09047.pdf">arXiv PDF</a></li>
+<li><a href="https://ailab-cvc.github.io/videocrafter">Project</a></li>
+<li><a href="https://github.com/AILab-CVC/VideoCrafter">GitHub</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../topics/video-generation.html">topics/video-generation</a></li>
-<li><a class="wikilink" href="../topics/generative-model-evaluation.html">topics/generative-model-evaluation</a></li>
-<li><a class="wikilink" href="../entities/diffusion-transformer.html">entities/diffusion-transformer</a></li>
-<li><a class="wikilink" href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">claims/claim-dit-is-becoming-the-default-scalable-generation-backbone</a></li>
-<li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>VideoCrafter2 对当前 wiki 的价值，是把“视频质量差只是模型太弱”这件事改写成更具体的问题：数据分布、模块耦合和训练策略其实共同决定上限。</p></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+<li><a class="wikilink" href="../topics/video-generation.html">视频生成</a></li>
+<li><a class="wikilink" href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../topics/video-generation.html">视频生成</a></li><li><a class="wikilink" href="../topics/generative-model-evaluation.html">生成模型评测</a></li></ul></div><div class="related-group related-questions"><h3>相关问题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">4</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a><span>问题</span></li><li><a href="../topics/generative-model-evaluation.html">生成模型评测</a><span>主题</span></li><li><a href="../topics/video-generation.html">视频生成</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-videocrafter2&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;VideoCrafter2（CVPR 2024）：突破数据限制的高质量视频扩散模型&quot;,
+  &quot;title&quot;: &quot;VideoCrafter2：低质量视频与高质量图像协同训练的视频扩散模型&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2024&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;video-generation&quot;,
+    &quot;diffusion&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
@@ -118,26 +195,26 @@
     &quot;Chao Weng&quot;,
     &quot;Ying Shan&quot;
   ],
-  &quot;published_at&quot;: &quot;2024-01-01&quot;,
+  &quot;published_at&quot;: &quot;2024-01-17&quot;,
   &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/CVPR2024/html/Chen_VideoCrafter2_Overcoming_Data_Limitations_for_High-Quality_Video_Diffusion_Models_CVPR_2024_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2024/papers/Chen_VideoCrafter2_Overcoming_Data_Limitations_for_High-Quality_Video_Diffusion_Models_CVPR_2024_paper.pdf&quot;,
     &quot;https://arxiv.org/abs/2401.09047&quot;,
-    &quot;https://arxiv.org/pdf/2401.09047.pdf&quot;
+    &quot;https://arxiv.org/pdf/2401.09047.pdf&quot;,
+    &quot;https://github.com/AILab-CVC/VideoCrafter&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-videocrafter2/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-14-videocrafter2/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/video-generation&quot;,
     &quot;topics/generative-model-evaluation&quot;
   ],
-  &quot;entities&quot;: [
-    &quot;entities/diffusion-transformer&quot;
-  ],
-  &quot;claims&quot;: [
-    &quot;claims/claim-dit-is-becoming-the-default-scalable-generation-backbone&quot;
-  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
   &quot;questions&quot;: [
     &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

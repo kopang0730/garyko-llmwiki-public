@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>加速迭代扩散反演的真实图像编辑 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="AIDI：以加速定点迭代改进真实图像扩散反演">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>AIDI：以加速定点迭代改进真实图像扩散反演 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-effective-real-image-editing&quot;, &quot;title&quot;: &quot;加速迭代扩散反演的真实图像编辑（ICCV 2023）&quot;, &quot;title_en&quot;: &quot;加速迭代扩散反演的真实图像编辑（ICCV 2023）&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-effective-real-image-editing&quot;, &quot;title&quot;: &quot;AIDI：以加速定点迭代改进真实图像扩散反演&quot;, &quot;title_en&quot;: &quot;AIDI：以加速定点迭代改进真实图像扩散反演&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;diffusion&quot;, &quot;editing&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,68 +60,93 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-14-effective-real-image-editing.html">中文</a><a class="" href="../en/sources/2026-04-14-effective-real-image-editing.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">加速迭代扩散反演的真实图像编辑</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>AIDI：以加速定点迭代改进真实图像扩散反演</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">AIDI</span><span class="title-subtitle">以加速定点迭代改进真实图像扩散反演</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ICCV 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023/09/10</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2309.04907" title="https://arxiv.org/abs/2309.04907" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2309.04907</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2309.04907" title="https://arxiv.org/pdf/2309.04907" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2309.04907</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-editing">#image-editing</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-editing">#image-editing</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#editing">#editing</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作继续沿 inversion 路线推进，说明真实图像编辑的关键瓶颈之一是如何把反演做得更快、更稳。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ICCV 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023-09-10</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2309.04907" title="https://arxiv.org/abs/2309.04907" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2309.04907</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2309.04907" title="https://arxiv.org/pdf/2309.04907" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2309.04907</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#成本-数据与指标">成本、数据与指标</a></li><li><a href="#消融与关键发现">消融与关键发现</a></li><li><a href="#编辑保持边界">编辑保持边界</a></li><li><a href="#相关页面">相关页面</a></li><li><a href="#归属边界">归属边界</a></li><li><a href="#证据评估">证据评估</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>AIDI 将每个 DDIM inversion step 改写为隐式 backward-Euler 定点问题，以 Anderson 或固定两步混合加速求解，再用 attention-derived soft mask 混合高/低 CFG 做 PTP 编辑；它在 SD v1.4 的 10/20-step regime 显著改善重建和 AFHQ dog→cat trade-off，但不是 exact inversion、不是 personalization，也没有区域或身份保持保证。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>它要解决的是真实图像编辑里迭代扩散反演太慢、太重的问题。对当前知识库来说，它补的是 NULL-Text Inversion 之后，真实图像编辑如何进一步走向可用性的加速节点。</p>
+<p>真实图像要进入 deterministic diffusion editing，必须得到能沿同一 sampler path 重建的 $z_T$。普通 DDIM inversion 的显式 Euler 近似在低步数和高 CFG 时积累误差；NTI 需要每 timestep 反向优化 null embedding，EDICT 双轨每步调用两次 denoiser。本文试图以数值求解器改造取得更好的精度—成本折中。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>该工作通过加速 iterative diffusion inversion，使真实图像更快进入可编辑轨道，从而提升真实图像编辑流程的效率与稳定性。</p>
-<h2 id="关键发现">关键发现</h2>
 <ul>
-<li>它说明 image-editing 里一条持续存在的改进线，不是换任务定义，而是持续优化 inversion 这一底层过程。</li>
-<li>它与 NULL-Text Inversion 形成前后呼应：前者强调可编辑性建立，后者强调把这套机制做快、做稳。</li>
-<li>它强化了“机制层创新也能形成 paper 级贡献”这一认识。</li>
+<li><strong>真实主干</strong>：Stable Diffusion v1.4 latent diffusion，cross-attention 卷积 U-Net；VAE/CLIP/U-Net 全冻结，无 DiT。</li>
+<li><strong>AIDI-A</strong>：令 $z_t=f(z_t)$，对残差 $g(z)=f(z)-z$ 做 Anderson acceleration。</li>
+<li><strong>AIDI-E</strong>：固定最近两次估计权重为 $(0.5,0.5)$，免去系数优化；主编辑实验使用该版本。</li>
+<li><strong>计算口径</strong>：10/20/50 个 diffusion steps 分别在每个 inversion step 内做 11/6/5 次 fixed-point updates，所以“10 步”不等于 10 次 U-Net 调用。</li>
+<li><strong>Blended guidance</strong>：source path 以低 CFG 重建；从 anchor token cross-attention 得到软 mask，编辑区域 CFG 最高约 7、其他区域接近 1。</li>
+<li><strong>随机补救</strong>：可在软 mask 内以小噪声重复采样并按 FID/LPIPS 选 best-of-$n$。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="成本-数据与指标">成本、数据与指标</h2>
 <ul>
-<li>它更像底层链路优化，而不是新的统一编辑框架。</li>
-<li>加速并不自动解决复杂语义编辑的可控性问题。</li>
-<li>它的价值更偏工程可用性与编辑流程效率。</li>
+<li>COCO 5,000 图重建；AFHQ dog→cat 编辑；单 A100。</li>
+<li>无训练或 per-image parameter optimization，但 inversion 有多次 denoiser forward；AIDI-A 另有小型最小二乘。</li>
+<li>论文图报告相对 latency，未给可复核秒数：编辑与 PTP/NTI 同量级，inversion 比普通 PTP 慢。</li>
+<li>重建用 SSIM/LPIPS；20-step LPIPS 从 baseline <strong>0.148 降至 0.063</strong>。</li>
+<li>AFHQ 用输入 LPIPS 与相对 cat training set 的 FID；论文称 20-step AIDI 优于 50-step EDICT，10-step 仍稳，但完整逐方法数值仅在图中，正文无方差/CI。</li>
+<li><strong>无人评</strong>，也没有 mask 外误差、身份指标或编辑成功率。</li>
 </ul>
-<h2 id="原始链接">原始链接</h2>
+<h2 id="消融与关键发现">消融与关键发现</h2>
 <ul>
-<li>https://arxiv.org/abs/2309.04907</li>
-<li>https://arxiv.org/pdf/2309.04907</li>
+<li>AIDI-A reconstruction 最强；AIDI-E 少量细节略差但成本较低，作为默认。</li>
+<li>CFG 增大仍会降低 inversion accuracy，说明 fixed-point solver 没有消除 guidance mismatch。</li>
+<li>PTP 改成无 guidance inversion 后已明显改善，AIDI 的收益应在这一强 baseline 上判断。</li>
+<li>低步数下 PTP/NTI/EDICT 更容易出现结构伪影，AIDI 对 10/20 steps 更鲁棒。</li>
+<li>随机编辑单次会加大 LPIPS；best-of-$n$ 选择才改善 FID/LPIPS，成本随 $n$ 增长。</li>
+</ul>
+<h2 id="编辑保持边界">编辑保持边界</h2>
+<ul>
+<li>支持对象/背景替换、姿态/表情变化、风格迁移；一次 inversion 后可尝试多个 target prompts。</li>
+<li>不要求用户 mask，但必须给 source/target prompt，并选择正/负 anchor token。</li>
+<li>soft attention mask 不是硬区域约束：绿色可渗入城堡，局部会出现口部线条伪影。</li>
+<li>near-exact 只限低 CFG 下 sampler reconstruction，并受 VAE 下限影响；编辑后没有像素、身份或背景严格保持。</li>
+<li>定量编辑主要是 AFHQ dog→cat，不能外推到开放域复杂编辑。</li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../topics/image-editing.html">topics/image-editing</a></li>
-<li><a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a></li>
-<li><a class="wikilink" href="../questions/question-data-vs-architecture-in-image-editing.html">questions/question-data-vs-architecture-in-image-editing</a></li>
+<li><a class="wikilink" href="../topics/image-editing.html">图像编辑</a></li>
+<li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../sources/2026-04-16-edict-exact-diffusion-inversion.html">EDICT</a>：双轨 exact sampler inversion，固定约 2× denoiser。</li>
+<li><a class="wikilink" href="../sources/2026-04-14-null-text-inversion.html">Null-text Inversion</a>：每 timestep 优化 unconditional embedding。</li>
+<li><a class="wikilink" href="../sources/2026-04-14-prompt-tuning-inversion.html">Prompt Tuning Inversion</a>：优化 conditional embedding trajectory，而非改 sampler solver。</li>
 </ul>
-<h2 id="备注">备注</h2>
-<p>这篇工作在库里的作用，是把真实图像编辑主线中的 inversion 加速路线补成明确节点。</p></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+<h2 id="归属边界">归属边界</h2>
+<p>本文只支持 <strong>Stable Diffusion U-Net 上的 fixed-point inversion + attention-guided CFG editing</strong>。它没有研究统一生成—编辑架构、data-vs-architecture、subject personalization 或 DiT，因此已移除旧的 unified-model entity/question 误关联。</p>
+<h2 id="证据评估">证据评估</h2>
+<p><strong>B+</strong>：5,000 图重建、数值机制和低步数实验较扎实；编辑数值/延迟主要在图中，缺方差、人评和严格保持评价，且只验证 SD v1.4 与窄 AFHQ 任务。</p></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../topics/image-editing.html">图像编辑</a></li><li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">4</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-04-14-prompt-tuning-inversion.html">Prompt Tuning Inversion：优化条件嵌入轨迹的真实图像编辑</a><span>来源笔记</span></li><li><a href="../topics/diffusion-models.html">扩散模型</a><span>主题</span></li><li><a href="../topics/image-editing.html">图像编辑</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-effective-real-image-editing&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;加速迭代扩散反演的真实图像编辑（ICCV 2023）&quot;,
+  &quot;title&quot;: &quot;AIDI：以加速定点迭代改进真实图像扩散反演&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;ICCV 2023&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;image-editing&quot;,
     &quot;diffusion&quot;,
+    &quot;editing&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;authors&quot;: [
-    &quot;Pan, Zhihong&quot;,
-    &quot;Gherardi, Riccardo&quot;,
-    &quot;Xie, Xiufeng&quot;,
-    &quot;Huang, Stephen&quot;
+    &quot;Zhihong Pan&quot;,
+    &quot;Riccardo Gherardi&quot;,
+    &quot;Xiufeng Xie&quot;,
+    &quot;Stephen Huang&quot;
   ],
-  &quot;published_at&quot;: &quot;2023/09/10&quot;,
+  &quot;published_at&quot;: &quot;2023-09-10&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2309.04907&quot;,
     &quot;https://arxiv.org/pdf/2309.04907&quot;
@@ -125,14 +156,10 @@
     &quot;topics/image-editing&quot;,
     &quot;topics/diffusion-models&quot;
   ],
-  &quot;entities&quot;: [
-    &quot;entities/unified-image-generation-editing&quot;
-  ],
+  &quot;entities&quot;: [],
   &quot;claims&quot;: [],
-  &quot;questions&quot;: [
-    &quot;questions/question-data-vs-architecture-in-image-editing&quot;
-  ]
-}</pre></section>
+  &quot;questions&quot;: []
+}</pre></details>
     </article>
   </main>
 </body>

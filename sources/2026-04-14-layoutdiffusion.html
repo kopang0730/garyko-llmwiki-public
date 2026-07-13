@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>LayoutDiffusion：面向布局到图像生成的可控扩散模型 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="LayoutDiffusion：以对象框控制像素 U-Net 的 layout-to-image 生成">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>LayoutDiffusion：以对象框控制像素 U-Net 的 layout-to-image 生成 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-layoutdiffusion&quot;, &quot;title&quot;: &quot;LayoutDiffusion（CVPR 2023）：面向布局到图像生成的可控扩散模型&quot;, &quot;title_en&quot;: &quot;LayoutDiffusion（CVPR 2023）：面向布局到图像生成的可控扩散模型&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;control&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-layoutdiffusion&quot;, &quot;title&quot;: &quot;LayoutDiffusion：以对象框控制像素 U-Net 的 layout-to-image 生成&quot;, &quot;title_en&quot;: &quot;LayoutDiffusion：以对象框控制像素 U-Net 的 layout-to-image 生成&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;control&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,51 +60,69 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-14-layoutdiffusion.html">中文</a><a class="" href="../en/sources/2026-04-14-layoutdiffusion.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">LayoutDiffusion</span><span class="title-subtitle">面向布局到图像生成的可控扩散模型</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>LayoutDiffusion：以对象框控制像素 U-Net 的 layout-to-image 生成</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">LayoutDiffusion</span><span class="title-subtitle">以对象框控制像素 U-Net 的 layout-to-image 生成</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023/03/30</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2303.17189" title="https://arxiv.org/abs/2303.17189" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2303.17189</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2303.17189" title="https://arxiv.org/pdf/2303.17189" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2303.17189</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#control">#control</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把 layout-to-image generation 作为显式可控生成路线补入库里，强化了 image-generation 的空间控制分支。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>它要解决的是文本到图像生成里缺少明确空间布局控制的问题。对当前知识库来说，它能很好补足 GLIGEN 之外的另一条显式空间控制主线。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>LayoutDiffusion 通过扩散模型直接建模 layout-to-image generation，使生成结果能够更明确遵循给定布局约束。</p>
-<h2 id="关键发现">关键发现</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023-03-30</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2303.17189" title="https://arxiv.org/abs/2303.17189" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2303.17189</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2303.17189" title="https://arxiv.org/pdf/2303.17189" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2303.17189</strong></a><a class="source-link source-link-code" href="https://github.com/ZGCTroy/LayoutDiffusion" title="https://github.com/ZGCTroy/LayoutDiffusion" target="_blank" rel="noopener noreferrer"><span>代码仓库</span><strong>github.com · LayoutDiffusion</strong></a></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#同名消歧">同名消歧</a></li><li><a href="#方法与接口">方法与接口</a></li><li><a href="#backbone-数据与成本">Backbone、数据与成本</a></li><li><a href="#主结果">主结果</a></li><li><a href="#消融与-trade-off">消融与 trade-off</a></li><li><a href="#任务边界与局限">任务边界与局限</a></li><li><a href="#相关页面">相关页面</a></li><li><a href="#备注">备注</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>LayoutDiffusion 把对象类别+bounding boxes 与 image patches 映射到统一空间坐标，用 LFM 和 OaCA 将 layout 注入从头训练的 ADM-style <strong>pixel U-Net</strong>；它是 closed-vocabulary layout-to-image，不是同名 graphic-layout token diffusion、图像编辑或 DiT。</p>
+<h2 id="同名消歧">同名消歧</h2>
 <ul>
-<li>它说明 image-generation 的可控性不只靠文本和对象 grounding，还包括更结构化的空间布局接口。</li>
-<li>它为之后比较 grounded generation、region control、layout control 这些不同控制接口提供了更清楚的支点。</li>
-<li>它让图像生成页对“空间可控生成”这一分支的覆盖更完整。</li>
+<li>本文：输入 natural-scene object boxes/categories，输出像素图像；主干是 U-Net。</li>
+<li><a class="wikilink" href="../sources/2026-04-16-layoutdiffusion-graphic-layout-generation.html">LayoutDiffusion（graphic layout generation）</a>：输入/输出 UI/文档 layout tokens，用 BERT-base 风格 Transformer reverse process，不生成图像。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<p>两篇论文不可共享 backbone、数据、指标或任务结论。</p>
+<h2 id="方法与接口">方法与接口</h2>
 <ul>
-<li>布局控制并不自动带来更强开放语义编辑能力。</li>
-<li>它更偏结构化生成接口，而不是统一编辑系统本身。</li>
-<li>它是控制路线补厚节点，不直接回答个性化或多任务统一问题。</li>
+<li>Layout 是对象集合 $\{(bbox,category)\}$，不含自由文本、属性、关系谓词或 reference image。</li>
+<li>LFM 用 6-layer Transformer encoder 在对象间 self-attention；它只是 condition encoder。</li>
+<li>每个 U-Net image patch 获得归一化 box，与 layout object 处于同一坐标表示。</li>
+<li>OaCA 在 32/16/8 resolution 将对象 category/box 注入 U-Net feature。</li>
+<li>训练为 1000-step pixel-space Gaussian diffusion noise MSE；CFG dropout 0.2，推理用 DPM-Solver 25 steps。</li>
 </ul>
-<h2 id="原始链接">原始链接</h2>
+<p>“统一”仅指 image patch/layout 的空间表示，不是统一 generation/editing architecture。</p>
+<h2 id="backbone-数据与成本">Backbone、数据与成本</h2>
+<table><thead><tr><th>维度</th><th>全文核验</th></tr></thead><tbody><tr><td>去噪 backbone</td><td>ADM-style convolutional U-Net；无 DiT</td></tr><tr><td>Full / Small</td><td>569M / 142M 参数</td></tr><tr><td>数据</td><td>COCO-Stuff：25,210 train/3,097 val；VG：62,565/5,062/5,096</td></tr><tr><td>条件</td><td>训练 taxonomy 内 category IDs + boxes；COCO 不用 segmentation，VG 只用 boxes/categories</td></tr><tr><td>训练</td><td>8×RTX 3090；COCO Full 1.15M steps、Small 1.4M；VG Full 1.45M</td></tr><tr><td>等价成本</td><td>COCO Full 216.55 V100-days；Small 75.83 V100-days</td></tr><tr><td>推理吞吐</td><td>Full 0.308 img/s；Small 0.608 img/s（25 solver steps）</td></tr></tbody></table>
+<p>正文“32×3090”与补充 per-run 表“8×3090”口径不一致；source 采用具体模型表，并保留该疑点。</p>
+<h2 id="主结果">主结果</h2>
+<p>256×256：</p>
+<table><thead><tr><th>数据</th><th>方法</th><th>FID↓</th><th>DS↑</th><th>CAS↑</th><th>YOLO↑</th></tr></thead><tbody><tr><td>COCO</td><td>LostGAN-v2</td><td>31.18</td><td>0.56</td><td>40.00</td><td>17.50</td></tr><tr><td>COCO</td><td>PLGAN</td><td>29.10</td><td>0.52</td><td>37.65</td><td>14.40</td></tr><tr><td>COCO</td><td><strong>LayoutDiffusion</strong></td><td><strong>15.61</strong></td><td><strong>0.57</strong></td><td><strong>47.74</strong></td><td><strong>32.00</strong></td></tr><tr><td>VG</td><td>LostGAN-v2</td><td>32.08</td><td>0.53</td><td>34.48</td><td>--</td></tr><tr><td>VG</td><td><strong>LayoutDiffusion</strong></td><td><strong>15.63</strong></td><td><strong>0.59</strong></td><td><strong>48.90</strong></td><td>--</td></tr></tbody></table>
+<p>COCO 评测 3,097 layouts×5 images；VG 5,096×1。自动 evaluator 强调可检测/可分类对象，没有人评、open-vocabulary 或 relation consistency 测试。</p>
+<h2 id="消融与-trade-off">消融与 trade-off</h2>
+<p>COCO 128、300K：无 LFM/OaCA 时 FID 29.94、CAS 3.83、YOLO 0；完整 LFM+OaCA 为 16.57/43.60/27.00。普通 cross-attention 的 FID 16.46 略优于 OaCA，但控制指标较弱（CAS 42.47、YOLO 23.60）。DS 从无控制的 0.70 降至完整模型 0.47，显示更严格 layout adherence 会压缩同-layout 多样性。</p>
+<h2 id="任务边界与局限">任务边界与局限</h2>
 <ul>
-<li>https://arxiv.org/abs/2303.17189</li>
-<li>https://arxiv.org/pdf/2303.17189</li>
+<li>仅控制 category/box；不控制文本属性、身份、style、像素形状或任意 region prompt。</li>
+<li>修改 layout 后从噪声重采样，不保持未改区域，不能称 image editing。</li>
+<li>目标域从头训练，依赖 bbox labels；不是 pretrained T2I adapter。</li>
+<li>词表封闭，对密集/域外 layout 的泛化未测。</li>
+<li>Full 25-step 模型仍需 216.55 V100-days，且吞吐低于 Small/LDM-8；少步不等于低总成本。</li>
+<li>训练图像沿用 COCO/VG 许可与偏差，论文没有开放新数据集。</li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../topics/vision-language.html">topics/vision-language</a></li>
-<li><a class="wikilink" href="../entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a></li>
-<li><a class="wikilink" href="../questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a></li>
+<li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-gligen.html">GLIGEN</a> — 同为 spatial grounding，但 GLIGEN 基于预训练 T2I 并支持更开放的 grounding token。</li>
+<li><a class="wikilink" href="../sources/2026-04-16-layoutdiffusion-graphic-layout-generation.html">LayoutDiffusion（graphic layout generation）</a> — 同名但不同任务。</li>
 </ul>
 <h2 id="备注">备注</h2>
-<p>LayoutDiffusion 在这套库里的作用，是把 image-generation 的显式空间布局控制路线补成明确分支。</p></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+<p>本库将本文定位为 <strong>closed-vocabulary layout-to-image pixel diffusion</strong>，已清理 vision-language/unified image model/DiT 误关联。</p></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">6</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-04-14-check-locate-rectify.html">Check, Locate, Rectify：训练免费文本到图像布局校准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-16-dlt-layout-transformer.html">DLT：以联合离散—连续 Transformer diffusion 做属性级布局生成</a><span>来源笔记</span></li><li><a href="../sources/2026-04-16-layoutdiffusion-graphic-layout-generation.html">LayoutDiffusion：面向离散 graphic layout 的专用腐化与免重训条件生成</a><span>来源笔记</span></li><li><a href="../topics/image-generation.html">图像生成</a><span>主题</span></li><li><a href="../topics/vision-language.html">视觉-语言</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-layoutdiffusion&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;LayoutDiffusion（CVPR 2023）：面向布局到图像生成的可控扩散模型&quot;,
+  &quot;title&quot;: &quot;LayoutDiffusion：以对象框控制像素 U-Net 的 layout-to-image 生成&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2023&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
@@ -118,24 +142,21 @@
     &quot;Shan, Ying&quot;,
     &quot;Li, Xi&quot;
   ],
-  &quot;published_at&quot;: &quot;2023/03/30&quot;,
+  &quot;published_at&quot;: &quot;2023-03-30&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2303.17189&quot;,
-    &quot;https://arxiv.org/pdf/2303.17189&quot;
+    &quot;https://arxiv.org/pdf/2303.17189&quot;,
+    &quot;https://github.com/ZGCTroy/LayoutDiffusion&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-layoutdiffusion/&quot;,
   &quot;topics&quot;: [
     &quot;topics/image-generation&quot;,
-    &quot;topics/vision-language&quot;
+    &quot;topics/diffusion-models&quot;
   ],
-  &quot;entities&quot;: [
-    &quot;entities/unified-image-generation-editing&quot;
-  ],
+  &quot;entities&quot;: [],
   &quot;claims&quot;: [],
-  &quot;questions&quot;: [
-    &quot;questions/question-will-unified-image-models-sustain-their-advantage&quot;
-  ]
-}</pre></section>
+  &quot;questions&quot;: []
+}</pre></details>
     </article>
   </main>
 </body>

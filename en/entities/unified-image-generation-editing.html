@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="图像生成与编辑统一建模">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>图像生成与编辑统一建模 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-entity" data-page="{&quot;slug&quot;: &quot;entities/unified-image-generation-editing&quot;, &quot;title&quot;: &quot;图像生成与编辑统一建模&quot;, &quot;title_en&quot;: &quot;图像生成与编辑统一建模&quot;, &quot;kind&quot;: &quot;entity&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;method&quot;, &quot;image-generation&quot;, &quot;image-editing&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-entity" data-page="{&quot;slug&quot;: &quot;entities/unified-image-generation-editing&quot;, &quot;title&quot;: &quot;图像生成与编辑统一建模&quot;, &quot;title_en&quot;: &quot;图像生成与编辑统一建模&quot;, &quot;kind&quot;: &quot;entity&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;method&quot;, &quot;image-generation&quot;, &quot;image-editing&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,14 +60,16 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../entities/unified-image-generation-editing.html">中文</a><a class="selected-lang" href="../../en/entities/unified-image-generation-editing.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">entity · 2026-04-17</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Entity</span><span class="crumb-sep" aria-hidden="true">›</span><strong>图像生成与编辑统一建模</strong></nav>
+        <p class="eyebrow">Entity · Updated 2026-07-10</p>
         <h1><span class="title-main">图像生成与编辑统一建模</span></h1>
-        
         
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#method">#method</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#image-editing">#image-editing</a></div>
       </header>
-      <section class="article-content"><h2 id="概述">概述</h2>
-<p>这一页对应“图像生成与图像编辑统一建模”这一方法家族。它反映的核心趋势是：未来的图像系统不再把生成和编辑拆成完全不同的流水线，而是越来越倾向于用共享模型、共享训练框架或共享接口来覆盖多种任务。对当前 vault 来说，这是图像侧最强的跨论文主线之一，因为它同时改变了模型设计、训练组织和产品交互方式。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><details class="toc" open><summary>Contents</summary><ol><li><a href="#概述">概述</a></li><li><a href="#这个实体为什么重要">这个实体为什么重要</a></li><li><a href="#当前观察到的主要分支">当前观察到的主要分支</a><ol><li class="toc-sub"><a href="#统一接口派">统一接口派</a></li><li class="toc-sub"><a href="#联合训练派">联合训练派</a></li><li class="toc-sub"><a href="#数据工厂派">数据工厂派</a></li><li class="toc-sub"><a href="#世界动态派与模块化任务重写">世界动态派与模块化任务重写</a></li></ol></li><li><a href="#这条实体的演化脉络">这条实体的演化脉络</a></li><li><a href="#当前关系网络">当前关系网络</a></li><li><a href="#证据">证据</a></li><li><a href="#当前判断">当前判断</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="概述">概述</h2>
+<p>这一页对应“图像生成与图像编辑统一建模”这一方法家族。当前证据表明，共享模型、共享训练框架和统一接口可以覆盖文本到图像、编辑、主体驱动与视觉条件生成，并带来任务复用和工作流简化。整体性能优势仍缺少同数据、同规模、同预算的系统比较。</p>
 <h2 id="这个实体为什么重要">这个实体为什么重要</h2>
 <ul>
 <li>它把原本割裂的图像生成、图像编辑、条件控制等任务收束到同一个系统视角下。</li>
@@ -81,10 +89,10 @@
 <ul>
 <li><a class="wikilink" href="../../en/sources/2026-04-12-anyedit.html">sources/2026-04-12-anyedit</a> 补入了“统一编辑系统工程”这一支，说明统一路线也可以首先建立在高质量编辑数据和任务组织上。</li>
 </ul>
-<h3 id="世界动态派-跨任务借模派">世界动态派 / 跨任务借模派</h3>
+<h3 id="世界动态派与模块化任务重写">世界动态派与模块化任务重写</h3>
 <ul>
-<li><a class="wikilink" href="../../en/sources/2026-04-12-unireal.html">sources/2026-04-12-unireal</a> 把统一建模推进到非连续视频生成与 world dynamics 学习层面。</li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-pathways-image-manifold.html">sources/2026-04-14-pathways-image-manifold</a> 更进一步说明，编辑任务本身可以被重写到视频生成路径里，统一不再只是接口统一，而是任务形式统一。</li>
+<li><a class="wikilink" href="../../en/sources/2026-04-12-unireal.html">sources/2026-04-12-unireal</a> 把统一建模推进到 discontinuous frame generation 与 world dynamics 学习层面。</li>
+<li><a class="wikilink" href="../../en/sources/2026-04-14-pathways-image-manifold.html">sources/2026-04-14-pathways-image-manifold</a> 使用 VLM、I2V 与 frame selection 组成专用编辑流水线，证明跨任务借模和模块化任务重写同样具有竞争力。它属于中性压力测试。</li>
 </ul>
 <h2 id="这条实体的演化脉络">这条实体的演化脉络</h2>
 <p>从当前证据看，这条实体已经经历了一个很清楚的演化：</p>
@@ -110,8 +118,8 @@
 <li><a class="wikilink" href="../../en/sources/2026-04-14-pathways-image-manifold.html">sources/2026-04-14-pathways-image-manifold</a></li>
 </ul>
 <h2 id="当前判断">当前判断</h2>
-<p>目前这条主线已经不只是“做统一接口更方便”这么简单，而是在重新定义图像模型应该怎样被训练、怎样被组合、怎样被使用。统一模型是否一定能在峰值性能上全面超过专用系统，还没有定论；但它已经非常像未来图像系统的默认组织方式之一。</p>
-<p>更稳的说法是：<strong>统一图像生成与编辑建模已经从一个方法方向，逐渐长成了一个平台级实体。</strong></p>
+<p>现有证据已经证明统一建模的可行性、任务覆盖和工作流价值。DreamOmni、OmniGen 与 UniReal 在部分 benchmark 或指标上具有竞争力，同时呈现数据规模、模型规模和保真指标之间的权衡。</p>
+<p>当前最稳妥的定位是：<strong>统一图像生成与编辑建模已经成为有竞争力的平台候选；整体性能优势仍等待受控系统比较。</strong></p>
 <h2 id="相关页面">相关页面</h2>
 <ul>
 <li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
@@ -120,13 +128,17 @@
 <li><a class="wikilink" href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">claims/claim-unified-models-may-outcompete-specialized-image-pipelines</a></li>
 <li><a class="wikilink" href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-related_topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../../en/topics/image-editing.html">图像编辑</a></li><li><a class="wikilink" href="../../en/topics/vision-language.html">视觉-语言</a></li></ul></div><div class="related-group related-source_notes"><h3>Source notes<span class="related-count">5</span></h3><ul><li><a class="wikilink" href="../../en/sources/2026-04-12-anyedit.html">AnyEdit：面向任意创意的统一高质量图像编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-12-dreamomni.html">DreamOmni：统一图像生成与编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-12-omnigen.html">OmniGen：统一图像生成</a></li><li><a class="wikilink" href="../../en/sources/2026-04-12-unireal.html">UniReal：通过学习真实世界动态实现通用图像生成与编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-pathways-image-manifold.html">Pathways on the Image Manifold：通过视频生成做图像编辑</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">22</span></h2><ul><li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a><span>Claim</span></li><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a><span>Question</span></li><li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a><span>Question</span></li><li><a href="../../en/sources/2026-04-12-anyedit.html">AnyEdit：面向任意创意的统一高质量图像编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-12-dreamomni.html">DreamOmni：统一图像生成与编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-12-omnigen.html">OmniGen：统一图像生成</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-12-unireal.html">UniReal：通过学习真实世界动态实现通用图像生成与编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-diffeditor.html">DiffEditor：以区域采样与图像提示提升细粒度扩散编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-dreambooth.html">DreamBooth：以少样本全模型微调实现主体驱动生成</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-framepainter.html">FramePainter：用视频扩散先验增强交互式图像编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-gligen.html">GLIGEN：以冻结基础模型和门控适配器实现开放集合 grounded 生成</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-imagen-editor-editbench.html">Imagen Editor 与 EditBench：推进并评测文本引导图像修补</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-instructpix2pix.html">InstructPix2Pix：用合成监督建立自然语言图像编辑接口</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-null-text-inversion.html">NULL-Text Inversion：用 guided diffusion 编辑真实图像</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-pathways-image-manifold.html">Pathways on the Image Manifold：通过视频生成做图像编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-qk-edit.html">QK-Edit：在 MM-DiT 中重构图像与视频编辑的 attention 注入</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-reco.html">ReCo：以坐标 token 和开放区域文本控制图像生成</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-sketchvideo.html">SketchVideo：基于草图的视频生成与编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-specialist-diffusion.html">Specialist Diffusion：少样本艺术风格扩散微调工具箱</a><span>Source note</span></li><li><a href="../../en/topics/image-editing.html">图像编辑</a><span>Topic</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;entity-unified-image-generation-editing&quot;,
   &quot;type&quot;: &quot;entity&quot;,
   &quot;title&quot;: &quot;图像生成与编辑统一建模&quot;,
   &quot;status&quot;: &quot;active&quot;,
   &quot;created&quot;: &quot;2026-04-12&quot;,
-  &quot;updated&quot;: &quot;2026-04-17&quot;,
+  &quot;updated&quot;: &quot;2026-07-10&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;method&quot;,
@@ -147,7 +159,7 @@
     &quot;sources/2026-04-12-unireal&quot;,
     &quot;sources/2026-04-14-pathways-image-manifold&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

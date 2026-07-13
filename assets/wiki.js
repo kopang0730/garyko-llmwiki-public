@@ -1,3 +1,4 @@
+/* llmwiki client behavior: local search + mobile navigation toggle. */
 
 async function initSearch(){
   const input=document.getElementById('site-search');
@@ -24,4 +25,35 @@ async function initSearch(){
   });
   document.addEventListener('click',e=>{ if(!box.contains(e.target)&&e.target!==input) box.style.display='none'; });
 }
+
+function initMobileNav(){
+  const toggle=document.querySelector('.menu-toggle');
+  const sidebar=document.getElementById('wiki-sidebar');
+  if(!toggle||!sidebar) return;
+  toggle.addEventListener('click',()=>{
+    const open=document.body.classList.toggle('nav-open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+  // Close the drawer when navigating or tapping outside it.
+  sidebar.addEventListener('click',e=>{ if(e.target.closest('a')) document.body.classList.remove('nav-open'); });
+  document.addEventListener('click',e=>{
+    if(!document.body.classList.contains('nav-open')) return;
+    if(!sidebar.contains(e.target) && !toggle.contains(e.target)){
+      document.body.classList.remove('nav-open');
+      toggle.setAttribute('aria-expanded','false');
+    }
+  });
+}
+
+function initResponsiveToc(){
+  const toc=document.querySelector('details.toc');
+  if(!toc) return;
+  const narrow=window.matchMedia('(max-width: 1180px)');
+  const sync=()=>{ toc.open=!narrow.matches; };
+  sync();
+  narrow.addEventListener('change', sync);
+}
+
 initSearch();
+initMobileNav();
+initResponsiveToc();

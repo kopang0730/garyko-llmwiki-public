@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sports AI Review 2025：这篇综述讨论体育视觉、分析和 AI 系统的发展趋势。 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="体育姿态估计与跟踪综述：方法、数据、挑战与路线图">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>体育姿态估计与跟踪综述：方法、数据、挑战与路线图 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-25-sports-ai-review-2025&quot;, &quot;title&quot;: &quot;Sports AI Review 2025（Artificial Intelligence Review 2025）：这篇综述讨论体育视觉、分析和 AI 系统的发展趋势。&quot;, &quot;title_en&quot;: &quot;Sports AI Review 2025（Artificial Intelligence Review 2025）：这篇综述讨论体育视觉、分析和 AI 系统的发展趋势。&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;secondary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-25-sports-ai-review-2025&quot;, &quot;title&quot;: &quot;体育姿态估计与跟踪综述：方法、数据、挑战与路线图&quot;, &quot;title_en&quot;: &quot;体育姿态估计与跟踪综述：方法、数据、挑战与路线图&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;tracking&quot;, &quot;video-understanding&quot;, &quot;secondary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,61 +60,109 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-25-sports-ai-review-2025.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-25-sports-ai-review-2025.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-25</p>
-        <h1><span class="title-main">Sports AI Review 2025</span><span class="title-subtitle">这篇综述讨论体育视觉、分析和 AI 系统的发展趋势。</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>体育姿态估计与跟踪综述：方法、数据、挑战与路线图</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">体育姿态估计与跟踪综述</span><span class="title-subtitle">方法、数据、挑战与路线图</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>Artificial Intelligence Review 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-01-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-25</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://link.springer.com/article/10.1007/s10462-025-11344-1" title="https://link.springer.com/article/10.1007/s10462-025-11344-1" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>link.springer.com · s10462-025-11344-1</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#secondary-source">#secondary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#tracking">#tracking</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#secondary-source">#secondary-source</a></div>
       </header>
-      <section class="article-content"><h1 id="sports-ai-review-2025-artificial-intelligence-review-2025-这篇综述讨论体育视觉-分析和-ai-系统的发展趋势">Sports AI Review 2025（Artificial Intelligence Review 2025）：这篇综述讨论体育视觉、分析和 AI 系统的发展趋势。</h1>
-<blockquote>资料来源：Artificial Intelligence Review 2025</blockquote>
-<blockquote>发表 / 发布日期：2025-01-01</blockquote>
-<blockquote>资料加入日期：2026-04-25</blockquote>
-<h2 id="一句话结论">一句话结论</h2>
-<p>这篇综述讨论体育视觉、分析和 AI 系统的发展趋势。</p>
-<h2 id="资料定位">资料定位</h2>
-<p>这是从体育机器视觉文献清单中拆出的独立来源。当前 first-pass 编译先把它放进 raw/source 证据层，后续可按重要性升级为深分析笔记。</p>
-<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
-<p>它可作为体育 AI 方向的二级综述参考，但具体判断应回到 primary papers。</p>
-<h2 id="局限或疑问">局限或疑问</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>Artificial Intelligence Review 2026</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-12-09</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-25</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://link.springer.com/article/10.1007/s10462-025-11344-1" title="https://link.springer.com/article/10.1007/s10462-025-11344-1" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>link.springer.com · s10462-025-11344-1</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#来源纠错与证据层级">来源纠错与证据层级</a></li><li><a href="#覆盖框架">覆盖框架</a></li><li><a href="#对体育-ai-的关键启示">对体育 AI 的关键启示</a></li><li><a href="#综述方法学局限">综述方法学局限</a></li><li><a href="#羽毛球边界">羽毛球边界</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始材料">原始材料</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>这篇二级综述适合用作体育姿态/跟踪的 taxonomy、数据集索引和风险清单，但没有检索式、筛选流程、研究质量评估或统一 benchmark；表中的跨论文准确率、误差与 FPS 必须回到 primary papers 核验。</p>
+<h2 id="来源纠错与证据层级">来源纠错与证据层级</h2>
+<p>本地 PDF 的真实标题为 *A comprehensive survey on pose estimation and tracking in sports: methodologies, datasets, challenges, and future directions*，不是原笔记中的 “Computer vision and AI in sports analytics”。论文 2025-07-29 接收、2025-12-09 在线发表，卷期归属 2026。</p>
 <ul>
-<li>当前是 bibliography-driven first-pass source note，优先保证来源可追溯和方向定位。</li>
-<li>重要 paper 后续应补 <code>analysis.md</code>、关键图页、实验设置和指标细节。</li>
+<li><strong>本文自身</strong>：peer-reviewed secondary survey；</li>
+<li><strong>本文引用的模型/数据数字</strong>：来自各 primary papers，但未统一重算；</li>
+<li><strong>使用规则</strong>：可据此发现文献与设计审计表，不能据综述表格直接宣布某方法跨项目最优。</li>
+</ul>
+<h2 id="覆盖框架">覆盖框架</h2>
+<ul>
+<li>传统方法：模板、几何、HMM/Kalman、光流；</li>
+<li>深度方法：CNN、RNN、Transformer、hybrid；</li>
+<li>任务：2D/3D、单人/多人、图像/视频、online/offline；</li>
+<li>跟踪：时序关联、ReID、运动模型、top-down/bottom-up；</li>
+<li>数据：MoCap、视频标注、IMU、合成数据、众包；</li>
+<li>指标：PCK、OKS、MPJPE、AP/AR、tracking association、FPS、latency、memory、energy；</li>
+<li>风险：遮挡、低分辨率、动态背景、数据偏置、跨域、同步、隐私；</li>
+<li>路线：多模态、轻量 Transformer、edge/cloud、LLM、分层动作粒度。</li>
+</ul>
+<h2 id="对体育-ai-的关键启示">对体育 AI 的关键启示</h2>
+<ol>
+<li>关节精度、身份保持、时间稳定和运动专属下游指标必须分层报告；</li>
+<li>随机帧 split 不足，应做 athlete/session/venue/camera-disjoint；</li>
+<li>实时主张至少要有端到端 latency、设备、内存和能耗；</li>
+<li>受控实验数字不能外推真实广播/户外遮挡；</li>
+<li>判罚、伤病和训练建议属于高风险接口，需要 uncertainty、abstention 与人工复核。</li>
+</ol>
+<h2 id="综述方法学局限">综述方法学局限</h2>
+<ul>
+<li>没有数据库、查询式、时间窗口、纳入/排除标准或 PRISMA；</li>
+<li>没有对 primary studies 做质量分级和偏差审计；</li>
+<li>accuracy、mAP、PCK、HOTA、像素/厘米误差、FPS 跨任务并列；</li>
+<li>对部分数据集的任务属性描述较宽，需要查 dataset card；</li>
+<li>injury prevention、automatic refereeing、LLM annotation 等应用语言强于实证；</li>
+<li>作者披露使用 ChatGPT 改善文字可读性，表格中的异常概括尤其应回查引用。</li>
+</ul>
+<h2 id="羽毛球边界">羽毛球边界</h2>
+<p>综述列出 Badminton Olympic Dataset 与 VideoBadminton，但这只是 secondary index。可迁移的是动作粒度、选手/场景隔离、遮挡分桶、精度+成本并报和伦理治理；足球/篮球或通用 pose 的数字不能外推羽毛球动作纠正。羽毛球需单独核验 racket/shuttle/contact、stroke labels、教练一致率和高帧率协议。</p>
+<h2 id="证据评级">证据评级</h2>
+<ul>
+<li>taxonomy / 路线图：<strong>B+</strong></li>
+<li>数据与文献索引：<strong>B</strong></li>
+<li>跨论文性能比较：<strong>C</strong></li>
+<li>系统综述严谨性：<strong>C</strong></li>
+<li>羽毛球直接证据：<strong>C-</strong></li>
 </ul>
 <h2 id="原始材料">原始材料</h2>
 <ul>
-<li><code>raw/ingest/2026-04-25-sports-ai-review-2025/source.md</code></li>
-<li><code>raw/ingest/2026-04-25-sports-ai-review-2025/paper-text.md</code></li>
-<li><code>raw/ingest/2026-04-25-sports-ai-review-2025/links.yaml</code></li>
+<li><code>raw/ingest/2026-04-25-sports-ai-review-2025/paper.pdf</code>（78 页）</li>
+<li><code>raw/ingest/2026-04-25-sports-ai-review-2025/analysis.md</code></li>
+<li>PDF SHA256：<code>f49a99cc094d56ee9ec657ee06fc5efb18507aa018c00a625ec6a0be76240a95</code></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
 <li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
 <li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
 <li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a></li>
+<li><a class="wikilink" href="../../en/questions/question-badminton-stroke-correction-demo.html">questions/question-badminton-stroke-correction-demo</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li><li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li><li><a class="wikilink" href="../../en/topics/video-understanding.html">Video Understanding</a></li></ul></div><div class="related-group related-entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/sportsmot.html">SportsMOT</a></li></ul></div><div class="related-group related-questions"><h3>Related questions<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">4</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a><span>Topic</span></li><li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a><span>Topic</span></li><li><a href="../../en/topics/video-understanding.html">Video Understanding</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-25-sports-ai-review-2025&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Sports AI Review 2025（Artificial Intelligence Review 2025）：这篇综述讨论体育视觉、分析和 AI 系统的发展趋势。&quot;,
+  &quot;title&quot;: &quot;体育姿态估计与跟踪综述：方法、数据、挑战与路线图&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-25&quot;,
-  &quot;updated&quot;: &quot;2026-04-25&quot;,
-  &quot;venue&quot;: &quot;Artificial Intelligence Review 2025&quot;,
-  &quot;published_at&quot;: &quot;2025-01-01&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
+  &quot;venue&quot;: &quot;Artificial Intelligence Review 2026&quot;,
+  &quot;published_at&quot;: &quot;2025-12-09&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-25&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
+    &quot;tracking&quot;,
     &quot;video-understanding&quot;,
     &quot;secondary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
-  &quot;authors&quot;: [],
+  &quot;authors&quot;: [
+    &quot;Mustafa Hikmet Bilgehan Uçar&quot;,
+    &quot;Serdar Solak&quot;,
+    &quot;Ali Olow Jimale&quot;,
+    &quot;Hakan Ünal&quot;,
+    &quot;Süleyman Eken&quot;
+  ],
   &quot;canonical_links&quot;: [
-    &quot;https://link.springer.com/article/10.1007/s10462-025-11344-1&quot;
+    &quot;https://link.springer.com/article/10.1007/s10462-025-11344-1&quot;,
+    &quot;https://doi.org/10.1007/s10462-025-11344-1&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-25-sports-ai-review-2025/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-25-sports-ai-review-2025/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/sports-ai-video-understanding&quot;,
     &quot;topics/sports-ai-roadmap&quot;,
@@ -118,8 +172,10 @@
     &quot;entities/sportsmot&quot;
   ],
   &quot;claims&quot;: [],
-  &quot;questions&quot;: []
-}</pre></section>
+  &quot;questions&quot;: [
+    &quot;questions/question-badminton-stroke-correction-demo&quot;
+  ]
+}</pre></details>
     </article>
   </main>
 </body>

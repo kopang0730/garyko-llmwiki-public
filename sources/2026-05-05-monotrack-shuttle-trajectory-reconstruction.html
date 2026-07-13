@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MonoTrack：单目羽毛球视频的 3D 轨迹重建 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="MonoTrack：单目羽毛球击球分割与 3D 轨迹重建">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>MonoTrack：单目羽毛球击球分割与 3D 轨迹重建 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-05-monotrack-shuttle-trajectory-reconstruction&quot;, &quot;title&quot;: &quot;MonoTrack：单目羽毛球视频的 3D 轨迹重建&quot;, &quot;title_en&quot;: &quot;MonoTrack：单目羽毛球视频的 3D 轨迹重建&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;tracking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-05-monotrack-shuttle-trajectory-reconstruction&quot;, &quot;title&quot;: &quot;MonoTrack：单目羽毛球击球分割与 3D 轨迹重建&quot;, &quot;title_en&quot;: &quot;MonoTrack: Shuttle Trajectory Reconstruction from Monocular Badminton Video&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;tracking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,59 +60,76 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-05-05-monotrack-shuttle-trajectory-reconstruction.html">中文</a><a class="" href="../en/sources/2026-05-05-monotrack-shuttle-trajectory-reconstruction.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-05-05</p>
-        <h1><span class="title-main">MonoTrack</span><span class="title-subtitle">单目羽毛球视频的 3D 轨迹重建</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>MonoTrack：单目羽毛球击球分割与 3D 轨迹重建</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">MonoTrack</span><span class="title-subtitle">单目羽毛球击球分割与 3D 轨迹重建</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR Workshop 2022</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2022-04-04</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-05-05</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2022W/CVSports/html/Liu_MonoTrack_Shuttle_Trajectory_Reconstruction_From_Monocular_Badminton_Video_CVPRW_2022_paper.html" title="https://openaccess.thecvf.com/content/CVPR2022W/CVSports/html/Liu_MonoTrack_Shuttle_Trajectory_Reconstruction_From_Monocular_Badminton_Video_CVPRW_2022_paper.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>openaccess.thecvf.com · Liu_MonoTrack_Shuttle_Trajector…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2022W/CVSports/papers/Liu_MonoTrack_Shuttle_Trajectory_Reconstruction_From_Monocular_Badminton_Video_CVPRW_2022_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2022W/CVSports/papers/Liu_MonoTrack_Shuttle_Trajectory_Reconstruction_From_Monocular_Badminton_Video_CVPRW_2022_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Liu_MonoTrack_Shuttle_Trajector…</strong></a><a class="source-link source-link-code" href="https://github.com/jhwang7628/monotrack" title="https://github.com/jhwang7628/monotrack" target="_blank" rel="noopener noreferrer"><span>代码仓库</span><strong>github.com · monotrack</strong></a></div></section>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#tracking">#tracking</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>MonoTrack 把羽毛球 shuttle tracking 从 2D 像素坐标推进到单目 3D 轨迹重建，是低成本体育空间分析的重要桥。</p>
-<h2 id="论文定位">论文定位</h2>
-<p>这篇 CVPR Workshop 2022 论文提出一个从 monocular badminton video 提取和分割 3D shuttle trajectories 的 end-to-end system。它结合场地尺寸、击球位置、物理运动规律、球员姿态和 shuttle tracking 等信息，处理单目视频中 3D 重建困难的问题。</p>
-<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR Workshop 2022</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2022-04-04</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-05-05</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2022W/CVSports/html/Liu_MonoTrack_Shuttle_Trajectory_Reconstruction_From_Monocular_Badminton_Video_CVPRW_2022_paper.html" title="https://openaccess.thecvf.com/content/CVPR2022W/CVSports/html/Liu_MonoTrack_Shuttle_Trajectory_Reconstruction_From_Monocular_Badminton_Video_CVPRW_2022_paper.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>openaccess.thecvf.com · Liu_MonoTrack_Shuttle_Trajector…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2022W/CVSports/papers/Liu_MonoTrack_Shuttle_Trajectory_Reconstruction_From_Monocular_Badminton_Video_CVPRW_2022_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2022W/CVSports/papers/Liu_MonoTrack_Shuttle_Trajectory_Reconstruction_From_Monocular_Badminton_Video_CVPRW_2022_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Liu_MonoTrack_Shuttle_Trajector…</strong></a><a class="source-link source-link-code" href="https://github.com/jhwang7628/monotrack" title="https://github.com/jhwang7628/monotrack" target="_blank" rel="noopener noreferrer"><span>代码仓库</span><strong>github.com · monotrack</strong></a></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#数据与-split">数据与 split</a></li><li><a href="#方法">方法</a></li><li><a href="#核心结果与消融">核心结果与消融</a></li><li><a href="#成本与局限">成本与局限</a></li><li><a href="#对羽毛球四层-pipeline-的价值">对羽毛球四层 pipeline 的价值</a></li><li><a href="#深分析与原始材料">深分析与原始材料</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>MonoTrack 将 court、pose、2D shuttle tracking、HitNet 与带空气阻力的非线性优化串成固定广播视角单打的单目 3D 轨迹系统；它直接覆盖羽毛球四层中的前三层，但真实比赛没有 3D GT，端到端误差和适用范围必须谨慎解释。</p>
+<h2 id="数据与-split">数据与 split</h2>
 <ul>
-<li>与 <a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：它把“高速小目标是否能追踪”推进到“轨迹是否能服务战术和训练分析”。</li>
-<li>与 <a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它提供了普通摄像机方向的低成本空间理解路径。</li>
-<li>与 <a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a> 的关系：它把 video understanding 和 geometry / physics / domain knowledge 结合起来。</li>
+<li>TrackNetV2 数据：<strong>26 场国际单打、约 77K frames</strong>；3 场 test matches 约 12K frames。</li>
+<li>其余数据按 frame 90/10 train/val，可能把同 rally 相邻帧跨集合，验证集有近重复泄漏风险；test match 独立。</li>
+<li>另标 40 场 YouTube 视频测试 court detection；另造 10K synthetic 3D trajectories。</li>
+<li>只验证 singles、fixed overhead/static broadcast-view。</li>
 </ul>
-<h2 id="来源可靠性与可溯源性">来源可靠性与可溯源性</h2>
+<h2 id="方法">方法</h2>
+<ol>
+<li>Hough lines + graph-based bipartite partition 检测 court；</li>
+<li>HRNet pose 与 3-in/3-out modified U-Net 检测 shuttle；</li>
+<li>约 16K 参数双层 GRU HitNet 融合 court/pose/shuttle，并以击球间隔和双方交替规则做动态规划；</li>
+<li>每拍使用 drag dynamics、camera reprojection、击/接球方先验与出界惩罚优化 3D trajectory。</li>
+</ol>
+<h2 id="核心结果与消融">核心结果与消融</h2>
 <ul>
-<li><strong>来源层级</strong>：CVPR Workshop 2022 / CVSports primary paper，CVF OpenAccess 页面和 PDF 可访问；同时有 arXiv 与 GitHub 代码页。</li>
-<li><strong>可溯源材料</strong>：本地已保存 CVF PDF、<code>paper-text.md</code>、abstract 与 <code>links.yaml</code>；PDF SHA256：<code>bd4e9d69991d776a0bf2294afff62012dae17e1166e50a812e249faa8a696159</code>。</li>
-<li><strong>使用边界</strong>：适合作为 badminton 3D trajectory reconstruction 的强 primary evidence；部署到不同场馆和机位时仍需校准、鲁棒性和数据许可验证。</li>
+<li>Court success <strong>73.9%→85.5%</strong>，IoU 0.96→0.97，速度快 40×。</li>
+<li>Shuttle detector <strong>2.9M vs 11.3M parameters</strong>，accuracy <strong>88.6% vs 84.0%</strong>。</li>
+<li>HitNet：Shuttle only F1 0.815；+Pose 0.850；+Court 0.866；再加 constrained optimization <strong>0.946</strong>（recall 94.3%、accuracy 89.7%）。</li>
+<li>Synthetic 3D error：reprojection-only <strong>14.9 cm</strong>，full priors <strong>8.0 cm</strong>；synthetic 由同一物理模型生成和拟合，偏乐观。</li>
+<li>Real 只报告 2D reprojection：GT shuttle/hits <strong>8.1/8.9/9.8 px</strong>，全自动 <strong>37.1/28.8/23.3 px</strong>。</li>
+<li>约 90% hit accuracy 仍可导致约 <strong>20% shots</strong> 重建错误，因为一个 hit error 会破坏相邻两拍。</li>
 </ul>
-<h2 id="和现有证据的关系">和现有证据的关系</h2>
-<p>它接在 TrackNet 系列之后：<a class="wikilink" href="../sources/2026-05-05-tracknet-high-speed-tiny-objects.html">sources/2026-05-05-tracknet-high-speed-tiny-objects</a> / <a class="wikilink" href="../sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking.html">sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking</a> / <a class="wikilink" href="../sources/2026-04-25-tracknetv3.html">sources/2026-04-25-tracknetv3</a> 主要回答 2D shuttle localization，MonoTrack 进一步回答如何从单目视频恢复 3D trajectory。</p>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="成本与局限">成本与局限</h2>
+<p>HitNet 可达每秒数千帧，但论文没有 end-to-end FPS、硬件或 HRNet/非线性优化 latency；不能据此声称全系统实时。Real data 无 3D GT；评测排除常遮挡 serve 与未标 landing；court failure、出画、hit 错误会级联。Synthetic speed “1500 m/s” 与现实和模型约束冲突，复现前需核对。</p>
+<h2 id="对羽毛球四层-pipeline-的价值">对羽毛球四层 pipeline 的价值</h2>
 <ul>
-<li>单目 3D 重建高度依赖场地几何、摄像机参数和物理假设。</li>
-<li>后续复现需要检查代码环境、视频数据和标注文件是否完整可用。</li>
+<li>Shuttle tracking：直接证据，但 88.6% frame accuracy 不等于完整 trajectory。</li>
+<li>Court/3D reconstruction：直接 baseline；真实 3D accuracy 未证明。</li>
+<li>Hit/phase alignment：直接证据，HitNet F1 0.946；仅单打固定视角。</li>
+<li>Action quality assessment：无 stroke quality、技术错误或教练反馈证据。</li>
 </ul>
-<h2 id="原始材料">原始材料</h2>
+<p>Demo 应保留 observed/interpolated 点标记、hit/court confidence 与 3D residual，并补 match-level split、serve/landing coverage、真实多视角 3D GT。</p>
+<h2 id="深分析与原始材料">深分析与原始材料</h2>
 <ul>
+<li><code>raw/ingest/2026-05-05-monotrack-shuttle-trajectory-reconstruction/analysis.md</code></li>
 <li><code>raw/ingest/2026-05-05-monotrack-shuttle-trajectory-reconstruction/paper.pdf</code></li>
 <li><code>raw/ingest/2026-05-05-monotrack-shuttle-trajectory-reconstruction/paper-text.md</code></li>
-<li><code>raw/ingest/2026-05-05-monotrack-shuttle-trajectory-reconstruction/abstract.md</code></li>
 <li><code>raw/ingest/2026-05-05-monotrack-shuttle-trajectory-reconstruction/links.yaml</code></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
-<li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
-<li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
-<li><a class="wikilink" href="../entities/sportsmot.html">entities/sportsmot</a></li>
+<li><a class="wikilink" href="../sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking.html">TrackNetV2</a></li>
+<li><a class="wikilink" href="../sources/2026-04-25-tracknetv3.html">TrackNetV3</a></li>
+<li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a class="wikilink" href="../topics/sports-ai-roadmap.html">体育 AI 路线图</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li><li><a class="wikilink" href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li><li><a class="wikilink" href="../topics/video-understanding.html">视频理解</a></li></ul></div><div class="related-group related-entities"><h3>相关实体<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../entities/sportsmot.html">SportsMOT</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">6</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking.html">TrackNetV2：高效羽毛球高速小目标 2D 追踪</a><span>来源笔记</span></li><li><a href="../sources/2026-05-16-bst-badminton-stroke-type-transformer.html">BST：面向羽毛球击球类型识别的骨架动作 Transformer</a><span>来源笔记</span></li><li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a><span>主题</span></li><li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a><span>主题</span></li><li><a href="../topics/video-understanding.html">视频理解</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-05-05-monotrack-shuttle-trajectory-reconstruction&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;MonoTrack：单目羽毛球视频的 3D 轨迹重建&quot;,
+  &quot;title&quot;: &quot;MonoTrack：单目羽毛球击球分割与 3D 轨迹重建&quot;,
+  &quot;title_en&quot;: &quot;MonoTrack: Shuttle Trajectory Reconstruction from Monocular Badminton Video&quot;,
+  &quot;summary_en&quot;: &quot;A modular monocular pipeline combining court, pose, shuttle tracking, hit segmentation, and physics-constrained 3D reconstruction.&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-05-05&quot;,
-  &quot;updated&quot;: &quot;2026-05-05&quot;,
-  &quot;venue&quot;: &quot;CVPR Workshop 2022&quot;,
-  &quot;published_at&quot;: &quot;2022-04-04&quot;,
-  &quot;ingested_at&quot;: &quot;2026-05-05&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;video-understanding&quot;,
@@ -115,10 +138,13 @@
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;venue&quot;: &quot;CVPR Workshop 2022&quot;,
   &quot;authors&quot;: [
     &quot;Paul Liu&quot;,
     &quot;Jui-Hsien Wang&quot;
   ],
+  &quot;published_at&quot;: &quot;2022-04-04&quot;,
+  &quot;ingested_at&quot;: &quot;2026-05-05&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://openaccess.thecvf.com/content/CVPR2022W/CVSports/html/Liu_MonoTrack_Shuttle_Trajectory_Reconstruction_From_Monocular_Badminton_Video_CVPRW_2022_paper.html&quot;,
     &quot;https://openaccess.thecvf.com/content/CVPR2022W/CVSports/papers/Liu_MonoTrack_Shuttle_Trajectory_Reconstruction_From_Monocular_Badminton_Video_CVPRW_2022_paper.pdf&quot;,
@@ -135,7 +161,7 @@
   ],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

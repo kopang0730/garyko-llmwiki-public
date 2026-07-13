@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SoccerNet-v2 Camera Calibration：足球场标定与球员定位">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>SoccerNet-v2 Camera Calibration：足球场标定与球员定位 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-05-soccernet-v2-camera-calibration-player-localization&quot;, &quot;title&quot;: &quot;SoccerNet-v2 Camera Calibration（arXiv 2021）：足球场标定与球员定位&quot;, &quot;title_en&quot;: &quot;SoccerNet-v2 Camera Calibration（arXiv 2021）：足球场标定与球员定位&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;tracking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-05-soccernet-v2-camera-calibration-player-localization&quot;, &quot;title&quot;: &quot;SoccerNet-v2 Camera Calibration（arXiv 2021）：足球场标定与球员定位&quot;, &quot;title_en&quot;: &quot;SoccerNet-v2 Camera Calibration（arXiv 2021）：足球场标定与球员定位&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;tracking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,41 +60,63 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-05-05-soccernet-v2-camera-calibration-player-localization.html">中文</a><a class="" href="../en/sources/2026-05-05-soccernet-v2-camera-calibration-player-localization.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-05-05</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>SoccerNet-v2 Camera Calibration：足球场标定与球员定位</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
         <h1><span class="title-main">SoccerNet-v2 Camera Calibration</span><span class="title-subtitle">足球场标定与球员定位</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>arXiv 2021</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2021-04-19</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-05-05</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2104.09333" title="https://arxiv.org/abs/2104.09333" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2104.09333</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2104.09333" title="https://arxiv.org/pdf/2104.09333" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2104.09333</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#tracking">#tracking</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>把广播足球视频中的 camera calibration 与 player localization 明确成可评测任务，补上从像素坐标到球场坐标、从 tracking 到 full-pitch understanding 的关键桥。</p>
-<h2 id="论文定位">论文定位</h2>
-<p>这篇论文位于 sports-AI roadmap 的全场空间理解层，直接支撑 field localization、camera calibration、player localization 与 action spotting 表示之间的关系。</p>
-<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
-<p>它能解释为什么 SoccerNet Game State Reconstruction 需要球场几何和 minimap 坐标，也能把 TeamTrack / TranSPORTmer 这类轨迹工作接到真实比赛空间。</p>
-<h2 id="来源可靠性与可溯源性">来源可靠性与可溯源性</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR Workshop 2021</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2021-04-19</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-05-05</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2104.09333" title="https://arxiv.org/abs/2104.09333" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2104.09333</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2104.09333" title="https://arxiv.org/pdf/2104.09333" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2104.09333</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#方法与数据">方法与数据</a></li><li><a href="#核心结果">核心结果</a><ol><li class="toc-sub"><a href="#world-cup-2014-calibration-186-images-10-games">World Cup 2014 calibration（186 images / 10 games）</a></li><li class="toc-sub"><a href="#soccernet-v2-action-spotting">SoccerNet-v2 action spotting</a></li></ol></li><li><a href="#泄漏与公平性边界">泄漏与公平性边界</a></li><li><a href="#系统成本">系统成本</a></li><li><a href="#证据边界">证据边界</a></li><li><a href="#对羽毛球的影响">对羽毛球的影响</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始材料">原始材料</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h1 id="soccernet-v2-camera-calibration-伪标签蒸馏-场地定位与动作表示">SoccerNet-v2 Camera Calibration：伪标签蒸馏、场地定位与动作表示</h1>
+<blockquote><strong>会议</strong>：CVPR Workshop 2021</blockquote>
+<blockquote><strong>全文深读</strong>：<a class="wikilink missing" href="#missing-raw/ingest/2026-05-05-soccernet-v2-camera-calibration-player-localization/analysis">analysis.md</a></blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>论文把商业 calibration teacher 蒸馏成 CCBV-SN，为 500 场 SoccerNet 视频生成 2 FPS calibration/player positions，并将 top-view/graph 表示接入 CALF，使 test Average-mAP 40.7→46.8；但 SoccerNet 上无 camera/player-location GT，且伪标签 split 未披露。</p>
+<h2 id="方法与数据">方法与数据</h2>
 <ul>
-<li><strong>来源层级</strong>：arXiv 页面可访问，当前页面未显示 journal-ref / DOI；论文被后续 SoccerNet-GSR 引用，可作为可溯源 primary paper 使用。</li>
-<li><strong>可溯源材料</strong>：本地已保存 arXiv abstract、PDF 与 <code>paper-text.md</code>；<code>links.yaml</code> 可回到 arXiv abstract / PDF。</li>
-<li><strong>使用边界</strong>：后续应补官方 workshop 页面或代码/数据页，用于确认评测协议和数据可获得性。</li>
+<li>商业 teacher 生成 <strong>12,000</strong> 个 pseudo calibrations；GMM 建立 <strong>1000+</strong> camera templates；</li>
+<li>CCBV-SN：zone U-Net→template Siamese retrieval→Spatial Transformer refinement；</li>
+<li>500 场视频按 <strong>2 FPS</strong> 生成 calibration 与 person positions；</li>
+<li>Mask R-CNN+field mask，取 bbox 底边中点投影到 pitch；不提供持续 track ID；</li>
+<li>三种表示：224×224 top view、ResNet-34/EfficientNet-B4 features、25m radius player graph（14 GCN blocks）。</li>
 </ul>
-<h2 id="和现有证据的关系">和现有证据的关系</h2>
+<h2 id="核心结果">核心结果</h2>
+<h3 id="world-cup-2014-calibration-186-images-10-games">World Cup 2014 calibration（186 images / 10 games）</h3>
+<table><thead><tr><th>方法</th><th>IoU entire mean/median</th><th>IoU visible-part mean/median</th></tr></thead><tbody><tr><td>Commercial teacher</td><td>91.7 / 93.0</td><td>96.7 / 98.7</td></tr><tr><td>CCBV-SN</td><td>79.8 / 81.7</td><td>88.5 / 92.3</td></tr></tbody></table>
+<p>Student 蒸馏损失约 6–12 points。该外部集说明可迁移，但不能代替 SoccerNet camera GT。</p>
+<h3 id="soccernet-v2-action-spotting">SoccerNet-v2 action spotting</h3>
 <ul>
-<li>与 <a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：它补强 SoccerNet 基础数据生态、全场空间理解或低标注事件定位这类 roadmap 缺口。</li>
-<li>与 <a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它把体育视频理解从已有 tracking / interaction / trajectory 继续接到足球事件、球场几何和数据协议。</li>
-<li>与 <a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a> 的关系：它提供真实长视频、密集事件和结构化评测下的视频理解样本。</li>
+<li>500 场、110,458 actions、17 类；test 100 场/22,551 actions；</li>
+<li>CALF <strong>40.7</strong> Average-mAP；最佳 CC+RN34+FCL <strong>46.8</strong>；私有 challenge <strong>46.4</strong>；</li>
+<li>Player graph+GCN 46.7，Color+3D 46.7；没有多随机种子误差条。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="泄漏与公平性边界">泄漏与公平性边界</h2>
 <ul>
-<li>后续应补官方 workshop 页面或代码/数据页，用于确认评测协议和数据可获得性。</li>
-<li>当前这版先完成轻量 primary-source 编译，后续可按 deep-analysis-first 流程补 <code>analysis.md</code>、关键图页和实验细节。</li>
+<li>Teacher 是未公开商业工具，完整 pseudo-label 生成不可独立复现；</li>
+<li>12k pseudo labels 的 game-level train/val 划分、失败率与质检未披露；</li>
+<li>calibration student 与下游 action spotting 共用 SoccerNet 500 games；论文未说明 calibration-training games 是否排除下游 test games，存在潜在 transductive preprocessing 边界，不能断言无泄漏；</li>
+<li>双网络、人工 patterned/fuzzy class split、额外容量与 calibration 信息同时引入，缺等参数 control。</li>
+</ul>
+<h2 id="系统成本">系统成本</h2>
+<p>完整链包含商业 teacher、1000+ template dictionary、Mask R-CNN、top-view/features/graphs、原 CALF 加 calibration branch，并按类别训练两套网络。论文未报 CCBV-SN/全链 FPS、GPU、epochs、GPU-hours、内存和 500 场预计算成本；引用的原 CCBV 250 FPS 不能当作本文系统实测。</p>
+<h2 id="证据边界">证据边界</h2>
+<p>论文不报告 SoccerNet camera-parameter GT、player localization error、track ID 或 ball；2 FPS 不适合高速球轨迹/接触。action spotting 提升不能证明 tracking、战术理解或因果推理。</p>
+<h2 id="对羽毛球的影响">对羽毛球的影响</h2>
+<p>可迁移 court homography、feet→court projection、top-view/graph、accuracy×coverage 与伪标签审计。羽毛球必须重做场地模板/尺度/采样率并加入 shuttle/racket/contact；足球 25m edge、WC14 IoU 与 46.8 Average-mAP 不得外推。固定机位羽毛球更适合直接 court-corner calibration 与 court-error 验证。</p>
+<h2 id="证据评级">证据评级</h2>
+<ul>
+<li>足球 calibration resource/representation：<strong>B+</strong></li>
+<li>Action spotting 增益：<strong>B+</strong></li>
+<li>SoccerNet player-location 绝对精度：<strong>C-</strong></li>
+<li>羽毛球直接证据：<strong>D</strong></li>
 </ul>
 <h2 id="原始材料">原始材料</h2>
 <ul>
-<li><code>raw/ingest/2026-05-05-soccernet-v2-camera-calibration-player-localization/paper.pdf</code></li>
+<li><code>raw/ingest/2026-05-05-soccernet-v2-camera-calibration-player-localization/paper.pdf</code>（10 页）</li>
 <li><code>raw/ingest/2026-05-05-soccernet-v2-camera-calibration-player-localization/paper-text.md</code></li>
-<li><code>raw/ingest/2026-05-05-soccernet-v2-camera-calibration-player-localization/abstract.md</code></li>
-<li><code>raw/ingest/2026-05-05-soccernet-v2-camera-calibration-player-localization/links.yaml</code></li>
+<li><code>raw/ingest/2026-05-05-soccernet-v2-camera-calibration-player-localization/analysis.md</code></li>
+<li>DOI：<code>10.1109/CVPRW53098.2021.00511</code></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
@@ -97,14 +125,18 @@
 <li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
 <li><a class="wikilink" href="../entities/sportsmot.html">entities/sportsmot</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li><li><a class="wikilink" href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li><li><a class="wikilink" href="../topics/video-understanding.html">视频理解</a></li></ul></div><div class="related-group related-entities"><h3>相关实体<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../entities/sportsmot.html">SportsMOT</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">4</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a><span>主题</span></li><li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a><span>主题</span></li><li><a href="../topics/video-understanding.html">视频理解</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-05-05-soccernet-v2-camera-calibration-player-localization&quot;,
   &quot;type&quot;: &quot;source&quot;,
   &quot;title&quot;: &quot;SoccerNet-v2 Camera Calibration（arXiv 2021）：足球场标定与球员定位&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-05-05&quot;,
-  &quot;updated&quot;: &quot;2026-05-05&quot;,
-  &quot;venue&quot;: &quot;arXiv 2021&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
+  &quot;venue&quot;: &quot;CVPR Workshop 2021&quot;,
   &quot;published_at&quot;: &quot;2021-04-19&quot;,
   &quot;ingested_at&quot;: &quot;2026-05-05&quot;,
   &quot;tags&quot;: [
@@ -129,6 +161,7 @@
     &quot;https://arxiv.org/pdf/2104.09333&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-05-05-soccernet-v2-camera-calibration-player-localization/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-05-05-soccernet-v2-camera-calibration-player-localization/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/sports-ai-video-understanding&quot;,
     &quot;topics/sports-ai-roadmap&quot;,
@@ -139,7 +172,7 @@
   ],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FlashEval：快速而准确地评测文本到图像扩散模型 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="FlashEval：用代表性 prompt 子集加速文本到图像模型评测">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>FlashEval：用代表性 prompt 子集加速文本到图像模型评测 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-flasheval&quot;, &quot;title&quot;: &quot;FlashEval（CVPR 2024）：快速而准确地评测文本到图像扩散模型&quot;, &quot;title_en&quot;: &quot;FlashEval（CVPR 2024）：快速而准确地评测文本到图像扩散模型&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-flasheval&quot;, &quot;title&quot;: &quot;FlashEval：用代表性 prompt 子集加速文本到图像模型评测&quot;, &quot;title_en&quot;: &quot;FlashEval：用代表性 prompt 子集加速文本到图像模型评测&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,50 +60,75 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-14-flasheval.html">中文</a><a class="" href="../en/sources/2026-04-14-flasheval.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">FlashEval</span><span class="title-subtitle">快速而准确地评测文本到图像扩散模型</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>FlashEval：用代表性 prompt 子集加速文本到图像模型评测</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">FlashEval</span><span class="title-subtitle">用代表性 prompt 子集加速文本到图像模型评测</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2024-03-25</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2403.16379" title="https://arxiv.org/abs/2403.16379" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2403.16379</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2403.16379" title="https://arxiv.org/pdf/2403.16379" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2403.16379</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#evaluation">#evaluation</a><a class="tag" href="../tags.html#benchmarking">#benchmarking</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作说明生成模型评测不仅在追求人类对齐，也在追求“更快但仍足够可靠”的评估器形态。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>它要解决的是文本到图像扩散模型评测成本高、速度慢、难以在研究迭代中频繁使用的问题。对当前知识库来说，它把 evaluation 主线从视频扩展回图像侧，补足近三年生成评测的另一种演化方向。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>FlashEval 试图建立一种更快同时保持准确性的文本到图像扩散模型评测方法，让评测不必完全依赖昂贵缓慢的人类打分流程，从而更适合模型开发与快速比较。</p>
-<h2 id="关键发现">关键发现</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2024-03-25</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2403.16379" title="https://arxiv.org/abs/2403.16379" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2403.16379</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2403.16379" title="https://arxiv.org/pdf/2403.16379" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2403.16379</strong></a><a class="source-link source-link-code" href="https://github.com/thu-nics/FlashEval" title="https://github.com/thu-nics/FlashEval" target="_blank" rel="noopener noreferrer"><span>代码仓库</span><strong>github.com · FlashEval</strong></a></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#评测接口与方法">评测接口与方法</a></li><li><a href="#数据-指标与模型-zoo">数据、指标与模型 zoo</a></li><li><a href="#主要结果">主要结果</a></li><li><a href="#成本-污染与-judge-边界">成本、污染与 judge 边界</a></li><li><a href="#能力边界">能力边界</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>FlashEval 不是新质量 metric，而是在已有 metric 下搜索少量 prompts，使子集模型排名复现全量排名；COCO 上 50-item searched subset 接近 500-item random，支持约 10× 重复评测加速，但一次性搜索需预计算模型 zoo 的大规模分数，且外推只在同源 Stable Diffusion configs 上验证。</p>
+<h2 id="评测接口与方法">评测接口与方法</h2>
 <ul>
-<li>它提醒我们，evaluation 主线不只有“大模型当评委”或“human-aligned benchmark”，还有“高效评测器”这条非常实际的路线。</li>
-<li>它让 image-generation 与 generative-model-evaluation 的联系更紧，因为图像侧也在经历评测基础设施升级。</li>
-<li>它为后续判断“哪些评测真正适合研究迭代”提供了很好的参照。</li>
+<li>输入 prompt 数据集、模型/config zoo、已有自动 metric 和目标子集大小；输出固定代表性 prompt subset。</li>
+<li>full-set metric 平均定义“ground truth”模型排序，子集质量用 Kendall’s Tau；另查 top-K ranking 和 top-K coverage。</li>
+<li>每轮采大量 subsets，在 train models 上按 KD 选 top sets，再保留这些 sets 中高频 prompts，迭代缩小搜索空间。</li>
+<li>该方法优化的是“复现 metric 排名”，不是使 metric 更符合人类，也不是生成模型本身。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="数据-指标与模型-zoo">数据、指标与模型 zoo</h2>
 <ul>
-<li>快速评测器通常仍面临和人类主观偏好之间的偏差问题。</li>
-<li>它更偏向文本到图像模型，不直接回答视频编辑理解 benchmark 的全部问题。</li>
-<li>评测加速并不自动等于评测覆盖面更全面。</li>
+<li>COCO val2014：40,504 prompts；DiffusionDB：从 2M 中取 5,000。</li>
+<li>78 个 Stable Diffusion configs：12 model variants 与多种 DDIM/PNDM/DPM schedules/steps；seed=0、guidance=7.5。</li>
+<li>按 random / cross-variant / cross-scheduler 拆 train/test models。</li>
+<li>五个 metrics：FID、CLIPScore、Aesthetic、ImageReward、HPS；无新 human study 或 LLM judge。</li>
 </ul>
+<h2 id="主要结果">主要结果</h2>
+<p>COCO CLIPScore test KD：</p>
+<table><thead><tr><th>子集</th><th>Random</th><th>FlashEval（random / variants / schedulers）</th></tr></thead><tbody><tr><td>50</td><td>0.597 / 0.588 / 0.560</td><td><strong>0.851 / 0.800 / 0.850</strong></td></tr><tr><td>500</td><td>0.829 / 0.826 / 0.827</td><td><strong>0.906 / 0.899 / 0.909</strong></td></tr></tbody></table>
+<p>DiffusionDB 上 5-item FlashEval test KD 0.789/0.691/0.748，超过 100-item random 的 0.763/0.681/0.738。小集合结果强，但也最易过拟合特定 zoo/metric。</p>
+<p>10-item COCO 消融的 train/test KD：random 0.355/0.142，去 frequency selection 0.876/0.640，去 iterative filtering 0.821/0.667，full 0.934/<strong>0.796</strong>；组件有效，同时 train-test gap 表明搜索拟合风险。</p>
+<h2 id="成本-污染与-judge-边界">成本、污染与 judge 边界</h2>
+<ul>
+<li>论文动机：RTX 3090 上 SD v1.5 完整 COCO 约 <strong>60 GPU-hours</strong>；50 vs 500 prompts 的后续生成约节省 10×。</li>
+<li>一次性搜索必须获得模型 zoo 在大量/全部 prompts 上的 metric scores，并比较最高 $10^7$ candidate subsets；未报告端到端 GPU/CPU-hours、存储和墙钟。</li>
+<li>held-out models 仍属高度同源 SD family；不能保证迁移到新 DiT、自回归或闭源模型。</li>
+<li>COCO/DiffusionDB 可能出现在模型训练中；公开 searched subset 也可能成为未来调参目标。</li>
+<li>full-set FID/CLIP/偏好模型只是代理真值；高 KD 可以忠实复现一个偏置 metric。固定单 seed 也不覆盖生成随机性。</li>
+</ul>
+<h2 id="能力边界">能力边界</h2>
+<ul>
+<li><strong>直接属于图像生成评测基础设施</strong>，不是视频理解。</li>
+<li>思路可用于视频生成抽样，但视频运动、时序、长度和人评成本不同，本文没有验证。</li>
+<li>没有 source image/video、edit instruction、局部保持或 before-after reasoning，<strong>不评真实编辑理解</strong>。</li>
+<li>“评得快”与“评得符合人类/任务目标”是两个正交问题。</li>
+</ul>
+<h2 id="证据评级">证据评级</h2>
+<p><strong>B+（实用且实验系统；但只加速代理 metric 排名，同质模型 zoo、预付成本与外部泛化证据不足）</strong>。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2403.16379</li>
-<li>https://arxiv.org/pdf/2403.16379</li>
+<li><a href="https://arxiv.org/abs/2403.16379">arXiv</a></li>
+<li><a href="https://arxiv.org/pdf/2403.16379">论文 PDF</a></li>
+<li><a href="https://github.com/thu-nics/FlashEval">代码</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../topics/generative-model-evaluation.html">topics/generative-model-evaluation</a></li>
-<li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>FlashEval 在这套库里的意义，是把生成模型评测主线中的“快速评测基础设施”补成明确分支。</p></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+<li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有 benchmark 是否跟踪真实视频编辑理解</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../topics/generative-model-evaluation.html">生成模型评测</a></li></ul></div><div class="related-group related-questions"><h3>相关问题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">3</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../topics/generative-model-evaluation.html">生成模型评测</a><span>主题</span></li><li><a href="../topics/image-generation.html">图像生成</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-flasheval&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;FlashEval（CVPR 2024）：快速而准确地评测文本到图像扩散模型&quot;,
+  &quot;title&quot;: &quot;FlashEval：用代表性 prompt 子集加速文本到图像模型评测&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2024&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
@@ -121,9 +152,11 @@
   &quot;published_at&quot;: &quot;2024-03-25&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2403.16379&quot;,
-    &quot;https://arxiv.org/pdf/2403.16379&quot;
+    &quot;https://arxiv.org/pdf/2403.16379&quot;,
+    &quot;https://github.com/thu-nics/FlashEval&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-flasheval/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-14-flasheval/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/image-generation&quot;,
     &quot;topics/generative-model-evaluation&quot;
@@ -133,7 +166,7 @@
   &quot;questions&quot;: [
     &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

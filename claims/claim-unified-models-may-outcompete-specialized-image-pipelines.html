@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>统一图像生成-编辑模型可能会胜过专用流水线 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="统一模型已证明任务覆盖、知识复用和接口简化价值；整体胜过专用或模块化流水线仍缺少受控比较。">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-claim" data-page="{&quot;slug&quot;: &quot;claims/claim-unified-models-may-outcompete-specialized-image-pipelines&quot;, &quot;title&quot;: &quot;统一图像生成-编辑模型可能会胜过专用流水线&quot;, &quot;title_en&quot;: &quot;统一图像生成-编辑模型可能会胜过专用流水线&quot;, &quot;kind&quot;: &quot;claim&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;open-claim&quot;, &quot;image-generation&quot;, &quot;image-editing&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-claim" data-page="{&quot;slug&quot;: &quot;claims/claim-unified-models-may-outcompete-specialized-image-pipelines&quot;, &quot;title&quot;: &quot;统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证&quot;, &quot;title_en&quot;: &quot;Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified&quot;, &quot;kind&quot;: &quot;claim&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;open-claim&quot;, &quot;image-generation&quot;, &quot;image-editing&quot;, &quot;needs-verification&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a class="active" href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a class="active" href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,54 +60,48 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">中文</a><a class="" href="../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">claim · 2026-04-17</p>
-        <h1><span class="title-main">统一图像生成-编辑模型可能会胜过专用流水线</span></h1>
-        
-        
-        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#open-claim">#open-claim</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#image-editing">#image-editing</a></div>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>判断</span><span class="crumb-sep" aria-hidden="true">›</span><strong>统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</strong></nav>
+        <p class="eyebrow">判断 · 更新于 2026-07-10</p>
+        <h1><span class="title-main">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</span></h1>
+        <p class="article-summary">统一模型已证明任务覆盖、知识复用和接口简化价值；整体胜过专用或模块化流水线仍缺少受控比较。</p>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#open-claim">#open-claim</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#image-editing">#image-editing</a><a class="tag" href="../tags.html#needs-verification">#needs-verification</a></div>
       </header>
-      <section class="article-content"><h2 id="命题">命题</h2>
-<p>长期来看，一个统一的图像生成-编辑模型，或者一个覆盖多任务的共享训练框架，可能会比“生成系统一套、编辑系统一套”的专用流水线更有竞争力。这里的竞争优势不只体现在功能整合，还体现在任务迁移、接口统一、系统复用，以及未来产品形态是否能更自然地收敛到一个平台。</p>
-<h2 id="为什么这条-claim-值得持续跟踪">为什么这条 claim 值得持续跟踪</h2>
-<p>这条 claim 会直接影响整个 vault 的组织逻辑。如果统一模型是主方向，那么大量论文都应被理解成同一技术家族的不同分支；如果专用系统和模块组合系统会长期并行占优，那么“统一”更像平台叙事，而不是现实中的唯一终局。</p>
-<h2 id="当前支持证据在说什么">当前支持证据在说什么</h2>
-<h3 id="统一路线不只是-模型合并-而是系统级收敛">统一路线不只是“模型合并”，而是系统级收敛</h3>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="claim-evidence-panel"><h2>证据状态</h2><p><span>判断状态</span><strong>持续复核</strong></p><div class="claim-evidence-counts"><div><span>支持证据</span><strong>3</strong></div><div><span>反对证据</span><strong>0</strong></div></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#审计结论">审计结论</a></li><li><a href="#命题">命题</a></li><li><a href="#直接支持证据">直接支持证据</a><ol><li class="toc-sub"><a href="#dreamomni">DreamOmni</a></li><li class="toc-sub"><a href="#omnigen">OmniGen</a></li><li class="toc-sub"><a href="#unireal">UniReal</a></li></ol></li><li><a href="#相邻支持证据">相邻支持证据</a></li><li><a href="#中性案例与压力测试">中性案例与压力测试</a></li><li><a href="#当前缺少的关键比较">当前缺少的关键比较</a></li><li><a href="#阶段性评估">阶段性评估</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="审计结论">审计结论</h2>
+<p><strong>Verdict：部分支持；系统整合价值为中等置信，整体性能优势为低置信趋势假设。</strong></p>
+<p>现有论文证明统一接口、共享训练和多任务模型具有可行性，并在部分任务或指标上达到、甚至局部超过若干专用方法。它们通常没有同时控制训练数据、参数规模、训练算力、推理预算和评测指标，因此无法证明统一模型整体上或长期上会胜过专用与模块化流水线。</p>
+<p>本页于 2026-07-10 按 8 篇论文的 source note、analysis、paper-text 和 PDF 重新核验。详细审计见 <code>docs/evidence-audit/claim-semantic-audit-2026-07-10.md</code>。</p>
+<h2 id="命题">命题</h2>
+<p>一个模型或共享训练框架可以覆盖文本到图像、图像编辑、主体驱动生成和视觉条件生成。当前得到较充分支持的优势主要是任务覆盖、知识复用、接口简化和部署复用。峰值质量、控制强度、延迟和工程可维护性仍可能由专用或模块化系统占优。</p>
+<h2 id="直接支持证据">直接支持证据</h2>
+<h3 id="dreamomni">DreamOmni</h3>
+<p><a class="wikilink" href="../sources/2026-04-12-dreamomni.html">sources/2026-04-12-dreamomni</a> 证明生成、编辑和多条件任务可以进入共享训练框架，并展示部分任务上的竞争力。其受控 0.85B 对照主要分析 T2I 框架；完整 2.5B 模型使用大规模 T2I 与合成任务数据，instruction editing 主要依赖质化比较，因此它支持可行性和局部竞争力。</p>
+<h3 id="omnigen">OmniGen</h3>
+<p><a class="wikilink" href="../sources/2026-04-12-omnigen.html">sources/2026-04-12-omnigen</a> 用单模型覆盖 T2I、编辑、主体驱动和视觉条件生成，清晰证明统一接口和工作流简化的价值。EMU-Edit 结果被论文描述为 comparable，控制指标也存在胜负；原文明确说明传统 CV 任务能力不以超过长期发展的专用 SOTA 为目标。</p>
+<h3 id="unireal">UniReal</h3>
+<p><a class="wikilink" href="../sources/2026-04-12-unireal.html">sources/2026-04-12-unireal</a> 把生成、编辑、定制和组合统一为 discontinuous frame generation。它在 CLIPdir、CLIPout 等指令对齐指标上表现较强，同时在 DINO、L1 等保真指标上存在权衡。它是“统一模型具备局部竞争力”的直接证据，没有形成同资源条件下的全面胜出证明。</p>
+<h2 id="相邻支持证据">相邻支持证据</h2>
+<p><a class="wikilink" href="../sources/2026-04-12-anyedit.html">sources/2026-04-12-anyedit</a> 证明统一多类型编辑、任务路由和数据组织能够提升编辑器的覆盖面与性能。它只统一多种编辑任务，没有覆盖文本到图像与编辑的完整统一；其同架构实验隔离的是训练数据收益。</p>
+<h2 id="中性案例与压力测试">中性案例与压力测试</h2>
 <ul>
-<li><a class="wikilink" href="../sources/2026-04-12-omnigen.html">sources/2026-04-12-omnigen</a> 把“单一模型处理更多图像任务”的方向推得最明确，显示统一接口本身就具有很强吸引力。</li>
-<li><a class="wikilink" href="../sources/2026-04-12-dreamomni.html">sources/2026-04-12-dreamomni</a> 说明统一路线可以建立在联合训练与 synthetic data pipeline 上，而不是只靠外层工作流拼接。</li>
-<li><a class="wikilink" href="../sources/2026-04-12-unireal.html">sources/2026-04-12-unireal</a> 把统一路线进一步推进到真实世界动态建模层，说明统一模型的外溢能力可能远超单一图像任务。</li>
-<li><a class="wikilink" href="../sources/2026-04-12-anyedit.html">sources/2026-04-12-anyedit</a> 则说明统一路线也可以从高质量多任务数据与任务组织出发，不一定非要先有一个“大一统模型”再谈整合。</li>
-<li><a class="wikilink" href="../sources/2026-04-14-pathways-image-manifold.html">sources/2026-04-14-pathways-image-manifold</a> 进一步说明，跨任务借模正在从概念变成具体方法：编辑问题可以直接被重写到视频生成路径上。</li>
+<li><a class="wikilink" href="../sources/2026-04-14-pathways-image-manifold.html">sources/2026-04-14-pathways-image-manifold</a> 是 VLM + I2V + frame selection 的专用多模块图像编辑 pipeline，证明跨任务借模和模块化重写有效。</li>
+<li><a class="wikilink" href="../sources/2026-04-12-d2it.html">sources/2026-04-12-d2it</a> 说明专用生成主干仍能通过结构深挖获得显著改进。</li>
+<li><a class="wikilink" href="../sources/2026-04-14-sketchvideo.html">sources/2026-04-14-sketchvideo</a> 说明强控制模态和窄任务专用接口仍有价值；其范围是草图条件视频生成与编辑。</li>
+<li><a class="wikilink" href="../sources/2026-04-14-encapsulated-composition-t2i-t2v.html">sources/2026-04-14-encapsulated-composition-t2i-t2v</a> 说明 T2I/T2V 模块组合可以在视频质量和速度上形成现实竞争力。</li>
 </ul>
-<h2 id="当前反证与压力测试在说什么">当前反证与压力测试在说什么</h2>
-<h3 id="专用系统仍然保留现实竞争力">专用系统仍然保留现实竞争力</h3>
-<ul>
-<li><a class="wikilink" href="../sources/2026-04-12-d2it.html">sources/2026-04-12-d2it</a> 说明单点问题上的主干深挖，仍可能在峰值性能上非常强。</li>
-<li><a class="wikilink" href="../sources/2026-04-14-sketchvideo.html">sources/2026-04-14-sketchvideo</a> 说明当控制模态本身极其关键时，专用系统可能比统一模型更稳、更适合产品化。</li>
-</ul>
-<h3 id="模块组合系统不是弱者-反而可能更工程化">模块组合系统不是弱者，反而可能更工程化</h3>
-<ul>
-<li><a class="wikilink" href="../sources/2026-04-14-encapsulated-composition-t2i-t2v.html">sources/2026-04-14-encapsulated-composition-t2i-t2v</a> 提供了一条很强的反向证据：不一定要做一个完全统一的大模型，模块组合系统也可能在质量、速度和工程复杂度之间取得非常现实的平衡。</li>
-</ul>
-<h2 id="这条-claim-现在为什么还不能封口">这条 claim 现在为什么还不能封口</h2>
-<p>因为“统一是否胜出”不是单指标问题。统一模型可能在任务迁移、训练共享、系统整合上更强，但专用系统可能在局部峰值、延迟、可控性和稳定性上更占优；模块组合系统则可能在工程实践里拿到更好的可维护性和部署性。换句话说，统一路线正在赢得方法叙事，但还没有赢得所有现实约束。</p>
+<p>这些论文没有与统一图像生成—编辑模型进行同资源的直接比较，因此保留为 contextual pressure tests，不放入形式上的 <code>evidence_against</code>。</p>
+<h2 id="当前缺少的关键比较">当前缺少的关键比较</h2>
+<p>要判断统一路线是否整体占优，需要统一实验同时控制：</p>
+<ol>
+<li>训练数据与数据质量；</li>
+<li>参数量、训练算力与推理预算；</li>
+<li>生成、编辑、控制、保真和延迟指标；</li>
+<li>best-of-N、人工选择与评测集构造；</li>
+<li>单模型、专用模型和模块组合系统的维护与部署成本。</li>
+</ol>
 <h2 id="阶段性评估">阶段性评估</h2>
-<p>基于当前已经进入 vault 的证据，最稳的阶段性判断是：<strong>统一路线现在最像主平台方向，但它尚未完成对专用系统和模块组合系统的彻底压制。</strong></p>
-<p>更具体地说，统一模型已经证明自己不是简单的“功能打包”，而是在训练方式、任务外溢和接口收敛上持续获得新证据；但与此同时，专用深挖路线和模块组合路线都已经拿出了足够强的反击样本。这意味着未来更可能出现的图景，不是统一模型单独吞掉一切，而是统一平台占据中心，专用子系统和组合系统继续在高控制、高性能、低时延场景里长期存在。</p>
-<h2 id="当前更倾向的结论">当前更倾向的结论</h2>
-<ul>
-<li>统一路线在研究主线与系统叙事上暂时领先。</li>
-<li>专用路线仍会在局部性能与强控制需求上长期存在。</li>
-<li>模块组合路线很可能是统一路线最现实的工程竞争者。</li>
-<li>因此这条 claim 当前应保持 <code>monitored</code>：方向偏向支持，但还远不到升级成封闭结论的程度。</li>
-</ul>
-<h2 id="研究含义">研究含义</h2>
-<p>这条 claim 对后续选题很重要：</p>
-<ul>
-<li>如果你要做平台化、通用化、任务迁移相关研究，统一路线仍然是最强主线。</li>
-<li>如果你要做强控制、低延迟、工程可靠性相关研究，专用或组合路线仍然有很大创新空间。</li>
-<li>因此最值得继续追踪的，不是“统一 or 专用”的口号判断，而是不同系统形态在不同真实约束下的分工边界。</li>
-</ul>
+<p><strong>统一路线已证明可行且具有系统整合价值，“性能上整体领先”仍未得到受控实验验证。</strong> 当前状态保持 <code>monitored</code>。</p>
 <h2 id="相关页面">相关页面</h2>
 <ul>
 <li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
@@ -109,33 +109,35 @@
 <li><a class="wikilink" href="../entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a></li>
 <li><a class="wikilink" href="../questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-evidence_for"><h3>支持证据<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../sources/2026-04-12-dreamomni.html">DreamOmni：统一图像生成与编辑</a></li><li><a class="wikilink" href="../sources/2026-04-12-omnigen.html">OmniGen：统一图像生成</a></li><li><a class="wikilink" href="../sources/2026-04-12-unireal.html">UniReal：通过学习真实世界动态实现通用图像生成与编辑</a></li></ul></div><div class="related-group related-related_topics"><h3>相关主题<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../topics/image-editing.html">图像编辑</a></li></ul></div><div class="related-group related-related_entities"><h3>相关实体<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">14</span></h2><ul><li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a><span>实体</span></li><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a><span>问题</span></li><li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a><span>问题</span></li><li><a href="../sources/2026-04-12-anyedit.html">AnyEdit：面向任意创意的统一高质量图像编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-12-d2it.html">D²iT：用于高精度图像生成的动态扩散 Transformer</a><span>来源笔记</span></li><li><a href="../sources/2026-04-12-dreamomni.html">DreamOmni：统一图像生成与编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-12-omnigen.html">OmniGen：统一图像生成</a><span>来源笔记</span></li><li><a href="../sources/2026-04-12-unireal.html">UniReal：通过学习真实世界动态实现通用图像生成与编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-dreambooth.html">DreamBooth：以少样本全模型微调实现主体驱动生成</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-instructpix2pix.html">InstructPix2Pix：用合成监督建立自然语言图像编辑接口</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-pathways-image-manifold.html">Pathways on the Image Manifold：通过视频生成做图像编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-sketchvideo.html">SketchVideo：基于草图的视频生成与编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-06-29-clip.html">CLIP：用自然语言监督学习可迁移视觉表示</a><span>来源笔记</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;claim-unified-models-may-outcompete-specialized-image-pipelines&quot;,
   &quot;type&quot;: &quot;claim&quot;,
-  &quot;title&quot;: &quot;统一图像生成-编辑模型可能会胜过专用流水线&quot;,
+  &quot;title&quot;: &quot;统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证&quot;,
+  &quot;title_en&quot;: &quot;Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified&quot;,
+  &quot;summary&quot;: &quot;统一模型已证明任务覆盖、知识复用和接口简化价值；整体胜过专用或模块化流水线仍缺少受控比较。&quot;,
+  &quot;summary_en&quot;: &quot;Unified models demonstrate task coverage, knowledge reuse, and interface simplification, while overall superiority over specialized or modular pipelines lacks controlled comparisons.&quot;,
   &quot;status&quot;: &quot;monitored&quot;,
   &quot;created&quot;: &quot;2026-04-12&quot;,
-  &quot;updated&quot;: &quot;2026-04-17&quot;,
+  &quot;updated&quot;: &quot;2026-07-10&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;open-claim&quot;,
     &quot;image-generation&quot;,
-    &quot;image-editing&quot;
+    &quot;image-editing&quot;,
+    &quot;needs-verification&quot;
   ],
   &quot;claim_status&quot;: &quot;monitored&quot;,
   &quot;claim_type&quot;: &quot;trend&quot;,
   &quot;evidence_for&quot;: [
-    &quot;sources/2026-04-12-anyedit&quot;,
     &quot;sources/2026-04-12-dreamomni&quot;,
     &quot;sources/2026-04-12-omnigen&quot;,
-    &quot;sources/2026-04-12-unireal&quot;,
-    &quot;sources/2026-04-14-pathways-image-manifold&quot;
+    &quot;sources/2026-04-12-unireal&quot;
   ],
-  &quot;evidence_against&quot;: [
-    &quot;sources/2026-04-12-d2it&quot;,
-    &quot;sources/2026-04-14-sketchvideo&quot;,
-    &quot;sources/2026-04-14-encapsulated-composition-t2i-t2v&quot;
-  ],
+  &quot;evidence_against&quot;: [],
   &quot;related_topics&quot;: [
     &quot;topics/image-generation&quot;,
     &quot;topics/image-editing&quot;
@@ -143,7 +145,7 @@
   &quot;related_entities&quot;: [
     &quot;entities/unified-image-generation-editing&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

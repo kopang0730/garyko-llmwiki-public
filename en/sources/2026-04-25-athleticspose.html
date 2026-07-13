@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AthleticsPose：AthleticsPose 聚焦真实田径动作中的 3D 姿态估计与泛化评估。 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="AthleticsPose：真实田径动作的 3D 姿态与部署边界">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>AthleticsPose：真实田径动作的 3D 姿态与部署边界 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-25-athleticspose&quot;, &quot;title&quot;: &quot;AthleticsPose（arXiv 2025）：AthleticsPose 聚焦真实田径动作中的 3D 姿态估计与泛化评估。&quot;, &quot;title_en&quot;: &quot;AthleticsPose（arXiv 2025）：AthleticsPose 聚焦真实田径动作中的 3D 姿态估计与泛化评估。&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-25-athleticspose&quot;, &quot;title&quot;: &quot;AthleticsPose：真实田径动作的 3D 姿态与部署边界&quot;, &quot;title_en&quot;: &quot;AthleticsPose：真实田径动作的 3D 姿态与部署边界&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,45 +60,77 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-25-athleticspose.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-25-athleticspose.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-05-22</p>
-        <h1><span class="title-main">AthleticsPose</span><span class="title-subtitle">AthleticsPose 聚焦真实田径动作中的 3D 姿态估计与泛化评估。</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>AthleticsPose：真实田径动作的 3D 姿态与部署边界</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">AthleticsPose</span><span class="title-subtitle">真实田径动作的 3D 姿态与部署边界</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>arXiv 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-07-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-25</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2507.12905" title="https://arxiv.org/abs/2507.12905" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2507.12905</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2507.12905.pdf" title="https://arxiv.org/pdf/2507.12905.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2507.12905.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#benchmarking">#benchmarking</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>AthleticsPose 聚焦真实田径动作中的 3D 姿态估计与泛化评估。</p>
-<h2 id="资料定位">资料定位</h2>
-<p>这是从体育机器视觉文献清单中拆出的独立来源。当前 first-pass 编译先把它放进 raw/source 证据层，后续可按重要性升级为深分析笔记。</p>
-<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
-<p>它和 AthletePose3D 一起说明真实竞技动作数据对姿态模型的域适配很关键。</p>
-<h2 id="局限或疑问">局限或疑问</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>arXiv</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-07-17</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-25</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2507.12905" title="https://arxiv.org/abs/2507.12905" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2507.12905</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2507.12905.pdf" title="https://arxiv.org/pdf/2507.12905.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2507.12905.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#数据集与标签">数据集与标签</a></li><li><a href="#方法与协议">方法与协议</a></li><li><a href="#核心结果">核心结果</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限与泛化">局限与泛化</a></li><li><a href="#对羽毛球-demo-的迁移边界">对羽毛球 demo 的迁移边界</a></li><li><a href="#对-wiki-判断的影响">对 Wiki 判断的影响</a></li><li><a href="#原始材料">原始材料</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>AthleticsPose 用 subject-disjoint 户外田径数据把 H3.6M 模型 MPJPE 从 149.38 mm 降至 41.99 mm，并揭示侧视/大目标更可靠；但抬膝速度存在系统高估和个体关系失真，不能直接进入精细教练反馈。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这是 AthletePose3D 的现实性压力测试：不提出新架构，而是用真实田径场动作、跨人协议、视角/尺度分解和运动学 case study 检验单目 3D pose 的部署边界。</p>
+<h2 id="数据集与标签">数据集与标签</h2>
 <ul>
-<li>当前是 bibliography-driven first-pass source note，优先保证来源可追溯和方向定位。</li>
-<li>重要 paper 后续应补 <code>analysis.md</code>、关键图页、实验设置和指标细节。</li>
+<li>采集 24 名大学运动员，清洗后表中为 23 subjects；15 男、9 女，19–26 岁。</li>
+<li>8 类：starting dash、sprint、distance running、racewalk、hurdle、shot put、discus、javelin。</li>
+<li>约 50 万多机位帧、6.25 万独立 3D poses、83 joints；户外田径场，8 台硬件同步相机。</li>
+<li>只有动作/3D pose/相机参数，无阶段、错误类型、技术质量分。</li>
+<li>只保留 83 点完整帧，提高标签完整性，但可能过滤最难遮挡案例。</li>
+</ul>
+<h2 id="方法与协议">方法与协议</h2>
+<ul>
+<li>ViTPose-base：COCO 预训练后领域微调；2D mAP 0.875→0.979。</li>
+<li>MotionAGFormer-base：81 帧、100 epoch；比较 GT 2D、预训练 DET、微调 DET。</li>
+<li>按 subject 分 train/test，测试集按动作、日期与性别平衡；javelin 因仅 1 人不评测。</li>
+<li>运动学计算支撑腿膝角和最大 knee-drive velocity。</li>
+</ul>
+<h2 id="核心结果">核心结果</h2>
+<table><thead><tr><th>训练/输入</th><th>MPJPE / P-MPJPE (mm)</th></tr></thead><tbody><tr><td>H3.6M，DET pre-trained</td><td>149.38 / 98.80</td></tr><tr><td>AthletePose3D，GT</td><td>115.91 / 88.36</td></tr><tr><td>AthleticsPose，DET pre-trained</td><td>41.99 / 31.40</td></tr><tr><td>AthleticsPose，DET fine-tuned</td><td>40.13 / 30.33</td></tr><tr><td>AthleticsPose，GT</td><td>29.45 / 21.44</td></tr></tbody></table>
+<ul>
+<li>投掷上肢最难：discus wrist 134.97 mm、shotput 100.49 mm。</li>
+<li>side vs front/back：31.42 vs 36.34 mm MPJPE。</li>
+<li>large/medium/small target：33.27/37.15/42.63 mm。</li>
+<li>膝角 RMSE 6.43°（side 4.82°、front/back 7.18°），但压缩个体差异并制造伪显著差异。</li>
+<li>knee-drive velocity RMSE 0.77 m/s，所有 subject 系统性高估，未保留真实个体关系。</li>
+</ul>
+<h2 id="关键消融">关键消融</h2>
+<p>训练域、2D 输入质量、动作/关节、机位、目标尺度均被分解。最重要发现是 GT→DET 差距远大于 DET 微调收益；视角与尺度分析有部署价值，但二者高度耦合，并非完全独立消融。</p>
+<h2 id="局限与泛化">局限与泛化</h2>
+<ul>
+<li>subject split 降低身份泄漏，但不是 leave-one-action；所有测试动作在训练域内，javelin 无测试。</li>
+<li>Theia3D 是工业 markerless 系统，且完整帧过滤可能低估遮挡难度。</li>
+<li>“真实 vs 模仿”比较同时改变参与者、场地和分布，不能当作单变量因果。</li>
+<li>2D/3D 各一个代表模型，不能外推所有架构。</li>
+</ul>
+<h2 id="对羽毛球-demo-的迁移边界">对羽毛球 demo 的迁移边界</h2>
+<p>应复用 athlete/session/court/camera-disjoint 协议，并按机位、人物尺度、动作阶段、末端关节报告误差；侧视固定机位可作为 demo 起点。不可直接迁移田径速度结论：羽毛球还需 racket/ball/contact keypoints，挥拍速度比 knee-drive 更难，必须单独验证且传播 pose 不确定性。</p>
+<h2 id="对-wiki-判断的影响">对 Wiki 判断的影响</h2>
+<ul>
+<li>对 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">体育 AI 视频理解</a>：真实体育域、视角与尺度决定 pose 可靠性，是直接支持。</li>
+<li>对 <a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">体育 AI 路线图</a>：固定机位训练反馈是直接支持兼压力测试；自动纠错未被证明。</li>
+<li>对 <a class="wikilink" href="../../en/topics/video-understanding.html">视频理解</a>：提供体育 pose 时序中间层的背景证据。</li>
 </ul>
 <h2 id="原始材料">原始材料</h2>
 <ul>
-<li><code>raw/ingest/2026-04-25-athleticspose/source.md</code></li>
+<li><a class="wikilink missing" href="#missing-raw/ingest/2026-04-25-athleticspose/analysis">全文深分析</a></li>
+<li><code>raw/ingest/2026-04-25-athleticspose/paper.pdf</code></li>
 <li><code>raw/ingest/2026-04-25-athleticspose/paper-text.md</code></li>
 <li><code>raw/ingest/2026-04-25-athleticspose/links.yaml</code></li>
-</ul>
-<h2 id="相关页面">相关页面</h2>
-<ul>
-<li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
-<li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
-<li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li><li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li><li><a class="wikilink" href="../../en/topics/video-understanding.html">Video Understanding</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">4</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a><span>Topic</span></li><li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a><span>Topic</span></li><li><a href="../../en/topics/video-understanding.html">Video Understanding</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-25-athleticspose&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;AthleticsPose（arXiv 2025）：AthleticsPose 聚焦真实田径动作中的 3D 姿态估计与泛化评估。&quot;,
+  &quot;title&quot;: &quot;AthleticsPose：真实田径动作的 3D 姿态与部署边界&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-25&quot;,
-  &quot;updated&quot;: &quot;2026-05-22&quot;,
-  &quot;venue&quot;: &quot;arXiv 2025&quot;,
-  &quot;published_at&quot;: &quot;2025-07-01&quot;,
-  &quot;ingested_at&quot;: &quot;2026-04-25&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;video-understanding&quot;,
@@ -101,7 +139,15 @@
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
-  &quot;authors&quot;: [],
+  &quot;venue&quot;: &quot;arXiv&quot;,
+  &quot;authors&quot;: [
+    &quot;Tomohiro Suzuki&quot;,
+    &quot;Ryota Tanaka&quot;,
+    &quot;Calvin Yeung&quot;,
+    &quot;Keisuke Fujii&quot;
+  ],
+  &quot;published_at&quot;: &quot;2025-07-17&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-25&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2507.12905&quot;,
     &quot;https://arxiv.org/pdf/2507.12905.pdf&quot;
@@ -112,12 +158,10 @@
     &quot;topics/sports-ai-roadmap&quot;,
     &quot;topics/video-understanding&quot;
   ],
-  &quot;entities&quot;: [
-    &quot;entities/sportsmot&quot;
-  ],
+  &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

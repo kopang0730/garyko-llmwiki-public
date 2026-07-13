@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ANetQA：面向未裁剪视频细粒度组合推理的大规模基准 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="ANetQA：未裁剪视频细粒度组合推理基准">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>ANetQA：未裁剪视频细粒度组合推理基准 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-anetqa&quot;, &quot;title&quot;: &quot;ANetQA（CVPR 2023）：面向未裁剪视频细粒度组合推理的大规模基准&quot;, &quot;title_en&quot;: &quot;ANetQA（CVPR 2023）：面向未裁剪视频细粒度组合推理的大规模基准&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;reasoning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-anetqa&quot;, &quot;title&quot;: &quot;ANetQA：未裁剪视频细粒度组合推理基准&quot;, &quot;title_en&quot;: &quot;ANetQA：未裁剪视频细粒度组合推理基准&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;reasoning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,50 +60,69 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-14-anetqa.html">中文</a><a class="" href="../en/sources/2026-04-14-anetqa.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">ANetQA</span><span class="title-subtitle">面向未裁剪视频细粒度组合推理的大规模基准</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>ANetQA：未裁剪视频细粒度组合推理基准</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">ANetQA</span><span class="title-subtitle">未裁剪视频细粒度组合推理基准</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023/05/04</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2305.02519" title="https://arxiv.org/abs/2305.02519" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2305.02519</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2305.02519" title="https://arxiv.org/pdf/2305.02519" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2305.02519</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#evaluation">#evaluation</a><a class="tag" href="../tags.html#benchmarking">#benchmarking</a><a class="tag" href="../tags.html#reasoning">#reasoning</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把未裁剪视频中的细粒度组合推理 benchmark 补了进来，强化了 video-understanding 对事件结构理解的覆盖。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>它要解决的是模型在长而未裁剪的视频里能否真正理解多事件、组合关系和时序结构的问题。对当前知识库来说，它补的是 compositional reasoning 这一层。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>ANetQA 构建面向 untrimmed videos 的 fine-grained compositional reasoning benchmark，通过问答形式测试模型对事件关系与结构的理解。</p>
-<h2 id="关键发现">关键发现</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023-05-04</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2305.02519" title="https://arxiv.org/abs/2305.02519" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2305.02519</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2305.02519" title="https://arxiv.org/pdf/2305.02519" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2305.02519</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#评测接口与数据">评测接口与数据</a></li><li><a href="#指标-模型与结果">指标、模型与结果</a></li><li><a href="#human-污染与成本">Human、污染与成本</a></li><li><a href="#能力边界">能力边界</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>ANetQA 用 ActivityNet 的人工时空场景图和 119 个功能模板生成 13.4M 平衡 VideoQA，旧模型最高 44.53%、人类多数投票 84.48%；它强在规模和类型诊断，但平均每视频仅 3.69 个代表帧、blind 模型仍约 36%，且公开派生数据的预训练污染未审计。</p>
+<h2 id="评测接口与数据">评测接口与数据</h2>
 <ul>
-<li>它让 video-understanding 页增加了对 untrimmed / compositional reasoning 的明确样本。</li>
-<li>它有助于之后判断模型是否只是抓住显眼线索，而不是真正理解事件结构。</li>
-<li>它也为“视频编辑理解”提供了更底层的参考，因为编辑判断常常同样依赖事件结构。</li>
+<li>输入未裁剪视频和问题，输出单一答案；包含 query/verify/choose/compare/logic 五种结构、21 类问题。</li>
+<li>11,525 videos：train 9,155、val/test 各 1,185；QA 为 10.4M/1.5M/1.5M，另有 0.3M test-dev。</li>
+<li>43K representative frames（平均 3.69/视频）上标 118K objects、83K relations、1M attributes，并复用 16K temporal action captions。</li>
+<li>词表含 2,072 object、86 relationship、618 attribute classes；&gt;50 annotators、4+ 月，但无支付、总工时或 agreement。</li>
+<li>先生成 1.4B candidates，再固定结构比例并在模板内均衡答案；这抑制简单 prior，不消除模板与共现捷径。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="指标-模型与结果">指标、模型与结果</h2>
+<p>评测 exact-match accuracy，不使用 LLM judge。HCRN/ClipBERT/All-in-One 都在 train 微调，但 test 帧预算分别依其实现，非严格等采样比较。</p>
+<table><thead><tr><th>方法</th><th>有视觉 overall</th><th>blind overall</th><th>open</th></tr></thead><tbody><tr><td>HCRN</td><td>41.15</td><td>37.11</td><td>29.95</td></tr><tr><td>ClipBERT</td><td>43.92</td><td>35.55</td><td>33.17</td></tr><tr><td>All-in-One</td><td><strong>44.53</strong></td><td>36.48</td><td><strong>34.33</strong></td></tr><tr><td>Human majority</td><td><strong>84.48</strong></td><td>--</td><td>84.82</td></tr></tbody></table>
 <ul>
-<li>问答式 benchmark 仍然和真实编辑任务之间有距离。</li>
-<li>它更偏 reasoning 测试，不直接覆盖生成或编辑控制。</li>
-<li>它适合作为理解层补厚，而不是直接替代编辑 benchmark。</li>
+<li>All-in-One：attribute 40.14、sequencing 35.27、action 74.39，支持细属性与时序更难。</li>
+<li>加 video-level 高频 object+relation+attribute 词，HCRN 41.15→45.45；这类信息现实测试中未必可得，且可能利用同视频其他题。</li>
+<li>oracle frames 同时注入 train/test，All-in-One 44.53→46.07；瓶颈不只在采帧。</li>
 </ul>
+<h2 id="human-污染与成本">Human、污染与成本</h2>
+<ul>
+<li>4,000 test QA，每题 5 人，majority 84.48%，单人平均 81.5%。作者把差错分为 0.75% annotation error、1.95% ambiguity、12.82% human error；无资历、支付、CI 或 agreement。</li>
+<li>ActivityNet、ANet-Captions/Entities 均公开，模型可能预训练见过视频或字幕；没有 hash/近重复/训练集重叠审计。</li>
+<li>同一视频产生大量相关 QA，13.4M 不是独立样本数；无按视频聚类置信区间。</li>
+<li>只报告 &gt;50 人、4+ 月；未报告标注费用、训练/评测 GPU-hours 和延迟。</li>
+</ul>
+<h2 id="能力边界">能力边界</h2>
+<ul>
+<li><strong>属于</strong>视频理解/VideoQA/组合推理，不是视频生成质量评测。</li>
+<li>没有编辑指令、源—编辑后视频对、变化/保持/局部性指标，<strong>不是视频编辑 benchmark</strong>。</li>
+<li>object identity、attribute、relation、action order 是真实编辑理解的必要子能力，但模板 QA 高分不证明模型能定位编辑或判断未指令区域是否保持。</li>
+</ul>
+<h2 id="证据评级">证据评级</h2>
+<p><strong>B+（规模与可诊断性强；稀疏场景图、模板/语言偏置、污染与成本审计不足）</strong>。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2305.02519</li>
-<li>https://arxiv.org/pdf/2305.02519</li>
+<li><a href="https://arxiv.org/abs/2305.02519">arXiv</a></li>
+<li><a href="https://arxiv.org/pdf/2305.02519">论文 PDF</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
-<li><a class="wikilink" href="../topics/generative-model-evaluation.html">topics/generative-model-evaluation</a></li>
-<li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>ANetQA 在这套库里的作用，是把未裁剪视频组合推理 benchmark 补成 video-understanding 的重要分支。</p></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+<li><a class="wikilink" href="../topics/video-understanding.html">视频理解</a></li>
+<li><a class="wikilink" href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有 benchmark 是否跟踪真实视频编辑理解</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../topics/video-understanding.html">视频理解</a></li><li><a class="wikilink" href="../topics/generative-model-evaluation.html">生成模型评测</a></li></ul></div><div class="related-group related-questions"><h3>相关问题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">3</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../topics/generative-model-evaluation.html">生成模型评测</a><span>主题</span></li><li><a href="../topics/video-understanding.html">视频理解</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-anetqa&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;ANetQA（CVPR 2023）：面向未裁剪视频细粒度组合推理的大规模基准&quot;,
+  &quot;title&quot;: &quot;ANetQA：未裁剪视频细粒度组合推理基准&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2023&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
@@ -119,12 +144,13 @@
     &quot;Ren, Kui&quot;,
     &quot;Yu, Jun&quot;
   ],
-  &quot;published_at&quot;: &quot;2023/05/04&quot;,
+  &quot;published_at&quot;: &quot;2023-05-04&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2305.02519&quot;,
     &quot;https://arxiv.org/pdf/2305.02519&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-anetqa/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-14-anetqa/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/video-understanding&quot;,
     &quot;topics/generative-model-evaluation&quot;
@@ -134,7 +160,7 @@
   &quot;questions&quot;: [
     &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

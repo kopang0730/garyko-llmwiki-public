@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>通过图像特定提示学习实现零样本生成模型适配 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="Image-specific Prompt Learning：零目标图像的生成器域适配">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Image-specific Prompt Learning：零目标图像的生成器域适配 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-image-specific-prompt-learning&quot;, &quot;title&quot;: &quot;通过图像特定提示学习实现零样本生成模型适配（CVPR 2023）&quot;, &quot;title_en&quot;: &quot;通过图像特定提示学习实现零样本生成模型适配（CVPR 2023）&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;image-editing&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-image-specific-prompt-learning&quot;, &quot;title&quot;: &quot;Image-specific Prompt Learning：零目标图像的生成器域适配&quot;, &quot;title_en&quot;: &quot;Image-specific Prompt Learning：零目标图像的生成器域适配&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;conditioning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,90 +60,111 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-14-image-specific-prompt-learning.html">中文</a><a class="" href="../en/sources/2026-04-14-image-specific-prompt-learning.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">通过图像特定提示学习实现零样本生成模型适配</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Image-specific Prompt Learning：零目标图像的生成器域适配</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">Image-specific Prompt Learning</span><span class="title-subtitle">零目标图像的生成器域适配</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023/04/06</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2304.03119" title="https://arxiv.org/abs/2304.03119" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2304.03119</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2304.03119" title="https://arxiv.org/pdf/2304.03119" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2304.03119</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#image-editing">#image-editing</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#conditioning">#conditioning</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把 image-specific prompt learning 路线补进库里，强化了零样本生成适配分支。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>它要解决的是生成模型在面对具体图像实例时，如何不经过重训练就实现更贴合的适配。对当前知识库来说，它补的是 prompt-level adaptation 这条更轻量的生成路线。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023-04-06</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2023/html/Guo_Zero-Shot_Generative_Model_Adaptation_via_Image-Specific_Prompt_Learning_CVPR_2023_paper.html" title="https://openaccess.thecvf.com/content/CVPR2023/html/Guo_Zero-Shot_Generative_Model_Adaptation_via_Image-Specific_Prompt_Learning_CVPR_2023_paper.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>openaccess.thecvf.com · Guo_Zero-Shot_Generative_Model_…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2023/papers/Guo_Zero-Shot_Generative_Model_Adaptation_via_Image-Specific_Prompt_Learning_CVPR_2023_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2023/papers/Guo_Zero-Shot_Generative_Model_Adaptation_via_Image-Specific_Prompt_Learning_CVPR_2023_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Guo_Zero-Shot_Generative_Model_…</strong></a><a class="source-link source-link-code" href="https://github.com/Picsart-AI-Research/IPL-Zero-Shot-Generative-Model-Adaptation" title="https://github.com/Picsart-AI-Research/IPL-Zero-Shot-Generative-Model-Adaptation" target="_blank" rel="noopener noreferrer"><span>代码仓库</span><strong>github.com · IPL-Zero-Shot-Generative-Model-…</strong></a></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位与任务接口">论文定位与任务接口</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#主干-数据与成本">主干、数据与成本</a></li><li><a href="#核心实验与结果">核心实验与结果</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>IPL 在没有目标域图片时，为每个源 latent 学不同 prompt vectors，以替代 NADA 的共享固定 CLIP 方向并缓解 mode collapse；它每个目标域仍要训练 10–20 分钟的专用 generator，不是具体输入图局部编辑或统一模型。</p>
+<h2 id="论文定位与任务接口">论文定位与任务接口</h2>
+<p>输入预训练源域 generator 和源/目标域文本 labels，先训练 latent→prompt mapper，再训练目标域 generator；之后从 latent 生成目标域样本。真实图 translation 还需 ReStyle/e4e 或 diffusion inversion。“image-specific”指监督方向随源样本变化，不是给单张用户图做 prompt inversion。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>该工作通过 image-specific prompt learning 实现 zero-shot generative model adaptation，让模型围绕具体图像实例学习更有效的提示表示。</p>
-<h2 id="关键发现">关键发现</h2>
 <ul>
-<li>它说明 image-generation 的适配能力不只依赖模型权重更新，也可以走提示层适配路线。</li>
-<li>它和 Prompt Tuning Inversion、Specialist Diffusion 一起让“轻量适配”这条线更成体系。</li>
-<li>它对以后做低成本个性化/编辑增强方向很有参考价值。</li>
+<li>Stage 1：mapper 为每个 latent 生成 4 个 CLIP word-dimension prompt vectors；contrastive loss 保留样本特征，domain regularization 使其与目标域兼容。</li>
+<li>Stage 2：用这些在线生成的 image-specific directions 替代 NADA 固定 Directional CLIP Loss，适配目标 generator。</li>
+<li>$L=L_{constr}+\lambda L_{domain}$；$\lambda$ 在 1/10 中按 IS 选择（PDF pp.3–5）。</li>
+</ul>
+<h2 id="主干-数据与成本">主干、数据与成本</h2>
+<ul>
+<li>StyleGANv2（FFHQ、AFHQ）+ CLIP ViT-B/32；NADA 为主基线。</li>
+<li>diffusion 扩展基于 DiffusionCLIP，并用 diffusion autoencoder 改善 inversion。</li>
+<li>目标域训练图为 0，但源 generator 与 CLIP 均依赖大规模预训练。</li>
+<li>两阶段各 300 iterations；RTX 3090；batch 32/2；每目标域总计约 <strong>10–20 分钟</strong>。所以是 zero-shot data adaptation，不是 training-free。</li>
+</ul>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<p>10 个风格/类别域上，IPL 的 IS 全部高于 NADA；例如 Photo→Disney 2.721→<strong>3.089</strong>、Anime 2.450→<strong>3.051</strong>、Cartoon 6.505→<strong>8.658</strong>、Pointillism 5.419→<strong>6.913</strong>。SCS/ID 多数更高，但 Photo→Ukiyo-e 的 ID 从 0.775 降到 0.632，不是全指标全胜（PDF p.6，Table 1）。</p>
+<p>121 人、1,210 responses 的用户研究平均 <strong>80.5%</strong> 偏好 IPL；单域 72.7%–87.6%。SIFID 每域仅用 3 张网上参考图，结论波动性应谨慎。</p>
+<p>真实图 translation 中 Diff-IPL 相对 Diff-CLIP/CLIP+ 的主文证据主要是定性图；“GAN/diffusion 通用”弱于主 GAN 定量证据。</p>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>手工固定 prompt 与 learned fixed prompt 都出现重复蓝眉/表情等 mode collapse；说明关键不是“可学习”而是 per-image variation。</li>
+<li>随机 mapper prompt 多样但目标风格不足；adaptive prompt 需要 image-specific contrastive learning 与 domain constraint 同时存在。</li>
+<li>$\lambda=0$ 过度保源域，$\lambda=20$ 过度压多样性；1–10 是经验折中（PDF p.8，Fig.6–7）。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>提示层适配的上限通常受原模型能力限制。</li>
-<li>它更适合轻量适配场景，不一定覆盖复杂多概念需求。</li>
-<li>它是 prompt adaptation 节点，但不是完整个性化体系。</li>
+<li>每个目标域仍需 600 iterations 和专用 generator；不支持单 checkpoint 即时跨域。</li>
+<li>目标由短 label 定义，适合全局域/风格迁移，不等同主体个性化、局部编辑或多轮 instruction editing。</li>
+<li>主实验只与 NADA 比，目标域集中在人脸/动物风格；CLIP 同时用于监督与相关评估。</li>
+<li>diffusion 证据有限，无法严格证明完全 generator-agnostic；作者无独立 limitations 小节。</li>
 </ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<p>旧 source 把 IPL 解释为“面对具体图像实例无需重训练的适配”、标为 <code>image-editing</code>，并关联统一生成—编辑实体/问题，均超出全文。现已改为生成器域适配：它直接证明固定共享 direction 是可修复机制瓶颈，但不比较数据扩张与架构，也不支持统一模型胜出。恰恰相反，每个目标域训练专用 generator，支持“通用表征 + 专用适配模块”。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2304.03119</li>
-<li>https://arxiv.org/pdf/2304.03119</li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2023/html/Guo_Zero-Shot_Generative_Model_Adaptation_via_Image-Specific_Prompt_Learning_CVPR_2023_paper.html">CVF 论文页</a></li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2023/papers/Guo_Zero-Shot_Generative_Model_Adaptation_via_Image-Specific_Prompt_Learning_CVPR_2023_paper.pdf">CVF PDF</a></li>
+<li><a href="https://arxiv.org/abs/2304.03119">arXiv</a></li>
+<li><a href="https://github.com/Picsart-AI-Research/IPL-Zero-Shot-Generative-Model-Adaptation">代码</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../topics/image-editing.html">topics/image-editing</a></li>
-<li><a class="wikilink" href="../entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a></li>
-<li><a class="wikilink" href="../questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>这篇工作在库里的作用，是把 image-specific prompt adaptation 路线补成 image-generation / image-editing 的轻量分支。</p></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+<li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">4</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../topics/diffusion-models.html">扩散模型</a><span>主题</span></li><li><a href="../topics/image-editing.html">图像编辑</a><span>主题</span></li><li><a href="../topics/image-generation.html">图像生成</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-image-specific-prompt-learning&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;通过图像特定提示学习实现零样本生成模型适配（CVPR 2023）&quot;,
+  &quot;title&quot;: &quot;Image-specific Prompt Learning：零目标图像的生成器域适配&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2023&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;image-generation&quot;,
-    &quot;image-editing&quot;,
+    &quot;conditioning&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;authors&quot;: [
-    &quot;Guo, Jiayi&quot;,
-    &quot;Wang, Chaofei&quot;,
-    &quot;Wu, You&quot;,
-    &quot;Zhang, Eric&quot;,
-    &quot;Wang, Kai&quot;,
-    &quot;Xu, Xingqian&quot;,
-    &quot;Song, Shiji&quot;,
-    &quot;Shi, Humphrey&quot;,
-    &quot;Huang, Gao&quot;
+    &quot;Jiayi Guo&quot;,
+    &quot;Chaofei Wang&quot;,
+    &quot;You Wu&quot;,
+    &quot;Eric Zhang&quot;,
+    &quot;Kai Wang&quot;,
+    &quot;Xingqian Xu&quot;,
+    &quot;Shiji Song&quot;,
+    &quot;Humphrey Shi&quot;,
+    &quot;Gao Huang&quot;
   ],
-  &quot;published_at&quot;: &quot;2023/04/06&quot;,
+  &quot;published_at&quot;: &quot;2023-04-06&quot;,
   &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/CVPR2023/html/Guo_Zero-Shot_Generative_Model_Adaptation_via_Image-Specific_Prompt_Learning_CVPR_2023_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2023/papers/Guo_Zero-Shot_Generative_Model_Adaptation_via_Image-Specific_Prompt_Learning_CVPR_2023_paper.pdf&quot;,
     &quot;https://arxiv.org/abs/2304.03119&quot;,
-    &quot;https://arxiv.org/pdf/2304.03119&quot;
+    &quot;https://arxiv.org/pdf/2304.03119&quot;,
+    &quot;https://github.com/Picsart-AI-Research/IPL-Zero-Shot-Generative-Model-Adaptation&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-image-specific-prompt-learning/&quot;,
   &quot;topics&quot;: [
     &quot;topics/image-generation&quot;,
-    &quot;topics/image-editing&quot;
+    &quot;topics/diffusion-models&quot;
   ],
-  &quot;entities&quot;: [
-    &quot;entities/unified-image-generation-editing&quot;
-  ],
+  &quot;entities&quot;: [],
   &quot;claims&quot;: [],
-  &quot;questions&quot;: [
-    &quot;questions/question-will-unified-image-models-sustain-their-advantage&quot;
-  ]
-}</pre></section>
+  &quot;questions&quot;: []
+}</pre></details>
     </article>
   </main>
 </body>

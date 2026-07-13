@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="通过多模态大模型实现语言驱动视频修补">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>通过多模态大模型实现语言驱动视频修补 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-language-driven-video-inpainting&quot;, &quot;title&quot;: &quot;通过多模态大模型实现语言驱动视频修补（CVPR 2024）&quot;, &quot;title_en&quot;: &quot;通过多模态大模型实现语言驱动视频修补（CVPR 2024）&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;vision-language&quot;, &quot;video-understanding&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-language-driven-video-inpainting&quot;, &quot;title&quot;: &quot;通过多模态大模型实现语言驱动视频修补&quot;, &quot;title_en&quot;: &quot;通过多模态大模型实现语言驱动视频修补&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;vision-language&quot;, &quot;video-understanding&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,52 +60,102 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-14-language-driven-video-inpainting.html">中文</a><a class="" href="../en/sources/2026-04-14-language-driven-video-inpainting.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>通过多模态大模型实现语言驱动视频修补</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
         <h1><span class="title-main">通过多模态大模型实现语言驱动视频修补</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2024/01/18</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2401.10226" title="https://arxiv.org/abs/2401.10226" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2401.10226</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2401.10226" title="https://arxiv.org/pdf/2401.10226" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2401.10226</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-editing">#video-editing</a><a class="tag" href="../tags.html#vision-language">#vision-language</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把语言驱动视频修补和多模态大模型接到一起，补强了 video-editing 与 vision-language 的交界路线。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>它要解决的是视频修补如何真正听懂语言指令、而不是只做低层补洞的问题。对当前知识库来说，它补的是 video editing 更明显向理解驱动接口演化的信号。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2024/01/18</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2401.10226" title="https://arxiv.org/abs/2401.10226" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2401.10226</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2401.10226" title="https://arxiv.org/pdf/2401.10226" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2401.10226</strong></a><a class="source-link source-link-code" href="https://github.com/jianzongwu/Language-Driven-Video-Inpainting" title="https://github.com/jianzongwu/Language-Driven-Video-Inpainting" target="_blank" rel="noopener noreferrer"><span>代码仓库</span><strong>github.com · Language-Driven-Video-Inpainting</strong></a></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#输入-输出与保留目标">输入、输出与保留目标</a></li><li><a href="#rovi-数据集">ROVI 数据集</a></li><li><a href="#方法概述">方法概述</a><ol><li class="toc-sub"><a href="#lgvi">LGVI</a></li><li class="toc-sub"><a href="#lgvi-i">LGVI-I</a></li></ol></li><li><a href="#数据与训练预算">数据与训练预算</a></li><li><a href="#核心实验与结果">核心实验与结果</a><ol><li class="toc-sub"><a href="#referring-task">Referring task</a></li><li class="toc-sub"><a href="#interactive-task">Interactive task</a></li></ol></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限与失败案例">局限与失败案例</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>论文用 ROVI、LGVI 和 LLaVA-7B 增强的 LGVI-I，把指代表达/隐式对话转成对象移除视频；它直接证明语言 grounding 可以接到短视频 inpainting，但 MLLM 只看首帧、GT 与对话大量合成，且缺少 grounding accuracy，不能外推为完整视频理解。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>该工作首次系统定义 language-driven video inpainting：推理时不用逐帧 mask，用户只需描述要移除的对象。任务分为简单 referring expression 和 chat-style interactive request 两种。</p>
+<h2 id="输入-输出与保留目标">输入、输出与保留目标</h2>
+<ul>
+<li><strong>输入</strong>：原视频 + 指代表达或隐式用户请求。</li>
+<li><strong>输出</strong>：移除目标对象并补全背景的视频；交互模型同时输出文字回应与显式 removal prompt。</li>
+<li><strong>要保留</strong>：非目标区域、场景结构和短时序连续性。</li>
+<li><strong>要编辑</strong>：语言指定对象区域。</li>
+<li><strong>边界</strong>：只做对象移除/补背景，不是任意添加、替换、属性或动作编辑。</li>
+</ul>
+<h2 id="rovi-数据集">ROVI 数据集</h2>
+<ul>
+<li>5,650 视频、247,018 帧、9,091 对象/修补结果、12,534 expressions、9,091 chats。</li>
+<li>来源：A2D-Sentences 2,967 + Refer-YouTube-VOS 2,683。</li>
+<li>测试：478 视频、758 对象。</li>
+<li>E2FGVI 生成修补 GT；对 mask expansion 六个取值产生候选，由人工择优或丢弃。</li>
+<li>对话由 MLLM/LLM 链式生成；mask 面积大于画面 25% 的困难对象被过滤。</li>
+</ul>
+<p>因此 ROVI 的 GT 是人工筛选的 teacher output，而非真实无对象视频；benchmark 也主动排除了大洞修补。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>该工作利用 multimodal large language models 支撑 language-driven video inpainting，让视频修补更直接地接收语言条件与理解约束。</p>
-<h2 id="关键发现">关键发现</h2>
+<h3 id="lgvi">LGVI</h3>
+<p>以 MagicBrush/Stable Diffusion U-Net 为基础，加入 temporal attention；源视频 latent 作为 control；FPN-like mask decoder 预测语言所指区域。联合 diffusion loss 与 mask loss，训练用 mask、推理不输入 mask。</p>
+<h3 id="lgvi-i">LGVI-I</h3>
+<p>LLaVA-7B 接收<strong>首帧</strong>与用户请求，生成回答和 <code>&lt;PROMPT&gt;</code> tokens；对应 hidden states 经 MM head 后进入 U-Net cross-attention。联合 diffusion、mask 和 language modeling losses。</p>
+<p>这意味着语言理解主要发生在首帧对象 grounding；完整时序由视频 diffusion module 处理，MLLM 本身不看全视频。</p>
+<h2 id="数据与训练预算">数据与训练预算</h2>
 <ul>
-<li>它说明视频修补也开始不只是低层任务，而是在向 language-conditioned editing 转变。</li>
-<li>它把 video-editing、vision-language、video-understanding 三页更紧地连了起来。</li>
-<li>它为之后看“编辑是否真的依赖理解能力”提供了很好的桥梁样本。</li>
+<li>ROVI 视频与 GQA-Inpaint 图像按 3:1 混合。</li>
+<li>U-Net / mask decoder / MLLM tuned params 学习率为 $3\times10^{-5}$ / $10^{-4}$ / $10^{-4}$。</li>
+<li>视频 $512\times320$、24 帧。</li>
+<li>LGVI 训练 50 epochs；LGVI-I 从 LGVI 再训练 50 epochs。</li>
+<li>video batch 32、image batch 768；8 张 NVIDIA A100。</li>
+<li>未报告 GPU-hours、参数量与推理速度。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<h3 id="referring-task">Referring task</h3>
+<p>LGVI：PSNR <strong>22.85</strong>、SSIM <strong>0.756</strong>、VFID 0.308、$E_{warp}=0.901\times10^{-2}$。它优于 image baselines；与 Inpaint Anything* 相比，PSNR/SSIM 略高，但 VFID 0.308 vs 0.283、warp 0.901 vs 0.874 略差，因此不是所有指标都最优。</p>
+<h3 id="interactive-task">Interactive task</h3>
+<p>LGVI-I：PSNR <strong>22.24</strong>、SSIM 0.732、VFID 0.299、warp <strong>0.867</strong>。它的 PSNR/warp 最优；SSIM 低于 LGVI+MLLM 的 0.738，VFID 低于 IA*+MLLM 的 0.291。相比未增强 LGVI，LGVI-I 有明显整体改善。</p>
+<p>指标衡量与伪 GT 的接近度与时序平滑；没有 mask IoU、对象 grounding accuracy、意图解析准确率或人类编辑成功率，无法把“理解”和“生成”分开。</p>
+<h2 id="关键消融">关键消融</h2>
+<p>完整 LGVI 为 22.85 / 0.756 / 0.308 / 0.901；w/o full U-Net tuning 为 20.53 / 0.607 / 0.370 / 1.101；w/o mask supervision 为 21.80 / 0.631 / 0.358 / 1.059；w/o video inflation 为 22.08 / 0.754 / 0.356 / 1.017；w/o image joint training 为 22.39 / 0.728 / 0.297 / 0.987。</p>
+<p>完整微调、mask supervision 与视频 inflation 有效；image joint training 存在 PSNR/SSIM/warp 与 VFID 的权衡。论文未单独消融 MLLM 首帧、prompt extraction 或 LM loss。</p>
+<h2 id="局限与失败案例">局限与失败案例</h2>
 <ul>
-<li>语言驱动修补的真实收益仍需和更传统视觉方法对照。</li>
-<li>MM-LLM 接入通常增加系统复杂度与不稳定性。</li>
-<li>它是接口演化信号，但还需要更多任务级证据。</li>
+<li>含糊、长、隐式表达会删错对象；同类多实例密集时尤其困难。</li>
+<li>即使语言回复定位近似正确，diffusion output 仍可能错误，说明理解与执行之间存在断层。</li>
+<li>diffusion 推理慢，实时处理困难。</li>
+<li>跨语言、视频类型和未见数据泛化未验证。</li>
+<li>MLLM 只看首帧；目标后续出现、遮挡或动作关系指代不在能力证据内。</li>
+<li>合成对话、合成 GT 和大对象过滤降低了真实世界外推性。</li>
 </ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li>直接支持 <a class="wikilink" href="../topics/video-editing.html">视频编辑</a> 中语言接口可替代推理时 mask，完成窄任务对象移除。</li>
+<li>对 <a class="wikilink" href="../topics/vision-language.html">视觉语言</a> 是 MLLM 作为交互意图解析器的直接案例。</li>
+<li>对 <a class="wikilink" href="../topics/video-understanding.html">视频理解</a> 只是相邻证据，因为 MLLM 仅看首帧。</li>
+<li>对 <a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有 benchmark 是否跟踪真实视频编辑理解</a> 是关键压力测试：指标混合 grounding、mask、inpainting 和 teacher-GT 拟合。</li>
+</ul>
+<h2 id="证据评级">证据评级</h2>
+<p><strong>B（语言驱动对象移除的中等直接证据；对真实视频编辑理解为 B-）</strong>。任务确实从隐式请求到编辑输出，但 synthetic supervision、首帧 MLLM 与缺少 grounding 指标限制了理解结论。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2401.10226</li>
-<li>https://arxiv.org/pdf/2401.10226</li>
+<li><a href="https://arxiv.org/abs/2401.10226">arXiv</a></li>
+<li><a href="https://arxiv.org/pdf/2401.10226">论文 PDF</a></li>
+<li><a href="https://github.com/jianzongwu/Language-Driven-Video-Inpainting">官方代码</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../topics/video-editing.html">topics/video-editing</a></li>
-<li><a class="wikilink" href="../topics/vision-language.html">topics/vision-language</a></li>
-<li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
-<li><a class="wikilink" href="../entities/video-editing-understanding.html">entities/video-editing-understanding</a></li>
-<li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>这篇工作在库里的作用，是把语言驱动视频修补这条 vision-language 交叉路线补成明确节点。</p></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+<li><a class="wikilink" href="../topics/video-editing.html">视频编辑</a></li>
+<li><a class="wikilink" href="../topics/vision-language.html">视觉语言</a></li>
+<li><a class="wikilink" href="../topics/video-understanding.html">视频理解</a></li>
+<li><a class="wikilink" href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+<li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有 benchmark 是否跟踪真实视频编辑理解</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../topics/video-editing.html">视频编辑</a></li><li><a class="wikilink" href="../topics/vision-language.html">视觉-语言</a></li><li><a class="wikilink" href="../topics/video-understanding.html">视频理解</a></li></ul></div><div class="related-group related-entities"><h3>相关实体<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../entities/video-editing-understanding.html">视频编辑理解</a></li></ul></div><div class="related-group related-questions"><h3>相关问题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">4</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../topics/video-editing.html">视频编辑</a><span>主题</span></li><li><a href="../topics/video-understanding.html">视频理解</a><span>主题</span></li><li><a href="../topics/vision-language.html">视觉-语言</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-language-driven-video-inpainting&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;通过多模态大模型实现语言驱动视频修补（CVPR 2024）&quot;,
+  &quot;title&quot;: &quot;通过多模态大模型实现语言驱动视频修补&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2024&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
@@ -127,9 +183,11 @@
   &quot;published_at&quot;: &quot;2024/01/18&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2401.10226&quot;,
-    &quot;https://arxiv.org/pdf/2401.10226&quot;
+    &quot;https://arxiv.org/pdf/2401.10226&quot;,
+    &quot;https://github.com/jianzongwu/Language-Driven-Video-Inpainting&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-language-driven-video-inpainting/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-14-language-driven-video-inpainting/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/video-editing&quot;,
     &quot;topics/vision-language&quot;,
@@ -142,7 +200,7 @@
   &quot;questions&quot;: [
     &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

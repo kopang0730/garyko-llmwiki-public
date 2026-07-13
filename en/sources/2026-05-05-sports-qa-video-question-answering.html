@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Sports-QA：复杂专业体育视频问答基准">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>Sports-QA：复杂专业体育视频问答基准 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-05-sports-qa-video-question-answering&quot;, &quot;title&quot;: &quot;Sports-QA：复杂专业体育视频问答基准&quot;, &quot;title_en&quot;: &quot;Sports-QA：复杂专业体育视频问答基准&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;vision-language&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-05-sports-qa-video-question-answering&quot;, &quot;title&quot;: &quot;Sports-QA：复杂专业体育视频问答基准&quot;, &quot;title_en&quot;: &quot;Sports-QA：复杂专业体育视频问答基准&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;vision-language&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,41 +60,71 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-05-05-sports-qa-video-question-answering.html">中文</a><a class="selected-lang" href="../../en/sources/2026-05-05-sports-qa-video-question-answering.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-05-22</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Sports-QA：复杂专业体育视频问答基准</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
         <h1><span class="title-main">Sports-QA</span><span class="title-subtitle">复杂专业体育视频问答基准</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>International Journal of Computer Vision 2026</dd></div><div class="source-fact"><dt>Published</dt><dd>2026-05-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-05-05</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://link.springer.com/article/10.1007/s11263-026-02734-1" title="https://link.springer.com/article/10.1007/s11263-026-02734-1" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>link.springer.com · s11263-026-02734-1</strong></a><a class="source-link source-link-pdf" href="https://link.springer.com/content/pdf/10.1007/s11263-026-02734-1.pdf" title="https://link.springer.com/content/pdf/10.1007/s11263-026-02734-1.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>link.springer.com · s11263-026-02734-1.pdf</strong></a><a class="source-link source-link-code" href="https://github.com/HopLee6/Sports-QA" title="https://github.com/HopLee6/Sports-QA" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · Sports-QA</strong></a></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#vision-language">#vision-language</a><a class="tag" href="../../en/tags.html#benchmarking">#benchmarking</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>Sports-QA 是面向复杂专业体育视频的 VideoQA benchmark，给 rule-grounded officiating 之外的 broader sports MLLM reasoning 提供基础评测锚点。</p>
-<h2 id="论文定位">论文定位</h2>
-<p>这篇 IJCV 论文聚焦体育视频问答。它强调专业体育视频需要理解球员、动作、战术、时间过程和领域知识，因此适合作为 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 中 MLLM / VideoQA 能力层的基础来源。</p>
-<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>International Journal of Computer Vision 2026</dd></div><div class="source-fact"><dt>Published</dt><dd>2026-05-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-05-05</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://link.springer.com/article/10.1007/s11263-026-02734-1" title="https://link.springer.com/article/10.1007/s11263-026-02734-1" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>link.springer.com · s11263-026-02734-1</strong></a><a class="source-link source-link-pdf" href="https://link.springer.com/content/pdf/10.1007/s11263-026-02734-1.pdf" title="https://link.springer.com/content/pdf/10.1007/s11263-026-02734-1.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>link.springer.com · s11263-026-02734-1.pdf</strong></a><a class="source-link source-link-code" href="https://github.com/HopLee6/Sports-QA" title="https://github.com/HopLee6/Sports-QA" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · Sports-QA</strong></a></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#数据集">数据集</a></li><li><a href="#auto-focus-transformer">Auto-Focus Transformer</a></li><li><a href="#核心结果">核心结果</a></li><li><a href="#证据边界">证据边界</a></li><li><a href="#对羽毛球-demo-的影响">对羽毛球 demo 的影响</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始材料">原始材料</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h1 id="sports-qa-专业体育视频的多尺度问答基准">Sports-QA：专业体育视频的多尺度问答基准</h1>
+<blockquote><strong>来源</strong>：IJCV 2026</blockquote>
+<blockquote><strong>全文深读</strong>：<a class="wikilink missing" href="#missing-raw/ingest/2026-05-05-sports-qa-video-question-answering/analysis">analysis.md</a></blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>Sports-QA 用 94,073 个模板化 QA pairs 评估描述、时间、因果和反事实体育问答；AFT accuracy/F1 为 59.2/25.6%，证明问题条件化时间尺度选择有小幅收益，也显示闭集专业问答仍受长尾答案、模板先验与时序理解限制。</p>
+<h2 id="数据集">数据集</h2>
 <ul>
-<li>与 <a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：它支撑“体育 AI 从感知走向专业问答 / 信息检索 / 训练辅助”的 broader reasoning 层。</li>
-<li>与 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它补上专业体育 VideoQA benchmark，使 X-VARS / RefereeBench 的裁判推理有一个更宽的问答背景。</li>
-<li>与 <a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a> 的关系：它说明通用 VideoQA benchmark 很难覆盖体育专业语义，需要领域数据集。</li>
+<li>94,073 QA pairs；</li>
+<li>约 6K videos；</li>
+<li>来源 MultiSports 与 FineGym；</li>
+<li>篮球、足球、排球及多类体操；</li>
+<li>Split 60%/20%/20%；</li>
+<li>Questions：Description、Temporal、Causal、Counterfactual；</li>
+<li>基于 action labels、attributes 和 templates 自动生成，再人工质控。</li>
 </ul>
-<h2 id="来源可靠性与可溯源性">来源可靠性与可溯源性</h2>
+<p>同一 sport 的视频随机分配，未明确 athlete、competition、original-video 或 broadcast grouping，存在来源泄漏风险。</p>
+<h2 id="auto-focus-transformer">Auto-Focus Transformer</h2>
 <ul>
-<li><strong>来源层级</strong>：International Journal of Computer Vision 2026 journal paper，Springer 页面、DOI 和 PDF 可访问。</li>
-<li><strong>可溯源材料</strong>：本地已保存 Springer PDF、<code>paper-text.md</code>、abstract 与 <code>links.yaml</code>；PDF SHA256：<code>33d7093f8ae999e6ee9b80c10b5b7517e744a5218723edcb7ffb805c8bcdf423</code>。</li>
-<li><strong>使用边界</strong>：适合作为 sports VideoQA / sports MLLM reasoning 的强 primary evidence；它支撑专业问答基线，裁判规则推理仍应以 X-VARS / RefereeBench 这类来源为主。</li>
+<li>ResNet appearance + I3D motion features；</li>
+<li>构造 global/local 多尺度 temporal representations；</li>
+<li>Auto-Focus Attention 根据 question 动态选择时间尺度；</li>
+<li>GloVe/BERT 和 LSTM/Transformer 编码问题；</li>
+<li>输出闭集 answer class。</li>
 </ul>
-<h2 id="和现有证据的关系">和现有证据的关系</h2>
-<p>它和 <a class="wikilink" href="../../en/sources/2026-05-05-x-vars-explainable-football-refereeing.html">sources/2026-05-05-x-vars-explainable-football-refereeing</a>、<a class="wikilink" href="../../en/sources/2026-05-05-refereebench-multi-sport-referees.html">sources/2026-05-05-refereebench-multi-sport-referees</a> 形成三层结构：Sports-QA 提供专业体育问答基础，X-VARS 进入足球裁判解释，RefereeBench 把裁判能力做成跨运动评测。</p>
-<h2 id="局限或疑问">局限或疑问</h2>
+<p>模型不输出支撑帧、action tube、自然语言解释或 calibrated confidence。</p>
+<h2 id="核心结果">核心结果</h2>
+<table><thead><tr><th>方法</th><th>Accuracy</th><th>F1</th></tr></thead><tbody><tr><td>BlindQA</td><td>43.7</td><td>14.9</td></tr><tr><td>HGA</td><td>58.3</td><td>24.5</td></tr><tr><td>HQGA</td><td>57.9</td><td>25.0</td></tr><tr><td>IGV</td><td>58.5</td><td>24.8</td></tr><tr><td>Baseline</td><td>58.0</td><td>23.7</td></tr><tr><td>AFT</td><td><strong>59.2</strong></td><td><strong>25.6</strong></td></tr></tbody></table>
+<p>GloVe AFT 分项：Description 78.9、Temporal 35.3、Causal 55.1、Counterfactual 56.3。Temporal 是明显瓶颈。BERT AFT 为 59.1/25.4。</p>
+<p>AFT 相对同作者 baseline 提升约 1.2 accuracy 与 1.5–1.9 F1，支持多尺度 focus，同时增益幅度有限。BlindQA 仍达 43.7 accuracy，说明 question-only priors 存在。</p>
+<h2 id="证据边界">证据边界</h2>
 <ul>
-<li>VideoQA 能力和裁判判罚能力有交集，但评测目标不同；roadmap 中应把 Sports-QA 放在 sports MLLM reasoning 背景层。</li>
-<li>后续需要跟踪数据申请、许可和实际可复现脚本。</li>
+<li>QA 语言主要由模板生成；</li>
+<li>因果/反事实来自预定义规则关系；</li>
+<li>Random video split 未证明身份与源视频隔离；</li>
+<li>闭集分类不评解释、证据引用与拒答；</li>
+<li>Macro-F1 约 25%，长尾答案仍弱；</li>
+<li>不含最新长视频 MLLM；</li>
+<li>未报告 human upper bound、校准、GPU-hours 和 latency；</li>
+<li>不提供 pose、shuttle、racket、contact 或质量分。</li>
+</ul>
+<h2 id="对羽毛球-demo-的影响">对羽毛球 demo 的影响</h2>
+<p>可借用四类 query taxonomy 与 question-conditioned multi-scale context。羽毛球 QA 应建立在结构化 evidence 上，例如 contact frame、phase、pose 与 trajectory；回答必须回链证据。Question-only baseline 应用于检测模板泄漏。</p>
+<p>建议层级：</p>
+<p><code>structured evidence → temporal retrieval → constrained QA/NLG</code></p>
+<p>Sports-QA 不能直接作为教练纠错或裁判能力证据。</p>
+<h2 id="证据评级">证据评级</h2>
+<ul>
+<li>体育 VideoQA benchmark：<strong>A-</strong></li>
+<li>多尺度时间选择：<strong>B+</strong></li>
+<li>因果/反事实：<strong>B-（模板定义）</strong></li>
+<li>羽毛球纠错：<strong>C+</strong></li>
 </ul>
 <h2 id="原始材料">原始材料</h2>
 <ul>
-<li><code>raw/ingest/2026-05-05-sports-qa-video-question-answering/paper.pdf</code></li>
-<li><code>raw/ingest/2026-05-05-sports-qa-video-question-answering/paper-text.md</code></li>
-<li><code>raw/ingest/2026-05-05-sports-qa-video-question-answering/abstract.md</code></li>
-<li><code>raw/ingest/2026-05-05-sports-qa-video-question-answering/links.yaml</code></li>
+<li><code>raw/ingest/2026-05-05-sports-qa-video-question-answering/paper.pdf</code>（19 页）</li>
+<li><code>raw/ingest/2026-05-05-sports-qa-video-question-answering/paper-text.md</code>（2,770 行）</li>
+<li><code>raw/ingest/2026-05-05-sports-qa-video-question-answering/analysis.md</code></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
@@ -96,14 +132,19 @@
 <li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
 <li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a></li>
 <li><a class="wikilink" href="../../en/entities/sportsmot.html">entities/sportsmot</a></li>
+<li><a class="wikilink" href="../../en/questions/question-badminton-stroke-correction-demo.html">questions/question-badminton-stroke-correction-demo</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li><li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li><li><a class="wikilink" href="../../en/topics/video-understanding.html">Video Understanding</a></li></ul></div><div class="related-group related-entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/sportsmot.html">SportsMOT</a></li></ul></div><div class="related-group related-questions"><h3>Related questions<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">4</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a><span>Topic</span></li><li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a><span>Topic</span></li><li><a href="../../en/topics/video-understanding.html">Video Understanding</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-05-05-sports-qa-video-question-answering&quot;,
   &quot;type&quot;: &quot;source&quot;,
   &quot;title&quot;: &quot;Sports-QA：复杂专业体育视频问答基准&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-05-05&quot;,
-  &quot;updated&quot;: &quot;2026-05-22&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;International Journal of Computer Vision 2026&quot;,
   &quot;published_at&quot;: &quot;2026-05-01&quot;,
   &quot;ingested_at&quot;: &quot;2026-05-05&quot;,
@@ -133,6 +174,7 @@
     &quot;https://arxiv.org/abs/2401.01505&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-05-05-sports-qa-video-question-answering/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-05-05-sports-qa-video-question-answering/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/sports-ai-video-understanding&quot;,
     &quot;topics/sports-ai-roadmap&quot;,
@@ -142,8 +184,10 @@
     &quot;entities/sportsmot&quot;
   ],
   &quot;claims&quot;: [],
-  &quot;questions&quot;: []
-}</pre></section>
+  &quot;questions&quot;: [
+    &quot;questions/question-badminton-stroke-correction-demo&quot;
+  ]
+}</pre></details>
     </article>
   </main>
 </body>

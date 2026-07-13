@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="TrackNet：体育高速小目标追踪网络">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>TrackNet：体育高速小目标追踪网络 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-05-tracknet-high-speed-tiny-objects&quot;, &quot;title&quot;: &quot;TrackNet：体育高速小目标追踪网络&quot;, &quot;title_en&quot;: &quot;TrackNet：体育高速小目标追踪网络&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;tracking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-05-tracknet-high-speed-tiny-objects&quot;, &quot;title&quot;: &quot;TrackNet：体育高速小目标追踪网络&quot;, &quot;title_en&quot;: &quot;TrackNet：体育高速小目标追踪网络&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;tracking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,56 +60,76 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-05-05-tracknet-high-speed-tiny-objects.html">中文</a><a class="" href="../en/sources/2026-05-05-tracknet-high-speed-tiny-objects.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-05-22</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>TrackNet：体育高速小目标追踪网络</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
         <h1><span class="title-main">TrackNet</span><span class="title-subtitle">体育高速小目标追踪网络</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>AVSS 2019 / arXiv</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2019-07-08</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-05-05</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/1907.03698" title="https://arxiv.org/abs/1907.03698" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 1907.03698</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/1907.03698" title="https://arxiv.org/pdf/1907.03698" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 1907.03698</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#tracking">#tracking</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>TrackNet 是体育高速小目标追踪的早期核心锚点：它把 tennis ball / shuttlecock 这类小、快、模糊、偶尔不可见的目标，转成连续帧 heatmap detection 问题。</p>
-<h2 id="论文定位">论文定位</h2>
-<p>这篇论文提出 TrackNet，用连续帧学习飞行模式并输出目标位置 heatmap。它的价值在于定义了体育球类小目标追踪的基础难题：目标在广播视频中占比极小、运动模糊明显、会出现 afterimage 或短暂遮挡。</p>
-<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>AVSS 2019 / arXiv</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2019-07-08</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-05-05</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/1907.03698" title="https://arxiv.org/abs/1907.03698" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 1907.03698</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/1907.03698" title="https://arxiv.org/pdf/1907.03698" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 1907.03698</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位与任务边界">论文定位与任务边界</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#数据与标注">数据与标注</a></li><li><a href="#核心实验">核心实验</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#真实-10-样本-demo-价值">真实 10 样本 demo 价值</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>TrackNet 奠定“连续帧 → 像素 heatmap → 球坐标”的高速小目标 tracking 路线；网球单次随机帧切分 F1 达 98.5%，但 10-fold 降至 84.3%，羽毛球专训 F1 仅 68.7%，所以它是历史锚点而非当前羽毛球 demo 的成熟终点。</p>
+<h2 id="论文定位与任务边界">论文定位与任务边界</h2>
+<p>TrackNet 做 ball/shuttle tracking，不是球员 MOT、球场/3D trajectory reconstruction 或 action quality assessment。连续帧仅帮助定位最后一帧；没有显式状态估计、相机标定、物理轨迹和动作评分。</p>
+<h2 id="方法概述">方法概述</h2>
 <ul>
-<li>与 <a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：它补上“球/器械 tracking”这一类不同于球员 MOT 的感知难点。</li>
-<li>与 <a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它说明体育视频理解需要同时处理人、场地、事件和高速小目标。</li>
-<li>与 <a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a> 的关系：它是长视频中小目标 temporal localization 的典型应用。</li>
+<li>VGG-16 前段卷积 + 对称 DeconvNet，输出同分辨率 heatmap。</li>
+<li>比较 1 帧 Model I 与 3 帧 Model II；三帧预测最后一帧。</li>
+<li>真值是坐标中心的二维高斯（σ²=10）；每像素预测 256 灰度类别。</li>
+<li>heatmap 阈值 128 后用 Hough Gradient 找唯一圆并取中心。</li>
+<li>输入 640×360，Adadelta、batch 2、500 epochs。</li>
 </ul>
-<h2 id="来源可靠性与可溯源性">来源可靠性与可溯源性</h2>
-<ul>
-<li><strong>来源层级</strong>：arXiv paper，并作为 TrackNetV2 / TrackNetV3 / MonoTrack 后续工作的基础引用；venue 按 AVSS 2019 / arXiv 记录。</li>
-<li><strong>可溯源材料</strong>：本地已保存 arXiv abstract、PDF、<code>paper-text.md</code> 和 <code>links.yaml</code>；PDF SHA256：<code>8be381fc6250eb12b5d7ee013821786cdb3613de54bbabc1bcdd8dce8aaf96fd</code>。</li>
-<li><strong>使用边界</strong>：适合作为 TrackNet 系列历史起点和高速小目标 tracking 证据；具体复现实验应优先使用后续官方代码更完整的 TrackNetV3 / TrackNetV4。</li>
-</ul>
-<h2 id="和现有证据的关系">和现有证据的关系</h2>
-<p>它是 <a class="wikilink" href="../sources/2026-04-25-tracknetv3.html">sources/2026-04-25-tracknetv3</a>、<a class="wikilink" href="../sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking.html">sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking</a> 与 <a class="wikilink" href="../sources/2026-05-05-tracknetv4-motion-attention-maps.html">sources/2026-05-05-tracknetv4-motion-attention-maps</a> 的基础。后续版本基本都在回答同一个问题：怎样让小目标在高速、遮挡、背景干扰中保持可用轨迹。</p>
+<h2 id="数据与标注">数据与标注</h2>
+<p>网球来自 2017 Summer Universiade 男单决赛，81 clips / 20,844 帧；visibility 分不在画面、清晰、难辨、遮挡，并标 X/Y 与 flying/hit/bouncing。另从 9 个场地加入 16,118 帧。羽毛球来自 2018 Indonesia Open 女单决赛，18,242 帧，只标 presence 与 X/Y。拖影均以运动方向“最新位置”为标签，属于特定操作性定义。</p>
+<h2 id="核心实验">核心实验</h2>
+<table><thead><tr><th>方法</th><th>Precision</th><th>Recall</th><th>F1</th></tr></thead><tbody><tr><td>传统 Archana</td><td>92.5</td><td>74.5</td><td>82.5</td></tr><tr><td>TrackNet Model I（1 帧）</td><td>95.7</td><td>89.6</td><td>92.5</td></tr><tr><td>TrackNet Model II（3 帧）</td><td>99.8</td><td>96.6</td><td>98.2</td></tr><tr><td>Model II&#x27;（扩充训练）</td><td>99.7</td><td>97.3</td><td>98.5</td></tr></tbody></table>
+<p>1→3 帧是最关键消融，支持 temporal context。Model II 在仅 7 个遮挡帧中命中 2 个，样本不足以形成强遮挡结论。Model II&#x27; 的 10-fold cross-validation 为 95.3/75.7/84.3，显著低于单次随机 split。</p>
+<p>羽毛球方面，网球模型直接迁移为 75.8/22.9/35.2；羽毛球专训为 85.0/57.7/68.7。领域专训有效，但 recall 57.7% 说明严重断轨。</p>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>原论文更偏基础网络和 tennis ball 场景，羽毛球专门优化需要结合 TrackNetV2 / V3。</li>
-<li>数据和原始实现入口需要后续复现实验单独核查。</li>
+<li>原实验随机按帧 70/30，同一 rally 相邻帧可能跨 train/test；三帧输入放大近重复泄漏。</li>
+<li>10-fold F1 比单 split 低 14.2 个百分点，泛化证据应以较保守数字理解。</li>
+<li>羽毛球只有一场比赛，且作者称 precision 85% 足够描绘全部轨迹，与 recall 57.7% 矛盾。</li>
+<li>网球 5 像素、羽毛球 7.5 像素阈值不同，不能直接比较。</li>
+<li>Hough 唯一圆假设不适合非球形 shuttle、强拖影和多球。</li>
+<li>没有轨迹连续性、hit-frame、速度、跨场馆或移动镜头评估。</li>
 </ul>
-<h2 id="原始材料">原始材料</h2>
+<h2 id="真实-10-样本-demo-价值">真实 10 样本 demo 价值</h2>
+<p><strong>中低：历史 baseline / failure benchmark。</strong> 10 个 clip 必须按整段留出，观察多帧对拖影和高速 stroke 的帮助，报告 recall、最大断轨与 hit-window 连续性。正式前端优先 TrackNetV3/V4；原始 TrackNet 可展示迭代价值。它不能直接评价羽毛球动作质量。</p>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
 <ul>
-<li><code>raw/ingest/2026-05-05-tracknet-high-speed-tiny-objects/paper.pdf</code></li>
-<li><code>raw/ingest/2026-05-05-tracknet-high-speed-tiny-objects/paper-text.md</code></li>
-<li><code>raw/ingest/2026-05-05-tracknet-high-speed-tiny-objects/abstract.md</code></li>
-<li><code>raw/ingest/2026-05-05-tracknet-high-speed-tiny-objects/links.yaml</code></li>
+<li><strong>奠基支持</strong>：高速体育小目标需要多帧上下文和 heatmap 表示。</li>
+<li><strong>反向约束</strong>：早期高网球数字受随机帧切分影响，不能外推为跨比赛泛化；羽毛球 tracking 在 2019 版本远未解决。</li>
+<li><strong>不支持</strong>：轨迹重建或动作质量评分。</li>
+<li>与 <a class="wikilink" href="../sources/2026-04-25-tracknetv3.html">sources/2026-04-25-tracknetv3</a>、<a class="wikilink" href="../sources/2026-05-05-tracknetv4-motion-attention-maps.html">sources/2026-05-05-tracknetv4-motion-attention-maps</a> 构成清晰演进：基础 heatmap → augmentation/repair → motion-aware fusion。</li>
+</ul>
+<p><strong>证据评级：B（历史奠基；羽毛球证据弱）</strong>。</p>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/1907.03698">arXiv</a></li>
+<li><a href="https://arxiv.org/pdf/1907.03698">PDF</a></li>
+<li><a href="https://doi.org/10.1109/AVSS.2019.8909871">DOI</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
 <li><a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
 <li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
 <li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
-<li><a class="wikilink" href="../entities/sportsmot.html">entities/sportsmot</a></li>
+<li><a class="wikilink" href="../sources/2026-04-25-tracknetv3.html">sources/2026-04-25-tracknetv3</a></li>
+<li><a class="wikilink" href="../sources/2026-05-05-tracknetv4-motion-attention-maps.html">sources/2026-05-05-tracknetv4-motion-attention-maps</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li><li><a class="wikilink" href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li><li><a class="wikilink" href="../topics/video-understanding.html">视频理解</a></li></ul></div><div class="related-group related-entities"><h3>相关实体<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../entities/sportsmot.html">SportsMOT</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">10</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a><span>问题</span></li><li><a href="../sources/2026-05-05-tracknetv2-efficient-shuttlecock-tracking.html">TrackNetV2：高效羽毛球高速小目标 2D 追踪</a><span>来源笔记</span></li><li><a href="../sources/2026-05-05-tracknetv4-motion-attention-maps.html">TrackNetV4：用运动注意力图增强快速体育小目标追踪</a><span>来源笔记</span></li><li><a href="../sources/2026-05-16-bst-badminton-stroke-type-transformer.html">BST：面向羽毛球击球类型识别的骨架动作 Transformer</a><span>来源笔记</span></li><li><a href="../sources/2026-05-16-shuttleset-stroke-level-badminton-dataset.html">ShuttleSet：人工标注的羽毛球单打 stroke-level 数据集</a><span>来源笔记</span></li><li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a><span>主题</span></li><li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a><span>主题</span></li><li><a href="../topics/video-understanding.html">视频理解</a><span>主题</span></li><li><a href="../topics/vision-backbones.html">主流视觉 Backbone 入门</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-05-05-tracknet-high-speed-tiny-objects&quot;,
   &quot;type&quot;: &quot;source&quot;,
   &quot;title&quot;: &quot;TrackNet：体育高速小目标追踪网络&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-05-05&quot;,
-  &quot;updated&quot;: &quot;2026-05-22&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;AVSS 2019 / arXiv&quot;,
   &quot;published_at&quot;: &quot;2019-07-08&quot;,
   &quot;ingested_at&quot;: &quot;2026-05-05&quot;,
@@ -138,7 +164,7 @@
   ],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BoxDiff：不用训练，直接把框约束压进 diffusion 采样过程 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="BoxDiff：无训练的框约束扩散生成">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>BoxDiff：无训练的框约束扩散生成 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-boxdiff&quot;, &quot;title&quot;: &quot;BoxDiff（ICCV 2023）：不用训练，直接把框约束压进 diffusion 采样过程&quot;, &quot;title_en&quot;: &quot;BoxDiff（ICCV 2023）：不用训练，直接把框约束压进 diffusion 采样过程&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-boxdiff&quot;, &quot;title&quot;: &quot;BoxDiff：无训练的框约束扩散生成&quot;, &quot;title_en&quot;: &quot;BoxDiff：无训练的框约束扩散生成&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;control&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,60 +60,85 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-16-boxdiff.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-16-boxdiff.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-16</p>
-        <h1><span class="title-main">BoxDiff</span><span class="title-subtitle">不用训练，直接把框约束压进 diffusion 采样过程</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>BoxDiff：无训练的框约束扩散生成</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">BoxDiff</span><span class="title-subtitle">无训练的框约束扩散生成</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2023/07/20</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2307.10816" title="https://arxiv.org/abs/2307.10816" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2307.10816</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2307.10816.pdf" title="https://arxiv.org/pdf/2307.10816.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2307.10816.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#efficiency">#efficiency</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#control">#control</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把 spatial guidance 做到了 training-free：用户只给 box 或 scribble，它就在 denoising 中加入空间约束，让对象按指定位置出现，而不需要额外布局数据或微调。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2023-07-20</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2307.10816" title="https://arxiv.org/abs/2307.10816" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2307.10816</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2307.10816.pdf" title="https://arxiv.org/pdf/2307.10816.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2307.10816.pdf</strong></a><a class="source-link source-link-code" href="https://github.com/showlab/BoxDiff" title="https://github.com/showlab/BoxDiff" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · BoxDiff</strong></a></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#核心实验与结果">核心实验与结果</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>BoxDiff 把 box/scribble 转成 Inner、Outer、Corner 三类 cross-attention 约束，无需更新权重即可显著提高位置/尺度遵循：Stable Diffusion 的 AP 从 2.8 升至 22.3；它是 spatial guidance 的直接证据，不是语义理解或闭环纠错证据。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>BoxDiff 是 test-time latent guidance。它使用 Stable Diffusion v1.4 的 16×16 token attention，不训练 condition branch；也能叠加到 GLIGEN。输入必须由用户给出目标 token 与框/scribble。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>如果要让 diffusion 模型 obey box、mask、scribble 等简单空间条件，很多已有方法需要额外 paired layout data 和 fine-tuning，这会明显抬高控制成本，也限制开放世界场景下的快速使用。</p>
+<p>监督式 layout-to-image 依赖 paired layout-image data 和固定类别。BoxDiff 试图直接利用预训练 T2I diffusion 的开放词汇先验，让简单空间条件在采样时生效。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>BoxDiff 直接在 diffusion denoising 过程中加入 Inner-Box、Outer-Box 和 Corner 三类空间约束。它不重训模型，也不依赖大量标注布局数据，而是把用户给定的 box/scribble 条件转成采样期的 training-free guidance。</p>
-<h2 id="关键发现">关键发现</h2>
 <ul>
-<li>它把 <a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a> 里的 guidance 层继续推进到 training-free spatial control：控制不一定靠新模型训练，也可以靠采样期约束直接实现。</li>
-<li>相比 <a class="wikilink" href="../../en/sources/2026-04-16-controlnet.html">sources/2026-04-16-controlnet</a> 的侧支训练接口，BoxDiff 代表另一种低成本路线：不加新参数，直接在推理轨迹里施加约束。</li>
-<li>它也和 <a class="wikilink" href="../../en/sources/2026-04-16-a-star.html">sources/2026-04-16-a-star</a>、<a class="wikilink" href="../../en/sources/2026-04-16-rethinking-spatial-inconsistency-cfg.html">sources/2026-04-16-rethinking-spatial-inconsistency-cfg</a> 形成一组证据：guidance 问题已经细化到空间位置、概念冲突和局部布局一致性。</li>
-<li>在 <a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a> 语境里，这说明 controllability 的门槛已经从“能不能控制”转向“要用多少训练与标注成本控制”。</li>
+<li><strong>Inner-Box</strong>：提高框内 top-$P$ attention。</li>
+<li><strong>Outer-Box</strong>：压低框外 top-$P$ attention。</li>
+<li><strong>Corner</strong>：匹配 x/y attention 投影与框边界，避免对象只占框内一小块。</li>
+<li>总损失对当前 latent 求梯度；representative sampling 避免全像素强约束破坏语义/画质。</li>
+<li>scribble 可先转框，并增加 scribble 点 objectness constraint。</li>
+</ul>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<p>自建零样本 layout 集含 9 animals、18 objects、4,274 个框、189 个 prompts+boxes：</p>
+<table><thead><tr><th>方法</th><th>Layout data</th><th>T2I-Sim</th><th>AP</th><th>AP50</th><th>AP75</th></tr></thead><tbody><tr><td>Stable Diffusion</td><td>None</td><td>0.3511</td><td>2.8</td><td>9.2</td><td>1.1</td></tr><tr><td><strong>SD + BoxDiff</strong></td><td>None</td><td><strong>0.3513</strong></td><td><strong>22.3</strong></td><td><strong>46.8</strong></td><td><strong>20.2</strong></td></tr><tr><td>GLIGEN</td><td>COCO-Stuff</td><td>0.3489</td><td>29.7</td><td>45.8</td><td>33.9</td></tr><tr><td><strong>GLIGEN + BoxDiff</strong></td><td>COCO-Stuff</td><td><strong>0.3511</strong></td><td><strong>40.2</strong></td><td><strong>62.0</strong></td><td><strong>46.2</strong></td></tr></tbody></table>
+<p>BoxDiff 使 SD AP +19.5pp；叠加 GLIGEN 再 +10.5pp。最强绝对结果是 GLIGEN+BoxDiff，而不是纯 training-free SD+BoxDiff。</p>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>SD：0.3511 T2I-Sim / 2.8 AP。</li>
+<li>+Inner：0.3516 / 9.8。</li>
+<li>+Inner+Outer：0.3518 / 20.2。</li>
+<li>+Corner：0.3513 / 22.3。</li>
+<li>全像素 sampling 达更高 AP 24.8，但 T2I-Sim 降至 0.3489；top-k 为 0.3513/22.3，是质量—定位折中。</li>
+<li>top-$P=80\%$ 为作者选择；100% 虽 AP 更高，T2I-Sim 更低。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
-<ul>
-<li>training-free 约束虽然省去了训练，但会把一部分复杂度转移到推理阶段，因此速度与质量之间仍要权衡。</li>
-<li>它主要支持相对简单的空间条件；更复杂关系推理或长期一致性并不是这篇工作的重点。</li>
-<li>当前证据仍以图像为主，视频场景中的 box-guided 控制还需要更多材料。</li>
-</ul>
+<ol>
+<li>16×16 attention 限制定位精度。</li>
+<li>car+basin、giraffe flying、mountain underwater 等低共现/罕见空间条件会失真或不服从框。</li>
+<li>数据收集与评估均依赖 YOLOv4，且只有 27 类，存在检测器偏差。</li>
+<li>AP 不等于写实性、关系正确或像素级 box adherence。</li>
+<li>compound noun 常只选 dominant token，tokenizer/语义拆分可能失败。</li>
+<li>training-free 仍需每步反向优化，论文未给主表时延。</li>
+</ol>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<table><thead><tr><th>判断</th><th>证据分类</th><th>边界</th></tr></thead><tbody><tr><td>attention control</td><td><strong>强直接支持</strong></td><td>约束与 sampling 有定量消融</td></tr><tr><td>spatial guidance</td><td><strong>强直接支持</strong></td><td>box AP/AP50/AP75；类别和 detector 有限</td></tr><tr><td>semantic completeness</td><td>间接支持</td><td>任务目标是位置/尺度，不是语义覆盖 benchmark</td></tr><tr><td>closed-loop correction</td><td>当前不应引用</td><td>无输出检测—规划循环</td></tr><tr><td>支持 DiT</td><td>当前不应引用</td><td>只验证 SD/GLIGEN cross-attention</td></tr><tr><td>支持“理解”</td><td><strong>压力测试</strong></td><td>用户已给框；罕见关系仍失败</td></tr></tbody></table>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2307.10816</li>
-<li>https://arxiv.org/pdf/2307.10816.pdf</li>
+<li><a href="https://arxiv.org/abs/2307.10816">arXiv</a></li>
+<li><a href="https://arxiv.org/pdf/2307.10816.pdf">PDF</a></li>
+<li><a href="https://github.com/showlab/BoxDiff">代码</a></li>
+<li><a class="wikilink missing" href="#missing-raw/ingest/2026-04-16-boxdiff/analysis">全文深分析与表格定位</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-controlnet.html">sources/2026-04-16-controlnet</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-a-star.html">sources/2026-04-16-a-star</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>它在本库中的价值，是把 diffusion guidance engineering 从“模块能否接入”继续推进到“空间控制、attention 治理与训练免费接口能否系统化成立”。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-controlnet.html">ControlNet</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-a-star.html">A-STAR</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-attend-and-excite.html">Attend-and-Excite</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li><li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">9</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-04-14-check-locate-rectify.html">Check, Locate, Rectify：训练免费文本到图像布局校准</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-a-star.html">A-STAR：测试时分离并保留 cross-attention</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-prompt-to-prompt.html">Prompt-to-Prompt：用 cross-attention 控制文本驱动图像编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-rethinking-spatial-inconsistency-cfg.html">Rethinking the Spatial Inconsistency in Classifier-Free Diffusion Guidance：语义区域自适应 CFG</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-self-correcting-llm-controlled-diffusion-models.html">SLD：LLM 驱动的闭环扩散生成纠错</a><span>Source note</span></li><li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>Topic</span></li><li><a href="../../en/topics/diffusion-models.html">扩散模型</a><span>Topic</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-16-boxdiff&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;BoxDiff（ICCV 2023）：不用训练，直接把框约束压进 diffusion 采样过程&quot;,
+  &quot;title&quot;: &quot;BoxDiff：无训练的框约束扩散生成&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-16&quot;,
-  &quot;updated&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;ICCV 2023&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;image-generation&quot;,
     &quot;diffusion&quot;,
-    &quot;efficiency&quot;,
+    &quot;control&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
@@ -121,10 +152,11 @@
     &quot;Yefeng Zheng&quot;,
     &quot;Mike Zheng Shou&quot;
   ],
-  &quot;published_at&quot;: &quot;2023/07/20&quot;,
+  &quot;published_at&quot;: &quot;2023-07-20&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2307.10816&quot;,
-    &quot;https://arxiv.org/pdf/2307.10816.pdf&quot;
+    &quot;https://arxiv.org/pdf/2307.10816.pdf&quot;,
+    &quot;https://github.com/showlab/BoxDiff&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-16-boxdiff/&quot;,
   &quot;topics&quot;: [
@@ -135,7 +167,7 @@
   &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

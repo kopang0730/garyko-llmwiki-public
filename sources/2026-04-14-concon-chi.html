@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ConCon-Chi：面向个性化视觉语言任务的概念-上下文嵌合基准 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="ConCon-Chi：个性化视觉语言的新含义与组合性基准">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>ConCon-Chi：个性化视觉语言的新含义与组合性基准 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-concon-chi&quot;, &quot;title&quot;: &quot;ConCon-Chi（CVPR 2024）：面向个性化视觉语言任务的概念-上下文嵌合基准&quot;, &quot;title_en&quot;: &quot;ConCon-Chi（CVPR 2024）：面向个性化视觉语言任务的概念-上下文嵌合基准&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;vision-language&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-concon-chi&quot;, &quot;title&quot;: &quot;ConCon-Chi：个性化视觉语言的新含义与组合性基准&quot;, &quot;title_en&quot;: &quot;ConCon-Chi：个性化视觉语言的新含义与组合性基准&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;vision-language&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,51 +60,69 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-14-concon-chi.html">中文</a><a class="" href="../en/sources/2026-04-14-concon-chi.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">ConCon-Chi</span><span class="title-subtitle">面向个性化视觉语言任务的概念-上下文嵌合基准</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>ConCon-Chi：个性化视觉语言的新含义与组合性基准</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">ConCon-Chi</span><span class="title-subtitle">个性化视觉语言的新含义与组合性基准</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2024-01-01</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2024/html/Rosasco_ConCon-Chi_Concept-Context_Chimera_Benchmark_for_Personalized_Vision-Language_Tasks_CVPR_2024_paper.html" title="https://openaccess.thecvf.com/content/CVPR2024/html/Rosasco_ConCon-Chi_Concept-Context_Chimera_Benchmark_for_Personalized_Vision-Language_Tasks_CVPR_2024_paper.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>openaccess.thecvf.com · Rosasco_ConCon-Chi_Concept-Cont…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2024/papers/Rosasco_ConCon-Chi_Concept-Context_Chimera_Benchmark_for_Personalized_Vision-Language_Tasks_CVPR_2024_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2024/papers/Rosasco_ConCon-Chi_Concept-Context_Chimera_Benchmark_for_Personalized_Vision-Language_Tasks_CVPR_2024_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Rosasco_ConCon-Chi_Concept-Cont…</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#evaluation">#evaluation</a><a class="tag" href="../tags.html#benchmarking">#benchmarking</a><a class="tag" href="../tags.html#vision-language">#vision-language</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把 personalized vision-language benchmark 补进库里，增强了库里对个性化/概念-上下文泛化评测的覆盖。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>它要解决的是模型在个性化视觉语言任务中能否真正同时处理概念与上下文的问题。对当前知识库来说，它非常适合补充 DreamBooth/AnyDoor 一侧的评测层。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>ConCon-Chi 通过 concept-context chimera benchmark 来测试 personalized vision-language tasks，观察模型是否能稳定处理概念与上下文组合。</p>
-<h2 id="关键发现">关键发现</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2024-01-01</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2024/html/Rosasco_ConCon-Chi_Concept-Context_Chimera_Benchmark_for_Personalized_Vision-Language_Tasks_CVPR_2024_paper.html" title="https://openaccess.thecvf.com/content/CVPR2024/html/Rosasco_ConCon-Chi_Concept-Context_Chimera_Benchmark_for_Personalized_Vision-Language_Tasks_CVPR_2024_paper.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>openaccess.thecvf.com · Rosasco_ConCon-Chi_Concept-Cont…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2024/papers/Rosasco_ConCon-Chi_Concept-Context_Chimera_Benchmark_for_Personalized_Vision-Language_Tasks_CVPR_2024_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2024/papers/Rosasco_ConCon-Chi_Concept-Context_Chimera_Benchmark_for_Personalized_Vision-Language_Tasks_CVPR_2024_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Rosasco_ConCon-Chi_Concept-Cont…</strong></a><a class="source-link source-link-code" href="https://github.com/hsp-iit/concon-chi_benchmark" title="https://github.com/hsp-iit/concon-chi_benchmark" target="_blank" rel="noopener noreferrer"><span>代码仓库</span><strong>github.com · concon-chi_benchmark</strong></a></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#数据集与任务接口">数据集与任务接口</a></li><li><a href="#核心实验与结果">核心实验与结果</a></li><li><a href="#关键压力测试">关键压力测试</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>ConCon-Chi 用真实嵌合物、密集概念—上下文矩阵和每个 prompt 的真实图像实现证明：个性化方法可以识别新概念，却仍难把学到的 token 与已知上下文或其他新概念组合；它是评测证据，不是生成/编辑方法。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>论文同时定义 personalized text-to-image retrieval（TIR）和 generation（TIG）benchmark。核心不是扩大训练数据，而是消除已有 benchmark 的常见概念、上下文偏差与无真实 prompt realization 三个盲点。</p>
+<h2 id="数据集与任务接口">数据集与任务接口</h2>
 <ul>
-<li>它让 image-generation / personalization 相关路线也有了更明确的 benchmark 支撑。</li>
-<li>它能帮助后续分析个性化生成到底是在学主体，还是过拟合上下文。</li>
-<li>它也把 vision-language 与个性化生成更紧地连到一起。</li>
+<li>20 个概念：6 个真正新含义的 chimeric objects + 14 个 common/hard-negative concepts。</li>
+<li>101 个上下文，覆盖 9 类动作、交互、属性、accessorization、rendition 和 re-contextualization。</li>
+<li>test：1,084 queries、4,008 real images，每 query 约 6 图、最多 3 概念；每概念平均 46.64 个上下文。</li>
+<li>每概念用 1–5 张图独立学习 token。TIR 在 4,008 图池排序；TIG 对 735 个单概念 prompt 各生成 4 图（PDF pp.3–8）。</li>
 </ul>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<p>TIR 使用统一 CLIP ViT-L/14。Table 2（mAP/mRR/R@1）：</p>
+<ul>
+<li>1-shot PALAVRA 22.56/34.39/24.59；Pic2Word 25.23/37.16/26.35；SEARLE <strong>28.16/41.07/31.16</strong>。</li>
+<li>5-shot SEARLE 达 <strong>30.74/43.83/33.49</strong>，是所测个性化方法最强。</li>
+<li>只用概念相对峰值掉 74%；只用上下文也表现低，说明 benchmark 强制联合理解。</li>
+</ul>
+<p>Table 3 显示 PALAVRA 概念/context F1 为 91.52/28.56，Pic2Word 50.04/50.12，SEARLE 76.58/40.47：模型可学会 chimeric visual identity，却难让 token 获得原词汇同等组合性。</p>
+<p>TIG 中 DreamBooth 同时改善 SD 的概念/上下文 fidelity，但相对真实图仍“概念过强、上下文偏弱”。用 Density/Coverage 比较真实分布时，所有方法在 chimeric concept 上都明显低于 common；例如 DreamBooth $k=3$ 的 Density 6.55→4.81、Coverage 0.28→0.14。传统 CLIP fidelity 未清楚暴露该差距（PDF pp.7–8，Table 4）。</p>
+<h2 id="关键压力测试">关键压力测试</h2>
+<p>论文没有模型模块消融；核心诊断变量是 chimeric/common、1/5-shot、concept-only/context-only、单/多概念、修改/关系、CLIP fidelity 与真实图 Density/Coverage。它们共同定位“会认概念但不会组合”的失败，而不是只给总分。</p>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>它更偏个性化任务，不直接面向视频。</li>
-<li>benchmark 结果和真实产品侧 personalization 仍可能有差距。</li>
-<li>它适合作为 personalization 评测补层，而非通用视觉语言 benchmark。</li>
+<li>20 个手工物体与 101 个受控拍摄上下文规模有限，不等同于开放世界用户主体。</li>
+<li>TIR 固定 CLIP ViT-L/14；无法分离 token 方法与 backbone 限制。</li>
+<li>TIG 主要覆盖 TI/DB，且只评单概念 735 prompts；多概念生成尚未完整验证。</li>
+<li>没有报告采集工时、训练算力与成本；也没有独立 limitations 小节。</li>
 </ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<p>ConCon-Chi 主要支持 <code>vision-language</code> 与 <code>generative-model-evaluation</code>，对 image-generation 是 personalization 评测补层，不是生成架构。旧 source 将其用于统一图像模型长期优势问题没有证据基础，现已移除：论文不比较统一生成—编辑模型、专用编辑器或模块化系统。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://openaccess.thecvf.com/content/CVPR2024/html/Rosasco_ConCon-Chi_Concept-Context_Chimera_Benchmark_for_Personalized_Vision-Language_Tasks_CVPR_2024_paper.html</li>
-<li>https://openaccess.thecvf.com/content/CVPR2024/papers/Rosasco_ConCon-Chi_Concept-Context_Chimera_Benchmark_for_Personalized_Vision-Language_Tasks_CVPR_2024_paper.pdf</li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2024/html/Rosasco_ConCon-Chi_Concept-Context_Chimera_Benchmark_for_Personalized_Vision-Language_Tasks_CVPR_2024_paper.html">CVF 论文页</a></li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Rosasco_ConCon-Chi_Concept-Context_Chimera_Benchmark_for_Personalized_Vision-Language_Tasks_CVPR_2024_paper.pdf">CVF PDF</a></li>
+<li><a href="https://doi.org/10.48557/QJ1166">数据集</a></li>
+<li><a href="https://github.com/hsp-iit/concon-chi_benchmark">代码</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../topics/generative-model-evaluation.html">topics/generative-model-evaluation</a></li>
-<li><a class="wikilink" href="../topics/vision-language.html">topics/vision-language</a></li>
-<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>ConCon-Chi 在这套库里的作用，是把个性化 vision-language benchmark 补成 image-generation / vision-language 的评测分支。</p></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+<li><a class="wikilink" href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a class="wikilink" href="../topics/vision-language.html">视觉语言接口</a></li>
+<li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../topics/generative-model-evaluation.html">生成模型评测</a></li><li><a class="wikilink" href="../topics/vision-language.html">视觉-语言</a></li><li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">4</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../topics/generative-model-evaluation.html">生成模型评测</a><span>主题</span></li><li><a href="../topics/image-generation.html">图像生成</a><span>主题</span></li><li><a href="../topics/vision-language.html">视觉-语言</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-concon-chi&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;ConCon-Chi（CVPR 2024）：面向个性化视觉语言任务的概念-上下文嵌合基准&quot;,
+  &quot;title&quot;: &quot;ConCon-Chi：个性化视觉语言的新含义与组合性基准&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2024&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
@@ -123,7 +147,9 @@
   &quot;published_at&quot;: &quot;2024-01-01&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://openaccess.thecvf.com/content/CVPR2024/html/Rosasco_ConCon-Chi_Concept-Context_Chimera_Benchmark_for_Personalized_Vision-Language_Tasks_CVPR_2024_paper.html&quot;,
-    &quot;https://openaccess.thecvf.com/content/CVPR2024/papers/Rosasco_ConCon-Chi_Concept-Context_Chimera_Benchmark_for_Personalized_Vision-Language_Tasks_CVPR_2024_paper.pdf&quot;
+    &quot;https://openaccess.thecvf.com/content/CVPR2024/papers/Rosasco_ConCon-Chi_Concept-Context_Chimera_Benchmark_for_Personalized_Vision-Language_Tasks_CVPR_2024_paper.pdf&quot;,
+    &quot;https://doi.org/10.48557/QJ1166&quot;,
+    &quot;https://github.com/hsp-iit/concon-chi_benchmark&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-concon-chi/&quot;,
   &quot;topics&quot;: [
@@ -133,10 +159,8 @@
   ],
   &quot;entities&quot;: [],
   &quot;claims&quot;: [],
-  &quot;questions&quot;: [
-    &quot;questions/question-will-unified-image-models-sustain-their-advantage&quot;
-  ]
-}</pre></section>
+  &quot;questions&quot;: []
+}</pre></details>
     </article>
   </main>
 </body>

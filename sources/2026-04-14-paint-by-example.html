@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Paint by Example：基于示例的扩散图像编辑 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="Paint by Example：以单张参考图控制局部语义编辑">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Paint by Example：以单张参考图控制局部语义编辑 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-paint-by-example&quot;, &quot;title&quot;: &quot;Paint by Example（CVPR 2023）：基于示例的扩散图像编辑&quot;, &quot;title_en&quot;: &quot;Paint by Example（CVPR 2023）：基于示例的扩散图像编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;image-generation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-paint-by-example&quot;, &quot;title&quot;: &quot;Paint by Example：以单张参考图控制局部语义编辑&quot;, &quot;title_en&quot;: &quot;Paint by Example：以单张参考图控制局部语义编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;diffusion&quot;, &quot;conditioning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,89 +60,112 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-14-paint-by-example.html">中文</a><a class="" href="../en/sources/2026-04-14-paint-by-example.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">Paint by Example</span><span class="title-subtitle">基于示例的扩散图像编辑</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Paint by Example：以单张参考图控制局部语义编辑</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">Paint by Example</span><span class="title-subtitle">以单张参考图控制局部语义编辑</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2022/11/23</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2211.13227" title="https://arxiv.org/abs/2211.13227" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2211.13227</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2211.13227" title="https://arxiv.org/pdf/2211.13227" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2211.13227</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-editing">#image-editing</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-editing">#image-editing</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#conditioning">#conditioning</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把“给一个参考示例再做编辑”明确推成独立路线，补上了文本指令之外的 exemplar-based image editing 分支。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2022-11-23</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2211.13227" title="https://arxiv.org/abs/2211.13227" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2211.13227</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2211.13227" title="https://arxiv.org/pdf/2211.13227" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2211.13227</strong></a><a class="source-link source-link-code" href="https://github.com/Fantasy-Studio/Paint-by-Example" title="https://github.com/Fantasy-Studio/Paint-by-Example" target="_blank" rel="noopener noreferrer"><span>代码仓库</span><strong>github.com · Paint-by-Example</strong></a></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#数据与成本">数据与成本</a></li><li><a href="#cocoee-结果与人评">COCOEE 结果与人评</a></li><li><a href="#消融">消融</a></li><li><a href="#reference-与保持边界">reference 与保持边界</a></li><li><a href="#相关页面">相关页面</a></li><li><a href="#归属边界">归属边界</a></li><li><a href="#证据评估">证据评估</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>Paint by Example 把 source image、mask 和单张 exemplar 输入 SD v1.4 inpainting U-Net，用 global CLIP image token、强增强和生成先验避免 self-supervised copy-paste shortcut；它无需 per-reference optimization，COCOEE 上自然度与参考相似度都强，但不是 subject personalization，无法严格保证参考身份或 mask 外像素不变。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>它要解决的是仅靠文本往往不足以精确表达目标外观的问题。对当前知识库来说，它补的是 image-editing 早期从文本指令走向“参考图驱动编辑”的关键节点。</p>
+<p>文本难以描述对象的细粒度外观；直接粘贴 reference 又无法适应 source 的姿态、尺度、视角、光照和边界。目标是在用户指定 mask 内“重绘”一个与 exemplar 相似且与场景协调的对象，而非低层 harmonization。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>Paint by Example 将参考示例图像作为编辑条件输入，让扩散模型根据示例而不是纯文本来完成图像局部或整体修改，强调 exemplar-based image editing。</p>
-<h2 id="关键发现">关键发现</h2>
 <ul>
-<li>它说明图像编辑很早就开始分化成多种控制接口，而不是只有 instruction-based editing 一条线。</li>
-<li>它补强了统一生成-编辑主线里的一个现实需求：用户往往更容易给示例，而不是写精确 prompt。</li>
-<li>它也为后续对象级定制、局部控制和多模态编辑接口提供了前史。</li>
+<li><strong>接口</strong>：source image + 连通矩形/自由形状 mask + 单张 reference image。</li>
+<li><strong>主干</strong>：Stable Diffusion v1.4 latent U-Net，首层增加 masked-image latent 4 通道和 mask 1 通道；无 DiT。</li>
+<li><strong>reference condition</strong>：CLIP ViT-L 只取 1024-D class token，经 15 层 FC/MLP 注入 cross-attention。丢弃 patch tokens 是刻意的信息瓶颈。</li>
+<li><strong>自监督训练</strong>：从同一 OpenImages 图中裁对象作为 reference，原图为 ground truth；若无约束，网络会学会原样复制。</li>
+<li><strong>防 shortcut</strong>：SD image prior、reference flip/rotation/blur/elastic augmentation、随机不规则 mask、global-token bottleneck。</li>
+<li><strong>CFG</strong>：20% condition dropout，默认 guidance scale 5，控制 reference similarity。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="数据与成本">数据与成本</h2>
 <ul>
-<li>示例驱动编辑天然依赖参考图质量与对齐程度。</li>
-<li>它更适合外观参照明确的场景，不一定覆盖开放式复杂语义编辑。</li>
-<li>它是接口扩展锚点，不代表统一模型已经吸收这类能力。</li>
+<li>OpenImages：约 190 万图、600 类、1,600 万 bounding boxes；512×512、40 epochs。</li>
+<li><strong>64×V100 训练约 7 天</strong>（连续运行粗算约 10,752 GPU-hours）。</li>
+<li>AdamW，恒定学习率 $10^{-5}$，EMA。</li>
+<li>推理无需 image-specific token/model optimization；论文所谓“single forward”指一次预训练编辑采样流程，不代表 U-Net 单次调用。未报告采样步数、秒级延迟、显存或吞吐。</li>
 </ul>
-<h2 id="原始链接">原始链接</h2>
+<h2 id="cocoee-结果与人评">COCOEE 结果与人评</h2>
+<p>COCOEE 含 3,500 个手工构建的 COCO source/reference/mask 配对。自动指标：</p>
+<table><thead><tr><th>方法</th><th>FID ↓</th><th>QS ↑</th><th>CLIP image score ↑</th></tr></thead><tbody><tr><td>Blended Diffusion-image</td><td>4.60</td><td>67.14</td><td>80.65</td></tr><tr><td>Blended Diffusion-text</td><td>7.52</td><td>55.89</td><td>72.62</td></tr><tr><td>DCCF</td><td>3.78</td><td>71.49</td><td>82.18</td></tr><tr><td>SD inpainting</td><td>3.66</td><td>73.20</td><td>75.33</td></tr><tr><td><strong>本文</strong></td><td><strong>3.18</strong></td><td><strong>77.80</strong></td><td><strong>84.97</strong></td></tr></tbody></table>
+<p>50 名参与者对 30 组结果按 1–5 排名：本文 image quality <strong>1.79（最佳）</strong>、reference consistency <strong>2.07（第二）</strong>；DCCF consistency 1.66 最佳，但它倾向直接复制且 quality 3.09。论文未给一致性、CI 或显著性检验。</p>
+<h2 id="消融">消融</h2>
 <ul>
-<li>https://arxiv.org/abs/2211.13227</li>
-<li>https://arxiv.org/pdf/2211.13227</li>
+<li>naive baseline 的高 CLIP 部分来自 copy-paste，不等于更好的语义编辑。</li>
+<li>image prior 降 FID；augmentation 与 bottleneck 降低直接 reference cosine，却消除边界伪影并迫使语义重绘。</li>
+<li>加 CFG 后最终 FID/QS/CLIP 为 <strong>3.18/77.80/84.97</strong>；$s$ 增大时更像 reference，默认 5。</li>
+<li>详细文本仍无法复现 exemplar 的毛发、表情、项圈；image condition 的细粒度控制更强。</li>
+</ul>
+<h2 id="reference-与保持边界">reference 与保持边界</h2>
+<ul>
+<li>可迁移类别、主色、纹理和部分身份线索，并自动适应 source context；同一输入可随机生成多个结果。</li>
+<li><strong>不是 subject personalization</strong>：没有专属 token/LoRA/model tuning，global CLIP token 有意丢掉高频/空间信息，文字、logo、精确形状与身份不保证。</li>
+<li>mask 外仅“尽量”保留；未报告 mask 外 L1/PSNR，也没有硬复制机制。</li>
+<li>自然照片训练占主导，油画等人工图像和 dinosaur 等长尾类别失败。</li>
+<li>COCOEE 配对人工检索语义相近 exemplar，同任务成熟 baseline 缺失，评价对不同接口并不完全对称。</li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../topics/image-editing.html">topics/image-editing</a></li>
-<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a></li>
-<li><a class="wikilink" href="../questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a></li>
+<li><a class="wikilink" href="../topics/image-editing.html">图像编辑</a></li>
+<li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../sources/2026-04-16-blended-diffusion.html">Blended Diffusion</a>：零训练、mask + CLIP sampling guidance。</li>
+<li><a class="wikilink" href="../sources/2026-04-14-imagic.html">Imagic</a>：目标文本驱动的 per-image embedding + U-Net adaptation，不使用 exemplar。</li>
+<li><a class="wikilink" href="../sources/2026-04-14-prompt-tuning-inversion.html">Prompt Tuning Inversion</a>：target prompt 接口和 embedding trajectory optimization。</li>
 </ul>
-<h2 id="备注">备注</h2>
-<p>Paint by Example 在这套库里的作用，是把图像编辑主线中的 exemplar-based control 补成明确分支。</p></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+<h2 id="归属边界">归属边界</h2>
+<p>本文是专用的 <strong>reference-conditioned masked latent diffusion editor</strong>，不是统一生成—编辑模型，也没有 DiT、inversion 或可跨 prompt 的 subject personalization 证据；已移除旧 unified-model entity/question 误关联。</p>
+<h2 id="证据评估">证据评估</h2>
+<p><strong>A-</strong>：数据、消融、自动指标与人评完整；主要限制是训练昂贵、benchmark/配对由作者构建、baseline 接口不对称、推理成本缺失，以及无身份与区域严格保持保证。</p></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../topics/image-editing.html">图像编辑</a></li><li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">3</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../topics/image-editing.html">图像编辑</a><span>主题</span></li><li><a href="../topics/image-generation.html">图像生成</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-paint-by-example&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Paint by Example（CVPR 2023）：基于示例的扩散图像编辑&quot;,
+  &quot;title&quot;: &quot;Paint by Example：以单张参考图控制局部语义编辑&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2023&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;image-editing&quot;,
-    &quot;image-generation&quot;,
+    &quot;diffusion&quot;,
+    &quot;conditioning&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;authors&quot;: [
-    &quot;Yang, Binxin&quot;,
-    &quot;Gu, Shuyang&quot;,
-    &quot;Zhang, Bo&quot;,
-    &quot;Zhang, Ting&quot;,
-    &quot;Chen, Xuejin&quot;,
-    &quot;Sun, Xiaoyan&quot;,
-    &quot;Chen, Dong&quot;,
-    &quot;Wen, Fang&quot;
+    &quot;Binxin Yang&quot;,
+    &quot;Shuyang Gu&quot;,
+    &quot;Bo Zhang&quot;,
+    &quot;Ting Zhang&quot;,
+    &quot;Xuejin Chen&quot;,
+    &quot;Xiaoyan Sun&quot;,
+    &quot;Dong Chen&quot;,
+    &quot;Fang Wen&quot;
   ],
-  &quot;published_at&quot;: &quot;2022/11/23&quot;,
+  &quot;published_at&quot;: &quot;2022-11-23&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2211.13227&quot;,
-    &quot;https://arxiv.org/pdf/2211.13227&quot;
+    &quot;https://arxiv.org/pdf/2211.13227&quot;,
+    &quot;https://github.com/Fantasy-Studio/Paint-by-Example&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-paint-by-example/&quot;,
   &quot;topics&quot;: [
     &quot;topics/image-editing&quot;,
-    &quot;topics/image-generation&quot;
+    &quot;topics/diffusion-models&quot;
   ],
-  &quot;entities&quot;: [
-    &quot;entities/unified-image-generation-editing&quot;
-  ],
+  &quot;entities&quot;: [],
   &quot;claims&quot;: [],
-  &quot;questions&quot;: [
-    &quot;questions/question-will-unified-image-models-sustain-their-advantage&quot;
-  ]
-}</pre></section>
+  &quot;questions&quot;: []
+}</pre></details>
     </article>
   </main>
 </body>

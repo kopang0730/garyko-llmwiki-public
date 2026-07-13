@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MMMU：面向专家级 AGI 的大规模多学科多模态理解与推理基准 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="MMMU：跨学科专家级多模态理解与推理基准">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>MMMU：跨学科专家级多模态理解与推理基准 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-mmmu&quot;, &quot;title&quot;: &quot;MMMU（CVPR 2024）：面向专家级 AGI 的大规模多学科多模态理解与推理基准&quot;, &quot;title_en&quot;: &quot;MMMU（CVPR 2024）：面向专家级 AGI 的大规模多学科多模态理解与推理基准&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;vision-language&quot;, &quot;reasoning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-mmmu&quot;, &quot;title&quot;: &quot;MMMU：跨学科专家级多模态理解与推理基准&quot;, &quot;title_en&quot;: &quot;MMMU：跨学科专家级多模态理解与推理基准&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;vision-language&quot;, &quot;reasoning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,50 +60,71 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-mmmu.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-mmmu.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">MMMU</span><span class="title-subtitle">面向专家级 AGI 的大规模多学科多模态理解与推理基准</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>MMMU：跨学科专家级多模态理解与推理基准</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">MMMU</span><span class="title-subtitle">跨学科专家级多模态理解与推理基准</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2023/11/27</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2311.16502" title="https://arxiv.org/abs/2311.16502" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2311.16502</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2311.16502" title="https://arxiv.org/pdf/2311.16502" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2311.16502</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#evaluation">#evaluation</a><a class="tag" href="../../en/tags.html#benchmarking">#benchmarking</a><a class="tag" href="../../en/tags.html#vision-language">#vision-language</a><a class="tag" href="../../en/tags.html#reasoning">#reasoning</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把大规模通用多模态推理 benchmark 补进库里，强化了 vision-language / evaluation 层的上位基线。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>它要解决的是多模态模型缺少跨学科、广覆盖推理 benchmark 的问题。对当前知识库来说，它能为视频和生成相关判断提供更高层的背景基线。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>MMMU 构建 massive multi-discipline multimodal understanding and reasoning benchmark，用来测试模型在更广范围内的多模态理解与专家级推理能力。</p>
-<h2 id="关键发现">关键发现</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2023-11-27</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2311.16502" title="https://arxiv.org/abs/2311.16502" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2311.16502</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2311.16502" title="https://arxiv.org/pdf/2311.16502" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2311.16502</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#接口与数据构建">接口与数据构建</a></li><li><a href="#指标-human-与模型结果">指标、human 与模型结果</a></li><li><a href="#污染-成本与可比性">污染、成本与可比性</a></li><li><a href="#能力边界">能力边界</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>MMMU 用 11,550 道大学级静态多模态题覆盖 30 学科/30 图像类型，规则评分避免 LLM judge；GPT-4V test 55.7%，按学科聚合的人类 validation 中位 82.6%，但 94% 为选择题、教材/考试公开来源污染难审计，且它不能代替视频或编辑专项评测。</p>
+<h2 id="接口与数据构建">接口与数据构建</h2>
 <ul>
-<li>它让 evaluation 页不只围绕视觉生成和视频理解，也有了更上位的 multimodal reasoning 基线。</li>
-<li>它能帮助区分“模型在专项视频任务强”和“模型整体多模态推理强”之间的差别。</li>
-<li>它对之后做方向探索时很有用，因为能把专项问题放回更大的 MLLM 能力图谱里。</li>
+<li>输入英语题目及一张/多张交错静态图像；输出选择项或短答案。</li>
+<li>11,550 questions；dev/validation/test = 150/900/10,500；6 disciplines、30 subjects、183 subfields、30 image types。</li>
+<li>10,861 MC（94.03%）、689 open；854 multi-image；难度 easy/medium/hard = 28%/45%/27%。</li>
+<li>50+ 专业大学生从免费在线资源、quizzes、textbooks、lecture materials 收集/新编，初始 13K；内部去重、格式复核并删除约 10% very easy。</li>
+<li>协议称 secondary review 和随机 audit，但无每题复核率、agreement、总工时/报酬与来源许可证清单。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="指标-human-与模型结果">指标、human 与模型结果</h2>
 <ul>
-<li>它不专门面向视频编辑或视频生成。</li>
-<li>通用 benchmark 容易和领域专项任务脱节。</li>
-<li>它更适合作为上位参照，而非直接回答当前 question。</li>
+<li>micro-accuracy；规则/正则提取最终答案，不用 LLM judge。MC 无法抽取时随机选，open 无法抽取记错，格式服从性会进入分数。</li>
+<li>90 名高年级学生：每 subject 3 人，各答本专业 30 道 validation，可查教材不可上网；worst/median/best 76.2/82.6/88.6。它是按专业聚合，不是单人跨 30 学科通才。</li>
 </ul>
+<table><thead><tr><th>模型</th><th>Validation</th><th>Test</th></tr></thead><tbody><tr><td>Random</td><td>22.1</td><td>23.9</td></tr><tr><td>BLIP-2 FLAN-T5-XXL</td><td>35.4</td><td>34.0</td></tr><tr><td>LLaVA-1.6-34B（外部）</td><td>51.1</td><td>44.7</td></tr><tr><td>InternVL-Chat-V1.2（外部）</td><td>51.6</td><td>46.2</td></tr><tr><td>GPT-4V Playground</td><td>56.8</td><td><strong>55.7</strong></td></tr><tr><td>GPT-4o（外部）</td><td>69.1</td><td>--</td></tr></tbody></table>
+<p>GPT-4V easy/medium/hard = 76.1/55.6/31.2；150 个 GPT-4V errors 的人工主因：perception 35%、knowledge 29%、reasoning 26%、其余为文本理解/拒答/标注/抽取。单模型、小样本、无 agreement，属于诊断而非稳定因果分解。</p>
+<h2 id="污染-成本与可比性">污染、成本与可比性</h2>
+<ul>
+<li>教材、考试、quizzes 与公开网页很可能进入 foundation-model pretraining。选择“答案不立即可见”的题不是 contamination detection。</li>
+<li>lexical/source-URL 去重只处理 benchmark 内部重复；无外部语料重叠、canary 或训练截止时间审计。</li>
+<li>validation 上 prompt engineering 合规，但长期 leaderboard 会过拟合；test/论文版本持续加外部报告结果，API 日期和运行口径不统一。</li>
+<li>本地实验只注明 A100；无 GPU-hours、API 成本、分辨率、延迟、失败重试。数据侧也无总人时/费用。</li>
+</ul>
+<h2 id="能力边界">能力边界</h2>
+<ul>
+<li><strong>属于静态多图 vision-language expert reasoning</strong>。</li>
+<li>没有时间维、帧采样、动作/事件顺序，<strong>不是视频理解 benchmark</strong>。</li>
+<li>不评生成 fidelity/alignment/aesthetics，也不排名生成器。</li>
+<li>没有 source-target pair、编辑指令、变化定位或 preservation，<strong>不评真实编辑理解</strong>；只能提供通用多模态推理上位参照。</li>
+<li>“Expert AGI”是 framing；micro accuracy 不覆盖工具、校准、可靠性、长期任务与专业部署安全。</li>
+</ul>
+<h2 id="证据评级">证据评级</h2>
+<p><strong>B+（覆盖广、规则评分清楚；公开教材污染、选择题主导、成本和跨版本可比性不足）</strong>。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2311.16502</li>
-<li>https://arxiv.org/pdf/2311.16502</li>
+<li><a href="https://arxiv.org/abs/2311.16502">arXiv</a></li>
+<li><a href="https://arxiv.org/pdf/2311.16502">论文 PDF</a></li>
+<li><a href="https://mmmu-benchmark.github.io/">项目页</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">topics/generative-model-evaluation</a></li>
-<li><a class="wikilink" href="../../en/topics/vision-language.html">topics/vision-language</a></li>
-<li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>MMMU 在这套库里的作用，是把大规模通用多模态推理 benchmark 补成 evaluation / vision-language 的上位基线。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/topics/vision-language.html">视觉语言模型</a></li>
+<li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有 benchmark 是否跟踪真实视频编辑理解</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li><li><a class="wikilink" href="../../en/topics/vision-language.html">视觉-语言</a></li></ul></div><div class="related-group related-questions"><h3>Related questions<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">3</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a><span>Topic</span></li><li><a href="../../en/topics/vision-language.html">视觉-语言</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-mmmu&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;MMMU（CVPR 2024）：面向专家级 AGI 的大规模多学科多模态理解与推理基准&quot;,
+  &quot;title&quot;: &quot;MMMU：跨学科专家级多模态理解与推理基准&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2024&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
@@ -134,12 +161,14 @@
     &quot;Su, Yu&quot;,
     &quot;Chen, Wenhu&quot;
   ],
-  &quot;published_at&quot;: &quot;2023/11/27&quot;,
+  &quot;published_at&quot;: &quot;2023-11-27&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2311.16502&quot;,
-    &quot;https://arxiv.org/pdf/2311.16502&quot;
+    &quot;https://arxiv.org/pdf/2311.16502&quot;,
+    &quot;https://mmmu-benchmark.github.io/&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-mmmu/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-14-mmmu/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/generative-model-evaluation&quot;,
     &quot;topics/vision-language&quot;
@@ -149,7 +178,7 @@
   &quot;questions&quot;: [
     &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

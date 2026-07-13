@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Customization Assistant：面向文本到图像生成的定制辅助系统 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="Customization Assistant：可对话的单图免微调个性化生成">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Customization Assistant：可对话的单图免微调个性化生成 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-customization-assistant&quot;, &quot;title&quot;: &quot;Customization Assistant（CVPR 2024）：面向文本到图像生成的定制辅助系统&quot;, &quot;title_en&quot;: &quot;Customization Assistant（CVPR 2024）：面向文本到图像生成的定制辅助系统&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;image-editing&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-customization-assistant&quot;, &quot;title&quot;: &quot;Customization Assistant：可对话的单图免微调个性化生成&quot;, &quot;title_en&quot;: &quot;Customization Assistant：可对话的单图免微调个性化生成&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;conditioning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,68 +60,85 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-customization-assistant.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-customization-assistant.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">Customization Assistant</span><span class="title-subtitle">面向文本到图像生成的定制辅助系统</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Customization Assistant：可对话的单图免微调个性化生成</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">Customization Assistant</span><span class="title-subtitle">可对话的单图免微调个性化生成</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2023/12/05</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2312.03045" title="https://arxiv.org/abs/2312.03045" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2312.03045</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2312.03045" title="https://arxiv.org/pdf/2312.03045" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2312.03045</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#image-editing">#image-editing</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#conditioning">#conditioning</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把 customization assistant 路线补进库里，强化了 image-generation 中更面向用户工作流的定制支线。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2023-12-05</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2312.03045" title="https://arxiv.org/abs/2312.03045" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2312.03045</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2312.03045" title="https://arxiv.org/pdf/2312.03045" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2312.03045</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#数据-成本与结果">数据、成本与结果</a></li><li><a href="#消融与成本边界">消融与成本边界</a></li><li><a href="#身份-交互与编辑边界">身份、交互与编辑边界</a></li><li><a href="#相关页面">相关页面</a></li><li><a href="#归属边界">归属边界</a></li><li><a href="#证据评估">证据评估</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>CAFE 用冻结 Llama-2-13B-chat 理解模糊/明确请求，以 CLIP global embedding 控语义、DINOv2-Giant patch embedding 保主体，并训练新的 SD2 U-Net conditioning interface；测试期 2–5 秒免微调，但离线数据与训练约 1M 四元组、20,000 GPU-hours，且没有对话/解释用户研究。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>它要解决的是用户在进行文本到图像定制时缺少有效辅助与控制的问题。对当前知识库来说，它补的是个性化/定制能力从模型层走向助手式工作流的一步。</p>
+<p>现有 personalization 要么每主体测试期 fine-tune，要么免调但身份/文本平衡有限，接口也多局限于精确 caption。CAFE 试图把单参考图定制与聊天、模糊意图理解、文字解释合并。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>Customization Assistant 围绕 text-to-image generation 构建定制辅助机制，帮助用户更稳定地进行个性化或特定目标生成。</p>
-<h2 id="关键发现">关键发现</h2>
 <ul>
-<li>它说明定制路线不只在模型微调层展开，也开始长出更接近用户操作流的系统层。</li>
-<li>它能帮助以后思考 personalization / customization 怎样更自然地变成产品化研究方向。</li>
-<li>它让 image-generation 与 image-editing 对定制交互的覆盖更完整。</li>
+<li>Llama-2-13B-chat 冻结，只训练图像投影与 CLIP prediction projection。</li>
+<li>DINOv2-Giant 提取 identity patch；CLIP ViT-L/14@336 表示目标语义。</li>
+<li>Stable Diffusion 2 卷积 U-Net 移除原 text encoder，新增 cross-attention 同时注入两类 embedding。</li>
+<li>MLLM 输出解释 token 与 semantic token；ML loss + CLIP embedding MSE，$\lambda=0.2$。</li>
+<li>无测试期 tuning、DiT、LoRA 或 flow matching。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="数据-成本与结果">数据、成本与结果</h2>
+<p>初始 ProFusion 生成 3M 样本耗 10,000 A100 GPU-hours；自动过滤后人筛 1,500 worker-hours，仅 93K。SID 自蒸馏取消后续人筛；最终约 1M 四元组、20,000 GPU-hours，其中 355K 人像。</p>
+<p>DreamBench：</p>
+<table><thead><tr><th>方法</th><th>DINO ↑</th><th>CLIP-I ↑</th><th>CLIP-T ↑</th></tr></thead><tbody><tr><td>SuTI</td><td><strong>0.741</strong></td><td>0.819</td><td><strong>0.304</strong></td></tr><tr><td>Kosmos-G</td><td>0.694</td><td><strong>0.847</strong></td><td>0.287</td></tr><tr><td><strong>CAFE</strong></td><td>0.715</td><td>0.827</td><td>0.294</td></tr></tbody></table>
+<p>CAFE 有竞争力但不全面领先。人脸 7 subjects × 23 prompts × 10 图，ID/CLIP-T 0.464/0.297，高于 ProFusion 0.432/0.293。</p>
+<h2 id="消融与成本边界">消融与成本边界</h2>
 <ul>
-<li>“助手式”路线的能力上限仍然依赖底层模型。</li>
-<li>它更偏系统辅助而非纯方法突破。</li>
-<li>它适合作为工作流层补层。</li>
+<li>自蒸馏数据 D3：ID .465/T .291；D1∪D3：.464/.297，优于仅人筛数据 .441/.288。</li>
+<li>MSE 优于 negative cosine；大 CLIP 主要保文本，大 DINO 主要保身份。</li>
+<li>仅 CLIP：ID .216/T .297；仅 DINO：.418/.234；两者：.464/.297。</li>
+<li>推理称 5 秒，跳过 MLLM 约 2 秒；未给测试 GPU、steps、显存或延迟拆分。</li>
 </ul>
-<h2 id="原始链接">原始链接</h2>
+<h2 id="身份-交互与编辑边界">身份、交互与编辑边界</h2>
 <ul>
-<li>https://arxiv.org/abs/2312.03045</li>
-<li>https://arxiv.org/pdf/2312.03045</li>
+<li>DINO/CLIP/face recognition 都是 identity proxy，无严格身份保证。</li>
+<li>模糊意图、解释、多轮和编辑主要是可视化；缺对话成功率、用户研究、区域保持或编辑 benchmark。</li>
+<li>baseline 数值多取原论文，base model 与 prompt 接口不完全同构。</li>
+<li>大规模合成数据可能继承 ProFusion/自蒸馏偏差。</li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../../en/topics/image-editing.html">topics/image-editing</a></li>
-<li><a class="wikilink" href="../../en/entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a></li>
-<li><a class="wikilink" href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a></li>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-14-dreambooth.html">DreamBooth</a>：per-subject full fine-tuning 对照。</li>
+<li><a class="wikilink" href="../../en/sources/2026-04-14-multi-concept-customization.html">Custom Diffusion</a>：per-subject K/V tuning 对照。</li>
 </ul>
-<h2 id="备注">备注</h2>
-<p>Customization Assistant 在这套库里的作用，是把定制辅助工作流路线补成 image-generation / image-editing 的系统分支。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<h2 id="归属边界">归属边界</h2>
+<p>本文是 amortized single-image personalization + conversational interface；附录编辑不构成通用 image-editing，也无 DiT/unified model 证据。已移除旧 unified entity/question 与 image-editing 主标签。</p>
+<h2 id="证据评估">证据评估</h2>
+<p><strong>B+</strong>：离线数据/成本和身份—文本消融透明；测试成本、对话人评与编辑证据不足，比较协议也不完全统一。</p></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">3</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/image-editing.html">图像编辑</a><span>Topic</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-customization-assistant&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Customization Assistant（CVPR 2024）：面向文本到图像生成的定制辅助系统&quot;,
+  &quot;title&quot;: &quot;Customization Assistant：可对话的单图免微调个性化生成&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2024&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;image-generation&quot;,
-    &quot;image-editing&quot;,
+    &quot;diffusion&quot;,
+    &quot;conditioning&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;authors&quot;: [
-    &quot;Zhou, Yufan&quot;,
-    &quot;Zhang, Ruiyi&quot;,
-    &quot;Gu, Jiuxiang&quot;,
-    &quot;Sun, Tong&quot;
+    &quot;Yufan Zhou&quot;,
+    &quot;Ruiyi Zhang&quot;,
+    &quot;Jiuxiang Gu&quot;,
+    &quot;Tong Sun&quot;
   ],
-  &quot;published_at&quot;: &quot;2023/12/05&quot;,
+  &quot;published_at&quot;: &quot;2023-12-05&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2312.03045&quot;,
     &quot;https://arxiv.org/pdf/2312.03045&quot;
@@ -123,16 +146,12 @@
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-customization-assistant/&quot;,
   &quot;topics&quot;: [
     &quot;topics/image-generation&quot;,
-    &quot;topics/image-editing&quot;
+    &quot;topics/diffusion-models&quot;
   ],
-  &quot;entities&quot;: [
-    &quot;entities/unified-image-generation-editing&quot;
-  ],
+  &quot;entities&quot;: [],
   &quot;claims&quot;: [],
-  &quot;questions&quot;: [
-    &quot;questions/question-will-unified-image-models-sustain-their-advantage&quot;
-  ]
-}</pre></section>
+  &quot;questions&quot;: []
+}</pre></details>
     </article>
   </main>
 </body>

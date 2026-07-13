@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="OSV：高质量图像到视频生成一步就够">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>OSV：高质量图像到视频生成一步就够 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-12-osv&quot;, &quot;title&quot;: &quot;OSV（CVPR 2025）：高质量图像到视频生成一步就够&quot;, &quot;title_en&quot;: &quot;OSV（CVPR 2025）：高质量图像到视频生成一步就够&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-generation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-12-osv&quot;, &quot;title&quot;: &quot;OSV：高质量图像到视频生成一步就够&quot;, &quot;title_en&quot;: &quot;OSV：高质量图像到视频生成一步就够&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,60 +60,71 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-12-osv.html">中文</a><a class="" href="../en/sources/2026-04-12-osv.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>OSV：高质量图像到视频生成一步就够</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
         <h1><span class="title-main">OSV</span><span class="title-subtitle">高质量图像到视频生成一步就够</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2025</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2025-06-11</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-12</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2025/html/Mao_OSV_One_Step_is_Enough_for_High-Quality_Image_to_Video_CVPR_2025_paper.html" title="https://openaccess.thecvf.com/content/CVPR2025/html/Mao_OSV_One_Step_is_Enough_for_High-Quality_Image_to_Video_CVPR_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>openaccess.thecvf.com · Mao_OSV_One_Step_is_Enough_for_…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2025/papers/Mao_OSV_One_Step_is_Enough_for_High-Quality_Image_to_Video_CVPR_2025_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2025/papers/Mao_OSV_One_Step_is_Enough_for_High-Quality_Image_to_Video_CVPR_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Mao_OSV_One_Step_is_Enough_for_…</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-generation">#video-generation</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-generation">#video-generation</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#efficiency">#efficiency</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作认为，一步式 image-to-video 并不是噱头；只要一致性蒸馏和对抗训练是围绕视频特性设计的，它就可以真正逼近甚至超过许多更慢的多步系统。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2025</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2025-06-11</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-12</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2025/html/Mao_OSV_One_Step_is_Enough_for_High-Quality_Image_to_Video_CVPR_2025_paper.html" title="https://openaccess.thecvf.com/content/CVPR2025/html/Mao_OSV_One_Step_is_Enough_for_High-Quality_Image_to_Video_CVPR_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>openaccess.thecvf.com · Mao_OSV_One_Step_is_Enough_for_…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2025/papers/Mao_OSV_One_Step_is_Enough_for_High-Quality_Image_to_Video_CVPR_2025_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2025/papers/Mao_OSV_One_Step_is_Enough_for_High-Quality_Image_to_Video_CVPR_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Mao_OSV_One_Step_is_Enough_for_…</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a><ol><li class="toc-sub"><a href="#两阶段训练">两阶段训练</a></li></ol></li><li><a href="#数据与成本">数据与成本</a></li><li><a href="#主结果">主结果</a></li><li><a href="#消融与人评">消融与人评</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#相关页面">相关页面</a></li><li><a href="#证据评级">证据评级</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>OSV 把 SVD 图像到视频模型经 latent GAN预训练与对抗一致性蒸馏压到一/少步；最佳FVD 171.15来自“1 step + Time Travel Sampler”，实际 NFE=2，接近25-step教师156.94，而不是纯单次网络评估。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>它想解决视频扩散模型推理慢、成本高的问题，让高质量视频生成不必依赖冗长的迭代过程。</p>
+<p>视频扩散迭代慢；LCM在1–2步时模糊，GAN蒸馏易坍塌且像素空间判别需VAE解码。OSV目标是兼得早期快速收敛、后期稳定性与少步refinement。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>方法上，OSV 采用两阶段训练：先做 consistency distillation，再结合对抗训练与潜空间视频判别器，从而把高质量视频生成压缩到一步，同时保留可选多步 refinement。</p>
-<h2 id="关键发现">关键发现</h2>
+<h3 id="两阶段训练">两阶段训练</h3>
+<ol>
+<li><strong>LGP</strong>：student从SVD teacher初始化，仅训练LoRA；真实视频latent与student输出做Huber+GAN。冻结DINOv2外接2D空间、1D时间判别头。</li>
+<li><strong>ACD</strong>：以阶段一初始化；teacher多步ODE target与student做consistency+adversarial学习，降低GAN后期干扰。</li>
+<li><strong>Latent discriminator</strong>：不经VAE decoder，latent经sub-pixel upsample直接进DINOv2。</li>
+<li><strong>TTS</strong>：取消会导致过曝的CFG，通过低时间点预测后“回跳”修正；标称一步、NFE=2。</li>
+</ol>
+<p>主干是SVD时空U-Net/latent video diffusion，不是DiT。</p>
+<h2 id="数据与成本">数据与成本</h2>
 <ul>
-<li>一步式生成开始在视频侧变得可信，而不只是图像侧特例。</li>
-<li>训练稳定性在快速视频生成中和推理设计同样关键。</li>
-<li>可选多步 refinement 提供了实用的质量-速度调节旋钮。</li>
+<li>OpenVid-1M：1M训练、1,000测试；7 FPS，batch 1，Adam，lr 5e-6。</li>
+<li>阶段一：1024×768，2K iterations，8×H800。</li>
+<li>阶段二：20K iterations，2×H800；576×320起步，最后10K升到1024×768。</li>
+<li>判别器局部测试：4.29→2.61秒/iteration；显存73.5→35.8GB（相对SF-V）。</li>
+<li>未报告完整GPU-hours、美元成本或OSV推理秒数。</li>
 </ul>
+<h2 id="主结果">主结果</h2>
+<table><thead><tr><th>方法</th><th>steps</th><th>NFE</th><th>FVD↓</th></tr></thead><tbody><tr><td>SVD教师</td><td>25</td><td>50</td><td><strong>156.94</strong></td></tr><tr><td>AnimateLCM</td><td>8</td><td>8</td><td>184.79</td></tr><tr><td>SF-V（作者复现）</td><td>1</td><td>1</td><td>425.68</td></tr><tr><td>OSV普通</td><td>1</td><td>1</td><td>335.36</td></tr><tr><td><strong>OSV+TTS</strong></td><td><strong>1</strong></td><td><strong>2</strong></td><td><strong>171.15</strong></td></tr><tr><td>OSV普通</td><td>2</td><td>2</td><td>181.95</td></tr></tbody></table>
+<p>所以OSV+TTS超过AnimateLCM 8-step，但未超过教师。SF-V无公开权重，公平性依赖作者复现。</p>
+<h2 id="消融与人评">消融与人评</h2>
+<p>teacher solver 1→5步使FVD 332.25→171.15；去阶段一为221.75；去对抗损失为405.41；加入VAE decoder为232.25；latent判别器为171.15。CFG 3/1.5/无CFG为531.23/426.71/335.36。</p>
+<p>人评每模型生成30条视频，比较清晰度与平滑度；正文称OSV更受偏好，但未给参与者人数、总票数、置信区间，不能写成显著结论。</p>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>一步式速度虽快，但复杂运动下的质量仍要仔细人工检验。</li>
-<li>image-to-video 任务范围仍窄于一般 text-to-video。</li>
-<li>对抗训练会增加复现实验和稳定性的复杂度。</li>
-</ul>
-<h2 id="原始链接">原始链接</h2>
-<ul>
-<li>https://openaccess.thecvf.com/content/CVPR2025/html/Mao_OSV_One_Step_is_Enough_for_High-Quality_Image_to_Video_CVPR_2025_paper.html</li>
-<li>https://openaccess.thecvf.com/content/CVPR2025/papers/Mao_OSV_One_Step_is_Enough_for_High-Quality_Image_to_Video_CVPR_2025_paper.pdf</li>
+<li>接口是条件图像→短视频，不是通用T2V、长视频或视频编辑。</li>
+<li>一步手部/人体运动会明显模糊；增加到4步可缓解。</li>
+<li>主自动评测几乎只有FVD，缺少VBench、identity与文本控制指标。</li>
+<li>“一步”最佳数字依赖TTS NFE=2，必须明确口径。</li>
+<li>不支持DiT主干趋势判断。</li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../topics/video-generation.html">topics/video-generation</a></li>
-<li><a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../topics/generative-model-evaluation.html">topics/generative-model-evaluation</a></li>
+<li><a class="wikilink" href="../topics/video-generation.html">视频生成</a></li>
+<li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
 </ul>
-<h2 id="备注">备注</h2>
-<p>OSV 代表 video-generation 中“速度极限”方向的一条重要路线。它提醒我们，快不只是采样步数少这么简单，背后往往是蒸馏、判别器设计和训练策略一起被重构。</p></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+<h2 id="证据评级">证据评级</h2>
+<p><strong>A-</strong>：训练资源、主表与多项消融完整；评测单一、人评披露不足、推理wall-clock缺失及step/NFE口径易混淆。</p></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../topics/video-generation.html">视频生成</a></li><li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">2</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../topics/video-generation.html">视频生成</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-12-osv&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;OSV（CVPR 2025）：高质量图像到视频生成一步就够&quot;,
+  &quot;title&quot;: &quot;OSV：高质量图像到视频生成一步就够&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
-  &quot;created&quot;: &quot;2026-04-12&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
-  &quot;venue&quot;: &quot;CVPR 2025&quot;,
-  &quot;ingested_at&quot;: &quot;2026-04-12&quot;,
-  &quot;tags&quot;: [
-    &quot;near-cvpr-2025&quot;,
-    &quot;video-generation&quot;,
-    &quot;primary-source&quot;
-  ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-12&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;venue&quot;: &quot;CVPR 2025&quot;,
   &quot;authors&quot;: [
     &quot;Xiaofeng Mao&quot;,
     &quot;Zhengkai Jiang&quot;,
@@ -119,6 +136,7 @@
     &quot;Wenhan Luo&quot;
   ],
   &quot;published_at&quot;: &quot;2025-06-11&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-12&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://openaccess.thecvf.com/content/CVPR2025/html/Mao_OSV_One_Step_is_Enough_for_High-Quality_Image_to_Video_CVPR_2025_paper.html&quot;,
     &quot;https://openaccess.thecvf.com/content/CVPR2025/papers/Mao_OSV_One_Step_is_Enough_for_High-Quality_Image_to_Video_CVPR_2025_paper.pdf&quot;
@@ -130,8 +148,15 @@
   ],
   &quot;entities&quot;: [],
   &quot;claims&quot;: [],
-  &quot;questions&quot;: []
-}</pre></section>
+  &quot;questions&quot;: [],
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-generation&quot;,
+    &quot;diffusion&quot;,
+    &quot;efficiency&quot;,
+    &quot;primary-source&quot;
+  ]
+}</pre></details>
     </article>
   </main>
 </body>

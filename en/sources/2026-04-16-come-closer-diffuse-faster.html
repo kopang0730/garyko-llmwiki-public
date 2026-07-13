@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Come-Closer-Diffuse-Faster：用随机收缩把条件扩散的采样路径压得更短 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="Come-Closer-Diffuse-Faster：用好初始化缩短条件扩散逆问题路径">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Come-Closer-Diffuse-Faster：用好初始化缩短条件扩散逆问题路径 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-come-closer-diffuse-faster&quot;, &quot;title&quot;: &quot;Come-Closer-Diffuse-Faster（CVPR 2022）：用随机收缩把条件扩散的采样路径压得更短&quot;, &quot;title_en&quot;: &quot;Come-Closer-Diffuse-Faster（CVPR 2022）：用随机收缩把条件扩散的采样路径压得更短&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-come-closer-diffuse-faster&quot;, &quot;title&quot;: &quot;Come-Closer-Diffuse-Faster：用好初始化缩短条件扩散逆问题路径&quot;, &quot;title_en&quot;: &quot;Come-Closer-Diffuse-Faster：用好初始化缩短条件扩散逆问题路径&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,50 +60,89 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-16-come-closer-diffuse-faster.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-16-come-closer-diffuse-faster.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-16</p>
-        <h1><span class="title-main">Come-Closer-Diffuse-Faster</span><span class="title-subtitle">用随机收缩把条件扩散的采样路径压得更短</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Come-Closer-Diffuse-Faster：用好初始化缩短条件扩散逆问题路径</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">Come-Closer-Diffuse-Faster</span><span class="title-subtitle">用好初始化缩短条件扩散逆问题路径</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2022</dd></div><div class="source-fact"><dt>Published</dt><dd>2021/12/09</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2112.05146" title="https://arxiv.org/abs/2112.05146" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2112.05146</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2112.05146.pdf" title="https://arxiv.org/pdf/2112.05146.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2112.05146.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#efficiency">#efficiency</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把条件扩散提速更早地推进到“缩短有效采样轨迹”这一层，说明 few-step acceleration 在 2022 年就已经开始成为明确问题。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2022</dd></div><div class="source-fact"><dt>Published</dt><dd>2021-12-09</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2112.05146" title="https://arxiv.org/abs/2112.05146" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2112.05146</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2112.05146.pdf" title="https://arxiv.org/pdf/2112.05146.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2112.05146.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#核心实验与结果">核心实验与结果</a><ol><li class="toc-sub"><a href="#协议">协议</a></li><li class="toc-sub"><a href="#超分">超分</a></li><li class="toc-sub"><a href="#inpainting">Inpainting</a></li><li class="toc-sub"><a href="#mri">MRI</a></li></ol></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>CCDF 证明在超分、inpainting、MRI 等有观测的逆问题里，不必从纯高斯噪声走完整反向链：用观测或 feed-forward 网络 warm-start，只加噪到较小 $t_0$ 再反推，可把 1000 steps 缩至 20–200；但“50×”是网络评估次数而非实测 latency，$t_0$ 还需按任务 trial-and-error，因此不能外推为通用文生图 few-step 方法。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这是 conditional inverse diffusion 的 <strong>path shortening / warm-start</strong>。它不改 score backbone、不蒸馏、不量化，也不涉及 DiT。与 DDIM 等 solver 可以叠加，但收益来源是逆问题已有观测带来的好初始化。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>条件扩散在逆问题和图像恢复里往往需要长采样链，导致推理成本过高。论文要解决的是，怎样在尽量保住重建质量的前提下，把条件扩散的有效采样路径压短。</p>
+<p>标准条件扩散仍从 $T=1$ 纯噪声开始，浪费了退化观测或现有 inverse network 已提供的信息。论文问：若初值已靠近真实图像，能否只走短反向路径，并用 data consistency 保持收敛？</p>
 <h2 id="方法概述">方法概述</h2>
-<p>作者通过 stochastic contraction 思路让采样过程更快靠近目标分布，减少条件扩散在逆问题场景中的迭代负担。它的重要性在于为后续 few-step、solver distillation、time-step optimization 路线补上更早的 acceleration 前史。</p>
-<h2 id="关键发现">关键发现</h2>
+<ol>
+<li>从退化观测做 vanilla 初始化，或用 ESRGAN / inpainting network / MRI U-Net 得到更好估计；</li>
+<li>通过 closed-form forward diffusion 加噪到 $t_0&lt;1$，几乎不调用 denoiser；</li>
+<li>交替执行短程 reverse diffusion 与非扩张 data-consistency 映射；</li>
+<li>用随机收缩理论证明终点误差由稳态噪声项和 $\lambda^{2N&#x27;}$ 倍初始误差组成：初始化越好，所需 steps 越少。</li>
+</ol>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<h3 id="协议">协议</h3>
 <ul>
-<li>它把 <a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a> 的 acceleration 谱系往前接到了 2022 年。</li>
-<li>它说明 diffusion efficiency 很早就不只是生成质量问题，而是明确的采样路径工程问题。</li>
-<li>它和 <a class="wikilink" href="../../en/sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">sources/2026-04-15-distilling-ode-solvers-diffusion-models</a>、<a class="wikilink" href="../../en/sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html">sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps</a> 形成早期到后期的自然演化链。</li>
+<li>SR：FFHQ/AFHQ 256²，×4/×8/×16，FID；</li>
+<li>inpainting：FFHQ，96/128/160 中心框，FID；</li>
+<li>MRI：fastMRI knee，随机 10 validation volumes，×2/×4/×6，PSNR；</li>
+<li>backbone 为 IDDPM/VP-SDE/VE-SDE 的 U-Net 或 ncsnpp；无 GPU、FLOPs、runtime 报告。</li>
+</ul>
+<h3 id="超分">超分</h3>
+<p>20-step CCDF 在 FFHQ ×4/×8 的 FID 为 <strong>60.90/75.76</strong>，优于 20-step ILVR 的 63.14/81.85；AFHQ ×4/×8 为 <strong>15.53/32.30</strong>，优于 18.70/34.85。AFHQ ×16 为 48.77，略差于 ILVR 47.28，说明高退化时并非全胜。</p>
+<h3 id="inpainting">Inpainting</h3>
+<p>200-step CCDF 在 box 96/128/160 的 FID 为 <strong>45.99/49.77/57.99</strong>；1000-step score-SDE 为 50.85/64.51/78.29。它用五分之一 NFE 得到更低 FID。</p>
+<h3 id="mri">MRI</h3>
+<p>$t_0=0.02$、20-step CCDF 的 ×2/×4/×6 PSNR 为 <strong>33.41/32.51/31.30</strong>；1000-step score-POCS 为 32.85/31.45/31.15。步数减少 50×，但 ×6 只提升 0.15 dB，且测试集很小。</p>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>random→vanilla→NN initialization 的误差逐步减小，可用 $t_0$ 也逐步缩短。</li>
+<li>$t_0$ sweep 显示退化越强通常需要更大起点；FFHQ SR ×4/×8/×16 约取 0.1/0.2/0.3。</li>
+<li>CCDF 可叠加 DDIM，但论文没有系统 wall-clock 对比。</li>
+<li>理论依赖 score 足够表达和 data-consistency operator 非扩张等假设。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>它聚焦条件扩散与逆问题，不完全等同于后来的大规模文生图 few-step acceleration。</li>
-<li>这条路线与 solver-level distillation、consistency distillation 谁更有长期潜力，还需要继续观察。</li>
+<li>作者明确承认不知道初始误差 $\epsilon_0$，没有通用 $t_0$ 选择规则，只能 trial-and-error。</li>
+<li>仅适用于有观测/好初始化的 inverse tasks，不适用于从随机噪声的开放式 T2I。</li>
+<li>“50×”仅为 1000→20 NFE；初始化网络和 data-consistency 也有成本。</li>
+<li>SR3 为非官方复现；MRI 只测 10 volumes。</li>
+<li>高退化使 $t_0$ 增大、收益缩小；AFHQ ×16 已出现不优于 ILVR 的结果。</li>
 </ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li>对 <a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">Diffusion 效率工程</a>：应归为 inverse-problem warm-start，而不是泛化的 few-step T2I。</li>
+<li>对 <a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a>：直接支持“条件逆问题不必从纯噪声开始”。</li>
+<li>对 <a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a>：是早期路径工程案例，不能与 SANA-Sprint 的 one-step 蒸馏混为一类。</li>
+<li>对 DiT 无直接证据。</li>
+</ul>
+<h2 id="证据评级">证据评级</h2>
+<p><strong>B+</strong>：理论、三类任务和 $t_0$ 消融扎实；但无真实 latency/FLOPs/硬件、超参数不可自动选，部分测试协议较小。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2112.05146</li>
-<li>https://arxiv.org/pdf/2112.05146.pdf</li>
+<li><a href="https://arxiv.org/abs/2112.05146">arXiv</a></li>
+<li><a href="https://arxiv.org/pdf/2112.05146.pdf">PDF</a></li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2022/html/Chung_Come-Closer-Diffuse-Faster_Accelerating_Conditional_Diffusion_Models_for_Inverse_Problems_Through_Stochastic_CVPR_2022_paper.html">CVF Open Access</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">sources/2026-04-15-distilling-ode-solvers-diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html">sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>它在本库中的价值，是把当前 acceleration 主线往更早的 conditional diffusion 提速阶段补齐。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">Diffusion 效率工程</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-sana-sprint.html">SANA-Sprint</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">Distilling ODE Solvers</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li><li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">5</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-04-16-sana-sprint.html">SANA-Sprint：连续时间一致性与对抗蒸馏的一步线性 DiT</a><span>Source note</span></li><li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>Topic</span></li><li><a href="../../en/topics/diffusion-models.html">扩散模型</a><span>Topic</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-16-come-closer-diffuse-faster&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Come-Closer-Diffuse-Faster（CVPR 2022）：用随机收缩把条件扩散的采样路径压得更短&quot;,
+  &quot;title&quot;: &quot;Come-Closer-Diffuse-Faster：用好初始化缩短条件扩散逆问题路径&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-16&quot;,
-  &quot;updated&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2022&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
   &quot;tags&quot;: [
@@ -115,10 +160,11 @@
     &quot;Ryu, Dohoon&quot;,
     &quot;Ye, Jong Chul&quot;
   ],
-  &quot;published_at&quot;: &quot;2021/12/09&quot;,
+  &quot;published_at&quot;: &quot;2021-12-09&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2112.05146&quot;,
-    &quot;https://arxiv.org/pdf/2112.05146.pdf&quot;
+    &quot;https://arxiv.org/pdf/2112.05146.pdf&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2022/html/Chung_Come-Closer-Diffuse-Faster_Accelerating_Conditional_Diffusion_Models_for_Inverse_Problems_Through_Stochastic_CVPR_2022_paper.html&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-16-come-closer-diffuse-faster/&quot;,
   &quot;topics&quot;: [
@@ -129,7 +175,7 @@
   &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tora：面向视频生成的轨迹导向扩散 Transformer">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>Tora：面向视频生成的轨迹导向扩散 Transformer · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-12-tora&quot;, &quot;title&quot;: &quot;Tora（CVPR 2025）：面向视频生成的轨迹导向扩散 Transformer&quot;, &quot;title_en&quot;: &quot;Tora（CVPR 2025）：面向视频生成的轨迹导向扩散 Transformer&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-generation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-12-tora&quot;, &quot;title&quot;: &quot;Tora（CVPR 2025）：面向视频生成的轨迹导向扩散 Transformer&quot;, &quot;title_en&quot;: &quot;Tora（CVPR 2025）：面向视频生成的轨迹导向扩散 Transformer&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-generation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,51 +60,86 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-12-tora.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-12-tora.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Tora：面向视频生成的轨迹导向扩散 Transformer</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
         <h1><span class="title-main">Tora</span><span class="title-subtitle">面向视频生成的轨迹导向扩散 Transformer</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-06-11</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-12</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2025/html/Zhang_Tora_Trajectory-oriented_Diffusion_Transformer_for_Video_Generation_CVPR_2025_paper.html" title="https://openaccess.thecvf.com/content/CVPR2025/html/Zhang_Tora_Trajectory-oriented_Diffusion_Transformer_for_Video_Generation_CVPR_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Zhang_Tora_Trajectory-oriented_…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2025/papers/Zhang_Tora_Trajectory-oriented_Diffusion_Transformer_for_Video_Generation_CVPR_2025_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2025/papers/Zhang_Tora_Trajectory-oriented_Diffusion_Transformer_for_Video_Generation_CVPR_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Zhang_Tora_Trajectory-oriented_…</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-generation">#video-generation</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作认为，显式轨迹条件是实现可扩展、可控视频生成的一条强路线，因为它能比纯文本更直接地约束运动轨迹和动态保真度。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-06-11</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-12</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2025/html/Zhang_Tora_Trajectory-oriented_Diffusion_Transformer_for_Video_Generation_CVPR_2025_paper.html" title="https://openaccess.thecvf.com/content/CVPR2025/html/Zhang_Tora_Trajectory-oriented_Diffusion_Transformer_for_Video_Generation_CVPR_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Zhang_Tora_Trajectory-oriented_…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2025/papers/Zhang_Tora_Trajectory-oriented_Diffusion_Transformer_for_Video_Generation_CVPR_2025_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2025/papers/Zhang_Tora_Trajectory-oriented_Diffusion_Transformer_for_Video_Generation_CVPR_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Zhang_Tora_Trajectory-oriented_…</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a><ol><li class="toc-sub"><a href="#st-dit-底座">ST-DiT 底座</a></li><li class="toc-sub"><a href="#trajectory-extractor">Trajectory Extractor</a></li><li class="toc-sub"><a href="#motion-guidance-fuser">Motion-guidance Fuser</a></li></ol></li><li><a href="#实验设置">实验设置</a></li><li><a href="#核心实验与结果">核心实验与结果</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>Tora 以 OpenSora v1.2 ST-DiT 为基础，把轨迹压缩成与视频 latent patch 同构的多层 motion condition，再用 adaptive norm 注入 temporal DiT blocks；它直接证明 DiT 可作为视频轨迹控制的可组合底座，但不证明 DiT 已是所有视频任务的默认主干。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>Tora 的关键创新不是首次做轨迹控制，而是解决“frame-level 位移如何与跨多帧 DiT patch 对齐”。它是 <a class="wikilink" href="../../en/topics/video-generation.html">视频生成</a> 的显式运动控制 anchor，也是 <a class="wikilink" href="../../en/entities/diffusion-transformer.html">DiT</a> 可扩展条件接口的直接案例。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>它要解决的是视频生成中“运动怎么发生”往往过于模糊的问题。只靠文本提示，模型可能知道场景内容，却难以稳定遵守用户想要的运动路径。</p>
+<p>文本能描述场景，却难规定对象的精确路径。既有 UNet 轨迹控制方法通常只生成 16 帧、固定低分辨率，扩展后出现漂移和变形。Tora 要在可变时长 ST-DiT 中同时接入文本、图像与轨迹（PDF pp.1–3）。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>方法上，Tora 先把轨迹编码成分层时空 motion patches，再通过 motion-guidance fuser 把这些控制信号注入时空 DiT 中。结果是模型同时接收文本、视觉和轨迹三类条件。</p>
-<h2 id="关键发现">关键发现</h2>
+<h3 id="st-dit-底座">ST-DiT 底座</h3>
+<p>OpenSora 交替使用 Spatial/Temporal DiT blocks；视频经 autoencoder 压缩为 $L/4\times H/8\times W/8\times4$ latent 后 patchify，T5 文本经 cross-attention 注入（PDF pp.4–5）。</p>
+<h3 id="trajectory-extractor">Trajectory Extractor</h3>
 <ul>
-<li>运动控制被提升为视频生成中的一级条件通道。</li>
-<li>轨迹条件与 DiT 的可扩展性看起来兼容。</li>
-<li>论文关注的是动态保真度，而不只是静态画面质量。</li>
+<li>逐帧轨迹转 flow map，Gaussian filter 缓解稀疏散点；</li>
+<li>flow 可视化为 RGB；</li>
+<li>3D motion VAE 做 8×空间、4×时间压缩，与视频 latent 对齐；</li>
+<li>同 patch size + 残差卷积生成各层 motion patches（PDF p.5）。</li>
+</ul>
+<h3 id="motion-guidance-fuser">Motion-guidance Fuser</h3>
+<p>比较 channel concat、cross-attention、adaptive norm；默认用零初始化 adaptive norm 预测 scale/shift，调制对应 DiT hidden state（PDF p.5，Figure 4）。训练先 dense optical flow 2 epochs，再 sparse trajectories 1 epoch，并只训练 temporal blocks、TE 与 MGF（PDF pp.2, 6）。</p>
+<h2 id="实验设置">实验设置</h2>
+<ul>
+<li>OpenSora v1.2 初始化；144p–720p、51–204 帧。</li>
+<li>Adam，学习率 $2\times10^{-5}$，8×A100；30 sampling steps，guidance 7.0（PDF p.6）。</li>
+<li>Panda-70M 10M 子集、Mixkit、Pexels、internal videos，经筛选后约 <strong>630K</strong> 视频。</li>
+<li>自建 185 clips benchmark；指标 FVD、CLIPSIM、TrajError（生成与目标轨迹平均 L1 距离；PDF p.6）。</li>
+</ul>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<table><thead><tr><th>方法（128 帧）</th><th>FVD ↓</th><th>CLIPSIM ↑</th><th>TrajError ↓</th></tr></thead><tbody><tr><td>MotionCtrl（UNet）</td><td>731</td><td>0.2331</td><td>38.39</td></tr><tr><td>OpenSora（无轨迹输入）</td><td>533</td><td>0.2411</td><td>373.17</td></tr><tr><td>OpenSora-based DragNUWA</td><td>565</td><td>0.2393</td><td>21.75</td></tr><tr><td><strong>Tora</strong></td><td><strong>494</strong></td><td><strong>0.2418</strong></td><td><strong>11.72</strong></td></tr></tbody></table>
+<p>来源：PDF p.7，Table 1。相对 MotionCtrl，128 帧 TrajError 约低 3.3×，FVD 约低 32%；正文“3–5× / 30–40%”是跨多 UNet baseline 的区间概括。OpenSora 无轨迹条件，因此最有判定力的对照是同一底座上的 DragNUWA 适配版。</p>
+<p>论文最高展示 <strong>204 frames、720p</strong> 的轨迹控制输出（PDF p.8，Conclusion），证明控制模块可随基础 DiT 扩展，但不等同于分钟级或长程叙事能力。</p>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li><strong>轨迹压缩</strong>：sampling / average pooling / 3D VAE 的 FVD 581/558/<strong>513</strong>，TrajError 27.61/20.97/<strong>14.25</strong>（PDF p.7，Table 2）。</li>
+<li><strong>融合</strong>：extra channel / cross-attention / adaptive norm 的 FVD 542/526/<strong>513</strong>，TrajError 21.07/18.36/<strong>14.25</strong>（PDF p.7，Table 3）。</li>
+<li><strong>注入位置</strong>：MGF 放在 Temporal DiT block，将 TrajError 从 23.39 降到 14.25（PDF p.8）。</li>
+<li><strong>训练策略</strong>：dense / sparse / hybrid 的 FVD 601/556/<strong>513</strong>，TrajError 39.34/24.73/<strong>14.25</strong>（PDF p.8，Table 4）。</li>
+<li>CogVideoX 2B/5B 变体随模型与训练量增加降低误差，但变量同时变化，不能视为纯 scaling law（PDF p.8，Figure 7）。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>轨迹控制要求额外输入，使用门槛高于纯文本。</li>
-<li>后续需要和其他运动控制方法正面对比。</li>
-<li>控制收益可能会随场景复杂度变化。</li>
+<li>需要额外轨迹输入；控制更强，但交互成本高于纯文本。</li>
+<li>依赖 optical flow、motion segmentation、camera filtering；遮挡、镜头运动和复杂多对象交互仍困难。</li>
+<li>185 clips 为作者自建 benchmark，规模小，缺少独立复现。</li>
+<li>与 UNet baseline 的基础模型、数据、分辨率并非完全受控；其长视频使用 sequential inference。</li>
+<li>204 帧/720p 不证明长程叙事、物理因果或身份一致性已经解决。</li>
 </ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<p>对 <a class="wikilink" href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT / Transformer 主干 claim</a> 的分类是：<strong>直接支持，但限定于“DiT 可作为视频控制扩展底座”</strong>。</p>
+<p>它明确采用 OpenSora ST-DiT，并证明 latent-aligned TE+MGF 能跨 block、跨模型规模复用；但它不统计采用率、不比较 SSM/Mamba，也不能证明 DiT 是默认或唯一最优主干。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://openaccess.thecvf.com/content/CVPR2025/html/Zhang_Tora_Trajectory-oriented_Diffusion_Transformer_for_Video_Generation_CVPR_2025_paper.html</li>
-<li>https://openaccess.thecvf.com/content/CVPR2025/papers/Zhang_Tora_Trajectory-oriented_Diffusion_Transformer_for_Video_Generation_CVPR_2025_paper.pdf</li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2025/html/Zhang_Tora_Trajectory-oriented_Diffusion_Transformer_for_Video_Generation_CVPR_2025_paper.html">CVF 论文页</a></li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2025/papers/Zhang_Tora_Trajectory-oriented_Diffusion_Transformer_for_Video_Generation_CVPR_2025_paper.pdf">PDF</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/video-generation.html">topics/video-generation</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">topics/generative-model-evaluation</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>Tora 在 vault 中很关键，因为它把“可控视频生成”从模糊提示推进到了显式运动约束。对于后续整理 video-generation 的控制路线，这篇论文几乎可以作为代表性 anchor。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a class="wikilink" href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT / Transformer 主干趋势</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/video-generation.html">视频生成</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">4</span></h2><ul><li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a><span>Claim</span></li><li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a><span>Entity</span></li><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/video-generation.html">视频生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-12-tora&quot;,
   &quot;type&quot;: &quot;source&quot;,
   &quot;title&quot;: &quot;Tora（CVPR 2025）：面向视频生成的轨迹导向扩散 Transformer&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-12&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2025&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-12&quot;,
   &quot;tags&quot;: [
@@ -131,7 +172,7 @@
   &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Condition-Aware Neural Network for Controlled Image Generation：面向可控图像生成的条件感知网络 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="Condition-Aware Neural Network：以动态权重控制扩散 Transformer">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Condition-Aware Neural Network：以动态权重控制扩散 Transformer · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-condition-aware-neural-network&quot;, &quot;title&quot;: &quot;Condition-Aware Neural Network for Controlled Image Generation（CVPR 2024）：面向可控图像生成的条件感知网络&quot;, &quot;title_en&quot;: &quot;Condition-Aware Neural Network for Controlled Image Generation（CVPR 2024）：面向可控图像生成的条件感知网络&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;control&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-condition-aware-neural-network&quot;, &quot;title&quot;: &quot;Condition-Aware Neural Network：以动态权重控制扩散 Transformer&quot;, &quot;title_en&quot;: &quot;Condition-Aware Neural Network：以动态权重控制扩散 Transformer&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;conditioning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,70 +60,89 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-condition-aware-neural-network.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-condition-aware-neural-network.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">Condition-Aware Neural Network for Controlled Image Generation</span><span class="title-subtitle">面向可控图像生成的条件感知网络</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Condition-Aware Neural Network：以动态权重控制扩散 Transformer</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">Condition-Aware Neural Network</span><span class="title-subtitle">以动态权重控制扩散 Transformer</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2024/04/01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2404.01143" title="https://arxiv.org/abs/2404.01143" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2404.01143</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2404.01143" title="https://arxiv.org/pdf/2404.01143" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2404.01143</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#control">#control</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#conditioning">#conditioning</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把 condition-aware 控制网络路线补进库里，强化了 image-generation 的条件感知控制分支。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2024-04-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2404.01143" title="https://arxiv.org/abs/2404.01143" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2404.01143</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2404.01143" title="https://arxiv.org/pdf/2404.01143" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2404.01143</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#数据-指标与主结果">数据、指标与主结果</a></li><li><a href="#消融与成本">消融与成本</a></li><li><a href="#证据边界">证据边界</a></li><li><a href="#相关页面">相关页面</a></li><li><a href="#归属边界">归属边界</a></li><li><a href="#证据评估">证据评估</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>CAN 根据 class/text 与 timestep 动态生成卷积/线性层增量权重，在 DiT、UViT 与 EfficientViT/CaT 上显著提升 FID—计算权衡；CaT-L0 在 ImageNet 512 达 FID 2.78、10G MAC/step，但开放 T2I 仅验证 COCO 256 从头训练，不能外推为编辑或统一图像模型。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>它要解决的是图像生成中条件输入虽然很多，但模型未必真正感知并高质量利用这些条件的问题。对当前知识库来说，它补的是控制接口之外更偏控制网络结构的一支。</p>
+<p>传统 adaptive normalization 或 attention 只在 feature space 注入条件，conv/linear 权重对所有条件固定，可能造成不同类别与 timestep 间负迁移。CAN 让部分层直接随条件改变权重。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>Condition-Aware Neural Network 围绕 controlled image generation 设计条件感知结构，使模型能更稳定地吸收和执行控制信号。</p>
-<h2 id="关键发现">关键发现</h2>
+<p>$$</p>
+<p>y=(W+W_c(c))x.</p>
+<p>$$</p>
 <ul>
-<li>它说明图像生成的可控性问题不只是接口设计，也涉及控制网络本身怎样消费条件。</li>
-<li>它和 ReCo、LayoutDiffusion、GLIGEN 一起，让控制路线从接口层扩到网络层。</li>
-<li>它对以后做可控生成结构改进很有参考价值。</li>
+<li>条件包含 class/text embedding 与 diffusion timestep。</li>
+<li>只让 FFN depthwise conv、patch embedding 与 attention output projection condition-aware；后者共享条件权重生成器。</li>
+<li>batch-specific kernel 通过 batch-to-channel + grouped convolution 实现。</li>
+<li>主 backbone 是 <strong>DiT/UViT diffusion transformer</strong>；CaT 将 CAN 与 EfficientViT 组合。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="数据-指标与主结果">数据、指标与主结果</h2>
+<p>ImageNet 256/512 报 FID-50K、CLIP、MAC、参数；COCO 2014 从头训练，30K validation prompts 算 FID。</p>
+<table><thead><tr><th>ImageNet 512 模型</th><th>FID ↓</th><th>MAC/step ↓</th><th>steps</th></tr></thead><tbody><tr><td>DiT-XL/2</td><td>3.04</td><td>525G</td><td>250</td></tr><tr><td>CAN UViT-S-Deep/4</td><td>4.04</td><td>16G</td><td>50</td></tr><tr><td><strong>CaT-L0</strong></td><td><strong>2.78</strong></td><td><strong>10G</strong></td><td><strong>20</strong></td></tr><tr><td>CaT-L1</td><td>2.48</td><td>12G</td><td>20</td></tr></tbody></table>
+<p>Orin fp16/TensorRT：DiT-XL/2 45.9s vs CaT-L0 0.2s；229× 差异同时混入 backbone、采样步数与 UniPC，不能全归因于 CAN。COCO 上 CaT-S0 FID 5.49/3G，近似 UViT-S-Deep 的 5.48/19G。</p>
+<h2 id="消融与成本">消融与成本</h2>
 <ul>
-<li>结构改进的收益可能依赖特定条件类型。</li>
-<li>它更偏 controlled generation，不直接面向个性化或编辑流程。</li>
-<li>它是控制结构节点，而不是开放训练/生态路线。</li>
+<li>UViT-S/2 baseline 28.32 FID；DW conv 11.18；+patch 10.23；+output projection 8.82。</li>
+<li>head/QKV/full MLP 动态化反而较差。</li>
+<li>class-only 强于 timestep-only，二者合用最好。</li>
+<li>CAN 可单独替代 DiT adaptive norm/UViT condition-token attention；组合效果依 backbone 而异。</li>
+<li>A6000/PyTorch 实测训练 overhead 30%–40%，并非真正 negligible；总 GPU-hours 未报。</li>
 </ul>
-<h2 id="原始链接">原始链接</h2>
+<h2 id="证据边界">证据边界</h2>
 <ul>
-<li>https://arxiv.org/abs/2404.01143</li>
-<li>https://arxiv.org/pdf/2404.01143</li>
+<li>无人评、编辑、identity 或复杂 prompt 评测。</li>
+<li>主要证据来自 ImageNet class conditioning；大规模 T2I 被作者列为未来工作。</li>
+<li>参数量不总更小；效率优势主要是 MAC/step 与更短 sampler。</li>
+<li>动态权重对量化/部署的通用性仅有 Orin 单设备个案。</li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../../en/topics/vision-language.html">topics/vision-language</a></li>
-<li><a class="wikilink" href="../../en/entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a></li>
-<li><a class="wikilink" href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a></li>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-15-scalable-diffusion-models-with-transformers.html">DiT</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-15-all-are-worth-words.html">UViT</a></li>
 </ul>
-<h2 id="备注">备注</h2>
-<p>Condition-Aware Neural Network 在这套库里的作用，是把条件感知控制网络路线补成 image-generation 的结构分支。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<h2 id="归属边界">归属边界</h2>
+<p>本文确有实质 DiT/UViT 证据，但主题是 conditional weight generation 与效率，不是 personalization、image editing 或 unified generation-editing。已移除旧 unified entity/question。</p>
+<h2 id="证据评估">证据评估</h2>
+<p><strong>A-（ImageNet）/B（开放 T2I）</strong>：架构、消融与设备指标充分；文本生成规模有限，效率比较又混合多个变量。</p></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">3</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li><li><a href="../../en/topics/vision-language.html">视觉-语言</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-condition-aware-neural-network&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Condition-Aware Neural Network for Controlled Image Generation（CVPR 2024）：面向可控图像生成的条件感知网络&quot;,
+  &quot;title&quot;: &quot;Condition-Aware Neural Network：以动态权重控制扩散 Transformer&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2024&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;image-generation&quot;,
-    &quot;control&quot;,
+    &quot;diffusion&quot;,
+    &quot;conditioning&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;authors&quot;: [
-    &quot;Cai, Han&quot;,
-    &quot;Li, Muyang&quot;,
-    &quot;Zhang, Zhuoyang&quot;,
-    &quot;Zhang, Qinsheng&quot;,
-    &quot;Liu, Ming-Yu&quot;,
-    &quot;Han, Song&quot;
+    &quot;Han Cai&quot;,
+    &quot;Muyang Li&quot;,
+    &quot;Zhuoyang Zhang&quot;,
+    &quot;Qinsheng Zhang&quot;,
+    &quot;Ming-Yu Liu&quot;,
+    &quot;Song Han&quot;
   ],
-  &quot;published_at&quot;: &quot;2024/04/01&quot;,
+  &quot;published_at&quot;: &quot;2024-04-01&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2404.01143&quot;,
     &quot;https://arxiv.org/pdf/2404.01143&quot;
@@ -125,16 +150,12 @@
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-condition-aware-neural-network/&quot;,
   &quot;topics&quot;: [
     &quot;topics/image-generation&quot;,
-    &quot;topics/vision-language&quot;
+    &quot;topics/diffusion-models&quot;
   ],
-  &quot;entities&quot;: [
-    &quot;entities/unified-image-generation-editing&quot;
-  ],
+  &quot;entities&quot;: [],
   &quot;claims&quot;: [],
-  &quot;questions&quot;: [
-    &quot;questions/question-will-unified-image-models-sustain-their-advantage&quot;
-  ]
-}</pre></section>
+  &quot;questions&quot;: []
+}</pre></details>
     </article>
   </main>
 </body>

@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Imagic：基于扩散模型的文本真实图像编辑 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="Imagic：以文本嵌入优化、模型微调和插值完成真实图像编辑">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Imagic：以文本嵌入优化、模型微调和插值完成真实图像编辑 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-imagic&quot;, &quot;title&quot;: &quot;Imagic（CVPR 2023）：基于扩散模型的文本真实图像编辑&quot;, &quot;title_en&quot;: &quot;Imagic（CVPR 2023）：基于扩散模型的文本真实图像编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-imagic&quot;, &quot;title&quot;: &quot;Imagic：以文本嵌入优化、模型微调和插值完成真实图像编辑&quot;, &quot;title_en&quot;: &quot;Imagic：以文本嵌入优化、模型微调和插值完成真实图像编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;diffusion&quot;, &quot;editing&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,73 +60,98 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-imagic.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-imagic.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">Imagic</span><span class="title-subtitle">基于扩散模型的文本真实图像编辑</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Imagic：以文本嵌入优化、模型微调和插值完成真实图像编辑</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">Imagic</span><span class="title-subtitle">以文本嵌入优化、模型微调和插值完成真实图像编辑</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2022/10/17</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2210.09276" title="https://arxiv.org/abs/2210.09276" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2210.09276</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2210.09276" title="https://arxiv.org/pdf/2210.09276" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2210.09276</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-editing">#image-editing</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-editing">#image-editing</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#editing">#editing</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作是扩散时代真实图像文本编辑路线的早期关键锚点，补上了 Imagic 这条主干历史节点。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2022-10-17</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2210.09276" title="https://arxiv.org/abs/2210.09276" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2210.09276</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2210.09276" title="https://arxiv.org/pdf/2210.09276" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2210.09276</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#成本">成本</a></li><li><a href="#评测与核心发现">评测与核心发现</a></li><li><a href="#消融">消融</a></li><li><a href="#编辑保持边界">编辑保持边界</a></li><li><a href="#相关页面">相关页面</a></li><li><a href="#归属边界">归属边界</a></li><li><a href="#证据评估">证据评估</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>Imagic 先让目标文本 embedding 学会重建输入，再对每张图微调整个文生图 diffusion，最后在重建 embedding 与目标 embedding 之间插值；它能无 mask 完成复杂非刚性编辑，但代价是每图约 7–8 分钟适配、人工选择 $\eta$/seed，且没有 exact inversion 或区域/身份保持保证。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>它要解决的是如何在真实图像上进行文本驱动编辑，同时尽量保住原图身份与结构。对当前知识库来说，它是 NULL-Text Inversion、Prompt Tuning Inversion、Effective Real Image Editing 这些后续机制线之前的重要前史。</p>
+<p>给定单张真实图像与目标文本，不使用 mask、source description 或同主体多视图，要求改变姿态、几何、构图和多对象关系，同时尽量保留原图外观、背景与身份。早期方法通常只支持局部覆盖/风格、合成图或额外输入。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>Imagic 通过对文本嵌入和生成过程进行适配，使扩散模型能够在真实图像上执行更可控的文本驱动编辑，强调保持内容一致性的同时完成语义修改。</p>
-<h2 id="关键发现">关键发现</h2>
 <ul>
-<li>它说明真实图像编辑在扩散路线中很早就已经被单独确立为核心问题。</li>
-<li>它把 image-editing 主线中的“任务建立 → inversion/optimization 细化”演化链补得更完整。</li>
-<li>它有助于把后续的 inversion 改进看成一条连续方法线，而不是离散技巧。</li>
+<li><strong>真实主干</strong>：主实验是 Imagen 的 64×64 pixel U-Net + 两级 SR U-Net；另验证 Stable Diffusion latent U-Net。Imagic 是 per-image adaptation workflow，不是新 backbone；没有 DiT。</li>
+<li><strong>Embedding optimization</strong>：冻结模型，以输入图像的标准 denoising loss 从目标 embedding $e_{tgt}$ 优化出 $e_{opt}$。</li>
+<li><strong>模型微调</strong>：固定 $e_{opt}$，继续微调 base diffusion 以重建输入。Imagen 同时微调 64→256 SR，256→1024 SR 保持冻结。</li>
+<li><strong>插值编辑</strong>：</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<p>$$</p>
+<p>\bar e=\eta e_{tgt}+(1-\eta)e_{opt}.</p>
+<p>$$</p>
+<p>$\eta$ 增大时文本对齐增强、输入保真下降；主经验区间为 0.6–0.8。</p>
 <ul>
-<li>它更偏早期路线锚点，未必代表后期最佳性能。</li>
-<li>真实图像编辑仍然面临身份保持与编辑强度控制的矛盾。</li>
-<li>它没有直接回答统一多任务系统是否长期更优。</li>
+<li><strong>不是 inversion</strong>：不求输入的 DDIM/ODE 初始噪声；有 per-image embedding optimization 和 full model fine-tuning，并通过随机 diffusion seed 生成多个候选。</li>
 </ul>
-<h2 id="原始链接">原始链接</h2>
+<h2 id="成本">成本</h2>
+<table><thead><tr><th>底座</th><th>Embedding 优化</th><th>模型微调</th><th>适配时间</th></tr></thead><tbody><tr><td>Imagen</td><td>100 步，Adam，$10^{-3}$</td><td>base 1500 步；64→256 SR 1500 步</td><td>约 8 分钟/图，2×TPUv4</td></tr><tr><td>Stable Diffusion</td><td>1000 步，Adam，$2\times10^{-3}$</td><td>1500 步，$5\times10^{-7}$</td><td>约 7 分钟/图，1×A100</td></tr></tbody></table>
+<p>定性实验每个 edit 还生成 8 个随机 seed 并选最佳，因此实际离线工作量高于适配时间。论文没有给峰值显存、参数量或最终采样延迟。</p>
+<h2 id="评测与核心发现">评测与核心发现</h2>
+<p>论文建立 100 对复杂非刚性编辑的 TEdBench，并与 SDEdit、DDIB、Text2LIVE 做 AMT 2AFC。共 9,213 个回答：SDEdit 3,030、DDIB 3,131、Text2LIVE 3,052；三组中 Imagic 偏好率均 <strong>&gt;70%</strong>。</p>
+<p>这个结果强力支持其在 TEdBench 协议下的复杂非刚性编辑能力，但需注意：benchmark 为本文任务设计，基线并非专为此类编辑开发；Imagic 的 $\eta$、SDEdit timestep 和 DDIB guidance 都经过人工选择。150 对输入上的 CLIP/$1-$LPIPS 曲线显示 $\eta\approx0.6$–$0.8$ 常处于折中区，但作者明确指出这些指标不能可靠自动选择单图 $\eta$，也不能充分评价编辑。</p>
+<h2 id="消融">消融</h2>
 <ul>
-<li>https://arxiv.org/abs/2210.09276</li>
-<li>https://arxiv.org/pdf/2210.09276</li>
+<li>去掉模型微调时，$\eta=0$ 不能完整重建，随 $\eta$ 增大细节迅速丢失；微调是必要组件。</li>
+<li>Imagen embedding 10 步太少，100 步形成有效插值路径，1000 步在微调后无明显收益、偶有退化且更慢。</li>
+<li>不同 seed 的有效编辑阈值不同；有些 seed 在目标编辑前先改变视角/姿态，部分输入多个 seed 都失败。</li>
+<li>微调 Imagen 256→1024 SR 几乎无增益，因此不做。</li>
+</ul>
+<h2 id="编辑保持边界">编辑保持边界</h2>
+<ul>
+<li>已展示姿态、非刚性形变、多对象互动、物体添加/替换、风格和颜色，Imagen 达 1024×1024，SD 达 512×512。</li>
+<li>保真是经验结果，不是 mask 外像素、身份特征或精确重建保证。</li>
+<li>两类主失败：编辑太弱；编辑发生但先改变 zoom/camera angle。提高 $\eta$ 往往加剧细节损失。</li>
+<li>对底座生成能力、prompt、seed 与 $\eta$ 高度敏感；Imagen 的人脸局限会传导到编辑。</li>
+<li>T5 embedding 长度依赖 token 数，使“一次适配后任意 prompt 多轮编辑”并不自然；通常需按目标 prompt 重做优化/微调。</li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/image-editing.html">topics/image-editing</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a></li>
-<li><a class="wikilink" href="../../en/questions/question-data-vs-architecture-in-image-editing.html">questions/question-data-vs-architecture-in-image-editing</a></li>
-<li><a class="wikilink" href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a></li>
+<li><a class="wikilink" href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-blended-diffusion.html">Blended Diffusion</a>：零训练、必须 mask、mask 外严格保持。</li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-edict-exact-diffusion-inversion.html">EDICT</a>：零优化的双轨 exact sampler inversion，约 2× DDIM。</li>
+<li><a class="wikilink" href="../../en/sources/2026-04-14-null-text-inversion.html">Null-text Inversion</a>：优化条件而非完整模型的 inversion 编辑路线。</li>
 </ul>
-<h2 id="备注">备注</h2>
-<p>Imagic 在这套库里的作用，是把扩散时代真实图像文本编辑的早期主线补成明确起点。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<h2 id="归属边界">归属边界</h2>
+<p>本文只支持 per-image U-Net adaptation 的真实图像编辑结论；它没有研究统一生成—编辑架构、数据与架构优劣或 DiT 主干，因此不应作为这些实体、问题或 claim 的证据。</p>
+<h2 id="证据评估">证据评估</h2>
+<p><strong>A-</strong>：三阶段方法、成本、消融和大规模人评披露完整；主要限制是协议对本任务有利、超参数/候选人工选择、适配昂贵、保持无严格保证，且只验证 U-Net diffusion。</p></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-editing.html">图像编辑</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">7</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-04-14-paint-by-example.html">Paint by Example：以单张参考图控制局部语义编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-prompt-tuning-inversion.html">Prompt Tuning Inversion：优化条件嵌入轨迹的真实图像编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-blended-diffusion.html">Blended Diffusion：在像素扩散过程中逐步混合文本编辑前景与原图背景</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-diffusion-autoencoders.html">Diffusion Autoencoders：用语义向量与随机细节码构造可解码扩散表示</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-edict-exact-diffusion-inversion.html">EDICT：用双轨耦合变换实现可逆 diffusion sampler 与真实图像编辑</a><span>Source note</span></li><li><a href="../../en/topics/image-editing.html">图像编辑</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-imagic&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Imagic（CVPR 2023）：基于扩散模型的文本真实图像编辑&quot;,
+  &quot;title&quot;: &quot;Imagic：以文本嵌入优化、模型微调和插值完成真实图像编辑&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2023&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;image-editing&quot;,
     &quot;diffusion&quot;,
+    &quot;editing&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;authors&quot;: [
-    &quot;Kawar, Bahjat&quot;,
-    &quot;Zada, Shiran&quot;,
-    &quot;Lang, Oran&quot;,
-    &quot;Tov, Omer&quot;,
-    &quot;Chang, Huiwen&quot;,
-    &quot;Dekel, Tali&quot;,
-    &quot;Mosseri, Inbar&quot;,
-    &quot;Irani, Michal&quot;
+    &quot;Bahjat Kawar&quot;,
+    &quot;Shiran Zada&quot;,
+    &quot;Oran Lang&quot;,
+    &quot;Omer Tov&quot;,
+    &quot;Huiwen Chang&quot;,
+    &quot;Tali Dekel&quot;,
+    &quot;Inbar Mosseri&quot;,
+    &quot;Michal Irani&quot;
   ],
-  &quot;published_at&quot;: &quot;2022/10/17&quot;,
+  &quot;published_at&quot;: &quot;2022-10-17&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2210.09276&quot;,
     &quot;https://arxiv.org/pdf/2210.09276&quot;
@@ -130,15 +161,10 @@
     &quot;topics/image-editing&quot;,
     &quot;topics/diffusion-models&quot;
   ],
-  &quot;entities&quot;: [
-    &quot;entities/unified-image-generation-editing&quot;
-  ],
+  &quot;entities&quot;: [],
   &quot;claims&quot;: [],
-  &quot;questions&quot;: [
-    &quot;questions/question-data-vs-architecture-in-image-editing&quot;,
-    &quot;questions/question-will-unified-image-models-sustain-their-advantage&quot;
-  ]
-}</pre></section>
+  &quot;questions&quot;: []
+}</pre></details>
     </article>
   </main>
 </body>

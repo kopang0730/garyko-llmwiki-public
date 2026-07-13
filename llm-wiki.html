@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Karpathy 提出的 LLM Wiki 模式：用 LLM 持续维护一组互相链接的 Markdown 知识页。">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>LLM Wiki · llmwiki</title>
-  <link rel="stylesheet" href="assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="assets/wiki.js?v=20260523-source-style-v3"></script>
+  <link rel="stylesheet" href="assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-root" data-page="{&quot;slug&quot;: &quot;llm-wiki&quot;, &quot;title&quot;: &quot;LLM Wiki&quot;, &quot;title_en&quot;: &quot;LLM Wiki Pattern&quot;, &quot;kind&quot;: &quot;root&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-root" data-page="{&quot;slug&quot;: &quot;llm-wiki&quot;, &quot;title&quot;: &quot;LLM Wiki&quot;, &quot;title_en&quot;: &quot;LLM Wiki Pattern&quot;, &quot;kind&quot;: &quot;root&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,13 +60,15 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="llm-wiki.html">中文</a><a class="" href="en/llm-wiki.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">root · 2026-05-23</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><strong>LLM Wiki</strong></nav>
+        <p class="eyebrow">入口 · 更新于 2026-05-23</p>
         <h1><span class="title-main">LLM Wiki</span></h1>
         <p class="article-summary">Karpathy 提出的 LLM Wiki 模式：用 LLM 持续维护一组互相链接的 Markdown 知识页。</p>
-        
         <div class="tag-row"><a class="tag" href="tags.html#near-cvpr-2025">#near-cvpr-2025</a></div>
       </header>
-      <section class="article-content"><p>A pattern for building personal knowledge bases using LLMs.</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><details class="toc" open><summary>目录</summary><ol><li><a href="#the-core-idea">The core idea</a></li><li><a href="#architecture">Architecture</a></li><li><a href="#operations">Operations</a></li><li><a href="#indexing-and-logging">Indexing and logging</a></li><li><a href="#optional-cli-tools">Optional: CLI tools</a></li><li><a href="#tips-and-tricks">Tips and tricks</a></li><li><a href="#why-this-works">Why this works</a></li><li><a href="#note">Note</a></li></ol></details></aside>
+        <section class="article-content"><p>A pattern for building personal knowledge bases using LLMs.</p>
 <p>This is an idea file, it is designed to be copy pasted to your own LLM Agent (e.g. OpenAI Codex, Claude Code, OpenCode / Pi, or etc.). Its goal is to communicate the high level idea, but your agent will build out the specifics in collaboration with you.</p>
 <h2 id="the-core-idea">The core idea</h2>
 <p>Most people&#x27;s experience with LLMs and documents looks like RAG: you upload a collection of files, the LLM retrieves relevant chunks at query time, and generates an answer. This works, but the LLM is rediscovering knowledge from scratch on every question. There&#x27;s no accumulation. Ask a subtle question that requires synthesizing five documents, and the LLM has to find and piece together the relevant fragments every time. Nothing is built up. NotebookLM, ChatGPT file uploads, and most RAG systems work this way.</p>
@@ -105,7 +113,11 @@
 <p>The idea is related in spirit to Vannevar Bush&#x27;s Memex (1945) — a personal, curated knowledge store with associative trails between documents. Bush&#x27;s vision was closer to this than to what the web became: private, actively curated, with the connections between documents as valuable as the documents themselves. The part he couldn&#x27;t solve was who does the maintenance. The LLM handles that.</p>
 <h2 id="note">Note</h2>
 <p>This document is intentionally abstract. It describes the idea, not a specific implementation. The exact directory structure, the schema conventions, the page formats, the tooling — all of that will depend on your domain, your preferences, and your LLM of choice. Everything mentioned above is optional and modular — pick what&#x27;s useful, ignore what isn&#x27;t. For example: your sources might be text-only, so you don&#x27;t need image handling at all. Your wiki might be small enough that the index file is all you need, no search engine required. You might not care about slide decks and just want markdown pages. You might want a completely different set of output formats. The right way to use this is to share it with your LLM agent and work together to instantiate a version that fits your needs. The document&#x27;s only job is to communicate the pattern. Your LLM can figure out the rest.</p></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+      </div>
+      
+      
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">1</span></h2><ul><li><a href="index.html">索引</a><span>入口</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;title&quot;: &quot;LLM Wiki&quot;,
   &quot;title_en&quot;: &quot;LLM Wiki Pattern&quot;,
   &quot;summary&quot;: &quot;Karpathy 提出的 LLM Wiki 模式：用 LLM 持续维护一组互相链接的 Markdown 知识页。&quot;,
@@ -114,7 +126,7 @@
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

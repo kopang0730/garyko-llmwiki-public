@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SLD：把 diffusion 生成改成 LLM 驱动的闭环自纠错系统 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="SLD：LLM 驱动的闭环扩散生成纠错">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>SLD：LLM 驱动的闭环扩散生成纠错 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-self-correcting-llm-controlled-diffusion-models&quot;, &quot;title&quot;: &quot;SLD（CVPR 2024）：把 diffusion 生成改成 LLM 驱动的闭环自纠错系统&quot;, &quot;title_en&quot;: &quot;SLD（CVPR 2024）：把 diffusion 生成改成 LLM 驱动的闭环自纠错系统&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-self-correcting-llm-controlled-diffusion-models&quot;, &quot;title&quot;: &quot;SLD：LLM 驱动的闭环扩散生成纠错&quot;, &quot;title_en&quot;: &quot;SLD：LLM 驱动的闭环扩散生成纠错&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;image-editing&quot;, &quot;diffusion&quot;, &quot;control&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,60 +60,81 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-16-self-correcting-llm-controlled-diffusion-models.html">中文</a><a class="" href="../en/sources/2026-04-16-self-correcting-llm-controlled-diffusion-models.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-16</p>
-        <h1><span class="title-main">SLD</span><span class="title-subtitle">把 diffusion 生成改成 LLM 驱动的闭环自纠错系统</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>SLD：LLM 驱动的闭环扩散生成纠错</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">SLD</span><span class="title-subtitle">LLM 驱动的闭环扩散生成纠错</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023/11/27</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2311.16090" title="https://arxiv.org/abs/2311.16090" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2311.16090</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2311.16090.pdf" title="https://arxiv.org/pdf/2311.16090.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2311.16090.pdf</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#efficiency">#efficiency</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#image-editing">#image-editing</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#control">#control</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把 controllability 从单次采样推进成闭环控制：先生成、再评估、再纠错，在 LLM controller 驱动下反复修正 diffusion 输出，让复杂 prompt 对齐度更高。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023-11-27</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2311.16090" title="https://arxiv.org/abs/2311.16090" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2311.16090</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2311.16090.pdf" title="https://arxiv.org/pdf/2311.16090.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2311.16090.pdf</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#核心实验与结果">核心实验与结果</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>SLD 用 LLM、开放词汇检测器、SAM 和扩散潜空间操作组成检测—规划—修正闭环，在 LMD benchmark 上让 DALL-E 3 平均准确率从 52.0% 升至 78.5%、LMD+ 从 79.3% 升至 88.3%；提升来自外部模块化系统，不是 diffusion backbone 获得原生理解。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>SLD 是 controller-level orchestration，而非新 diffusion 架构。initial generator 可来自 DALL-E 3 API，但实际纠错执行依赖 Stable Diffusion/LMD+ 的可操作 latent、SAM 与局部扩散编辑。“生成/编辑统一”表示复用同一 pipeline 和不同 LLM instruction，不是单一统一模型。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>text-to-image diffusion 面对复杂文本时，经常在属性绑定、空间关系和数目理解上出错。很多控制方法都在单次采样里做局部修正，但更像“尽力生成”，缺少显式反馈回路。</p>
+<p>复杂 prompt 的计数、属性、空间关系和否定即使经过 LLM 预规划仍会被下游生成器画错。SLD 在看见输出后解析 prompt、检测对象、比较当前/目标框，再自动添加、删除、移动、缩放或改属性。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>SLD 引入一个 LLM controller，把 text-to-image generation 变成迭代闭环：先得到初始图像，再由控制器评估与 prompt 的偏差，然后生成纠错指令，驱动下一轮 diffusion 修正。这样 controllability 从一次性条件输入升级成持续反馈控制。</p>
-<h2 id="关键发现">关键发现</h2>
+<ol>
+<li>GPT-4 parser 提取对象、数量、属性和否定。</li>
+<li>OWL-ViT v2 检测当前对象框 $B_{curr}$。</li>
+<li>GPT-4 controller 生成目标框 $B_{next}$；程序差分得到操作集。</li>
+<li>SAM 定位对象，借助反向/正向 diffusion 合成、删除、移动或修改 latent。</li>
+<li>若无操作则停止，否则进入下一轮；轮数有上限。</li>
+</ol>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<p>LMD benchmark 四类任务各 100 prompts，使用 OWL-ViT v2 评估：</p>
+<table><thead><tr><th>方法</th><th>Negation</th><th>Numeracy</th><th>Attribute</th><th>Spatial</th><th>Average</th></tr></thead><tbody><tr><td>DALL-E 3</td><td>25%</td><td>38%</td><td>74%</td><td>71%</td><td>52.0%</td></tr><tr><td>+ 1-round SLD</td><td>90%</td><td>61%</td><td>80%</td><td>83%</td><td><strong>78.5%</strong></td></tr><tr><td>LMD+</td><td>100%</td><td>82%</td><td>49%</td><td>86%</td><td>79.3%</td></tr><tr><td>+ 1-round SLD</td><td>100%</td><td>98%</td><td>63%</td><td>92%</td><td><strong>88.3%</strong></td></tr></tbody></table>
+<p>Stable Diffusion 从 28.5% 升到一轮 54.5%、两轮 60.0%，第二轮仍有 +5.5pp，但收益递减。</p>
+<h2 id="关键消融">关键消融</h2>
 <ul>
-<li>它把 batch-g 的“control interface consolidation”推进到更系统层：控制接口开始从 token / attention / layout 进一步升级为外部 controller 驱动的闭环流程。</li>
-<li>SLD 和 <a class="wikilink" href="../sources/2026-04-16-attend-and-excite.html">sources/2026-04-16-attend-and-excite</a> 都关注语义遗漏与错绑，但 SLD 的特点是把修正逻辑外包给更高层的 LLM controller。</li>
-<li>它还把图像生成和图像编辑重新绑到同一闭环里，因为只改控制器指令就能把生成流程转成编辑流程。</li>
-<li>在本库里，这篇工作很适合用来判断 control interface 是否正从“单技巧”收敛成“可编排工作流”。</li>
+<li><strong>一轮 vs 两轮</strong>：直接证明额外反馈轮有收益，是本批最强 closed-loop 证据。</li>
+<li><strong>OWL-ViT v1 vs v2</strong>：DALL-E 3 + SLD average 从 63.5% 到 78.5%；LMD+ + SLD 从 83.3% 到 88.3%，说明 detector 是关键瓶颈。</li>
+<li>图像编辑仅定性展示，没有保真、局部性、质量或时延主表。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
-<ul>
-<li>闭环纠错会带来多轮推理成本，工程上更偏质量换时延。</li>
-<li>LLM controller 的判断质量会直接决定修正效果，因此系统表现受上游语言模型能力影响。</li>
-<li>它更像外部 orchestration 层的答案，对底层 backbone 内部机制的解释较少。</li>
-</ul>
+<ol>
+<li>“正确性”上限由 detector 和 LLM controller 决定；漏检可能导致错误停止。</li>
+<li>SAM 对复杂形状会误分割：删除头发时连面部一起移除。</li>
+<li>training-free 不代表低成本，多轮需要 LLM、检测、SAM 与多次 diffusion。</li>
+<li>主指标偏对象检测，难衡量光照、背景、遮挡与自然度损失。</li>
+<li>每类 100 个程序 prompt，不能外推到开放域复杂指令。</li>
+</ol>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<table><thead><tr><th>判断</th><th>证据分类</th><th>边界</th></tr></thead><tbody><tr><td>closed-loop correction 有效</td><td><strong>强直接支持</strong></td><td>表 2 一/两轮结果；依赖 detector/controller</td></tr><tr><td>semantic completeness</td><td>直接支持</td><td>operational accuracy，不等于底层理解</td></tr><tr><td>spatial guidance</td><td>直接支持</td><td>框级系统控制；受检测与分割限制</td></tr><tr><td>attention control</td><td>背景证据</td><td>SLD 核心不是 attention loss</td></tr><tr><td>支持 DiT</td><td>仅间接支持</td><td>外部 controller 可架构无关，但执行未验证 DiT</td></tr><tr><td>diffusion 原生“理解”</td><td><strong>反对过度外推</strong></td><td>推理主要由 GPT-4 与 detector 承担</td></tr></tbody></table>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2311.16090</li>
-<li>https://arxiv.org/pdf/2311.16090.pdf</li>
+<li><a href="https://arxiv.org/abs/2311.16090">arXiv</a></li>
+<li><a href="https://arxiv.org/pdf/2311.16090.pdf">PDF</a></li>
+<li><a class="wikilink missing" href="#missing-raw/ingest/2026-04-16-self-correcting-llm-controlled-diffusion-models/analysis">全文深分析与表格定位</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../topics/image-editing.html">topics/image-editing</a></li>
-<li><a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a></li>
-<li><a class="wikilink" href="../sources/2026-04-16-attend-and-excite.html">sources/2026-04-16-attend-and-excite</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>它在本库中的价值，是把 control interface consolidation 从“已有很多控制技巧”继续推进到“接口边界、层级分工和闭环控制是否开始成形”这个层面。</p></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+<li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../topics/image-editing.html">图像编辑</a></li>
+<li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../sources/2026-04-16-attend-and-excite.html">Attend-and-Excite</a></li>
+<li><a class="wikilink" href="../sources/2026-04-16-boxdiff.html">BoxDiff</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">4</span></h3><ul><li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../topics/image-editing.html">图像编辑</a></li><li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li><li><a class="wikilink" href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">6</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-04-16-attend-and-excite.html">Attend-and-Excite：用 attention guidance 修复主体遗漏</a><span>来源笔记</span></li><li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>主题</span></li><li><a href="../topics/diffusion-models.html">扩散模型</a><span>主题</span></li><li><a href="../topics/image-editing.html">图像编辑</a><span>主题</span></li><li><a href="../topics/image-generation.html">图像生成</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-16-self-correcting-llm-controlled-diffusion-models&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;SLD（CVPR 2024）：把 diffusion 生成改成 LLM 驱动的闭环自纠错系统&quot;,
+  &quot;title&quot;: &quot;SLD：LLM 驱动的闭环扩散生成纠错&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-16&quot;,
-  &quot;updated&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2024&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;image-generation&quot;,
+    &quot;image-editing&quot;,
     &quot;diffusion&quot;,
-    &quot;efficiency&quot;,
+    &quot;control&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
@@ -119,7 +146,7 @@
     &quot;Boyi Li&quot;,
     &quot;Trevor Darrell&quot;
   ],
-  &quot;published_at&quot;: &quot;2023/11/27&quot;,
+  &quot;published_at&quot;: &quot;2023-11-27&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2311.16090&quot;,
     &quot;https://arxiv.org/pdf/2311.16090.pdf&quot;
@@ -134,7 +161,7 @@
   &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MultiDiffusion：把多条 diffusion 轨迹绑成统一的受控生成框架 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="MultiDiffusion：用最小二乘融合多条去噪路径的 training-free 组合控制">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>MultiDiffusion：用最小二乘融合多条去噪路径的 training-free 组合控制 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-multidiffusion&quot;, &quot;title&quot;: &quot;MultiDiffusion（arXiv 2023）：把多条 diffusion 轨迹绑成统一的受控生成框架&quot;, &quot;title_en&quot;: &quot;MultiDiffusion（arXiv 2023）：把多条 diffusion 轨迹绑成统一的受控生成框架&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-multidiffusion&quot;, &quot;title&quot;: &quot;MultiDiffusion：用最小二乘融合多条去噪路径的 training-free 组合控制&quot;, &quot;title_en&quot;: &quot;MultiDiffusion：用最小二乘融合多条去噪路径的 training-free 组合控制&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;control&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,60 +60,92 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-16-multidiffusion.html">中文</a><a class="" href="../en/sources/2026-04-16-multidiffusion.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-16</p>
-        <h1><span class="title-main">MultiDiffusion</span><span class="title-subtitle">把多条 diffusion 轨迹绑成统一的受控生成框架</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>MultiDiffusion：用最小二乘融合多条去噪路径的 training-free 组合控制</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">MultiDiffusion</span><span class="title-subtitle">用最小二乘融合多条去噪路径的 training-free 组合控制</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>arXiv</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023/02/16</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2302.08113" title="https://arxiv.org/abs/2302.08113" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2302.08113</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2302.08113.pdf" title="https://arxiv.org/pdf/2302.08113.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2302.08113.pdf</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#efficiency">#efficiency</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#control">#control</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把 controlled generation 提升成一个更通用的组合框架：通过把多条 diffusion 过程绑到同一组共享变量或约束上，它能在不重训的前提下支持 panorama、box、mask 等多种控制。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>很多 controllable image generation 方法都依赖针对单一任务的新训练或新微调，导致每种控制信号都像一个独立插件，难以快速组合、迁移和复用。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>arXiv</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023-02-16</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2302.08113" title="https://arxiv.org/abs/2302.08113" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2302.08113</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2302.08113.pdf" title="https://arxiv.org/pdf/2302.08113.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2302.08113.pdf</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位与问题定义">论文定位与问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#成本-空间控制与-backbone">成本、空间控制与 backbone</a></li><li><a href="#核心实验与结果">核心实验与结果</a><ol><li class="toc-sub"><a href="#panorama">Panorama</a></li><li class="toc-sub"><a href="#region-control">Region control</a></li></ol></li><li><a href="#关键消融">关键消融</a></li><li><a href="#空间控制-组合与高分辨率判断">空间控制、组合与高分辨率判断</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li><li><a href="#证据评级">证据评级</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>MultiDiffusion 不训练新模型，而是在 Stable Diffusion v2 的每个采样步分别计算多个 crop/region 去噪方向，再以闭式最小二乘融合成全局更新；它强在 panorama、rough/tight mask 与多区域组合，但把成本从训练转移到随 crop/region 数增长的推理调用。</p>
+<h2 id="论文定位与问题定义">论文定位与问题定义</h2>
+<p>传统可控生成常为每个任务重训/微调，或使用单用途采样技巧。MultiDiffusion 试图把“多个 reference diffusion paths 如何共享同一画布”抽象成统一优化接口。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>MultiDiffusion 的核心不是新增 backbone，而是把多个 diffusion generation path 放进一个统一优化问题里，让它们共享参数或约束并联合收敛。这样用户给出的 panorama、segmentation、bounding boxes 等控制条件，都可以通过多路径融合方式接入。</p>
-<h2 id="关键发现">关键发现</h2>
+<p>给定全局 latent $J_t$、crop/region 映射 $F_i$、条件 $y_i$ 和权重 $W_i$，每步寻找一个 $J$，使其每个局部 $F_i(J)$ 尽量接近 reference denoiser 对该局部的更新。对直接 crop/mask，最小二乘解就是每个像素上候选更新的加权平均。</p>
 <ul>
-<li>它把 batch-f 的核心问题说得很清楚：控制接口能不能从一堆单任务技巧，升级成可组合的统一生成框架。</li>
-<li>相比 <a class="wikilink" href="../sources/2026-04-16-boxdiff.html">sources/2026-04-16-boxdiff</a> 的单类空间约束，MultiDiffusion 更强调多控制信号的统一绑定。</li>
-<li>它和 <a class="wikilink" href="../sources/2026-04-16-controlnet.html">sources/2026-04-16-controlnet</a> 互补：ControlNet 更像可训练侧支接口，MultiDiffusion 更像 training-free 的多路径组合引擎。</li>
-<li>在 <a class="wikilink" href="../topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a> 里，它补上了 compositional control 这条之前还不够明确的支线。</li>
+<li><strong>Panorama</strong>：重叠滑窗 crop 共享像素，每步联合融合，减少 sequential extrapolation 的接缝。</li>
+<li><strong>Region control</strong>：每个 region prompt 产生一条方向，以 mask 加权融合。</li>
+<li><strong>Bootstrapping</strong>：早期 20% steps 用噪化常色背景强化 tight-mask 贴合。</li>
+</ul>
+<p>闭式解只保证该 per-step LS objective 的最优，不保证最终图像的全局语义或物理关系最优。</p>
+<h2 id="成本-空间控制与-backbone">成本、空间控制与 backbone</h2>
+<table><thead><tr><th>维度</th><th>论文证据</th></tr></thead><tbody><tr><td>训练成本</td><td>0；固定预训练模型</td></tr><tr><td>base model</td><td>Stable Diffusion v2 latent U-Net，$64^2$ latent→$512^2$ RGB</td></tr><tr><td>panorama</td><td>实验 $512\times4608$，为训练宽度 9 倍</td></tr><tr><td>crop</td><td>latent $64^2$，stride 8（RGB 64 px）</td></tr><tr><td>推理成本</td><td>每步处理 $n$ 个 crop/region；可 batch，但总调用随 $n$ 增长</td></tr><tr><td>DiT</td><td>数学形式可能移植，但论文没有 DiT/flow 实验</td></tr></tbody></table>
+<p>因此 training-free 不等于 compute-free，也不属于采样步数加速。</p>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<h3 id="panorama">Panorama</h3>
+<table><thead><tr><th>方法</th><th>FID↓</th><th>CLIP↑</th><th>aesthetic↑</th></tr></thead><tbody><tr><td>Stable Inpainting</td><td>$45.5\pm14.5$</td><td>0.26</td><td>5.76</td></tr><tr><td>BLD</td><td>$18.4\pm7.4$</td><td>0.27</td><td>6.02</td></tr><tr><td>MultiDiffusion</td><td><strong>$10.3\pm4.8$</strong></td><td><strong>0.27</strong></td><td><strong>6.36</strong></td></tr></tbody></table>
+<p>评估用 8 prompts、各 2,000 panorama，随机裁 $512^2$ 计算指标。它证明局部质量与语义优于两个 sequential baseline，但随机 crop 指标不能充分测量全景长程重复和结构漂移。</p>
+<h3 id="region-control">Region control</h3>
+<p>COCO 1,000 样本上的重建 IoU：SI 0.16、BLD 0.17、无 bootstrapping 0.18、完整方法 <strong>0.26</strong>，真实 COCO 图为 0.43 上限。</p>
+<h2 id="关键消融">关键消融</h2>
+<p>唯一核心定量消融是 bootstrapping：IoU 由 0.18 增至 0.26，图 6 也显示对象由“在 mask 内某处”变为更贴 tight mask。论文未系统消融 stride、overlap、区域数、权重冲突与 batch/时延。</p>
+<h2 id="空间控制-组合与高分辨率判断">空间控制、组合与高分辨率判断</h2>
+<ul>
+<li>rough box/mask 到 tight segmentation 均可用。</li>
+<li>panorama crop 与 region prompt 可组合到同一全局 latent。</li>
+<li>它扩展画布尺寸与比例，不提升单 crop 的原生细节先验。</li>
+<li>overlap 保证局部连续，不保证长距离内容一致；作者展示 vertical panorama 重复瀑布的失败例。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>它强调统一控制与任务迁移，但不一定在每个具体控制任务上都优于专门优化的方法。</li>
-<li>多路径融合虽然省去训练，却可能把复杂度转移到采样期优化。</li>
-<li>作为 arXiv 证据，它在本库里更适合作为方向节点而不是最终定论。</li>
+<li>强依赖 reference prior、seed 与 prompt；坏路径会传播。</li>
+<li>调用数随 crop/region 增长，论文未报告 wall-clock、峰值显存和吞吐。</li>
+<li>LS 融合不显式建模遮挡、关系或物理交互。</li>
+<li>与不可用的 Make-A-Scene/SpaText 只能做论文图示定性比较。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li><strong>直接支持</strong>：固定 diffusion 可通过 sampling-time path fusion 获得无需训练的 panorama 与区域组合控制。</li>
+<li><strong>有限支持</strong>：“统一框架”只覆盖可表达为 crop/region consistency 的控制。</li>
+<li><strong>不支持</strong>：零额外计算、采样加速、全局关系推理、已验证 DiT 通用性。</li>
+<li>对 efficiency engineering 的准确表述应是“省训练、增推理”。</li>
 </ul>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2302.08113</li>
-<li>https://arxiv.org/pdf/2302.08113.pdf</li>
+<li><a href="https://arxiv.org/abs/2302.08113">arXiv abstract</a></li>
+<li><a href="https://arxiv.org/pdf/2302.08113.pdf">PDF</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a></li>
-<li><a class="wikilink" href="../sources/2026-04-16-boxdiff.html">sources/2026-04-16-boxdiff</a></li>
-<li><a class="wikilink" href="../sources/2026-04-16-controlnet.html">sources/2026-04-16-controlnet</a></li>
+<li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a class="wikilink" href="../sources/2026-04-16-controlnet.html">ControlNet</a></li>
+<li><a class="wikilink" href="../sources/2026-04-16-dense-text-attention-modulation.html">DenseDiffusion</a></li>
+<li><a class="wikilink" href="../sources/2026-04-16-dc-controlnet.html">DC-ControlNet</a></li>
 </ul>
-<h2 id="备注">备注</h2>
-<p>它在本库中的价值，是把 control / layout composition 这条长尾从“prompt 可以控制一点生成”推进到“attention、语义覆盖、布局建模和多路径组合都能成为独立接口设计问题”。</p></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+<h2 id="证据评级">证据评级</h2>
+<p><strong>A-</strong>：SD-v2 上 training-free crop/region fusion 的强证据；跨架构、推理成本与全景长程指标不足。</p></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li><li><a class="wikilink" href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">7</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-04-16-controlnet.html">Adding Conditional Control to Text-to-Image Diffusion Models：冻结 U-Net 主干的空间条件侧支</a><span>来源笔记</span></li><li><a href="../sources/2026-04-16-dc-controlnet.html">DC-ControlNet：SDXL U-Net 上的元素内/元素间层次化多条件控制</a><span>来源笔记</span></li><li><a href="../sources/2026-04-16-dense-text-attention-modulation.html">DenseDiffusion：Stable Diffusion 的 training-free 区域文本 attention modulation</a><span>来源笔记</span></li><li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>主题</span></li><li><a href="../topics/diffusion-models.html">扩散模型</a><span>主题</span></li><li><a href="../topics/image-generation.html">图像生成</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-16-multidiffusion&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;MultiDiffusion（arXiv 2023）：把多条 diffusion 轨迹绑成统一的受控生成框架&quot;,
+  &quot;title&quot;: &quot;MultiDiffusion：用最小二乘融合多条去噪路径的 training-free 组合控制&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-16&quot;,
-  &quot;updated&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;arXiv&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;image-generation&quot;,
     &quot;diffusion&quot;,
-    &quot;efficiency&quot;,
+    &quot;control&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
@@ -118,7 +156,7 @@
     &quot;Yaron Lipman&quot;,
     &quot;Tali Dekel&quot;
   ],
-  &quot;published_at&quot;: &quot;2023/02/16&quot;,
+  &quot;published_at&quot;: &quot;2023-02-16&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2302.08113&quot;,
     &quot;https://arxiv.org/pdf/2302.08113.pdf&quot;
@@ -132,7 +170,7 @@
   &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

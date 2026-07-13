@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="现有评测是否真的刻画了视频编辑理解能力">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>现有评测是否真的刻画了视频编辑理解能力 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-question" data-page="{&quot;slug&quot;: &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;, &quot;title&quot;: &quot;现有评测是否真的刻画了视频编辑理解能力&quot;, &quot;title_en&quot;: &quot;现有评测是否真的刻画了视频编辑理解能力&quot;, &quot;kind&quot;: &quot;question&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;benchmarking&quot;, &quot;survey-needed&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-question" data-page="{&quot;slug&quot;: &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;, &quot;title&quot;: &quot;现有评测是否真的刻画了视频编辑理解能力&quot;, &quot;title_en&quot;: &quot;现有评测是否真的刻画了视频编辑理解能力&quot;, &quot;kind&quot;: &quot;question&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;benchmarking&quot;, &quot;survey-needed&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a class="active" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,13 +60,15 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">中文</a><a class="" href="../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">question · 2026-04-17</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>问题</span><span class="crumb-sep" aria-hidden="true">›</span><strong>现有评测是否真的刻画了视频编辑理解能力</strong></nav>
+        <p class="eyebrow">问题 · 更新于 2026-07-12</p>
         <h1><span class="title-main">现有评测是否真的刻画了视频编辑理解能力</span></h1>
-        
         
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-editing">#video-editing</a><a class="tag" href="../tags.html#benchmarking">#benchmarking</a><a class="tag" href="../tags.html#survey-needed">#survey-needed</a></div>
       </header>
-      <section class="article-content"><h2 id="问题">问题</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><details class="toc" open><summary>目录</summary><ol><li><a href="#问题">问题</a></li><li><a href="#这个问题现在为什么更关键">这个问题现在为什么更关键</a></li><li><a href="#当前证据在说什么">当前证据在说什么</a><ol><li class="toc-sub"><a href="#更接近-感知质量">更接近“感知质量”</a></li><li class="toc-sub"><a href="#更接近-人类偏好与可接受性">更接近“人类偏好与可接受性”</a></li><li class="toc-sub"><a href="#更接近-形式化满足性与逻辑正确性">更接近“形式化满足性与逻辑正确性”</a></li><li class="toc-sub"><a href="#更接近-真实视频编辑任务理解">更接近“真实视频编辑任务理解”</a></li><li class="toc-sub"><a href="#与-结果质量-对齐质量-纠缠在一起的证据">与“结果质量 / 对齐质量”纠缠在一起的证据</a></li><li class="toc-sub"><a href="#编辑理解所依赖的前置能力">编辑理解所依赖的前置能力</a></li></ol></li><li><a href="#为什么还没有被真正解决">为什么还没有被真正解决</a></li><li><a href="#阶段性综合判断">阶段性综合判断</a></li><li><a href="#当前更倾向的结论">当前更倾向的结论</a></li><li><a href="#下一步最有价值的证据">下一步最有价值的证据</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="问题">问题</h2>
 <p>当前视频编辑研究越来越强调模型是否“理解”编辑目标，但现有 benchmark 和评测器，是否真的能刻画这种理解能力，仍然没有定论。更具体地说，评测到底是在测视频看起来好不好、用户是否更喜欢、模型能否满足逻辑约束，还是模型能否真正理解并执行编辑指令，这几个层次目前仍然没有被稳定地接起来。</p>
 <h2 id="这个问题现在为什么更关键">这个问题现在为什么更关键</h2>
 <p><a class="wikilink" href="../topics/generative-model-evaluation.html">topics/generative-model-evaluation</a> 已经显示，视频评测本身正在迅速分化：有的路线强调感知质量，有的强调 human-aligned 偏好，有的强调形式化正确性，还有的直接针对细粒度视频编辑操作。问题不再是“社区有没有评测”，而是“这些评测到底分别在测什么，它们之间能不能构成真实能力的映射”。</p>
@@ -82,19 +90,36 @@
 </ul>
 <h3 id="更接近-真实视频编辑任务理解">更接近“真实视频编辑任务理解”</h3>
 <ul>
-<li><a class="wikilink" href="../sources/2026-04-12-veu-bench.html">sources/2026-04-12-veu-bench</a> 把视频编辑理解问题单独 benchmark 化，是这条 question 的直接起点。</li>
-<li><a class="wikilink" href="../sources/2026-04-14-five-bench.html">sources/2026-04-14-five-bench</a> 进一步把 video-editing benchmark 拆到更细粒度能力层面，说明“编辑理解”不能只看总分，而要看不同操作类型是否真的被模型掌握。</li>
+<li><a class="wikilink" href="../sources/2026-04-12-veu-bench.html">sources/2026-04-12-veu-bench</a> 直接评测通用 Vid-LLM 对剪辑元素的识别、依据推理与功能判断，是这条 question 的理解坐标。</li>
+<li><a class="wikilink" href="../sources/2026-04-14-five-bench.html">sources/2026-04-14-five-bench</a> 评测细粒度对象级编辑结果，提供执行成功率与失败类型坐标；它与剪辑语法理解互补。</li>
 </ul>
 <h3 id="与-结果质量-对齐质量-纠缠在一起的证据">与“结果质量 / 对齐质量”纠缠在一起的证据</h3>
 <ul>
 <li><a class="wikilink" href="../sources/2026-04-12-align-a-video.html">sources/2026-04-12-align-a-video</a> 与 <a class="wikilink" href="../sources/2026-04-12-videodirector.html">sources/2026-04-12-videodirector</a> 更强调编辑质量、偏好对齐与控制精度，这些都很重要，但并不自动回答模型是否真正理解了编辑任务。</li>
 <li><a class="wikilink" href="../sources/2026-04-14-evalcrafter.html">sources/2026-04-14-evalcrafter</a> 与 <a class="wikilink" href="../sources/2026-04-14-videocrafter2.html">sources/2026-04-14-videocrafter2</a> 也提醒我们，很多视频评测仍然停留在大视频生成质量层，而不是精确的视频编辑理解层。</li>
 </ul>
+<p>2026-07-12 的全文复核进一步给出可操作边界：EvalCrafter 的 17 指标能发现视觉、对齐、运动与时间一致性的 trade-off，但没有源视频与 preserve/change protocol；VideoCrafter2 的画质提升也没有转成 motion 全面领先。Align-A-Video、VideoDirector 与 FateZero 分别通过 reward tuning、反演/attention control 和 attention fusion 改善编辑执行，其中 VideoDirector 最大数值收益来自未编辑区域保真，FateZero 仍难生成全新动作。这些失败可以来自底座、inversion、mask 或控制机制，因此输出分数无法单独归因为“理解不足”。</p>
+<p>InsViE-1M、FramePainter 与 QK-Edit 又补充了数据、任务定义和指标适用域：InsViE 的八项输出分数没有评估剪辑元素识别或多步计划，且 GPT-4o 同时参与数据筛选和评测；FramePainter 的 benchmark 对象是两帧 formulation 的最终编辑图，不能作为视频理解指标；QK-Edit 的 CLIPframes/Pick/ViCLIP 能报告文本与输出关系，却不能检测未编辑区域局部漂移、复杂运动 inversion 错误和叙事功能。当前最重要的审计字段应包含 <code>source preservation / intended change / unintended change / temporal consistency / instruction reasoning / workflow success</code>。</p>
+<p>Tune-A-Video 的 42 videos/140 prompts 协议是更早的压力测试：frame-pair CLIP similarity 与 text CLIP 分别报告时序外观和文本对齐，却可能奖励低运动输出；每视频 tuning、DDIM inversion 和输入视频本身共同提供强先验。它没有 preserve/change mask、unintended-change 或 workflow labels，因此不作为编辑理解正证据。</p>
+<p>CAMEL、DIVE、Language-driven Video Inpainting 与 MotionFollower 把 metric confounding 展示得更清楚：CAMEL 没有直接 motion metric；DIVE 用 CLIP identity/temporal proxies，缺背景和动作轨迹误差；LGVI 指标混合 language grounding、mask prediction、teacher-GT inpainting 与生成质量；MotionFollower 用同视频分段 pseudo-GT 近似真实 cross-identity transfer。Benchmark schema 应增加 <code>grounding accuracy / identity preservation / motion trajectory error / background preservation / true cross-instance GT provenance / runtime</code>。</p>
+<p>Pix2Video/RAVE 又显示 runtime 必须包含 inversion、sampling 和推理期优化；“training-free”不能单独充当效率结论。GlitchBench 的 593 个单帧故障适合扩充 artifact taxonomy，HallusionBench 的 455 个反事实 control pairs 适合检查 source/edited consistency；两者都缺真实视频编辑指令、连续输出与工作流 success labels，因此只提供方法学邻近证据。</p>
+<p>StableVideo/VidToMe 的 flow、LPIPS、CLIP 一致性主要衡量传播稳定；Reangle-A-Video 的 MEt3R/FVD 主要衡量新视点生成；VEGGIE 才直接提供 mask grounding/reasoning segmentation，但 J/F 绝对值仍低且 benchmark 仅 132 pairs。综合 benchmark 应把 camera re-targeting、appearance propagation、identity、grounding、reasoning 与 semantic edit success 分开。</p>
+<p>AVID/CCEdit/FlowVid/MotionEditor 再补四种 input-interface confounder：mask propagation、edited key frame、optical flow、reference pose。现有 BP/CLIP/LPIPS/MOS 无法分离 editor 与 XMem/flow/segmentation/I2I key-frame 的贡献；benchmark 必须保存上游接口质量、source preservation、target motion/identity、遮挡恢复和全流程 runtime。</p>
+<p>DynVideo-E/Fairy/Shape-aware/Video-P2P 又要求按 representation 与 adaptation 分桶：NeRF 的 novel-view/geometry、anchor editor 的动态效果、atlas 的 UV/correspondence、inversion editor 的重建/局部性。场景选择、参考图、人工修正和 per-video tuning 应作为 benchmark 输入成本，而非隐藏在“编辑质量”总分内。</p>
+<p>ANetQA/SOK-Bench 只提供组合与情境推理 proxy；MMMU 是静态专家题；FlashEval 是 prompt subset selector。任何迁移到编辑 benchmark 的方案都需加入 source video、instruction、intended/unintended change、temporal consistency 和 workflow success，并报告 question-only baseline 与 contamination audit。</p>
+<h3 id="编辑理解所依赖的前置能力">编辑理解所依赖的前置能力</h3>
+<ul>
+<li><a class="wikilink" href="../sources/2026-04-14-mvbench.html">sources/2026-04-14-mvbench</a> 直接测短视频动作、对象、状态变化、定位、计数与反事实推理，提供编辑理解的通用时序底座；它没有源视频、编辑指令和操作级成功标签。</li>
+<li><a class="wikilink" href="../sources/2026-04-14-lvbench.html">sources/2026-04-14-lvbench</a> 把跨度扩展到平均约 68 分钟，直接暴露长素材中的跨事件检索、实体追踪、总结与指令遵循问题；它对应长素材剪辑的必要前置能力。</li>
+<li><a class="wikilink" href="../sources/2026-04-14-sti-bench.html">sources/2026-04-14-sti-bench</a> 测尺寸、距离、速度、轨迹、方向与相机位姿，把“语义上看懂”推进到量化时空 grounding；最佳模型仍约 41%，说明复杂空间/运动编辑的机制基础尚不稳定。</li>
+<li><a class="wikilink" href="../sources/2026-04-14-vbench.html">sources/2026-04-14-vbench</a> 把生成结果拆成 16 个质量与条件一致性维度，可以复用为编辑输出质量骨架；其初版对象是约 2 秒的 T2V 视频，缺少 preserve/change 约束。</li>
+<li><a class="wikilink" href="../sources/2026-04-14-video-bench.html">sources/2026-04-14-video-bench</a> 用 chain-of-query 与 few-shot scoring 对齐 35,196 次人工评分，证明 MLLM evaluator 需要流程设计与尺度校准；Temporal Consistency 相关性仍只有 0.402，且没有源视频保持与局部编辑协议。</li>
+</ul>
 <h2 id="为什么还没有被真正解决">为什么还没有被真正解决</h2>
 <p>因为现在至少有四套彼此不同的评测逻辑在并行存在：<strong>感知质量、human preference、形式化满足性、细粒度编辑理解</strong>。它们都重要，但彼此并不等价。一个模型可能更会讨好人眼，却不一定更会遵守逻辑约束；一个模型可能满足形式化规则，却不一定真的在复杂编辑任务里表现更自然；一个模型在 video-editing benchmark 上得分高，也未必代表它在真实用户工作流里更可靠。</p>
 <h2 id="阶段性综合判断">阶段性综合判断</h2>
-<p>基于当前已经编译进 wiki 的证据，这个问题的阶段性答案已经可以更明确：<strong>现有评测体系显然比过去更接近“视频编辑理解”了，但它们现在仍然是在分别逼近这个问题的不同切面，而不是已经形成了稳定、统一、可信的真实能力刻画。</strong></p>
-<p>更直白地说，社区现在已经能分别测“看起来好不好”“人类喜不喜欢”“逻辑上对不对”“细粒度编辑做没做到”，但还不能稳定回答：一个模型在这些维度上表现更好，是否就真的意味着它更理解视频编辑任务。当前最大的空白，不是再多造一个 benchmark，而是建立这几类评测之间与真实任务完成度之间的映射关系。</p>
+<p>基于当前已经编译进 wiki 的证据，这个问题的阶段性答案已经可以更明确：<strong>现有评测已经覆盖短视频时序底座、长素材记忆、量化时空 grounding、生成结果质量、人类偏好、形式化满足性与细粒度编辑执行；这些坐标仍缺少与真实编辑工作流成功率的联合标定。</strong></p>
+<p>社区现在已经能分别测“看起来好不好”“人类喜不喜欢”“逻辑上对不对”“底层时空能力够不够”“细粒度编辑做没做到”。当前最大的空白是建立这些坐标与真实任务完成度之间的映射关系，并在同一模型、同一素材和同一编辑指令上联合报告。</p>
 <h2 id="当前更倾向的结论">当前更倾向的结论</h2>
 <ul>
 <li>现有 benchmark 和 evaluator 都是必要的，但都还是局部视角。</li>
@@ -116,13 +141,17 @@
 <li><a class="wikilink" href="../entities/video-editing-understanding.html">entities/video-editing-understanding</a></li>
 <li><a class="wikilink" href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">claims/claim-current-models-still-struggle-to-understand-video-editing</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-related_topics"><h3>相关主题<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../topics/video-editing.html">视频编辑</a></li><li><a class="wikilink" href="../topics/generative-model-evaluation.html">生成模型评测</a></li></ul></div><div class="related-group related-related_entities"><h3>相关实体<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../entities/video-editing-understanding.html">视频编辑理解</a></li></ul></div><div class="related-group related-candidate_sources"><h3>候选来源<span class="related-count">14</span></h3><ul><li><a class="wikilink" href="../sources/2026-04-12-veu-bench.html">VEU-Bench：通用 Vid-LLM 的视频剪辑元素理解基准</a></li><li><a class="wikilink" href="../sources/2026-04-12-align-a-video.html">Align-A-Video：面向一致视频编辑的确定性奖励调优</a></li><li><a class="wikilink" href="../sources/2026-04-12-videodirector.html">VideoDirector：借助文本到视频模型实现精确视频编辑</a></li><li><a class="wikilink" href="../sources/2026-04-14-aigv-assessor.html">AIGV-Assessor：用大模型评测文本到视频生成感知质量</a></li><li><a class="wikilink" href="../sources/2026-04-14-video-bench.html">Video-Bench：人类偏好对齐的视频生成评测</a></li><li><a class="wikilink" href="../sources/2026-04-14-neuro-symbolic-eval-t2v.html">通过形式化验证评测文本到视频模型的神经符号方法</a></li><li><a class="wikilink" href="../sources/2026-04-14-videocrafter2.html">VideoCrafter2：低质量视频与高质量图像协同训练的视频扩散模型</a></li><li><a class="wikilink" href="../sources/2026-04-14-evalcrafter.html">EvalCrafter：大视频生成模型的多维评测与人工偏好校准</a></li><li><a class="wikilink" href="../sources/2026-04-14-five-bench.html">FiVE-Bench：细粒度视频编辑评测基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-fatezero.html">FateZero：融合注意力做零样本文本视频编辑</a></li><li><a class="wikilink" href="../sources/2026-04-14-mvbench.html">MVBench：综合多模态视频理解基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-vbench.html">VBench：视频生成模型综合评测套件</a></li><li><a class="wikilink" href="../sources/2026-04-14-lvbench.html">LVBench：极长视频理解基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-sti-bench.html">STI-Bench：精确时空世界理解基准</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">51</span></h2><ul><li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a><span>判断</span></li><li><a href="../entities/video-editing-understanding.html">视频编辑理解</a><span>实体</span></li><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-04-12-align-a-video.html">Align-A-Video：面向一致视频编辑的确定性奖励调优</a><span>来源笔记</span></li><li><a href="../sources/2026-04-12-veu-bench.html">VEU-Bench：通用 Vid-LLM 的视频剪辑元素理解基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-12-videodirector.html">VideoDirector：借助文本到视频模型实现精确视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-aigv-assessor.html">AIGV-Assessor：用大模型评测文本到视频生成感知质量</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-anetqa.html">ANetQA：未裁剪视频细粒度组合推理基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-avid-video-inpainting.html">AVID：用 Temporal MultiDiffusion 做任意长度视频修补</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-camel-video-editing.html">CAMEL：面向文本驱动视频编辑的因果运动增强</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-ccedit.html">CCEdit：以结构—外观解耦实现创意可控视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-dive-subject-driven-video-editing.html">DIVE：用 DINO 做主体驱动视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-dynvideo-e.html">DynVideo-E：用动态 NeRF 编辑大运动与大视角人体视频</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-evalcrafter.html">EvalCrafter：大视频生成模型的多维评测与人工偏好校准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-fairy-video-to-video.html">Fairy：用 anchor cross-frame attention 并行加速指令视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-fatezero.html">FateZero：融合注意力做零样本文本视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-five-bench.html">FiVE-Bench：细粒度视频编辑评测基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-flasheval.html">FlashEval：用代表性 prompt 子集加速文本到图像模型评测</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-flowvid.html">FlowVid：把不完美光流作为软条件的视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-framepainter.html">FramePainter：用视频扩散先验增强交互式图像编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-glitchbench.html">GlitchBench：大型多模态模型能否识别电子游戏故障</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-hallusionbench.html">HallusionBench：视觉语言幻觉与视觉错觉诊断基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-insvie-1m.html">InsViE-1M：通过精细数据构造实现 instruction-based 视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-language-driven-video-inpainting.html">通过多模态大模型实现语言驱动视频修补</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-lvbench.html">LVBench：极长视频理解基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-maplm.html">MAPLM：地图与交通场景的真实世界多模态问答基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-maskint.html">MaskINT：关键帧扩散编辑与非自回归结构插帧的视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-mmmu.html">MMMU：跨学科专家级多模态理解与推理基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-motioneditor.html">MotionEditor：参考姿态驱动的人体视频运动编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-motionfollower.html">MotionFollower：通过 score-guided diffusion 编辑视频运动</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-mvbench.html">MVBench：综合多模态视频理解基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-neuro-symbolic-eval-t2v.html">通过形式化验证评测文本到视频模型的神经符号方法</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-pix2video.html">Pix2Video：利用图像扩散进行视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-qk-edit.html">QK-Edit：在 MM-DiT 中重构图像与视频编辑的 attention 注入</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-rave-video-editing.html">RAVE：随机噪声重排的快速一致视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-reangle-a-video.html">Reangle-A-Video：把单目视频重演为多视角同步视频</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-shape-aware-layered-video-editing.html">Shape-aware Text-driven Layered Video Editing：用 UV 变形突破 atlas 的固定形状</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-sok-bench.html">SOK-Bench：结合开放世界知识的情境视频推理基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-stablevideo.html">StableVideo：用 layered atlas 稳定扩散视频外观编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-sti-bench.html">STI-Bench：精确时空世界理解基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-tune-a-video.html">Tune-A-Video：单样本调优图像扩散模型做文本到视频生成</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-vbench.html">VBench：视频生成模型综合评测套件</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-veggie.html">VEGGIE：统一指令视频编辑、grounding 与 reasoning segmentation</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-verifiable-human-eval-t2i.html">文本到图像生成的可验证与可复现人工评测</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-video-bench.html">Video-Bench：人类偏好对齐的视频生成评测</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-video-p2p.html">Video-P2P：用 shared-null inversion 与解耦 guidance 做 attention-control 视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-video-worth-256-bases.html">A Video is Worth 256 Bases：以时空 EM 低秩基改进零样本视频反演</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-videocrafter2.html">VideoCrafter2：低质量视频与高质量图像协同训练的视频扩散模型</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-vidtome.html">VidToMe：用跨帧 token merging 做零样本视频编辑</a><span>来源笔记</span></li><li><a href="../topics/generative-model-evaluation.html">生成模型评测</a><span>主题</span></li><li><a href="../topics/video-editing.html">视频编辑</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;question-do-benchmarks-track-real-video-editing-understanding&quot;,
   &quot;type&quot;: &quot;question&quot;,
   &quot;title&quot;: &quot;现有评测是否真的刻画了视频编辑理解能力&quot;,
   &quot;status&quot;: &quot;open&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-17&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;video-editing&quot;,
@@ -148,9 +177,13 @@
     &quot;sources/2026-04-14-videocrafter2&quot;,
     &quot;sources/2026-04-14-evalcrafter&quot;,
     &quot;sources/2026-04-14-five-bench&quot;,
-    &quot;sources/2026-04-14-fatezero&quot;
+    &quot;sources/2026-04-14-fatezero&quot;,
+    &quot;sources/2026-04-14-mvbench&quot;,
+    &quot;sources/2026-04-14-vbench&quot;,
+    &quot;sources/2026-04-14-lvbench&quot;,
+    &quot;sources/2026-04-14-sti-bench&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

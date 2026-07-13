@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Blended Diffusion：把文本驱动自然图像编辑直接接进扩散生成过程 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="Blended Diffusion：在像素扩散过程中逐步混合文本编辑前景与原图背景">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Blended Diffusion：在像素扩散过程中逐步混合文本编辑前景与原图背景 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-blended-diffusion&quot;, &quot;title&quot;: &quot;Blended Diffusion（CVPR 2022）：把文本驱动自然图像编辑直接接进扩散生成过程&quot;, &quot;title_en&quot;: &quot;Blended Diffusion（CVPR 2022）：把文本驱动自然图像编辑直接接进扩散生成过程&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;diffusion&quot;, &quot;conditioning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-blended-diffusion&quot;, &quot;title&quot;: &quot;Blended Diffusion：在像素扩散过程中逐步混合文本编辑前景与原图背景&quot;, &quot;title_en&quot;: &quot;Blended Diffusion：在像素扩散过程中逐步混合文本编辑前景与原图背景&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;diffusion&quot;, &quot;conditioning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,51 +60,69 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-16-blended-diffusion.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-16-blended-diffusion.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-16</p>
-        <h1><span class="title-main">Blended Diffusion</span><span class="title-subtitle">把文本驱动自然图像编辑直接接进扩散生成过程</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Blended Diffusion：在像素扩散过程中逐步混合文本编辑前景与原图背景</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">Blended Diffusion</span><span class="title-subtitle">在像素扩散过程中逐步混合文本编辑前景与原图背景</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2022</dd></div><div class="source-fact"><dt>Published</dt><dd>2021/11/29</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2111.14818" title="https://arxiv.org/abs/2111.14818" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2111.14818</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2111.14818.pdf" title="https://arxiv.org/pdf/2111.14818.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2111.14818.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-editing">#image-editing</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#conditioning">#conditioning</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把自然图像编辑更早地接进 diffusion 路线：它通过混合局部编辑与全局生成过程，让文本驱动编辑能够在真实图像上更自然地落地。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2022</dd></div><div class="source-fact"><dt>Published</dt><dd>2021-11-29</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2111.14818" title="https://arxiv.org/abs/2111.14818" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2111.14818</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2111.14818.pdf" title="https://arxiv.org/pdf/2111.14818.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2111.14818.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#关键发现">关键发现</a></li><li><a href="#消融与成本">消融与成本</a></li><li><a href="#编辑保持边界">编辑保持边界</a></li><li><a href="#相关页面">相关页面</a></li><li><a href="#证据评估">证据评估</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>Blended Diffusion 用冻结的 ImageNet 像素 DDPM 与 CLIP 梯度，在每个反向扩散步把文本引导前景和原图同噪声级背景按 mask 混合；它以高推理成本换来 mask 外像素严格保持，是早期局部 diffusion editing 的清晰基线，而不是 inversion、latent diffusion 或 DiT 方法。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>早期文本驱动图像编辑常常在两个方向上失衡：要么局部改动不够贴合原图，要么生成结果虽然符合文本但破坏了原始结构。论文要解决的是，怎样让 diffusion 在真实图像编辑里同时保留原图内容和文本目标。</p>
+<p>输入真实图像、目标文本和二值 ROI mask，要求 mask 内发生语义编辑，mask 外保持原图，并让边界自然。单纯给局部 CLIP loss 加 soft background loss 会产生不可消除的编辑—保持 trade-off：背景权重低会全图漂移，权重高又压制前景改变。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>作者提出 Blended Diffusion，把待编辑区域和上下文图像共同纳入扩散过程，通过扩散式采样在编辑区域内逐步完成语义改写，同时尽量维持上下文一致性。它的重要性在于把 text-driven editing 从纯生成路线拉回到真实图像编辑场景，并给后续 image-editing topic 提供了一个更早的 diffusion 锚点。</p>
+<ul>
+<li><strong>真实主干</strong>：Dhariwal–Nichol ImageNet 256×256 class-conditional improved DDPM 的卷积 U-Net；CLIP 只负责梯度 guidance 与候选排名。</li>
+<li><strong>逐步混合</strong>：每一步先得到文本引导前景 $x_{t-1,fg}$，再从原图采样同噪声级背景 $x_{t-1,bg}$：</li>
+</ul>
+<p>$$</p>
+<p>x_{t-1}=x_{t-1,fg}\odot m+x_{t-1,bg}\odot(1-m).</p>
+<p>$$</p>
+<ul>
+<li><strong>保持机制</strong>：下一步 denoising 修复混合边界；最终一步直接复制原图 mask 外像素，因此该区域的保持是构造保证。</li>
+<li><strong>抗 CLIP 捷径</strong>：对中间干净图预测做多次 projective augmentations，平均各视图的 CLIP 梯度，降低对抗纹理。</li>
+<li><strong>不是 inversion</strong>：输入仅经已知正向核加噪到编辑起点；不求可逆初始噪声，不优化模型或文本 embedding，但每步需要 CLIP 反向梯度。</li>
+</ul>
 <h2 id="关键发现">关键发现</h2>
+<p>用户研究按 1–5 分评价 Figure 5 的结果：</p>
+<table><thead><tr><th>方法</th><th>现实感 ↑</th><th>背景保持 ↑</th><th>文本匹配 ↑</th></tr></thead><tbody><tr><td>PaintByWord</td><td>3.31±1.38</td><td>3.25±1.33</td><td>3.14±1.31</td></tr><tr><td>Local CLIP GD</td><td>3.50±1.19</td><td>3.11±1.24</td><td>3.86±1.32</td></tr><tr><td>PaintByWord++</td><td>1.94±1.36</td><td>3.37±1.30</td><td>3.01±1.38</td></tr><tr><td><strong>Blended Diffusion</strong></td><td><strong>3.93±1.08</strong></td><td><strong>4.73±0.61</strong></td><td><strong>4.63±0.77</strong></td></tr></tbody></table>
+<p>这张表支持其在该小规模协议下优于三条早期基线，但主文未披露参与者数、判断总数与显著性，不能外推为通用性能幅度。更可靠的结论是：hard blending 从机制上解决了 soft background loss 的冲突。</p>
+<h2 id="消融与成本">消融与成本</h2>
 <ul>
-<li>它是 <a class="wikilink" href="../../en/topics/image-editing.html">topics/image-editing</a> 里很早的 diffusion editing 节点，说明文本驱动真实图像编辑在 2022 年就已经明确接入 diffusion 主线。</li>
-<li>它把“编辑区域”和“上下文保持”同时作为生成过程的一部分处理，说明 diffusion editing 很早就开始围绕局部保真度与全局一致性做结构设计。</li>
-<li>它和后来的 <a class="wikilink" href="../../en/sources/2026-04-14-diffeditor.html">sources/2026-04-14-diffeditor</a>、<a class="wikilink" href="../../en/sources/2026-04-14-imagen-editor-editbench.html">sources/2026-04-14-imagen-editor-editbench</a> 能形成清晰前后关系：前者补强编辑精度，后者把方法与 benchmark 一起推进。</li>
+<li>$\lambda$ 消融显示 soft background preservation 不能同时得到强编辑和干净背景。</li>
+<li>相同 seed 下，加入 extending augmentations 的结果更自然；但论文没有 augmentation 数量或 CLIP 变体的定量曲线。</li>
+<li><strong>新增训练为 0</strong>，但单候选约 <strong>30 秒/张</strong>；每步需 U-Net 前向以及多视图 CLIP 前向/反向，且通常生成多个候选再排名，总延迟随候选数增加。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="编辑保持边界">编辑保持边界</h2>
 <ul>
-<li>它更像早期自然图像编辑范式，离后来的统一生成-编辑系统还有明显距离。</li>
-<li>在复杂多对象、多步指令编辑场景里的可扩展性，当前材料里还看不到足够证据。</li>
-<li>这条路线对编辑区域定义和上下文融合的依赖较强，后续是否会被更统一的 latent / transformer 路线替代，仍值得继续跟踪。</li>
-</ul>
-<h2 id="原始链接">原始链接</h2>
-<ul>
-<li>https://arxiv.org/abs/2111.14818</li>
-<li>https://arxiv.org/pdf/2111.14818.pdf</li>
+<li>已展示对象添加/替换/删除、背景替换、scribble 引导和图像外推。</li>
+<li>严格保持只覆盖 mask 外；mask 内主体身份、几何、纹理和边界连续性没有保证。</li>
+<li>必须提供 mask；不是 mask-free instruction editing。</li>
+<li>局部 CLIP ranking 会偏好残缺对象或文字捷径，并可能生成不自然阴影。</li>
+<li>证据只覆盖 256×256 像素 U-Net DDPM，不能直接外推到 Stable Diffusion、DiT、高分辨率或多轮编辑。</li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/image-editing.html">topics/image-editing</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-diffeditor.html">sources/2026-04-14-diffeditor</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-imagen-editor-editbench.html">sources/2026-04-14-imagen-editor-editbench</a></li>
+<li><a class="wikilink" href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-edict-exact-diffusion-inversion.html">EDICT</a>：无 mask 的精确 sampler inversion，保持保证与成本结构不同。</li>
+<li><a class="wikilink" href="../../en/sources/2026-04-14-imagic.html">Imagic</a>：无 mask、每图优化与微调，能做更大非刚性改变但没有像素级保持保证。</li>
 </ul>
-<h2 id="备注">备注</h2>
-<p>它在本库中的价值，是把当前 image-editing 主线往前接到更早的 diffusion natural-image editing 起点，让后续编辑路线不只从 instruction editing 年代开始讲。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<h2 id="证据评估">证据评估</h2>
+<p><strong>B+</strong>：方法边界清楚、背景保持有结构保证、比较和消融支持核心设计；主要缺口是评测规模、自动指标、推理成本明细与跨 backbone 验证。</p></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-editing.html">图像编辑</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">6</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-04-14-imagic.html">Imagic：以文本嵌入优化、模型微调和插值完成真实图像编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-paint-by-example.html">Paint by Example：以单张参考图控制局部语义编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-diffusionclip.html">DiffusionCLIP：CLIP 引导的 diffusion U-Net 文本图像操控</a><span>Source note</span></li><li><a href="../../en/topics/diffusion-models.html">扩散模型</a><span>Topic</span></li><li><a href="../../en/topics/image-editing.html">图像编辑</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-16-blended-diffusion&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Blended Diffusion（CVPR 2022）：把文本驱动自然图像编辑直接接进扩散生成过程&quot;,
+  &quot;title&quot;: &quot;Blended Diffusion：在像素扩散过程中逐步混合文本编辑前景与原图背景&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-16&quot;,
-  &quot;updated&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2022&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
   &quot;tags&quot;: [
@@ -111,11 +135,11 @@
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;authors&quot;: [
-    &quot;Avrahami, Omri&quot;,
-    &quot;Lischinski, Dani&quot;,
-    &quot;Fried, Ohad&quot;
+    &quot;Omri Avrahami&quot;,
+    &quot;Dani Lischinski&quot;,
+    &quot;Ohad Fried&quot;
   ],
-  &quot;published_at&quot;: &quot;2021/11/29&quot;,
+  &quot;published_at&quot;: &quot;2021-11-29&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2111.14818&quot;,
     &quot;https://arxiv.org/pdf/2111.14818.pdf&quot;
@@ -128,7 +152,7 @@
   &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

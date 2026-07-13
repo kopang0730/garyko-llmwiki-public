@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FineDiving：技术动作评分与过程理解锚点 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="FineDiving：程序感知的细粒度动作质量评估">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>FineDiving：程序感知的细粒度动作质量评估 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-25-finediving&quot;, &quot;title&quot;: &quot;FineDiving（CVPR 2022）：技术动作评分与过程理解锚点&quot;, &quot;title_en&quot;: &quot;FineDiving（CVPR 2022）：技术动作评分与过程理解锚点&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-25-finediving&quot;, &quot;title&quot;: &quot;FineDiving：程序感知的细粒度动作质量评估&quot;, &quot;title_en&quot;: &quot;FineDiving：程序感知的细粒度动作质量评估&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;evaluation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,77 +60,112 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-25-finediving.html">中文</a><a class="" href="../en/sources/2026-04-25-finediving.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-25</p>
-        <h1><span class="title-main">FineDiving</span><span class="title-subtitle">技术动作评分与过程理解锚点</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>FineDiving：程序感知的细粒度动作质量评估</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">FineDiving</span><span class="title-subtitle">程序感知的细粒度动作质量评估</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2022</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2022-06-01</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-25</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2022/papers/Xu_FineDiving_A_Fine-Grained_Dataset_for_Procedure-Aware_Action_Quality_Assessment_CVPR_2022_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2022/papers/Xu_FineDiving_A_Fine-Grained_Dataset_for_Procedure-Aware_Action_Quality_Assessment_CVPR_2022_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Xu_FineDiving_A_Fine-Grained_Da…</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#benchmarking">#benchmarking</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#evaluation">#evaluation</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>把体育动作质量评估拆到过程级步骤与评分，适合支撑训练反馈、动作评分和可解释 AQA 方向。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2022</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2022-06-01</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-25</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2022/html/Xu_FineDiving_A_Fine-Grained_Dataset_for_Procedure-Aware_Action_Quality_Assessment_CVPR_2022_paper.html" title="https://openaccess.thecvf.com/content/CVPR2022/html/Xu_FineDiving_A_Fine-Grained_Dataset_for_Procedure-Aware_Action_Quality_Assessment_CVPR_2022_paper.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>openaccess.thecvf.com · Xu_FineDiving_A_Fine-Grained_Da…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2022/papers/Xu_FineDiving_A_Fine-Grained_Dataset_for_Procedure-Aware_Action_Quality_Assessment_CVPR_2022_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2022/papers/Xu_FineDiving_A_Fine-Grained_Dataset_for_Procedure-Aware_Action_Quality_Assessment_CVPR_2022_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Xu_FineDiving_A_Fine-Grained_Da…</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#数据集与标签">数据集与标签</a></li><li><a href="#方法与接口">方法与接口</a></li><li><a href="#协议与核心结果">协议与核心结果</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限与泄漏风险">局限与泄漏风险</a></li><li><a href="#对羽毛球-demo-的迁移边界">对羽毛球 demo 的迁移边界</a></li><li><a href="#对-wiki-判断的影响">对 Wiki 判断的影响</a></li><li><a href="#原始材料">原始材料</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>FineDiving 证明步骤分割与 query–exemplar 步骤级 cross-attention 能把跳水 AQA 的 Spearman $\rho$ 提至 0.9203；但最佳接口依赖已知 dive number、带真分参考样本和固定 transition 数，且 sample split 未说明 athlete/source-video 隔离。</p>
 <h2 id="论文定位">论文定位</h2>
-<p>FineDiving 把跳水动作质量评估做成 procedure-aware 问题，强调动作步骤、细粒度过程和最终评分之间的关系。</p>
-<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
-<p>它把体育 AI 从“识别发生了什么”推向“评价动作做得如何”，适合连接训练反馈和可解释评分。</p>
-<h2 id="和现有证据的关系">和现有证据的关系</h2>
+<p>论文同时贡献 3,000 段细粒度跳水视频与 Temporal Segmentation Attention（TSA），把“整段视频黑盒回归”改造成“先分步骤、再和参考视频逐步对比”的 AQA。</p>
+<h2 id="数据集与标签">数据集与标签</h2>
 <ul>
-<li>与 <a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它把体育 AI 的证据面从 tracking 扩展到动作、姿态、战术、比赛状态或高速小目标。</li>
-<li>与 <a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：它对应 roadmap 中下一批 batch 的一个证据节点。</li>
+<li>3,000 clips、52 action types、29 sub-action types、23 difficulty types。</li>
+<li>两级语义：dive-number action type 与 take-off/somersault/twist/entry 等 sub-action type。</li>
+<li>两级时间：完整动作边界与连续步骤 transition。</li>
+<li>FINA 官方 action score、judges’ scores、difficulty degree。</li>
+<li>专业运动员协助 lexicon，6 名 worker 交叉复核，总约 120 小时。</li>
+<li>未报告运动员唯一数量、身份、赛事/源视频 split；无步骤级执行质量/扣分原因。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="方法与接口">方法与接口</h2>
+<p>I3D 提取特征，TSA 预测固定 $L=2$ 个 transition，把 query/exemplar 切为 3 段；transformer cross-attention 对齐同语义步骤，回归相对分数并加 exemplar 真分。测试用 $M=10$ 个训练集 exemplar 平均投票；最佳版本用已知 dive number 选同类参考。</p>
+<p>因此它是检索/对比式评分器，而非单视频独立绝对评分器。</p>
+<h2 id="协议与核心结果">协议与核心结果</h2>
 <ul>
-<li>当前这版 source note 先完成 bibliography-driven 编译，后续可以按 deep-analysis-first 流程补 <code>analysis.md</code>、关键图页和实验细节。</li>
-<li>具体数值和 benchmark 细节应以 <code>raw/ingest/2026-04-25-finediving/paper-text.md</code> 与原始 PDF 为准。</li>
+<li>Kinetics 预训练 I3D；每视频 96 帧、9 snippets；75% train/25% test。</li>
+<li>指标：AIoU@0.5/0.75、Spearman $\rho$、relative $\ell_2$。</li>
+</ul>
+<table><thead><tr><th>方法</th><th>exemplar</th><th>$\rho$</th><th>R-$\ell_2$</th></tr></thead><tbody><tr><td>CoRe</td><td>不用 DN</td><td>0.8631</td><td>0.5565</td></tr><tr><td>TSA</td><td>不用 DN</td><td><strong>0.8925</strong></td><td><strong>0.4782</strong></td></tr><tr><td>CoRe</td><td>用 DN</td><td>0.9061</td><td>0.3615</td></tr><tr><td>TSA</td><td>用 DN</td><td><strong>0.9203</strong></td><td><strong>0.3420</strong></td></tr></tbody></table>
+<p>TSA 相对 CoRe 的 $\rho$ 绝对提升为 +0.0294（不用 DN）与 +0.0142（用 DN）。分割 AIoU@0.75 只有 30.17/34.31，严格边界仍弱。</p>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>用 DN：F+R 0.8576；F+S+R 0.8793；TSA 0.9203；GT transition oracle 0.9310。</li>
+<li>TSA 相对“只加分割”提升 +0.0410，支持步骤级 cross-attention。</li>
+<li>oracle 只再提升 +0.0107，说明误差不全来自边界。</li>
+<li>exemplar $M=1/5/10/15$：0.9085/0.9154/0.9203/0.9204，10 后饱和。</li>
+<li>attention 可视化只表明关注区域，不等同于因果扣分解释。</li>
+</ul>
+<h2 id="局限与泄漏风险">局限与泄漏风险</h2>
+<ul>
+<li>作者明确承认 transition 数需预先知道，专业步骤标注成本高；公开视频授权当时仍在确认。</li>
+<li>75/25 sample split 未说明 athlete/competition/source-video 分组，身份、背景、相邻镜头泄漏风险无法排除。</li>
+<li>已知 dive number 与参考真分是额外测试接口，不能与单视频方法混比。</li>
+<li>总分回归没有步骤级扣分真值；不应声称模型解释了“为何扣分”。</li>
+<li>只验证跳水闭集，无跨运动、跨规则、跨转播域证据。</li>
+</ul>
+<h2 id="对羽毛球-demo-的迁移边界">对羽毛球 demo 的迁移边界</h2>
+<p>可迁移 query–exemplar 与阶段级对齐：同 stroke 类型参考库适合小数据 demo。不可直接固定 3 阶段；羽毛球需可变阶段、pose/racket/ball/contact 特征与 coach rubric。必须 athlete/session/court/camera-disjoint，并把 stroke classifier/参考检索误差纳入端到端评测。</p>
+<h2 id="对-wiki-判断的影响">对 Wiki 判断的影响</h2>
+<ul>
+<li>对 <a class="wikilink" href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a>：程序级监督改善 AQA 是直接支持；可解释训练反馈仅有限支持。</li>
+<li>对 <a class="wikilink" href="../topics/sports-ai-roadmap.html">体育 AI 路线图</a>：动作阶段→评分接口是奠基支持，也暴露专家标注和 split 成本。</li>
+<li>对 <a class="wikilink" href="../topics/video-understanding.html">视频理解</a>：支持细粒度时间结构与 exemplar 对齐。</li>
 </ul>
 <h2 id="原始材料">原始材料</h2>
 <ul>
+<li><a class="wikilink missing" href="#missing-raw/ingest/2026-04-25-finediving/analysis">全文深分析</a></li>
 <li><code>raw/ingest/2026-04-25-finediving/paper.pdf</code></li>
 <li><code>raw/ingest/2026-04-25-finediving/paper-text.md</code></li>
-<li><code>raw/ingest/2026-04-25-finediving/abstract.md</code></li>
 <li><code>raw/ingest/2026-04-25-finediving/links.yaml</code></li>
-</ul>
-<h2 id="相关页面">相关页面</h2>
-<ul>
-<li><a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
-<li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
-<li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li><li><a class="wikilink" href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li><li><a class="wikilink" href="../topics/video-understanding.html">视频理解</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">4</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a><span>主题</span></li><li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a><span>主题</span></li><li><a href="../topics/video-understanding.html">视频理解</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-25-finediving&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;FineDiving（CVPR 2022）：技术动作评分与过程理解锚点&quot;,
+  &quot;title&quot;: &quot;FineDiving：程序感知的细粒度动作质量评估&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-25&quot;,
-  &quot;updated&quot;: &quot;2026-04-25&quot;,
-  &quot;venue&quot;: &quot;CVPR 2022&quot;,
-  &quot;published_at&quot;: &quot;2022-06-01&quot;,
-  &quot;ingested_at&quot;: &quot;2026-04-25&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;video-understanding&quot;,
-    &quot;benchmarking&quot;,
+    &quot;evaluation&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
-  &quot;authors&quot;: [],
+  &quot;venue&quot;: &quot;CVPR 2022&quot;,
+  &quot;authors&quot;: [
+    &quot;Jinglin Xu&quot;,
+    &quot;Yongming Rao&quot;,
+    &quot;Xumin Yu&quot;,
+    &quot;Guangyi Chen&quot;,
+    &quot;Jie Zhou&quot;,
+    &quot;Jiwen Lu&quot;
+  ],
+  &quot;published_at&quot;: &quot;2022-06-01&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-25&quot;,
   &quot;canonical_links&quot;: [
-    &quot;https://openaccess.thecvf.com/content/CVPR2022/papers/Xu_FineDiving_A_Fine-Grained_Dataset_for_Procedure-Aware_Action_Quality_Assessment_CVPR_2022_paper.pdf&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2022/html/Xu_FineDiving_A_Fine-Grained_Dataset_for_Procedure-Aware_Action_Quality_Assessment_CVPR_2022_paper.html&quot;,
     &quot;https://openaccess.thecvf.com/content/CVPR2022/papers/Xu_FineDiving_A_Fine-Grained_Dataset_for_Procedure-Aware_Action_Quality_Assessment_CVPR_2022_paper.pdf&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-25-finediving/&quot;,
   &quot;topics&quot;: [
     &quot;topics/sports-ai-video-understanding&quot;,
     &quot;topics/sports-ai-roadmap&quot;,
-    &quot;topics/video-understanding&quot;,
-    &quot;topics/generative-model-evaluation&quot;
+    &quot;topics/video-understanding&quot;
   ],
-  &quot;entities&quot;: [
-    &quot;entities/sportsmot&quot;
-  ],
+  &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

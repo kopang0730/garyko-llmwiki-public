@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FreeU：不重训也能提质的扩散 U-Net 调参 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="FreeU：不重训的扩散 U-Net 特征重加权">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>FreeU：不重训的扩散 U-Net 特征重加权 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-15-freeu&quot;, &quot;title&quot;: &quot;FreeU（CVPR 2024）：不重训也能提质的扩散 U-Net 调参&quot;, &quot;title_en&quot;: &quot;FreeU（CVPR 2024）：不重训也能提质的扩散 U-Net 调参&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-15-freeu&quot;, &quot;title&quot;: &quot;FreeU：不重训的扩散 U-Net 特征重加权&quot;, &quot;title_en&quot;: &quot;FreeU：不重训的扩散 U-Net 特征重加权&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,51 +60,66 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-15-freeu.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-15-freeu.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">FreeU</span><span class="title-subtitle">不重训也能提质的扩散 U-Net 调参</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>FreeU：不重训的扩散 U-Net 特征重加权</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">FreeU</span><span class="title-subtitle">不重训的扩散 U-Net 特征重加权</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2023/09/20</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-15</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2309.11497" title="https://arxiv.org/abs/2309.11497" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2309.11497</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2309.11497" title="https://arxiv.org/pdf/2309.11497" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2309.11497</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#efficiency">#efficiency</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作说明扩散系统的质量提升不一定非要靠重训或换主干，有时只靠推理时重新分配 U-Net 主干与 skip connection 的权重，就能拿到相当可观的增益。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2023-09-20</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-15</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2309.11497" title="https://arxiv.org/abs/2309.11497" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2309.11497</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2309.11497" title="https://arxiv.org/pdf/2309.11497" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2309.11497</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#backbone-数据与成本">Backbone、数据与成本</a></li><li><a href="#关键结果">关键结果</a></li><li><a href="#消融">消融</a></li><li><a href="#迁移边界与局限">迁移边界与局限</a></li><li><a href="#相关页面">相关页面</a></li><li><a href="#备注">备注</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>FreeU 在既有 diffusion <strong>U-Net decoder</strong> 中放大 backbone feature、频域抑制 skip feature 的低频成分，用无训练、无新增网络前向的方式改善生成；它是 U-Net inference patch，不是 DiT 或新 backbone。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>它要解决的是扩散模型生成质量与工程成本之间的矛盾。很多提质方案需要重训练、蒸馏或更换架构，而 FreeU 追问的是：现有 diffusion U-Net 里是否已经埋着未被充分利用的结构潜力。</p>
+<p>U-Net decoder 会拼接 backbone 与 encoder skip feature。论文观察到 backbone 主要承担去噪，skip 更容易带入高频细节并削弱 backbone 语义。问题是能否只在推理时重新平衡二者，避免重训、蒸馏或换主干。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>论文从 U-Net 内部功能分工出发，认为 backbone 更负责去噪语义，而 skip connection 更容易把高频细节直接灌进 decoder，导致模型忽略高层语义。FreeU 的做法很简单：在推理时重新加权 backbone 与 skip feature map 的贡献，只改少量缩放因子，不做任何额外训练。</p>
-<h2 id="关键发现">关键发现</h2>
 <ul>
-<li>它把 diffusion efficiency / quality 主线补成了一个重要分支：推理时轻量结构调参也能带来收益。</li>
-<li>它和 <a class="wikilink" href="../../en/sources/2026-04-15-deepcache.html">sources/2026-04-15-deepcache</a> 形成互补：一个偏提速，一个偏免费提质，都属于“先不重训”的系统层路线。</li>
-<li>它提醒 <a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a>：即便 DiT 越来越强，U-Net 系扩散骨干在工程实用性上仍有很强生命力。</li>
+<li>用样本自适应的结构相关 factor map $\alpha_l$ 放大 decoder backbone feature 的前半通道。</li>
+<li>对 skip feature 做 FFT，仅将低频半径内系数乘 $s_l$，再 IFFT。</li>
+<li>在 decoder 拼接前应用；宿主 U-Net 参数、sampler 与采样步数保持不变。</li>
+<li>固定常数 backbone 放大容易过平滑/过饱和；结构相关缩放与 skip 频域调节共同恢复平衡。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="backbone-数据与成本">Backbone、数据与成本</h2>
+<table><thead><tr><th>维度</th><th>全文核验</th></tr></thead><tbody><tr><td>生成 backbone</td><td>Stable Diffusion/SDXL/ModelScope 等 <strong>U-Net</strong>；无 DiT</td></tr><tr><td>展示管线</td><td>SD 1.4、SDXL、DreamBooth、ReVersion、ModelScope、Rerender</td></tr><tr><td>训练</td><td>0；无微调、无新增可学习参数</td></tr><tr><td>sampling</td><td>步数不变，无额外 U-Net forward</td></tr><tr><td>额外算子</td><td>feature 统计/缩放，以及 skip feature 的 FFT、mask、IFFT</td></tr><tr><td>成本证据</td><td>作者声称无 memory/sampling-time 增量，但没有 latency、显存、FLOPs 表</td></tr></tbody></table>
+<p>因此“free”应解释成<strong>无训练、无额外模型调用、无额外 sampling step</strong>；论文没有严格证明所有硬件上 wall-clock 为零增量。</p>
+<h2 id="关键结果">关键结果</h2>
+<p>35 人同 seed 配对偏好：</p>
+<table><thead><tr><th>任务</th><th>指标</th><th>基线</th><th>+FreeU</th></tr></thead><tbody><tr><td>SD 文生图</td><td>图文对齐</td><td>14.12%</td><td><strong>85.88%</strong></td></tr><tr><td>SD 文生图</td><td>图像质量</td><td>14.66%</td><td><strong>85.34%</strong></td></tr><tr><td>ModelScope 文生视频</td><td>文本对齐</td><td>15.29%</td><td><strong>84.71%</strong></td></tr><tr><td>ModelScope 文生视频</td><td>视频质量</td><td>14.33%</td><td><strong>85.67%</strong></td></tr></tbody></table>
+<p>论文没有报告标准自动指标、置信区间或提示词规模；这些数值是相对偏好，不是 FID/CLIPScore 的绝对提升。</p>
+<h2 id="消融">消融</h2>
 <ul>
-<li>它并不是新的通用 backbone，而更像对既有 U-Net 系扩散模型的高性价比补丁。</li>
-<li>这种收益在更复杂控制条件、多模态统一框架里是否同样稳定，还需要更多证据。</li>
-<li>它更像工程增益而不是方法论替代，因此不能单独反驳 Transformer 主干长期扩张的趋势。</li>
+<li>backbone factor $b$ 是主要去噪增益来源，但单独使用会过平滑。</li>
+<li>skip factor $s$ 单独影响较小，配合 $b$ 才能改善纹理平衡。</li>
+<li>backbone + skip 优于只改 backbone。</li>
+<li>结构相关 factor map 优于固定常数放大。</li>
+<li>Fourier/feature 可视化支持机制解释，但主要是相关性证据。</li>
 </ul>
-<h2 id="原始链接">原始链接</h2>
+<h2 id="迁移边界与局限">迁移边界与局限</h2>
 <ul>
-<li>https://arxiv.org/abs/2309.11497</li>
-<li>https://arxiv.org/pdf/2309.11497</li>
+<li>已展示跨图像、视频、个性化与关系生成管线的兼容性。</li>
+<li>仅对具有对应 U-Net decoder/skip 接口的模型直接成立；纯 DiT、无 skip Transformer、autoregressive/flow 主干不能直接套用。</li>
+<li>未系统验证 ControlNet、多条件控制或跨 checkpoint 自动超参数选择。</li>
+<li>主要证据是主观偏好，不能据此建立跨架构通用质量 claim。</li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-15-deepcache.html">sources/2026-04-15-deepcache</a></li>
-<li><a class="wikilink" href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">claims/claim-dit-is-becoming-the-default-scalable-generation-backbone</a></li>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-15-deepcache.html">DeepCache</a> — 同属无需重训的 U-Net 推理工程，但优化目标是速度而非质量。</li>
 </ul>
 <h2 id="备注">备注</h2>
-<p>这篇论文在本库里的主要价值，是把“免费午餐”式的推理期结构改造明确放进 diffusion backbone 叙事里，让工程线不至于只剩蒸馏、缓存和求解器优化。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<p>本库将该论文作为 <strong>U-Net inference engineering</strong> 证据，不关联 DiT 主干实体或“DiT 默认化”claim。</p></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">4</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>Topic</span></li><li><a href="../../en/topics/diffusion-models.html">扩散模型</a><span>Topic</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-15-freeu&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;FreeU（CVPR 2024）：不重训也能提质的扩散 U-Net 调参&quot;,
+  &quot;title&quot;: &quot;FreeU：不重训的扩散 U-Net 特征重加权&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-15&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2024&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-15&quot;,
   &quot;tags&quot;: [
@@ -116,7 +137,7 @@
     &quot;Jiang, Yuming&quot;,
     &quot;Liu, Ziwei&quot;
   ],
-  &quot;published_at&quot;: &quot;2023/09/20&quot;,
+  &quot;published_at&quot;: &quot;2023-09-20&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2309.11497&quot;,
     &quot;https://arxiv.org/pdf/2309.11497&quot;
@@ -129,7 +150,7 @@
   &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

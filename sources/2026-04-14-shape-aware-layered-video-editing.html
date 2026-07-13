@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Shape-aware Text-driven Layered Video Editing：形状感知的分层文本视频编辑 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="Shape-aware Text-driven Layered Video Editing：用 UV 变形突破 atlas 的固定形状">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Shape-aware Text-driven Layered Video Editing：用 UV 变形突破 atlas 的固定形状 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-shape-aware-layered-video-editing&quot;, &quot;title&quot;: &quot;Shape-aware Text-driven Layered Video Editing（CVPR 2023）：形状感知的分层文本视频编辑&quot;, &quot;title_en&quot;: &quot;Shape-aware Text-driven Layered Video Editing（CVPR 2023）：形状感知的分层文本视频编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;video-generation&quot;, &quot;control&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-shape-aware-layered-video-editing&quot;, &quot;title&quot;: &quot;Shape-aware Text-driven Layered Video Editing：用 UV 变形突破 atlas 的固定形状&quot;, &quot;title_en&quot;: &quot;Shape-aware Text-driven Layered Video Editing：用 UV 变形突破 atlas 的固定形状&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;control&quot;, &quot;editing&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,78 +60,109 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-14-shape-aware-layered-video-editing.html">中文</a><a class="" href="../en/sources/2026-04-14-shape-aware-layered-video-editing.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">Shape-aware Text-driven Layered Video Editing</span><span class="title-subtitle">形状感知的分层文本视频编辑</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Shape-aware Text-driven Layered Video Editing：用 UV 变形突破 atlas 的固定形状</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">Shape-aware Text-driven Layered Video Editing</span><span class="title-subtitle">用 UV 变形突破 atlas 的固定形状</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023/01/30</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2301.13173" title="https://arxiv.org/abs/2301.13173" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2301.13173</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2301.13173" title="https://arxiv.org/pdf/2301.13173" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2301.13173</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-editing">#video-editing</a><a class="tag" href="../tags.html#video-generation">#video-generation</a><a class="tag" href="../tags.html#control">#control</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-editing">#video-editing</a><a class="tag" href="../tags.html#control">#control</a><a class="tag" href="../tags.html#editing">#editing</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把分层视频编辑和 shape-aware 控制结合起来，补上了视频编辑里的 layered composition 路线。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>它要解决的是视频编辑中对象与背景、前景层级难以稳定拆分和控制的问题。对当前知识库来说，它补的是 video-editing 在 compositional / layered control 方向上的明显缺口。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>该工作通过 shape-aware 的分层建模实现 text-driven layered video editing，让不同层次的内容能在编辑中更稳定地被区分与控制。</p>
-<h2 id="关键发现">关键发现</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023-01-30</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2301.13173" title="https://arxiv.org/abs/2301.13173" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2301.13173</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2301.13173" title="https://arxiv.org/pdf/2301.13173" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2301.13173</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#输入-输出与方法">输入、输出与方法</a></li><li><a href="#数据-底座与成本">数据、底座与成本</a></li><li><a href="#比较-消融与证据">比较、消融与证据</a></li><li><a href="#失败与理解边界">失败与理解边界</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>该方法把单关键帧的跨类别 semantic correspondence 变换成 atlas deformation field，再用冻结 Stable Diffusion 的 SDS 补全不可见区域，使 NLA 从“只换纹理”扩展到轮廓变化；几何思路清楚，但只有若干 DAVIS 定性案例、没有自动指标或人评，且强依赖 NLA/correspondence 与人工修正。</p>
+<h2 id="输入-输出与方法">输入、输出与方法</h2>
 <ul>
-<li>它说明视频编辑主线里除了 motion、一致性、效率之外，还有层级分解与局部组合控制这条路线。</li>
-<li>它为以后分析 object/background disentanglement 在视频编辑中的作用提供了更清楚的样本。</li>
-<li>它与 FramePainter、Pix2Video、Video-P2P 等路线互补，强调的是分层结构控制而不是纯 attention 注入。</li>
+<li>输入单主要运动对象的视频、target text prompt 和代表性关键帧；输出保留源运动、改变前景形状与纹理的视频。</li>
+<li>预训练 NLA 分解 foreground/background atlases、per-frame UV 与 alpha；固定 UV 原本会强制输出源轮廓。</li>
+<li>Stable Diffusion 编辑一个关键帧；预训练 dense semantic correspondence 建立源/目标对象像素对应。</li>
+<li>以 warp 的局部 Jacobian 把 keyframe displacement 变换到 atlas coordinates，再采样到每帧，变形 UV 与 alpha。</li>
+<li>atlas network 和 TPS-STN correspondence network 在 3–5 个视角帧上优化；冻结 SD U-Net 提供 SDS，并加 keyframe $L_1$、atlas TV、mask correspondence loss。</li>
+<li>核心架构是 NLA + deformation atlas + TPS/refinement networks；SD latent <strong>U-Net</strong> 只是图像编辑/SDS先验，不是 video U-Net，更不是 DiT 或从零 video generation。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="数据-底座与成本">数据、底座与成本</h2>
 <ul>
-<li>分层建模本身会带来系统复杂度。</li>
-<li>shape-aware 分解是否泛化到复杂场景仍需更多证据。</li>
-<li>它是分支补厚节点，不代表统一接口最终形态。</li>
+<li>从 DAVIS 选择“several videos”，每视频 50–70 帧；论文未给视频数量、ID、prompt 数或 split。</li>
+<li>分辨率 $768\times432$；3–5 selected frames，600–1,000 iterations。</li>
+<li>refinement 在单张 <strong>24GB A5000 上约 20 分钟</strong>。</li>
+<li>20 分钟未包含 NLA per-video decomposition、SD 关键帧编辑、semantic correspondence、mask 与 Real-ESRGAN，不能视作端到端 runtime。</li>
+<li>无 dataset-level video training；每个新视频都要 NLA 与 test-time optimization。</li>
+<li>未报告参数量、峰值显存、完整预处理时间或帧数 scaling。</li>
 </ul>
+<h2 id="比较-消融与证据">比较、消融与证据</h2>
+<ul>
+<li>基线：multi-frame SD edits + FILM、single-frame SD edit + EbSynth、Text2LIVE。三者共享 SD 关键帧编辑，有一定公平性。</li>
+<li>论文<strong>没有自动指标、用户研究、参与者、置信区间或显著性</strong>；主要证据是定性图。</li>
+<li>四阶段消融：fixed NLA 只能改纹理；+ correspondence 能把编辑写入 atlas 但仍是源形状；+ UV deformation 恢复目标形状但出现不可见区域/错配 artifacts；+ atlas optimization 补全并修正。</li>
+<li>消融逻辑支持核心模块，但没有数值、失败率、随机种子，也没有独立分析各 loss、TPS、选帧数与超分。</li>
+</ul>
+<h2 id="失败与理解边界">失败与理解边界</h2>
+<ul>
+<li>bear→lion 案例中，后腿交叉使 NLA mapping 错误并产生畸变。</li>
+<li>跨类别 correspondence 严重错配会阻碍优化；论文允许用户手工 warp correction，系统并非全自动。</li>
+<li>单关键帧看不到的背面/遮挡面由 diffusion prior hallucinate，无法保证目标 identity。</li>
+<li>假设单前景、单背景、many-to-one unified atlas；多对象遮挡、拓扑变化、镜头切换缺证据。</li>
+<li>没有 shape accuracy、source motion、background locality、identity 或 temporal flicker 指标。</li>
+<li>不生成新动作/镜头，也不证明动作、对象关系或自然语言理解。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li>对 <a class="wikilink" href="../topics/video-editing.html">视频编辑</a>：该论文是 layered representation 中“从 texture atlas 走向 coordinate/deformation atlas”的关键节点，但依赖强表示假设和逐视频优化。</li>
+<li>对 <a class="wikilink" href="../entities/video-editing-understanding.html">视频编辑理解</a>：semantic correspondence 与 atlas geometry 提供结构接口，不等于模型理解对象拓扑或运动。</li>
+<li>对 <a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">benchmark 问题</a>：漂亮定性案例不足以回答成功率、局部性和时序可靠性。</li>
+</ul>
+<h2 id="证据评级">证据评级</h2>
+<p><strong>C+（UV deformation formulation 有明确价值；实验规模、自动量化、人评与端到端成本证据不足）</strong>。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2301.13173</li>
-<li>https://arxiv.org/pdf/2301.13173</li>
+<li><a href="https://arxiv.org/abs/2301.13173">arXiv</a></li>
+<li><a href="https://arxiv.org/pdf/2301.13173">论文 PDF</a></li>
+<li><a href="https://text-video-edit.github.io/">项目页</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../topics/video-editing.html">topics/video-editing</a></li>
-<li><a class="wikilink" href="../topics/video-generation.html">topics/video-generation</a></li>
-<li><a class="wikilink" href="../entities/video-editing-understanding.html">entities/video-editing-understanding</a></li>
-<li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>这篇工作在库里的作用，是把 layered/compositional video editing 路线补成明确分支。</p></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+<li><a class="wikilink" href="../topics/video-editing.html">视频编辑</a></li>
+<li><a class="wikilink" href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+<li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有 benchmark 是否跟踪真实视频编辑理解</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../topics/video-editing.html">视频编辑</a></li></ul></div><div class="related-group related-entities"><h3>相关实体<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../entities/video-editing-understanding.html">视频编辑理解</a></li></ul></div><div class="related-group related-questions"><h3>相关问题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">3</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../topics/video-editing.html">视频编辑</a><span>主题</span></li><li><a href="../topics/video-generation.html">视频生成</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-shape-aware-layered-video-editing&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Shape-aware Text-driven Layered Video Editing（CVPR 2023）：形状感知的分层文本视频编辑&quot;,
+  &quot;title&quot;: &quot;Shape-aware Text-driven Layered Video Editing：用 UV 变形突破 atlas 的固定形状&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2023&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;video-editing&quot;,
-    &quot;video-generation&quot;,
     &quot;control&quot;,
+    &quot;editing&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;authors&quot;: [
-    &quot;Lee, Yao-Chih&quot;,
-    &quot;Jang, Ji-Ze Genevieve&quot;,
-    &quot;Chen, Yi-Ting&quot;,
-    &quot;Qiu, Elizabeth&quot;,
-    &quot;Huang, Jia-Bin&quot;
+    &quot;Yao-Chih Lee&quot;,
+    &quot;Ji-Ze Genevieve Jang&quot;,
+    &quot;Yi-Ting Chen&quot;,
+    &quot;Elizabeth Qiu&quot;,
+    &quot;Jia-Bin Huang&quot;
   ],
-  &quot;published_at&quot;: &quot;2023/01/30&quot;,
+  &quot;published_at&quot;: &quot;2023-01-30&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2301.13173&quot;,
-    &quot;https://arxiv.org/pdf/2301.13173&quot;
+    &quot;https://arxiv.org/pdf/2301.13173&quot;,
+    &quot;https://text-video-edit.github.io/&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-shape-aware-layered-video-editing/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-14-shape-aware-layered-video-editing/analysis.md&quot;,
   &quot;topics&quot;: [
-    &quot;topics/video-editing&quot;,
-    &quot;topics/video-generation&quot;
+    &quot;topics/video-editing&quot;
   ],
   &quot;entities&quot;: [
     &quot;entities/video-editing-understanding&quot;
@@ -134,7 +171,7 @@
   &quot;questions&quot;: [
     &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

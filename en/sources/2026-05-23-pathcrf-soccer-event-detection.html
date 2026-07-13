@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PathCRF：从球员轨迹推断控球路径来做足球事件检测 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="PathCRF：从球员轨迹推断结构化控球路径与足球事件">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>PathCRF：从球员轨迹推断结构化控球路径与足球事件 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-23-pathcrf-soccer-event-detection&quot;, &quot;title&quot;: &quot;PathCRF：从球员轨迹推断控球路径来做足球事件检测&quot;, &quot;title_en&quot;: &quot;PathCRF：从球员轨迹推断控球路径来做足球事件检测&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;tracking&quot;, &quot;reasoning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-23-pathcrf-soccer-event-detection&quot;, &quot;title&quot;: &quot;PathCRF：从球员轨迹推断结构化控球路径与足球事件&quot;, &quot;title_en&quot;: &quot;PathCRF：从球员轨迹推断结构化控球路径与足球事件&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;tracking&quot;, &quot;reasoning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,42 +60,67 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-05-23-pathcrf-soccer-event-detection.html">中文</a><a class="selected-lang" href="../../en/sources/2026-05-23-pathcrf-soccer-event-detection.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-05-23</p>
-        <h1><span class="title-main">PathCRF</span><span class="title-subtitle">从球员轨迹推断控球路径来做足球事件检测</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>PathCRF：从球员轨迹推断结构化控球路径与足球事件</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">PathCRF</span><span class="title-subtitle">从球员轨迹推断结构化控球路径与足球事件</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>arXiv</dd></div><div class="source-fact"><dt>Published</dt><dd>2026-02-12</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-05-23</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2602.12080" title="https://arxiv.org/abs/2602.12080" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2602.12080</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2602.12080" title="https://arxiv.org/pdf/2602.12080" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2602.12080</strong></a><a class="source-link source-link-code" href="https://github.com/hyunsungkim-ds/pathcrf.git" title="https://github.com/hyunsungkim-ds/pathcrf.git" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · pathcrf.git</strong></a></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#tracking">#tracking</a><a class="tag" href="../../en/tags.html#reasoning">#reasoning</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>PathCRF 用球员轨迹推断 possession path，再从控球路径变化识别控球和传球事件；它为 <a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 提供了 “trajectory → event semantics” 的轻量 follow-up，也说明足球事件数据可以部分从 tracking data 中自动生成。</p>
-<h2 id="论文定位">论文定位</h2>
-<p>这篇论文针对足球事件数据采集成本高、ball tracking 难规模化的问题。它把球员轨迹建成 fully connected dynamic graph，把当前控球状态表示为一条 edge，并用 Conditional Random Field 约束相邻时刻不可能的 edge transition；推理时用 Viterbi decoding 得到最可能的 possession path，edge 变化对应 ball controls 或 passes。</p>
-<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>KDD 2026</dd></div><div class="source-fact"><dt>Published</dt><dd>2026-02-12</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-05-23</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2602.12080" title="https://arxiv.org/abs/2602.12080" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2602.12080</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2602.12080" title="https://arxiv.org/pdf/2602.12080" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2602.12080</strong></a><a class="source-link source-link-code" href="https://github.com/hyunsungkim-ds/pathcrf.git" title="https://github.com/hyunsungkim-ds/pathcrf.git" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · pathcrf.git</strong></a></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#方法">方法</a></li><li><a href="#数据与-split">数据与 split</a></li><li><a href="#主要结果">主要结果</a></li><li><a href="#成本-泄漏与局限">成本、泄漏与局限</a></li><li><a href="#primary-secondary">Primary / secondary</a></li><li><a href="#羽毛球边界">羽毛球边界</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始材料">原始材料</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>PathCRF 用 dynamic masked CRF 将 26-node 足球状态建成每时刻 676 条候选 possession edges，event F1 75.69、非法 transition 0%；但只用 7 场高质量 tracking，GT 构建仍依赖真实 ball trajectory，所谓 ball-free 仅成立于训练好模型的推理输入。</p>
+<h2 id="方法">方法</h2>
 <ul>
-<li>与 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它把 tracking 输出进一步转成事件语义，减少对人工 event annotation 和完整 ball trajectory 的依赖。</li>
-<li>与 <a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：已有 <a class="wikilink" href="../../en/sources/2026-05-05-event2tracking.html">sources/2026-05-05-event2tracking</a> 用 event data 反过来修复轨迹；PathCRF 提供相反方向：从 player trajectories 自动推断 event / possession structure。</li>
-<li>与 <a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a> 的关系：它把长时序视频理解落到多智能体路径一致性，而不是只做片段级分类或问答。</li>
+<li>22 players + 4 outside nodes；</li>
+<li>self-loop 表示 control，directed edge 表示 kick in flight；</li>
+<li>PPE/FPE Set Attention 编码 team/global interactions；</li>
+<li>PE-SAB 编码时间；</li>
+<li>dynamic emission/transition scores；</li>
+<li>hard mask 禁止 possession teleportation；</li>
+<li>CRF NLL + sender/receiver + emission auxiliary losses；</li>
+<li>Viterbi 得最优 path，edge change 生成 control/kick/out-of-play。</li>
 </ul>
-<h2 id="来源可靠性与可溯源性">来源可靠性与可溯源性</h2>
+<h2 id="数据与-split">数据与 split</h2>
+<p>Sportec Open DFL 7 场，match-disjoint 5/1/1：</p>
+<table><thead><tr><th>split</th><th>matches</th><th>episodes</th><th>events</th><th>frames</th></tr></thead><tbody><tr><td>Train</td><td>5</td><td>379</td><td>8,792</td><td>364,003</td></tr><tr><td>Val</td><td>1</td><td>71</td><td>1,902</td><td>80,076</td></tr><tr><td>Test</td><td>1</td><td>91</td><td>1,831</td><td>85,304</td></tr></tbody></table>
+<p>25 FPS 下采样到 5 FPS；10 秒 windows、1 秒 stride。Event timestamps 用 ELASTIC 对 player+ball trajectories 同步，RDP 从 ball trajectory 补触球，再用 Needleman–Wunsch 对齐。因此监督与 GT 不是 ball-free。</p>
+<h2 id="主要结果">主要结果</h2>
+<table><thead><tr><th>方法</th><th>Edge Acc.</th><th>Violation</th><th>Event P/R/F1</th></tr></thead><tbody><tr><td>Non-CRF</td><td>69.24</td><td>2.80</td><td>58.77 / 73.57 / 65.34</td></tr><tr><td>Non-CRF + Viterbi constraints</td><td><strong>69.68</strong></td><td>0.00</td><td>69.50 / 77.17 / 73.14</td></tr><tr><td>Static Masked CRF</td><td>69.54</td><td>0.00</td><td>68.57 / <strong>79.96</strong> / 73.83</td></tr><tr><td>Dynamic Masked CRF</td><td>69.64</td><td>0.00</td><td><strong>73.18</strong> / 78.37 / <strong>75.69</strong></td></tr></tbody></table>
+<p>约束本身贡献最大；dynamic scoring 相对 static masked 再增 1.86 F1。</p>
+<p>单场 test 下游：home possession 62.13% GT / 62.64% predicted；frame team possession 92.40%；relaxed preannotation recall 在 2s+10m 为 86.1%。累计误差会抵消，这些数字不能替代 event-level 审计。</p>
+<h2 id="成本-泄漏与局限">成本、泄漏与局限</h2>
 <ul>
-<li><strong>来源层级</strong>：arXiv primary preprint，附官方代码仓库；当前作为 candidate primary evidence 使用，证据等级低于 CVF / AAAI proceedings paper。</li>
-<li><strong>可溯源材料</strong>：本地已保存 <code>abstract.md</code>、<code>paper.pdf</code>、<code>paper-text.md</code>、<code>meta.yaml</code> 与 <code>links.yaml</code>；PDF SHA256：<code>36e3183f29a792f2b35fcfeb2485a802779484c1c4aaac8b19721712606eed5f</code>。</li>
-<li><strong>使用边界</strong>：适合作为 trajectory-event semantics 的方法候选和选题启发；若要作为强 benchmark 证据，还需要等正式 venue、数据开放与复现实验确认。</li>
+<li>代码、checkpoints、同步事件公开；</li>
+<li>未报 GPU、训练时长、参数、显存、FPS 或人工修正工时；</li>
+<li>54,683 overlapping train windows 不改变只有 5 场训练的事实；</li>
+<li>test 仅 1 场，无 CI/多 seeds/跨 provider；</li>
+<li>evaluator 与 GT 都使用 sequence alignment，存在 pipeline coupling；</li>
+<li>高质量完整 tracking 与真实广播 tracking 有显著 domain gap；</li>
+<li>5 FPS 不能恢复精细触球；taxonomy 不区分 pass/shot/cross；</li>
+<li>“降低标注成本”没有 user study。</li>
 </ul>
-<h2 id="和现有证据的关系">和现有证据的关系</h2>
-<p>PathCRF 和 <a class="wikilink" href="../../en/sources/2026-05-05-event2tracking.html">sources/2026-05-05-event2tracking</a> 形成一组双向关系：Event2Tracking 说明 event data 能增强 trajectory reconstruction，PathCRF 说明 player trajectories 也能反推出 possession-event structure。这对 football game-state / tactical intent 很关键，因为真正的系统需要在轨迹、控球、传球和事件标签之间循环校验。</p>
-<p>它还和 <a class="wikilink" href="../../en/sources/2026-05-23-soccernet-tracking.html">sources/2026-05-23-soccernet-tracking</a>、<a class="wikilink" href="../../en/sources/2026-05-23-broadcast2pitch-game-state-reconstruction.html">sources/2026-05-23-broadcast2pitch-game-state-reconstruction</a> 形成 pipeline 关系：先稳定 track，接着恢复 pitch-space identity state，再推断 possession path 与事件语义。</p>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="primary-secondary">Primary / secondary</h2>
 <ul>
-<li>这篇当前是 arXiv preprint，roadmap 里应标为候选证据，避免把它当成已验证的比赛系统。</li>
-<li>方法弱化了 ball tracking 依赖，但真实比赛中的遮挡、转播切换和触球瞬间判定仍需要更细的错误分析。</li>
+<li>arXiv/PDF：方法与实验 primary evidence；</li>
+<li>官方 GitHub：KDD 2026、DOI、代码/checkpoint 和数据准备细节的 secondary implementation evidence；</li>
+<li>venue 更新不改变实验仍是 7 场数据的边界。</li>
+</ul>
+<h2 id="羽毛球边界">羽毛球边界</h2>
+<p>可迁移 structured state、hard constraints、Viterbi 和 preannotation+human correction。足球的 22 人、10 秒/5 FPS、1s/4m 容差与 possession edge 不可外推。羽毛球需 racket/shuttle/contact/flight/landing 状态，高帧率 GT 和 player/session/court/camera-disjoint。</p>
+<h2 id="证据评级">证据评级</h2>
+<ul>
+<li>方法：<strong>A-</strong></li>
+<li>event benchmark：<strong>B+</strong></li>
+<li>下游统计：<strong>B-</strong></li>
+<li>标注降本：<strong>C+</strong></li>
+<li>羽毛球迁移：<strong>C</strong></li>
 </ul>
 <h2 id="原始材料">原始材料</h2>
 <ul>
-<li><code>raw/ingest/2026-05-23-pathcrf-soccer-event-detection/paper.pdf</code></li>
-<li><code>raw/ingest/2026-05-23-pathcrf-soccer-event-detection/paper-text.md</code></li>
-<li><code>raw/ingest/2026-05-23-pathcrf-soccer-event-detection/abstract.md</code></li>
-<li><code>raw/ingest/2026-05-23-pathcrf-soccer-event-detection/links.yaml</code></li>
+<li><code>raw/ingest/2026-05-23-pathcrf-soccer-event-detection/paper.pdf</code>（12 页）</li>
+<li><code>raw/ingest/2026-05-23-pathcrf-soccer-event-detection/paper-text.md</code>（1,760 行）</li>
+<li><code>raw/ingest/2026-05-23-pathcrf-soccer-event-detection/analysis.md</code></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
@@ -97,15 +128,20 @@
 <li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
 <li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a></li>
 <li><a class="wikilink" href="../../en/entities/sportsmot.html">entities/sportsmot</a></li>
+<li><a class="wikilink" href="../../en/questions/question-badminton-stroke-correction-demo.html">questions/question-badminton-stroke-correction-demo</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li><li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li><li><a class="wikilink" href="../../en/topics/video-understanding.html">Video Understanding</a></li></ul></div><div class="related-group related-entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/sportsmot.html">SportsMOT</a></li></ul></div><div class="related-group related-questions"><h3>Related questions<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">3</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a><span>Topic</span></li><li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-05-23-pathcrf-soccer-event-detection&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;PathCRF：从球员轨迹推断控球路径来做足球事件检测&quot;,
+  &quot;title&quot;: &quot;PathCRF：从球员轨迹推断结构化控球路径与足球事件&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-05-23&quot;,
-  &quot;updated&quot;: &quot;2026-05-23&quot;,
-  &quot;venue&quot;: &quot;arXiv&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
+  &quot;venue&quot;: &quot;KDD 2026&quot;,
   &quot;published_at&quot;: &quot;2026-02-12&quot;,
   &quot;ingested_at&quot;: &quot;2026-05-23&quot;,
   &quot;tags&quot;: [
@@ -128,9 +164,11 @@
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2602.12080&quot;,
     &quot;https://arxiv.org/pdf/2602.12080&quot;,
+    &quot;https://doi.org/10.1145/3770855.3818152&quot;,
     &quot;https://github.com/hyunsungkim-ds/pathcrf.git&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-05-23-pathcrf-soccer-event-detection/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-05-23-pathcrf-soccer-event-detection/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/sports-ai-video-understanding&quot;,
     &quot;topics/sports-ai-roadmap&quot;,
@@ -140,8 +178,10 @@
     &quot;entities/sportsmot&quot;
   ],
   &quot;claims&quot;: [],
-  &quot;questions&quot;: []
-}</pre></section>
+  &quot;questions&quot;: [
+    &quot;questions/question-badminton-stroke-correction-demo&quot;
+  ]
+}</pre></details>
     </article>
   </main>
 </body>

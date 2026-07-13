@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AthletePose3D：真实体育 3D 姿态与生物力学锚点 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="AthletePose3D：高速竞技动作的 3D 姿态与运动学验证">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>AthletePose3D：高速竞技动作的 3D 姿态与运动学验证 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-25-athletepose3d&quot;, &quot;title&quot;: &quot;AthletePose3D（CVPR Workshop 2025）：真实体育 3D 姿态与生物力学锚点&quot;, &quot;title_en&quot;: &quot;AthletePose3D（CVPR Workshop 2025）：真实体育 3D 姿态与生物力学锚点&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-25-athletepose3d&quot;, &quot;title&quot;: &quot;AthletePose3D：高速竞技动作的 3D 姿态与运动学验证&quot;, &quot;title_en&quot;: &quot;AthletePose3D：高速竞技动作的 3D 姿态与运动学验证&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,51 +60,75 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-25-athletepose3d.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-25-athletepose3d.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-25</p>
-        <h1><span class="title-main">AthletePose3D</span><span class="title-subtitle">真实体育 3D 姿态与生物力学锚点</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>AthletePose3D：高速竞技动作的 3D 姿态与运动学验证</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">AthletePose3D</span><span class="title-subtitle">高速竞技动作的 3D 姿态与运动学验证</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR Workshop 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-06-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-25</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2025W/CVSPORTS/html/Yeung_AthletePose3D_A_Benchmark_Dataset_for_3D_Human_Pose_Estimation_and_CVPRW_2025_paper.html" title="https://openaccess.thecvf.com/content/CVPR2025W/CVSPORTS/html/Yeung_AthletePose3D_A_Benchmark_Dataset_for_3D_Human_Pose_Estimation_and_CVPRW_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Yeung_AthletePose3D_A_Benchmark…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2025W/CVSPORTS/papers/Yeung_AthletePose3D_A_Benchmark_Dataset_for_3D_Human_Pose_Estimation_and_CVPRW_2025_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2025W/CVSPORTS/papers/Yeung_AthletePose3D_A_Benchmark_Dataset_for_3D_Human_Pose_Estimation_and_CVPRW_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Yeung_AthletePose3D_A_Benchmark…</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#benchmarking">#benchmarking</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>面向真实竞技动作的 3D 姿态估计与生物力学分析，说明通用姿态模型迁移到体育高加速度动作会明显失效。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR Workshop 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-06-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-25</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2025W/CVSPORTS/html/Yeung_AthletePose3D_A_Benchmark_Dataset_for_3D_Human_Pose_Estimation_and_CVPRW_2025_paper.html" title="https://openaccess.thecvf.com/content/CVPR2025W/CVSPORTS/html/Yeung_AthletePose3D_A_Benchmark_Dataset_for_3D_Human_Pose_Estimation_and_CVPRW_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Yeung_AthletePose3D_A_Benchmark…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2025W/CVSPORTS/papers/Yeung_AthletePose3D_A_Benchmark_Dataset_for_3D_Human_Pose_Estimation_and_CVPRW_2025_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2025W/CVSPORTS/papers/Yeung_AthletePose3D_A_Benchmark_Dataset_for_3D_Human_Pose_Estimation_and_CVPRW_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Yeung_AthletePose3D_A_Benchmark…</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#数据集与标签">数据集与标签</a></li><li><a href="#方法与协议">方法与协议</a></li><li><a href="#核心结果">核心结果</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限与泛化">局限与泛化</a></li><li><a href="#对羽毛球-demo-的迁移边界">对羽毛球 demo 的迁移边界</a></li><li><a href="#对-wiki-判断的影响">对 Wiki 判断的影响</a></li><li><a href="#原始材料">原始材料</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>体育域数据把 TCPFormer 在 AthletePose3D 上的 MPJPE 从 213.64 mm 降到约 65 mm，但所有运动学波形仍与真值显著不同，尤其 3D 速度相关仅 0.12–0.29；它支持“姿态是训练反馈的中间层”，不支持“单目视频可替代 MoCap”。</p>
 <h2 id="论文定位">论文定位</h2>
-<p>AthletePose3D 聚焦真实竞技动作中的单目 3D 姿态估计和生物力学分析，显示通用姿态模型迁移到体育场景时存在明显域差。</p>
-<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
-<p>它补上体育 AI roadmap 中“姿态与训练反馈”层的 primary evidence。</p>
-<h2 id="和现有证据的关系">和现有证据的关系</h2>
+<p>数据集覆盖 3 类项目、12 类高速动作，并把 2D/3D pose benchmark 接到关节角和速度波形验证。贡献以数据集与评测为主，不是新姿态架构。</p>
+<h2 id="数据集与标签">数据集与标签</h2>
 <ul>
-<li>与 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它把体育 AI 的证据面从 tracking 扩展到动作、姿态、战术、比赛状态或高速小目标。</li>
-<li>与 <a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：它对应 roadmap 中下一批 batch 的一个证据节点。</li>
+<li>8 名运动员，约 130 万多机位视频帧、16.5 万个独立 3D posture。</li>
+<li>跑步、田径投掷、花样滑冰共 12 类动作；55/86 关键点，60–120 FPS，4/8/12 台硬件同步相机。</li>
+<li>只有动作类型、连续 3D pose 与运动学；无阶段、技术错误或质量分。</li>
+<li>跑步和田径表中标为 lab，不能把全部数据笼统称为比赛现场。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="方法与协议">方法与协议</h2>
 <ul>
-<li>当前这版 source note 先完成 bibliography-driven 编译，后续可以按 deep-analysis-first 流程补 <code>analysis.md</code>、关键图页和实验细节。</li>
-<li>具体数值和 benchmark 细节应以 <code>raw/ingest/2026-04-25-athletepose3d/paper-text.md</code> 与原始 PDF 为准。</li>
+<li>2D：HRNet、SwinPose、ViTPose、UniFormer、MogaNet；PDJ/PDJ-AUC/AP。</li>
+<li>3D：MotionAGFormer、TCPFormer，81 帧 2D-to-3D lifting；MPJPE/P-MPJPE。</li>
+<li>60/20/20 train/validation/test，但正文未明确是否 athlete/trial/camera-disjoint；姿态主表报告 validation，运动学用 test。</li>
+<li>MogaNet/TCPFormer 输出经 8 Hz 滤波，再用 SPM paired t-test 和 Pearson 相关比较真值波形。</li>
+</ul>
+<h2 id="核心结果">核心结果</h2>
+<ul>
+<li>MogaNet：PDJ@0.1 95.7、PDJ-AUC 81.7；ViTPose AP 最高 95.8。</li>
+<li>TCPFormer MPJPE：H3.6M 213.64；AP3D 65.80；H3.6M+AP3D 65.07 mm。</li>
+<li>最佳设置 ankle 仍有 117.28 mm 误差。</li>
+<li>3D 关节角上/下肢相关 0.89/0.81；速度仅 0.29/0.12。</li>
+<li>全部波形比较均 $p&lt;0.05$，说明相关高不等于波形无系统偏差。</li>
+</ul>
+<h2 id="关键消融">关键消融</h2>
+<p>训练数据域的影响远大于 MotionAGFormer/TCPFormer 架构差异；混合 H3.6M+AP3D 相对 AP3D-only 只带来小幅增益。2D/3D、角度/速度对比则证明位置精度不能自动保证高阶运动学可靠。</p>
+<h2 id="局限与泛化">局限与泛化</h2>
+<ul>
+<li>仅 8 人，田径只有 1 人；跨人、跨项目结论弱。</li>
+<li>split 分组粒度不透明，多机位同一时刻是否跨 split 需要复核。</li>
+<li>P-MPJPE 约 8 mm 与 MPJPE 约 65 mm 差距大，训练反馈应优先看不经对齐的绝对误差。</li>
+<li>无多人对抗、球拍/球遮挡；速度指标尚不足以支持高速末端链条诊断。</li>
+</ul>
+<h2 id="对羽毛球-demo-的迁移边界">对羽毛球 demo 的迁移边界</h2>
+<p>可迁移的是高帧率多机位真值、pose→关节角波形接口和运动学误差评测。不可直接迁移的是动作标签与反馈：需增加球拍/球/触球帧、stroke 阶段和错误标签，并采用 athlete/session/court/camera-disjoint。现阶段宜输出阶段与角度趋势，不宜给出挥拍速度或毫米级诊断。</p>
+<h2 id="对-wiki-判断的影响">对 Wiki 判断的影响</h2>
+<ul>
+<li>对 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">体育 AI 视频理解</a>：“高速体育动作存在显著域差”是直接支持。</li>
+<li>对 <a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">体育 AI 路线图</a>：pose→运动学是奠基支持，自动纠错仅有限支持。</li>
+<li>对 <a class="wikilink" href="../../en/topics/video-understanding.html">视频理解</a>：是体育专用时序 pose benchmark 的背景证据。</li>
 </ul>
 <h2 id="原始材料">原始材料</h2>
 <ul>
+<li><a class="wikilink missing" href="#missing-raw/ingest/2026-04-25-athletepose3d/analysis">全文深分析</a></li>
 <li><code>raw/ingest/2026-04-25-athletepose3d/paper.pdf</code></li>
 <li><code>raw/ingest/2026-04-25-athletepose3d/paper-text.md</code></li>
-<li><code>raw/ingest/2026-04-25-athletepose3d/abstract.md</code></li>
 <li><code>raw/ingest/2026-04-25-athletepose3d/links.yaml</code></li>
-</ul>
-<h2 id="相关页面">相关页面</h2>
-<ul>
-<li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
-<li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
-<li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li><li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li><li><a class="wikilink" href="../../en/topics/video-understanding.html">Video Understanding</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">4</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a><span>Topic</span></li><li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a><span>Topic</span></li><li><a href="../../en/topics/video-understanding.html">Video Understanding</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-25-athletepose3d&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;AthletePose3D（CVPR Workshop 2025）：真实体育 3D 姿态与生物力学锚点&quot;,
+  &quot;title&quot;: &quot;AthletePose3D：高速竞技动作的 3D 姿态与运动学验证&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-25&quot;,
-  &quot;updated&quot;: &quot;2026-04-25&quot;,
-  &quot;venue&quot;: &quot;CVPR Workshop 2025&quot;,
-  &quot;published_at&quot;: &quot;2025-06-01&quot;,
-  &quot;ingested_at&quot;: &quot;2026-04-25&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;video-understanding&quot;,
@@ -107,7 +137,16 @@
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
-  &quot;authors&quot;: [],
+  &quot;venue&quot;: &quot;CVPR Workshop 2025&quot;,
+  &quot;authors&quot;: [
+    &quot;Calvin Yeung&quot;,
+    &quot;Tomohiro Suzuki&quot;,
+    &quot;Ryota Tanaka&quot;,
+    &quot;Zhuoer Yin&quot;,
+    &quot;Keisuke Fujii&quot;
+  ],
+  &quot;published_at&quot;: &quot;2025-06-01&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-25&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://openaccess.thecvf.com/content/CVPR2025W/CVSPORTS/html/Yeung_AthletePose3D_A_Benchmark_Dataset_for_3D_Human_Pose_Estimation_and_CVPRW_2025_paper.html&quot;,
     &quot;https://openaccess.thecvf.com/content/CVPR2025W/CVSPORTS/papers/Yeung_AthletePose3D_A_Benchmark_Dataset_for_3D_Human_Pose_Estimation_and_CVPRW_2025_paper.pdf&quot;
@@ -116,15 +155,12 @@
   &quot;topics&quot;: [
     &quot;topics/sports-ai-video-understanding&quot;,
     &quot;topics/sports-ai-roadmap&quot;,
-    &quot;topics/video-understanding&quot;,
-    &quot;topics/generative-model-evaluation&quot;
+    &quot;topics/video-understanding&quot;
   ],
-  &quot;entities&quot;: [
-    &quot;entities/sportsmot&quot;
-  ],
+  &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

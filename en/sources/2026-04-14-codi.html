@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CoDi：用于更高保真且更快图像生成的条件扩散蒸馏 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="CoDi：条件扩散蒸馏实现 1–4 步图像条件生成">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>CoDi：条件扩散蒸馏实现 1–4 步图像条件生成 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-codi&quot;, &quot;title&quot;: &quot;CoDi（CVPR 2024）：用于更高保真且更快图像生成的条件扩散蒸馏&quot;, &quot;title_en&quot;: &quot;CoDi（CVPR 2024）：用于更高保真且更快图像生成的条件扩散蒸馏&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-codi&quot;, &quot;title&quot;: &quot;CoDi：条件扩散蒸馏实现 1–4 步图像条件生成&quot;, &quot;title_en&quot;: &quot;CoDi：条件扩散蒸馏实现 1–4 步图像条件生成&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,51 +60,79 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-codi.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-codi.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">CoDi</span><span class="title-subtitle">用于更高保真且更快图像生成的条件扩散蒸馏</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>CoDi：条件扩散蒸馏实现 1–4 步图像条件生成</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">CoDi</span><span class="title-subtitle">条件扩散蒸馏实现 1–4 步图像条件生成</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2023/10/02</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2310.01407" title="https://arxiv.org/abs/2310.01407" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2310.01407</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2310.01407" title="https://arxiv.org/pdf/2310.01407" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2310.01407</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#efficiency">#efficiency</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把 conditional diffusion distillation 补进库里，强化了图像生成里的高保真 + 高速路线。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2023-10-02</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2310.01407" title="https://arxiv.org/abs/2310.01407" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2310.01407</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2310.01407" title="https://arxiv.org/pdf/2310.01407" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2310.01407</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#核心实验与结果">核心实验与结果</a></li><li><a href="#效率与训练成本">效率与训练成本</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>CoDi 把新图像条件适配与 consistency distillation 合成单阶段训练，使 super-resolution、inpainting、depth-to-image 和 instruction editing 可在 1–4 步运行；它证明“共享 T2I U-Net prior + 每任务 adapter”可以压缩路径长度，但 8 天/64 TPU-v4 的实验背景、364M adapter 与主要定性的编辑证据限制了“低成本统一模型”外推。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>CoDi 不是 solver plugin，也不是一个 checkpoint 同时统一所有任务。它从内部 T2I LDM 出发，为每个条件任务训练独立 conditional model；PE-CoDi 共享 base U-Net，只更新类似 ControlNet 的 encoder adapter。</p>
+<p>它也不是微软同名的 <strong>CoDi: Any-to-Any Generation via Composable Diffusion</strong>（arXiv:2305.11846）。后者组合文本、图像、音频等 modality-specific diffusion；本文是 <strong>Conditional Diffusion Distillation</strong>，只研究额外图像条件到图像输出，没有 any-to-any 多模态接口。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>它要解决的是图像生成里速度和保真度难以兼得的问题。对当前知识库来说，它补的是 diffusion 路线在蒸馏加速方向上的重要节点。</p>
+<p>先 fine-tune 后 distill 容易丢失预训练 prior，先 distill 后 fine-tune 又难沿用标准 diffusion loss。CoDi 试图用一个 loss 同时约束条件 signal prediction 与跨时间 noise consistency。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>CoDi 通过 conditional diffusion distillation 实现 higher-fidelity and faster image generation，在扩散蒸馏框架下同时追求质量和速度。</p>
-<h2 id="关键发现">关键发现</h2>
 <ul>
-<li>它说明 image-generation 的效率路线不仅是换表示，也包括蒸馏式压缩。</li>
-<li>它和 Wavelet Diffusion、D²iT 一起让效率与高保真并行优化的路线更完整。</li>
-<li>它对以后找速度型改进点很有参考价值。</li>
+<li>零初始化复制 U-Net encoder，引入图像条件。</li>
+<li>用适配后的 PF-ODE 产生相邻 state，而不是冻结的原始 teacher ODE。</li>
+<li>noise-space consistency 保持 few-step trajectory，signal-space conditional loss 学习新任务。</li>
+<li>EMA target 稳定训练；latent $L_2$ 优于 pixel $L_2$/LPIPS。</li>
+<li>PE-CoDi 冻结 backbone，只训练 364M conditional parameters。</li>
 </ul>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<table><thead><tr><th>任务</th><th>对照</th><th>CoDi/PE-CoDi</th></tr></thead><tbody><tr><td>DF2K SR</td><td>250-step LDM 19.200/0.2639；4-step GD-II 23.675/0.2796</td><td>4-step full CoDi FID/LPIPS 19.637/0.2656</td></tr><tr><td>ImageNet inpainting</td><td>50-step ControlNet 14.895/0.2260</td><td>4-step PE-CoDi 14.700/0.2231</td></tr><tr><td>WebLI depth-to-image</td><td>250-step ControlNet 20.884/0.2910</td><td>4-step PE-CoDi 23.047/0.2874</td></tr></tbody></table>
+<blockquote>依据：PDF pp.6–7，Table 2。inpainting 的 Palette 分辨率口径不同，作者明确称其数字只能参考。</blockquote>
+<p>Instruction editing 只给 IP2P 200-step 与 CoDi 1/4-step 的视觉对照，没有大规模 benchmark 或人评，因此“1-step comparable”只能记为定性主张。</p>
+<h2 id="效率与训练成本">效率与训练成本</h2>
+<ul>
+<li>TPUv5：CoDi 4-step $107\pm3$ ms；plain LDM 4-step $103\pm2$ ms；LDM 50-step $977\pm1$ ms。</li>
+<li>full CoDi 1.22B；PE-CoDi 训练/保存 364M adapter，但 base model 仍需驻留。</li>
+<li>论文写各比较方法含预训练独立运行 8 days on 64 TPU-v4 pods；没有分离 CoDi 的边际 TPU-hours。</li>
+</ul>
+<h2 id="关键消融">关键消融</h2>
+<p>Super-resolution 4-step：full CoDi 19.637/0.2656；去 adapted PF-ODE 为 20.307/0.2733；去 noise consistency 为 25.728/0.3252；plain ControlNet architecture 为 28.951/0.3049（PDF p.8，Table 3）。收益主要来自联合 consistency objective，而非只是加参数。</p>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>蒸馏通常伴随能力边界与泛化问题。</li>
-<li>它更偏生成提速，不直接覆盖复杂编辑能力。</li>
-<li>它是效率主线的重要节点，但不是开放训练或控制接口路线。</li>
+<li>作者明确承认 adapter 增加计算，未来需更轻架构。</li>
+<li>内部 LDM 与 TPU 训练设施降低复现性。</li>
+<li>每任务需要独立数据与 adapter，不是统一单模型。</li>
+<li>editing 缺强定量证据；跨任务协议也不完全统一。</li>
+<li>模型是 LDM U-Net/ControlNet，不提供 DiT adoption 证据。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li><strong>直接支持</strong> <a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a> 中“conditional consistency distillation 是训练新 few-step model”的分支。</li>
+<li>foundation prior 可以共享，但任务数据、364M adapter 与额外计算继续存在；这支持模块化的任务专用蒸馏，不支持 unified image generation/editing。</li>
+<li>旧 source 将 CoDi 列为统一生成—编辑实体；全文显示其为 task-specific conditional models，本批已移除该 entity 与 unified-model question 关联。</li>
 </ul>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2310.01407</li>
-<li>https://arxiv.org/pdf/2310.01407</li>
+<li><a href="https://arxiv.org/abs/2310.01407">arXiv 论文页</a></li>
+<li><a href="https://arxiv.org/pdf/2310.01407">PDF</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a></li>
-<li><a class="wikilink" href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>CoDi 在这套库里的作用，是把条件扩散蒸馏路线补成 image-generation / diffusion-models 的明确节点。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-on-distillation-of-guided-diffusion-models.html">Guided Diffusion Distillation</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-controlnet.html">ControlNet</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li><li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">6</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-04-14-wavelet-diffusion-models.html">Wavelet Diffusion Models：在小波空间压缩少步扩散 GAN</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-c3net.html">C3Net：CoDi U-Net 上的图像、文本与音频复合条件协调</a><span>Source note</span></li><li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>Topic</span></li><li><a href="../../en/topics/diffusion-models.html">扩散模型</a><span>Topic</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-codi&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;CoDi（CVPR 2024）：用于更高保真且更快图像生成的条件扩散蒸馏&quot;,
+  &quot;title&quot;: &quot;CoDi：条件扩散蒸馏实现 1–4 步图像条件生成&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2024&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
@@ -111,31 +145,29 @@
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;authors&quot;: [
-    &quot;Mei, Kangfu&quot;,
-    &quot;Delbracio, Mauricio&quot;,
-    &quot;Talebi, Hossein&quot;,
-    &quot;Tu, Zhengzhong&quot;,
-    &quot;Patel, Vishal M.&quot;,
-    &quot;Milanfar, Peyman&quot;
+    &quot;Kangfu Mei&quot;,
+    &quot;Mauricio Delbracio&quot;,
+    &quot;Hossein Talebi&quot;,
+    &quot;Zhengzhong Tu&quot;,
+    &quot;Vishal M. Patel&quot;,
+    &quot;Peyman Milanfar&quot;
   ],
-  &quot;published_at&quot;: &quot;2023/10/02&quot;,
+  &quot;published_at&quot;: &quot;2023-10-02&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2310.01407&quot;,
-    &quot;https://arxiv.org/pdf/2310.01407&quot;
+    &quot;https://arxiv.org/pdf/2310.01407&quot;,
+    &quot;https://fast-codi.github.io/&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-codi/&quot;,
   &quot;topics&quot;: [
     &quot;topics/image-generation&quot;,
-    &quot;topics/diffusion-models&quot;
+    &quot;topics/diffusion-models&quot;,
+    &quot;topics/diffusion-efficiency-engineering&quot;
   ],
-  &quot;entities&quot;: [
-    &quot;entities/unified-image-generation-editing&quot;
-  ],
+  &quot;entities&quot;: [],
   &quot;claims&quot;: [],
-  &quot;questions&quot;: [
-    &quot;questions/question-will-unified-image-models-sustain-their-advantage&quot;
-  ]
-}</pre></section>
+  &quot;questions&quot;: []
+}</pre></details>
     </article>
   </main>
 </body>

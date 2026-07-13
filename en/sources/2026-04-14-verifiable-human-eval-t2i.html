@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>面向文本到图像生成的可验证与可复现人工评测 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="文本到图像生成的可验证与可复现人工评测">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>文本到图像生成的可验证与可复现人工评测 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-verifiable-human-eval-t2i&quot;, &quot;title&quot;: &quot;面向文本到图像生成的可验证与可复现人工评测（CVPR 2023）&quot;, &quot;title_en&quot;: &quot;面向文本到图像生成的可验证与可复现人工评测（CVPR 2023）&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-verifiable-human-eval-t2i&quot;, &quot;title&quot;: &quot;文本到图像生成的可验证与可复现人工评测&quot;, &quot;title_en&quot;: &quot;文本到图像生成的可验证与可复现人工评测&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,50 +60,65 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-verifiable-human-eval-t2i.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-verifiable-human-eval-t2i.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">面向文本到图像生成的可验证与可复现人工评测</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>文本到图像生成的可验证与可复现人工评测</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">文本到图像生成的可验证与可复现人工评测</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2023/04/04</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2304.01816" title="https://arxiv.org/abs/2304.01816" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2304.01816</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2304.01816" title="https://arxiv.org/pdf/2304.01816" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2304.01816</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#evaluation">#evaluation</a><a class="tag" href="../../en/tags.html#benchmarking">#benchmarking</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把“人类评测本身如何做得可验证、可复现”变成研究问题，补强了生成评测的制度层。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>它要解决的是文本到图像生成里人类评测常常主观、难复现、难公平比较的问题。对当前知识库来说，它补的是 evaluation 主线里很关键但容易被忽视的一层：不是只造 benchmark，而是改造评测流程本身。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>这项工作围绕文本到图像生成的人类评测协议做设计，强调评测过程的可验证性与可复现性，希望让不同模型之间的人工比较更可信、更可复查。</p>
-<h2 id="关键发现">关键发现</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2023-04-04</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2304.01816" title="https://arxiv.org/abs/2304.01816" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2304.01816</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2304.01816" title="https://arxiv.org/pdf/2304.01816" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2304.01816</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#协议与数据">协议与数据</a></li><li><a href="#模型-结果与成本">模型、结果与成本</a></li><li><a href="#样本量-judge-与污染">样本量、judge 与污染</a></li><li><a href="#任务边界与评级">任务边界与评级</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>论文把 T2I 人评设计成可审计实验：明确 fidelity/alignment 标签、AMT 资格、工资、IAA 与样本量；实验显示当时 FID/CLIPScore 可与人类排名冲突，小 prompt/rater 样本会翻转结论，但协议只覆盖自然图像与 AMT 人群。</p>
+<h2 id="协议与数据">协议与数据</h2>
 <ul>
-<li>它说明生成模型评测不只是找新指标，还包括把人工评测做成更稳定的制度化流程。</li>
-<li>它与 FlashEval、AIGV-Assessor、Video-Bench 形成互补：一个偏人工协议，一个偏快速评测器，一个偏 LMM evaluator，一个偏 human-aligned benchmark。</li>
-<li>它能帮助我们以后判断哪些评测结论更值得信。</li>
+<li>单图+caption 的绝对 1–5 分；fidelity 从 AI-generated 到 real photo，alignment 用 discrepancy 数量定义中间档。</li>
+<li>每图 3 ratings 后平均；AMT Masters；$0.05/task；每人最多 250。</li>
+<li>37 篇审计中，20 篇有人评；只有 4 报每样本 rating 数、0 报 IAA、3 报 compensation。</li>
+<li>pilot 证明具体标签把 fidelity/alignment IAA 从 .18/.07 提到 .39/.26；Masters 组合达到 .53/.44。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="模型-结果与成本">模型、结果与成本</h2>
+<p>四模型：LAFITE、GLIDE lightweight、CogView2、SD1.4；不做 prompt engineering/候选筛选。</p>
 <ul>
-<li>即使流程更可复现，人类评测仍然可能受任务设计和样本选择影响。</li>
-<li>它主要针对文本到图像，不直接覆盖视频编辑理解问题。</li>
-<li>它改善了评测可信度，但不自动提升评测覆盖的能力维度。</li>
+<li>COCO：1,000 captions、15,000 annotations、148 annotators、30h、IAA .41/.48。</li>
+<li>DrawBench：200 prompts、2,400、40 annotators、1.7h、IAA .13/.19。</li>
+<li>PartiPrompts：1,337、16,044、181 annotators、48h、IAA .21/.40。</li>
+<li>直接 HIT payout（不含 pilot/平台费）约 $1,672.20；模型生成成本未报。</li>
 </ul>
+<p>COCO 人评把 SD 评为生成模型最佳（fidelity/alignment 3.09/4.35），而 FID 把 CogView2 排在 SD 前；CLIPScore 给 LAFITE .82、real .76，与人类 alignment 相反，展示了 metric optimization 与人类偏好的错位。</p>
+<h2 id="样本量-judge-与污染">样本量、judge 与污染</h2>
+<ul>
+<li>无 LLM judge；human 是最终 judge。公开 UI/template、IAA、工资与耗时是主要可复现优势。</li>
+<li>COCO 1,000 prompts 重采样 500 次显示小 $n$ 排名不稳；所需阈值依赖 effect size，不能把 &gt;100 或 &gt;500 当普适常数。</li>
+<li>13 captions×60 raters 的重采样显示少 rater 可翻转 real vs SD；应报告显著性和 effect size。</li>
+<li>AMT Masters 标准不透明、平台专属；DrawBench IAA 仍低；无人口统计/层级随机效应模型。</li>
+<li>COCO/DrawBench/PartiPrompts 公开，模型污染未审计；LAFITE 优化 CLIP 再用 CLIPScore 评是明显评价泄漏。</li>
+</ul>
+<h2 id="任务边界与评级">任务边界与评级</h2>
+<p>只覆盖自然照片的 aggregate fidelity/alignment；不覆盖 aesthetics、bias、安全、文字、编辑 preservation 或视频时序。</p>
+<p><strong>证据评级：A-（评测方法学）</strong>（透明度和实证设计强；平台、人群、旧模型与两指标范围限制外推）。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2304.01816</li>
-<li>https://arxiv.org/pdf/2304.01816</li>
+<li><a href="https://arxiv.org/abs/2304.01816">arXiv</a></li>
+<li><a href="https://arxiv.org/pdf/2304.01816">论文 PDF</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">topics/generative-model-evaluation</a></li>
-<li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>这篇工作在这套库里的作用，是把生成模型评测中的“人工评测协议治理”补成明确分支。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有 benchmark 是否跟踪真实视频编辑理解</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li></ul></div><div class="related-group related-questions"><h3>Related questions<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">3</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a><span>Topic</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-verifiable-human-eval-t2i&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;面向文本到图像生成的可验证与可复现人工评测（CVPR 2023）&quot;,
+  &quot;title&quot;: &quot;文本到图像生成的可验证与可复现人工评测&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2023&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
@@ -117,14 +138,15 @@
     &quot;Nakashima, Yuta&quot;,
     &quot;Rahtu, Esa&quot;,
     &quot;Heikkilä, Janne&quot;,
-    &quot;Satoh, Shin&amp;#39;ichi&quot;
+    &quot;Satoh, Shin&#x27;ichi&quot;
   ],
-  &quot;published_at&quot;: &quot;2023/04/04&quot;,
+  &quot;published_at&quot;: &quot;2023-04-04&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2304.01816&quot;,
     &quot;https://arxiv.org/pdf/2304.01816&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-verifiable-human-eval-t2i/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-14-verifiable-human-eval-t2i/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/image-generation&quot;,
     &quot;topics/generative-model-evaluation&quot;
@@ -134,7 +156,7 @@
   &quot;questions&quot;: [
     &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

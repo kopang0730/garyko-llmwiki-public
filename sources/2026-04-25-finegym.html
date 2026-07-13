@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FineGym：体育 AI 的细粒度动作理解早期锚点 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="FineGym：体操视频的层级细粒度动作理解">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>FineGym：体操视频的层级细粒度动作理解 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-25-finegym&quot;, &quot;title&quot;: &quot;FineGym（CVPR 2020）：体育 AI 的细粒度动作理解早期锚点&quot;, &quot;title_en&quot;: &quot;FineGym（CVPR 2020）：体育 AI 的细粒度动作理解早期锚点&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-25-finegym&quot;, &quot;title&quot;: &quot;FineGym：体操视频的层级细粒度动作理解&quot;, &quot;title_en&quot;: &quot;FineGym：体操视频的层级细粒度动作理解&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,51 +60,84 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-25-finegym.html">中文</a><a class="" href="../en/sources/2026-04-25-finegym.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-25</p>
-        <h1><span class="title-main">FineGym</span><span class="title-subtitle">体育 AI 的细粒度动作理解早期锚点</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>FineGym：体操视频的层级细粒度动作理解</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">FineGym</span><span class="title-subtitle">体操视频的层级细粒度动作理解</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2020</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2020-06-01</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-25</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content_CVPR_2020/html/Shao_FineGym_A_Hierarchical_Video_Dataset_for_Fine-Grained_Action_Understanding_CVPR_2020_paper.html" title="https://openaccess.thecvf.com/content_CVPR_2020/html/Shao_FineGym_A_Hierarchical_Video_Dataset_for_Fine-Grained_Action_Understanding_CVPR_2020_paper.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>openaccess.thecvf.com · Shao_FineGym_A_Hierarchical_Vid…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content_CVPR_2020/papers/Shao_FineGym_A_Hierarchical_Video_Dataset_for_Fine-Grained_Action_Understanding_CVPR_2020_paper.pdf" title="https://openaccess.thecvf.com/content_CVPR_2020/papers/Shao_FineGym_A_Hierarchical_Video_Dataset_for_Fine-Grained_Action_Understanding_CVPR_2020_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Shao_FineGym_A_Hierarchical_Vid…</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#benchmarking">#benchmarking</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>提出事件-集合-元素三级语义和动作/子动作两级时间结构，是体育细粒度动作理解的早期关键数据集。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2020</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2020-06-01</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-25</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content_CVPR_2020/html/Shao_FineGym_A_Hierarchical_Video_Dataset_for_Fine-Grained_Action_Understanding_CVPR_2020_paper.html" title="https://openaccess.thecvf.com/content_CVPR_2020/html/Shao_FineGym_A_Hierarchical_Video_Dataset_for_Fine-Grained_Action_Understanding_CVPR_2020_paper.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>openaccess.thecvf.com · Shao_FineGym_A_Hierarchical_Vid…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content_CVPR_2020/papers/Shao_FineGym_A_Hierarchical_Video_Dataset_for_Fine-Grained_Action_Understanding_CVPR_2020_paper.pdf" title="https://openaccess.thecvf.com/content_CVPR_2020/papers/Shao_FineGym_A_Hierarchical_Video_Dataset_for_Fine-Grained_Action_Understanding_CVPR_2020_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Shao_FineGym_A_Hierarchical_Vid…</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#数据集与标签">数据集与标签</a></li><li><a href="#方法与任务接口">方法与任务接口</a></li><li><a href="#核心结果">核心结果</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限与泛化">局限与泛化</a></li><li><a href="#对羽毛球-demo-的迁移边界">对羽毛球 demo 的迁移边界</a></li><li><a href="#对-wiki-判断的影响">对 Wiki 判断的影响</a></li><li><a href="#原始材料">原始材料</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>FineGym 用 event→set→element 和 action→sub-action 层级证明：粗粒度体操识别可用少量帧和背景捷径，但细粒度 element 需要密集时序、motion 与长尾评测；sub-action localization 平均 mAP 仅 9.6，pose 前端在高速翻腾中也频繁漏检。</p>
 <h2 id="论文定位">论文定位</h2>
-<p>FineGym 把体操视频拆成 event / set / element 与动作/子动作时间结构，说明体育视频理解需要层级语义，而不是只做粗粒度分类。</p>
-<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
-<p>它适合放在体育 AI roadmap 的“动作与交互”层，作为后续 MultiSports、FineSports 和 SportsHHI 的前史。</p>
-<h2 id="和现有证据的关系">和现有证据的关系</h2>
+<p>这是体育细粒度动作理解的数据/协议锚点，不是 AQA 方法。它系统比较 RGB、flow、two-stream、3D CNN、时序模型、skeleton 与 temporal localization，重点揭示 coarse→fine 的能力断层。</p>
+<h2 id="数据集与标签">数据集与标签</h2>
 <ul>
-<li>与 <a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它把体育 AI 的证据面从 tracking 扩展到动作、姿态、战术、比赛状态或高速小目标。</li>
-<li>与 <a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：它对应 roadmap 中下一批 batch 的一个证据节点。</li>
+<li>303 场官方比赛记录，约 708 小时；超过 95% 为 720p/1080p。</li>
+<li>10 event、15 set、530 定义的 element，其中 354 类有实例；天然长尾，单类 1–1,648 样本。</li>
+<li>4,883 个完整 action、32,697 个 sub-action；sub-action 通常少于 2 秒。</li>
+<li>4 个女子项目细标：Vault、Floor、Balance Beam、Uneven Bars。</li>
+<li>element 用官方 codebook 与属性决策树标注；路径含动作属性和 difficulty value。</li>
+<li>difficulty 是规范难度，不是执行质量分；数据没有裁判执行分或错误标签。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="方法与任务接口">方法与任务接口</h2>
 <ul>
-<li>当前这版 source note 先完成 bibliography-driven 编译，后续可以按 deep-analysis-first 流程补 <code>analysis.md</code>、关键图页和实验细节。</li>
-<li>具体数值和 benchmark 细节应以 <code>raw/ingest/2026-04-25-finegym/paper-text.md</code> 与原始 PDF 为准。</li>
+<li>event/set：TSN RGB/flow/two-stream。</li>
+<li>element：ActionVLAD、TSN、TRN、TSM、I3D、Non-local I3D、ST-GCN。</li>
+<li>localization：SSN 定位 action 与 sub-action。</li>
+<li>pose：ST-GCN 依赖估计 skeleton，但 intense motion 中检测/姿态漏检。</li>
+<li>auto-scoring 只在未来应用讨论，不能把 FineGym 当 AQA benchmark。</li>
+</ul>
+<h2 id="核心结果">核心结果</h2>
+<ul>
+<li>TSN two-stream event mean/top-1 98.47/99.86，set 91.97/97.69；3 帧不足总帧 5% 也够粗识别。</li>
+<li>Gym99：TSM two-stream mean/top-1 81.2/88.4；TSN 75.6/84.7。</li>
+<li>Gym288 长尾下，TSM two-stream mean 46.5 但 top-1 83.1，显示头部类掩盖尾部失败。</li>
+<li>ST-GCN 在 Gym99 仅 25.2/36.4，远低于 RGB/flow，pose 不是无损中间层。</li>
+<li>SSN action localization 平均 mAP 49.4；sub-action 仅 9.6；tIoU 0.9 时 sub-action mAP 0.6。</li>
+</ul>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>TSN 在 Gym99 用 1/3/5/7/12 帧：35.46/61.4/70.8/74.4/78.82，约 12 帧才饱和；稀疏采样不够。</li>
+<li>RGB→flow→two-stream 显示粒度越细越依赖 motion，但通常仍需融合外观。</li>
+<li>打乱 TRN 测试帧显著降分；TSM 对 train/test 帧数不匹配敏感，证明时序顺序关键。</li>
+<li>Kinetics 预训练 I3D 在 FineGym 并非总优于 ImageNet；这是图示型压力测试，不应外推为“视频预训练无用”。</li>
+</ul>
+<h2 id="局限与泛化">局限与泛化</h2>
+<ul>
+<li>主文未清楚说明 split 是否按比赛/运动员/原视频分组；长视频切块可能产生背景、身份、转播泄漏。</li>
+<li>仅 354/530 element 有样本，Gym99 是筛选平衡子集，不代表完整 taxonomy。</li>
+<li>官方顶级赛事域不能代表训练馆、手机、青少年或低光环境。</li>
+<li>FIG codebook 与 difficulty 随规则版本变化，跨年份需版本化。</li>
+<li>2020 基线是 benchmark 起点，不是当前性能上限。</li>
+</ul>
+<h2 id="对羽毛球-demo-的迁移边界">对羽毛球 demo 的迁移边界</h2>
+<p>可迁移层级标签与属性决策树：回合/击球类型/技术元素，另标准备、引拍、击球、随挥、回位；必须密集采样并报告 mean-class、长尾分桶和严格 tIoU。不可直接复用评分：需新增 ball/racket/contact、执行质量和 coach rubric，并采用 athlete/session/court/camera-disjoint；RGB/flow/pose/球拍球应融合且传播 pose 不确定性。</p>
+<h2 id="对-wiki-判断的影响">对 Wiki 判断的影响</h2>
+<ul>
+<li>对 <a class="wikilink" href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a>：层级语义、密集时序和长尾评测是直接支持。</li>
+<li>对 <a class="wikilink" href="../topics/sports-ai-roadmap.html">体育 AI 路线图</a>：动作/阶段层是奠基支持；训练评分只属背景。</li>
+<li>对 <a class="wikilink" href="../topics/video-understanding.html">视频理解</a>：对 sparse sampling、motion、temporal order 和 coarse pretraining 的边界提供压力测试。</li>
 </ul>
 <h2 id="原始材料">原始材料</h2>
 <ul>
+<li><a class="wikilink missing" href="#missing-raw/ingest/2026-04-25-finegym/analysis">全文深分析</a></li>
 <li><code>raw/ingest/2026-04-25-finegym/paper.pdf</code></li>
 <li><code>raw/ingest/2026-04-25-finegym/paper-text.md</code></li>
-<li><code>raw/ingest/2026-04-25-finegym/abstract.md</code></li>
 <li><code>raw/ingest/2026-04-25-finegym/links.yaml</code></li>
-</ul>
-<h2 id="相关页面">相关页面</h2>
-<ul>
-<li><a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
-<li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
-<li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li><li><a class="wikilink" href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li><li><a class="wikilink" href="../topics/video-understanding.html">视频理解</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">5</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-05-12-trackmae.html">TrackMAE：用轨迹遮挡与预测学习运动敏感的视频表征</a><span>来源笔记</span></li><li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a><span>主题</span></li><li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a><span>主题</span></li><li><a href="../topics/video-understanding.html">视频理解</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-25-finegym&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;FineGym（CVPR 2020）：体育 AI 的细粒度动作理解早期锚点&quot;,
+  &quot;title&quot;: &quot;FineGym：体操视频的层级细粒度动作理解&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-25&quot;,
-  &quot;updated&quot;: &quot;2026-04-25&quot;,
-  &quot;venue&quot;: &quot;CVPR 2020&quot;,
-  &quot;published_at&quot;: &quot;2020-06-01&quot;,
-  &quot;ingested_at&quot;: &quot;2026-04-25&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;video-understanding&quot;,
@@ -107,7 +146,15 @@
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
-  &quot;authors&quot;: [],
+  &quot;venue&quot;: &quot;CVPR 2020&quot;,
+  &quot;authors&quot;: [
+    &quot;Dian Shao&quot;,
+    &quot;Yue Zhao&quot;,
+    &quot;Bo Dai&quot;,
+    &quot;Dahua Lin&quot;
+  ],
+  &quot;published_at&quot;: &quot;2020-06-01&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-25&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://openaccess.thecvf.com/content_CVPR_2020/html/Shao_FineGym_A_Hierarchical_Video_Dataset_for_Fine-Grained_Action_Understanding_CVPR_2020_paper.html&quot;,
     &quot;https://openaccess.thecvf.com/content_CVPR_2020/papers/Shao_FineGym_A_Hierarchical_Video_Dataset_for_Fine-Grained_Action_Understanding_CVPR_2020_paper.pdf&quot;
@@ -118,12 +165,10 @@
     &quot;topics/sports-ai-roadmap&quot;,
     &quot;topics/video-understanding&quot;
   ],
-  &quot;entities&quot;: [
-    &quot;entities/sportsmot&quot;
-  ],
+  &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

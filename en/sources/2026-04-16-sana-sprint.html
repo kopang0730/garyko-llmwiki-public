@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SANA-Sprint：用连续时间一致性蒸馏把一步扩散再往前推 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="SANA-Sprint：连续时间一致性与对抗蒸馏的一步线性 DiT">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>SANA-Sprint：连续时间一致性与对抗蒸馏的一步线性 DiT · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-sana-sprint&quot;, &quot;title&quot;: &quot;SANA-Sprint（ICCV 2025）：用连续时间一致性蒸馏把一步扩散再往前推&quot;, &quot;title_en&quot;: &quot;SANA-Sprint（ICCV 2025）：用连续时间一致性蒸馏把一步扩散再往前推&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-sana-sprint&quot;, &quot;title&quot;: &quot;SANA-Sprint：连续时间一致性与对抗蒸馏的一步线性 DiT&quot;, &quot;title_en&quot;: &quot;SANA-Sprint：连续时间一致性与对抗蒸馏的一步线性 DiT&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,50 +60,98 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-16-sana-sprint.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-16-sana-sprint.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-05-22</p>
-        <h1><span class="title-main">SANA-Sprint</span><span class="title-subtitle">用连续时间一致性蒸馏把一步扩散再往前推</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>SANA-Sprint：连续时间一致性与对抗蒸馏的一步线性 DiT</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">SANA-Sprint</span><span class="title-subtitle">连续时间一致性与对抗蒸馏的一步线性 DiT</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025/03/12</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2503.09641" title="https://arxiv.org/abs/2503.09641" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2503.09641</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2503.09641.pdf" title="https://arxiv.org/pdf/2503.09641.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2503.09641.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#efficiency">#efficiency</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把 one-step diffusion 往连续时间一致性蒸馏方向继续推进，说明 few-step / one-step 路线仍在快速演化，而且已经进入更激进的前沿阶段。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-03-12</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2503.09641" title="https://arxiv.org/abs/2503.09641" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2503.09641</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2503.09641.pdf" title="https://arxiv.org/pdf/2503.09641.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2503.09641.pdf</strong></a><a class="source-link source-link-code" href="https://github.com/NVlabs/Sana" title="https://github.com/NVlabs/Sana" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · Sana</strong></a></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#核心实验与结果">核心实验与结果</a><ol><li class="toc-sub"><a href="#训练-评测协议">训练/评测协议</a></li><li class="toc-sub"><a href="#a100-端到端结果">A100 端到端结果</a></li><li class="toc-sub"><a href="#多硬件口径">多硬件口径</a></li></ol></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>SANA-Sprint 把 SANA linear DiT 蒸馏为统一的 1–4 step student：A100、1024²、BF16、batch=1 下 one-step 端到端 latency 0.21s，H100 报约 0.1s、RTX 4090 报 0.31s；但它需要 32×A100 的两阶段训练，且 transformer-only 0.03s、端到端 0.21s 与不同 checkpoint 的 FID/GenEval 不能混为同一口径。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>它结合 trajectory-based sCM 与 distribution-based LADD：前者对齐 teacher 连续时间轨迹，后者用 teacher latent features 做对抗监督提升一步 fidelity。与每个步数单独训练的蒸馏不同，一个 SANA-Sprint checkpoint 支持 1/2/4 steps。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>few-step diffusion 已经大幅降低采样成本，但 one-step 仍然面临质量、稳定性和训练难度的张力。论文要解决的是，怎样通过连续时间一致性蒸馏，把一步扩散继续推向更强可用性。</p>
+<p>one-step diffusion 的张力是：一致性模型在 &lt;4 steps 时质量与语义易退化，而 GAN/VSD 路线训练不稳、显存高。论文要在 SANA backbone 上同时保持一步质量、训练稳定性和多步灵活性。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>作者沿 consistency distillation 方向继续推进 one-step diffusion，让连续时间建模成为压缩采样链的关键工具。它的重要性在于给当前 acceleration 主线补入一个更前沿的 2025 节点。</p>
-<h2 id="关键发现">关键发现</h2>
 <ul>
-<li>它把 <a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a> 里的 few-step acceleration 继续推到 one-step frontier。</li>
-<li>它和 <a class="wikilink" href="../../en/sources/2026-04-15-act-diffusion.html">sources/2026-04-15-act-diffusion</a>、<a class="wikilink" href="../../en/sources/2026-04-16-come-closer-diffuse-faster.html">sources/2026-04-16-come-closer-diffuse-faster</a> 形成“早期 few-step → one-step training → consistency distillation frontier”的连续链。</li>
-<li>它说明 diffusion acceleration 的上限竞争仍然很活跃，主线远未收敛。</li>
+<li>将预训练 flow-matching SANA 解析变换到 TrigFlow 参数化；该变换无需训练，但整个模型仍需蒸馏。</li>
+<li>用 dense timestep embedding 与 self/cross attention QK-Norm 抑制 &gt;$10^3$ gradient norm 和 collapse。</li>
+<li>联合 sCM consistency loss 与 LADD latent adversarial loss，默认权重约 1:0.5。</li>
+<li>以 50% 概率在最大时间 $t=\pi/2$ 做对抗训练，强化 one/few-step。</li>
+<li>backbone 是 SANA-1.5 路线的 0.6B/1.6B <strong>linear-attention DiT + deep autoencoder</strong>，不是普通 full-attention DiT。</li>
+</ul>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<h3 id="训练-评测协议">训练/评测协议</h3>
+<ul>
+<li>32×A100、4 DGX；teacher fine-tune 5K iterations（global batch 1024，lr 2e-5）；distillation 20K（batch 512，lr 2e-6）。</li>
+<li>MJHQ-30K：FID/CLIP；GenEval：553 prompts；1024×1024。</li>
+<li>A100 Table 2：BF16；throughput batch=10，latency batch=1。</li>
+</ul>
+<h3 id="a100-端到端结果">A100 端到端结果</h3>
+<ul>
+<li>SANA 0.6B teacher / 20 steps：0.9s，FID 5.81，GenEval 0.64。</li>
+<li>Sprint 0.6B / 4 steps：0.32s，5.34 samples/s，FID 6.48，GenEval 0.76。</li>
+<li>Sprint 0.6B / 2 steps：0.25s，6.46 samples/s，FID 6.54，GenEval 0.76。</li>
+<li>Sprint 0.6B / 1 step：<strong>0.21s</strong>，7.22 samples/s，FID <strong>7.04</strong>，GenEval <strong>0.72</strong>。</li>
+<li>Sprint 1.6B / 1 step：0.21s，FID 7.69，GenEval 0.76。</li>
+<li>FLUX-schnell 12B / 4 steps：2.10s，FID 7.94，GenEval 0.71。</li>
+</ul>
+<h3 id="多硬件口径">多硬件口径</h3>
+<p>摘要/正文另报 H100 T2I 约 <strong>0.10s</strong>、ControlNet 0.20–0.25s、RTX 4090 T2I <strong>0.31s</strong>。Figure 1 的 A100 <strong>0.03s</strong> 是 transformer-only one-step，另有约 0.12s VAE；不可把 0.03s 写成端到端生成时间。</p>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>flow→TrigFlow 50-step FID 5.81→5.73、CLIP 28.810→28.806，支持变换近似无损。</li>
+<li>移除 schedule transform 后训练发散；dense time/QK-Norm 显著压低 gradient norm。</li>
+<li>sCM-only：FID/CLIP 8.93/27.51；LADD-only 12.20/27.00；联合 <strong>8.11/28.02</strong>。</li>
+<li>CFG embedding：FID 9.23→8.72，CLIP 27.15→28.09。</li>
+<li>max-time weighting 0%→50%：FID 9.44→8.32、CLIP 27.65→27.94。</li>
+<li>1/2/4 step 都做 inference timestep search，性能依赖部署前调优。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>venue 已按外部审计修为 ICCV 2025；本地 primary links 仍以 arXiv 版本为可追溯入口，后续可继续补 official proceedings / DOI。</li>
-<li>one-step 路线常见的质量稳定性问题，在更复杂任务里是否成立仍需观察。</li>
+<li>“training-free”只指参数化变换；完整方案需要 32×A100、25K iterations，未报 GPU-hours/能耗。</li>
+<li>主要只在 SANA 验证；对 FLUX/SD3 的泛化是主张而非实验。</li>
+<li>1-step 相比 teacher/4-step 有 FID 退化；FID 与 GenEval 也有取舍。</li>
+<li>摘要 7.59/0.74 与 Table 2 的 one-step 7.04/0.72（0.6B）/7.69/0.76（1.6B）口径不同，应分别引用。</li>
+<li>ControlNet 主要给可视化和 latency，缺结构保真量化。</li>
+<li>无人工偏好、文字渲染、安全与生产稳定性评测。</li>
 </ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li>对 <a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">Diffusion 效率工程</a>：直接支持 one/few-step 蒸馏已达到亚秒 1024²，同时要求记录训练预算。</li>
+<li>对 <a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a>：是强 speed-quality case，但收益混合 linear attention、深 VAE、小模型与蒸馏。</li>
+<li>对 <a class="wikilink" href="../../en/entities/diffusion-transformer.html">Diffusion Transformer</a>：间接支持专门效率生态成熟，不证明标准 DiT 普遍最优。</li>
+<li>与 CCDF 不同：CCDF 是逆问题 warm-start，SANA-Sprint 是开放式 T2I 的重训练蒸馏。</li>
+</ul>
+<h2 id="证据评级">证据评级</h2>
+<p><strong>A-</strong>：真实多硬件 latency、训练协议、主表与组件消融较完整；边界是数字口径不完全一致、无正式 Limitations、跨 backbone 未验证及训练总成本未量化。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2503.09641</li>
-<li>https://arxiv.org/pdf/2503.09641.pdf</li>
+<li><a href="https://arxiv.org/abs/2503.09641">arXiv</a></li>
+<li><a href="https://arxiv.org/pdf/2503.09641.pdf">PDF</a></li>
+<li><a href="https://github.com/NVlabs/Sana">Code / Models</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-15-act-diffusion.html">sources/2026-04-15-act-diffusion</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-come-closer-diffuse-faster.html">sources/2026-04-16-come-closer-diffuse-faster</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>它在本库中的价值，是把 acceleration 主线再往 2025 的前沿 frontier 拉近一步。 “</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">Diffusion 效率工程</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../../en/entities/diffusion-transformer.html">Diffusion Transformer</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-come-closer-diffuse-faster.html">CCDF</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li><li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li></ul></div><div class="related-group related-entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">5</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-04-16-come-closer-diffuse-faster.html">Come-Closer-Diffuse-Faster：用好初始化缩短条件扩散逆问题路径</a><span>Source note</span></li><li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>Topic</span></li><li><a href="../../en/topics/diffusion-models.html">扩散模型</a><span>Topic</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-16-sana-sprint&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;SANA-Sprint（ICCV 2025）：用连续时间一致性蒸馏把一步扩散再往前推&quot;,
+  &quot;title&quot;: &quot;SANA-Sprint：连续时间一致性与对抗蒸馏的一步线性 DiT&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-16&quot;,
-  &quot;updated&quot;: &quot;2026-05-22&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;ICCV 2025&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
   &quot;tags&quot;: [
@@ -110,15 +164,22 @@
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;authors&quot;: [
-    &quot;Xie, Enze&quot;,
-    &quot;Luo, Tianyu&quot;,
     &quot;Chen, Junsong&quot;,
-    &quot;others&quot;
+    &quot;Xue, Shuchen&quot;,
+    &quot;Zhao, Yuyang&quot;,
+    &quot;Yu, Jincheng&quot;,
+    &quot;Paul, Sayak&quot;,
+    &quot;Chen, Junyu&quot;,
+    &quot;Zou, Dongyun&quot;,
+    &quot;Cai, Han&quot;,
+    &quot;Han, Song&quot;,
+    &quot;Xie, Enze&quot;
   ],
-  &quot;published_at&quot;: &quot;2025/03/12&quot;,
+  &quot;published_at&quot;: &quot;2025-03-12&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2503.09641&quot;,
-    &quot;https://arxiv.org/pdf/2503.09641.pdf&quot;
+    &quot;https://arxiv.org/pdf/2503.09641.pdf&quot;,
+    &quot;https://github.com/NVlabs/Sana&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-16-sana-sprint/&quot;,
   &quot;topics&quot;: [
@@ -126,10 +187,12 @@
     &quot;topics/diffusion-efficiency-engineering&quot;,
     &quot;topics/image-generation&quot;
   ],
-  &quot;entities&quot;: [],
+  &quot;entities&quot;: [
+    &quot;entities/diffusion-transformer&quot;
+  ],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

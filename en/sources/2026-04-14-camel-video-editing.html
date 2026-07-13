@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="CAMEL：面向文本驱动视频编辑的因果运动增强">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>CAMEL：面向文本驱动视频编辑的因果运动增强 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-camel-video-editing&quot;, &quot;title&quot;: &quot;CAMEL（CVPR 2024）：面向文本驱动视频编辑的因果运动增强&quot;, &quot;title_en&quot;: &quot;CAMEL（CVPR 2024）：面向文本驱动视频编辑的因果运动增强&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;video-generation&quot;, &quot;diffusion&quot;, &quot;control&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-camel-video-editing&quot;, &quot;title&quot;: &quot;CAMEL：面向文本驱动视频编辑的因果运动增强&quot;, &quot;title_en&quot;: &quot;CAMEL：面向文本驱动视频编辑的因果运动增强&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;video-generation&quot;, &quot;diffusion&quot;, &quot;control&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,51 +60,92 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-camel-video-editing.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-camel-video-editing.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>CAMEL：面向文本驱动视频编辑的因果运动增强</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
         <h1><span class="title-main">CAMEL</span><span class="title-subtitle">面向文本驱动视频编辑的因果运动增强</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2024-01-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2024/html/Zhang_CAMEL_CAusal_Motion_Enhancement_Tailored_for_Lifting_Text-driven_Video_Editing_CVPR_2024_paper.html" title="https://openaccess.thecvf.com/content/CVPR2024/html/Zhang_CAMEL_CAusal_Motion_Enhancement_Tailored_for_Lifting_Text-driven_Video_Editing_CVPR_2024_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Zhang_CAMEL_CAusal_Motion_Enhan…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2024/papers/Zhang_CAMEL_CAusal_Motion_Enhancement_Tailored_for_Lifting_Text-driven_Video_Editing_CVPR_2024_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2024/papers/Zhang_CAMEL_CAusal_Motion_Enhancement_Tailored_for_Lifting_Text-driven_Video_Editing_CVPR_2024_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Zhang_CAMEL_CAusal_Motion_Enhan…</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-editing">#video-editing</a><a class="tag" href="../../en/tags.html#video-generation">#video-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#control">#control</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把 motion enhancement 作为专门模块嵌入文本驱动视频编辑，补强了视频编辑里的运动质量优化路线。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>它要解决的是文本驱动视频编辑常常改得对但运动不够自然、不够稳定的问题。对当前知识库来说，它补的是 motion editing 与 motion enhancement 之间更细的中间层。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>CAMEL 通过 causal motion enhancement 机制提升 text-driven video editing 中的运动质量与时序自然性，强调在不牺牲编辑目标的前提下改善运动表达。</p>
-<h2 id="关键发现">关键发现</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2024-01-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2024/html/Zhang_CAMEL_CAusal_Motion_Enhancement_Tailored_for_Lifting_Text-driven_Video_Editing_CVPR_2024_paper.html" title="https://openaccess.thecvf.com/content/CVPR2024/html/Zhang_CAMEL_CAusal_Motion_Enhancement_Tailored_for_Lifting_Text-driven_Video_Editing_CVPR_2024_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Zhang_CAMEL_CAusal_Motion_Enhan…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2024/papers/Zhang_CAMEL_CAusal_Motion_Enhancement_Tailored_for_Lifting_Text-driven_Video_Editing_CVPR_2024_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2024/papers/Zhang_CAMEL_CAusal_Motion_Enhancement_Tailored_for_Lifting_Text-driven_Video_Editing_CVPR_2024_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Zhang_CAMEL_CAusal_Motion_Enhan…</strong></a><a class="source-link source-link-code" href="https://github.com/zhangguiwei610/CAMEL" title="https://github.com/zhangguiwei610/CAMEL" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · CAMEL</strong></a></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#输入-输出与保留目标">输入、输出与保留目标</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#数据与训练预算">数据与训练预算</a></li><li><a href="#核心实验与结果">核心实验与结果</a><ol><li class="toc-sub"><a href="#umtscore-视频-文本对齐">UMTScore（视频—文本对齐）</a></li><li class="toc-sub"><a href="#clip-frame-consistency">CLIP frame consistency</a></li></ol></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>CAMEL 通过 per-video motion prompts 与可学习因果时间滤波器，在改变对象、背景或风格时增强源运动保持；它在 TGVE 的文本对齐和 CLIP 帧一致性上领先所选基线，但没有直接 motion metric，因此不能据此断言模型理解了动作。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这是逐视频微调的文本驱动视频编辑，不是任意运动重定向。给定源视频、源文本与目标文本，模型保留源运动模式并重绘语义外观。它代表“语义编辑中的运动保持/增强”，而不是语言驱动动作生成。</p>
+<h2 id="输入-输出与保留目标">输入、输出与保留目标</h2>
 <ul>
-<li>它说明视频编辑主线已经不只是在“能不能改”，而是在“改完之后运动是否像样”。</li>
-<li>它和 MotionEditor、MotionFollower 一起把 motion-centric video editing 路线进一步拉厚。</li>
-<li>它有助于把视频编辑能力拆成语义编辑、结构保持、运动质量三个层面来理解。</li>
+<li><strong>输入</strong>：源视频模板、源描述、目标编辑文本。</li>
+<li><strong>输出</strong>：遵循目标文本且尽量继承源运动的视频。</li>
+<li><strong>要保留</strong>：源运动、跨帧主体与结构稳定。</li>
+<li><strong>可改变</strong>：对象、背景、风格和多项语义属性。</li>
+<li><strong>边界</strong>：没有显式目标动作、轨迹或区域 mask；preservation 是感知层而非像素级保证。</li>
 </ul>
+<h2 id="方法概述">方法概述</h2>
+<ol>
+<li>从单个源视频直接优化长度 32 的 motion prompts，把运动概念作为类似文本的条件注入去噪。</li>
+<li>用窗口 $\sigma=11$ 的可学习因果高通滤波器沿时间维提取高频分量；作者把高频近似为运动、低频近似为外观。</li>
+<li>在 CAM-Attn 中让高频分量 cross-attend motion prompts，再与低频分量重组。</li>
+<li>微调固定 temporal-attention 的 K/V，只训练 Q 与 CAMEL；推理使用源视频 DDIM inversion。</li>
+</ol>
+<p>相比 Tune-A-Video，它显式分解并条件化运动；相比 edge/depth control，它不施加严格空间轨迹约束。</p>
+<h2 id="数据与训练预算">数据与训练预算</h2>
+<ul>
+<li>LOVEU-TGVE：53 个视频（DAVIS 16、Videvo 37）。</li>
+<li>每视频 32 帧、$480\times480$，四类目标 prompt：对象、背景、风格、多重编辑。</li>
+<li>Stable Diffusion v1.4；per-video 500 steps，学习率 $3\times10^{-5}$，batch 1。</li>
+<li>50-step inversion + 50-step sampling；单张 A100。</li>
+<li>未报告训练时长、GPU-hours、参数增量或运行时间。</li>
+</ul>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<h3 id="umtscore-视频-文本对齐">UMTScore（视频—文本对齐）</h3>
+<p>TGVE-DAVIS 上 CAMEL 为 <strong>36.52 / 36.60 / 34.08 / 33.92</strong>，Tune-A-Video 为 35.02 / 34.98 / 33.31 / 32.76。TGVE-Videvo 上 CAMEL 为 <strong>37.03 / 37.54 / 35.26 / 37.36</strong>，四类任务均为表中最高。</p>
+<h3 id="clip-frame-consistency">CLIP frame consistency</h3>
+<p>CAMEL 在 TGVE-DAVIS 为 <strong>93.35 / 95.16 / 93.87 / 93.46</strong>，TGVE-Videvo 为 <strong>97.10 / 97.56 / 97.55 / 97.02</strong>，均领先 Tune-A-Video、Text2Video-Zero、ControlVideo。</p>
+<p>Frame consistency 只测帧 embedding 相似性，可能奖励静态结果；UMTScore 也不直接测源动作复现。基线较少，且无用户研究。</p>
+<h2 id="关键消融">关键消融</h2>
+<p>TGVE-DAVIS UMTScore：Haar only 为 35.03 / 34.95 / 33.24 / 32.91；causal filter only 为 36.03 / 35.98 / 33.78 / 33.54；motion prompt only 为 35.31 / 35.24 / 33.56 / 33.14；两者组合达到完整模型 36.52 / 36.60 / 34.08 / 33.92。</p>
+<p>消融支持两个模块互补和宽因果窗口优于两帧 Haar，但只报告文本对齐，未直接量化 motion fidelity。</p>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>它更偏运动增强，不覆盖所有编辑任务类型。</li>
-<li>提升运动自然性不等于提升更高层的编辑理解能力。</li>
-<li>它是能力细化节点，但仍需和更全面的方法并看。</li>
+<li>53 个短视频、每个 32 帧，不覆盖长视频、剪辑点或复杂遮挡。</li>
+<li>“高频=运动、低频=外观”会混入纹理、闪烁、镜头和光照变化。</li>
+<li>逐视频 500 步优化不适合即时编辑。</li>
+<li>没有光流、轨迹、pose 或人工 motion preference。</li>
+<li>多对象能力主要是定性示例。</li>
 </ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li>直接支持 <a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a> 中“运动保持/增强已成为独立方法线”。</li>
+<li>对 <a class="wikilink" href="../../en/topics/video-generation.html">视频生成</a> 只提供底座与时序模块的相邻证据。</li>
+<li>对 <a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有 benchmark 是否跟踪真实视频编辑理解</a> 是压力测试：代理指标不能把动作保持、语义对齐和输出静态性分开。</li>
+<li>对 <a class="wikilink" href="../../en/entities/video-editing-understanding.html">视频编辑理解</a> 只能作为编辑执行系统，不能作为通用理解能力证据。</li>
+</ul>
+<h2 id="证据评级">证据评级</h2>
+<p><strong>B-（窄任务中的中等直接执行证据；对真实视频编辑理解为 C）</strong>。论文直接证明所选 benchmark 与基线上的代理指标优势和模块贡献；对动作忠实度、长时序与理解能力的主张仍缺直接测量。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://openaccess.thecvf.com/content/CVPR2024/html/Zhang_CAMEL_CAusal_Motion_Enhancement_Tailored_for_Lifting_Text-driven_Video_Editing_CVPR_2024_paper.html</li>
-<li>https://openaccess.thecvf.com/content/CVPR2024/papers/Zhang_CAMEL_CAusal_Motion_Enhancement_Tailored_for_Lifting_Text-driven_Video_Editing_CVPR_2024_paper.pdf</li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2024/html/Zhang_CAMEL_CAusal_Motion_Enhancement_Tailored_for_Lifting_Text-driven_Video_Editing_CVPR_2024_paper.html">CVF 论文页</a></li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Zhang_CAMEL_CAusal_Motion_Enhancement_Tailored_for_Lifting_Text-driven_Video_Editing_CVPR_2024_paper.pdf">论文 PDF</a></li>
+<li><a href="https://github.com/zhangguiwei610/CAMEL">官方代码</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/video-editing.html">topics/video-editing</a></li>
-<li><a class="wikilink" href="../../en/topics/video-generation.html">topics/video-generation</a></li>
-<li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">entities/video-editing-understanding</a></li>
-<li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>CAMEL 在这套库里的作用，是把视频编辑里的运动增强路线补成明确分支。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a class="wikilink" href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+<li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有 benchmark 是否跟踪真实视频编辑理解</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a></li><li><a class="wikilink" href="../../en/topics/video-generation.html">视频生成</a></li></ul></div><div class="related-group related-entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li></ul></div><div class="related-group related-questions"><h3>Related questions<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">4</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/diffusion-models.html">扩散模型</a><span>Topic</span></li><li><a href="../../en/topics/video-editing.html">视频编辑</a><span>Topic</span></li><li><a href="../../en/topics/video-generation.html">视频生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-camel-video-editing&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;CAMEL（CVPR 2024）：面向文本驱动视频编辑的因果运动增强&quot;,
+  &quot;title&quot;: &quot;CAMEL：面向文本驱动视频编辑的因果运动增强&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2024&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
@@ -122,9 +169,11 @@
   &quot;published_at&quot;: &quot;2024-01-01&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://openaccess.thecvf.com/content/CVPR2024/html/Zhang_CAMEL_CAusal_Motion_Enhancement_Tailored_for_Lifting_Text-driven_Video_Editing_CVPR_2024_paper.html&quot;,
-    &quot;https://openaccess.thecvf.com/content/CVPR2024/papers/Zhang_CAMEL_CAusal_Motion_Enhancement_Tailored_for_Lifting_Text-driven_Video_Editing_CVPR_2024_paper.pdf&quot;
+    &quot;https://openaccess.thecvf.com/content/CVPR2024/papers/Zhang_CAMEL_CAusal_Motion_Enhancement_Tailored_for_Lifting_Text-driven_Video_Editing_CVPR_2024_paper.pdf&quot;,
+    &quot;https://github.com/zhangguiwei610/CAMEL&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-camel-video-editing/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-14-camel-video-editing/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/video-editing&quot;,
     &quot;topics/video-generation&quot;
@@ -136,7 +185,7 @@
   &quot;questions&quot;: [
     &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Attention Calibration for Disentangled Text-to-Image Personalization：解耦式文本到图像个性化的注意力校准 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="Attention Calibration for Disentangled Text-to-Image Personalization：解耦式个性化注意力校准">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Attention Calibration for Disentangled Text-to-Image Personalization：解耦式个性化注意力校准 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-attention-calibration-personalization&quot;, &quot;title&quot;: &quot;Attention Calibration for Disentangled Text-to-Image Personalization（CVPR 2024）：解耦式文本到图像个性化的注意力校准&quot;, &quot;title_en&quot;: &quot;Attention Calibration for Disentangled Text-to-Image Personalization（CVPR 2024）：解耦式文本到图像个性化的注意力校准&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-attention-calibration-personalization&quot;, &quot;title&quot;: &quot;Attention Calibration for Disentangled Text-to-Image Personalization：解耦式个性化注意力校准&quot;, &quot;title_en&quot;: &quot;Attention Calibration for Disentangled Text-to-Image Personalization：解耦式个性化注意力校准&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;conditioning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,82 +60,94 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-attention-calibration-personalization.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-attention-calibration-personalization.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">Attention Calibration for Disentangled Text-to-Image Personalization</span><span class="title-subtitle">解耦式文本到图像个性化的注意力校准</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Attention Calibration for Disentangled Text-to-Image Personalization：解耦式个性化注意力校准</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">Attention Calibration for Disentangled Text-to-Image Personalization</span><span class="title-subtitle">解耦式个性化注意力校准</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2024/03/27</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2403.18551" title="https://arxiv.org/abs/2403.18551" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2403.18551</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2403.18551" title="https://arxiv.org/pdf/2403.18551" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2403.18551</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#conditioning">#conditioning</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把解耦式个性化中的 attention calibration 路线补进库里，强化了 image-generation 的个性化主线。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2024-03-27</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2403.18551" title="https://arxiv.org/abs/2403.18551" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2403.18551</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2403.18551" title="https://arxiv.org/pdf/2403.18551" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2403.18551</strong></a><a class="source-link source-link-code" href="https://github.com/Monalissaa/DisenDiff" title="https://github.com/Monalissaa/DisenDiff" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · DisenDiff</strong></a></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#数据与结果">数据与结果</a></li><li><a href="#消融-人评与成本">消融、人评与成本</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#相关页面">相关页面</a></li><li><a href="#证据评级">证据评级</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>DisenDiff从一张包含两个不同类别主体的图像学习两个可独立/组合调用的personalization tokens，通过modifier-class绑定与class-class分离校准SD1.5 cross-attention；10张图的CLIP评测中image-alignment 0.775最高，但无人评，同类别双实例和三概念明显退化。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>它要解决的是文本到图像个性化中概念纠缠和主体属性混淆的问题。对当前知识库来说，它补的是 DreamBooth、多概念定制之后更细的个性化校准路线。</p>
+<p>现有个性化方法可记住主体，却容易把同图多个主体的属性混在一起：请求单独生成灯时仍出现椅子，或颜色/纹理错绑。论文要求不提供训练mask，仅凭一张图同时学多个概念。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>该工作通过 attention calibration 来实现 disentangled text-to-image personalization，强调在个性化生成中更好地区分主体、属性和上下文。</p>
-<h2 id="关键发现">关键发现</h2>
 <ul>
-<li>它说明个性化路线已经开始从“能学会主体”走向“怎样避免纠缠地学会主体”。</li>
-<li>它能帮助以后分析 personalization 改进点到底落在数据、表示还是注意力机制。</li>
-<li>它让 image-generation 页的个性化路线更细致。</li>
+<li>Backbone：Stable Diffusion 1.5 latent diffusion U-Net；冻结大部分参数，只更新cross-attention的$W_K,W_V$与新token embeddings。</li>
+<li>Prompt：<code>V1* class1 and V2* class2</code>；类别token提供粗定位，新modifier绑定实例属性。</li>
+<li>$L_{bind}$让modifier attention与对应class attention的平滑区域对齐。</li>
+<li>$L_{s&amp;s}$最小化不同class maps的IoU；$A\odot A$ suppression锐化边界；Gaussian filter缓解token逐像素竞争。</li>
+<li>只在16×16 attention施加约束；250 steps、batch 8、lr 8e-5；推理50-step DDIM、CFG 6。</li>
+<li>从LAION-5B retrieval 200张同类正则图，故不是只依赖单图的完全封闭训练。</li>
 </ul>
+<p>这是per-image微调方法，不是zero-shot reference adapter、统一生成编辑模型或DiT。</p>
+<h2 id="数据与结果">数据与结果</h2>
+<p>10组单图：Cat+Dog、Cow+Bird、Man+Woman、Chair+Vase、Chair+Lamp、Dog+Pig、Mother+Child、Woman+Dog、Horse+Dog、Baby+Toy。每图30 prompts，每prompt 16样本。</p>
+<table><thead><tr><th>设置</th><th>方法</th><th>Image align↑</th><th>Text align↑</th></tr></thead><tbody><tr><td>Mean</td><td>Textual Inversion</td><td>0.625</td><td><strong>0.796</strong></td></tr><tr><td>Mean</td><td>DreamBooth</td><td>0.696</td><td>0.788</td></tr><tr><td>Mean</td><td>Custom Diffusion</td><td>0.762</td><td>0.780</td></tr><tr><td>Mean</td><td><strong>DisenDiff</strong></td><td><strong>0.775</strong></td><td>0.780</td></tr><tr><td>Concept2</td><td>Custom Diffusion</td><td>0.709</td><td><strong>0.799</strong></td></tr><tr><td>Concept2</td><td><strong>DisenDiff</strong></td><td><strong>0.733</strong></td><td>0.791</td></tr></tbody></table>
+<p>提升主要是主体外观保留与Concept2解耦；文本对齐并非全面最优。指标都基于CLIP，无法充分衡量严格身份、细纹理和对象漏出。</p>
+<h2 id="消融-人评与成本">消融、人评与成本</h2>
+<p>去$L_{bind}$/$L_{s&amp;s}$会降两主体image-alignment；去suppression主要损Concept2；去Gaussian filter损组合；二次suppression过滤重要属性。约束所有尺度会使Concept2难重建；再更新$W_Q$虽更记外观，却损文本可编辑性。</p>
+<p>没有正式用户研究。论文未报告GPU型号、显存、训练分钟/GPU-hours或checkpoint大小。</p>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>它更偏个性化内部机制，不直接对应通用控制接口。</li>
-<li>解耦优化往往依赖具体任务设定。</li>
-<li>它是 personalization 精细化节点，而不是通用统一模型结论。</li>
-</ul>
-<h2 id="原始链接">原始链接</h2>
-<ul>
-<li>https://arxiv.org/abs/2403.18551</li>
-<li>https://arxiv.org/pdf/2403.18551</li>
+<li>同类别细粒度双实例（如Golden Retriever与Border Collie）很难分开。</li>
+<li>三概念可定性运行但性能明显下降。</li>
+<li>训练需类别名、200张外部正则图与per-image fine-tuning。</li>
+<li>数据只有10张，自动指标共享CLIP evaluator。</li>
+<li>不支持通用编辑接口、严格identity guarantee或DiT趋势判断。</li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../../en/entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a></li>
-<li><a class="wikilink" href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a></li>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-14-dreambooth.html">DreamBooth</a></li>
 </ul>
-<h2 id="备注">备注</h2>
-<p>这篇工作在库里的作用，是把解耦式个性化的 attention calibration 路线补成明确节点。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<h2 id="证据评级">证据评级</h2>
+<p><strong>B</strong>：方法和逐数据结果透明；小数据、CLIP单一指标、无人评、成本缺失及同类/三概念边界限制结论。</p></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">2</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-attention-calibration-personalization&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Attention Calibration for Disentangled Text-to-Image Personalization（CVPR 2024）：解耦式文本到图像个性化的注意力校准&quot;,
+  &quot;title&quot;: &quot;Attention Calibration for Disentangled Text-to-Image Personalization：解耦式个性化注意力校准&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
-  &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
-  &quot;venue&quot;: &quot;CVPR 2024&quot;,
-  &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
-  &quot;tags&quot;: [
-    &quot;near-cvpr-2025&quot;,
-    &quot;image-generation&quot;,
-    &quot;primary-source&quot;
-  ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-14&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;venue&quot;: &quot;CVPR 2024&quot;,
   &quot;authors&quot;: [
-    &quot;Zhang, Yanbing&quot;,
-    &quot;Yang, Mengping&quot;,
-    &quot;Zhou, Qin&quot;,
-    &quot;Wang, Zhe&quot;
+    &quot;Yanbing Zhang&quot;,
+    &quot;Mengping Yang&quot;,
+    &quot;Qin Zhou&quot;,
+    &quot;Zhe Wang&quot;
   ],
-  &quot;published_at&quot;: &quot;2024/03/27&quot;,
+  &quot;published_at&quot;: &quot;2024-03-27&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2403.18551&quot;,
-    &quot;https://arxiv.org/pdf/2403.18551&quot;
+    &quot;https://arxiv.org/pdf/2403.18551&quot;,
+    &quot;https://github.com/Monalissaa/DisenDiff&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-attention-calibration-personalization/&quot;,
   &quot;topics&quot;: [
-    &quot;topics/image-generation&quot;
+    &quot;topics/image-generation&quot;,
+    &quot;topics/diffusion-models&quot;
   ],
-  &quot;entities&quot;: [
-    &quot;entities/unified-image-generation-editing&quot;
-  ],
+  &quot;entities&quot;: [],
   &quot;claims&quot;: [],
-  &quot;questions&quot;: [
-    &quot;questions/question-will-unified-image-models-sustain-their-advantage&quot;
+  &quot;questions&quot;: [],
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-generation&quot;,
+    &quot;diffusion&quot;,
+    &quot;conditioning&quot;,
+    &quot;primary-source&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

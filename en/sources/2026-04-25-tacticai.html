@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TacticAI：战术决策支持锚点 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="A graph-based system for receiver and shot prediction, corner retrieval, and expert-rated tactical refinements from professional tracking data.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>TacticAI:An AI Assistant for Football Tactics · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-25-tacticai&quot;, &quot;title&quot;: &quot;TacticAI（Nature Communications 2024）：战术决策支持锚点&quot;, &quot;title_en&quot;: &quot;TacticAI（Nature Communications 2024）：战术决策支持锚点&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;reasoning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-25-tacticai&quot;, &quot;title&quot;: &quot;TacticAI：足球角球战术预测、检索与条件生成&quot;, &quot;title_en&quot;: &quot;TacticAI: An AI Assistant for Football Tactics&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;reasoning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,55 +60,77 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-25-tacticai.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-25-tacticai.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-25</p>
-        <h1><span class="title-main">TacticAI</span><span class="title-subtitle">战术决策支持锚点</span></h1>
-        
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>Nature Communications 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2024-03-19</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-25</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://www.nature.com/articles/s41467-024-45965-x" title="https://www.nature.com/articles/s41467-024-45965-x" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>nature.com · s41467-024-45965-x</strong></a><a class="source-link source-link-pdf" href="https://www.nature.com/articles/s41467-024-45965-x.pdf" title="https://www.nature.com/articles/s41467-024-45965-x.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>nature.com · s41467-024-45965-x.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>TacticAI:An AI Assistant for Football Tactics</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">TacticAI</span><span class="title-subtitle">An AI Assistant for Football Tactics</span></h1>
+        <p class="article-summary">A graph-based system for receiver and shot prediction, corner retrieval, and expert-rated tactical refinements from professional tracking data.</p>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#reasoning">#reasoning</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h1 id="tacticai-nature-communications-2024-战术决策支持锚点">TacticAI（Nature Communications 2024）：战术决策支持锚点</h1>
-<blockquote>会议 / 来源：Nature Communications 2024</blockquote>
-<blockquote>发表日期：2024-03-19</blockquote>
-<blockquote>资料加入日期：2026-04-25</blockquote>
-<h2 id="一句话结论">一句话结论</h2>
-<p>用几何深度学习分析足球角球、检索相似战术并生成调整建议，把体育 AI 推到战术决策支持与专家评估。</p>
-<h2 id="论文定位">论文定位</h2>
-<p>TacticAI 以足球角球为场景，用几何深度学习做球员接球预测、相似战术检索和战术调整建议，并用专家偏好评估输出。</p>
-<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
-<p>它是体育 AI 从感知和轨迹进入战术智能的关键证据，也是“模型建议是否能被专家接受”的代表样本。</p>
-<h2 id="和现有证据的关系">和现有证据的关系</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>Nature Communications 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2024-03-19</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-25</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://www.nature.com/articles/s41467-024-45965-x" title="https://www.nature.com/articles/s41467-024-45965-x" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>nature.com · s41467-024-45965-x</strong></a><a class="source-link source-link-pdf" href="https://www.nature.com/articles/s41467-024-45965-x.pdf" title="https://www.nature.com/articles/s41467-024-45965-x.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>nature.com · s41467-024-45965-x.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#数据与协议">数据与协议</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#关键结果与消融">关键结果与消融</a></li><li><a href="#成本与可复现性">成本与可复现性</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对羽毛球四层-pipeline-的价值">对羽毛球四层 pipeline 的价值</a></li><li><a href="#深分析与原始材料">深分析与原始材料</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>TacticAI 在高质量足球 tracking/event 数据之上，用带 $D_2$ 球场反射对称性的 GATv2 预测角球接球者和射门、检索相似战术并生成位置/速度微调；它证明了结构化比赛状态进入专家决策支持的可能性，但不是视频感知系统，也不能外推为羽毛球有效性。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>输入开角球瞬间 22 名球员的二维位置、速度、身高、体重与队伍关系，回答：谁最先接球、是否形成威胁射门、如何调整一方球员使目标结果概率变化。球飞行、垂直运动与完整时间序列不进入模型。</p>
+<h2 id="数据与协议">数据与协议</h2>
 <ul>
-<li>与 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它把体育 AI 的证据面从 tracking 扩展到动作、姿态、战术、比赛状态或高速小目标。</li>
-<li>与 <a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：它对应 roadmap 中下一批 batch 的一个证据节点。</li>
+<li>原始 9,693 次 Premier League 角球；对齐失败剔除 2,517 次，最终 <strong>7,176</strong> 次。</li>
+<li>25 FPS tracking 只取开球时单帧；shot 标签为 <strong>1,736 positive / 5,440 negative</strong>。</li>
+<li>主实验随机 80/20 corner split，同场/同队相似战术可跨集合；补充 temporal 80/20 split 部分缓解该问题，但没有 leave-team/match/league-out。</li>
+<li>数据与实现因许可/商业限制不公开，只开放人评和统计分析材料。</li>
 </ul>
+<h2 id="方法概述">方法概述</h2>
+<ul>
+<li>22-node fully connected graph；GATv2 建模 player-player interactions。</li>
+<li>对 identity、水平、垂直和双反射四个视图做 $D_2$ group convolution。</li>
+<li>Receiver 做 node classification；shot 通过 receiver-conditioned factorization 计算。</li>
+<li>Conditional VAE 按 shot outcome 生成单方球员位置/速度；另一方固定，预测模型只做事后评分。</li>
+</ul>
+<h2 id="关键结果与消融">关键结果与消融</h2>
+<ul>
+<li>Receiver top-3：最佳 <strong>0.782±0.039</strong>；temporal split <strong>0.753±0.050</strong>。</li>
+<li>Shot F1：unconditional <strong>0.521±0.027</strong> → receiver-conditioned <strong>0.677±0.036</strong> → 再加 $D_2$ <strong>0.712±0.011</strong>。</li>
+<li>Receiver 消融：CNN 0.364、Deep Sets 0.713、GATv2 0.748、frame averaging 0.780、group convolution 0.782。主要收益来自 set/graph 表示；group convolution 相对 frame averaging 增益很小。</li>
+<li>5 名 Liverpool FC 专家对 50 个 refinements 评估，<strong>45/50（90%）</strong> 经多数票认为更有利；这是专家偏好，不是实战胜率或因果效果。</li>
+<li>TacticAI retrieval useful-similarity recall <strong>0.59±0.09</strong>，raw-feature baseline <strong>0.36±0.10</strong>。</li>
+</ul>
+<h2 id="成本与可复现性">成本与可复现性</h2>
+<p>模型分别在 NVIDIA Tesla P100 上训练；ablation 统一 50,000 steps。论文未报告卡数、wall-clock、能耗或推理延迟。真正门槛是上游专业 tracking/event 数据。代码和输入数据不公开，独立复现受限。</p>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>当前这版 source note 先完成 bibliography-driven 编译，后续可以按 deep-analysis-first 流程补 <code>analysis.md</code>、关键图页和实验细节。</li>
-<li>具体数值和 benchmark 细节应以 <code>raw/ingest/2026-04-25-tacticai/paper-text.md</code> 与原始 PDF 为准。</li>
+<li>随机 corner split 可能受同场/同队近重复影响；时间 split 仍不等于跨球队/跨联赛。</li>
+<li>单帧 2D 状态不含球轨迹、跳跃、疲劳、朝向或双方动态响应。</li>
+<li>生成只调整一方；由同研究 predictor 评估概率变化，不能当作真实反事实。</li>
+<li>专家研究仅 5 人、单俱乐部、50 个场景。</li>
 </ul>
-<h2 id="原始材料">原始材料</h2>
+<h2 id="对羽毛球四层-pipeline-的价值">对羽毛球四层 pipeline 的价值</h2>
+<p>对 <code>shuttle tracking → court/3D reconstruction → hit/phase alignment → action quality assessment</code> 四层没有直接感知证据。可借鉴的是结构化图、对称性、temporal split、候选建议的人类盲评；羽毛球必须重新定义 shuttle/contact/stroke state，并先验证前三层。<strong>足球角球数字不得外推羽毛球。</strong></p>
+<h2 id="深分析与原始材料">深分析与原始材料</h2>
 <ul>
+<li><code>raw/ingest/2026-04-25-tacticai/analysis.md</code></li>
 <li><code>raw/ingest/2026-04-25-tacticai/paper.pdf</code></li>
 <li><code>raw/ingest/2026-04-25-tacticai/paper-text.md</code></li>
-<li><code>raw/ingest/2026-04-25-tacticai/abstract.md</code></li>
 <li><code>raw/ingest/2026-04-25-tacticai/links.yaml</code></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
-<li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
-<li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a></li>
+<li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">体育 AI 路线图</a></li>
+<li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a class="wikilink" href="../../en/topics/video-understanding.html">视频理解</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li><li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li><li><a class="wikilink" href="../../en/topics/video-understanding.html">Video Understanding</a></li></ul></div><div class="related-group related-entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/sportsmot.html">SportsMOT</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">4</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a><span>Topic</span></li><li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a><span>Topic</span></li><li><a href="../../en/topics/video-understanding.html">Video Understanding</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-25-tacticai&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;TacticAI（Nature Communications 2024）：战术决策支持锚点&quot;,
+  &quot;title&quot;: &quot;TacticAI：足球角球战术预测、检索与条件生成&quot;,
+  &quot;title_en&quot;: &quot;TacticAI: An AI Assistant for Football Tactics&quot;,
+  &quot;summary_en&quot;: &quot;A graph-based system for receiver and shot prediction, corner retrieval, and expert-rated tactical refinements from professional tracking data.&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-25&quot;,
-  &quot;updated&quot;: &quot;2026-04-25&quot;,
-  &quot;venue&quot;: &quot;Nature Communications 2024&quot;,
-  &quot;published_at&quot;: &quot;2024-03-19&quot;,
-  &quot;ingested_at&quot;: &quot;2026-04-25&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;video-understanding&quot;,
@@ -111,10 +139,38 @@
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
-  &quot;authors&quot;: [],
+  &quot;venue&quot;: &quot;Nature Communications 2024&quot;,
+  &quot;authors&quot;: [
+    &quot;Zhe Wang&quot;,
+    &quot;Petar Veličković&quot;,
+    &quot;Daniel Hennes&quot;,
+    &quot;Nenad Tomašev&quot;,
+    &quot;Laurel Prince&quot;,
+    &quot;Michael Kaisers&quot;,
+    &quot;Yoram Bachrach&quot;,
+    &quot;Romuald Elie&quot;,
+    &quot;Li Kevin Wenliang&quot;,
+    &quot;Federico Piccinini&quot;,
+    &quot;William Spearman&quot;,
+    &quot;Ian Graham&quot;,
+    &quot;Jerome Connor&quot;,
+    &quot;Yi Yang&quot;,
+    &quot;Adrià Recasens&quot;,
+    &quot;Mina Khan&quot;,
+    &quot;Nathalie Beauguerlange&quot;,
+    &quot;Pablo Sprechmann&quot;,
+    &quot;Pol Moreno&quot;,
+    &quot;Nicolas Heess&quot;,
+    &quot;Michael Bowling&quot;,
+    &quot;Demis Hassabis&quot;,
+    &quot;Karl Tuyls&quot;
+  ],
+  &quot;published_at&quot;: &quot;2024-03-19&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-25&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://www.nature.com/articles/s41467-024-45965-x&quot;,
-    &quot;https://www.nature.com/articles/s41467-024-45965-x.pdf&quot;
+    &quot;https://www.nature.com/articles/s41467-024-45965-x.pdf&quot;,
+    &quot;https://doi.org/10.1038/s41467-024-45965-x&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-25-tacticai/&quot;,
   &quot;topics&quot;: [
@@ -127,7 +183,7 @@
   ],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

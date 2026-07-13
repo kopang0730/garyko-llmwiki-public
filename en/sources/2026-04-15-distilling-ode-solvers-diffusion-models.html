@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Distilling ODE Solvers of Diffusion Models into Smaller Steps：把扩散求解器蒸馏到更少步数 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="Distilling ODE Solvers of Diffusion Models into Smaller Steps：冻结去噪器的轻量求解器蒸馏">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Distilling ODE Solvers of Diffusion Models into Smaller Steps：冻结去噪器的轻量求解器蒸馏 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-15-distilling-ode-solvers-diffusion-models&quot;, &quot;title&quot;: &quot;Distilling ODE Solvers of Diffusion Models into Smaller Steps（CVPR 2024）：把扩散求解器蒸馏到更少步数&quot;, &quot;title_en&quot;: &quot;Distilling ODE Solvers of Diffusion Models into Smaller Steps（CVPR 2024）：把扩散求解器蒸馏到更少步数&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-15-distilling-ode-solvers-diffusion-models&quot;, &quot;title&quot;: &quot;Distilling ODE Solvers of Diffusion Models into Smaller Steps：冻结去噪器的轻量求解器蒸馏&quot;, &quot;title_en&quot;: &quot;Distilling ODE Solvers of Diffusion Models into Smaller Steps：冻结去噪器的轻量求解器蒸馏&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,50 +60,95 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">Distilling ODE Solvers of Diffusion Models into Smaller Steps</span><span class="title-subtitle">把扩散求解器蒸馏到更少步数</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Distilling ODE Solvers of Diffusion Models into Smaller Steps：冻结去噪器的轻量求解器蒸馏</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">Distilling ODE Solvers of Diffusion Models into Smaller Steps</span><span class="title-subtitle">冻结去噪器的轻量求解器蒸馏</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2023/09/28</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-15</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2309.16421" title="https://arxiv.org/abs/2309.16421" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2309.16421</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2309.16421" title="https://arxiv.org/pdf/2309.16421" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2309.16421</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#efficiency">#efficiency</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把“少步采样”推进得更系统：它不是重新发明采样器，而是把已有 ODE solver 的轨迹知识蒸馏到更小步数版本里。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2023-09-28</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-15</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2024/html/Kim_Distilling_ODE_Solvers_of_Diffusion_Models_into_Smaller_Steps_CVPR_2024_paper.html" title="https://openaccess.thecvf.com/content/CVPR2024/html/Kim_Distilling_ODE_Solvers_of_Diffusion_Models_into_Smaller_Steps_CVPR_2024_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Kim_Distilling_ODE_Solvers_of_D…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2024/papers/Kim_Distilling_ODE_Solvers_of_Diffusion_Models_into_Smaller_Steps_CVPR_2024_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2024/papers/Kim_Distilling_ODE_Solvers_of_Diffusion_Models_into_Smaller_Steps_CVPR_2024_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Kim_Distilling_ODE_Solvers_of_D…</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#核心实验与结果">核心实验与结果</a></li><li><a href="#效率口径">效率口径</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>D-ODE 冻结 denoiser，只用一批 teacher/student 轨迹为每个时间步拟合一个 solver 标量，在低 NFE 下改善多种 ODE solver 的 FID；离线成本为几 CPU 分钟，但它仍是按数据集/solver 设置进行的轻量蒸馏，不是严格 training-free，且“10×”是 NFE 比而非实测 latency。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这是介于 training-free solver 与全模型 distillation 之间的路线：在线保留原 denoiser 与 NFE，只修改 denoising-output 的组合；离线不更新网络参数，但需要 teacher sampling 和参数拟合。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>扩散模型采样慢，核心原因之一是 function evaluations 太多。纯数值求解器在极少步数时难以忠实跟踪真实轨迹，而传统蒸馏方法又往往训练代价高。论文要解决的正是这两类路线之间的断层。</p>
+<p>普通 ODE solver 在极低 NFE 时可能偏离真实采样轨迹；progressive/consistency distillation 又需要训练整个 student 网络。论文尝试只蒸馏数值求解器本身。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>作者提出 D-ODE solvers，把 ODE solver 的公式结构与蒸馏结合起来：不是端到端重训一个新生成器，而是在已有 solver 上加入少量可学习调整，让小步数版本从大步数 solver 的轨迹中学习。这样既保留 solver 家族的可解释性，又压低蒸馏成本。</p>
-<h2 id="关键发现">关键发现</h2>
 <ul>
-<li>它把 <a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a> 中的效率叙事进一步从“模型蒸馏”细化到“求解器蒸馏”。</li>
-<li>它和 <a class="wikilink" href="../../en/sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html">sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps</a> 很互补：一个优化步点分配，一个直接蒸馏少步求解器。</li>
-<li>它说明 diffusion 提速不只靠 backbone 或缓存，数值轨迹本身也是重要优化对象。</li>
+<li>用当前和上一时刻 denoising outputs 构造</li>
+<p>  $O_t=d_t+\lambda_t(d_t-d_{t+1})$。</p>
+<li>teacher 默认运行 student 约 10× steps。</li>
+<li>在一批样本上逐时间点最小化 teacher 目标与 student 下一状态的 MSE，求 $\lambda_t$。</li>
+<li>默认 batch 100；LSUN Bedroom 为 25。</li>
+<li>参数拟合后跨生成批次复用，denoiser 始终冻结。</li>
+<li>适配 DDIM、iPNDM、DPM-Solver3、DEIS3、EDM 与补充中的 DPM-Solver++。</li>
+</ul>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<ul>
+<li>data-prediction 设置：D-DDIM 25 NFE 可达到与 DDIM 250 NFE 相近的 FID；算法路径约缩短 10×。</li>
+<li>CIFAR-10 noise-prediction：</li>
+<p>  - 10 NFE：DDIM 18.85 → D-DDIM 8.67 FID；</p>
+<p>  - 25 NFE：9.79 → 8.18；</p>
+<p>  - 50 NFE：7.17 → 6.55。</p>
+<li>约 2 NFE 时 DDIM 偶尔优于 D-DDIM；高 NFE 时差距收敛。</li>
+<li>达约 FID 3 的归一化总成本：D-EDM 2.55，consistency distillation 187.25，progressive distillation 106.16；单位是“生成 50K 个 10-step DDIM 样本的时间”，不是秒，且依赖各方法训练配置。</li>
+</ul>
+<h2 id="效率口径">效率口径</h2>
+<ul>
+<li><strong>在线 NFE</strong>：与对应 student solver 相同；标量组合开销可忽略。</li>
+<li><strong>latency/throughput</strong>：未直接报告。</li>
+<li><strong>离线成本</strong>：一批 teacher/student 轨迹和每步拟合，作者称数 CPU 分钟。</li>
+<li><strong>训练预算</strong>：0 个 denoiser 更新，但有 solver distillation；不能写成零离线成本。</li>
+<li><strong>摊销条件</strong>：大量重复生成时离线成本可摊薄；少量单次请求不一定可忽略。</li>
+<li><strong>质量</strong>：50K FID；无 prompt、人评、编辑或视频指标。</li>
+</ul>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>单参数约束是关键：CIFAR-10 10 NFE 的 D-DDIM 为 8.67，但 D-DDIM-Sep 79.21、D-DDIM-All 179.67、D-DDIM-2 18.75，更多自由参数反而不稳定。</li>
+<li>teacher scale 5→30 时 10-NFE FID 9.68→8.41；50 NFE 基本饱和。</li>
+<li>batch 5→100 时 10-NFE FID 9.33±0.66→8.22±0.10，说明参数具有数据集/批次依赖。</li>
+<li>充分 grid search 的 Fixed-D-DDIM 可在 25/50 NFE 超过蒸馏参数，D-ODE 的优势是低搜索成本而非绝对最优。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>它仍主要围绕采样效率，不直接回答复杂编辑、多模态控制或视频场景中的泛化。</li>
-<li>即便蒸馏开销显著低于重训，它仍不是完全零成本路线。</li>
-<li>不同 solver 家族之间的可迁移性与稳定收益，还需要更大范围比较。</li>
+<li>每个数据集、模型、solver/NFE 通常需要重新拟合。</li>
+<li>约 2 NFE 时容量不足；大 NFE 时收益收窄。</li>
+<li>作者明确指出高分辨率时单标量可能不足。</li>
+<li>主实验是传统 DDPM/ADM/EDM U-Net 图像模型，没有 DiT、latent 文生图、视频或编辑；<strong>不应关联到 DiT claim</strong>。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li><strong>直接支持</strong> <a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">Diffusion Efficiency Engineering</a> 中“solver distillation 是独立效率层”。</li>
+<li>对“轻量蒸馏等于 training-free”构成<strong>压力测试</strong>：denoiser 虽冻结，但 teacher 轨迹与按设置拟合是真实离线成本。</li>
+<li>对 DiT/backbone claim 为<strong>当前不应引用</strong>。</li>
+<li>与 <a class="wikilink" href="../../en/sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html">Optimized Time Steps</a> 的区别是修改 solver output，而非选择时间点。</li>
 </ul>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2309.16421</li>
-<li>https://arxiv.org/pdf/2309.16421</li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2024/html/Kim_Distilling_ODE_Solvers_of_Diffusion_Models_into_Smaller_Steps_CVPR_2024_paper.html">CVF 论文页</a></li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Kim_Distilling_ODE_Solvers_of_Diffusion_Models_into_Smaller_Steps_CVPR_2024_paper.pdf">CVF PDF</a></li>
+<li><a href="https://arxiv.org/abs/2309.16421">arXiv</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html">sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>它在本库中的价值，是把 diffusion efficiency 主线再向数值分析那一层推进了一步，提醒我们“少步扩散”本质上也是 solver design 问题。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">Diffusion Efficiency Engineering</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">Diffusion Models</a></li>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">Image Generation</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html">Optimized Time Steps</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-15-act-diffusion.html">ACT-Diffusion</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">9</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html">Accelerating Diffusion Sampling with Optimized Time Steps：用优化时间步改善少步扩散采样</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-come-closer-diffuse-faster.html">Come-Closer-Diffuse-Faster：用好初始化缩短条件扩散逆问题路径</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-distilling-parallel-gradients-ode-solvers.html">Distilling Parallel Gradients for Fast ODE Solvers of Diffusion Models：并行方向蒸馏扩散 ODE 求解器</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-on-distillation-of-guided-diffusion-models.html">On Distillation of Guided Diffusion Models：把 CFG 与采样轨迹联合蒸馏到极少步</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-post-training-quantization-on-diffusion-models.html">Post-Training Quantization on Diffusion Models：面向多 timestep 的 INT8 校准</a><span>Source note</span></li><li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>Topic</span></li><li><a href="../../en/topics/diffusion-models.html">扩散模型</a><span>Topic</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-15-distilling-ode-solvers-diffusion-models&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Distilling ODE Solvers of Diffusion Models into Smaller Steps（CVPR 2024）：把扩散求解器蒸馏到更少步数&quot;,
+  &quot;title&quot;: &quot;Distilling ODE Solvers of Diffusion Models into Smaller Steps：冻结去噪器的轻量求解器蒸馏&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-15&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2024&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-15&quot;,
   &quot;tags&quot;: [
@@ -110,24 +161,27 @@
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;authors&quot;: [
-    &quot;Kim, Sanghwan&quot;,
-    &quot;Tang, Hao&quot;,
-    &quot;Yu, Fisher&quot;
+    &quot;Sanghwan Kim&quot;,
+    &quot;Hao Tang&quot;,
+    &quot;Fisher Yu&quot;
   ],
-  &quot;published_at&quot;: &quot;2023/09/28&quot;,
+  &quot;published_at&quot;: &quot;2023-09-28&quot;,
   &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/CVPR2024/html/Kim_Distilling_ODE_Solvers_of_Diffusion_Models_into_Smaller_Steps_CVPR_2024_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2024/papers/Kim_Distilling_ODE_Solvers_of_Diffusion_Models_into_Smaller_Steps_CVPR_2024_paper.pdf&quot;,
     &quot;https://arxiv.org/abs/2309.16421&quot;,
     &quot;https://arxiv.org/pdf/2309.16421&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-15-distilling-ode-solvers-diffusion-models/&quot;,
   &quot;topics&quot;: [
-    &quot;topics/image-generation&quot;,
-    &quot;topics/diffusion-models&quot;
+    &quot;topics/diffusion-efficiency-engineering&quot;,
+    &quot;topics/diffusion-models&quot;,
+    &quot;topics/image-generation&quot;
   ],
   &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

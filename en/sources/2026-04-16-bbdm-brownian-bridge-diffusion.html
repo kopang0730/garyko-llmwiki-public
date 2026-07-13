@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BBDM：把 Brownian Bridge diffusion 接成图像到图像翻译主线 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="BBDM：以 Brownian Bridge 端点过程建模成对图像翻译">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>BBDM：以 Brownian Bridge 端点过程建模成对图像翻译 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-bbdm-brownian-bridge-diffusion&quot;, &quot;title&quot;: &quot;BBDM（CVPR 2023）：把 Brownian Bridge diffusion 接成图像到图像翻译主线&quot;, &quot;title_en&quot;: &quot;BBDM（CVPR 2023）：把 Brownian Bridge diffusion 接成图像到图像翻译主线&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;diffusion&quot;, &quot;conditioning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-bbdm-brownian-bridge-diffusion&quot;, &quot;title&quot;: &quot;BBDM：以 Brownian Bridge 端点过程建模成对图像翻译&quot;, &quot;title_en&quot;: &quot;BBDM：以 Brownian Bridge 端点过程建模成对图像翻译&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;diffusion&quot;, &quot;conditioning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,50 +60,88 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-16-bbdm-brownian-bridge-diffusion.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-16-bbdm-brownian-bridge-diffusion.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-16</p>
-        <h1><span class="title-main">BBDM</span><span class="title-subtitle">把 Brownian Bridge diffusion 接成图像到图像翻译主线</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>BBDM：以 Brownian Bridge 端点过程建模成对图像翻译</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">BBDM</span><span class="title-subtitle">以 Brownian Bridge 端点过程建模成对图像翻译</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2022/05/16</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2205.07680" title="https://arxiv.org/abs/2205.07680" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2205.07680</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2205.07680.pdf" title="https://arxiv.org/pdf/2205.07680.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2205.07680.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-editing">#image-editing</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#conditioning">#conditioning</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把 Brownian Bridge diffusion 明确接到 image-to-image translation 主线上，说明 diffusion 在编辑/翻译任务里很早就开始探索区别于标准前向-反向噪声过程的桥接式建模。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2022-05-16</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2205.07680" title="https://arxiv.org/abs/2205.07680" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2205.07680</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2205.07680.pdf" title="https://arxiv.org/pdf/2205.07680.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2205.07680.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#image-to-image-条件接口">image-to-image 条件接口</a></li><li><a href="#训练数据-主干与成本">训练数据、主干与成本</a></li><li><a href="#核心结果">核心结果</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#backbone-证据边界">Backbone 证据边界</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li><li><a href="#证据评级">证据评级</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>BBDM 不再从高斯噪声出发并逐步注入源图条件，而是在 VQGAN latent 中把目标图与源图设为 Brownian Bridge 两端，推理直接以源 latent 起步；它在四个成对翻译任务上改善 LDM 的 FID，但仍是 237M+ 可训练参数、默认 200 步的 <strong>U-Net/LDM</strong> 路线，不是自由文本编辑、未配对翻译或 DiT。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>图像到图像翻译既要求源图信息能稳定传递，又要求目标域语义能充分显现。论文要解决的是，怎样让 diffusion 更自然地建模源域到目标域之间的转换路径。</p>
+<p>标准条件 diffusion 把源图编码后在每个反向步注入 U-Net。论文认为这种设计没有把源/目标域显式写进前向随机过程，跨域差距大时可能弱化条件约束。BBDM 将 image-to-image translation 改写为两域之间的随机桥。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>作者用 Brownian Bridge diffusion 来建模源图与目标图之间的过渡，把 image-to-image translation 重新组织成更直接的桥接过程。它的重要性在于给 diffusion translation 路线补入一个结构上更有辨识度的分支。</p>
-<h2 id="关键发现">关键发现</h2>
+<p>对成对 latent $(x_0,y)$，前向过程为：</p>
+<p>$$</p>
+<p>q_{BB}(x_t\mid x_0,y)=\mathcal N\left((1-m_t)x_0+m_ty,\delta_tI\right),\quad m_t=t/T.</p>
+<p>$$</p>
+<p>训练端从目标 $x_0$ 走到源 $x_T=y$；推理端从源 latent 反向走到目标。源图只作为端点/初值，不再作为每步额外条件输入。方差采用 $\delta_t=2s(m_t-m_t^2)$，默认 $s=1$；增大 $s$ 提升像素级多样性但降低 FID/fidelity。</p>
+<h2 id="image-to-image-条件接口">image-to-image 条件接口</h2>
+<table><thead><tr><th>维度</th><th>论文证据</th></tr></thead><tbody><tr><td>输入</td><td>单张源域图像</td></tr><tr><td>训练监督</td><td>成对 source-target images</td></tr><tr><td>条件位置</td><td>Brownian Bridge 终点与反向采样初值</td></tr><tr><td>输出</td><td>固定目标域图像</td></tr><tr><td>用户可控项</td><td>域映射、随机 seed、方差尺度 $s$</td></tr><tr><td>不支持</td><td>文本指令、任意 mask/box、未配对训练、零样本新域</td></tr></tbody></table>
+<h2 id="训练数据-主干与成本">训练数据、主干与成本</h2>
 <ul>
-<li>它为 <a class="wikilink" href="../../en/topics/image-editing.html">topics/image-editing</a> 补入了“bridge-style diffusion translation”这一条独立方法支线。</li>
-<li>它和 <a class="wikilink" href="../../en/sources/2026-04-16-blended-diffusion.html">sources/2026-04-16-blended-diffusion</a>、<a class="wikilink" href="../../en/sources/2026-04-16-plug-and-play-diffusion-features.html">sources/2026-04-16-plug-and-play-diffusion-features</a> 一起，让早期 diffusion editing / translation 谱系更完整。</li>
-<li>它说明 diffusion 不只是统一用一套采样逻辑做所有编辑任务，任务结构本身也会推动建模形式变化。</li>
+<li>主要任务：CelebAMask-HQ semantic-to-face、edges2shoes、edges2handbags、faces2comics。</li>
+<li>定性扩展：Visual Genome inpainting/colorization、CelebAMask-HQ face-to-label。</li>
+<li>backbone：预训练 VQGAN + LDM-style latent <strong>U-Net</strong>；不是 Transformer/DiT。</li>
+<li>BBDM-f4/f8/f16：总参数 292.42M/304.81M/327.71M，可训练 237.09M/237.10M/258.11M。</li>
+<li>单张 RTX 3090；f4/f8 batch 8，f16 batch 16；最大 lr $10^{-4}$，EMA 0.995。</li>
+<li>训练过程 1,000 diffusion steps；默认采样 200 steps。</li>
+<li>未披露训练总 steps、wall-clock、GPU-hours、单图延迟和能耗。</li>
 </ul>
+<p>“单卡可训练”不等于轻量：绝大多数网络参数仍需训练，推理也不是少步。</p>
+<h2 id="核心结果">核心结果</h2>
+<table><thead><tr><th>任务</th><th>LDM FID / LPIPS / Diversity</th><th>BBDM FID / LPIPS / Diversity</th></tr></thead><tbody><tr><td>CelebAMask-HQ</td><td>22.816 / 0.371 / 20.304</td><td><strong>21.350</strong> / <strong>0.370</strong> / 29.859</td></tr><tr><td>edges2shoes</td><td>13.020 / <strong>0.173</strong> / 10.999</td><td><strong>10.924</strong> / 0.183 / 12.226</td></tr><tr><td>edges2handbags</td><td>24.251 / 0.307 / 22.705</td><td><strong>17.257</strong> / <strong>0.286</strong> / 15.656</td></tr><tr><td>faces2comics</td><td>24.280 / 0.205 / 9.032</td><td><strong>23.203</strong> / <strong>0.192</strong> / 10.046</td></tr></tbody></table>
+<p>BBDM 在四项 FID 都优于 LDM，但并非每项 LPIPS/diversity 最佳。diversity 是同一输入 5 个样本的像素标准差，不应解释为语义多样性或人类偏好。</p>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li><strong>latent 压缩率</strong>：LDM f4→f16 FID 22.816→56.404；BBDM 21.350→22.061，支持所测范围内更稳健的跨 latent 层级映射。</li>
+<li><strong>采样步数</strong>：20/50/100/200/1000 步 FID 33.409/25.188/23.503/21.350/21.348；200 后近乎饱和。</li>
+<li><strong>方差尺度</strong>：$s=0.5/1/2/4$ 时 diversity 27.791/29.859/37.063/39.573，FID 22.627/21.350/23.278/24.490，明确呈现质量—多样性 trade-off。</li>
+</ul>
+<h2 id="backbone-证据边界">Backbone 证据边界</h2>
+<p>论文直接实现的是 VQGAN latent 上的 LDM-style U-Net，attention 只是 U-Net 内部模块。它没有 Transformer denoiser、ViT backbone、DiT scaling 或跨 backbone 实验。因此本篇只能证明 <strong>U-Net 时代可通过改写 diffusion path 改善成对翻译</strong>，不应关联为 DiT adoption/scaling 的直接证据。</p>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>它更偏 image-to-image translation，一些真实图像指令编辑问题还需要和 inversion / text guidance 路线合起来看。</li>
-<li>Brownian Bridge 这条路线后续是否会持续成为主线，还需要更多跨年份证据。</li>
+<li>成对数据与固定域映射限制了开放式编辑能力。</li>
+<li>每个域对需训练一个 237M+ 参数模型；成本披露不完整。</li>
+<li>默认 200 步，实时部署价值有限。</li>
+<li>额外任务只做定性展示，主要定量范围窄。</li>
+<li>像素标准差 diversity 可能奖励纹理噪声，缺少用户研究。</li>
+<li>作者把 text-to-image/multimodal 列为未来工作，当前未验证。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li><strong>直接支持</strong>：image-to-image 条件可写入 diffusion 端点，而非每步注入。</li>
+<li><strong>有限支持</strong>：四个固定域对的 FID 改善和 latent 压缩稳健性。</li>
+<li><strong>不支持</strong>：通用指令编辑、低成本、少步生成、DiT/Transformer 主干趋势。</li>
 </ul>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2205.07680</li>
-<li>https://arxiv.org/pdf/2205.07680.pdf</li>
+<li><a href="https://arxiv.org/abs/2205.07680">arXiv abstract</a></li>
+<li><a href="https://arxiv.org/pdf/2205.07680.pdf">PDF</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/image-editing.html">topics/image-editing</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-blended-diffusion.html">sources/2026-04-16-blended-diffusion</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-plug-and-play-diffusion-features.html">sources/2026-04-16-plug-and-play-diffusion-features</a></li>
+<li><a class="wikilink" href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-14-latent-diffusion-models.html">Latent Diffusion Models</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-diffusionclip.html">DiffusionCLIP</a></li>
 </ul>
-<h2 id="备注">备注</h2>
-<p>它在本库中的价值，是把 diffusion translation 这条线补出一个更有结构辨识度的早期节点。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<h2 id="证据评级">证据评级</h2>
+<p><strong>A-</strong>：成对潜空间 image-to-image translation 的强主证据；开放条件、成本、少步与跨 backbone 证据不足。</p></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-editing.html">图像编辑</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">4</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/diffusion-models.html">扩散模型</a><span>Topic</span></li><li><a href="../../en/topics/image-editing.html">图像编辑</a><span>Topic</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-16-bbdm-brownian-bridge-diffusion&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;BBDM（CVPR 2023）：把 Brownian Bridge diffusion 接成图像到图像翻译主线&quot;,
+  &quot;title&quot;: &quot;BBDM：以 Brownian Bridge 端点过程建模成对图像翻译&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-16&quot;,
-  &quot;updated&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2023&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
   &quot;tags&quot;: [
@@ -110,12 +154,12 @@
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;authors&quot;: [
-    &quot;Li, Bo&quot;,
-    &quot;Xue, Kai&quot;,
-    &quot;Liu, Bin&quot;,
-    &quot;Lai, Yu-Kun&quot;
+    &quot;Bo Li&quot;,
+    &quot;Kaitao Xue&quot;,
+    &quot;Bin Liu&quot;,
+    &quot;Yu-Kun Lai&quot;
   ],
-  &quot;published_at&quot;: &quot;2022/05/16&quot;,
+  &quot;published_at&quot;: &quot;2022-05-16&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2205.07680&quot;,
     &quot;https://arxiv.org/pdf/2205.07680.pdf&quot;
@@ -128,7 +172,7 @@
   &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

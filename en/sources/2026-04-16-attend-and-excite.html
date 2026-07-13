@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Attend-and-Excite：在推理时主动修复 diffusion 的语义遗漏 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="Attend-and-Excite：用 attention guidance 修复主体遗漏">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Attend-and-Excite：用 attention guidance 修复主体遗漏 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-attend-and-excite&quot;, &quot;title&quot;: &quot;Attend-and-Excite（SIGGRAPH 2023）：在推理时主动修复 diffusion 的语义遗漏&quot;, &quot;title_en&quot;: &quot;Attend-and-Excite（SIGGRAPH 2023）：在推理时主动修复 diffusion 的语义遗漏&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-attend-and-excite&quot;, &quot;title&quot;: &quot;Attend-and-Excite：用 attention guidance 修复主体遗漏&quot;, &quot;title_en&quot;: &quot;Attend-and-Excite：用 attention guidance 修复主体遗漏&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;control&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,61 +60,82 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-16-attend-and-excite.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-16-attend-and-excite.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-05-22</p>
-        <h1><span class="title-main">Attend-and-Excite</span><span class="title-subtitle">在推理时主动修复 diffusion 的语义遗漏</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Attend-and-Excite：用 attention guidance 修复主体遗漏</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">Attend-and-Excite</span><span class="title-subtitle">用 attention guidance 修复主体遗漏</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>SIGGRAPH 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2023/01/31</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2301.13826" title="https://arxiv.org/abs/2301.13826" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2301.13826</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2301.13826.pdf" title="https://arxiv.org/pdf/2301.13826.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2301.13826.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#efficiency">#efficiency</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#control">#control</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把“catastrophic neglect”明确拉成一个独立问题：当模型漏掉 prompt 里的主体或错绑属性时，它在推理时直接提升对应 token 的 cross-attention 激活，逼模型把该出现的概念补出来。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>SIGGRAPH 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2023-01-31</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2301.13826" title="https://arxiv.org/abs/2301.13826" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2301.13826</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2301.13826.pdf" title="https://arxiv.org/pdf/2301.13826.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2301.13826.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#核心实验与结果">核心实验与结果</a></li><li><a href="#关键消融与成本">关键消融与成本</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>Attend-and-Excite 在 Stable Diffusion 推理时提升最被忽略主体 token 的最大 cross-attention，显著减少二主体 prompt 的 catastrophic neglect；276 prompts×64 seeds 与 65 人用户研究提供直接证据，但复杂关系、显式位置、DiT 和模型“理解”均未被证明。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>论文提出 Generative Semantic Nursing：冻结 Stable Diffusion v1.4，只在前半段去噪中按 attention-derived loss 更新 latent。它不训练新模型，也不是编辑/闭环 controller。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>扩散模型虽然能生成高质量图像，但面对多主体 prompt 时经常漏掉某个对象，或把颜色、属性绑定错对象。这个问题并不是简单的画质问题，而是语义覆盖失败。</p>
+<p>cross-attention 在每个空间 patch 上对 token 归一化，却不保证每个主体 token 至少被某个 patch 充分关注。主体没被任何 patch 激活，就可能完全缺失；属性绑定错误与此相关，但不是方法显式优化目标。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>Attend-and-Excite 提出一种 attention-based semantic guidance。在推理时监控 subject token 的 cross-attention，如果某个概念没有被充分激活，就主动优化 latent，使相应 token 的 attention 被“激发”起来，从而缓解主体遗漏与属性错绑。</p>
-<h2 id="关键发现">关键发现</h2>
+<ol>
+<li>聚合 16×16 cross-attention，去掉 <code>&lt;sot&gt;</code> 并重新 Softmax。</li>
+<li>用 3×3 Gaussian 平滑避免单 patch 对抗性尖峰。</li>
+<li>对每主体 $L_s=1-\max(A_t^s)$，总损失取最弱主体 $L=\max_s L_s$。</li>
+<li>执行 $z_t&#x27;=z_t-\alpha_t\nabla_{z_t}L$；50 步采样只改前 25 步。</li>
+<li>step 0/10/20 的目标阈值为 0.05/0.5/0.8，最多 20 次 refinement。</li>
+</ol>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<p>三类二主体模板共 276 prompts，每 prompt 64 seeds：</p>
+<table><thead><tr><th>方法</th><th>Animal–Animal</th><th>Animal–Object</th><th>Object–Object</th></tr></thead><tbody><tr><td>Stable Diffusion（BLIP text-text）</td><td>0.767</td><td>0.793</td><td>0.765</td></tr><tr><td>Composable Diffusion</td><td>0.692</td><td>0.769</td><td>0.759</td></tr><tr><td>StructureDiffusion</td><td>0.761</td><td>0.781</td><td>0.762</td></tr><tr><td><strong>Attend-and-Excite</strong></td><td><strong>0.806</strong></td><td><strong>0.830</strong></td><td><strong>0.811</strong></td></tr></tbody></table>
+<p>A&amp;E 至少领先各子集最强基线 4.7%；minimum-object CLIP 相对基线至少提高 7%。65 人用户研究偏好率为 <strong>90.70% / 77.64% / 77.16%</strong>。</p>
+<h2 id="关键消融与成本">关键消融与成本</h2>
 <ul>
-<li>它和 <a class="wikilink" href="../../en/sources/2026-04-16-a-star.html">sources/2026-04-16-a-star</a> 构成一组很强的 attention-level guidance 证据：一个强调概念冲突与遗忘，一个强调主体遗漏与语义绑定失败。</li>
-<li>这说明 guidance engineering 的长尾，不只是空间位置控制，也包括 prompt 语义覆盖本身。</li>
-<li>它把 <a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a> 里的 controllability 从 layout/box 继续推进到 semantic completeness。</li>
-<li>在 batch-f 里，它代表的是“inference-time semantic nursing”这一类控制接口。</li>
+<li>去掉 Gaussian smoothing 会产生局部轮廓或漏主体，主要为定性证据。</li>
+<li>持续修改全部 50 步没有明显语义收益，反而增加伪影；前 25 步 early stop 更稳。</li>
+<li>A100 上 SD 约 5.6 秒/图；A&amp;E 约 9.7 秒，无 refinement；触发 refinement 约 15.4 秒。training-free 不是低时延。</li>
+<li>复杂 prompt 补充评估只有 40 prompts×64 seeds：相对 SD/StructureDiffusion full-prompt CLIP +3.8%/+4.4%。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
-<ul>
-<li>它解决的是语义遗漏，不直接降低推理成本，因此更偏质量修复而不是效率加速。</li>
-<li>方法仍然依赖测试时优化，复杂 prompt 下的额外计算开销不能忽略。</li>
-<li>它主要立足于 subject token 激活，对更高阶关系推理和复杂组合约束仍不充分。</li>
-<li>venue 已按外部审计修为 SIGGRAPH 2023；TOG / ACM 版本关联后续可继续补 publisher 链接。</li>
-</ul>
+<ol>
+<li>OOD 主体组合会把 latent 推出分布，结果失真。</li>
+<li>不自然共现组合往往不写实。</li>
+<li>riding on、in front of、beneath 等复杂关系仍未解决。</li>
+<li>最大单 patch attention 不保证主体完整、数量正确或属性绑定正确。</li>
+<li>多 token 实体需找 dominant token；否定只被作者列为未来可能方向。</li>
+<li>maximum-object similarity 与 SD 约持平但略低，修补最弱主体可能损害最强主体/整体质量。</li>
+</ol>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<table><thead><tr><th>判断</th><th>证据分类</th><th>边界</th></tr></thead><tbody><tr><td>attention guidance 有效</td><td><strong>强直接支持</strong></td><td>SD v1.4、显著额外时延</td></tr><tr><td>semantic completeness</td><td><strong>强直接支持</strong></td><td>二主体与颜色；复杂关系有限</td></tr><tr><td>spatial guidance</td><td>当前不应引用</td><td>只要求“某处”高激活，无目标框</td></tr><tr><td>closed-loop correction</td><td>当前不应引用</td><td>是单次采样内部 refinement</td></tr><tr><td>支持 DiT</td><td>当前不应引用</td><td>没有 DiT 实验</td></tr><tr><td>支持“理解”</td><td>反对过度外推</td><td>改善执行，不证明关系/计数推理</td></tr></tbody></table>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2301.13826</li>
-<li>https://arxiv.org/pdf/2301.13826.pdf</li>
+<li><a href="https://arxiv.org/abs/2301.13826">arXiv</a></li>
+<li><a href="https://arxiv.org/pdf/2301.13826.pdf">PDF</a></li>
+<li><a class="wikilink missing" href="#missing-raw/ingest/2026-04-16-attend-and-excite/analysis">全文深分析与表格定位</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-a-star.html">sources/2026-04-16-a-star</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-prompt-to-prompt.html">sources/2026-04-16-prompt-to-prompt</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>它在本库中的价值，是把 control / layout composition 这条长尾从“prompt 可以控制一点生成”推进到“attention、语义覆盖、布局建模和多路径组合都能成为独立接口设计问题”。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-a-star.html">A-STAR</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-prompt-to-prompt.html">Prompt-to-Prompt</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-self-correcting-llm-controlled-diffusion-models.html">SLD</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li><li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">10</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-04-14-conform.html">CONFORM：以对比式注意力优化提升文本生成忠实度</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-a-star.html">A-STAR：测试时分离并保留 cross-attention</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-boxdiff.html">BoxDiff：无训练的框约束扩散生成</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-prompt-to-prompt.html">Prompt-to-Prompt：用 cross-attention 控制文本驱动图像编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-rethinking-spatial-inconsistency-cfg.html">Rethinking the Spatial Inconsistency in Classifier-Free Diffusion Guidance：语义区域自适应 CFG</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-self-correcting-llm-controlled-diffusion-models.html">SLD：LLM 驱动的闭环扩散生成纠错</a><span>Source note</span></li><li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>Topic</span></li><li><a href="../../en/topics/diffusion-models.html">扩散模型</a><span>Topic</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-16-attend-and-excite&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Attend-and-Excite（SIGGRAPH 2023）：在推理时主动修复 diffusion 的语义遗漏&quot;,
+  &quot;title&quot;: &quot;Attend-and-Excite：用 attention guidance 修复主体遗漏&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-16&quot;,
-  &quot;updated&quot;: &quot;2026-05-22&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;SIGGRAPH 2023&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;image-generation&quot;,
     &quot;diffusion&quot;,
-    &quot;efficiency&quot;,
+    &quot;control&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
@@ -120,7 +147,7 @@
     &quot;Lior Wolf&quot;,
     &quot;Daniel Cohen‐Or&quot;
   ],
-  &quot;published_at&quot;: &quot;2023/01/31&quot;,
+  &quot;published_at&quot;: &quot;2023-01-31&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2301.13826&quot;,
     &quot;https://arxiv.org/pdf/2301.13826.pdf&quot;
@@ -134,7 +161,7 @@
   &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

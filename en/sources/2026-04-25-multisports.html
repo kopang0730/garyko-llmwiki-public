@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MultiSports：多人时空动作定位的数据锚点">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>MultiSports：多人时空动作定位的数据锚点 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-25-multisports&quot;, &quot;title&quot;: &quot;MultiSports（ICCV 2021）：多人时空动作定位的数据锚点&quot;, &quot;title_en&quot;: &quot;MultiSports（ICCV 2021）：多人时空动作定位的数据锚点&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-25-multisports&quot;, &quot;title&quot;: &quot;MultiSports（ICCV 2021）：多人时空动作定位的数据锚点&quot;, &quot;title_en&quot;: &quot;MultiSports（ICCV 2021）：多人时空动作定位的数据锚点&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,48 +60,98 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-25-multisports.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-25-multisports.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-05-22</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>MultiSports：多人时空动作定位的数据锚点</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
         <h1><span class="title-main">MultiSports</span><span class="title-subtitle">多人时空动作定位的数据锚点</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2021</dd></div><div class="source-fact"><dt>Published</dt><dd>2021-10-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-25</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/ICCV2021/html/Li_MultiSports_A_Multi-Person_Video_Dataset_of_Spatio-Temporally_Localized_Sports_Actions_ICCV_2021_paper.html" title="https://openaccess.thecvf.com/content/ICCV2021/html/Li_MultiSports_A_Multi-Person_Video_Dataset_of_Spatio-Temporally_Localized_Sports_Actions_ICCV_2021_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Li_MultiSports_A_Multi-Person_V…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/ICCV2021/papers/Li_MultiSports_A_Multi-Person_Video_Dataset_of_Spatio-Temporally_Localized_Sports_Actions_ICCV_2021_paper.pdf" title="https://openaccess.thecvf.com/content/ICCV2021/papers/Li_MultiSports_A_Multi-Person_Video_Dataset_of_Spatio-Temporally_Localized_Sports_Actions_ICCV_2021_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Li_MultiSports_A_Multi-Person_V…</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#benchmarking">#benchmarking</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>面向多人、多运动、时空动作定位，提供 clips、动作实例和边框标注，补上体育 AI 的动作定位基准层。</p>
-<h2 id="论文定位">论文定位</h2>
-<p>MultiSports 将体育动作理解推进到多人、多运动、tube-level / box-level 的时空定位问题，使模型必须同时处理动作类别、主体位置和时间边界。</p>
-<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
-<p>它补强了当前 wiki 在 tracking 之外的 action localization 证据，避免体育 AI 子线过度集中在 MOT。</p>
-<h2 id="和现有证据的关系">和现有证据的关系</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2021</dd></div><div class="source-fact"><dt>Published</dt><dd>2021-10-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-25</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/ICCV2021/html/Li_MultiSports_A_Multi-Person_Video_Dataset_of_Spatio-Temporally_Localized_Sports_Actions_ICCV_2021_paper.html" title="https://openaccess.thecvf.com/content/ICCV2021/html/Li_MultiSports_A_Multi-Person_Video_Dataset_of_Spatio-Temporally_Localized_Sports_Actions_ICCV_2021_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Li_MultiSports_A_Multi-Person_V…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/ICCV2021/papers/Li_MultiSports_A_Multi-Person_Video_Dataset_of_Spatio-Temporally_Localized_Sports_Actions_ICCV_2021_paper.pdf" title="https://openaccess.thecvf.com/content/ICCV2021/papers/Li_MultiSports_A_Multi-Person_Video_Dataset_of_Spatio-Temporally_Localized_Sports_Actions_ICCV_2021_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Li_MultiSports_A_Multi-Person_V…</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#数据集与任务">数据集与任务</a></li><li><a href="#评测协议">评测协议</a></li><li><a href="#核心结果">核心结果</a></li><li><a href="#关键诊断">关键诊断</a></li><li><a href="#局限与证据边界">局限与证据边界</a></li><li><a href="#对羽毛球-demo-的影响">对羽毛球 demo 的影响</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始材料">原始材料</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h1 id="multisports-多人细粒度体育动作的时空定位基准">MultiSports：多人细粒度体育动作的时空定位基准</h1>
+<blockquote><strong>会议</strong>：ICCV 2021</blockquote>
+<blockquote><strong>全文深读</strong>：<a class="wikilink missing" href="#missing-raw/ingest/2026-04-25-multisports/analysis">analysis.md</a></blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>MultiSports 用 3,200 clips、37,701 action instances 和约 902K frame-wise boxes，把体育动作理解定义为多人并发的 actor tube 分类与时空定位；最强基线 frame-mAP 27.72，严格 video-mAP@0.5 仅 9.65，说明 frame-level 成绩会掩盖时间边界和 tube linking 失败。</p>
+<h2 id="数据集与任务">数据集与任务</h2>
 <ul>
-<li>与 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它把体育 AI 的证据面从 tracking 扩展到动作、姿态、战术、比赛状态或高速小目标。</li>
-<li>与 <a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：它对应 roadmap 中下一批 batch 的一个证据节点。</li>
+<li>体育项目：篮球、排球、足球、有氧体操；</li>
+<li>Action vocabulary：66 类，主评测覆盖至少有 25 个 val/test instances 的 60 类；</li>
+<li>3,200 clips，来自 247 场比赛记录；</li>
+<li>37,701 action instances；</li>
+<li>约 902K bounding boxes；</li>
+<li>25 FPS frame-wise 标注；</li>
+<li>Train：1,574 clips / 18,422 instances；</li>
+<li>Validation：555 clips / 6,577 instances；</li>
+<li>Test：1,071 clips，GT withheld。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<p>对应项目的专业运动员标动作类别与时间边界，crowd annotators 逐帧修正 FCOT 传播的人体框。任务同时要求 action class、actor box、temporal boundaries 和 tube linking。</p>
+<h2 id="评测协议">评测协议</h2>
 <ul>
-<li>当前这版 source note 先完成 bibliography-driven 编译，后续可以按 deep-analysis-first 流程补 <code>analysis.md</code>、关键图页和实验细节。</li>
-<li>具体数值和 benchmark 细节应以 <code>raw/ingest/2026-04-25-multisports/paper-text.md</code> 与原始 PDF 为准。</li>
+<li>Frame-mAP@0.5：逐帧空间定位与类别；</li>
+<li>Video-mAP@0.2/@0.5：action tube 3D IoU；</li>
+<li>3D IoU = temporal IoU × overlap frames 的平均 spatial IoU。</li>
+</ul>
+<h2 id="核心结果">核心结果</h2>
+<table><thead><tr><th>方法</th><th>Frame-mAP@0.5</th><th>Video-mAP@0.2</th><th>Video-mAP@0.5</th></tr></thead><tbody><tr><td>ROAD</td><td>3.90</td><td>0.00</td><td>0.00</td></tr><tr><td>YOWO</td><td>9.28</td><td>10.78</td><td>0.87</td></tr><tr><td>MOC K=7</td><td>22.51</td><td>12.13</td><td>0.77</td></tr><tr><td>MOC K=11</td><td>25.22</td><td>12.88</td><td>0.62</td></tr><tr><td>SlowOnly</td><td>16.70</td><td>15.71</td><td>5.50</td></tr><tr><td>SlowFast</td><td><strong>27.72</strong></td><td><strong>24.18</strong></td><td><strong>9.65</strong></td></tr></tbody></table>
+<p>SlowFast 相对 SlowOnly 的 frame-mAP 提升 <strong>11.02 点</strong>，AVA 上相应差距只有 4.54 点。高时间分辨率尤其改善短时高速动作：有氧转体约 +30 AP、horizontal support +54 AP。</p>
+<p>MOC K=11 相对 K=7 提高 frame-mAP，同时严格 video-mAP@0.5 从 0.77 降至 0.62。更长 tubelet 无法自动解决精确时间定位。</p>
+<h2 id="关键诊断">关键诊断</h2>
+<ol>
+<li>同项目背景高度相似，球场场景捷径不足以区分细粒度动作。</li>
+<li>一个足球触球可能只有约 0.5 秒，区分 pass/long ball/through ball/cross 可能需要最多 5 秒上下文。</li>
+<li>Frame-mAP 与严格 tube mAP 的巨大差距证明时间边界与 linking 是独立能力。</li>
+<li>错误分析需要分别报告类别、空间、时间、tube linking、duplicate 和 background false positives。</li>
+</ol>
+<h2 id="局限与证据边界">局限与证据边界</h2>
+<ul>
+<li>只含四个项目，66 类中 60 类进入主评测；</li>
+<li>专业广播域，跨训练馆、手机和青少年泛化未知；</li>
+<li>不标球、球拍/器械、队伍角色或人—人关系；</li>
+<li>动作类别不等于执行质量、错误原因和教练反馈；</li>
+<li>测试 GT withheld，主文主要报告 validation；</li>
+<li>未明确 athlete/source-video-disjoint；</li>
+<li>25 FPS 对高速 shuttle contact 可能不足；</li>
+<li>2021 baselines 不是当前上限，且缺少统一 FLOPs/latency。</li>
+</ul>
+<h2 id="对羽毛球-demo-的影响">对羽毛球 demo 的影响</h2>
+<p>可迁移：actor tube + action class + temporal boundary schema、frame/tube 双层指标、长上下文与分解错误分析。</p>
+<p>必须增加：shuttle/racket/court keypoints、contact frame、stroke phase、quality/coach labels、athlete/session/court/camera-disjoint，以及更高帧率或可靠 contact interpolation。</p>
+<p>系统层级应写为：</p>
+<p><code>tracking/ID → actor action tubes → multi-agent trajectories/state → interaction → quality/feedback</code></p>
+<p>MultiSports 对应 actor action-tube 层，不能作为技术纠正和训练评分的直接证据。</p>
+<h2 id="证据评级">证据评级</h2>
+<ul>
+<li>体育时空动作定位 benchmark：<strong>A-</strong></li>
+<li>细粒度时序建模：<strong>A-</strong></li>
+<li>羽毛球动作阶段设计：<strong>B</strong></li>
+<li>动作质量与反馈：<strong>C / 不直接支持</strong></li>
 </ul>
 <h2 id="原始材料">原始材料</h2>
 <ul>
-<li><code>raw/ingest/2026-04-25-multisports/paper.pdf</code></li>
-<li><code>raw/ingest/2026-04-25-multisports/paper-text.md</code></li>
-<li><code>raw/ingest/2026-04-25-multisports/abstract.md</code></li>
-<li><code>raw/ingest/2026-04-25-multisports/links.yaml</code></li>
+<li><code>raw/ingest/2026-04-25-multisports/paper.pdf</code>（10 页）</li>
+<li><code>raw/ingest/2026-04-25-multisports/paper-text.md</code>（1,386 行）</li>
+<li><code>raw/ingest/2026-04-25-multisports/analysis.md</code></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
 <li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
 <li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
 <li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a></li>
+<li><a class="wikilink" href="../../en/entities/sportsmot.html">entities/sportsmot</a></li>
+<li><a class="wikilink" href="../../en/questions/question-badminton-stroke-correction-demo.html">questions/question-badminton-stroke-correction-demo</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li><li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li><li><a class="wikilink" href="../../en/topics/video-understanding.html">Video Understanding</a></li></ul></div><div class="related-group related-entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/sportsmot.html">SportsMOT</a></li></ul></div><div class="related-group related-questions"><h3>Related questions<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">4</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a><span>Topic</span></li><li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a><span>Topic</span></li><li><a href="../../en/topics/video-understanding.html">Video Understanding</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-25-multisports&quot;,
   &quot;type&quot;: &quot;source&quot;,
   &quot;title&quot;: &quot;MultiSports（ICCV 2021）：多人时空动作定位的数据锚点&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-25&quot;,
-  &quot;updated&quot;: &quot;2026-05-22&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;ICCV 2021&quot;,
   &quot;published_at&quot;: &quot;2021-10-01&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-25&quot;,
@@ -107,12 +163,20 @@
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
-  &quot;authors&quot;: [],
+  &quot;authors&quot;: [
+    &quot;Yixuan Li&quot;,
+    &quot;Lei Chen&quot;,
+    &quot;Runyu He&quot;,
+    &quot;Zhenzhi Wang&quot;,
+    &quot;Gangshan Wu&quot;,
+    &quot;Limin Wang&quot;
+  ],
   &quot;canonical_links&quot;: [
     &quot;https://openaccess.thecvf.com/content/ICCV2021/html/Li_MultiSports_A_Multi-Person_Video_Dataset_of_Spatio-Temporally_Localized_Sports_Actions_ICCV_2021_paper.html&quot;,
     &quot;https://openaccess.thecvf.com/content/ICCV2021/papers/Li_MultiSports_A_Multi-Person_Video_Dataset_of_Spatio-Temporally_Localized_Sports_Actions_ICCV_2021_paper.pdf&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-25-multisports/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-25-multisports/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/sports-ai-video-understanding&quot;,
     &quot;topics/sports-ai-roadmap&quot;,
@@ -122,8 +186,10 @@
     &quot;entities/sportsmot&quot;
   ],
   &quot;claims&quot;: [],
-  &quot;questions&quot;: []
-}</pre></section>
+  &quot;questions&quot;: [
+    &quot;questions/question-badminton-stroke-correction-demo&quot;
+  ]
+}</pre></details>
     </article>
   </main>
 </body>

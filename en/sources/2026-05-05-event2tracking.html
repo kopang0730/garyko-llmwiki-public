@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Event2Tracking：用长时多模态上下文重建多智能体足球轨迹">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>Event2Tracking：用长时多模态上下文重建多智能体足球轨迹 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-05-event2tracking&quot;, &quot;title&quot;: &quot;Event2Tracking：用长时多模态上下文重建多智能体足球轨迹&quot;, &quot;title_en&quot;: &quot;Event2Tracking：用长时多模态上下文重建多智能体足球轨迹&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;tracking&quot;, &quot;multimodal&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-05-event2tracking&quot;, &quot;title&quot;: &quot;Event2Tracking：用长时多模态上下文重建多智能体足球轨迹&quot;, &quot;title_en&quot;: &quot;Event2Tracking：用长时多模态上下文重建多智能体足球轨迹&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;tracking&quot;, &quot;multimodal&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,42 +60,79 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-05-05-event2tracking.html">中文</a><a class="selected-lang" href="../../en/sources/2026-05-05-event2tracking.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-05-22</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Event2Tracking：用长时多模态上下文重建多智能体足球轨迹</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
         <h1><span class="title-main">Event2Tracking</span><span class="title-subtitle">用长时多模态上下文重建多智能体足球轨迹</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>AAAI 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-04-11</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-05-05</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://ojs.aaai.org/index.php/AAAI/article/view/33289" title="https://ojs.aaai.org/index.php/AAAI/article/view/33289" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>ojs.aaai.org · 33289</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#tracking">#tracking</a><a class="tag" href="../../en/tags.html#multimodal">#multimodal</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>Event2Tracking 把足球 tracking data 与 event data 融合起来，用 60 秒长时上下文重建球员和球的 noisy trajectories，是当前 <a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 中“轨迹 → 事件语义 → 比赛状态”的关键桥。</p>
-<h2 id="论文定位">论文定位</h2>
-<p>这篇论文把足球轨迹重建从短窗口、纯轨迹输入推进到长时、多模态输入。它关注的对象是 soccer agents，包括球员和球；输入侧同时使用 tracking data 和描述高层语义事件的 event data；输出侧用 reconstruction loss 衡量轨迹恢复质量。</p>
-<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>AAAI 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-04-11</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-05-05</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://ojs.aaai.org/index.php/AAAI/article/view/33289" title="https://ojs.aaai.org/index.php/AAAI/article/view/33289" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>ojs.aaai.org · 33289</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#数据与任务">数据与任务</a></li><li><a href="#方法">方法</a></li><li><a href="#核心结果">核心结果</a></li><li><a href="#关键边界">关键边界</a></li><li><a href="#对羽毛球-demo-的影响">对羽毛球 demo 的影响</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始材料">原始材料</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h1 id="event2tracking-事件语义辅助的长时足球轨迹重建">Event2Tracking：事件语义辅助的长时足球轨迹重建</h1>
+<blockquote><strong>会议</strong>：AAAI 2025</blockquote>
+<blockquote><strong>全文深读</strong>：<a class="wikilink missing" href="#missing-raw/ingest/2026-05-05-event2tracking/analysis">analysis.md</a></blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>Event2Tracking 用 60 秒 axial-attention context 和 event cross-attention 重建 noisy broadcast tracking；60 秒时 player/ball mADE 为 3.22/3.51m，对 STT 的 3.62/5.46m，证明事件语义可修复缺失轨迹，同时绝对误差仍只适合场地级状态。</p>
+<h2 id="数据与任务">数据与任务</h2>
 <ul>
-<li>与 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它把 tracking 从“保持 ID 和坐标连续”推进到“用事件语义解释和修复轨迹”。</li>
-<li>与 <a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：它补上 S1 中此前明确标为 P0 的 Event2Tracking 缺口，使 SoccerNet 数据生态、年度 challenge、tracking team report 与 trajectory-event semantics 连成一条证据链。</li>
-<li>与 <a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a> 的关系：它给通用视频理解提供一个强应用样本：长视频理解可以落到多智能体状态重建，而不仅是片段分类或问答。</li>
+<li>700 场职业足球比赛训练；</li>
+<li>52 场比赛评测；</li>
+<li>每场配对 event、broadcast tracking、in-venue tracking；</li>
+<li>Tracking 原始约 25Hz，实验下采样为 5Hz；</li>
+<li>Context：10/20/30/45/60 秒；</li>
+<li>球在 broadcast stream 中被设为完全缺失；</li>
+<li>输出所有球员与球的 pitch x/y；</li>
+<li>指标为一分钟 segments 上的 player/ball mADE。</li>
 </ul>
-<h2 id="来源可靠性与可溯源性">来源可靠性与可溯源性</h2>
+<p>输入已经是结构化 tracking/event streams，论文不处理 RGB detection、camera calibration、ReID 和 event spotting。</p>
+<h2 id="方法">方法</h2>
 <ul>
-<li><strong>来源层级</strong>：AAAI 2025 proceedings primary paper；AAAI OJS 页面和 DOI <code>10.1609/aaai.v39i11.33289</code> 均可访问，证据等级高于 arXiv-only preprint。</li>
-<li><strong>可溯源材料</strong>：本地已保存 AAAI OJS abstract、PDF、<code>paper-text.md</code> 和 <code>links.yaml</code>；PDF SHA256：<code>a2f8b120abea7e2bf8c5da551a391e9c64f4a6d750c0a6ef1827ac62b57aec57</code>。</li>
-<li><strong>使用边界</strong>：适合作为 trajectory-event semantics 的强 primary evidence；对真实部署、跨联赛泛化和端到端视频系统延迟的判断仍需后续 source 补强。</li>
+<li>Event encoder 编码稀疏事件的类型、时间、位置和参与球员；</li>
+<li>Tracking decoder 对 trajectory tokens 做 spatiotemporal axial attention；</li>
+<li>Temporal cross-attention 融合 event embeddings；</li>
+<li>两部分各 4 层，hidden 128、FFN 512、4 heads；</li>
+<li>最终线性投影输出 x/y。</li>
 </ul>
-<h2 id="和现有证据的关系">和现有证据的关系</h2>
-<p>此前 S1 已补入 <a class="wikilink" href="../../en/sources/2026-05-05-soccernet-v2-holistic-understanding.html">sources/2026-05-05-soccernet-v2-holistic-understanding</a>、<a class="wikilink" href="../../en/sources/2026-05-05-soccernet-v2-camera-calibration-player-localization.html">sources/2026-05-05-soccernet-v2-camera-calibration-player-localization</a>、<a class="wikilink" href="../../en/sources/2026-05-05-active-learning-action-spotting-football.html">sources/2026-05-05-active-learning-action-spotting-football</a>、<a class="wikilink" href="../../en/sources/2026-05-05-soccernet-2022-challenges-results.html">sources/2026-05-05-soccernet-2022-challenges-results</a>、<a class="wikilink" href="../../en/sources/2026-05-05-soccernet-2023-challenges-results.html">sources/2026-05-05-soccernet-2023-challenges-results</a> 与 <a class="wikilink" href="../../en/sources/2026-05-05-soccernet-2023-tracking-mot4mot.html">sources/2026-05-05-soccernet-2023-tracking-mot4mot</a>。Event2Tracking 在这条链路中承担“把事件语义真正注入轨迹重建模型”的角色。</p>
-<p>它和 <a class="wikilink" href="../../en/sources/2026-04-24-transportmer.html">sources/2026-04-24-transportmer</a> 形成互补：TranSPORTmer 更像多智能体轨迹理解框架，Event2Tracking 则强调长时上下文和 event data 对轨迹重建的增益。</p>
-<h2 id="局限或疑问">局限或疑问</h2>
+<p>事件数据含每个 on-ball event 的时间、位置和 player ID，是强语义 side channel。</p>
+<h2 id="核心结果">核心结果</h2>
+<table><thead><tr><th>60s 方法</th><th>Player mADE</th><th>Ball mADE</th></tr></thead><tbody><tr><td>Independent Transformer</td><td>4.78</td><td>16.69</td></tr><tr><td>Graph Imputer</td><td>4.60</td><td>7.99</td></tr><tr><td>STT</td><td>3.62</td><td>5.46</td></tr><tr><td>Event2Tracking</td><td><strong>3.22</strong></td><td><strong>3.51</strong></td></tr></tbody></table>
+<p>Event2Tracking 在 10/20/30/45/60 秒的 player/ball mADE 分别为：</p>
 <ul>
-<li>这篇论文证明 event data 对 trajectory reconstruction 有价值，但 roadmap 仍需要继续追踪 game-state reconstruction、战术意图建模和 rule-grounded referee assistance。</li>
-<li>当前这版先完成轻量 primary-source 编译，后续可按 deep-analysis-first 流程补 <code>analysis.md</code>、关键图页和实验细节。</li>
+<li>4.13/4.24；</li>
+<li>3.44/3.76；</li>
+<li>3.33/3.52；</li>
+<li>3.27/3.53；</li>
+<li>3.22/3.51。</li>
+</ul>
+<p>相对 STT，球误差低 32%–36%，球员误差低 3%–11%。Player mADE 从 10s 到 60s 改善约 22%。</p>
+<h2 id="关键边界">关键边界</h2>
+<ul>
+<li>Event stream 对球位置提供近似稀疏监督；</li>
+<li>球的完全遮挡是人工设定，和真实 intermittent detection 不同；</li>
+<li>60 秒双向 context 使用未来信息，只适合离线重建；</li>
+<li>5Hz 无法支持高速接触分析；</li>
+<li>只报告 deterministic mADE，缺 uncertainty；</li>
+<li>未报告参数量、GPU、时延和训练成本；</li>
+<li>数据来源与跨联赛 split 信息不足；</li>
+<li>3.51m 球误差不能支持技术分析。</li>
+</ul>
+<h2 id="对羽毛球-demo-的影响">对羽毛球 demo 的影响</h2>
+<p>可迁移 hit/event tokens、长时 player/shuttle context 和 multi-agent trajectory repair。羽毛球需使用 50–120Hz contact windows，将事件改为 serve/hit/bounce/land/phase，并用厘米/像素误差、contact-frame accuracy 及上游 hit-detector errors 评测。</p>
+<p>它支持：</p>
+<p><code>hit/phase alignment ↔ trajectory repair</code></p>
+<p>它不支持 pose、stroke quality 或教练反馈。</p>
+<h2 id="证据评级">证据评级</h2>
+<ul>
+<li>足球轨迹重建：<strong>A-</strong></li>
+<li>长时事件融合：<strong>A-</strong></li>
+<li>羽毛球迁移：<strong>B-</strong></li>
+<li>实时端到端视频：<strong>C</strong></li>
 </ul>
 <h2 id="原始材料">原始材料</h2>
 <ul>
-<li><code>raw/ingest/2026-05-05-event2tracking/paper.pdf</code></li>
-<li><code>raw/ingest/2026-05-05-event2tracking/paper-text.md</code></li>
-<li><code>raw/ingest/2026-05-05-event2tracking/abstract.md</code></li>
-<li><code>raw/ingest/2026-05-05-event2tracking/links.yaml</code></li>
+<li><code>raw/ingest/2026-05-05-event2tracking/paper.pdf</code>（9 页）</li>
+<li><code>raw/ingest/2026-05-05-event2tracking/paper-text.md</code>（853 行）</li>
+<li><code>raw/ingest/2026-05-05-event2tracking/analysis.md</code></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
@@ -97,14 +140,19 @@
 <li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
 <li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a></li>
 <li><a class="wikilink" href="../../en/entities/sportsmot.html">entities/sportsmot</a></li>
+<li><a class="wikilink" href="../../en/questions/question-badminton-stroke-correction-demo.html">questions/question-badminton-stroke-correction-demo</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li><li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li><li><a class="wikilink" href="../../en/topics/video-understanding.html">Video Understanding</a></li></ul></div><div class="related-group related-entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/sportsmot.html">SportsMOT</a></li></ul></div><div class="related-group related-questions"><h3>Related questions<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">4</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a><span>Topic</span></li><li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a><span>Topic</span></li><li><a href="../../en/topics/video-understanding.html">Video Understanding</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-05-05-event2tracking&quot;,
   &quot;type&quot;: &quot;source&quot;,
   &quot;title&quot;: &quot;Event2Tracking：用长时多模态上下文重建多智能体足球轨迹&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-05-05&quot;,
-  &quot;updated&quot;: &quot;2026-05-22&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;AAAI 2025&quot;,
   &quot;published_at&quot;: &quot;2025-04-11&quot;,
   &quot;ingested_at&quot;: &quot;2026-05-05&quot;,
@@ -133,6 +181,7 @@
     &quot;https://dl.acm.org/doi/abs/10.1609/aaai.v39i11.33289&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-05-05-event2tracking/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-05-05-event2tracking/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/sports-ai-video-understanding&quot;,
     &quot;topics/sports-ai-roadmap&quot;,
@@ -142,8 +191,10 @@
     &quot;entities/sportsmot&quot;
   ],
   &quot;claims&quot;: [],
-  &quot;questions&quot;: []
-}</pre></section>
+  &quot;questions&quot;: [
+    &quot;questions/question-badminton-stroke-correction-demo&quot;
+  ]
+}</pre></details>
     </article>
   </main>
 </body>

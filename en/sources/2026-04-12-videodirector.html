@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="VideoDirector：借助文本到视频模型实现精确视频编辑">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>VideoDirector：借助文本到视频模型实现精确视频编辑 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-12-videodirector&quot;, &quot;title&quot;: &quot;VideoDirector（CVPR 2025）：借助文本到视频模型实现精确视频编辑&quot;, &quot;title_en&quot;: &quot;VideoDirector（CVPR 2025）：借助文本到视频模型实现精确视频编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-12-videodirector&quot;, &quot;title&quot;: &quot;VideoDirector：借助文本到视频模型实现精确视频编辑&quot;, &quot;title_en&quot;: &quot;VideoDirector：借助文本到视频模型实现精确视频编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,56 +60,100 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-12-videodirector.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-12-videodirector.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>VideoDirector：借助文本到视频模型实现精确视频编辑</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
         <h1><span class="title-main">VideoDirector</span><span class="title-subtitle">借助文本到视频模型实现精确视频编辑</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-06-11</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-12</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2025/html/Wang_VideoDirector_Precise_Video_Editing_via_Text-to-Video_Models_CVPR_2025_paper.html" title="https://openaccess.thecvf.com/content/CVPR2025/html/Wang_VideoDirector_Precise_Video_Editing_via_Text-to-Video_Models_CVPR_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Wang_VideoDirector_Precise_Vide…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_VideoDirector_Precise_Video_Editing_via_Text-to-Video_Models_CVPR_2025_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_VideoDirector_Precise_Video_Editing_via_Text-to-Video_Models_CVPR_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Wang_VideoDirector_Precise_Vide…</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-editing">#video-editing</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-editing">#video-editing</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作认为，精确视频编辑必须显式拆开空间引导与时间引导，而不能把图像编辑技巧直接平移到文本到视频模型上。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>它要解决的是把图像编辑范式直接搬到视频里时常见的颜色闪烁、内容扭曲、未编辑区域破坏和时间不连续问题。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>方法上，VideoDirector 采用时空解耦引导、多帧 null-text 优化和自注意力控制，以实现更精确的反演、局部编辑和未编辑内容保留。</p>
-<h2 id="关键发现">关键发现</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-06-11</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-12</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2025/html/Wang_VideoDirector_Precise_Video_Editing_via_Text-to-Video_Models_CVPR_2025_paper.html" title="https://openaccess.thecvf.com/content/CVPR2025/html/Wang_VideoDirector_Precise_Video_Editing_via_Text-to-Video_Models_CVPR_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Wang_VideoDirector_Precise_Vide…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_VideoDirector_Precise_Video_Editing_via_Text-to-Video_Models_CVPR_2025_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_VideoDirector_Precise_Video_Editing_via_Text-to-Video_Models_CVPR_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Wang_VideoDirector_Precise_Vide…</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义与接口">问题定义与接口</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#数据与实验">数据与实验</a></li><li><a href="#核心结果">核心结果</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>VideoDirector 说明，T2V 底座的时序先验只有在“多帧 null-text + 时空解耦梯度 + 双路径 attention control”把重建轨迹校准后，才能转化为精确编辑收益；在 16 帧自建测试集上，最大增益来自未编辑区域保真，而非 PickScore 的大幅领先。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>它把图像编辑的 pivotal inversion / Prompt-to-Prompt 流程改造成 AnimateDiff 原生视频版本。方法不训练新 T2V 模型，但对每个视频做 8.5 分钟 pivotal tuning，并依赖 SAM2 mask 与手工超参数。</p>
+<h2 id="问题定义与接口">问题定义与接口</h2>
 <ul>
-<li>论文把时间一致性视为文本到视频模型相对图像方法的重要优势来源。</li>
-<li>精确局部编辑依赖于对未编辑内容的保留，而不仅是提示词匹配。</li>
-<li>方法同时追求编辑准确度、真实感、运动平滑和保留性。</li>
+<li>输入：512×512、固定 16 帧视频，源/目标提示词，SAM2 前景/背景 mask。</li>
+<li>输出：局部语义改变、未编辑区域与运动尽量保真的视频。</li>
+<li>目标：准确性、保真、运动平滑、真实感；不覆盖长视频与实时编辑。</li>
+</ul>
+<h2 id="方法概述">方法概述</h2>
+<ol>
+<li><strong>多帧 null-text</strong>：为各帧分配无条件 embedding，补偿视频 DDIM inversion 误差。</li>
+<li><strong>STDG</strong>：分别约束 temporal attention 与 self-attention key 的轨迹差异，并按前/背景 mask 组合梯度。</li>
+<li><strong>SA-I / SA-II</strong>：早期复制重建布局，后期拼接重建/编辑 key-value；mask 阻止源对象回流到编辑区。</li>
+<li><strong>Cross-attention control</strong>：共同词沿用源 attention，新词保留目标 attention。</li>
+</ol>
+<h2 id="数据与实验">数据与实验</h2>
+<ul>
+<li>75 个文本—视频编辑对，来自 DAVIS、MotionClone、TokenFlow 与在线平台；提示词由 ChatGPT 或作者生成。</li>
+<li>AnimateDiff；单张 A100：8.5 分钟 tuning + 1 分钟编辑。</li>
+<li>$\tau_s$ 需按视频手调到 [0.2, 0.5]；前/背景权重也需按任务切换。</li>
+<li>基线：Video-P2P、RAVE、Flatten、TokenFlow。</li>
+</ul>
+<h2 id="核心结果">核心结果</h2>
+<table><thead><tr><th>方法</th><th>MS ↑</th><th>PS ↑</th><th>m.P ↑</th><th>m.L ↓</th><th>用户排名 ↓</th></tr></thead><tbody><tr><td>最佳基线</td><td>96.69%</td><td>21.61</td><td>17.94</td><td>0.313</td><td>2.89</td></tr><tr><td><strong>VideoDirector</strong></td><td><strong>97.68%</strong></td><td><strong>21.64</strong></td><td><strong>21.37</strong></td><td><strong>0.270</strong></td><td><strong>1.00</strong></td></tr></tbody></table>
+<ul>
+<li>MS +0.99 个百分点；PS 只 +0.03。</li>
+<li>m.P 提高约 19.12%，m.L 降约 13.74%，说明未编辑区域保真是最有力收益。</li>
+<li>用户研究只有 9 人，论文只报告平均排名，没有显著性或一致性统计。</li>
+</ul>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>去掉 STDG：MS 97.68%→89.23%。</li>
+<li>去掉完整 self-attention control：m.P 21.37→14.87，m.L 0.270→0.537，是破坏最大的组件。</li>
+<li>shared null-text：MS 仍有 97.21%，但 PS 20.44、m.P 19.01、m.L 0.346，表明逐帧 embedding 主要改善对齐与保真。</li>
+<li>去掉 cross-attention：PS 21.06，说明语义编辑不只来自 cross-attention replacement。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>整体编辑 pipeline 仍然比较复杂。</li>
-<li>还需要和 training-free 视频编辑器在相同设定下比较。</li>
-<li>细粒度编辑精度可能随场景复杂度和运动程度波动。</li>
+<li>固定 16 帧，不能外推到长程一致性、镜头切换与长视频。</li>
+<li>每视频约 9.5 分钟，不实时；$\tau_s$ 与前/背景权重需手调。</li>
+<li>SAM2 mask 错误会同时影响 STDG 与 self-attention；论文未测 mask 噪声。</li>
+<li>自建 75 对、提示词人工构造、用户研究小，缺少公开固定划分与失败率。</li>
+<li>只与四个 T2I 编辑器比，没有同底座/同预算的视频原生强基线。</li>
+<li>“时空解耦”是工程约束，不等于模型形成显式、可解释的视频理解。</li>
 </ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li>对 <a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a>：直接支持视频原生反演与控制路线，尤其支持“先精确重建、再精确编辑”。</li>
+<li>对 <a class="wikilink" href="../../en/topics/video-generation.html">视频生成</a>：仅间接支持 T2V temporal prior 可被编辑利用，不能推出 T2V 底座普遍胜过 T2I。</li>
+<li>对 <a class="wikilink" href="../../en/topics/generative-model-evaluation.html">生成模型评测</a>：背景证据，提醒准确、保真、平滑与真实感必须拆开。</li>
+<li>对 <a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">视频编辑理解评测问题</a>：背景/压力测试证据。闪烁和重建失败可来自反演、mask 与控制误差，不能直接归因于“理解不足”；75 对结果质量评测也不测试剪辑语法或叙事功能。</li>
+</ul>
+<h2 id="证据评级">证据评级</h2>
+<p><strong>B（中等偏强，短视频任务内证据）</strong>。主表和数值消融完整，保真收益明确；但固定 16 帧、测试集小、需要手调和 SAM2，且不构成真实视频编辑理解的直接证据。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://openaccess.thecvf.com/content/CVPR2025/html/Wang_VideoDirector_Precise_Video_Editing_via_Text-to-Video_Models_CVPR_2025_paper.html</li>
-<li>https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_VideoDirector_Precise_Video_Editing_via_Text-to-Video_Models_CVPR_2025_paper.pdf</li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2025/html/Wang_VideoDirector_Precise_Video_Editing_via_Text-to-Video_Models_CVPR_2025_paper.html">CVF 论文页</a></li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_VideoDirector_Precise_Video_Editing_via_Text-to-Video_Models_CVPR_2025_paper.pdf">PDF</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/video-editing.html">topics/video-editing</a></li>
-<li><a class="wikilink" href="../../en/topics/video-generation.html">topics/video-generation</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">topics/generative-model-evaluation</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>VideoDirector 是当前 video-editing 路线里很典型的一篇“精确控制派”论文。它的价值在于把视频编辑真正当成时空联合问题处理，而不是把视频看成一串独立图片。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a class="wikilink" href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">Benchmark 是否追踪真实视频编辑理解</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a></li><li><a class="wikilink" href="../../en/topics/video-generation.html">视频生成</a></li><li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li></ul></div><div class="related-group related-questions"><h3>Related questions<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">3</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a><span>Question</span></li><li><a href="../../en/topics/video-editing.html">视频编辑</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-12-videodirector&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;VideoDirector（CVPR 2025）：借助文本到视频模型实现精确视频编辑&quot;,
+  &quot;title&quot;: &quot;VideoDirector：借助文本到视频模型实现精确视频编辑&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-12&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2025&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-12&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;video-editing&quot;,
+    &quot;diffusion&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
@@ -129,8 +179,10 @@
   ],
   &quot;entities&quot;: [],
   &quot;claims&quot;: [],
-  &quot;questions&quot;: []
-}</pre></section>
+  &quot;questions&quot;: [
+    &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
+  ]
+}</pre></details>
     </article>
   </main>
 </body>

@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Domain Expansion of Image Generators：图像生成器的领域扩展">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>Domain Expansion of Image Generators：图像生成器的领域扩展 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-domain-expansion-image-generators&quot;, &quot;title&quot;: &quot;Domain Expansion of Image Generators（CVPR 2023）：图像生成器的领域扩展&quot;, &quot;title_en&quot;: &quot;Domain Expansion of Image Generators（CVPR 2023）：图像生成器的领域扩展&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-domain-expansion-image-generators&quot;, &quot;title&quot;: &quot;Domain Expansion of Image Generators：图像生成器的领域扩展&quot;, &quot;title_en&quot;: &quot;Domain Expansion of Image Generators：图像生成器的领域扩展&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;representation-learning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,69 +60,83 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-domain-expansion-image-generators.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-domain-expansion-image-generators.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Domain Expansion of Image Generators：图像生成器的领域扩展</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
         <h1><span class="title-main">Domain Expansion of Image Generators</span><span class="title-subtitle">图像生成器的领域扩展</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2023/01/12</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2301.05225" title="https://arxiv.org/abs/2301.05225" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2301.05225</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2301.05225" title="https://arxiv.org/pdf/2301.05225" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2301.05225</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#representation-learning">#representation-learning</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把图像生成器的领域扩展问题单独拎出来，补强了 image-generation 里的域扩展路线。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2023-01-12</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2301.05225" title="https://arxiv.org/abs/2301.05225" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2301.05225</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2301.05225" title="https://arxiv.org/pdf/2301.05225" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2301.05225</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#数据-主干与成本">数据、主干与成本</a></li><li><a href="#结果与人评">结果与人评</a></li><li><a href="#多域与消融">多域与消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#相关页面">相关页面</a></li><li><a href="#证据评级">证据评级</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>论文把StyleGAN2潜空间中原本不起作用的dormant directions改造成独立“域轴”，让一个不增参数的生成器容纳最多105个新域，并在base subspace近似保持源FID；它依赖线性可分潜空间和per-domain训练，不是开放文本接口、DiT或统一生成编辑模型。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>它要解决的是图像生成器如何稳定扩展到新领域的问题。对当前知识库来说，它补的是 image-generation 除了控制与个性化之外，面向 domain expansion 的一条重要支线。</p>
+<p>普通domain adaptation把源生成器整体改成目标域，往往遗忘原域。Domain expansion要求同一生成器同时保留源域与多个新域，支持连续域强度和多域组合，而不为每域部署独立权重。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>该工作围绕 image generators 的 domain expansion 展开，关注如何让生成模型在新领域中保持有效泛化与生成质量。</p>
-<h2 id="关键发现">关键发现</h2>
+<ol>
+<li>对生成器第一层用SeFA/SVD得到正交潜方向；末尾低奇异值方向视为dormant。</li>
+<li>为每个新域分配一个$v_i$；其余方向构成$Z_{base}$。</li>
+<li>将base subspace沿$v_i$平移$s=20$得到域子空间$Z_i$。</li>
+<li>把StyleGAN-NADA或MyStyle的adaptation loss只施加于投影到$Z_i$的latents。</li>
+<li>只在$Z_{base}$继续原训练loss，并用冻结源生成器的pixel-L2+LPIPS replay保持源行为。</li>
+</ol>
+<p>每增加一个域仍需训练一个loss与占用一个方向；“不增模型大小”不等于新增域零成本。</p>
+<h2 id="数据-主干与成本">数据、主干与成本</h2>
 <ul>
-<li>它说明 image-generation 的扩展不只是在单域内做更好生成，也包括跨域扩展能力。</li>
-<li>它能帮助以后分析“预训练基础模型 + 小量适配”在新领域到底够不够。</li>
-<li>它为未来开题时做 domain adaptation / specialization 方向提供了直接参考。</li>
+<li>StyleGAN2主实验：FFHQ 105域（100 NADA+5 MyStyle）、AFHQ Dog 50、LSUN Church 20、SD-Elephant 20。</li>
+<li>MyStyle身份域每个约100张图；NADA域由源/目标文本通过CLIP监督。</li>
+<li>Diffusion Autoencoder只做定性泛化。</li>
+<li>未披露统一GPU型号、GPU-hours、wall-clock、batch或每域成本；不能从参数共享推导训练廉价。</li>
 </ul>
+<p>主干不是latent diffusion T2I或DiT；DiffAE有语义latent但验证仅定性。</p>
+<h2 id="结果与人评">结果与人评</h2>
+<p>32名用户、1440次2AFC中，expanded NADA结果获58.8%偏好，独立StyleGAN-NADA为41.2%。MyStyle对比：identity 0.76±0.05 vs 0.80±0.06略低，diversity×10 3.14±0.14 vs 3.08±0.15略高。</p>
+<table><thead><tr><th>数据</th><th>Parent FID↓</th><th>Ours base FID↓</th><th>仅继续源训练↓</th></tr></thead><tbody><tr><td>FFHQ</td><td>2.77</td><td>2.80</td><td>2.75±0.08</td></tr><tr><td>AFHQ</td><td>7.43</td><td>7.51</td><td>7.38±0.09</td></tr><tr><td>LSUN Church</td><td>3.92</td><td>3.76</td><td>3.31±0.22</td></tr><tr><td>SD-Elephant</td><td>2.30</td><td>2.70</td><td>3.91±0.67</td></tr></tbody></table>
+<p>源域是近似保持，不是严格函数等价。人评未给每域票数、置信区间或显著性。</p>
+<h2 id="多域与消融">多域与消融</h2>
+<p>1/5/50域实验显示域越多收敛越慢，但“Sketch”不会明显泄漏到“Sumo”子空间。两个已学directions相加，在10对prompts上比NADA权重插值与DiffusionCLIP activation插值更能同时保留两种效果。</p>
+<p>无regularization的定性图出现新风格泄漏；但缺少完整定量正则消融。低奇异值不必然等于语义无效，容量上限也未实测到崩溃。</p>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>领域扩展问题常与数据质量和预训练分布耦合。</li>
-<li>它更偏扩展能力，不直接对应编辑控制。</li>
-<li>它是重要主线补层，但不是统一多任务接口本身。</li>
-</ul>
-<h2 id="原始链接">原始链接</h2>
-<ul>
-<li>https://arxiv.org/abs/2301.05225</li>
-<li>https://arxiv.org/pdf/2301.05225</li>
+<li>只支持训练过的有限域轴，不是自然语言zero-shot新域。</li>
+<li>假设潜空间线性、正交、平滑且有闲置容量；现代条件扩散/DiT未验证。</li>
+<li>一个域一个方向，最终受潜维度和网络容量限制。</li>
+<li>组合的是全局域语义，不等于对象、布局或局部图像编辑。</li>
+<li>MyStyle身份准确率有小幅下降；没有严格身份保持保证。</li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../../en/entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a></li>
-<li><a class="wikilink" href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a></li>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-diffusion-autoencoders.html">Diffusion Autoencoders</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-16-diffusionclip.html">DiffusionCLIP</a></li>
 </ul>
-<h2 id="备注">备注</h2>
-<p>这篇工作在库里的作用，是把 image-generation 的 domain expansion 路线补成明确分支。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<h2 id="证据评级">证据评级</h2>
+<p><strong>B+</strong>：105域、人评与源FID有力；成本缺失、DiffAE仅定性、正则消融不足及对现代扩散/DiT不可外推。</p></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">2</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-domain-expansion-image-generators&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Domain Expansion of Image Generators（CVPR 2023）：图像生成器的领域扩展&quot;,
+  &quot;title&quot;: &quot;Domain Expansion of Image Generators：图像生成器的领域扩展&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
-  &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
-  &quot;venue&quot;: &quot;CVPR 2023&quot;,
-  &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
-  &quot;tags&quot;: [
-    &quot;near-cvpr-2025&quot;,
-    &quot;image-generation&quot;,
-    &quot;primary-source&quot;
-  ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-04-14&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;venue&quot;: &quot;CVPR 2023&quot;,
   &quot;authors&quot;: [
-    &quot;Nitzan, Yotam&quot;,
-    &quot;Gharbi, Michaël&quot;,
-    &quot;Zhang, Richard&quot;,
-    &quot;Park, Taesung&quot;,
-    &quot;Zhu, Jun-Yan&quot;,
-    &quot;Cohen-Or, Daniel&quot;,
-    &quot;Shechtman, Eli&quot;
+    &quot;Yotam Nitzan&quot;,
+    &quot;Michaël Gharbi&quot;,
+    &quot;Richard Zhang&quot;,
+    &quot;Taesung Park&quot;,
+    &quot;Jun-Yan Zhu&quot;,
+    &quot;Daniel Cohen-Or&quot;,
+    &quot;Eli Shechtman&quot;
   ],
-  &quot;published_at&quot;: &quot;2023/01/12&quot;,
+  &quot;published_at&quot;: &quot;2023-01-12&quot;,
+  &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2301.05225&quot;,
     &quot;https://arxiv.org/pdf/2301.05225&quot;
@@ -125,14 +145,16 @@
   &quot;topics&quot;: [
     &quot;topics/image-generation&quot;
   ],
-  &quot;entities&quot;: [
-    &quot;entities/unified-image-generation-editing&quot;
-  ],
+  &quot;entities&quot;: [],
   &quot;claims&quot;: [],
-  &quot;questions&quot;: [
-    &quot;questions/question-will-unified-image-models-sustain-their-advantage&quot;
+  &quot;questions&quot;: [],
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-generation&quot;,
+    &quot;representation-learning&quot;,
+    &quot;primary-source&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

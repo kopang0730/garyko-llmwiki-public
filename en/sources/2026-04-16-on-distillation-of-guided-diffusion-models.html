@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>On Distillation of Guided Diffusion Models：把 classifier-free guided diffusion 蒸馏到极少步采样 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="On Distillation of Guided Diffusion Models：把 CFG 与采样轨迹联合蒸馏到极少步">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>On Distillation of Guided Diffusion Models：把 CFG 与采样轨迹联合蒸馏到极少步 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-on-distillation-of-guided-diffusion-models&quot;, &quot;title&quot;: &quot;On Distillation of Guided Diffusion Models（CVPR 2023）：把 classifier-free guided diffusion 蒸馏到极少步采样&quot;, &quot;title_en&quot;: &quot;On Distillation of Guided Diffusion Models（CVPR 2023）：把 classifier-free guided diffusion 蒸馏到极少步采样&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-on-distillation-of-guided-diffusion-models&quot;, &quot;title&quot;: &quot;On Distillation of Guided Diffusion Models：把 CFG 与采样轨迹联合蒸馏到极少步&quot;, &quot;title_en&quot;: &quot;On Distillation of Guided Diffusion Models：把 CFG 与采样轨迹联合蒸馏到极少步&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,53 +60,79 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-16-on-distillation-of-guided-diffusion-models.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-16-on-distillation-of-guided-diffusion-models.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-16</p>
-        <h1><span class="title-main">On Distillation of Guided Diffusion Models</span><span class="title-subtitle">把 classifier-free guided diffusion 蒸馏到极少步采样</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>On Distillation of Guided Diffusion Models：把 CFG 与采样轨迹联合蒸馏到极少步</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">On Distillation of Guided Diffusion Models</span><span class="title-subtitle">把 CFG 与采样轨迹联合蒸馏到极少步</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2022/10/06</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2210.03142" title="https://arxiv.org/abs/2210.03142" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2210.03142</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2210.03142.pdf" title="https://arxiv.org/pdf/2210.03142.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2210.03142.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#efficiency">#efficiency</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把 classifier-free guidance 的双模型推理开销压缩成可实际部署的极少步采样路线：先把条件/无条件组合行为蒸馏进单模型，再继续做 progressive distillation，把 guided diffusion 推到 1–4 步也还能保住较强生成质量。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2022-10-06</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2210.03142" title="https://arxiv.org/abs/2210.03142" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2210.03142</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2210.03142.pdf" title="https://arxiv.org/pdf/2210.03142.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2210.03142.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#实验设置">实验设置</a></li><li><a href="#核心结果">核心结果</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#架构与-dit-证据边界">架构与 DiT 证据边界</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>论文先把 classifier-free guidance 的条件/无条件组合蒸馏进一个 <code>w</code>-conditioned U-Net，再 progressive distill 采样轨迹；在 U-Net / Stable Diffusion 上把两次网络评估与多步采样一起压缩，但它不是 DiT 主干证据。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>classifier-free guided diffusion 在高分辨率图像生成里很有效，但推理代价很高，因为每一步都要同时评估条件模型和无条件模型，而且整个去噪过程往往要重复几十到上百步。论文要解决的核心问题，就是如何在保留 guidance 效果的同时，把这种双重开销压缩到更少的采样步数与更低的单步成本。</p>
+<p>CFG 每一步都要执行 conditional 与 unconditional 两次去噪网络，且通常要走几十到上千步。普通 solver 只能缩短轨迹，不能消掉 CFG 的双网络开销；原 progressive distillation 也没有直接解决一个模型覆盖多种 guidance strengths 的问题。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>作者把提速拆成两层。第一层，先训练一个学生模型去拟合“条件模型 + 无条件模型”合成后的 guided 输出，让推理从双模型变成单模型。第二层，再对这个学生模型做 progressive distillation，把原来需要很多步的 diffusion 过程逐步压缩到极少步版本。这样既继承了 classifier-free guidance 的效果，也把 few-step diffusion 的路线直接接到了大规模 guided teacher 上。</p>
-<h2 id="关键发现">关键发现</h2>
+<ol>
+<li><strong>Stage 1：guidance distillation</strong>。学生拟合 <code>(1+w)x_c-wx_u</code>，将 Fourier-embedded <code>w</code> 注入 U-Net，一个模型覆盖一个 guidance 区间。</li>
+<li><strong>Stage 2：progressive distillation</strong>。学生一步拟合 teacher 的两步 DDIM 更新，每轮步数减半；支持确定性与随机采样。</li>
+<li><strong>初始化与参数化</strong>。学生从 teacher 条件分支初始化，采用 v-prediction；1–4 步区间需要更多更新。</li>
+</ol>
+<h2 id="实验设置">实验设置</h2>
 <ul>
-<li>它把 <a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a> 里的效率主线向前推进了一层：提速对象从 solver、time-step schedule、cache 扩展到了 guided teacher 本身。</li>
-<li>论文报告在 pixel-space diffusion 上可把采样压到 4 步，同时在 latent diffusion 上也能实现 1–4 步高保真生成，说明 few-step guided diffusion 已经具备较强可行性。</li>
-<li>它和 <a class="wikilink" href="../../en/sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">sources/2026-04-15-distilling-ode-solvers-diffusion-models</a> 很互补：后者蒸馏数值求解器，这篇则蒸馏 guidance 行为本身。</li>
-<li>论文还把 distilled model 用到 text-guided image editing 和 inpainting，说明这种效率收益会直接外溢到图像编辑接口，而不只停留在纯生成 benchmark。</li>
+<li>Pixel space：ImageNet 64×64、CIFAR-10；U-Net；teacher 为 conditional/unconditional 各 1024-step DDIM；FID/IS。</li>
+<li>Latent space：ImageNet 256、LAION-5B 256/512；开源 Stable Diffusion / LDM U-Net；COCO2017 的 5,000 captions 上测 FID/CLIP。</li>
+<li>Baseline：DDIM、DPM/DPM++、single-<code>w</code> 与保留双分支的朴素蒸馏。</li>
+<li>下游：SDEdit image-to-image、Stable Diffusion inpainting；另有小规模 MTurk 偏好评测。</li>
+</ul>
+<h2 id="核心结果">核心结果</h2>
+<table><thead><tr><th>设置</th><th>结果</th><th>解释</th></tr></thead><tbody><tr><td>ImageNet64, <code>w=0</code></td><td>8-step FID 2.79/2.44；teacher 2.92</td><td>8–16 步可接近 teacher</td></tr><tr><td>LAION512, <code>w=8</code>, 2-step</td><td>ours 37.3/0.27；DPM++ 98.8/0.20</td><td>极低步数优势明显</td></tr><tr><td>LAION512, <code>w=8</code>, 4-step</td><td>ours 26.0/0.30；DPM++ 34.1/0.29</td><td>4 步仍领先</td></tr><tr><td>LAION512, <code>w=8</code>, 8-step</td><td>ours 26.9/0.30；DPM++ 25.6/0.32</td><td>步数增加后优势消失</td></tr><tr><td>Inpainting, <code>w=4</code></td><td>2-step FID 29.50 vs DDIM 109.35；4-step 24.90 vs 26.89</td><td>低步区收益最大</td></tr></tbody></table>
+<p>论文汇总最高速度提升为 CIFAR-10 <strong>512×</strong>、ImageNet64 <strong>256×</strong>；这按可比 teacher 的 diffusion evaluations 计算，不能直接等同于所有硬件上的 wall-clock 加速。</p>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>区间 <code>w</code> 条件模型总体可匹配 single-<code>w</code> 模型，说明一套权重覆盖多 guidance strengths 可行。</li>
+<li>朴素双分支 progressive distillation 在少步区失败：CIFAR-10 1-step FID 超过 212；先蒸馏 CFG 组合是关键。</li>
+<li>1–4 步阶段训练更新显著增加，1-step 质量仍弱。</li>
+<li>image-to-image 中噪声越强，文本对齐越高、输入保真越低，蒸馏未消除该权衡。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>它依赖已经训练好的 guided teacher，因此效率收益主要发生在部署阶段，训练前置成本仍然存在。</li>
-<li>当前证据集中在图像生成、图像编辑与修补场景，还没有覆盖更复杂的视频或多模态长序列任务。</li>
-<li>当 teacher 本身存在偏差时，distillation 也会继承这些偏差，few-step 版本的鲁棒性边界仍值得继续观察。</li>
+<li>依赖预训练 teacher、数据与多轮蒸馏；只降低部署推理，不降低 teacher 训练成本。</li>
+<li>LAION 定量只用 5,000 COCO captions；FID/CLIP 与视觉锐度并不总一致。</li>
+<li>编辑结果以质化为主；人评规模有限，作者明确承认回答噪声。</li>
+<li>到 8 步时 DPM++ 已可持平/反超部分指标，结论应限定在极低 NFE。</li>
+</ul>
+<h2 id="架构与-dit-证据边界">架构与 DiT 证据边界</h2>
+<ul>
+<li><strong>实际去噪器：U-Net。</strong> Pixel-space 按 classifier-free guidance U-Net 配置；latent-space 按开源 Stable Diffusion U-Net 配置。</li>
+<li><strong>没有 DiT 实验。</strong> 论文没有训练、蒸馏或比较 Transformer denoiser。</li>
+<li>因而它只支持“扩散系统具有成熟的 guidance/trajectory 蒸馏工程”，应归入 <a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a> 的通用工程背景；不能直接支持“DiT 已成为默认或主要可扩展主干”。</li>
 </ul>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2210.03142</li>
-<li>https://arxiv.org/pdf/2210.03142.pdf</li>
+<li><a href="https://arxiv.org/abs/2210.03142">arXiv 论文页</a></li>
+<li><a href="https://arxiv.org/pdf/2210.03142.pdf">PDF</a></li>
+<li>本地全文：<code>raw/ingest/2026-04-16-on-distillation-of-guided-diffusion-models/paper-text.md</code></li>
+<li>本地深分析：<code>raw/ingest/2026-04-16-on-distillation-of-guided-diffusion-models/analysis.md</code></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
 <li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
 <li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
 <li><a class="wikilink" href="../../en/sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">sources/2026-04-15-distilling-ode-solvers-diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-15-act-diffusion.html">sources/2026-04-15-act-diffusion</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-15-deepcache.html">sources/2026-04-15-deepcache</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>它在本库中的价值，是把 diffusion efficiency 叙事从“如何更好地走轨迹”继续推进到“如何把 guided teacher 的行为整体压缩掉”。这让 few-step diffusion 主线从单纯数值优化，扩展成了更完整的蒸馏工程谱系。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/sources/2026-04-16-post-training-quantization-on-diffusion-models.html">sources/2026-04-16-post-training-quantization-on-diffusion-models</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">9</span></h2><ul><li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a><span>Claim</span></li><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-04-14-codi.html">CoDi：条件扩散蒸馏实现 1–4 步图像条件生成</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-post-training-quantization-on-diffusion-models.html">Post-Training Quantization on Diffusion Models：面向多 timestep 的 INT8 校准</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-self-guided-diffusion-models.html">Self-Guided Diffusion Models：用自监督伪标注替代人工 guidance</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-towards-practical-plug-and-play-diffusion-models.html">Towards Practical Plug-and-Play Diffusion Models：噪声分段外部 guidance 工程</a><span>Source note</span></li><li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>Topic</span></li><li><a href="../../en/topics/diffusion-models.html">扩散模型</a><span>Topic</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-16-on-distillation-of-guided-diffusion-models&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;On Distillation of Guided Diffusion Models（CVPR 2023）：把 classifier-free guided diffusion 蒸馏到极少步采样&quot;,
+  &quot;title&quot;: &quot;On Distillation of Guided Diffusion Models：把 CFG 与采样轨迹联合蒸馏到极少步&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-16&quot;,
-  &quot;updated&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2023&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
   &quot;tags&quot;: [
@@ -121,7 +153,7 @@
     &quot;Ho, Jonathan&quot;,
     &quot;Salimans, Tim&quot;
   ],
-  &quot;published_at&quot;: &quot;2022/10/06&quot;,
+  &quot;published_at&quot;: &quot;2022-10-06&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2210.03142&quot;,
     &quot;https://arxiv.org/pdf/2210.03142.pdf&quot;
@@ -134,7 +166,7 @@
   &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

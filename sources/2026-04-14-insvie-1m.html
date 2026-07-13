@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>InsViE-1M：通过精细数据构造实现有效的 instruction-based 视频编辑 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="InsViE-1M：通过精细数据构造实现 instruction-based 视频编辑">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>InsViE-1M：通过精细数据构造实现 instruction-based 视频编辑 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-insvie-1m&quot;, &quot;title&quot;: &quot;InsViE-1M（ICCV 2025）：通过精细数据构造实现有效的 instruction-based 视频编辑&quot;, &quot;title_en&quot;: &quot;InsViE-1M（ICCV 2025）：通过精细数据构造实现有效的 instruction-based 视频编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;image-editing&quot;, &quot;video-generation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-insvie-1m&quot;, &quot;title&quot;: &quot;InsViE-1M：通过精细数据构造实现 instruction-based 视频编辑&quot;, &quot;title_en&quot;: &quot;InsViE-1M：通过精细数据构造实现 instruction-based 视频编辑&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;video-generation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,59 +60,92 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-14-insvie-1m.html">中文</a><a class="" href="../en/sources/2026-04-14-insvie-1m.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">InsViE-1M</span><span class="title-subtitle">通过精细数据构造实现有效的 instruction-based 视频编辑</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>InsViE-1M：通过精细数据构造实现 instruction-based 视频编辑</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">InsViE-1M</span><span class="title-subtitle">通过精细数据构造实现 instruction-based 视频编辑</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2025-01-01</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/ICCV2025/html/Wu_InsViE-1M_Effective_Instruction-based_Video_Editing_with_Elaborate_Dataset_Construction_ICCV_2025_paper.html" title="https://openaccess.thecvf.com/content/ICCV2025/html/Wu_InsViE-1M_Effective_Instruction-based_Video_Editing_with_Elaborate_Dataset_Construction_ICCV_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>openaccess.thecvf.com · Wu_InsViE-1M_Effective_Instruct…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/ICCV2025/papers/Wu_InsViE-1M_Effective_Instruction-based_Video_Editing_with_Elaborate_Dataset_Construction_ICCV_2025_paper.pdf" title="https://openaccess.thecvf.com/content/ICCV2025/papers/Wu_InsViE-1M_Effective_Instruction-based_Video_Editing_with_Elaborate_Dataset_Construction_ICCV_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Wu_InsViE-1M_Effective_Instruct…</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-editing">#video-editing</a><a class="tag" href="../tags.html#image-editing">#image-editing</a><a class="tag" href="../tags.html#video-generation">#video-generation</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-editing">#video-editing</a><a class="tag" href="../tags.html#video-generation">#video-generation</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把大规模精细数据构造重新推成视频编辑的核心变量，补上了 video-editing 里的数据工程主线。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>它要解决的是 instruction-based video editing 缺少高质量、大规模、结构化数据支撑的问题。对当前知识库来说，它非常适合用来对照 image-editing 里“数据质量决定上限”的判断。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>InsViE-1M 通过 elaborate dataset construction 构建大规模 instruction-based video editing 数据，并基于此提升视频编辑系统的有效性，强调数据设计而不是只靠测试时技巧。</p>
-<h2 id="关键发现">关键发现</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2025-01-01</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/ICCV2025/html/Wu_InsViE-1M_Effective_Instruction-based_Video_Editing_with_Elaborate_Dataset_Construction_ICCV_2025_paper.html" title="https://openaccess.thecvf.com/content/ICCV2025/html/Wu_InsViE-1M_Effective_Instruction-based_Video_Editing_with_Elaborate_Dataset_Construction_ICCV_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>openaccess.thecvf.com · Wu_InsViE-1M_Effective_Instruct…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/ICCV2025/papers/Wu_InsViE-1M_Effective_Instruction-based_Video_Editing_with_Elaborate_Dataset_Construction_ICCV_2025_paper.pdf" title="https://openaccess.thecvf.com/content/ICCV2025/papers/Wu_InsViE-1M_Effective_Instruction-based_Video_Editing_with_Elaborate_Dataset_Construction_ICCV_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Wu_InsViE-1M_Effective_Instruct…</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位与接口">论文定位与接口</a></li><li><a href="#数据与方法">数据与方法</a></li><li><a href="#实验设置">实验设置</a></li><li><a href="#核心结果">核心结果</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>InsViE-1M 用约 102 万个高分辨率三元组、GPT-4o + optical-flow 双过滤和三阶段课程微调 CogVideoX-2B，在自建 100 视频与 TGVE/TGVE+ 上取得强结果；它证明数据工程与原生视频底座可以共同改善编辑，但没有把数据质量、规模、架构与 64×A100 训练预算完全拆开。</p>
+<h2 id="论文定位与接口">论文定位与接口</h2>
 <ul>
-<li>它说明 video-editing 近年也开始重复 image-editing 里的一个重要规律：数据集质量和覆盖面会直接决定方法上限。</li>
-<li>它把视频编辑里的“数据工程”正式推上台面，而不只是单看模型结构。</li>
-<li>它为以后比较“数据驱动增益”与“架构驱动增益”提供了很好的视频侧样本。</li>
+<li>输入：源视频 + 自然语言 instruction，无需 mask 或 edited first frame。</li>
+<li>输出：instruction-based edited video。</li>
+<li>核心对象：数据构造、质量过滤、CogVideoX-2B LoRA 与分阶段训练。</li>
+<li>非目标：长视频、多镜头剪辑、编辑解释或叙事推理。</li>
 </ul>
+<h2 id="数据与方法">数据与方法</h2>
+<table><thead><tr><th>来源</th><th>数量</th><th>输出</th><th>帧数</th><th>GPT</th><th>EPE</th></tr></thead><tbody><tr><td>Real videos</td><td>450,790</td><td>1024×576</td><td>25</td><td>3.47</td><td>0.79</td></tr><tr><td>Image pairs</td><td>110,374</td><td>1024×576</td><td>25</td><td>3.43</td><td>1.22</td></tr><tr><td>Real images</td><td>458,429</td><td>1024×576</td><td>25</td><td>4.07</td><td>0.16</td></tr><tr><td><strong>总计</strong></td><td><strong>1,019,593</strong></td><td>1024×576</td><td>25</td><td>3.74</td><td>0.55</td></tr></tbody></table>
+<ol>
+<li>CosXL 以 CFG 3–8 生成 6 个首帧候选，GPT-4o 选四维最佳结果。</li>
+<li>SVD 传播到视频，再以 GPT-4o 六维评分和 GMFlow EPE 过滤。</li>
+<li>CogVideoX-2B 仅训练 input embedding 与 rank-128 LoRA。</li>
+<li>Set-S1 全量 20k steps；Set-S2 高质量子集 10k；Set-S3 静态:真实=5:1、加入 LPIPS loss，再 10k。</li>
+</ol>
+<h2 id="实验设置">实验设置</h2>
+<ul>
+<li>720×480 crop，batch 128，64×A100；训练约 100 小时，推理约 90 秒/20 GB/单 GPU。</li>
+<li>自建 100 视频测试集（DAVIS/YoutubeVOS/Pexels）以及 TGVE/TGVE+。</li>
+<li>八指标覆盖 temporal consistency、text alignment、video quality；GPT-4o 同时参与过滤与评测。</li>
+</ul>
+<h2 id="核心结果">核心结果</h2>
+<table><thead><tr><th>方法</th><th>TC CLIP ↑</th><th>EPE ↓</th><th>TA CLIP ↑</th><th>Pick ↑</th><th>DOVER ↑</th><th>VQ GPT ↑</th></tr></thead><tbody><tr><td>TokenFlow</td><td>0.951</td><td>6.58</td><td>18.59</td><td>18.63</td><td>0.566</td><td>3.77</td></tr><tr><td>Videoshop</td><td>0.952</td><td>5.02</td><td>18.92</td><td>18.78</td><td>0.501</td><td>3.42</td></tr><tr><td>InsV2V</td><td>0.951</td><td>4.97</td><td>19.01</td><td>18.75</td><td>0.559</td><td>3.68</td></tr><tr><td><strong>InsViE</strong></td><td><strong>0.956</strong></td><td><strong>4.84</strong></td><td><strong>19.37</strong></td><td><strong>18.91</strong></td><td><strong>0.567</strong></td><td><strong>3.79</strong></td></tr></tbody></table>
+<p>主表八项均最优，但部分差距很小，且底座、训练数据、分辨率与计算量未受控。TGVE/TGVE+ 上 InsViE 四项也均最优；InsV2V 在该数据上重训后多数指标改善，是数据价值的相邻受控证据。</p>
+<h2 id="关键消融">关键消融</h2>
+<table><thead><tr><th>设置</th><th>TC CLIP ↑</th><th>EPE ↓</th><th>TA CLIP ↑</th><th>Pick ↑</th><th>DOVER ↑</th></tr></thead><tbody><tr><td>w/o GPT filter</td><td>0.944</td><td>5.66</td><td>18.47</td><td>18.23</td><td>0.515</td></tr><tr><td>w/o OF filter</td><td>0.941</td><td>6.58</td><td>18.73</td><td>18.37</td><td>0.490</td></tr><tr><td>Stage 1</td><td>0.950</td><td>5.08</td><td>18.87</td><td>18.40</td><td>0.510</td></tr><tr><td>Stage 1&amp;2</td><td>0.951</td><td>4.87</td><td>19.03</td><td>18.65</td><td>0.519</td></tr><tr><td><strong>Stage 1&amp;2&amp;3</strong></td><td><strong>0.956</strong></td><td><strong>4.84</strong></td><td><strong>19.37</strong></td><td><strong>18.91</strong></td><td><strong>0.567</strong></td></tr></tbody></table>
+<p>GPT filter 更影响文本对齐，OF filter 更影响运动/画质；Stage 3 同时改变静态数据比例并加入 LPIPS，无法拆开两者贡献。</p>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>它更偏数据侧推动，不自动说明架构不重要。</li>
-<li>大规模数据构造本身成本高，复现门槛也更高。</li>
-<li>它是强数据证据，但仍需要与更多架构型改进一起比较。</li>
+<li>作者承认过滤受 GPT-4o 视觉理解上限制约，25 帧仍不够长。</li>
+<li>干净 instruction 训练导致对无用描述鲁棒性较差，并继承开源生成底座缺陷。</li>
+<li>GPT-4o 既筛数据又参与三组评测，存在 evaluator coupling。</li>
+<li>64×A100、100 小时，加上数据生成/筛选，成本和复现门槛高。</li>
+<li>原始数据近半来自静态图像，Set-S3 静态:真实=5:1；高画质不等于复杂运动覆盖。</li>
+<li>自建测试仅 100 视频，CLIP/Pick/DOVER/EPE 不测关系、物理、叙事与编辑规划。</li>
 </ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li>对 <a class="wikilink" href="../topics/video-editing.html">视频编辑</a>：<strong>直接支持</strong>大规模过滤数据 + 原生视频底座微调路线。</li>
+<li>对 <a class="wikilink" href="../topics/video-generation.html">视频生成</a>：<strong>间接支持</strong>生成底座会限制编辑能力，不等于评测开放式 T2V。</li>
+<li>对 <a class="wikilink" href="../topics/image-editing.html">图像编辑</a>：<strong>背景/迁移证据</strong>，只因图像编辑对参与数据构造。</li>
+<li>对 <a class="wikilink" href="../questions/question-data-vs-architecture-in-image-editing.html">数据与架构问题</a>：<strong>相邻间接支持</strong>，且问题域不同；不能据此证明数据比架构更重要。</li>
+<li>对 <a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">视频编辑理解评测问题</a>：<strong>压力测试证据</strong>。八项输出指标仍不测剪辑元素识别、依据推理、叙事功能或多步计划。</li>
+</ul>
+<h2 id="证据评级">证据评级</h2>
+<p><strong>B+（视频编辑数据工程强案例）</strong>。数据统计、跨 benchmark 主表与过滤/课程消融较完整；但 GPT 循环评估、比较不受控、训练成本大，无法精确分离数据、架构和预算贡献。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://openaccess.thecvf.com/content/ICCV2025/html/Wu_InsViE-1M_Effective_Instruction-based_Video_Editing_with_Elaborate_Dataset_Construction_ICCV_2025_paper.html</li>
-<li>https://openaccess.thecvf.com/content/ICCV2025/papers/Wu_InsViE-1M_Effective_Instruction-based_Video_Editing_with_Elaborate_Dataset_Construction_ICCV_2025_paper.pdf</li>
+<li><a href="https://openaccess.thecvf.com/content/ICCV2025/html/Wu_InsViE-1M_Effective_Instruction-based_Video_Editing_with_Elaborate_Dataset_Construction_ICCV_2025_paper.html">CVF 论文页</a></li>
+<li><a href="https://openaccess.thecvf.com/content/ICCV2025/papers/Wu_InsViE-1M_Effective_Instruction-based_Video_Editing_with_Elaborate_Dataset_Construction_ICCV_2025_paper.pdf">PDF</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../topics/video-editing.html">topics/video-editing</a></li>
-<li><a class="wikilink" href="../topics/image-editing.html">topics/image-editing</a></li>
-<li><a class="wikilink" href="../topics/video-generation.html">topics/video-generation</a></li>
-<li><a class="wikilink" href="../entities/video-editing-understanding.html">entities/video-editing-understanding</a></li>
-<li><a class="wikilink" href="../questions/question-data-vs-architecture-in-image-editing.html">questions/question-data-vs-architecture-in-image-editing</a></li>
-<li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>InsViE-1M 在这套库里的作用，是把 instruction-based video editing 的数据构造主线补成明确节点。</p></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+<li><a class="wikilink" href="../topics/video-editing.html">视频编辑</a></li>
+<li><a class="wikilink" href="../topics/video-generation.html">视频生成</a></li>
+<li><a class="wikilink" href="../topics/image-editing.html">图像编辑</a></li>
+<li><a class="wikilink" href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+<li><a class="wikilink" href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑里数据与架构谁更关键</a></li>
+<li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">Benchmark 是否追踪真实视频编辑理解</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../topics/video-editing.html">视频编辑</a></li><li><a class="wikilink" href="../topics/video-generation.html">视频生成</a></li><li><a class="wikilink" href="../topics/image-editing.html">图像编辑</a></li></ul></div><div class="related-group related-entities"><h3>相关实体<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../entities/video-editing-understanding.html">视频编辑理解</a></li></ul></div><div class="related-group related-questions"><h3>相关问题<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li><li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">5</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../topics/image-editing.html">图像编辑</a><span>主题</span></li><li><a href="../topics/image-generation.html">图像生成</a><span>主题</span></li><li><a href="../topics/video-editing.html">视频编辑</a><span>主题</span></li><li><a href="../topics/video-generation.html">视频生成</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-insvie-1m&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;InsViE-1M（ICCV 2025）：通过精细数据构造实现有效的 instruction-based 视频编辑&quot;,
+  &quot;title&quot;: &quot;InsViE-1M：通过精细数据构造实现 instruction-based 视频编辑&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;ICCV 2025&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;video-editing&quot;,
-    &quot;image-editing&quot;,
     &quot;video-generation&quot;,
     &quot;primary-source&quot;
   ],
@@ -128,8 +167,8 @@
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-insvie-1m/&quot;,
   &quot;topics&quot;: [
     &quot;topics/video-editing&quot;,
-    &quot;topics/image-editing&quot;,
-    &quot;topics/video-generation&quot;
+    &quot;topics/video-generation&quot;,
+    &quot;topics/image-editing&quot;
   ],
   &quot;entities&quot;: [
     &quot;entities/video-editing-understanding&quot;
@@ -139,7 +178,7 @@
     &quot;questions/question-data-vs-architecture-in-image-editing&quot;,
     &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

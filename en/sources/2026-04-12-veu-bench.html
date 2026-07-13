@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>VEU-Bench：迈向对视频编辑的全面理解 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="VEU-Bench evaluates recognition, reasoning, and functional judgment of editing elements with 19 tasks and 49,536 QA pairs, revealing clear gaps in general Vid-LLMs.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>VEU-Bench:Benchmarking Video Editing Element Understanding in General Vid-LLMs · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-12-veu-bench&quot;, &quot;title&quot;: &quot;VEU-Bench（CVPR 2025）：迈向对视频编辑的全面理解&quot;, &quot;title_en&quot;: &quot;VEU-Bench（CVPR 2025）：迈向对视频编辑的全面理解&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-12-veu-bench&quot;, &quot;title&quot;: &quot;VEU-Bench：通用 Vid-LLM 的视频剪辑元素理解基准&quot;, &quot;title_en&quot;: &quot;VEU-Bench: Benchmarking Video Editing Element Understanding in General Vid-LLMs&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,51 +60,88 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-12-veu-bench.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-12-veu-bench.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">VEU-Bench</span><span class="title-subtitle">迈向对视频编辑的全面理解</span></h1>
-        
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-06-11</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-12</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2025/html/Li_VEU-Bench_Towards_Comprehensive_Understanding_of_Video_Editing_CVPR_2025_paper.html" title="https://openaccess.thecvf.com/content/CVPR2025/html/Li_VEU-Bench_Towards_Comprehensive_Understanding_of_Video_Editing_CVPR_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Li_VEU-Bench_Towards_Comprehens…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2025/papers/Li_VEU-Bench_Towards_Comprehensive_Understanding_of_Video_Editing_CVPR_2025_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2025/papers/Li_VEU-Bench_Towards_Comprehensive_Understanding_of_Video_Editing_CVPR_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Li_VEU-Bench_Towards_Comprehens…</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>VEU-Bench:Benchmarking Video Editing Element Understanding in General Vid-LLMs</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-10</p>
+        <h1><span class="title-main">VEU-Bench</span><span class="title-subtitle">Benchmarking Video Editing Element Understanding in General Vid-LLMs</span></h1>
+        <p class="article-summary">VEU-Bench evaluates recognition, reasoning, and functional judgment of editing elements with 19 tasks and 49,536 QA pairs, revealing clear gaps in general Vid-LLMs.</p>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-editing">#video-editing</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作认为，视频编辑理解本身是一个长期被低估的 benchmark 缺口，而且许多现有 Vid-LLM 在这个问题上比人们想象得更弱。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>它要解决的是视频编辑研究里“会不会理解编辑”缺乏系统评测的问题。没有专门 benchmark，模型即使生成看起来不错，也不代表真的理解了编辑任务。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>方法上，VEU-Bench 构建了覆盖识别、推理和判断三大类、19 个细粒度任务的 benchmark，并配合 ontology 支撑的标注流程，还在其上微调了专家模型。</p>
-<h2 id="关键发现">关键发现</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-06-11</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-12</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2025/html/Li_VEU-Bench_Towards_Comprehensive_Understanding_of_Video_Editing_CVPR_2025_paper.html" title="https://openaccess.thecvf.com/content/CVPR2025/html/Li_VEU-Bench_Towards_Comprehensive_Understanding_of_Video_Editing_CVPR_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Li_VEU-Bench_Towards_Comprehens…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2025/papers/Li_VEU-Bench_Towards_Comprehensive_Understanding_of_Video_Editing_CVPR_2025_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2025/papers/Li_VEU-Bench_Towards_Comprehensive_Understanding_of_Video_Editing_CVPR_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Li_VEU-Bench_Towards_Comprehens…</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#研究对象">研究对象</a></li><li><a href="#benchmark-规模">Benchmark 规模</a></li><li><a href="#关键结果">关键结果</a></li><li><a href="#专门监督带来的缓解">专门监督带来的缓解</a></li><li><a href="#与-wiki-claim-的关系">与 Wiki Claim 的关系</a></li><li><a href="#关键图示">关键图示</a><ol><li class="toc-sub"><a href="#首页与任务总览">首页与任务总览</a></li><li class="toc-sub"><a href="#标注与评测流程">标注与评测流程</a></li><li class="toc-sub"><a href="#主要实验结果">主要实验结果</a></li></ol></li><li><a href="#局限">局限</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>VEU-Bench 显示，论文测试的通用 Vid-LLM 在视频剪辑元素识别、依据推理和叙事功能判断上仍有明显缺口；VEU-50K 专门微调可以显著缩小差距。</p>
+<h2 id="研究对象">研究对象</h2>
+<p>这篇论文评测 Vid-LLM 对<strong>已编辑视频中的剪辑元素与剪辑语法</strong>的理解。任务覆盖镜头尺寸、角度、地点、主体、类型、色彩、镜头运动、速度、cut 与 transition，并分为三个层级：</p>
+<ol>
+<li><strong>Recognition</strong>：识别出现了什么剪辑元素；</li>
+<li><strong>Reasoning</strong>：解释判断该元素的具体依据；</li>
+<li><strong>Judging</strong>：判断该元素在视频中的叙事或表达功能。</li>
+</ol>
+<p>文本驱动编辑执行、编辑结果质量与 T2V prompt 满足性属于相邻评测坐标。</p>
+<h2 id="benchmark-规模">Benchmark 规模</h2>
 <ul>
-<li>视频编辑理解是一个过去明显被低估且确实很难的问题。</li>
-<li>许多当前 Vid-LLM 在这个方向上表现偏弱。</li>
-<li>针对编辑理解的专门监督还有助于更广泛的视频推理能力。</li>
+<li>19 个细粒度任务</li>
+<li>10 个剪辑维度</li>
+<li>识别、推理、判断 3 个层级</li>
+<li>30,000 个视频</li>
+<li>49,536 个 QA</li>
+<li>训练集 45,154 条，测试集 4,382 条</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<p>论文结合剪辑知识库、人工标注与 MLLM 辅助流程构造 reasoning / judging 数据，并用结构化 evaluator 评分开放式回答。</p>
+<h2 id="关键结果">关键结果</h2>
+<p>论文评测 11 个通用 Vid-LLM：</p>
+<table><thead><tr><th>模型/范围</th><th>总分或结论</th></tr></thead><tbody><tr><td>GPT-4o</td><td>2.64/5</td></tr><tr><td>最强开源通用模型 LLaVA-OneVision</td><td>1.98/5</td></tr><tr><td>VEU-50K 微调的 Oscars</td><td>2.54/5</td></tr><tr><td>当前模型的 reasoning / judging 平均表现</td><td>低于 2/5</td></tr></tbody></table>
+<p>部分模型在 shot speed 和 shot motion 识别上低于随机猜测。论文把这一弱点与统一采样策略联系起来；judging 任务还要求建立剪辑元素功能与具体内容之间的联系。</p>
+<h2 id="专门监督带来的缓解">专门监督带来的缓解</h2>
+<p>作者以 Qwen2-VL-7B 为底座，用 VEU-50K 进行 LoRA 微调，得到专家模型 Oscars。其总分从基础模型对应水平提升至 2.54/5，接近 GPT-4o 的 2.64/5。</p>
+<p>该结果给出清晰边界：通用模型在 VEU-Bench 上存在缺口，专门数据与监督能够显著改善该能力。</p>
+<h2 id="与-wiki-claim-的关系">与 Wiki Claim 的关系</h2>
+<p>这篇论文直接支持：</p>
 <ul>
-<li>这是评测与理解工作，而不是直接做编辑生成。</li>
-<li>benchmark 的定义方式会很强地影响结论。</li>
-<li>还需要把理解指标和真实编辑质量建立更明确联系。</li>
+<li><a class="wikilink" href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">claims/claim-current-models-still-struggle-to-understand-video-editing</a></li>
+</ul>
+<p>Claim 的范围已经限定到：通用 Vid-LLM 对剪辑元素的识别、依据推理和功能判断。FiVE-Bench、NeuS-V、AIGV-Assessor 与 Video-Bench 分别补充编辑执行、时间逻辑满足性和生成视频质量评估，它们作为相关背景保留。</p>
+<h2 id="关键图示">关键图示</h2>
+<h3 id="首页与任务总览">首页与任务总览</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-12-veu-bench/page-previews/page-01.png">900</a></p>
+<h3 id="标注与评测流程">标注与评测流程</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-12-veu-bench/page-previews/page-04.png">900</a></p>
+<h3 id="主要实验结果">主要实验结果</h3>
+<p>!<a class="wikilink missing" href="#missing-raw/ingest/2026-04-12-veu-bench/page-previews/page-06.png">900</a></p>
+<h2 id="局限">局限</h2>
+<ul>
+<li>结论受剪辑 ontology、任务设计和评测协议影响。</li>
+<li>论文覆盖 11 个模型，跨 benchmark 与真实剪辑工作流的泛化仍需复核。</li>
+<li>Oscars 证明专门监督有效；真实场景迁移需要进一步实验。</li>
+<li>剪辑理解、编辑执行与结果质量需要多套互补 benchmark 联合判断。</li>
 </ul>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://openaccess.thecvf.com/content/CVPR2025/html/Li_VEU-Bench_Towards_Comprehensive_Understanding_of_Video_Editing_CVPR_2025_paper.html</li>
-<li>https://openaccess.thecvf.com/content/CVPR2025/papers/Li_VEU-Bench_Towards_Comprehensive_Understanding_of_Video_Editing_CVPR_2025_paper.pdf</li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2025/html/Li_VEU-Bench_Towards_Comprehensive_Understanding_of_Video_Editing_CVPR_2025_paper.html">CVF 论文页</a></li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2025/papers/Li_VEU-Bench_Towards_Comprehensive_Understanding_of_Video_Editing_CVPR_2025_paper.pdf">PDF</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
 <li><a class="wikilink" href="../../en/topics/video-editing.html">topics/video-editing</a></li>
 <li><a class="wikilink" href="../../en/topics/video-generation.html">topics/video-generation</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
 <li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">topics/generative-model-evaluation</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>VEU-Bench 在当前知识库里非常关键，因为它让“视频编辑理解”从模糊感觉变成了可以被单独追踪的研究对象。也正因为如此，它直接支撑了我们现在已有的相关 entity 和 claim。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">entities/video-editing-understanding</a></li>
+<li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a></li><li><a class="wikilink" href="../../en/topics/video-generation.html">视频生成</a></li><li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li></ul></div><div class="related-group related-entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li></ul></div><div class="related-group related-claims"><h3>Related claims<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li></ul></div><div class="related-group related-questions"><h3>Related questions<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">6</span></h2><ul><li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a><span>Claim</span></li><li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a><span>Entity</span></li><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a><span>Question</span></li><li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a><span>Topic</span></li><li><a href="../../en/topics/video-editing.html">视频编辑</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-12-veu-bench&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;VEU-Bench（CVPR 2025）：迈向对视频编辑的全面理解&quot;,
+  &quot;title&quot;: &quot;VEU-Bench：通用 Vid-LLM 的视频剪辑元素理解基准&quot;,
+  &quot;title_en&quot;: &quot;VEU-Bench: Benchmarking Video Editing Element Understanding in General Vid-LLMs&quot;,
+  &quot;summary&quot;: &quot;VEU-Bench 以 19 个任务和 49,536 个 QA 评测剪辑元素识别、推理与功能判断；通用 Vid-LLM 在高层任务上仍有明显缺口。&quot;,
+  &quot;summary_en&quot;: &quot;VEU-Bench evaluates recognition, reasoning, and functional judgment of editing elements with 19 tasks and 49,536 QA pairs, revealing clear gaps in general Vid-LLMs.&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-12&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-10&quot;,
   &quot;venue&quot;: &quot;CVPR 2025&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-12&quot;,
   &quot;tags&quot;: [
@@ -131,10 +174,16 @@
     &quot;topics/video-generation&quot;,
     &quot;topics/generative-model-evaluation&quot;
   ],
-  &quot;entities&quot;: [],
-  &quot;claims&quot;: [],
-  &quot;questions&quot;: []
-}</pre></section>
+  &quot;entities&quot;: [
+    &quot;entities/video-editing-understanding&quot;
+  ],
+  &quot;claims&quot;: [
+    &quot;claims/claim-current-models-still-struggle-to-understand-video-editing&quot;
+  ],
+  &quot;questions&quot;: [
+    &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
+  ]
+}</pre></details>
     </article>
   </main>
 </body>

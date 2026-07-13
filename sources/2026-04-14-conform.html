@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CONFORM：用对比学习提升高保真文本到图像扩散模型 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="CONFORM：以对比式注意力优化提升文本生成忠实度">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>CONFORM：以对比式注意力优化提升文本生成忠实度 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-conform&quot;, &quot;title&quot;: &quot;CONFORM（CVPR 2024）：用对比学习提升高保真文本到图像扩散模型&quot;, &quot;title_en&quot;: &quot;CONFORM（CVPR 2024）：用对比学习提升高保真文本到图像扩散模型&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-conform&quot;, &quot;title&quot;: &quot;CONFORM：以对比式注意力优化提升文本生成忠实度&quot;, &quot;title_en&quot;: &quot;CONFORM：以对比式注意力优化提升文本生成忠实度&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;conditioning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,68 +60,79 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-14-conform.html">中文</a><a class="" href="../en/sources/2026-04-14-conform.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">CONFORM</span><span class="title-subtitle">用对比学习提升高保真文本到图像扩散模型</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>CONFORM：以对比式注意力优化提升文本生成忠实度</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">CONFORM</span><span class="title-subtitle">以对比式注意力优化提升文本生成忠实度</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023/12/11</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2312.06059" title="https://arxiv.org/abs/2312.06059" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2312.06059</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2312.06059" title="https://arxiv.org/pdf/2312.06059" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2312.06059</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#conditioning">#conditioning</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把 contrast-driven 高保真文本到图像扩散路线补进库里，增强了高质量生成主线。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023-12-11</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2312.06059" title="https://arxiv.org/abs/2312.06059" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2312.06059</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2312.06059" title="https://arxiv.org/pdf/2312.06059" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2312.06059</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#数据-指标与结果">数据、指标与结果</a></li><li><a href="#人评与成本">人评与成本</a></li><li><a href="#消融与边界">消融与边界</a></li><li><a href="#相关页面">相关页面</a></li><li><a href="#归属边界">归属边界</a></li><li><a href="#证据评估">证据评估</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>CONFORM 把同一对象—属性的 cross-attention map 作为 InfoNCE 正对、跨对象/属性作为负对，并在采样时反传更新 latent；它跨 SD v1.5 与 Imagen 提升对象存在、属性绑定和计数忠实度，但每图约 20 秒/L4、并非 optimization-free，“high fidelity”也不等于主体身份或感知画质保证。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>它要解决的是文本到图像扩散模型在高保真生成上的质量瓶颈。对当前知识库来说，它补的是 image-generation 里偏高保真训练目标的一条路线。</p>
+<p>T2I 常漏对象、错绑颜色、混淆同类对象或数错数量。此前方法通常为每种失败设计不同 loss；本文希望以统一 contrastive attention objective 同时处理。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>CONFORM 通过 contrast-oriented 训练思路来提升 high-fidelity text-to-image diffusion models 的表现，强调生成质量优化。</p>
-<h2 id="关键发现">关键发现</h2>
 <ul>
-<li>它说明高保真图像生成仍然可以通过训练目标设计继续提升，而不只是靠更大数据或更大模型。</li>
-<li>它给 diffusion-models 页补入了一条更偏训练目标/优化目标的路线。</li>
-<li>它能帮助以后分析质量提升到底来自结构、表示还是训练信号。</li>
+<li>SD v1.5：卷积 U-Net + CLIP；Imagen：pixel diffusion U-Net + T5-XL；无 DiT。</li>
+<li>prompt 中正确对象—属性为正对，其他组合为负对；还加入 $t$ 与 $t+1$ attention，抑制跨步 scattering。</li>
+<li>每步按 $z_t&#x27;=z_t-\alpha_t\nabla_{z_t}L$ 更新 latent，不改模型权重。</li>
+<li>50 steps，$\alpha=20$、$\tau=0.5$；前 25 步内选定位置做 optimization。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="数据-指标与结果">数据、指标与结果</h2>
+<p>自组 animal–animal、animal–object、object–object 与 multi-instance prompts；每 prompt 64 seeds。指标含 CLIP-full/min、BLIP text-text similarity、TIFA。</p>
+<p>TIFA（SD）从 0.68/0.80/0.65/0.59 提至 <strong>0.95/0.94/0.88/0.74</strong>；Imagen 上为 0.84/0.94/0.91/0.76，除 animal-animal 持平外均有改善。</p>
+<p>BLIP text-text similarity：CONFORM 在三组为 0.82/0.85/0.82，高于 A&amp;E 的 0.80/0.83/0.81 与 D&amp;B 的 0.81/0.83/0.81。</p>
+<h2 id="人评与成本">人评与成本</h2>
+<p>25 名参与者，随机 10 prompts，SD 与 Imagen 分开比较。CONFORM 在 SD 各组获 72%–94% 票，在 Imagen 获 96%–98%。未给完整盲法、置信区间和响应归一化细节。</p>
+<p>SD v1.5、50 steps 在 NVIDIA L4 约 20 秒/图；没有同机 vanilla latency、显存或 Imagen 时间，无法量化纯 overhead。</p>
+<h2 id="消融与边界">消融与边界</h2>
 <ul>
-<li>高保真优化不一定自动提升控制性或泛化。</li>
-<li>它更偏质量路线，不直接面向编辑接口。</li>
-<li>它适合作为质量主线补层。</li>
-</ul>
-<h2 id="原始链接">原始链接</h2>
-<ul>
-<li>https://arxiv.org/abs/2312.06059</li>
-<li>https://arxiv.org/pdf/2312.06059</li>
+<li>超参/优化位置消融主要在补充材料；主文缺各对比组件的完整数值拆解。</li>
+<li>初始 attention 几乎没有对象时仍可能补不回；Imagen 有时把对象过度分离。</li>
+<li>复杂 parser/token pairing、长 prompt 与严格 counting 均无保证。</li>
+<li>无参考图、identity、区域保持或编辑证据。</li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a></li>
-<li><a class="wikilink" href="../questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a></li>
+<li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../sources/2026-04-16-attend-and-excite.html">Attend &amp;amp; Excite</a></li>
+<li><a class="wikilink" href="../sources/2026-04-16-a-star.html">A-Star</a></li>
 </ul>
-<h2 id="备注">备注</h2>
-<p>CONFORM 在这套库里的作用，是把 contrast-driven 高保真扩散训练路线补成明确节点。</p></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+<h2 id="归属边界">归属边界</h2>
+<p>CONFORM 是 training-free 但 optimization-based 的 compositional T2I guidance，不是训练目标、personalization、编辑、DiT 或统一模型；已移除旧 unified entity/question。</p>
+<h2 id="证据评估">证据评估</h2>
+<p><strong>B+</strong>：跨两类 backbone、多指标与人评；自组 prompts、成本对照和主文消融不充分，且指标依赖 CLIP/BLIP/VQA。</p></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">3</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../topics/diffusion-models.html">扩散模型</a><span>主题</span></li><li><a href="../topics/image-generation.html">图像生成</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-conform&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;CONFORM（CVPR 2024）：用对比学习提升高保真文本到图像扩散模型&quot;,
+  &quot;title&quot;: &quot;CONFORM：以对比式注意力优化提升文本生成忠实度&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2024&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;image-generation&quot;,
     &quot;diffusion&quot;,
+    &quot;conditioning&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;authors&quot;: [
-    &quot;Meral, Tuna Han Salih&quot;,
-    &quot;Simsar, Enis&quot;,
-    &quot;Tombari, Federico&quot;,
-    &quot;Yanardag, Pinar&quot;
+    &quot;Tuna Han Salih Meral&quot;,
+    &quot;Enis Simsar&quot;,
+    &quot;Federico Tombari&quot;,
+    &quot;Pinar Yanardag&quot;
   ],
-  &quot;published_at&quot;: &quot;2023/12/11&quot;,
+  &quot;published_at&quot;: &quot;2023-12-11&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2312.06059&quot;,
     &quot;https://arxiv.org/pdf/2312.06059&quot;
@@ -125,14 +142,10 @@
     &quot;topics/image-generation&quot;,
     &quot;topics/diffusion-models&quot;
   ],
-  &quot;entities&quot;: [
-    &quot;entities/unified-image-generation-editing&quot;
-  ],
+  &quot;entities&quot;: [],
   &quot;claims&quot;: [],
-  &quot;questions&quot;: [
-    &quot;questions/question-will-unified-image-models-sustain-their-advantage&quot;
-  ]
-}</pre></section>
+  &quot;questions&quot;: []
+}</pre></details>
     </article>
   </main>
 </body>

@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DeepCache：用特征缓存免费加速扩散模型 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="DeepCache：用高层特征缓存免费加速 U-Net 扩散模型">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>DeepCache：用高层特征缓存免费加速 U-Net 扩散模型 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-15-deepcache&quot;, &quot;title&quot;: &quot;DeepCache（CVPR 2024）：用特征缓存免费加速扩散模型&quot;, &quot;title_en&quot;: &quot;DeepCache（CVPR 2024）：用特征缓存免费加速扩散模型&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-15-deepcache&quot;, &quot;title&quot;: &quot;DeepCache：用高层特征缓存免费加速 U-Net 扩散模型&quot;, &quot;title_en&quot;: &quot;DeepCache：用高层特征缓存免费加速 U-Net 扩散模型&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,50 +60,93 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-15-deepcache.html">中文</a><a class="" href="../en/sources/2026-04-15-deepcache.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">DeepCache</span><span class="title-subtitle">用特征缓存免费加速扩散模型</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>DeepCache：用高层特征缓存免费加速 U-Net 扩散模型</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">DeepCache</span><span class="title-subtitle">用高层特征缓存免费加速 U-Net 扩散模型</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023/12/01</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-15</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2312.00858" title="https://arxiv.org/abs/2312.00858" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2312.00858</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2312.00858" title="https://arxiv.org/pdf/2312.00858" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2312.00858</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#efficiency">#efficiency</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇论文把扩散提速问题从“重训模型”转到“缓存时序冗余”，说明不少速度收益其实可以直接从推理结构里白拿。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023-12-01</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-15</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2312.00858" title="https://arxiv.org/abs/2312.00858" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2312.00858</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2312.00858" title="https://arxiv.org/pdf/2312.00858" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2312.00858</strong></a><a class="source-link source-link-code" href="https://github.com/horseee/DeepCache" title="https://github.com/horseee/DeepCache" target="_blank" rel="noopener noreferrer"><span>代码仓库</span><strong>github.com · DeepCache</strong></a></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#核心实验与结果">核心实验与结果</a><ol><li class="toc-sub"><a href="#协议">协议</a></li><li class="toc-sub"><a href="#量化发现">量化发现</a></li></ol></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>DeepCache 直接证明，U-Net diffusion 的相邻去噪步存在可利用的高层特征冗余：在单张 RTX 2080 上，Stable Diffusion v1.5 可在 CLIP 仅下降 0.05–0.07 时获得约 2.1–2.15×真实吞吐提升；但 7–10×高倍点伴随明显 FID 与细节退化，且方法依赖 U-Net skip-branch 结构，不能直接外推到 DiT。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这是逐步结构效率而非 few-step sampler：它不减少 DDIM/PLMS 步数、不改模型权重、不重训，而是在每个 timestep 少执行一部分 U-Net。因而它可叠加 fast sampler，也与剪枝/蒸馏形成“运行时复用 vs 训练后压缩”的对照。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>它要解决的是扩散模型逐步去噪导致的高计算成本。传统加速路线往往依赖蒸馏、剪枝或重训练，但这些方法本身就昂贵、难迁移。对当前 wiki 来说，DeepCache 补的是 diffusion inference engineering 的关键节点：不改权重、少改流程，也能显著提升吞吐。</p>
+<p>扩散推理慢既来自采样链长，也来自每步完整执行重型 denoiser。DeepCache 问的是：相邻步高层 feature 变化很小时，能否复用旧 feature，只更新对细节更敏感的浅层路径？</p>
 <h2 id="方法概述">方法概述</h2>
-<p>DeepCache 的核心是利用相邻去噪步之间的时序冗余，对高层特征做缓存与复用，只廉价更新低层特征。它站在模型结构视角而不是采样器数学视角来加速，因此能和现有采样方法兼容。</p>
-<h2 id="关键发现">关键发现</h2>
 <ul>
-<li>它说明 diffusion efficiency 主线里，“训练免费”的工程优化是独立且很强的一条路线。</li>
-<li>它和 <a class="wikilink" href="../sources/2026-04-15-act-diffusion.html">sources/2026-04-15-act-diffusion</a> 构成训练侧/推理侧的清晰对照，帮助 <a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a> 区分不同效率策略。</li>
-<li>它也解释了为什么很多实际系统会优先做缓存、复用和管线工程，而不是一开始就选择重训练式压缩。</li>
+<li>缓存某个 up block 的高层 feature；</li>
+<li>下一步跳过中间深层 down/up blocks，只计算浅层 $D_m$；</li>
+<li>将新低层 feature 与缓存高层 feature 拼接；</li>
+<li>每隔 $N$ 步做一次 full inference，其余做 partial inference；</li>
+<li>大 $N$ 时用 non-uniform schedule，在低相似区更频繁刷新缓存。</li>
+</ul>
+<p>适用 backbone 是 DDPM、LDM-4-G 与 Stable Diffusion v1.5 的 <strong>U-Net</strong>；论文不是 DiT cache 工作。</p>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<h3 id="协议">协议</h3>
+<ul>
+<li>DDPM：CIFAR-10 / LSUN，100-step DDIM；</li>
+<li>LDM-4-G：ImageNet 256²，250-step DDIM，50K samples；</li>
+<li>SD v1.5：PartiPrompts / COCO2017，512²，50-step PLMS；</li>
+<li>throughput：单张 RTX 2080；同时报告 average MACs/step。</li>
+</ul>
+<h3 id="量化发现">量化发现</h3>
+<ul>
+<li><strong>SD v1.5 / PartiPrompts</strong>：0.230→0.494 samples/s（2.15×），CLIP 29.51→29.46；COCO 为 0.237→0.500（2.11×），CLIP 30.30→30.23。</li>
+<li><strong>LDM-4-G / ImageNet</strong>：N=5 时 0.178→0.733 samples/s（4.12×），FID 3.37→3.59；N=10 为 6.96×但 FID 4.41，N=20 为 10.54×但 FID 8.23。</li>
+<li><strong>CIFAR-10</strong>：N=2 为 1.40×、FID 4.16→4.35；N=5 为 1.85×、FID 5.73。</li>
+<li>LSUN 的真实加速只有约 1.29–1.48×，说明 skip-branch 算力占比决定上限。</li>
+</ul>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>用零矩阵替代缓存时，CIFAR/LDM FID 恶化到 192.98/312.12，证明收益来自有效 feature 复用，不是盲目跳层。</li>
+<li>在相同 full-model steps 下，浅层每步更新相对 DDIM 改善 FID 0.32–2.98。</li>
+<li>non-uniform schedule 在大 N 时优于均匀刷新，但仍不能消除质量损失。</li>
+<li>不同 backbone 选择不同 skip branch（DDPM/LDM/SD 为 3/1/2），配置并不通用。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>这类缓存方法高度依赖具体架构层级与特征冗余模式，跨模型泛化边界需要继续观察。</li>
-<li>它主要优化吞吐，不直接改善基础生成质量。</li>
-<li>对更复杂的控制注入、多模态条件或视频长序列场景，缓存收益是否同样稳定还需要更多证据。</li>
+<li>作者明确承认最浅分支若已占约 50% 计算，则加速上限很低；大缓存间隔会显著掉质。</li>
+<li>“for free”只表示无需重训，不表示无缓存显存、集成、调参和质量成本。</li>
+<li>硬件是 RTX 2080；现代 GPU、编译器、batch&gt;1 与服务端端到端比例未验证。</li>
+<li>仅覆盖 U-Net image diffusion，不覆盖 DiT/MMDiT、视频或复杂控制注入。</li>
+<li>应优先引用高质量点的 2.1–4.1×，而不是脱离 FID 代价引用 7–10×最大值。</li>
 </ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li>对 <a class="wikilink" href="../topics/diffusion-efficiency-engineering.html">Diffusion 效率工程</a>：直接支持 cache/reuse 是独立于 few-step sampler 的路线。</li>
+<li>对 <a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a>：直接支持 U-Net 逐步推理存在高层 temporal redundancy。</li>
+<li>对 <a class="wikilink" href="../topics/image-generation.html">图像生成</a>：提供可部署的训练免费优化案例。</li>
+<li>对 DiT：仅作历史对照，不支持“DiT cache 成熟”或“DiT backbone 优胜”的结论。</li>
+</ul>
+<h2 id="证据评级">证据评级</h2>
+<p><strong>A-</strong>：多模型、多数据集、真实单卡吞吐、MACs 与消融齐全；边界是旧硬件、仅 U-Net，以及高倍点质量退化明显。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2312.00858</li>
-<li>https://arxiv.org/pdf/2312.00858</li>
+<li><a href="https://arxiv.org/abs/2312.00858">arXiv</a></li>
+<li><a href="https://arxiv.org/pdf/2312.00858">PDF</a></li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2024/html/Ma_DeepCache_Accelerating_Diffusion_Models_for_Free_CVPR_2024_paper.html">CVF Open Access</a></li>
+<li><a href="https://github.com/horseee/DeepCache">Code</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../sources/2026-04-15-act-diffusion.html">sources/2026-04-15-act-diffusion</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>在这套库里，DeepCache 的意义非常工程化：它让“扩散为什么还能继续部署下去”这件事有了更强解释，因为速度问题未必都要靠新模型解决，很多时候先靠系统层手段就能明显缓解。</p></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+<li><a class="wikilink" href="../topics/diffusion-efficiency-engineering.html">Diffusion 效率工程</a></li>
+<li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../sources/2026-04-16-accelerating-dit-gradient-cache.html">GOC：DiT 缓存误差修正</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li><li><a class="wikilink" href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">7</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-04-15-act-diffusion.html">ACT-Diffusion：面向一步扩散模型的高效对抗一致性训练</a><span>来源笔记</span></li><li><a href="../sources/2026-04-15-freeu.html">FreeU：不重训的扩散 U-Net 特征重加权</a><span>来源笔记</span></li><li><a href="../sources/2026-04-16-accelerating-dit-gradient-cache.html">Accelerating Diffusion Transformer via Gradient-Optimized Cache：修正 DiT 缓存误差</a><span>来源笔记</span></li><li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>主题</span></li><li><a href="../topics/diffusion-models.html">扩散模型</a><span>主题</span></li><li><a href="../topics/image-generation.html">图像生成</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-15-deepcache&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;DeepCache（CVPR 2024）：用特征缓存免费加速扩散模型&quot;,
+  &quot;title&quot;: &quot;DeepCache：用高层特征缓存免费加速 U-Net 扩散模型&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-15&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2024&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-15&quot;,
   &quot;tags&quot;: [
@@ -114,20 +163,23 @@
     &quot;Fang, Gongfan&quot;,
     &quot;Wang, Xinchao&quot;
   ],
-  &quot;published_at&quot;: &quot;2023/12/01&quot;,
+  &quot;published_at&quot;: &quot;2023-12-01&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2312.00858&quot;,
-    &quot;https://arxiv.org/pdf/2312.00858&quot;
+    &quot;https://arxiv.org/pdf/2312.00858&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2024/html/Ma_DeepCache_Accelerating_Diffusion_Models_for_Free_CVPR_2024_paper.html&quot;,
+    &quot;https://github.com/horseee/DeepCache&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-15-deepcache/&quot;,
   &quot;topics&quot;: [
     &quot;topics/image-generation&quot;,
-    &quot;topics/diffusion-models&quot;
+    &quot;topics/diffusion-models&quot;,
+    &quot;topics/diffusion-efficiency-engineering&quot;
   ],
   &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

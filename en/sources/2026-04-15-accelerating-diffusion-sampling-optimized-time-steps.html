@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Accelerating Diffusion Sampling with Optimized Time Steps：用优化时间步加速扩散采样 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="Accelerating Diffusion Sampling with Optimized Time Steps：用优化时间步改善少步扩散采样">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Accelerating Diffusion Sampling with Optimized Time Steps：用优化时间步改善少步扩散采样 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps&quot;, &quot;title&quot;: &quot;Accelerating Diffusion Sampling with Optimized Time Steps（CVPR 2024）：用优化时间步加速扩散采样&quot;, &quot;title_en&quot;: &quot;Accelerating Diffusion Sampling with Optimized Time Steps（CVPR 2024）：用优化时间步加速扩散采样&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps&quot;, &quot;title&quot;: &quot;Accelerating Diffusion Sampling with Optimized Time Steps：用优化时间步改善少步扩散采样&quot;, &quot;title_en&quot;: &quot;Accelerating Diffusion Sampling with Optimized Time Steps：用优化时间步改善少步扩散采样&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,50 +60,84 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">Accelerating Diffusion Sampling with Optimized Time Steps</span><span class="title-subtitle">用优化时间步加速扩散采样</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Accelerating Diffusion Sampling with Optimized Time Steps：用优化时间步改善少步扩散采样</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">Accelerating Diffusion Sampling with Optimized Time Steps</span><span class="title-subtitle">用优化时间步改善少步扩散采样</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2024/02/27</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-15</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2402.17376" title="https://arxiv.org/abs/2402.17376" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2402.17376</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2402.17376" title="https://arxiv.org/pdf/2402.17376" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2402.17376</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#efficiency">#efficiency</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇论文说明扩散采样变快不一定要先换模型，光是把少步采样时的时间步分配做对，就能明显改善效果。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2024-02-27</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-15</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2024/html/Xue_Accelerating_Diffusion_Sampling_with_Optimized_Time_Steps_CVPR_2024_paper.html" title="https://openaccess.thecvf.com/content/CVPR2024/html/Xue_Accelerating_Diffusion_Sampling_with_Optimized_Time_Steps_CVPR_2024_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Xue_Accelerating_Diffusion_Samp…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2024/papers/Xue_Accelerating_Diffusion_Sampling_with_Optimized_Time_Steps_CVPR_2024_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2024/papers/Xue_Accelerating_Diffusion_Sampling_with_Optimized_Time_Steps_CVPR_2024_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Xue_Accelerating_Diffusion_Samp…</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#核心实验与结果">核心实验与结果</a></li><li><a href="#效率口径">效率口径</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>在<strong>固定预训练模型、固定 ODE solver 和固定 NFE</strong>下，优化离散时间点可显著改善 5–15 NFE 的 FID；其离线优化只需 CPU 约 1.9–14.1 秒，但论文没有测生成 latency/FLOPs，因此应称为 NFE—质量前沿改善，而不是已实测的端端加速。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>这是 training-free sampling schedule optimization：不训练或蒸馏 denoiser，不改变每次网络求值成本。方法位于 solver 之上的时间离散化层，与“训练一步模型”和“蒸馏 solver 更新”不同。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>高阶 ODE solver 已经把扩散采样步数降下来了，但很多方法仍默认使用均匀时间步；当步数很少时，这种默认安排并不最优。论文要解决的是：给定某个 solver，能否为它自动找出更合适的离散时间步。</p>
+<p>uniform-$t$、uniform-logSNR 或 EDM schedule 在极少步时未必适合具体高阶 solver。论文从 solver 的局部多项式误差展开构造代理目标，并在时间单调约束下优化内部时间点。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>作者把“选时间步”写成一个优化问题，让求解器的近似解尽量贴近真实 ODE 解，再用受约束 trust-region 方法高效求解。核心价值在于它不绑定某个单一模型，而是作为 solver 上层的一层 schedule optimization。</p>
-<h2 id="关键发现">关键发现</h2>
 <ul>
-<li>它把 diffusion efficiency 路线中的“时间离散化设计”单独拎出来，成为可复用的优化层。</li>
-<li>它和 <a class="wikilink" href="../../en/sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">sources/2026-04-15-distilling-ode-solvers-diffusion-models</a> 形成清晰对照：一个优化步点，一个优化 solver 本身。</li>
-<li>它说明即使在不动 backbone 的情况下，采样日程表本身也能贡献显著质量/速度收益。</li>
+<li>将 diffusion probability-flow ODE 写到 half-log-SNR 域。</li>
+<li>用 solver 权重和 score-error 包络近似全局误差。</li>
+<li>通过 constrained trust-region 优化时间点；结果可预计算复用。</li>
+<li>像素模型使用 $p=1$，latent 模型使用 $p=2$。</li>
+<li>主测试 solver 为 UniPC 与 DPM-Solver++。</li>
+</ul>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<table><thead><tr><th>设置</th><th>NFE</th><th>最相关基线 → 优化后 FID</th></tr></thead><tbody><tr><td>CIFAR-10，UniPC</td><td>5</td><td>23.22 → 12.11（补充最佳 11.91）</td></tr><tr><td>ImageNet 64²，ADM+UniPC</td><td>5</td><td>12.36 → 10.47</td></tr><tr><td>ImageNet 256²，DiT-XL/2+UniPC</td><td>5</td><td>23.48 → 8.66</td></tr><tr><td>ImageNet 512²，DiT-XL/2+UniPC</td><td>5</td><td>20.28 → 11.40</td></tr><tr><td>FFHQ 64²，EDM+UniPC</td><td>5</td><td>20.02 → 13.66</td></tr><tr><td>AFHQv2 64²，EDM+UniPC</td><td>5</td><td>12.95 → 12.11</td></tr><tr><td>COCO，PixArt-α</td><td>5</td><td>16.22 → 9.90</td></tr></tbody></table>
+<p>收益在不同数据集并不等幅，且通常随 NFE 增加而缩小。</p>
+<h2 id="效率口径">效率口径</h2>
+<ul>
+<li><strong>NFE</strong>：同 NFE 比质量；可等价理解为达到某质量时可能少用 NFE。</li>
+<li><strong>FLOPs/latency</strong>：没有绝对报告；同 NFE 下 denoiser FLOPs 基本不变。</li>
+<li><strong>训练预算</strong>：0。</li>
+<li><strong>离线优化</strong>：5–15 NFE 对应约 1.9–14.1 秒 CPU，可复用。</li>
+<li><strong>质量</strong>：FID；无 prompt 人评、CLIP、视频或编辑指标。</li>
+</ul>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>UniPC 与 DPM-Solver++ 都受益，但 UniPC 通常仍更强。</li>
+<li>pixel-space 常由 uniform-$\lambda$ 初始化更好，latent-space 常由 uniform-$t$ 初始化更好，说明 schedule 不是一次求解后跨设置通用。</li>
+<li>不同优化初始化在部分 NFE 上非单调，代理目标与 FID 并非严格等价。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>这条路线依赖具体 solver 与任务设置，最优时间步未必能跨设置直接复用。</li>
-<li>它仍主要针对图像生成采样，不直接说明在长视频或复杂控制条件下是否同样稳定。</li>
-<li>schedule 优化带来的收益，与蒸馏、缓存或 backbone 改造相比，长期哪个更占主导仍需继续对照。</li>
+<li>每个 solver、NFE、噪声范围和参数化通常需重新优化。</li>
+<li>无实际生成 latency、throughput、FLOPs 或能耗。</li>
+<li>FID 不覆盖 prompt alignment、编辑保持性或人类偏好。</li>
+<li>DiT-XL/2 与 PixArt-α 只是适用 backbone；没有受控 backbone 对照，<strong>不能据此支持 DiT 更优或默认化</strong>。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li><strong>直接支持</strong> <a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">Diffusion Efficiency Engineering</a> 中“sampling schedule 是独立效率层”。</li>
+<li><strong>直接支持</strong> <a class="wikilink" href="../../en/topics/diffusion-models.html">Diffusion Models</a> 中“少步性能高度依赖离散化”。</li>
+<li>对 DiT 架构主张属于<strong>不应引用</strong>：研究变量不是 backbone。</li>
+<li>与 <a class="wikilink" href="../../en/sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">Distilling ODE Solvers</a> 的区别是“优化步点”对“蒸馏 solver 更新”。</li>
 </ul>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2402.17376</li>
-<li>https://arxiv.org/pdf/2402.17376</li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2024/html/Xue_Accelerating_Diffusion_Sampling_with_Optimized_Time_Steps_CVPR_2024_paper.html">CVF 论文页</a></li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Xue_Accelerating_Diffusion_Sampling_with_Optimized_Time_Steps_CVPR_2024_paper.pdf">CVF PDF</a></li>
+<li><a href="https://arxiv.org/abs/2402.17376">arXiv</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">sources/2026-04-15-distilling-ode-solvers-diffusion-models</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>在本库里，它的作用是把 diffusion 采样工程从“统一少步路线”进一步拆成了更细的 solver/schedule 两层。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">Diffusion Efficiency Engineering</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">Diffusion Models</a></li>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">Image Generation</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">Distilling ODE Solvers</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-15-act-diffusion.html">ACT-Diffusion</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">8</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-04-15-act-diffusion.html">ACT-Diffusion：面向一步扩散模型的高效对抗一致性训练</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-15-analyzing-training-dynamics-diffusion-models.html">Analyzing and Improving the Training Dynamics of Diffusion Models：EDM2 的幅值保持训练与 Post-hoc EMA</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">Distilling ODE Solvers of Diffusion Models into Smaller Steps：冻结去噪器的轻量求解器蒸馏</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-distilling-parallel-gradients-ode-solvers.html">Distilling Parallel Gradients for Fast ODE Solvers of Diffusion Models：并行方向蒸馏扩散 ODE 求解器</a><span>Source note</span></li><li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>Topic</span></li><li><a href="../../en/topics/diffusion-models.html">扩散模型</a><span>Topic</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-15-accelerating-diffusion-sampling-optimized-time-steps&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Accelerating Diffusion Sampling with Optimized Time Steps（CVPR 2024）：用优化时间步加速扩散采样&quot;,
+  &quot;title&quot;: &quot;Accelerating Diffusion Sampling with Optimized Time Steps：用优化时间步改善少步扩散采样&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-15&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2024&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-15&quot;,
   &quot;tags&quot;: [
@@ -110,26 +150,31 @@
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;authors&quot;: [
-    &quot;Xue, Shuchen&quot;,
-    &quot;Liu, Zhaoqiang&quot;,
-    &quot;Chen, Fei&quot;,
-    &quot;Zhang, Shifeng&quot;,
-    &quot;Xie, Tianwei&quot;
+    &quot;Shuchen Xue&quot;,
+    &quot;Zhaoqiang Liu&quot;,
+    &quot;Fei Chen&quot;,
+    &quot;Shifeng Zhang&quot;,
+    &quot;Tianyang Hu&quot;,
+    &quot;Enze Xie&quot;,
+    &quot;Zhenguo Li&quot;
   ],
-  &quot;published_at&quot;: &quot;2024/02/27&quot;,
+  &quot;published_at&quot;: &quot;2024-02-27&quot;,
   &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/CVPR2024/html/Xue_Accelerating_Diffusion_Sampling_with_Optimized_Time_Steps_CVPR_2024_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2024/papers/Xue_Accelerating_Diffusion_Sampling_with_Optimized_Time_Steps_CVPR_2024_paper.pdf&quot;,
     &quot;https://arxiv.org/abs/2402.17376&quot;,
     &quot;https://arxiv.org/pdf/2402.17376&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps/&quot;,
   &quot;topics&quot;: [
-    &quot;topics/image-generation&quot;,
-    &quot;topics/diffusion-models&quot;
+    &quot;topics/diffusion-efficiency-engineering&quot;,
+    &quot;topics/diffusion-models&quot;,
+    &quot;topics/image-generation&quot;
   ],
   &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DreamBooth：面向主体驱动生成的文本到图像扩散微调 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="DreamBooth：以少样本全模型微调实现主体驱动生成">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>DreamBooth：以少样本全模型微调实现主体驱动生成 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-dreambooth&quot;, &quot;title&quot;: &quot;DreamBooth（CVPR 2023）：面向主体驱动生成的文本到图像扩散微调&quot;, &quot;title_en&quot;: &quot;DreamBooth（CVPR 2023）：面向主体驱动生成的文本到图像扩散微调&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;image-editing&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-dreambooth&quot;, &quot;title&quot;: &quot;DreamBooth：以少样本全模型微调实现主体驱动生成&quot;, &quot;title_en&quot;: &quot;DreamBooth：以少样本全模型微调实现主体驱动生成&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,58 +60,88 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-dreambooth.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-dreambooth.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">DreamBooth</span><span class="title-subtitle">面向主体驱动生成的文本到图像扩散微调</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>DreamBooth：以少样本全模型微调实现主体驱动生成</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">DreamBooth</span><span class="title-subtitle">以少样本全模型微调实现主体驱动生成</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2023-01-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2208.12242" title="https://arxiv.org/abs/2208.12242" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2208.12242</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2208.12242.pdf" title="https://arxiv.org/pdf/2208.12242.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2208.12242.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#image-editing">#image-editing</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把“少样本个性化生成”推成了图像生成的重要方向，也让后续生成与编辑的边界进一步变薄。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2023-01-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2208.12242" title="https://arxiv.org/abs/2208.12242" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2208.12242</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2208.12242.pdf" title="https://arxiv.org/pdf/2208.12242.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2208.12242.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#数据集与实验">数据集与实验</a></li><li><a href="#核心结果">核心结果</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a><ol><li class="toc-sub"><a href="#统一还是专用-模块化">统一还是专用/模块化</a></li><li class="toc-sub"><a href="#数据还是架构">数据还是架构</a></li></ol></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>DreamBooth 证明统一 T2I 基础模型可以用 3–5 张图和约 5 分钟逐主体微调扩展到高保真个性化生成；但它也说明高保真长尾需求仍依赖专用 checkpoint、正确类别绑定和 prior-preservation，支持“统一底座 + 专用适配”而非单一冻结模型包办全部任务。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>论文定义 subject-driven generation：把某个具体主体绑定到稀有标识符，在新场景、姿态、视角和艺术风格中重新生成。它不是保持一张输入图背景的普通编辑器；每个主体都先经过独立个性化训练。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>它要解决的是文本到图像扩散模型难以在极少样本下可靠绑定特定主体、概念或身份的问题。对当前知识库来说，这类工作很关键，因为它把通用生成模型往个性化与可控生成方向推进。</p>
+<p>通用 T2I 模型有强类别语义，却不能用文字准确复现某个特定狗、背包或闹钟。核心张力是同时保持主体身份、prompt fidelity 和生成多样性，避免少样本微调记住背景或让整个类别坍塌到该实例。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>DreamBooth 通过少量样本微调文本到图像扩散模型，使模型能在保留原有语义能力的同时学习一个具体主体的概念表示。它的重要性在于，它不是单纯提高画质，而是扩展了“生成模型可以被怎样定制”。</p>
-<h2 id="关键发现">关键发现</h2>
 <ul>
-<li>它是主体驱动生成和个性化生成路线的重要锚点。</li>
-<li>它说明通用生成模型可以通过较少样本获得更强的个性化能力。</li>
-<li>它也帮助解释为什么后续统一生成/编辑模型会越来越重视概念绑定和身份保持。</li>
+<li>用低先验 rare token 与正确 class noun 组成 <code>[V] dog</code> 一类 prompt，借用基础模型类别先验学习实例。</li>
+<li>为最高主体保真微调模型所有层，而不是只学 token embedding。</li>
+<li>class-specific prior preservation loss：原模型先生成约 1,000 张类别图，微调时与主体图共同监督，抑制 language drift 与类别多样性坍塌。</li>
+<li>默认约 1,000 iterations、$\lambda=1$；Imagen 学习率 $10^{-5}$，SD 为 $5\times10^{-6}$；在 TPUv4/A100 上约 5 分钟（PDF pp.3–5）。</li>
+</ul>
+<h2 id="数据集与实验">数据集与实验</h2>
+<ul>
+<li>30 个主体：21 个物体、9 个活体/宠物；每主体/提示生成 4 图，共 3,000 个评估样本（PDF pp.5–6）。</li>
+<li>subject fidelity：DINO、CLIP-I；prompt fidelity：CLIP-T。</li>
+<li>用户研究：72 人、总计 1,800 answers。</li>
+</ul>
+<h2 id="核心结果">核心结果</h2>
+<p>PDF p.5，Table 1–2：</p>
+<table><thead><tr><th>方法</th><th>DINO↑</th><th>CLIP-I↑</th><th>CLIP-T↑</th></tr></thead><tbody><tr><td>DreamBooth Imagen</td><td><strong>0.696</strong></td><td><strong>0.812</strong></td><td><strong>0.306</strong></td></tr><tr><td>DreamBooth SD</td><td>0.668</td><td>0.803</td><td>0.305</td></tr><tr><td>Textual Inversion SD</td><td>0.569</td><td>0.780</td><td>0.255</td></tr></tbody></table>
+<p>用户偏好中，DreamBooth SD 的主体保真/提示保真为 <strong>68%/81%</strong>，Textual Inversion 为 22%/12%。这些数字支持相对 Textual Inversion 的优势，不应外推到所有后续参数高效方法或一般图像编辑。</p>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>PPL：PRES 从 0.664 降到 <strong>0.493</strong>、DIV 从 0.371 升到 <strong>0.391</strong>，但 DINO 从 0.712 降到 0.684；它用少量实例相似度换更少类别坍塌与更高多样性（PDF p.6，Table 3）。</li>
+<li>类别词：正确类别 DINO/CLIP-I <strong>0.744/0.853</strong>；无类别仅 0.303/0.607，错误类别 0.454/0.728（Table 4）。</li>
+<li>输入图数量：背包与狗在 4 图达到 DINO 峰值 0.604/0.876，5 图略降；3–5 图是经验区间，不是“越多越好”（supp. p.16，Table 5）。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>它更偏个性化生成，不直接等于通用图像编辑框架。</li>
-<li>微调式方法在泛化、遗忘和版权层面都有后续问题。</li>
-<li>它代表的是个性化能力扩展，不是统一模型路线的终局。</li>
+<li>稀有 context、低共现主体—概念组合会失败；context 可能改变主体外观。</li>
+<li>prompt 接近训练环境时会记忆训练图；罕见主体变化更少，也会幻觉身份细节（PDF p.8，Fig.9）。</li>
+<li>每主体全模型 checkpoint 带来存储、部署和多主体组合成本，论文未系统评估。</li>
+<li>30 主体与单一同期强基线足以建立任务，但不能覆盖长尾主体、版权角色和多主体场景。</li>
+<li>个性化图像可能用于误导，补充材料明确指出社会风险。</li>
 </ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<h3 id="统一还是专用-模块化">统一还是专用/模块化</h3>
+<p>DreamBooth 同时支持两端：大规模统一底座提供可迁移语义先验；高保真个性化却依赖逐主体专用训练。这是“统一基础模型 + 专用适配长期共存”的强证据，不是一个冻结统一 checkpoint 已覆盖全部需求的证据。</p>
+<h3 id="数据还是架构">数据还是架构</h3>
+<p>这是间接编辑证据。3–5 张实例图可触发新主体能力，而类别词和 PPL 决定是否正确借用/保留先验。更准确的分解是：预训练数据决定可借用的世界知识，少样本给出主体证据，优化目标决定适配是否遗忘。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2208.12242</li>
-<li>https://arxiv.org/pdf/2208.12242.pdf</li>
+<li><a href="https://arxiv.org/abs/2208.12242">arXiv</a></li>
+<li><a href="https://arxiv.org/pdf/2208.12242.pdf">PDF</a></li>
+<li><a href="https://dreambooth.github.io/">项目页</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../../en/topics/image-editing.html">topics/image-editing</a></li>
-<li><a class="wikilink" href="../../en/entities/unified-image-generation-editing.html">entities/unified-image-generation-editing</a></li>
-<li><a class="wikilink" href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">claims/claim-unified-models-may-outcompete-specialized-image-pipelines</a></li>
-<li><a class="wikilink" href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>DreamBooth 的价值在于，它把 image-generation 从“能生成什么”推进到“能为谁生成、如何保持主体一致性”，这和后续编辑问题是紧密连着的。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a class="wikilink" href="../../en/entities/unified-image-generation-editing.html">统一图像生成与编辑</a></li>
+<li><a class="wikilink" href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一模型可能超过专用图像流水线</a></li>
+<li><a class="wikilink" href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用/模块化系统如何分工</a></li>
+<li><a class="wikilink" href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑进步来自数据还是架构</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../../en/topics/image-editing.html">图像编辑</a></li></ul></div><div class="related-group related-entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li></ul></div><div class="related-group related-claims"><h3>Related claims<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li></ul></div><div class="related-group related-questions"><h3>Related questions<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li><li><a class="wikilink" href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">9</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a><span>Question</span></li><li><a href="../../en/sources/2026-04-14-attention-calibration-personalization.html">Attention Calibration for Disentangled Text-to-Image Personalization：解耦式个性化注意力校准</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-concept-weaver.html">Concept Weaver：模板引导的多概念个性化融合</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-cosmicman.html">CosmicMan：面向人物的文本到图像基础模型</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-customization-assistant.html">Customization Assistant：可对话的单图免微调个性化生成</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-multi-concept-customization.html">Custom Diffusion：高效单概念学习与多概念组合</a><span>Source note</span></li><li><a href="../../en/topics/image-editing.html">图像编辑</a><span>Topic</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-dreambooth&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;DreamBooth（CVPR 2023）：面向主体驱动生成的文本到图像扩散微调&quot;,
+  &quot;title&quot;: &quot;DreamBooth：以少样本全模型微调实现主体驱动生成&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2023&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;image-generation&quot;,
-    &quot;image-editing&quot;,
+    &quot;diffusion&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
@@ -135,9 +171,10 @@
     &quot;claims/claim-unified-models-may-outcompete-specialized-image-pipelines&quot;
   ],
   &quot;questions&quot;: [
-    &quot;questions/question-will-unified-image-models-sustain-their-advantage&quot;
+    &quot;questions/question-will-unified-image-models-sustain-their-advantage&quot;,
+    &quot;questions/question-data-vs-architecture-in-image-editing&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

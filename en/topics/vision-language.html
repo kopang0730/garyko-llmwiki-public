@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="追踪影响本知识库核心方向的多模态条件控制、对齐与语言驱动推理。">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>视觉-语言 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/vision-language&quot;, &quot;title&quot;: &quot;视觉-语言&quot;, &quot;title_en&quot;: &quot;视觉-语言&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;multimodal&quot;, &quot;vision-language&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/vision-language&quot;, &quot;title&quot;: &quot;视觉-语言&quot;, &quot;title_en&quot;: &quot;视觉-语言&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;multimodal&quot;, &quot;vision-language&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,13 +60,15 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../topics/vision-language.html">中文</a><a class="selected-lang" href="../../en/topics/vision-language.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">topic · 2026-04-14</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Topic</span><span class="crumb-sep" aria-hidden="true">›</span><strong>视觉-语言</strong></nav>
+        <p class="eyebrow">Topic · Updated 2026-04-14</p>
         <h1><span class="title-main">视觉-语言</span></h1>
         <p class="article-summary">追踪影响本知识库核心方向的多模态条件控制、对齐与语言驱动推理。</p>
-        
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#multimodal">#multimodal</a><a class="tag" href="../../en/tags.html#vision-language">#vision-language</a></div>
       </header>
-      <section class="article-content"><h2 id="概述">概述</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><details class="toc" open><summary>Contents</summary><ol><li><a href="#概述">概述</a></li><li><a href="#本页关注什么">本页关注什么</a></li><li><a href="#当前综合判断">当前综合判断</a></li><li><a href="#关联页面">关联页面</a></li><li><a href="#后续值得追踪的问题">后续值得追踪的问题</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="概述">概述</h2>
 <p>这一页整理视觉-语言接口在本知识库中的作用。当前证据显示，语言已经不只是一个外部提示层，而是在越来越多生成和编辑系统中成为核心交互方式与建模入口。换句话说，vision-language 在这里既影响模型如何接收指令，也影响模型如何完成多任务统一、条件控制和后续评测。</p>
 <h2 id="本页关注什么">本页关注什么</h2>
 <ul>
@@ -92,7 +100,11 @@
 <li>更强的语言监督带来的到底是更深的因果理解，还是更好的 prompt following？</li>
 <li>多模态预训练在生成任务与理解任务之间的迁移边界在哪里？</li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-related_topics"><h3>Related topics<span class="related-count">5</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../../en/topics/image-editing.html">图像编辑</a></li><li><a class="wikilink" href="../../en/topics/video-understanding.html">Video Understanding</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li><li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li></ul></div><div class="related-group related-source_notes"><h3>Source notes<span class="related-count">16</span></h3><ul><li><a class="wikilink" href="../../en/sources/2026-04-12-fireedit.html">FireEdit：基于区域感知视觉语言模型的细粒度指令图像编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-12-insightedit.html">InsightEdit：迈向更强指令跟随的图像编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-12-dreamomni.html">DreamOmni：统一图像生成与编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-12-omnigen.html">OmniGen：统一图像生成</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-gligen.html">GLIGEN：以冻结基础模型和门控适配器实现开放集合 grounded 生成</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-veggie.html">VEGGIE：统一指令视频编辑、grounding 与 reasoning segmentation</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-hallusionbench.html">HallusionBench：视觉语言幻觉与视觉错觉诊断基准</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-language-driven-video-inpainting.html">通过多模态大模型实现语言驱动视频修补</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-layoutdiffusion.html">LayoutDiffusion：以对象框控制像素 U-Net 的 layout-to-image 生成</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-mmmu.html">MMMU：跨学科专家级多模态理解与推理基准</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-maplm.html">MAPLM：地图与交通场景的真实世界多模态问答基准</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-concon-chi.html">ConCon-Chi：个性化视觉语言的新含义与组合性基准</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-sti-bench.html">STI-Bench：精确时空世界理解基准</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-reco.html">ReCo：以坐标 token 和开放区域文本控制图像生成</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-check-locate-rectify.html">Check, Locate, Rectify：训练免费文本到图像布局校准</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-condition-aware-neural-network.html">Condition-Aware Neural Network：以动态权重控制扩散 Transformer</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">18</span></h2><ul><li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a><span>Entity</span></li><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-04-14-anydoor.html">AnyDoor：训练一次的零样本对象级图像定制</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-concon-chi.html">ConCon-Chi：个性化视觉语言的新含义与组合性基准</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-gligen.html">GLIGEN：以冻结基础模型和门控适配器实现开放集合 grounded 生成</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-hallusionbench.html">HallusionBench：视觉语言幻觉与视觉错觉诊断基准</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-language-driven-video-inpainting.html">通过多模态大模型实现语言驱动视频修补</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-maplm.html">MAPLM：地图与交通场景的真实世界多模态问答基准</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-mmmu.html">MMMU：跨学科专家级多模态理解与推理基准</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-reco.html">ReCo：以坐标 token 和开放区域文本控制图像生成</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-sti-bench.html">STI-Bench：精确时空世界理解基准</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-veggie.html">VEGGIE：统一指令视频编辑、grounding 与 reasoning segmentation</a><span>Source note</span></li><li><a href="../../en/sources/2026-06-29-clip.html">CLIP：用自然语言监督学习可迁移视觉表示</a><span>Source note</span></li><li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a><span>Topic</span></li><li><a href="../../en/topics/image-editing.html">图像编辑</a><span>Topic</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li><li><a href="../../en/topics/video-understanding.html">Video Understanding</a><span>Topic</span></li><li><a href="../../en/topics/vision-backbones.html">Mainstream Vision Backbones</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;topic-vision-language&quot;,
   &quot;type&quot;: &quot;topic&quot;,
   &quot;title&quot;: &quot;视觉-语言&quot;,
@@ -132,7 +144,7 @@
   ],
   &quot;related_entities&quot;: [],
   &quot;open_questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

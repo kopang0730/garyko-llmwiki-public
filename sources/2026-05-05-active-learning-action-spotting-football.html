@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Active Learning for Action Spotting：足球事件定位的低标注路线 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="Towards Active Learning for Action Spotting：足球事件定位的低标注路线">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Towards Active Learning for Action Spotting：足球事件定位的低标注路线 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-05-active-learning-action-spotting-football&quot;, &quot;title&quot;: &quot;Active Learning for Action Spotting（CVPRW 2023）：足球事件定位的低标注路线&quot;, &quot;title_en&quot;: &quot;Active Learning for Action Spotting（CVPRW 2023）：足球事件定位的低标注路线&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;evaluation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-05-active-learning-action-spotting-football&quot;, &quot;title&quot;: &quot;Towards Active Learning for Action Spotting：足球事件定位的低标注路线&quot;, &quot;title_en&quot;: &quot;Towards Active Learning for Action Spotting：足球事件定位的低标注路线&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;evaluation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,56 +60,72 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-05-05-active-learning-action-spotting-football.html">中文</a><a class="" href="../en/sources/2026-05-05-active-learning-action-spotting-football.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-05-05</p>
-        <h1><span class="title-main">Active Learning for Action Spotting</span><span class="title-subtitle">足球事件定位的低标注路线</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Towards Active Learning for Action Spotting：足球事件定位的低标注路线</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">Towards Active Learning for Action Spotting</span><span class="title-subtitle">足球事件定位的低标注路线</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR Workshop 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023-04-09</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-05-05</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2304.04220" title="https://arxiv.org/abs/2304.04220" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2304.04220</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2304.04220" title="https://arxiv.org/pdf/2304.04220" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2304.04220</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#evaluation">#evaluation</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>把足球 action spotting 的标注成本问题转成 active learning 选择策略，正好补 sports-AI roadmap 中“专家标注稀缺”和“低标注比赛状态理解”的研究机会。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR Workshop 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023-04-09</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-05-05</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2304.04220" title="https://arxiv.org/abs/2304.04220" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2304.04220</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2304.04220" title="https://arxiv.org/pdf/2304.04220" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2304.04220</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#数据与协议">数据与协议</a></li><li><a href="#核心结果">核心结果</a></li><li><a href="#成本与证据边界">成本与证据边界</a></li><li><a href="#对羽毛球-demo-的影响">对羽毛球 demo 的影响</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始材料">原始材料</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>在 SoccerNet-v2 的 NetVLAD++ 实验中，entropy selection 用 16% 数据达到其最终 spotting 性能的 90%，随机采样需 45%；这是足球 action spotting 的样本效率证据，但 oracle 由既有标签模拟，数据比例不等于真实专家工时。</p>
 <h2 id="论文定位">论文定位</h2>
-<p>这篇论文使用 SoccerNet-v2 语境讨论 action spotting 的主动学习，适合作为从大规模人工标注走向低标注、可迭代数据协议的证据。</p>
-<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
-<p>它把体育 AI 的限制从“数据少”具体化为“哪些片段值得标、怎样用更少专家标注逼近完整训练效果”，对教练/分析师场景很有实际意义。</p>
-<h2 id="来源可靠性与可溯源性">来源可靠性与可溯源性</h2>
+<p>任务是把动作类别定位到单一时间戳，不是 tracking、动作质量、战术分析或裁判推理。流程反复训练 spotting 模型，并从未标注 clips 中按 uncertainty/entropy 选择下一批给 oracle。</p>
+<h2 id="数据与协议">数据与协议</h2>
 <ul>
-<li><strong>来源层级</strong>：arXiv 页面可访问，并显示 DOI <code>10.1109/CVPRW59228.2023.00538</code>，可作为 CVPR Workshop 2023 级别证据。</li>
-<li><strong>可溯源材料</strong>：本地已保存 arXiv abstract、PDF 与 <code>paper-text.md</code>；<code>links.yaml</code> 可回到 arXiv abstract / PDF / DOI。</li>
-<li><strong>使用边界</strong>：后续深读时应核查具体标注节省比例、查询策略、与全监督基线的距离，以及是否能迁移到 tracking / referee reasoning。</li>
+<li>SoccerNet-v2：550 场、110,458 spots、17 类、2.23/min；</li>
+<li>SoccerNet-ball：9 场、11,041 events、表中 2 类、13.62/min；</li>
+<li>FWWC19-header：52 场、6,527 events、表中单目标 spotting、1.39/min；私有；</li>
+<li>默认每轮选全库 1%，从头训练；加速版使用 AdapAL 与 5-epoch continual fine-tuning；</li>
+<li>主指标是 loose Avg-mAP（5–60 秒），另报 AULC、固定数据比例性能、达到最终 90% 性能所需数据比例。</li>
 </ul>
-<h2 id="和现有证据的关系">和现有证据的关系</h2>
+<p>正文描述 FWWC19-header 有五种头部事件语义，但 Table 1/后文按 1 类训练接口汇报，不能当五类分类结果。</p>
+<h2 id="核心结果">核心结果</h2>
+<table><thead><tr><th>选择</th><th>AULC ↑</th><th>达 90% 性能的数据比例 ↓</th><th>5% 数据 Avg-mAP ↑</th><th>10% 数据 Avg-mAP ↑</th></tr></thead><tbody><tr><td>Random</td><td>45.11</td><td>45%</td><td>32.06</td><td>37.98</td></tr><tr><td>UM</td><td>46.24</td><td>31%</td><td>34.64</td><td>38.38</td></tr><tr><td>Entropy</td><td><strong>47.96</strong></td><td><strong>16%</strong></td><td><strong>37.24</strong></td><td><strong>42.79</strong></td></tr></tbody></table>
+<p>SoccerNet-ball 的 RS/EM/UM M90 为 23%/8%/9%；FWWC19-header 为 35%/12%/12%。PTS 架构也保持 uncertainty selection 多数优于 random 的趋势。</p>
+<h2 id="成本与证据边界">成本与证据边界</h2>
 <ul>
-<li>与 <a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：它补强 SoccerNet 基础数据生态、全场空间理解或低标注事件定位这类 roadmap 缺口。</li>
-<li>与 <a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它把体育视频理解从已有 tracking / interaction / trajectory 继续接到足球事件、球场几何和数据协议。</li>
-<li>与 <a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a> 的关系：它提供真实长视频、密集事件和结构化评测下的视频理解样本。</li>
+<li>快速学习率调度声称训练时间减半；AdapAL 将 100 轮降到 30 轮；但无硬件、GPU-hours、总 wall-clock；</li>
+<li>没有真实标注者、标注时长、费用、agreement 或困难样本噪声研究；</li>
+<li>clip 比例不是事件数、视频分钟或人工小时比例；</li>
+<li>无多 seed、标准差、置信区间；</li>
+<li>未在本文明确 match/source/camera-disjoint split，固定 clip 可能带来相邻片段泄漏；</li>
+<li>loose Avg-mAP 不证明接触帧级精度；</li>
+<li>FWWC19 私有，复现受限。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="对羽毛球-demo-的影响">对羽毛球 demo 的影响</h2>
+<p>可迁移主动选择协议，但必须按 athlete/session/rally/court/camera 划分，记录真实教练标注分钟，并以 contact/phase 高帧率指标验证。足球 5–60 秒容差的 Avg-mAP、标注比例和数据规模不得外推羽毛球击球定位或纠错。</p>
+<h2 id="证据评级">证据评级</h2>
 <ul>
-<li>后续深读时应核查具体标注节省比例、查询策略、与全监督基线的距离，以及是否能迁移到 tracking / referee reasoning。</li>
-<li>当前这版先完成轻量 primary-source 编译，后续可按 deep-analysis-first 流程补 <code>analysis.md</code>、关键图页和实验细节。</li>
+<li>足球 action spotting 主动学习：<strong>A-</strong></li>
+<li>真实标注成本节省：<strong>B</strong></li>
+<li>羽毛球迁移：<strong>C+ 方法学邻近</strong></li>
 </ul>
 <h2 id="原始材料">原始材料</h2>
 <ul>
-<li><code>raw/ingest/2026-05-05-active-learning-action-spotting-football/paper.pdf</code></li>
-<li><code>raw/ingest/2026-05-05-active-learning-action-spotting-football/paper-text.md</code></li>
-<li><code>raw/ingest/2026-05-05-active-learning-action-spotting-football/abstract.md</code></li>
-<li><code>raw/ingest/2026-05-05-active-learning-action-spotting-football/links.yaml</code></li>
+<li><code>raw/ingest/2026-05-05-active-learning-action-spotting-football/paper.pdf</code>（11 页）</li>
+<li><code>raw/ingest/2026-05-05-active-learning-action-spotting-football/paper-text.md</code>（1,345 行）</li>
+<li><code>raw/ingest/2026-05-05-active-learning-action-spotting-football/analysis.md</code></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
 <li><a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
 <li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
 <li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
-<li><a class="wikilink" href="../entities/sportsmot.html">entities/sportsmot</a></li>
+<li><a class="wikilink" href="../questions/question-badminton-stroke-correction-demo.html">questions/question-badminton-stroke-correction-demo</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li><li><a class="wikilink" href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li><li><a class="wikilink" href="../topics/video-understanding.html">视频理解</a></li></ul></div><div class="related-group related-entities"><h3>相关实体<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../entities/sportsmot.html">SportsMOT</a></li></ul></div><div class="related-group related-questions"><h3>相关问题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">4</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a><span>主题</span></li><li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a><span>主题</span></li><li><a href="../topics/video-understanding.html">视频理解</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-05-05-active-learning-action-spotting-football&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Active Learning for Action Spotting（CVPRW 2023）：足球事件定位的低标注路线&quot;,
+  &quot;title&quot;: &quot;Towards Active Learning for Action Spotting：足球事件定位的低标注路线&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-05-05&quot;,
-  &quot;updated&quot;: &quot;2026-05-05&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR Workshop 2023&quot;,
   &quot;published_at&quot;: &quot;2023-04-09&quot;,
   &quot;ingested_at&quot;: &quot;2026-05-05&quot;,
@@ -116,20 +138,22 @@
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;authors&quot;: [
-    &quot;Giancola, Silvio&quot;,
-    &quot;Cioppa, Anthony&quot;,
-    &quot;Georgieva, Julia&quot;,
-    &quot;Billingham, Johsan&quot;,
-    &quot;Serner, Andreas&quot;,
-    &quot;Peek, Kerry&quot;,
-    &quot;Ghanem, Bernard&quot;,
-    &quot;Van Droogenbroeck, Marc&quot;
+    &quot;Silvio Giancola&quot;,
+    &quot;Anthony Cioppa&quot;,
+    &quot;Julia Georgieva&quot;,
+    &quot;Johsan Billingham&quot;,
+    &quot;Andreas Serner&quot;,
+    &quot;Kerry Peek&quot;,
+    &quot;Bernard Ghanem&quot;,
+    &quot;Marc Van Droogenbroeck&quot;
   ],
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2304.04220&quot;,
-    &quot;https://arxiv.org/pdf/2304.04220&quot;
+    &quot;https://arxiv.org/pdf/2304.04220&quot;,
+    &quot;https://doi.org/10.1109/CVPRW59228.2023.00538&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-05-05-active-learning-action-spotting-football/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-05-05-active-learning-action-spotting-football/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/sports-ai-video-understanding&quot;,
     &quot;topics/sports-ai-roadmap&quot;,
@@ -139,8 +163,10 @@
     &quot;entities/sportsmot&quot;
   ],
   &quot;claims&quot;: [],
-  &quot;questions&quot;: []
-}</pre></section>
+  &quot;questions&quot;: [
+    &quot;questions/question-badminton-stroke-correction-demo&quot;
+  ]
+}</pre></details>
     </article>
   </main>
 </body>

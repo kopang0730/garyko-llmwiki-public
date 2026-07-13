@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MVBench：综合性的多模态视频理解基准 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="MVBench：综合多模态视频理解基准">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>MVBench：综合多模态视频理解基准 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-mvbench&quot;, &quot;title&quot;: &quot;MVBench（CVPR 2024）：综合性的多模态视频理解基准&quot;, &quot;title_en&quot;: &quot;MVBench（CVPR 2024）：综合性的多模态视频理解基准&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-mvbench&quot;, &quot;title&quot;: &quot;MVBench：综合多模态视频理解基准&quot;, &quot;title_en&quot;: &quot;MVBench：综合多模态视频理解基准&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,50 +60,87 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-14-mvbench.html">中文</a><a class="" href="../en/sources/2026-04-14-mvbench.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">MVBench</span><span class="title-subtitle">综合性的多模态视频理解基准</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>MVBench：综合多模态视频理解基准</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">MVBench</span><span class="title-subtitle">综合多模态视频理解基准</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023/11/28</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2311.17005" title="https://arxiv.org/abs/2311.17005" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2311.17005</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2311.17005" title="https://arxiv.org/pdf/2311.17005" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2311.17005</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#evaluation">#evaluation</a><a class="tag" href="../tags.html#benchmarking">#benchmarking</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把通用多模态视频理解 benchmark 补进库里，显著加强了 video-understanding 页的基础评测层。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>它要解决的是如何系统评测多模态模型在视频理解上的综合能力。对当前知识库来说，它弥补了 video-understanding 页此前过于偏 failure-diagnosis 而缺少通用基准的问题。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>MVBench 构建覆盖多种视频理解任务的综合 benchmark，用来评估多模态模型对视频时序内容与语义信息的理解能力。</p>
-<h2 id="关键发现">关键发现</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2024</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023-11-28</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2311.17005" title="https://arxiv.org/abs/2311.17005" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2311.17005</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2311.17005" title="https://arxiv.org/pdf/2311.17005" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2311.17005</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法与数据">方法与数据</a><ol><li class="toc-sub"><a href="#static-to-dynamic">static-to-dynamic</a></li><li class="toc-sub"><a href="#benchmark-构造">benchmark 构造</a></li><li class="toc-sub"><a href="#配套模型">配套模型</a></li></ol></li><li><a href="#核心结果">核心结果</a></li><li><a href="#消融与诊断">消融与诊断</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对-benchmark-question-的证据分类">对 benchmark question 的证据分类</a></li><li><a href="#对当前-wiki-判断的影响">对当前 wiki 判断的影响</a></li><li><a href="#相关页面">相关页面</a></li><li><a href="#原始链接">原始链接</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>MVBench 用 4,000 道多选题把 20 种短视频时序能力组织成可诊断矩阵，并证明早期 MLLM 对视频时序信息的利用远未成熟；但它是通用短视频理解基准，不是生成质量、长视频或视频编辑理解基准。</p>
+<h2 id="论文定位">论文定位</h2>
 <ul>
-<li>它给 video-understanding 提供了一个更像“主基线”的综合 benchmark，而不只是问题诊断页。</li>
-<li>它能帮助我们把视频编辑理解问题放回更广义的视频理解能力背景中去看。</li>
-<li>它与 HallusionBench、GlitchBench 形成互补：一个更综合，一个更偏 failure mode。</li>
+<li><strong>直接测量</strong>：短视频时序感知、定位、计数、状态变化、对象交互和推理。</li>
+<li><strong>不直接测量</strong>：视频生成质量、人类偏好、小时级长视频、源—目标视频编辑执行。</li>
+<li><strong>对 wiki 的角色</strong>：提供“编辑理解需要哪些底层视频能力”的通用底座，而不是编辑能力结论本身。</li>
+</ul>
+<h2 id="问题定义">问题定义</h2>
+<p>多数早期 MLLM benchmark 偏静态图像；已有视频 benchmark 又只覆盖少数任务或特定领域。MVBench 试图用可扩展、低人工成本且不依赖 LLM 裁判的方式，系统评估从时间感知到时序认知的能力。</p>
+<h2 id="方法与数据">方法与数据</h2>
+<h3 id="static-to-dynamic">static-to-dynamic</h3>
+<p>论文从 9 类静态理解任务扩展出 20 类动态任务：动作顺序/预测/反义/细粒度/意外动作，对象存在/交互/遮挡换位，移动方向/动作定位，场景切换，动作/移动计数，移动属性/状态变化/姿态/字符顺序，以及导航、情境推理和反事实。</p>
+<h3 id="benchmark-构造">benchmark 构造</h3>
+<ul>
+<li>来自 11 个公开数据集，每任务 200 题，共 4,000 QA；</li>
+<li>视频主要 5–35 秒，过滤过短、过长、过易/过难样本；</li>
+<li>有真值的题直接改成多选，无现成问题时用 ChatGPT 辅助生成；</li>
+<li>选项 3–5 个、随机打乱并控制长度；以准确率避免开放问答的 LLM 评分偏差。</li>
+</ul>
+<h3 id="配套模型">配套模型</h3>
+<p>VideoChat2 采用 UMT-L、QFormer、Vicuna/Mistral 和三阶段视觉—语言训练，并使用 34 个数据集约 200 万条多模态指令。它用于诊断数据、视觉编码器、训练方式与 prompt 对 benchmark 表现的影响。</p>
+<h2 id="核心结果">核心结果</h2>
+<ul>
+<li>Random 27.3%；VideoChatGPT 32.7%、VideoChat 35.5%、LLaVA 36.0%。</li>
+<li>纯文本 VideoChat2-text 达 34.7%，几乎追平 VideoChat，暴露语言先验与视频利用不足。</li>
+<li>VideoChat2/Vicuna 51.1%，Mistral 版 60.4%；GPT-4V 为 43.5%。</li>
+<li>VideoChat2 对动作、对象、场景、属性、姿态较强；位置、计数、Character Order 仍弱，有些任务不如纯文本版本。</li>
+<li>因此“会视频对话”与“可靠利用时序视觉证据”不能画等号。</li>
+</ul>
+<h2 id="消融与诊断">消融与诊断</h2>
+<ul>
+<li>0.9M 视频指令数据得到 50.5%，高于 1.1M 图像数据的 42.1%；视频数据更关键。</li>
+<li>EVA-CLIP-g 换 UMT-L 再增约 6.2 点；扩大 LLM 只带来边际收益。</li>
+<li>只训练线性层 38.5%，解冻 QFormer 47.0%，再解冻视觉编码器 51.1%。</li>
+<li>8→16 帧从 50.6% 到 51.1%；提高分辨率反降，支持该基准主要依赖时间信息。</li>
+<li>去掉 CLEVRER 指令数据降 1.8 点，说明部分近域训练重合影响结果。</li>
+<li>详细 system prompt +1.2；固定答案前缀让选项抽取率达到 100%，提示格式会显著影响分数。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>它并不专门面向视频编辑理解。</li>
-<li>综合 benchmark 容易掩盖某些细粒度能力短板。</li>
-<li>它适合作为底座，但仍需和更针对性的 benchmark 一起使用。</li>
+<li>短视频、每类 200 题，不能代表长程记忆或开放世界连续视频。</li>
+<li>自动 QA 和多选形式仍可能有模板/语言先验；纯文本 34.7% 是明显风险。</li>
+<li>benchmark 与自家 VideoChat2 同文提出，且训练源与部分 benchmark 源近域重合，不能把模型领先完全归因于通用能力。</li>
+<li>16 帧稀疏采样不能证明密集时序理解；不含音频/字幕。</li>
+<li>多选准确率可复现，却不测解释质量、置信度和开放任务完成度。</li>
 </ul>
-<h2 id="原始链接">原始链接</h2>
-<ul>
-<li>https://arxiv.org/abs/2311.17005</li>
-<li>https://arxiv.org/pdf/2311.17005</li>
-</ul>
+<h2 id="对-benchmark-question-的证据分类">对 benchmark question 的证据分类</h2>
+<table><thead><tr><th>维度</th><th>分类</th><th>解释</th></tr></thead><tbody><tr><td>视频理解</td><td>直接强证据</td><td>20 类短视频时序任务及消融</td></tr><tr><td>生成质量</td><td>非目标</td><td>不评估画质、美学、运动质量或文本对齐</td></tr><tr><td>人类偏好</td><td>非目标</td><td>真值正确性不等于偏好</td></tr><tr><td>长视频</td><td>边界证据</td><td>主要 5–35 秒，不能外推小时级能力</td></tr><tr><td>时空世界理解</td><td>部分直接证据</td><td>测时间、位置、计数、反事实，但不测精确物理量</td></tr><tr><td>视频编辑理解</td><td>间接基础证据</td><td>底层能力必要，但无编辑指令、剪辑语法或编辑结果</td></tr></tbody></table>
+<h2 id="对当前-wiki-判断的影响">对当前 wiki 判断的影响</h2>
+<p>MVBench 支持把评测分层：<strong>通用短视频理解是视频编辑理解的必要底座，但通用 benchmark 高分不是编辑理解的充分条件。</strong> 它也提醒 <a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a>：不能把“动作/状态 QA”与“理解用户编辑意图并正确执行”混成一类。</p>
 <h2 id="相关页面">相关页面</h2>
 <ul>
 <li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
 <li><a class="wikilink" href="../topics/generative-model-evaluation.html">topics/generative-model-evaluation</a></li>
 <li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a></li>
 </ul>
-<h2 id="备注">备注</h2>
-<p>MVBench 在这套库里的作用，是把通用多模态视频理解 benchmark 补入 video-understanding 的基础层。</p></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/2311.17005">论文页面</a></li>
+<li><a href="https://arxiv.org/pdf/2311.17005">PDF</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../topics/video-understanding.html">视频理解</a></li><li><a class="wikilink" href="../topics/generative-model-evaluation.html">生成模型评测</a></li></ul></div><div class="related-group related-questions"><h3>相关问题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">4</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a><span>问题</span></li><li><a href="../topics/generative-model-evaluation.html">生成模型评测</a><span>主题</span></li><li><a href="../topics/video-understanding.html">视频理解</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-mvbench&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;MVBench（CVPR 2024）：综合性的多模态视频理解基准&quot;,
+  &quot;title&quot;: &quot;MVBench：综合多模态视频理解基准&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2024&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
@@ -110,25 +153,26 @@
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;authors&quot;: [
-    &quot;Li, Kunchang&quot;,
-    &quot;Wang, Yali&quot;,
-    &quot;He, Yinan&quot;,
-    &quot;Li, Yizhuo&quot;,
-    &quot;Wang, Yi&quot;,
-    &quot;Liu, Yi&quot;,
-    &quot;Wang, Zun&quot;,
-    &quot;Xu, Jilan&quot;,
-    &quot;Chen, Guo&quot;,
-    &quot;Luo, Ping&quot;,
-    &quot;Wang, Limin&quot;,
-    &quot;Qiao, Yu&quot;
+    &quot;Kunchang Li&quot;,
+    &quot;Yali Wang&quot;,
+    &quot;Yinan He&quot;,
+    &quot;Yizhuo Li&quot;,
+    &quot;Yi Wang&quot;,
+    &quot;Yi Liu&quot;,
+    &quot;Zun Wang&quot;,
+    &quot;Jilan Xu&quot;,
+    &quot;Guo Chen&quot;,
+    &quot;Ping Luo&quot;,
+    &quot;Limin Wang&quot;,
+    &quot;Yu Qiao&quot;
   ],
-  &quot;published_at&quot;: &quot;2023/11/28&quot;,
+  &quot;published_at&quot;: &quot;2023-11-28&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2311.17005&quot;,
     &quot;https://arxiv.org/pdf/2311.17005&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-mvbench/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-14-mvbench/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/video-understanding&quot;,
     &quot;topics/generative-model-evaluation&quot;
@@ -138,7 +182,7 @@
   &quot;questions&quot;: [
     &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

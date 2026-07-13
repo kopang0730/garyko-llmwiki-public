@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TranSPORTmer：面向多智能体体育轨迹理解的统一 Transformer 框架 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="TranSPORTmer：多智能体体育轨迹理解的统一 Transformer 框架">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>TranSPORTmer：多智能体体育轨迹理解的统一 Transformer 框架 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-24-transportmer&quot;, &quot;title&quot;: &quot;TranSPORTmer（ACCV 2024 / arXiv）：面向多智能体体育轨迹理解的统一 Transformer 框架&quot;, &quot;title_en&quot;: &quot;TranSPORTmer（ACCV 2024 / arXiv）：面向多智能体体育轨迹理解的统一 Transformer 框架&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;tracking&quot;, &quot;reasoning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-24-transportmer&quot;, &quot;title&quot;: &quot;TranSPORTmer：多智能体体育轨迹理解的统一 Transformer 框架&quot;, &quot;title_en&quot;: &quot;TranSPORTmer：多智能体体育轨迹理解的统一 Transformer 框架&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;tracking&quot;, &quot;reasoning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,60 +60,121 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-24-transportmer.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-24-transportmer.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-05-22</p>
-        <h1><span class="title-main">TranSPORTmer</span><span class="title-subtitle">面向多智能体体育轨迹理解的统一 Transformer 框架</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>TranSPORTmer：多智能体体育轨迹理解的统一 Transformer 框架</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">TranSPORTmer</span><span class="title-subtitle">多智能体体育轨迹理解的统一 Transformer 框架</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ACCV 2024 / arXiv</dd></div><div class="source-fact"><dt>Published</dt><dd>2024-11-09</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-24</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2410.17785" title="https://arxiv.org/abs/2410.17785" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2410.17785</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2410.17785" title="https://arxiv.org/pdf/2410.17785" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2410.17785</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#tracking">#tracking</a><a class="tag" href="../../en/tags.html#reasoning">#reasoning</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h1 id="transportmer-accv-2024-arxiv-面向多智能体体育轨迹理解的统一-transformer-框架">TranSPORTmer（ACCV 2024 / arXiv）：面向多智能体体育轨迹理解的统一 Transformer 框架</h1>
-<blockquote>会议：ACCV 2024 / arXiv</blockquote>
-<blockquote>发表日期：2024-11-09</blockquote>
-<blockquote>资料加入日期：2026-04-24</blockquote>
-<h2 id="一句话结论">一句话结论</h2>
-<p>TranSPORTmer 把体育视频/轨迹分析从单一 tracking 任务推进到统一的多智能体轨迹理解：预测、补全、状态推断和比赛状态分类可以放进同一个框架。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ACCV 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2024-11-09</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-24</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2410.17785" title="https://arxiv.org/abs/2410.17785" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2410.17785</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2410.17785" title="https://arxiv.org/pdf/2410.17785" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2410.17785</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#任务定义">任务定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#数据集与协议">数据集与协议</a></li><li><a href="#指标-基线与计算">指标、基线与计算</a></li><li><a href="#核心实验与结果">核心实验与结果</a><ol><li class="toc-sub"><a href="#足球球员预测-补全">足球球员预测/补全</a></li><li class="toc-sub"><a href="#篮球">篮球</a></li><li class="toc-sub"><a href="#足球球推断-补全">足球球推断/补全</a></li></ol></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对羽毛球与体育路线的价值">对羽毛球与体育路线的价值</a></li><li><a href="#与同批工作的边界">与同批工作的边界</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#可复核依据">可复核依据</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>TranSPORTmer 证明同一套 mask-conditioned、时序—社会分轴 Transformer 架构可以覆盖体育轨迹预测、补全、完全不可见 agent 推断和逐帧状态分类；但“统一”指架构与任务接口，各实验仍分别训练，而且输入已是结构化场地坐标，不是原始视频。</p>
 <h2 id="论文定位">论文定位</h2>
-<p>这篇论文属于体育 AI / 体育视频理解主线，和 <a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a> 的长时序理解、对象级关联与 benchmark 设计直接相关。它在 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 中承担的角色是：它为 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 提供了从 detection/tracking 到 multi-agent trajectory reasoning 的桥梁。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>体育轨迹数据经常缺失、噪声大，而且同一场景里同时存在球员、球、队伍状态和比赛事件。传统方法往往为预测、补全、球位置推断、状态分类分别训练模型，难以形成统一的比赛理解表示。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>TranSPORTmer 使用 Set Attention Blocks 建模多智能体之间的时空与社会交互，用输入 mask 控制当前要做预测、补全还是推断任务，并加入一个 CLS extra agent 来分类足球轨迹中的 pass、possession、uncontrolled、out-of-play 等状态。</p>
-<h2 id="关键发现">关键发现</h2>
+<p>这是 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">体育 AI 视频理解</a> 中从 tracking 到 trajectory reasoning 的下游桥梁。它不检测球员、不解决 ID switch，也不消费 RGB；默认上游已经给出球员和球的二维场地坐标及 agent type。</p>
+<h2 id="任务定义">任务定义</h2>
+<p>给定 $N$ 个 agent 在 $T$ 时刻的 $(x,y)$ 坐标，以二值 mask $M$ 表示可见（0）与待预测（1）位置：</p>
 <ul>
-<li>统一模型可以同时处理 player forecasting、forecasting-imputation、ball inference、ball imputation 等任务。</li>
-<li>Set Attention 的等变建模适合多智能体体育场景，因为球员集合没有固定顺序，但相互作用结构很关键。</li>
-<li>CLS extra agent 把低层轨迹建模接到了更高层比赛状态理解，这是从 tracking 走向 tactical understanding 的关键一步。</li>
+<li>forecasting：过去可见、未来隐藏；</li>
+<li>imputation：轨迹内部缺失；</li>
+<li>inference：某 agent 全序列隐藏；</li>
+<li>state classification：逐帧 pass / possession / uncontrolled / out-of-play。</li>
+</ul>
+<p>同一输入表示覆盖四类任务，但补充材料明确写明各实验分别训练；不能外推为一个 checkpoint 零样本切换所有运动和任务。</p>
+<h2 id="方法概述">方法概述</h2>
+<ol>
+<li>坐标与可选 agent type 经 row-wise FFN 嵌入；</li>
+<li>每帧增加 CLS extra agent，输出四类状态；</li>
+<li>coarse/fine 两级 encoder 依次做 temporal SAB（带位置编码）与 social SAB；</li>
+<li>社会轴保持 agent permutation equivariance；</li>
+<li>binary/NaN mask 处理任务、缺失与变长 agent；</li>
+<li>ADE 轨迹损失加入 learnable uncertainty mask，邻接隐藏边界由 $w_1,w_2$ 加权；状态用交叉熵，总损失 $L=L_{ADE}+4L_{CE}$。</li>
+</ol>
+<p>相对 flatten agent×time 的 Transformer，分轴 attention 在足球实验中推理 <strong>88 ms vs 340 ms</strong>，约快 4 倍。</p>
+<h2 id="数据集与协议">数据集与协议</h2>
+<table><thead><tr><th>数据</th><th>规模与任务</th></tr></thead><tbody><tr><td>LaLiga 足球</td><td>2022-23 共 283 场；60 帧=9.6 秒，6.25 Hz；22 人+球；82,954/7,500/6,258 train/val/test 段</td></tr><tr><td>Basketball-VU</td><td>2016 NBA SportVU；50 时刻=10 秒，5 Hz；10 人+球</td></tr><tr><td>Basketball-TIP</td><td>2012 NBA；50 帧=8 秒，6.25 Hz；10 人+球；circle/camera 缺失模式</td></tr></tbody></table>
+<p>足球球员任务观察 3.2 秒、预测 6.4 秒；Basketball-VU 观察 2 秒、预测 8 秒；Basketball-TIP 前 6.4 秒补全、后 1.6 秒预测。足球球 inference 将球 100% 隐藏，imputation 则遮 80%/90%。</p>
+<h2 id="指标-基线与计算">指标、基线与计算</h2>
+<ul>
+<li>指标：ADE、FDE、MaxErr；TIP 用 I-ADE/P-ADE；状态用逐帧 Accuracy。</li>
+<li>足球基线：Velocity、RNN、GRNN、GRNN+Att、flattened Transformer、无 social attention。</li>
+<li>球任务：ballradar 与其无 possessor 版本。</li>
+<li>训练：RTX A6000、100 epochs、batch 64、AdamW、lr 0.001，每 20 epochs ×0.5，gradient clipping 5；embedding 128、16 heads、SAB hidden 512。</li>
+</ul>
+<p>论文未报告总参数量、FLOPs、全任务 wall-clock 成本或随 agent 数的 scaling；88/340 ms 只对应特定足球对照。</p>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<h3 id="足球球员预测-补全">足球球员预测/补全</h3>
+<p>social-aware 模型随 conditioning agents 增加持续改善。代表性 forecasting 设置中完整模型 ADEP/MaxErr/FDEP 为 <strong>2.42/4.97/4.50 m</strong>，状态 Acc <strong>87.35%</strong>；无 CLS 为 <strong>2.53/5.12/4.65</strong>。但 imputation 中无 CLS 有时略优，说明辅助分类并非普遍增益。</p>
+<p>状态分类多在约 90%；uncontrolled 类因标注主观和不平衡更差。</p>
+<h3 id="篮球">篮球</h3>
+<p>Basketball-VU 中单一模型同时预测双方，all players ADEP/FDEP <strong>7.75/11.65 ft</strong>；defense <strong>6.31/9.04 ft</strong>。对照数字来自原论文，不是统一代码/预算重跑。</p>
+<p>Basketball-TIP 的 circle 与 camera 六种缺失设置中，作者模型 I-ADE/P-ADE 均优于表中对照。</p>
+<h3 id="足球球推断-补全">足球球推断/补全</h3>
+<p>100% ball inference：ballradar ADE <strong>3.89 m</strong>，完整模型 <strong>2.71 m</strong>，相对降低约 30%；80%/90% mask 时为 <strong>0.84/1.09 m</strong>。球完全不可见时，状态 accuracy 仍为 <strong>80.84%</strong>，表明球员运动蕴含状态线索，但不等于因果战术理解。</p>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>去掉 social attention 明显变差，支持 SABS。</li>
+<li>分轴 attention 精度略优于 flattened Transformer，且 88 vs 340 ms。</li>
+<li>CLS 多数预测任务有帮助，但 imputation 存在负收益，作者承认 $\lambda$ 可能次优。</li>
+<li>uncertainty mask 总体改善；学得 $w_1\in[0.7,0.85]$、$w_2\in[0.15,0.3]$。</li>
+<li>coarse-to-fine attention 从广泛关注转向控球者/接球者是可视化证据，不是完整因果消融。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>它主要依赖轨迹数据，和原始视频像素、视觉语言解释之间仍有接口缺口。</li>
-<li>当前结论更适合支撑“轨迹理解”路线，还不能直接替代视频端事件识别或规则判断。</li>
+<li>输入是假设已清洗的二维轨迹；上游漏检、ID switch、相机标定误差未系统测试。</li>
+<li>只有一套足球和两套篮球数据，跨联赛/项目外测不足。</li>
+<li>state 只报 accuracy，缺少 macro-F1；持续性和类别不平衡可能抬高分数。</li>
+<li>确定性 ADE/FDE 不覆盖策略分叉导致的多模态未来。</li>
+<li>Basketball SOTA 对照并非统一实现和预算。</li>
+<li>统一的是架构，不是单一跨域 checkpoint。</li>
 </ul>
-<h2 id="对当前-wiki-判断的影响">对当前 wiki 判断的影响</h2>
-<p>它为 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 提供了从 detection/tracking 到 multi-agent trajectory reasoning 的桥梁。 它也让 <a class="wikilink" href="../../en/entities/sportsmot.html">entities/sportsmot</a> 从单一数据集条目扩展成体育 MOT / 轨迹理解分支的导航锚点。</p>
+<h2 id="对羽毛球与体育路线的价值">对羽毛球与体育路线的价值</h2>
+<ul>
+<li>可迁移的核心：mask-conditioned forecast/impute/infer、时序—社会分轴 attention、由球员推断不可见球的思路。</li>
+<li>必须重做：高频 shuttle 采样、球员/球/拍 schema、单打/双打社会结构、回合状态词表、概率多未来和相机误差鲁棒性。</li>
+<li>6.25 Hz 对高速羽毛球球路明显不足；论文不直接支持击球质量、动作纠错或球路重建精度。</li>
+</ul>
+<h2 id="与同批工作的边界">与同批工作的边界</h2>
+<ul>
+<li><a class="wikilink" href="../../en/sources/2026-04-24-sportsmot.html">SportsMOT</a> / <a class="wikilink" href="../../en/sources/2026-04-24-teamtrack.html">TeamTrack</a> 从视频构建身份轨迹；TranSPORTmer 是下游。连接它们需要场地标定、球跟踪、team/role mapping 与 ID 清洗。</li>
+<li><a class="wikilink" href="../../en/sources/2026-04-24-sportshhi.html">SportsHHI</a> 输出局部有向人对交互；TranSPORTmer 输出轨迹和四类全局状态，两者互补但没有联合实验。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<p><strong>直接支持</strong>“结构化多智能体轨迹可作为 tracking 与体育语义之间的接口”。必须避免把它写成视频端理解器或跨运动统一模型。当前没有进入 claim/question 证据列表。</p>
+<h2 id="可复核依据">可复核依据</h2>
+<ul>
+<li>PDF p.1-3：定位、四类任务与贡献</li>
+<li>PDF p.6-9：mask、分轴 SAB、CLS 与损失</li>
+<li>PDF p.9-10：三数据集与协议</li>
+<li>PDF p.11-15，Tables 1-4：足球/篮球/球结果与消融</li>
+<li>supplement：A6000、100 epochs、batch 64 与模型宽度</li>
+<li><code>raw/ingest/2026-04-24-transportmer/paper-text.md:250-1079,1342-1358</code></li>
+</ul>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2410.17785</li>
-<li>https://arxiv.org/pdf/2410.17785</li>
-<li>https://doi.org/10.48550/arXiv.2410.17785</li>
-<li>https://youtu.be/8VtSRm8oGoE</li>
-<li>https://link.springer.com/chapter/10.1007/978-981-96-0901-7_20</li>
-<li>https://doi.org/10.1007/978-981-96-0901-7_20</li>
+<li><a href="https://arxiv.org/abs/2410.17785">arXiv 摘要</a></li>
+<li><a href="https://arxiv.org/pdf/2410.17785">论文 PDF</a></li>
+<li><a href="https://link.springer.com/chapter/10.1007/978-981-96-0901-7_20">Springer 论文页</a></li>
+<li><a href="https://youtu.be/8VtSRm8oGoE">论文视频</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a></li>
-<li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
-<li><a class="wikilink" href="../../en/entities/sportsmot.html">entities/sportsmot</a></li>
+<li><a class="wikilink" href="../../en/topics/video-understanding.html">视频理解</a></li>
+<li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a class="wikilink" href="../../en/entities/sportsmot.html">SportsMOT 与体育轨迹分支</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/video-understanding.html">Video Understanding</a></li><li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li></ul></div><div class="related-group related-entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/sportsmot.html">SportsMOT</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">8</span></h2><ul><li><a href="../../en/entities/sportsmot.html">SportsMOT</a><span>Entity</span></li><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-04-24-sportshhi.html">SportsHHI：体育视频中的高层人—人交互检测基准</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-24-sportsmot.html">SportsMOT：多运动场景的大规模球员多目标跟踪基准</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-24-teamtrack.html">TeamTrack：全场视角的多运动多目标跟踪数据集</a><span>Source note</span></li><li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a><span>Topic</span></li><li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a><span>Topic</span></li><li><a href="../../en/topics/video-understanding.html">Video Understanding</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-24-transportmer&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;TranSPORTmer（ACCV 2024 / arXiv）：面向多智能体体育轨迹理解的统一 Transformer 框架&quot;,
+  &quot;title&quot;: &quot;TranSPORTmer：多智能体体育轨迹理解的统一 Transformer 框架&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-24&quot;,
-  &quot;updated&quot;: &quot;2026-05-22&quot;,
-  &quot;venue&quot;: &quot;ACCV 2024 / arXiv&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
+  &quot;venue&quot;: &quot;ACCV 2024&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-24&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
@@ -128,7 +195,6 @@
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2410.17785&quot;,
     &quot;https://arxiv.org/pdf/2410.17785&quot;,
-    &quot;https://doi.org/10.48550/arXiv.2410.17785&quot;,
     &quot;https://youtu.be/8VtSRm8oGoE&quot;,
     &quot;https://link.springer.com/chapter/10.1007/978-981-96-0901-7_20&quot;,
     &quot;https://doi.org/10.1007/978-981-96-0901-7_20&quot;
@@ -143,7 +209,7 @@
   ],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

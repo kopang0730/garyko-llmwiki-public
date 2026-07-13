@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Reangle-A-Video：把 4D 视频生成重写为视频到视频翻译 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="Reangle-A-Video：把单目视频重演为多视角同步视频">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Reangle-A-Video：把单目视频重演为多视角同步视频 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-reangle-a-video&quot;, &quot;title&quot;: &quot;Reangle-A-Video（ICCV 2025）：把 4D 视频生成重写为视频到视频翻译&quot;, &quot;title_en&quot;: &quot;Reangle-A-Video（ICCV 2025）：把 4D 视频生成重写为视频到视频翻译&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-generation&quot;, &quot;video-editing&quot;, &quot;image-generation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-reangle-a-video&quot;, &quot;title&quot;: &quot;Reangle-A-Video：把单目视频重演为多视角同步视频&quot;, &quot;title_en&quot;: &quot;Reangle-A-Video：把单目视频重演为多视角同步视频&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-generation&quot;, &quot;control&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,59 +60,91 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-reangle-a-video.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-reangle-a-video.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">Reangle-A-Video</span><span class="title-subtitle">把 4D 视频生成重写为视频到视频翻译</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Reangle-A-Video：把单目视频重演为多视角同步视频</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">Reangle-A-Video</span><span class="title-subtitle">把单目视频重演为多视角同步视频</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-01-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/ICCV2025/html/Jeong_Reangle-A-Video_4D_Video_Generation_as_Video-to-Video_Translation_ICCV_2025_paper.html" title="https://openaccess.thecvf.com/content/ICCV2025/html/Jeong_Reangle-A-Video_4D_Video_Generation_as_Video-to-Video_Translation_ICCV_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Jeong_Reangle-A-Video_4D_Video_…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/ICCV2025/papers/Jeong_Reangle-A-Video_4D_Video_Generation_as_Video-to-Video_Translation_ICCV_2025_paper.pdf" title="https://openaccess.thecvf.com/content/ICCV2025/papers/Jeong_Reangle-A-Video_4D_Video_Generation_as_Video-to-Video_Translation_ICCV_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Jeong_Reangle-A-Video_4D_Video_…</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-generation">#video-generation</a><a class="tag" href="../../en/tags.html#video-editing">#video-editing</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-generation">#video-generation</a><a class="tag" href="../../en/tags.html#control">#control</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把 4D 视频生成改写成 video-to-video translation，补上一条把生成与编辑进一步揉在一起的近期路线。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>它要解决的是更复杂 4D 视频生成如何找到更自然的建模接口。对当前知识库来说，它补的是视频生成与视频编辑边界继续模糊化的一个新样本。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>Reangle-A-Video 将 4D video generation 重新表述为 video-to-video translation，使系统更像是在已有视频表示上做结构化变换，而不是从头生成。</p>
-<h2 id="关键发现">关键发现</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-01-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/ICCV2025/html/Jeong_Reangle-A-Video_4D_Video_Generation_as_Video-to-Video_Translation_ICCV_2025_paper.html" title="https://openaccess.thecvf.com/content/ICCV2025/html/Jeong_Reangle-A-Video_4D_Video_Generation_as_Video-to-Video_Translation_ICCV_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Jeong_Reangle-A-Video_4D_Video_…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/ICCV2025/papers/Jeong_Reangle-A-Video_4D_Video_Generation_as_Video-to-Video_Translation_ICCV_2025_paper.pdf" title="https://openaccess.thecvf.com/content/ICCV2025/papers/Jeong_Reangle-A-Video_4D_Video_Generation_as_Video-to-Video_Translation_ICCV_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Jeong_Reangle-A-Video_4D_Video_…</strong></a><a class="source-link source-link-code" href="https://github.com/HyeonHo99/Reangle-Video" title="https://github.com/HyeonHo99/Reangle-Video" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · Reangle-Video</strong></a></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#输入-输出与方法">输入、输出与方法</a></li><li><a href="#数据-指标与人评">数据、指标与人评</a></li><li><a href="#主要结果">主要结果</a></li><li><a href="#消融与成本">消融与成本</a></li><li><a href="#关键局限">关键局限</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>Reangle-A-Video 把单目视频的 4D 重演拆成“多视角首帧外观 + 视点鲁棒运动”，以每场景约 1 小时 CogVideoX-5B LoRA 微调和 $S=25$ 的多路径首帧 inpaint 换取静态新视点与动态相机控制；它是相机重定向/多视角生成，不是常规语义视频编辑或视频理解。</p>
+<h2 id="输入-输出与方法">输入、输出与方法</h2>
 <ul>
-<li>它说明视频生成正在越来越多地借用翻译/编辑式接口，而不是坚持纯从零生成。</li>
-<li>它和 Pathways、FramePainter 一起强化了跨任务重写这条主线。</li>
-<li>它为之后分析统一生成-编辑接口是否持续扩张提供了近期证据。</li>
+<li>输入 49 帧、$480\times720$ 单目真实视频；输出多个同步的新视角视频。</li>
+<li><strong>静态视角迁移</strong>：固定目标相机重演原运动；<strong>动态相机控制</strong>：按文字指定 pan/orbit/dolly 等相机运动。</li>
+<li>Depth Anything V2 把每帧提升为点云，再投影成 $M$ 个 warped videos 与可见 mask。</li>
+<li>CogVideoX-5B 的 3D full-attention 挂 rank-128 LoRA，用 masked diffusion loss 从单场景学习视点鲁棒运动。</li>
+<li>静态模式用 FLUX inpainting ControlNet 补 warped 首帧；每步从 25 条随机路径中以 DUSt3R/MEt3R 类一致性 reward 选候选。</li>
+<li>不生成新的对象动作，不测问答/因果理解；FlowEdit 首帧扩展只是一项定性例子。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="数据-指标与人评">数据、指标与人评</h2>
 <ul>
-<li>4D 设定本身复杂，泛化到一般视频任务还需要谨慎。</li>
-<li>把生成重写成翻译并不自动带来更强能力。</li>
-<li>它是非常有启发性的接口改写样本，但还需要更多后续跟进。</li>
+<li>28 个公开视频，平均每个 3.5 个目标视点/运动，共 98 个输出；共享源视频使独立样本数仍接近 28。</li>
+<li>VBench 测主体/背景/闪烁/运动/画质，FID/FVD 测分布距离，MEt3R 测多视图一致性。</li>
+<li>36 人比较目标视点/相机运动准确与源运动保持；正文未给可机器复核的精确比例、置信区间或显著性。</li>
+<li>缺相机轨迹误差、关键点/动作相位、face/instance identity 与遮挡恢复指标。</li>
 </ul>
+<h2 id="主要结果">主要结果</h2>
+<p>静态任务相对 Vanilla CogVideoX：MEt3R <strong>0.0412 vs 0.0539</strong>、FID <strong>53.448 vs 79.621</strong>、FVD <strong>2690.9 vs 3664.2</strong>；但 Background Consistency <strong>0.9327 vs 0.9398</strong>、Imaging Quality <strong>0.6414 vs 0.6475</strong> 略低，并非全指标领先。</p>
+<p>动态任务相对 NVS-Solver / Trajectory Attention：MEt3R <strong>0.0648 vs 0.1090/0.0965</strong>，FVD <strong>3019.7 vs 3516.5/3624.9</strong>；Dynamic Degree <strong>0.8884</strong> 与 0.8889 基本持平。</p>
+<h2 id="消融与成本">消融与成本</h2>
+<ul>
+<li>stochastic control 使首帧 MEt3R <strong>0.1431→0.1184</strong>、SED <strong>1.1966→1.1844</strong>、TSED <strong>0.5241→0.5588</strong>。</li>
+<li>warped-video augmentation、留出视角和 appearance-edited first frame 只有定性/有限人评证据。</li>
+<li>LoRA 400 steps、AdamW、lr $10^{-4}$、weight decay $10^{-3}$；可训练参数约底座 2%。</li>
+<li>单场景微调约 <strong>1 小时</strong>，A100 40GB、gradient checkpointing；视频 40-step sampling，静态首帧另做 50-step、25 路搜索。</li>
+<li>未报告单输出时延、Stage III 时间、总 GPU-hours、能耗或运行方差。</li>
+</ul>
+<h2 id="关键局限">关键局限</h2>
+<ul>
+<li>深度/相机约定/warping 误差直接限制首帧，输出质量不能超过首帧。</li>
+<li>每个场景都需微调，非实时、非一次训练后通用。</li>
+<li>只有 28 个短视频，无真实标定轨迹、长视频、镜头切换与复杂遮挡。</li>
+<li>MEt3R 类信号参与候选搜索，又用于评价，需独立几何 evaluator 复核。</li>
+<li>motion/subject consistency 只能间接支持身份与动作保持，不能推出场景理解。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li>对 <a class="wikilink" href="../../en/topics/video-generation.html">视频生成</a>：提供“per-scene video-to-multi-view-videos translation”替代大规模 4D foundation training 的证据。</li>
+<li>对 <a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a>：展示 scene LoRA + inference-time search 的成本转移，而非免费复用。</li>
+<li>对 <a class="wikilink" href="../../en/entities/video-editing-understanding.html">视频编辑理解</a> 与 <a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">benchmark 问题</a>：相机重定向、identity、语义编辑与理解必须分开评测。</li>
+</ul>
+<h2 id="证据评级">证据评级</h2>
+<p><strong>B（短视频相机重定向/多视角同步生成的直接工程证据；对身份编辑与视频理解为 C-/无直接证据）</strong>。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://openaccess.thecvf.com/content/ICCV2025/html/Jeong_Reangle-A-Video_4D_Video_Generation_as_Video-to-Video_Translation_ICCV_2025_paper.html</li>
-<li>https://openaccess.thecvf.com/content/ICCV2025/papers/Jeong_Reangle-A-Video_4D_Video_Generation_as_Video-to-Video_Translation_ICCV_2025_paper.pdf</li>
+<li><a href="https://openaccess.thecvf.com/content/ICCV2025/html/Jeong_Reangle-A-Video_4D_Video_Generation_as_Video-to-Video_Translation_ICCV_2025_paper.html">CVF 论文页</a></li>
+<li><a href="https://openaccess.thecvf.com/content/ICCV2025/papers/Jeong_Reangle-A-Video_4D_Video_Generation_as_Video-to-Video_Translation_ICCV_2025_paper.pdf">论文 PDF</a></li>
+<li><a href="https://hyeonho99.github.io/reangle-a-video/">项目页</a></li>
+<li><a href="https://github.com/HyeonHo99/Reangle-Video">官方代码</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/video-generation.html">topics/video-generation</a></li>
-<li><a class="wikilink" href="../../en/topics/video-editing.html">topics/video-editing</a></li>
-<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">entities/video-editing-understanding</a></li>
-<li><a class="wikilink" href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>Reangle-A-Video 在这套库里的作用，是把视频生成/视频编辑接口继续融合的近期路线补成明确节点。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+<li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有 benchmark 是否跟踪真实视频编辑理解</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/video-generation.html">视频生成</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li></ul></div><div class="related-group related-entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li></ul></div><div class="related-group related-questions"><h3>Related questions<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">5</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-04-14-vive3d.html">VIVE3D：多帧个性化 EG3D 的视角无关人脸视频编辑</a><span>Source note</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li><li><a href="../../en/topics/video-editing.html">视频编辑</a><span>Topic</span></li><li><a href="../../en/topics/video-generation.html">视频生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-reangle-a-video&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Reangle-A-Video（ICCV 2025）：把 4D 视频生成重写为视频到视频翻译&quot;,
+  &quot;title&quot;: &quot;Reangle-A-Video：把单目视频重演为多视角同步视频&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;ICCV 2025&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;video-generation&quot;,
-    &quot;video-editing&quot;,
-    &quot;image-generation&quot;,
+    &quot;control&quot;,
+    &quot;diffusion&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
@@ -119,22 +157,24 @@
   &quot;published_at&quot;: &quot;2025-01-01&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://openaccess.thecvf.com/content/ICCV2025/html/Jeong_Reangle-A-Video_4D_Video_Generation_as_Video-to-Video_Translation_ICCV_2025_paper.html&quot;,
-    &quot;https://openaccess.thecvf.com/content/ICCV2025/papers/Jeong_Reangle-A-Video_4D_Video_Generation_as_Video-to-Video_Translation_ICCV_2025_paper.pdf&quot;
+    &quot;https://openaccess.thecvf.com/content/ICCV2025/papers/Jeong_Reangle-A-Video_4D_Video_Generation_as_Video-to-Video_Translation_ICCV_2025_paper.pdf&quot;,
+    &quot;https://hyeonho99.github.io/reangle-a-video/&quot;,
+    &quot;https://github.com/HyeonHo99/Reangle-Video&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-reangle-a-video/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-14-reangle-a-video/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/video-generation&quot;,
-    &quot;topics/video-editing&quot;,
-    &quot;topics/image-generation&quot;
+    &quot;topics/diffusion-models&quot;
   ],
   &quot;entities&quot;: [
     &quot;entities/video-editing-understanding&quot;
   ],
   &quot;claims&quot;: [],
   &quot;questions&quot;: [
-    &quot;questions/question-will-unified-image-models-sustain-their-advantage&quot;
+    &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

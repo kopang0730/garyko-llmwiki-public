@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="LinGen：面向高分辨率分钟级文本到视频生成的线性复杂度框架">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>LinGen：面向高分辨率分钟级文本到视频生成的线性复杂度框架 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-12-lingen&quot;, &quot;title&quot;: &quot;LinGen（CVPR 2025）：面向高分辨率分钟级文本到视频生成的线性复杂度框架&quot;, &quot;title_en&quot;: &quot;LinGen（CVPR 2025）：面向高分辨率分钟级文本到视频生成的线性复杂度框架&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-generation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-12-lingen&quot;, &quot;title&quot;: &quot;LinGen（CVPR 2025）：面向高分辨率分钟级文本到视频生成的线性复杂度框架&quot;, &quot;title_en&quot;: &quot;LinGen（CVPR 2025）：面向高分辨率分钟级文本到视频生成的线性复杂度框架&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-generation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,51 +60,86 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-12-lingen.html">中文</a><a class="" href="../en/sources/2026-04-12-lingen.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>LinGen：面向高分辨率分钟级文本到视频生成的线性复杂度框架</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
         <h1><span class="title-main">LinGen</span><span class="title-subtitle">面向高分辨率分钟级文本到视频生成的线性复杂度框架</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2025</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2025-06-11</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-12</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2025/html/Wang_LinGen_Towards_High-Resolution_Minute-Length_Text-to-Video_Generation_with_Linear_Computational_Complexity_CVPR_2025_paper.html" title="https://openaccess.thecvf.com/content/CVPR2025/html/Wang_LinGen_Towards_High-Resolution_Minute-Length_Text-to-Video_Generation_with_Linear_Computational_Complexity_CVPR_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>openaccess.thecvf.com · Wang_LinGen_Towards_High-Resolu…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_LinGen_Towards_High-Resolution_Minute-Length_Text-to-Video_Generation_with_Linear_Computational_Complexity_CVPR_2025_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_LinGen_Towards_High-Resolution_Minute-Length_Text-to-Video_Generation_with_Linear_Computational_Complexity_CVPR_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Wang_LinGen_Towards_High-Resolu…</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-generation">#video-generation</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作认为，分钟级高分辨率视频生成之所以难，首先是一个计算复杂度问题；只要把核心模块从二次复杂度 attention 改成线性复杂度结构，长视频生成就能真正向实用迈进。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2025</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2025-06-11</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-12</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2025/html/Wang_LinGen_Towards_High-Resolution_Minute-Length_Text-to-Video_Generation_with_Linear_Computational_Complexity_CVPR_2025_paper.html" title="https://openaccess.thecvf.com/content/CVPR2025/html/Wang_LinGen_Towards_High-Resolution_Minute-Length_Text-to-Video_Generation_with_Linear_Computational_Complexity_CVPR_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>openaccess.thecvf.com · Wang_LinGen_Towards_High-Resolu…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_LinGen_Towards_High-Resolution_Minute-Length_Text-to-Video_Generation_with_Linear_Computational_Complexity_CVPR_2025_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_LinGen_Towards_High-Resolution_Minute-Length_Text-to-Video_Generation_with_Linear_Computational_Complexity_CVPR_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Wang_LinGen_Towards_High-Resolu…</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#实验设置">实验设置</a></li><li><a href="#核心实验与结果">核心实验与结果</a><ol><li class="toc-sub"><a href="#效率">效率</a></li><li class="toc-sub"><a href="#质量">质量</a></li></ol></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>LinGen 从视频 DiT 框架出发，以 Mamba2 + 局部 Temporal Swin Attention 的 MATE block 替换全局 self-attention，在 512p 68s 下相对 DiT-4B 降低 15× FLOPs、11.5×实测延迟，并保持相当质量；它既继承 DiT 框架，也暴露标准 attention-DiT 的长序列边界。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>LinGen 是 <a class="wikilink" href="../topics/video-generation.html">视频生成</a> 中“每步架构效率”路线的代表。它与采样蒸馏正交：不是减少 denoising steps，而是降低每一步处理海量视频 token 的成本。</p>
+<p>对 DiT 谱系的关键区分是：LinGen 保留 flow matching、文本 cross-attention、视频 latent pipeline 等框架，但替换 global self-attention 核心算子，因此是混合/边界证据。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>它要解决的是视频生成随着像素数和时长增长而迅速爆炸的算力成本，使得多数系统只能停留在 10 到 20 秒级短视频。</p>
+<p>视频 DiT 的 global self-attention 随 token 数平方增长，使 10–20 秒以上、高分辨率生成昂贵。论文要把复杂度改为随总像素/token 数线性增长，并在单 GPU 上达到 68s、1088 raw frames（PDF pp.1, 6–8）。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>方法上，它用线性复杂度的 MATE 模块替换标准自注意力，将 Mamba 风格的长程建模和时间建模结合起来，让生成成本随像素数量线性增长。</p>
-<h2 id="关键发现">关键发现</h2>
+<p>MATE 含两支（PDF pp.3–5）：</p>
 <ul>
-<li>长视频生成被明确看作系统级效率问题，而不仅是模型规模问题。</li>
-<li>论文报告了显著的 FLOPs 与延迟下降，同时保持有竞争力的质量。</li>
-<li>它把文本到视频推进到分钟级长度，并宣称单 GPU 也能实现。</li>
+<li><strong>MA-branch</strong>：bidirectional Mamba2 做长程建模；RMS 在层间轮换时/空主扫描顺序，减少 3D 展平后的邻接破坏；review tokens 先注入池化全局概览。</li>
+<li><strong>TE-branch</strong>：固定 3D 小窗口 TESA，覆盖空间短程与时间中程相关；窗口固定，因此总复杂度对全局 token 数线性。</li>
+</ul>
+<p>系统仍保留文本 cross-attention 与局部 window attention，不能写成“完全无 attention”。训练从 256p T2I 渐进到 512p T2V、17→34→68s，并混合图像/视频训练、用 3K 高质量视频 fine-tune（PDF p.5）。</p>
+<h2 id="实验设置">实验设置</h2>
+<ul>
+<li>LinGen-4B：32 层、20 heads、hidden 2560；DiT-4B：32 层、24 heads、hidden 3072（PDF p.5）。同为 4B 级，但并非逐层等宽。</li>
+<li>数据：300M Shutterstock 图文对 + 24M 视频文本对；3K 视频 quality tuning（PDF p.6）。</li>
+<li>latency 在单 H100 测量；质量采用 A/B 人评和 VBench-Long。</li>
+</ul>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<h3 id="效率">效率</h3>
+<table><thead><tr><th>512p 时长</th><th>FLOPs 加速</th><th>latency 加速</th><th>定位</th></tr></thead><tbody><tr><td>17s</td><td>5×</td><td>2.0×</td><td>PDF p.6，Figure 6</td></tr><tr><td>34s</td><td>8×</td><td>3.9×</td><td>同上</td></tr><tr><td>68s</td><td><strong>15×</strong></td><td><strong>11.5×</strong></td><td>同上</td></tr></tbody></table>
+<p>17s 从 512p 提升到 768p 时，latency 加速从 2.0× 增到 3.6×（PDF p.6）。FLOPs 与 latency 必须分开报告。</p>
+<h3 id="质量">质量</h3>
+<ul>
+<li>对 DiT-4B，人评 overall quality 胜率 <strong>75.59%</strong>，overall alignment 76.76%，motion naturalness 64.85%（PDF p.8，Figure 8）。</li>
+<li>对 Gen-3/LumaLabs/Kling，人评胜率约 50.5%/52.1%/49.1%；论文称方差约 3%，应理解为“相当”而非显著领先（PDF p.8，Figure 9）。</li>
+<li>VBench-Long：LinGen Quality 81.76、Semantic 73.73、Total 26.32，接近 Gen-3 82.32/75.17/26.69 与 Kling 81.85/75.68/26.42；最大 raw frames 为 <strong>1088</strong>，高于 256/313/408（PDF p.7，Table 1）。</li>
+</ul>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>TESA 与 RMS 改善质量/loss；RMS 与 Zigzag 质量近似，但 512p 17s latency 为 102s vs Zigzag 144s（PDF p.8，Table 2 / Figure 11）。</li>
+<li>默认 102s；去 TE branch 94s，去 scan 99s，用 Mamba 替代 Mamba2 127s，去 review token 98s，去 MA branch 65s（PDF p.8，Table 2）。</li>
+<li>Mamba2 比 Mamba 快约 25%，质量近似；完全移除 MA branch 虽更快但质量严重恶化（PDF p.8）。</li>
+<li>quality tuning、hybrid training、review tokens 的人评消融均有收益，但论文未给完整置信区间，证据弱于硬件延迟表。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>长视频质量是否稳定，还需要比指标更细致的人工检查。</li>
-<li>线性复杂度替代结构可能仍然牺牲部分表达能力。</li>
-<li>后续应和 vault 中其他长视频生成方法直接比较。</li>
+<li>300M 图像对 + 24M 视频对，复现成本极高。</li>
+<li>DiT-4B 与 LinGen-4B hidden/head 配置不同，非严格等参逐模块对照。</li>
+<li>商业模型对比无法控制数据、规模、采样和 prompt pipeline。</li>
+<li>68s/1088 frames 不等于长程叙事、物理一致性已经解决。</li>
+<li>hour-length、实时交互是 Conclusion 的未来展望，不是已验证能力（PDF p.8）。</li>
 </ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<p>对 <a class="wikilink" href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT / Transformer 主干 claim</a> 的分类是：<strong>混合/边界证据</strong>。</p>
+<p>它支持 DiT 作为可继承、可改造的视频生成框架；同时证明标准 global attention 不是分钟级视频的最终可扩展答案。后续综合应区分“DiT 框架采用”与“Transformer attention 核心算子保留”。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://openaccess.thecvf.com/content/CVPR2025/html/Wang_LinGen_Towards_High-Resolution_Minute-Length_Text-to-Video_Generation_with_Linear_Computational_Complexity_CVPR_2025_paper.html</li>
-<li>https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_LinGen_Towards_High-Resolution_Minute-Length_Text-to-Video_Generation_with_Linear_Computational_Complexity_CVPR_2025_paper.pdf</li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2025/html/Wang_LinGen_Towards_High-Resolution_Minute-Length_Text-to-Video_Generation_with_Linear_Computational_Complexity_CVPR_2025_paper.html">CVF 论文页</a></li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_LinGen_Towards_High-Resolution_Minute-Length_Text-to-Video_Generation_with_Linear_Computational_Complexity_CVPR_2025_paper.pdf">PDF</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../topics/video-generation.html">topics/video-generation</a></li>
-<li><a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../topics/generative-model-evaluation.html">topics/generative-model-evaluation</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>LinGen 非常适合作为 video-generation 路线中的“算力可扩展性主线”代表。它说明长视频不是只靠更大模型就能解决，而是必须在核心结构上重做复杂度设计。</p></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+<li><a class="wikilink" href="../topics/video-generation.html">视频生成</a></li>
+<li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a class="wikilink" href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT / Transformer 主干趋势</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../topics/video-generation.html">视频生成</a></li><li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">5</span></h2><ul><li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a><span>判断</span></li><li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a><span>实体</span></li><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-04-12-streamingt2v.html">StreamingT2V：一致、动态、可扩展的长视频文本生成</a><span>来源笔记</span></li><li><a href="../topics/video-generation.html">视频生成</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-12-lingen&quot;,
   &quot;type&quot;: &quot;source&quot;,
   &quot;title&quot;: &quot;LinGen（CVPR 2025）：面向高分辨率分钟级文本到视频生成的线性复杂度框架&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-12&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2025&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-12&quot;,
   &quot;tags&quot;: [
@@ -135,7 +176,7 @@
   &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

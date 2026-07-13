@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ST-GCN：ST-GCN 用时空图卷积建模骨架动作，是姿态驱动动作识别的经典基线。 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="ST-GCN：骨架动作识别的时空图卷积基线">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>ST-GCN：骨架动作识别的时空图卷积基线 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-25-st-gcn&quot;, &quot;title&quot;: &quot;ST-GCN（AAAI 2018 / arXiv）：ST-GCN 用时空图卷积建模骨架动作，是姿态驱动动作识别的经典基线。&quot;, &quot;title_en&quot;: &quot;ST-GCN（AAAI 2018 / arXiv）：ST-GCN 用时空图卷积建模骨架动作，是姿态驱动动作识别的经典基线。&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;reasoning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-25-st-gcn&quot;, &quot;title&quot;: &quot;ST-GCN：骨架动作识别的时空图卷积基线&quot;, &quot;title_en&quot;: &quot;ST-GCN：骨架动作识别的时空图卷积基线&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;reasoning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,48 +60,71 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-25-st-gcn.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-25-st-gcn.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-05-22</p>
-        <h1><span class="title-main">ST-GCN</span><span class="title-subtitle">ST-GCN 用时空图卷积建模骨架动作，是姿态驱动动作识别的经典基线。</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>ST-GCN：骨架动作识别的时空图卷积基线</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">ST-GCN</span><span class="title-subtitle">骨架动作识别的时空图卷积基线</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>AAAI 2018 / arXiv</dd></div><div class="source-fact"><dt>Published</dt><dd>2018-01-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-25</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/1801.07455" title="https://arxiv.org/abs/1801.07455" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 1801.07455</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/1801.07455.pdf" title="https://arxiv.org/pdf/1801.07455.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 1801.07455.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#reasoning">#reasoning</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h1 id="st-gcn-aaai-2018-arxiv-st-gcn-用时空图卷积建模骨架动作-是姿态驱动动作识别的经典基线">ST-GCN（AAAI 2018 / arXiv）：ST-GCN 用时空图卷积建模骨架动作，是姿态驱动动作识别的经典基线。</h1>
-<blockquote>资料来源：AAAI 2018 / arXiv</blockquote>
-<blockquote>发表 / 发布日期：2018-01-01</blockquote>
-<blockquote>资料加入日期：2026-04-25</blockquote>
-<h2 id="一句话结论">一句话结论</h2>
-<p>ST-GCN 用时空图卷积建模骨架动作，是姿态驱动动作识别的经典基线。</p>
-<h2 id="资料定位">资料定位</h2>
-<p>这是从体育机器视觉文献清单中拆出的独立来源。当前 first-pass 编译先把它放进 raw/source 证据层，后续可按重要性升级为深分析笔记。</p>
-<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
-<p>它可作为体育动作识别、技术动作评分和骨架分支实验的基础方法锚点。</p>
-<h2 id="局限或疑问">局限或疑问</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>AAAI 2018 / arXiv</dd></div><div class="source-fact"><dt>Published</dt><dd>2018-01-25</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-25</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/1801.07455" title="https://arxiv.org/abs/1801.07455" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 1801.07455</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/1801.07455.pdf" title="https://arxiv.org/pdf/1801.07455.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 1801.07455.pdf</strong></a><a class="source-link source-link-code" href="https://github.com/yysijie/st-gcn" title="https://github.com/yysijie/st-gcn" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · st-gcn</strong></a></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#数据-协议与结果">数据、协议与结果</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限与迁移边界">局限与迁移边界</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>ST-GCN 首次把人体自然骨骼连接与同关节跨帧连接统一成时空图并端到端学习，是姿态动作识别的经典基线；它证明骨架与 RGB 互补，但不包含细粒度阶段定位、质量评分或教练式纠错。</p>
+<h2 id="论文定位">论文定位</h2>
+<p>论文用图卷积取代 joint-vector + RNN/TCN 和手工 body-part 规则。它的价值是建立可复现的 skeleton representation 基础，不是当前性能上限。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>骨架序列是非规则图：关节间拓扑重要，时间动力学也重要。传统方法要么忽略人体连接，要么依赖手工部件。ST-GCN 试图以局部共享图卷积同时学习空间结构和时间演化。</p>
+<h2 id="方法概述">方法概述</h2>
 <ul>
-<li>当前是 bibliography-driven first-pass source note，优先保证来源可追溯和方向定位。</li>
-<li>重要 paper 后续应补 <code>analysis.md</code>、关键图页、实验设置和指标细节。</li>
+<li>节点是每帧人体关节；帧内边按自然骨骼连接，帧间边连接相邻帧同一关节。</li>
+<li>输入是 2D/3D 坐标，可带姿态置信度；Kinetics 使用 $(X,Y,C)$、18 关节、最多两人，NTU 使用 25 个 3D 关节。</li>
+<li>1-hop 邻域采用 root/centripetal/centrifugal 三分区，避免把所有邻居简单平均。</li>
+<li>每层有可学习 edge-importance mask；9 个 ST-GCN units 依次输出 64/128/256 channels，temporal kernel 9，最后全局池化和 Softmax。</li>
 </ul>
-<h2 id="原始材料">原始材料</h2>
+<h2 id="数据-协议与结果">数据、协议与结果</h2>
 <ul>
-<li><code>raw/ingest/2026-04-25-st-gcn/source.md</code></li>
-<li><code>raw/ingest/2026-04-25-st-gcn/paper-text.md</code></li>
-<li><code>raw/ingest/2026-04-25-st-gcn/links.yaml</code></li>
+<li><strong>Kinetics-400</strong>：240k train / 20k val，OpenPose 2D skeleton，top-1/top-5。</li>
+<li><strong>NTU-RGB+D</strong>：56k clip、60 类，遵循 cross-subject 与 cross-view。</li>
+<li>Kinetics skeleton-only：ST-GCN <strong>30.7 top-1 / 52.8 top-5</strong>，相对 Temporal ConvNet 20.3/40.0 明显提高，但低于 RGB 57.0/77.3（Table 2）。</li>
+<li>NTU：<strong>81.5 X-Sub / 88.3 X-View</strong>，高于当时 C-CNN+MTLN 的 79.6/84.8（Table 3）。</li>
+<li>RGB TSN 70.3；加入 ST-GCN 后 71.2；RGB+Flow+ST-GCN 71.7，直接说明骨架提供互补运动信息（Table 5）。</li>
+<li>实验使用 PyTorch、8 张 TITAN X；论文未报告参数量、FLOPs、训练时长或完整姿态前端延迟。</li>
+</ul>
+<h2 id="关键消融">关键消融</h2>
+<p>Kinetics Table 1：Baseline TCN 20.3 top-1；local conv 22.0；distance partition 29.1；spatial configuration 29.9；再加 edge importance 达 30.7。消融支持稀疏人体拓扑、多子集分区和可学习边权，但没有方差报告。</p>
+<h2 id="局限与迁移边界">局限与迁移边界</h2>
+<ul>
+<li>Kinetics 中许多类别依赖物体/场景，骨架远弱于 RGB；作者明确把上下文融合列为未来工作。</li>
+<li>固定人体图没有球/球拍节点、多主体交互、样本依赖动态图或长程 attention。</li>
+<li>OpenPose 误差、遮挡、相机运动会传入模型；完整系统成本还包括姿态估计。</li>
+<li>对羽毛球 demo，可作为 pose-only 分类 baseline，但应增加手腕/球拍/球节点、击球阶段定位、速度角度特征和质量回归；NTU 准确率不能外推成技术纠正能力。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li>对 <a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">体育 AI 视频理解</a> 是 skeleton 分支及 RGB 互补的<strong>奠基支持</strong>。</li>
+<li>对 <a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">体育 AI 路线图</a> 是动作识别/动作纠正原型的<strong>基础方法证据</strong>。</li>
+<li>对 <a class="wikilink" href="../../en/topics/video-understanding.html">视频理解</a> 是非网格时空结构学习的<strong>历史背景证据</strong>。</li>
+<li>不应引用本文支持“骨架优于 RGB”或“已实现细粒度动作纠正”。</li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
-<li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
-<li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-25-timesformer.html">TimeSformer</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-25-videomae.html">VideoMAE</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-23-sportmamba.html">SportMamba</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li><li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li><li><a class="wikilink" href="../../en/topics/video-understanding.html">Video Understanding</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">13</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-04-23-sportmamba.html">SportMamba：面向团队运动的非线性多目标跟踪</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-25-timesformer.html">TimeSformer：用于视频理解的分解式时空注意力</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-25-videomae.html">VideoMAE：数据高效的视频掩码自编码预训练</a><span>Source note</span></li><li><a href="../../en/sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition.html">BlockGCN：保留骨架拓扑并轻量建模多种关节关系</a><span>Source note</span></li><li><a href="../../en/sources/2026-05-16-bst-badminton-stroke-type-transformer.html">BST：面向羽毛球击球类型识别的骨架动作 Transformer</a><span>Source note</span></li><li><a href="../../en/sources/2026-05-16-protogcn-skeleton-action-recognition.html">ProtoGCN：用运动原型重构放大相似骨架动作的局部差异</a><span>Source note</span></li><li><a href="../../en/sources/2026-05-16-skateformer-skeletal-temporal-transformer.html">SkateFormer：用四类骨架—时间分区实现高效联合注意力</a><span>Source note</span></li><li><a href="../../en/sources/2026-05-16-tempose-badminton-fine-grained-motion.html">TemPose：面向羽毛球细粒度动作识别的骨架 Transformer</a><span>Source note</span></li><li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a><span>Topic</span></li><li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a><span>Topic</span></li><li><a href="../../en/topics/video-understanding.html">Video Understanding</a><span>Topic</span></li><li><a href="../../en/topics/vision-backbones.html">Mainstream Vision Backbones</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-25-st-gcn&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;ST-GCN（AAAI 2018 / arXiv）：ST-GCN 用时空图卷积建模骨架动作，是姿态驱动动作识别的经典基线。&quot;,
+  &quot;title&quot;: &quot;ST-GCN：骨架动作识别的时空图卷积基线&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-25&quot;,
-  &quot;updated&quot;: &quot;2026-05-22&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;AAAI 2018 / arXiv&quot;,
-  &quot;published_at&quot;: &quot;2018-01-01&quot;,
+  &quot;published_at&quot;: &quot;2018-01-25&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-25&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
@@ -105,10 +134,15 @@
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
-  &quot;authors&quot;: [],
+  &quot;authors&quot;: [
+    &quot;Sijie Yan&quot;,
+    &quot;Yuanjun Xiong&quot;,
+    &quot;Dahua Lin&quot;
+  ],
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/1801.07455&quot;,
-    &quot;https://arxiv.org/pdf/1801.07455.pdf&quot;
+    &quot;https://arxiv.org/pdf/1801.07455.pdf&quot;,
+    &quot;https://github.com/yysijie/st-gcn&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-25-st-gcn/&quot;,
   &quot;topics&quot;: [
@@ -116,12 +150,10 @@
     &quot;topics/sports-ai-roadmap&quot;,
     &quot;topics/video-understanding&quot;
   ],
-  &quot;entities&quot;: [
-    &quot;entities/sportsmot&quot;
-  ],
+  &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

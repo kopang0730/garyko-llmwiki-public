@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Post-Training Quantization on Diffusion Models：把扩散模型推理进一步压到低比特部署 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="Post-Training Quantization on Diffusion Models：面向多 timestep 的 INT8 校准">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Post-Training Quantization on Diffusion Models：面向多 timestep 的 INT8 校准 · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-post-training-quantization-on-diffusion-models&quot;, &quot;title&quot;: &quot;Post-Training Quantization on Diffusion Models（CVPR 2023）：把扩散模型推理进一步压到低比特部署&quot;, &quot;title_en&quot;: &quot;Post-Training Quantization on Diffusion Models（CVPR 2023）：把扩散模型推理进一步压到低比特部署&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-post-training-quantization-on-diffusion-models&quot;, &quot;title&quot;: &quot;Post-Training Quantization on Diffusion Models：面向多 timestep 的 INT8 校准&quot;, &quot;title_en&quot;: &quot;Post-Training Quantization on Diffusion Models：面向多 timestep 的 INT8 校准&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,35 +60,63 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-16-post-training-quantization-on-diffusion-models.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-16-post-training-quantization-on-diffusion-models.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-16</p>
-        <h1><span class="title-main">Post-Training Quantization on Diffusion Models</span><span class="title-subtitle">把扩散模型推理进一步压到低比特部署</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Post-Training Quantization on Diffusion Models：面向多 timestep 的 INT8 校准</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">Post-Training Quantization on Diffusion Models</span><span class="title-subtitle">面向多 timestep 的 INT8 校准</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2022/11/28</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2211.15736" title="https://arxiv.org/abs/2211.15736" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2211.15736</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2211.15736.pdf" title="https://arxiv.org/pdf/2211.15736.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2211.15736.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#efficiency">#efficiency</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把 diffusion efficiency 主线推进到部署层：它用 training-free 的 PTQ 方法直接把扩散模型压到 8-bit，同时尽量保住生成质量，并且能叠加到已有的 fast-sampling 路线上。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2022-11-28</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2211.15736" title="https://arxiv.org/abs/2211.15736" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2211.15736</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2211.15736.pdf" title="https://arxiv.org/pdf/2211.15736.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2211.15736.pdf</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#实验设置">实验设置</a></li><li><a href="#核心结果">核心结果</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#架构与-dit-证据边界">架构与 DiT 证据边界</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>PTQ4DM 用 timestep-aware 的 NDTC 校准，把 DDPM/DDIM 的 U-Net-like CNN 从 FP32 量化到 INT8；A6000 单次网络推理约 1.6–2.3× 加速，但多个设置仍有 FID 损失，不能概括成普遍“无损量化”，也不是 DiT 证据。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>扩散模型的慢，来自两层成本同时累加：一层是去噪步数很多，另一层是每一步都要调用很重的噪声估计网络。已有很多工作集中在缩短采样轨迹，这篇论文则聚焦另一半问题——如何压缩每一步的网络计算成本，让 diffusion 更接近可部署系统。</p>
+<p>扩散延迟有两个正交来源：采样步数多，以及每步噪声网络重。传统 fast sampler 只处理前者；普通 PTQ 又假设单一输入分布，而扩散网络激活随 timestep 大幅漂移，直接套用会校准失败。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>作者选择 post-training quantization 这条训练后压缩路线，避免重新训练 diffusion model。难点在于 diffusion 的噪声估计网络输出会随着 time-step 变化，传统面向单时间步场景的 PTQ 方法很难直接迁移。论文围绕 quantized operations、calibration dataset、calibration metric 三个维度做 diffusion-specific 设计，让校准过程能够覆盖 multi-time-step 结构，并把 full-precision 模型直接转成低比特版本。</p>
-<h2 id="关键发现">关键发现</h2>
 <ul>
-<li>它把 <a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a> 中的 efficiency 叙事继续往部署端推进：现在这条线已经覆盖 scheduler、solver、guidance、cache、free lunch reweighting 和 low-bit quantization。</li>
-<li>论文报告可在 training-free 条件下把 diffusion model 量化到 8-bit，同时维持甚至提升部分生成表现，说明量化在 diffusion 上开始具备实用可行性。</li>
-<li>它和 <a class="wikilink" href="../../en/sources/2026-04-16-on-distillation-of-guided-diffusion-models.html">sources/2026-04-16-on-distillation-of-guided-diffusion-models</a>、<a class="wikilink" href="../../en/sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">sources/2026-04-15-distilling-ode-solvers-diffusion-models</a> 形成很好的互补：前两者压缩采样行为和轨迹，这篇压缩每一步的网络计算。</li>
-<li>论文明确指出该方法可 plug into DDIM 等 fast-sampling 方法，因此它更像 deployment multiplier，而不是单独存在的一条提速技巧。</li>
+<li>量化 convolution / fully connected 及网络输出相关操作，SiLU、softmax 保留全精度。</li>
+<li><strong>NDTC</strong> 从偏向图像端但覆盖多个 timestep 的正态分布采样 <code>t_i</code>，沿全精度 reverse process 生成 <code>x_{t_i}</code> 校准样本。</li>
+<li>用 MSE 选择 uniform quantization 的 scale 与 zero point；无需反向训练，实验用 1,024 个 calibration samples。</li>
+</ul>
+<h2 id="实验设置">实验设置</h2>
+<ul>
+<li>ImageNet 64×64、CIFAR-10 32×32。</li>
+<li>DDPM 4,000 steps；DDIM 100/250 steps。</li>
+<li>FP32→INT8；生成 10,000 张图，测 IS/FID/sFID。</li>
+<li>NVIDIA RTX A6000 上测噪声网络单次 inference latency，batch 1/16。</li>
+</ul>
+<h2 id="核心结果">核心结果</h2>
+<table><thead><tr><th>设置</th><th>FP32</th><th>INT8 PTQ4DM</th><th>结论</th></tr></thead><tbody><tr><td>ImageNet64 DDIM250, IS/FID/sFID</td><td>14.88/21.63/17.66</td><td>15.88/23.96/17.67</td><td>IS 升，但 FID 恶化 2.33</td></tr><tr><td>ImageNet64 DDPM4000</td><td>15.93/20.82/17.42</td><td>15.28/23.64/17.29</td><td>混合结果</td></tr><tr><td>CIFAR DDPM4000</td><td>9.28/7.14/17.09</td><td>9.55/7.10/17.02</td><td>最接近“全面持平/提升”</td></tr><tr><td>CIFAR DDIM100, FID</td><td>10.05</td><td>14.18</td><td>明显损失</td></tr><tr><td>CIFAR DDIM250, FID</td><td>8.91</td><td>11.66</td><td>明显损失</td></tr></tbody></table>
+<p>A6000 latency：ImageNet64 batch1 <strong>9.80→4.99 ms</strong>、batch16 <strong>64.42→28.16 ms</strong>；CIFAR batch1 <strong>5.92→2.98 ms</strong>、batch16 <strong>23.15→14.13 ms</strong>。这是单步网络 latency，不是完整生成固定 2×。</p>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>校准来源：noise FID 33.15、raw images 128.63、training-mimic 34.55；真实 reverse path 更匹配部署输入。</li>
+<li>timestep 覆盖：uniform multi-timestep FID 26.19；NDTC 24.26，优于单 timestep。</li>
+<li>metric：MSE FID 30.46，优于 cosine 34.81、KL 47.27、L1 100.52。</li>
+<li>timestep 分布：Poisson/Exponential 明显更差；正态分布的均值/方差很敏感，最佳列出 FID 23.96。</li>
+<li>输出 <code>mu/sigma/x_{t-1}</code> 的 INT8 敏感度较低，可扩大低比特覆盖。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>这篇工作主要证明 8-bit PTQ 的可行性，更低比特设置下的质量边界与稳定性仍值得继续跟踪。</li>
-<li>它聚焦图像生成侧的噪声估计网络压缩，视频 diffusion、统一生成编辑模型和更大规模多模态系统中的收益还需要后续证据。</li>
-<li>量化改善了单步成本，整体系统延迟仍会受到采样步数与内存访问模式影响，因此它更适合和其他 few-step 技术组合看。</li>
+<li>只验证 INT8；不能外推到 INT4/W4A8。</li>
+<li>数据集低分辨率，未验证 Stable Diffusion、文生图、视频或大规模服务。</li>
+<li>“保持甚至提升”只适用于部分指标/设置；多个 FID 明显下降。</li>
+<li>calibration 仍需全精度反向过程生成 1,024 个样本；training-free 不等于零成本。</li>
+<li>没有完整生成 wall-clock、显存、能耗或 NPU 实测。</li>
+</ul>
+<h2 id="架构与-dit-证据边界">架构与 DiT 证据边界</h2>
+<ul>
+<li><strong>实际量化对象：U-Net-like CNN。</strong> 正文与图 2 都以 U-Net encoder/decoder、卷积层为噪声估计器。</li>
+<li>ViT 只出现在通用 PTQ 背景，不是本文 diffusion backbone。</li>
+<li>因而该论文支持“扩散部署需要 timestep-aware calibration”和“单步压缩与采样步数压缩正交”，但不能支持 DiT 的采用率、scaling 或默认地位。DiT 的 attention/MLP 激活必须另做受控量化验证。</li>
 </ul>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2211.15736</li>
-<li>https://arxiv.org/pdf/2211.15736.pdf</li>
+<li><a href="https://arxiv.org/abs/2211.15736">arXiv 论文页</a></li>
+<li><a href="https://arxiv.org/pdf/2211.15736.pdf">PDF</a></li>
+<li><a href="https://github.com/42Shawn/PTQ4DM">官方代码</a></li>
+<li>本地全文：<code>raw/ingest/2026-04-16-post-training-quantization-on-diffusion-models/paper-text.md</code></li>
+<li>本地深分析：<code>raw/ingest/2026-04-16-post-training-quantization-on-diffusion-models/analysis.md</code></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
@@ -90,17 +124,18 @@
 <li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
 <li><a class="wikilink" href="../../en/sources/2026-04-16-on-distillation-of-guided-diffusion-models.html">sources/2026-04-16-on-distillation-of-guided-diffusion-models</a></li>
 <li><a class="wikilink" href="../../en/sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">sources/2026-04-15-distilling-ode-solvers-diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-15-deepcache.html">sources/2026-04-15-deepcache</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>它在本库中的价值，是把“扩散提速”从算法路径进一步补到模型部署路径。这样 diffusion efficiency 主线已经更像一张完整工程图谱，而不是几篇互相孤立的 sampler 论文。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">7</span></h2><ul><li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a><span>Claim</span></li><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-04-16-on-distillation-of-guided-diffusion-models.html">On Distillation of Guided Diffusion Models：把 CFG 与采样轨迹联合蒸馏到极少步</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-text-embedding-quantization-diffusion.html">Text Embedding Knows How to Quantize：用文本条件动态分配扩散激活位宽</a><span>Source note</span></li><li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>Topic</span></li><li><a href="../../en/topics/diffusion-models.html">扩散模型</a><span>Topic</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-16-post-training-quantization-on-diffusion-models&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;Post-Training Quantization on Diffusion Models（CVPR 2023）：把扩散模型推理进一步压到低比特部署&quot;,
+  &quot;title&quot;: &quot;Post-Training Quantization on Diffusion Models：面向多 timestep 的 INT8 校准&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-16&quot;,
-  &quot;updated&quot;: &quot;2026-04-16&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2023&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-16&quot;,
   &quot;tags&quot;: [
@@ -119,7 +154,7 @@
     &quot;Wu, Bingzhe&quot;,
     &quot;Yan, Yan&quot;
   ],
-  &quot;published_at&quot;: &quot;2022/11/28&quot;,
+  &quot;published_at&quot;: &quot;2022-11-28&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2211.15736&quot;,
     &quot;https://arxiv.org/pdf/2211.15736.pdf&quot;
@@ -132,7 +167,7 @@
   &quot;entities&quot;: [],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

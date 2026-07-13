@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>RefereeBench：多运动项目视频裁判能力评测 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="RefereeBench：多运动项目规则化视频裁判评测">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>RefereeBench：多运动项目规则化视频裁判评测 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-05-refereebench-multi-sport-referees&quot;, &quot;title&quot;: &quot;RefereeBench：多运动项目视频裁判能力评测&quot;, &quot;title_en&quot;: &quot;RefereeBench：多运动项目视频裁判能力评测&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-05-refereebench-multi-sport-referees&quot;, &quot;title&quot;: &quot;RefereeBench：多运动项目规则化视频裁判评测&quot;, &quot;title_en&quot;: &quot;RefereeBench：多运动项目规则化视频裁判评测&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,56 +60,89 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-05-05-refereebench-multi-sport-referees.html">中文</a><a class="" href="../en/sources/2026-05-05-refereebench-multi-sport-referees.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-05-05</p>
-        <h1><span class="title-main">RefereeBench</span><span class="title-subtitle">多运动项目视频裁判能力评测</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>RefereeBench：多运动项目规则化视频裁判评测</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">RefereeBench</span><span class="title-subtitle">多运动项目规则化视频裁判评测</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>arXiv 2026</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2026-04-17</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-05-05</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2604.15736" title="https://arxiv.org/abs/2604.15736" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2604.15736</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2604.15736" title="https://arxiv.org/pdf/2604.15736" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2604.15736</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#evaluation">#evaluation</a><a class="tag" href="../tags.html#benchmarking">#benchmarking</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>RefereeBench 把 sports referee reasoning 做成多运动项目 Video MLLM benchmark，用 11 项运动、925 个视频和 6,475 个 QA pairs 测试犯规存在、处罚分类、理由解释、实体感知和 temporal grounding。</p>
-<h2 id="论文定位">论文定位</h2>
-<p>这篇论文的价值在评测定义：它把“视频模型会看体育视频”推进到“模型能否执行规则化裁判判断”。它覆盖多运动项目，因此适合放在 <a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的 rule-grounded officiating 层，作为从足球 VAR 扩展到 multi-sport referee benchmark 的趋势证据。</p>
-<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>arXiv 2026</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2026-04-17</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-05-05</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2604.15736" title="https://arxiv.org/abs/2604.15736" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2604.15736</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2604.15736" title="https://arxiv.org/pdf/2604.15736" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2604.15736</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#数据与标注">数据与标注</a></li><li><a href="#评测协议">评测协议</a></li><li><a href="#核心结果">核心结果</a></li><li><a href="#关键压力测试">关键压力测试</a><ol><li class="toc-sub"><a href="#音频">音频</a></li><li class="toc-sub"><a href="#规则知识">规则知识</a></li><li class="toc-sub"><a href="#负样本与诱导">负样本与诱导</a></li><li class="toc-sub"><a href="#prompt-rag">Prompt / RAG</a></li></ol></li><li><a href="#泄漏与证据边界">泄漏与证据边界</a></li><li><a href="#对羽毛球-demo-的影响">对羽毛球 demo 的影响</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始材料">原始材料</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>RefereeBench 用 925 clips、6,475 QA、11 项运动和约 30 名认证裁判评测规则化判罚；最佳 closed/open 模型 overall 仅 61.09%/47.07%，且负例中严重 over-call，说明 benchmark 有价值，但 multiple-choice、broadcast shortcuts、API/帧预算差异和无 human baseline 限制部署结论。</p>
+<h2 id="数据与标注">数据与标注</h2>
 <ul>
-<li>与 <a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 的关系：它把 referee-assist 从单一足球场景扩成跨运动评测。</li>
-<li>与 <a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 的关系：它强调体育视频理解需要实体、时间点、规则和处罚逻辑同步成立。</li>
-<li>与 <a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a> 的关系：它给通用 Video MLLM 提供一个更严的专业能力测试。</li>
+<li>5,410 原视频，经 ASR/字幕关键词产生 40,000+ proposals，人工筛为 925 clips；</li>
+<li>11 项运动；平均 37.25 秒；64 foul types、34 penalty types；平均每 clip 1.55 temporal segments；</li>
+<li>每 clip 固定 7 问：existence、foul/penalty classification、两类 reasoning、entity、temporal grounding；</li>
+<li>约 30 名国家级认证裁判，每项至少 2 名；第二人独立核查，不一致由 senior referee adjudicate；QA 另做 peer review；</li>
+<li>标注者 $12.50/hour，但无总工时/费用、初始 agreement、kappa 或 adjudication 比例；</li>
+<li>视频声明限制为 CC BY-NC 4.0，实际逐条许可与发布状态仍需跟踪。</li>
 </ul>
-<h2 id="来源可靠性与可溯源性">来源可靠性与可溯源性</h2>
+<h2 id="评测协议">评测协议</h2>
+<p>所有模型同看完整 clip、720p、多选题直接匹配答案，不用 LLM judge。temperature 0.1/top-p 0.95，但帧预算从 1 fps、32、50、64、92、100 到 180 帧不等；API 与 open model 不是等算力比较。没有 train/test split，也未说明同比赛/incident/replay 去重或训练污染审计。</p>
+<h2 id="核心结果">核心结果</h2>
 <ul>
-<li><strong>来源层级</strong>：arXiv 2026 preprint；当前作为 candidate benchmark evidence 使用。</li>
-<li><strong>可溯源材料</strong>：本地已保存 arXiv abstract、PDF、<code>paper-text.md</code> 和 <code>links.yaml</code>；PDF SHA256：<code>13f24e24a416105f30d1e82bf6b7372feabb0b69dbf2e7361276589c2052d02b</code>。</li>
-<li><strong>使用边界</strong>：适合表示 rule-grounded sports MLLM evaluation 的新趋势；正式 venue、数据开放状态和社区复现情况需要后续跟踪。</li>
+<li>Closed overall：Doubao-Seed-1.8 <strong>61.09%</strong>，Gemini-3-Flash 60.55%，Gemini-3-Pro 60.02%，GPT-5 54.82%；</li>
+<li>Open：Qwen3-VL-8B <strong>47.07%</strong>，InternVL3.5 41.82%，VideoLLaMA3 36.04%，LLaVA-Video 27.40%；</li>
+<li>Doubao Q1 existence 92.54%、Q6 entity 76.76%，但 reasoning/grounding 明显更低；</li>
+<li>Qwen3-VL existence/perception/reasoning/grounding 为 50.81/67.35/37.14/38.96%。</li>
 </ul>
-<h2 id="和现有证据的关系">和现有证据的关系</h2>
-<p>它与 <a class="wikilink" href="../sources/2026-05-05-x-vars-explainable-football-refereeing.html">sources/2026-05-05-x-vars-explainable-football-refereeing</a> 形成层次关系：X-VARS 是 football VAR / foul explanation 的强场景样本，RefereeBench 则把同一类能力转成多运动评测问题。</p>
-<h2 id="局限或疑问">局限或疑问</h2>
+<p>跨项目结果显示足球/冰球较易，羽毛球/水球较难。足球数字不得外推羽毛球。</p>
+<h2 id="关键压力测试">关键压力测试</h2>
+<h3 id="音频">音频</h3>
+<p>Gemini frames 60.55%→video+audio 76.54%；Qwen3-Omni 48.97%→65.65%。但接口同时从 sampled frames 改为 direct video，且解说/哨声可能直接泄露判罚，因此不能把全部增益归因于纯声学理解。</p>
+<h3 id="规则知识">规则知识</h3>
+<p>2,684 道 text referee exams：Gemini 69.3%，Qwen 53.7%；题目极偏 Rule Knowledge（2,372），Game Management/Execution 仅 101/211。</p>
+<h3 id="负样本与诱导">负样本与诱导</h3>
+<p>另收每项 20 个负例。中性设置 Gemini Q1/Q2/Q4 误判 37.7/63.6/57.7%；Qwen 在诱导设置 Q2/Q4 达 60.4/74.9%。模型会把合法接触 over-call 为犯规。</p>
+<h3 id="prompt-rag">Prompt / RAG</h3>
+<p>Targeted prompting 57.9%，只比 zero-shot 56.7% 小幅提高。Q2–Q5 上 zero-shot 55.91%，Plain-RAG 53.92%，Hybrid-RAG 50.98%；加入 rulebook 不能补偿错误视觉前提，反而可能强化过度解释。</p>
+<h2 id="泄漏与证据边界">泄漏与证据边界</h2>
 <ul>
-<li>当前按 arXiv preprint 处理，后续应补 official venue、数据页或代码页。</li>
-<li>评测结果对模型版本敏感，需要记录被评模型版本和测试时间。</li>
+<li>主 925 clips 来自 verified incidents，Q1 可能正例偏置；220 negatives 仅在附加压力测试；</li>
+<li>用 Gemini-3-Flash text-only 筛题，之后又评同一模型 family，存在 construction coupling；</li>
+<li>音频、解说、裁判手势和 replay 是真实证据，也可能形成 shortcut；</li>
+<li>6,475 QA 来自 925 clips，不是 6,475 个独立事件；</li>
+<li>temporal grounding 是选项分类，不是连续 IoU/mAP；</li>
+<li>无 human upper bound、校准、拒答、置信区间、API 成本/延迟；</li>
+<li>无模型训练污染与 source-match grouping 审计；</li>
+<li>benchmark 不授权自动执法，仍需人类裁判和证据审计。</li>
+</ul>
+<h2 id="对羽毛球-demo-的影响">对羽毛球 demo 的影响</h2>
+<p>可迁移 <code>存在→类型/处罚→理由→实体→时间证据</code> 分层协议、负例与诱导测试。羽毛球子集包含 service fault 案例，但不证明羽毛球自动裁判或技术纠错；应重建羽毛球规则/基率/专家/时间精度，不能采用足球或 overall 数字。</p>
+<h2 id="证据评级">证据评级</h2>
+<ul>
+<li>多运动裁判 benchmark：<strong>A-</strong></li>
+<li>当前 MLLM 可靠性审计：<strong>A-</strong></li>
+<li>规则 RAG：<strong>B（提供重要反例）</strong></li>
+<li>羽毛球迁移：<strong>C+ benchmark 协议邻近</strong></li>
 </ul>
 <h2 id="原始材料">原始材料</h2>
 <ul>
-<li><code>raw/ingest/2026-05-05-refereebench-multi-sport-referees/paper.pdf</code></li>
-<li><code>raw/ingest/2026-05-05-refereebench-multi-sport-referees/paper-text.md</code></li>
-<li><code>raw/ingest/2026-05-05-refereebench-multi-sport-referees/abstract.md</code></li>
-<li><code>raw/ingest/2026-05-05-refereebench-multi-sport-referees/links.yaml</code></li>
+<li><code>raw/ingest/2026-05-05-refereebench-multi-sport-referees/paper.pdf</code>（15 页）</li>
+<li><code>raw/ingest/2026-05-05-refereebench-multi-sport-referees/paper-text.md</code>（2,043 行）</li>
+<li><code>raw/ingest/2026-05-05-refereebench-multi-sport-referees/analysis.md</code></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
+<li><a class="wikilink" href="../sources/2026-05-05-x-vars-explainable-football-refereeing.html">sources/2026-05-05-x-vars-explainable-football-refereeing</a></li>
 <li><a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
 <li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
 <li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
-<li><a class="wikilink" href="../entities/sportsmot.html">entities/sportsmot</a></li>
+<li><a class="wikilink" href="../questions/question-badminton-stroke-correction-demo.html">questions/question-badminton-stroke-correction-demo</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li><li><a class="wikilink" href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li><li><a class="wikilink" href="../topics/video-understanding.html">视频理解</a></li></ul></div><div class="related-group related-entities"><h3>相关实体<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../entities/sportsmot.html">SportsMOT</a></li></ul></div><div class="related-group related-questions"><h3>相关问题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">5</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-04-25-automated-offside-detection.html">Automated Offside Detection：基于双固定广角相机的时空越位检测原型</a><span>来源笔记</span></li><li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a><span>主题</span></li><li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a><span>主题</span></li><li><a href="../topics/video-understanding.html">视频理解</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-05-05-refereebench-multi-sport-referees&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;RefereeBench：多运动项目视频裁判能力评测&quot;,
+  &quot;title&quot;: &quot;RefereeBench：多运动项目规则化视频裁判评测&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-05-05&quot;,
-  &quot;updated&quot;: &quot;2026-05-05&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;arXiv 2026&quot;,
   &quot;published_at&quot;: &quot;2026-04-17&quot;,
   &quot;ingested_at&quot;: &quot;2026-05-05&quot;,
@@ -121,7 +160,7 @@
     &quot;Yuanhang Liu&quot;,
     &quot;Chuhan Wang&quot;,
     &quot;Zihan Zhao&quot;,
-    &quot;jinghan luo&quot;,
+    &quot;Jinghan Luo&quot;,
     &quot;Jianzhe Ma&quot;,
     &quot;Wenxuan Wang&quot;,
     &quot;Qin Jin&quot;
@@ -131,6 +170,7 @@
     &quot;https://arxiv.org/pdf/2604.15736&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-05-05-refereebench-multi-sport-referees/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-05-05-refereebench-multi-sport-referees/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/sports-ai-video-understanding&quot;,
     &quot;topics/sports-ai-roadmap&quot;,
@@ -140,8 +180,10 @@
     &quot;entities/sportsmot&quot;
   ],
   &quot;claims&quot;: [],
-  &quot;questions&quot;: []
-}</pre></section>
+  &quot;questions&quot;: [
+    &quot;questions/question-badminton-stroke-correction-demo&quot;
+  ]
+}</pre></details>
     </article>
   </main>
 </body>

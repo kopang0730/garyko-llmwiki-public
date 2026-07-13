@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ProtoGCN：用原型视角强化骨架动作识别的细粒度差异 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="ProtoGCN：用运动原型重构放大相似骨架动作的局部差异">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>ProtoGCN：用运动原型重构放大相似骨架动作的局部差异 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-16-protogcn-skeleton-action-recognition&quot;, &quot;title&quot;: &quot;ProtoGCN：用原型视角强化骨架动作识别的细粒度差异&quot;, &quot;title_en&quot;: &quot;ProtoGCN：用原型视角强化骨架动作识别的细粒度差异&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;representation-learning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-16-protogcn-skeleton-action-recognition&quot;, &quot;title&quot;: &quot;ProtoGCN：用运动原型重构放大相似骨架动作的局部差异&quot;, &quot;title_en&quot;: &quot;ProtoGCN：用运动原型重构放大相似骨架动作的局部差异&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;representation-learning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,54 +60,96 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-05-16-protogcn-skeleton-action-recognition.html">中文</a><a class="" href="../en/sources/2026-05-16-protogcn-skeleton-action-recognition.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-05-16</p>
-        <h1><span class="title-main">ProtoGCN</span><span class="title-subtitle">用原型视角强化骨架动作识别的细粒度差异</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>ProtoGCN：用运动原型重构放大相似骨架动作的局部差异</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">ProtoGCN</span><span class="title-subtitle">用运动原型重构放大相似骨架动作的局部差异</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2025</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2024-11-28</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-05-16</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2411.18941" title="https://arxiv.org/abs/2411.18941" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2411.18941</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2411.18941" title="https://arxiv.org/pdf/2411.18941" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2411.18941</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#representation-learning">#representation-learning</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>ProtoGCN 解决 skeleton-based action recognition 中“动作轨迹相似、细节差异很小”的问题：它把整段骨架动态拆成可学习的 motion prototypes，并通过 prototype reconstruction contrast 强化局部骨架部件的细粒度判别能力。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2025</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2024-11-28</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-05-16</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2411.18941" title="https://arxiv.org/abs/2411.18941" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2411.18941</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2411.18941" title="https://arxiv.org/pdf/2411.18941" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2411.18941</strong></a><a class="source-link source-link-code" href="https://github.com/firework8/ProtoGCN" title="https://github.com/firework8/ProtoGCN" target="_blank" rel="noopener noreferrer"><span>代码仓库</span><strong>github.com · ProtoGCN</strong></a></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#数据与实验">数据与实验</a></li><li><a href="#核心结果">核心结果</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对羽毛球动作纠正-demo-的影响">对羽毛球动作纠正 demo 的影响</a></li><li><a href="#wiki-证据分类">Wiki 证据分类</a></li><li><a href="#原始材料">原始材料</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>ProtoGCN把joint-topology feature重构为100个可学习motion prototypes的输入依赖组合，在FineGYM达到95.9%、比PYSKL高1.8点，并在NTU120最难10类提高3.0点；它适合羽毛球细粒度错误分类，latent prototypes仍需与可读技术概念对齐。</p>
 <h2 id="论文定位">论文定位</h2>
-<p>BST 把 ProtoGCN 作为强 SAR baseline 引入羽毛球 stroke-type classification。对 wiki 来说，它的价值在于把 badminton 动作识别和通用 skeleton-based action recognition 接起来：<a class="wikilink" href="../sources/2026-04-25-st-gcn.html">sources/2026-04-25-st-gcn</a> 给早期图卷积基线，<a class="wikilink" href="../sources/2026-05-16-tempose-badminton-fine-grained-motion.html">sources/2026-05-16-tempose-badminton-fine-grained-motion</a> 给 badminton Transformer 路线，ProtoGCN 给 CVPR 2025 阶段的 prototype / contrastive fine-grained SAR 路线。</p>
+<p>这是一篇通用 skeleton GCN。它从“更强邻接矩阵”转向“prototype dictionary + reconstruction”，重点解决轨迹相似类别中局部身体部位的细微差异。FineGYM提供体育动作的直接分类证据；羽毛球stroke correction属于迁移假设。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>骨架表示缺少纹理、器械和物体信息。传统GCN可定位关键joints，却容易让单手/双手、局部幅度和关节关系等差异淹没在全身运动及类内变化中。ProtoGCN用可学习prototype组合形成更判别的topology representation。</p>
 <h2 id="方法概述">方法概述</h2>
+<ol>
+<li><strong>MTE</strong>：构建同一sample内的joint correlation $A_{intra}$ 与joint pair difference $A_{inter}$，和universal topology $A_0$相加。</li>
+<li><strong>PRN</strong>：将$N\times N\times C$ topology reshape为$N^2\times C$，用attention response从prototype memory中取样组合，得到重构特征。</li>
+<li><strong>CSCL</strong>：为每类维护momentum aggregation，拉近同类、推远异类；总损失为cross-entropy加class-specific contrastive loss。</li>
+<li><strong>Prototype含义</strong>：prototype是joint relationship latent vector，经端到端反向传播学习；它没有预设生物力学语义。</li>
+</ol>
+<p>可复核依据：PDF Fig.2、Eq.3–10，pp.3–5；<code>paper-text.md</code> 180–476。</p>
+<h2 id="数据与实验">数据与实验</h2>
 <ul>
-<li><strong>问题</strong>：骨架表示缺少图像细节，容易混淆轨迹相近的动作。</li>
-<li><strong>核心想法</strong>：学习一组 motion prototypes，表示动作单元的核心运动模式。</li>
-<li><strong>判别机制</strong>：通过 prototype reconstruction contrast 放大相似动作之间的关键局部差异。</li>
-<li><strong>实验覆盖</strong>：NTU RGB+D、NTU RGB+D 120、Kinetics-Skeleton、FineGYM 等 benchmark。</li>
+<li>NTU60：56,880 sequences、60类。</li>
+<li>NTU120：114,480 videos、120类。</li>
+<li>Kinetics-Skeleton：240,436 train / 19,796 eval、400类。</li>
+<li>FineGYM：约29,000 videos、99类，使用PYSKL skeleton并报告mean-class Top-1。</li>
+<li>150 epochs、batch 64、SGD、单RTX 3090。</li>
+<li>主比较最多采用6-stream ensemble；消融使用NTU120 X-Sub bone modality。</li>
 </ul>
-<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
-<p>ProtoGCN 支撑一个更通用的动作纠正假设：很多运动错误不是整体轨迹错，而是局部身体部件在关键阶段的 subtle motion details 错。这个判断可以和 <a class="wikilink" href="../sources/2026-05-12-trackmae.html">sources/2026-05-12-trackmae</a> 的 trajectory reconstruction、<a class="wikilink" href="../sources/2026-05-05-finecausal-action-quality-assessment.html">sources/2026-05-05-finecausal-action-quality-assessment</a> 的细粒度因果解释、<a class="wikilink" href="../sources/2026-05-16-bst-badminton-stroke-type-transformer.html">sources/2026-05-16-bst-badminton-stroke-type-transformer</a> 的 stroke classification 形成组合。</p>
+<h2 id="核心结果">核心结果</h2>
+<table><thead><tr><th>配置</th><th>NTU60 X-Sub / X-View</th><th>NTU120 X-Sub / X-Set</th><th>Kinetics Top-1 / Top-5</th></tr></thead><tbody><tr><td>ProtoGCN 2-stream</td><td>93.0 / 97.2</td><td>89.7 / 91.2</td><td>49.9 / 74.0</td></tr><tr><td>ProtoGCN 4-stream</td><td>93.5 / 97.5</td><td>90.4 / 91.9</td><td>51.3 / 75.1</td></tr><tr><td>ProtoGCN 6-stream</td><td>93.8 / 97.8</td><td>90.9 / 92.2</td><td>51.9 / 75.6</td></tr></tbody></table>
+<p>FineGYM：PYSKL 94.1、PoseConv3D skeleton+limb 94.3、ProtoGCN skeleton 95.9。主结果的增益与stream数量共同变化，部署时应优先复核single-model性能。</p>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>Baseline 87.8；MTE 88.1；MTE+CSCL 88.3；MTE+PRN 88.5；完整89.0（+1.2）。</li>
+<li>SkeletonGCL 88.0、FR-Head 88.2、ProtoGCN 89.0。</li>
+<li>去$A_{intra}$为88.8，去$A_{inter}$为88.5，两者均去为88.4。</li>
+<li>最难10类64.1→67.1（+3.0）；11–30类+2.5；31–60类+1.1；最易60类+0.4。</li>
+<li>$\lambda=0.3$、prototype memory capacity $n_{pro}=100$最佳。</li>
+</ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>ProtoGCN 本身是通用 SAR 方法，迁移到羽毛球、体操、投篮等运动项目时仍需检查标注体系和动作阶段定义。</li>
-<li>skeleton-only 方法会丢失球、器械、场地几何和接触关系；体育场景中应和 ball trajectory / court position 一起建模。</li>
-<li>对动作纠正 demo 来说，prototype 是否能转成教练可读的错误模式仍需要额外设计。</li>
+<li>单个prototype难以解释，论文可视化的是组合后的topology均值。</li>
+<li>主结果依赖多stream ensemble；关键消融只覆盖NTU120 bone modality。</li>
+<li>Kinetics pose噪声、遮挡与运动模糊没有分层鲁棒性分析。</li>
+<li>类别判别目标可能把同一stroke类内的标准与错误动作拉向同一类中心。</li>
+<li>skeleton-only缺少球拍、羽毛球、场地与击球接触。</li>
+<li>FineGYM证明细粒度动作分类，未证明动作质量或技术纠错。</li>
+</ul>
+<h2 id="对羽毛球动作纠正-demo-的影响">对羽毛球动作纠正 demo 的影响</h2>
+<p><strong>可迁移</strong>：MTE突出肩肘腕与躯干/下肢的细微关系；PRN可作为少量错误类型的latent codebook；难类增益支持相似动作区分。</p>
+<p><strong>专用改造</strong>：在hit-aligned、phase-labeled羽毛球clips上重训；把prototype与关节角、速度、拍头/球轨迹和具体错误术语做concept alignment；融合racket/shuttle/court stream；分别评测stroke分类与错误纠正。</p>
+<p>ProtoGCN适合作为fine-grained skeleton classifier / error prototype learner。prototype heatmap只能作为候选解释，需用专家标注和反事实/遮挡测试验证。</p>
+<h2 id="wiki-证据分类">Wiki 证据分类</h2>
+<ul>
+<li>对 <a class="wikilink" href="../topics/vision-backbones.html">主流视觉 Backbone</a>：直接支持prototype-enhanced GCN。</li>
+<li>对 <a class="wikilink" href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a>：FineGYM提供直接的细粒度体育分类证据。</li>
+<li>对 <a class="wikilink" href="../questions/question-badminton-stroke-correction-demo.html">羽毛球动作纠正 demo</a>：候选细粒度模块；“局部动作错误”是迁移判断。</li>
+<li>最终评级：<strong>A-（细粒度SAR）/ B（体育分类迁移）/ C+（纠正解释）</strong>。</li>
 </ul>
 <h2 id="原始材料">原始材料</h2>
 <ul>
 <li><code>raw/ingest/2026-05-16-protogcn-skeleton-action-recognition/paper.pdf</code></li>
 <li><code>raw/ingest/2026-05-16-protogcn-skeleton-action-recognition/paper-text.md</code></li>
+<li><code>raw/ingest/2026-05-16-protogcn-skeleton-action-recognition/analysis.md</code></li>
 <li><code>raw/ingest/2026-05-16-protogcn-skeleton-action-recognition/abstract.md</code></li>
 <li><code>raw/ingest/2026-05-16-protogcn-skeleton-action-recognition/links.yaml</code></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../sources/2026-05-16-bst-badminton-stroke-type-transformer.html">sources/2026-05-16-bst-badminton-stroke-type-transformer</a></li>
-<li><a class="wikilink" href="../sources/2026-05-16-tempose-badminton-fine-grained-motion.html">sources/2026-05-16-tempose-badminton-fine-grained-motion</a></li>
-<li><a class="wikilink" href="../sources/2026-04-25-st-gcn.html">sources/2026-04-25-st-gcn</a></li>
-<li><a class="wikilink" href="../sources/2026-05-12-trackmae.html">sources/2026-05-12-trackmae</a></li>
-<li><a class="wikilink" href="../sources/2026-05-05-finecausal-action-quality-assessment.html">sources/2026-05-05-finecausal-action-quality-assessment</a></li>
-<li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
+<li><a class="wikilink" href="../sources/2026-04-25-st-gcn.html">ST-GCN</a></li>
+<li><a class="wikilink" href="../sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition.html">BlockGCN</a></li>
+<li><a class="wikilink" href="../sources/2026-05-16-skateformer-skeletal-temporal-transformer.html">SkateFormer</a></li>
+<li><a class="wikilink" href="../sources/2026-05-16-bst-badminton-stroke-type-transformer.html">BST</a></li>
+<li><a class="wikilink" href="../sources/2026-05-05-finecausal-action-quality-assessment.html">FineCausal AQA</a></li>
+<li><a class="wikilink" href="../questions/question-badminton-stroke-correction-demo.html">羽毛球动作纠正 demo</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">4</span></h3><ul><li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li><li><a class="wikilink" href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li><li><a class="wikilink" href="../topics/video-understanding.html">视频理解</a></li><li><a class="wikilink" href="../topics/vision-backbones.html">主流视觉 Backbone 入门</a></li></ul></div><div class="related-group related-questions"><h3>相关问题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">10</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a><span>问题</span></li><li><a href="../sources/2026-05-12-trackmae.html">TrackMAE：用轨迹遮挡与预测学习运动敏感的视频表征</a><span>来源笔记</span></li><li><a href="../sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition.html">BlockGCN：保留骨架拓扑并轻量建模多种关节关系</a><span>来源笔记</span></li><li><a href="../sources/2026-05-16-skateformer-skeletal-temporal-transformer.html">SkateFormer：用四类骨架—时间分区实现高效联合注意力</a><span>来源笔记</span></li><li><a href="../sources/2026-05-16-tempose-badminton-fine-grained-motion.html">TemPose：面向羽毛球细粒度动作识别的骨架 Transformer</a><span>来源笔记</span></li><li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a><span>主题</span></li><li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a><span>主题</span></li><li><a href="../topics/video-understanding.html">视频理解</a><span>主题</span></li><li><a href="../topics/vision-backbones.html">主流视觉 Backbone 入门</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-05-16-protogcn-skeleton-action-recognition&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;ProtoGCN：用原型视角强化骨架动作识别的细粒度差异&quot;,
+  &quot;title&quot;: &quot;ProtoGCN：用运动原型重构放大相似骨架动作的局部差异&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-05-16&quot;,
-  &quot;updated&quot;: &quot;2026-05-16&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;CVPR 2025&quot;,
   &quot;published_at&quot;: &quot;2024-11-28&quot;,
   &quot;ingested_at&quot;: &quot;2026-05-16&quot;,
@@ -124,20 +172,22 @@
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2411.18941&quot;,
     &quot;https://arxiv.org/pdf/2411.18941&quot;,
-    &quot;https://openaccess.thecvf.com/content/CVPR2025/papers/Liu_Revealing_Key_Details_to_See_Differences_A_Novel_Prototypical_Perspective_CVPR_2025_paper.pdf&quot;
+    &quot;https://openaccess.thecvf.com/content/CVPR2025/papers/Liu_Revealing_Key_Details_to_See_Differences_A_Novel_Prototypical_Perspective_CVPR_2025_paper.pdf&quot;,
+    &quot;https://github.com/firework8/ProtoGCN&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-05-16-protogcn-skeleton-action-recognition/&quot;,
   &quot;topics&quot;: [
     &quot;topics/sports-ai-video-understanding&quot;,
     &quot;topics/sports-ai-roadmap&quot;,
-    &quot;topics/video-understanding&quot;
+    &quot;topics/video-understanding&quot;,
+    &quot;topics/vision-backbones&quot;
   ],
-  &quot;entities&quot;: [
-    &quot;entities/sportsmot&quot;
-  ],
+  &quot;entities&quot;: [],
   &quot;claims&quot;: [],
-  &quot;questions&quot;: []
-}</pre></section>
+  &quot;questions&quot;: [
+    &quot;questions/question-badminton-stroke-correction-demo&quot;
+  ]
+}</pre></details>
     </article>
   </main>
 </body>

@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>VEGGIE：通过 grounded generation 进行指令式编辑与视频概念推理 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="VEGGIE：统一指令视频编辑、grounding 与 reasoning segmentation">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>VEGGIE：统一指令视频编辑、grounding 与 reasoning segmentation · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-veggie&quot;, &quot;title&quot;: &quot;VEGGIE（ICCV 2025）：通过 grounded generation 进行指令式编辑与视频概念推理&quot;, &quot;title_en&quot;: &quot;VEGGIE（ICCV 2025）：通过 grounded generation 进行指令式编辑与视频概念推理&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;video-understanding&quot;, &quot;vision-language&quot;, &quot;reasoning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-14-veggie&quot;, &quot;title&quot;: &quot;VEGGIE：统一指令视频编辑、grounding 与 reasoning segmentation&quot;, &quot;title_en&quot;: &quot;VEGGIE：统一指令视频编辑、grounding 与 reasoning segmentation&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;video-understanding&quot;, &quot;vision-language&quot;, &quot;reasoning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>Claims</h2><ul>
-<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,52 +60,101 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-04-14-veggie.html">中文</a><a class="selected-lang" href="../../en/sources/2026-04-14-veggie.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-15</p>
-        <h1><span class="title-main">VEGGIE</span><span class="title-subtitle">通过 grounded generation 进行指令式编辑与视频概念推理</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>VEGGIE：统一指令视频编辑、grounding 与 reasoning segmentation</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-12</p>
+        <h1><span class="title-main">VEGGIE</span><span class="title-subtitle">统一指令视频编辑、grounding 与 reasoning segmentation</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-01-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/ICCV2025/html/Yu_VEGGIE_Instructional_Editing_and_Reasoning_Video_Concepts_with_Grounded_Generation_ICCV_2025_paper.html" title="https://openaccess.thecvf.com/content/ICCV2025/html/Yu_VEGGIE_Instructional_Editing_and_Reasoning_Video_Concepts_with_Grounded_Generation_ICCV_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Yu_VEGGIE_Instructional_Editing…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/ICCV2025/papers/Yu_VEGGIE_Instructional_Editing_and_Reasoning_Video_Concepts_with_Grounded_Generation_ICCV_2025_paper.pdf" title="https://openaccess.thecvf.com/content/ICCV2025/papers/Yu_VEGGIE_Instructional_Editing_and_Reasoning_Video_Concepts_with_Grounded_Generation_ICCV_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Yu_VEGGIE_Instructional_Editing…</strong></a><span class="source-link source-link-missing"><span>Code repository</span><strong>Code repository pending</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-editing">#video-editing</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#vision-language">#vision-language</a><a class="tag" href="../../en/tags.html#reasoning">#reasoning</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>这篇工作把 instruction-based 视频编辑与视频概念推理放到同一框架里，补上了 editing 和 understanding 交界处的一条关键路线。</p>
-<h2 id="问题定义">问题定义</h2>
-<p>它要解决的是视频编辑系统不只是要会改视频，还要能围绕视频概念进行更 grounded 的理解与操作。对当前知识库来说，它非常适合填厚 video-understanding 这一页。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>VEGGIE 将 instructional editing、reasoning video concepts 和 grounded generation 结合起来，让视频编辑过程和概念层推理更紧密耦合。</p>
-<h2 id="关键发现">关键发现</h2>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-01-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-04-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/ICCV2025/html/Yu_VEGGIE_Instructional_Editing_and_Reasoning_Video_Concepts_with_Grounded_Generation_ICCV_2025_paper.html" title="https://openaccess.thecvf.com/content/ICCV2025/html/Yu_VEGGIE_Instructional_Editing_and_Reasoning_Video_Concepts_with_Grounded_Generation_ICCV_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Yu_VEGGIE_Instructional_Editing…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/ICCV2025/papers/Yu_VEGGIE_Instructional_Editing_and_Reasoning_Video_Concepts_with_Grounded_Generation_ICCV_2025_paper.pdf" title="https://openaccess.thecvf.com/content/ICCV2025/papers/Yu_VEGGIE_Instructional_Editing_and_Reasoning_Video_Concepts_with_Grounded_Generation_ICCV_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Yu_VEGGIE_Instructional_Editing…</strong></a><a class="source-link source-link-code" href="https://github.com/Yui010206/VEGGIE-VidEdit/" title="https://github.com/Yui010206/VEGGIE-VidEdit/" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · VEGGIE-VidEdit</strong></a></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#输入-输出与方法">输入、输出与方法</a></li><li><a href="#数据-指标与人评">数据、指标与人评</a></li><li><a href="#主要结果">主要结果</a></li><li><a href="#消融与成本">消融与成本</a></li><li><a href="#编辑与理解能力边界">编辑与理解能力边界</a></li><li><a href="#关键局限">关键局限</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#证据评级">证据评级</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>VEGGIE 用 MLLM 生成逐帧 grounded task queries，再由 video diffusion 统一执行 6 类编辑、对象 grounding 与 reasoning segmentation；其 132-pair VEG-Bench 证明了受限像素 grounding/reasoning 的优势，但没有人工用户研究，且训练/推理成本几乎未披露。</p>
+<h2 id="输入-输出与方法">输入、输出与方法</h2>
 <ul>
-<li>它说明 video-editing 与 video-understanding 之间的界面正在变得更直接，编辑系统开始显式吸收 reasoning 需求。</li>
-<li>它为“模型是否真正理解了编辑任务”这个问题提供了更贴近能力本体的样本。</li>
-<li>它也把 vision-language 与 grounded generation 更强地拉入视频编辑主线。</li>
+<li>输入视频与文本指令/问题；输出同长度编辑视频或把答案区域涂色的 mask 视频。</li>
+<li>MLLM 产生逐帧连续 task tokens，单层 MLP 对齐 diffusion 条件空间；原视频 latent 与噪声拼接，tokens 进入 cross-attention。</li>
+<li>Stage 1 用约 3.4M image instruction pairs 对齐语言与 diffusion；Stage 2 加 temporal attention，用约 134K/136K video pairs 端到端微调。</li>
+<li>两阶段只用 diffusion loss；“单一 loss”不等于低成本或简单模型。</li>
+<li>8 技能：addition、removal、swap、environment、visual feature、style、grounding、reasoning segmentation。</li>
 </ul>
-<h2 id="局限或疑问">局限或疑问</h2>
+<h2 id="数据-指标与人评">数据、指标与人评</h2>
 <ul>
-<li>概念推理是否真的提升了最终编辑完成度，还需要更多细粒度评测支持。</li>
-<li>grounded generation 路线往往系统更复杂。</li>
-<li>它是很强的方向性工作，但还需要更多后续跟进才能看清稳定收益。</li>
+<li>VEG-Bench：<strong>132 video-instruction pairs</strong>，8 类各约 15–20；7 个模型比较。</li>
+<li>编辑用 CLIP alignment、CLIP-F smoothness、MUSIQ quality、GroundingDINO detection。</li>
+<li><strong>GPT-4o MLLM-as-a-Judge</strong> 给语义完成度 1–10；这是自动 evaluator，<strong>不是人评</strong>，论文未报告与人工偏好的相关性。</li>
+<li>grounding/reasoning 用 SSIM、Jaccard $J$ 与 F-measure $F$。</li>
+<li>无参与者用户研究、置信区间、难度分层或 train/benchmark overlap 审计。</li>
 </ul>
+<h2 id="主要结果">主要结果</h2>
+<ul>
+<li>Addition：VEGGIE MLLM-Judge <strong>7.44</strong>、Detection <strong>57.96</strong>，表内最好。</li>
+<li>Removal：Detection <strong>70.22</strong>，低于 LGVI 78.40；MLLM-Judge 5.07 也非第一。</li>
+<li>Stylization：8.26，略低 Flatten 8.31；多个 smoothness/quality 指标也非第一。</li>
+<li>Object grounding：SSIM/J/F = <strong>70.90/37.74/21.83</strong>，表内第一。</li>
+<li>Reasoning segmentation：<strong>68.41/22.53/15.97</strong>，表内第一，但绝对 J/F 仍低。</li>
+<li>平均排名：VEGGIE <strong>1.78</strong>，是 instructional 方法中最好；TokenFlow 跨表为 1.41，因此不能写成所有模型/指标总冠军。</li>
+</ul>
+<p>核心优势是统一接口与 mask-grounded 子任务，不是每类视觉质量全面领先。</p>
+<h2 id="消融与成本">消融与成本</h2>
+<ul>
+<li>VPLM 上 removal-only FVD <strong>1098.52</strong>，mixed <strong>987.80</strong>；grounding-only SSIM <strong>52.34</strong>，mixed <strong>55.21</strong>，支持平衡多任务互助。</li>
+<li>作者同时观察 grounding 数据过多会引入 artifacts；未给数据配比扫描或方差。</li>
+<li>没有 MLLM、task query、curriculum、合成数据过滤的独立数值消融。</li>
+<li>本地正式 PDF 未披露确切 MLLM/diffusion checkpoint 参数量、GPU、训练步数、batch、分辨率、学习率、训练时长、推理 latency、sampling steps 或 GPU-hours。</li>
+<li>数据生成本身还需离线 MLLM、I2V、video editor 与自动过滤器。</li>
+</ul>
+<h2 id="编辑与理解能力边界">编辑与理解能力边界</h2>
+<ul>
+<li>6 类是生成式 video-to-video editing；不控制新运动或相机轨迹。</li>
+<li>grounding 有 GT mask 的直接定位证据；reasoning segmentation 测“问题→目标概念→mask”的受限理解。</li>
+<li>不测动作时序、事件因果、长程记忆、开放 QA 或多轮交互，不能外推为一般视频理解。</li>
+<li>CLIP/SSIM 不能证明 face/instance identity、局部背景保持、动作轨迹或遮挡恢复。</li>
+<li>参考图与 in-context 编辑只有定性案例，未量化成功率。</li>
+</ul>
+<h2 id="关键局限">关键局限</h2>
+<ul>
+<li>132-pair benchmark 小，无人工偏好与统计区间。</li>
+<li>GPT-4o judge 未做人类校准，可能奖励模型熟悉的视觉/指令模式。</li>
+<li>合成数据继承 I2V/editor 偏差，质量过滤可能偏好保守、低运动输出。</li>
+<li>训练数据巨大但成本不透明，难与 training-free 方法公平比较。</li>
+<li>grounding/reasoning 的绝对 J/F 仍有限；复杂遮挡、多相似对象、长视频未分桶。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<ul>
+<li>对 <a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a>：说明编辑、grounding 和受限 reasoning 可共享生成接口。</li>
+<li>对 <a class="wikilink" href="../../en/topics/video-understanding.html">视频理解</a>：只有 grounding/reasoning segmentation 是直接理解证据，且覆盖窄。</li>
+<li>对 <a class="wikilink" href="../../en/topics/vision-language.html">视觉语言</a>：连续 task query 连接 MLLM 与 VidDM，避免离散中间布局。</li>
+<li>对 <a class="wikilink" href="../../en/entities/video-editing-understanding.html">视频编辑理解</a> 与 <a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">benchmark 问题</a>：必须分开 edit success、mask grounding、真正时序推理和人类偏好。</li>
+</ul>
+<h2 id="证据评级">证据评级</h2>
+<p><strong>B-（统一编辑+grounding 的直接但小规模证据；对受限 reasoning segmentation 为 C+，对一般视频理解为 C-/无覆盖）</strong>。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://openaccess.thecvf.com/content/ICCV2025/html/Yu_VEGGIE_Instructional_Editing_and_Reasoning_Video_Concepts_with_Grounded_Generation_ICCV_2025_paper.html</li>
-<li>https://openaccess.thecvf.com/content/ICCV2025/papers/Yu_VEGGIE_Instructional_Editing_and_Reasoning_Video_Concepts_with_Grounded_Generation_ICCV_2025_paper.pdf</li>
+<li><a href="https://openaccess.thecvf.com/content/ICCV2025/html/Yu_VEGGIE_Instructional_Editing_and_Reasoning_Video_Concepts_with_Grounded_Generation_ICCV_2025_paper.html">CVF 论文页</a></li>
+<li><a href="https://openaccess.thecvf.com/content/ICCV2025/papers/Yu_VEGGIE_Instructional_Editing_and_Reasoning_Video_Concepts_with_Grounded_Generation_ICCV_2025_paper.pdf">论文 PDF</a></li>
+<li><a href="https://veggie-gen.github.io/">项目页</a></li>
+<li><a href="https://github.com/Yui010206/VEGGIE-VidEdit/">官方代码</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/video-editing.html">topics/video-editing</a></li>
-<li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a></li>
-<li><a class="wikilink" href="../../en/topics/vision-language.html">topics/vision-language</a></li>
-<li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">entities/video-editing-understanding</a></li>
-<li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a></li>
-</ul>
-<h2 id="备注">备注</h2>
-<p>VEGGIE 在这套库里的作用，是把视频编辑与视频理解交界处的 reasoning 路线补成明确节点。</p></section>
-      <section class="metadata-box" id="metadata"><h2>Metadata</h2><pre>{
+<li><a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a class="wikilink" href="../../en/topics/video-understanding.html">视频理解</a></li>
+<li><a class="wikilink" href="../../en/topics/vision-language.html">视觉语言</a></li>
+<li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+<li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有 benchmark 是否跟踪真实视频编辑理解</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/video-editing.html">视频编辑</a></li><li><a class="wikilink" href="../../en/topics/video-understanding.html">Video Understanding</a></li><li><a class="wikilink" href="../../en/topics/vision-language.html">视觉-语言</a></li></ul></div><div class="related-group related-entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li></ul></div><div class="related-group related-questions"><h3>Related questions<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">4</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/video-editing.html">视频编辑</a><span>Topic</span></li><li><a href="../../en/topics/video-understanding.html">Video Understanding</a><span>Topic</span></li><li><a href="../../en/topics/vision-language.html">视觉-语言</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-14-veggie&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;VEGGIE（ICCV 2025）：通过 grounded generation 进行指令式编辑与视频概念推理&quot;,
+  &quot;title&quot;: &quot;VEGGIE：统一指令视频编辑、grounding 与 reasoning segmentation&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-14&quot;,
-  &quot;updated&quot;: &quot;2026-04-15&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;ICCV 2025&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-14&quot;,
   &quot;tags&quot;: [
@@ -125,9 +180,12 @@
   &quot;published_at&quot;: &quot;2025-01-01&quot;,
   &quot;canonical_links&quot;: [
     &quot;https://openaccess.thecvf.com/content/ICCV2025/html/Yu_VEGGIE_Instructional_Editing_and_Reasoning_Video_Concepts_with_Grounded_Generation_ICCV_2025_paper.html&quot;,
-    &quot;https://openaccess.thecvf.com/content/ICCV2025/papers/Yu_VEGGIE_Instructional_Editing_and_Reasoning_Video_Concepts_with_Grounded_Generation_ICCV_2025_paper.pdf&quot;
+    &quot;https://openaccess.thecvf.com/content/ICCV2025/papers/Yu_VEGGIE_Instructional_Editing_and_Reasoning_Video_Concepts_with_Grounded_Generation_ICCV_2025_paper.pdf&quot;,
+    &quot;https://veggie-gen.github.io/&quot;,
+    &quot;https://github.com/Yui010206/VEGGIE-VidEdit/&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-04-14-veggie/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-04-14-veggie/analysis.md&quot;,
   &quot;topics&quot;: [
     &quot;topics/video-editing&quot;,
     &quot;topics/video-understanding&quot;,
@@ -140,7 +198,7 @@
   &quot;questions&quot;: [
     &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
   ]
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

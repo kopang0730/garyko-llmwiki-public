@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SportsMOT：多运动场景下的大规模球员多目标跟踪基准 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="SportsMOT：多运动场景的大规模球员多目标跟踪基准">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>SportsMOT：多运动场景的大规模球员多目标跟踪基准 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-24-sportsmot&quot;, &quot;title&quot;: &quot;SportsMOT（ICCV 2023）：多运动场景下的大规模球员多目标跟踪基准&quot;, &quot;title_en&quot;: &quot;SportsMOT（ICCV 2023）：多运动场景下的大规模球员多目标跟踪基准&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;tracking&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-24-sportsmot&quot;, &quot;title&quot;: &quot;SportsMOT：多运动场景的大规模球员多目标跟踪基准&quot;, &quot;title_en&quot;: &quot;SportsMOT：多运动场景的大规模球员多目标跟踪基准&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;tracking&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,52 +60,113 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-04-24-sportsmot.html">中文</a><a class="" href="../en/sources/2026-04-24-sportsmot.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-04-24</p>
-        <h1><span class="title-main">SportsMOT</span><span class="title-subtitle">多运动场景下的大规模球员多目标跟踪基准</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>SportsMOT：多运动场景的大规模球员多目标跟踪基准</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">SportsMOT</span><span class="title-subtitle">多运动场景的大规模球员多目标跟踪基准</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ICCV 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023-04-13</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-24</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2304.05170" title="https://arxiv.org/abs/2304.05170" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2304.05170</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2304.05170" title="https://arxiv.org/pdf/2304.05170" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2304.05170</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#tracking">#tracking</a><a class="tag" href="../tags.html#benchmarking">#benchmarking</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>SportsMOT 把体育视频 MOT 从通用行人跟踪里独立出来，明确指出团队运动的核心难点是高速非线性运动、遮挡和相似外观共同造成的 association 压力。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ICCV 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023-04-13</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-04-24</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2304.05170" title="https://arxiv.org/abs/2304.05170" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2304.05170</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2304.05170" title="https://arxiv.org/pdf/2304.05170" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2304.05170</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#数据集与协议">数据集与协议</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述-mixsort">方法概述：MixSort</a></li><li><a href="#基线-指标与训练">基线、指标与训练</a></li><li><a href="#核心实验与结果">核心实验与结果</a></li><li><a href="#关键消融与压力测试">关键消融与压力测试</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对羽毛球与体育路线的价值">对羽毛球与体育路线的价值</a></li><li><a href="#与同批工作的边界">与同批工作的边界</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#可复核依据">可复核依据</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>SportsMOT 用 150,379 帧、162.9 万框的三项目基准说明：团队体育 MOT 往往“检测很强、关联仍弱”，真正压力来自快速变速运动与相似但仍可辨别的球员外观；MixSort 的外观增强有效但依赖域，不应外推为所有 MOT 场景都受益。</p>
 <h2 id="论文定位">论文定位</h2>
-<p>这篇论文属于体育 AI / 体育视频理解主线，和 <a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a> 的长时序理解、对象级关联与 benchmark 设计直接相关。它在 <a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 中承担的角色是：这是 <a class="wikilink" href="../entities/sportsmot.html">entities/sportsmot</a> 的原始 anchor paper，也解释了为什么 <a class="wikilink" href="../sources/2026-04-23-sportmamba.html">sources/2026-04-23-sportmamba</a> 选择 SportsMOT 作为核心验证场景。</p>
+<p>这是 <a class="wikilink" href="../entities/sportsmot.html">SportsMOT 与体育轨迹分支</a> 的 anchor paper，任务是给每段视频中的<strong>所有场上球员</strong>持续分配 ID。它不跟球、裁判或观众，也不识别动作、交互或战术。</p>
+<p>论文同时提出 MixSort：把 target-conditioned MixFormer 外观相似度接入 ByteTrack/OC-SORT 的 tracking-by-detection 管线。</p>
+<h2 id="数据集与协议">数据集与协议</h2>
+<table><thead><tr><th>项目</th><th>规模/设置</th></tr></thead><tbody><tr><td>视频</td><td>240 段，720p、25 FPS；篮球/排球/足球</td></tr><tr><td>总规模</td><td>150,379 帧、6,015 秒、1,629,490 框、3,401 轨迹</td></tr><tr><td>划分</td><td>train 45、val 45、test 150 段</td></tr><tr><td>来源</td><td>MultiSports 中的 NCAA、英超、奥运等职业比赛</td></tr><tr><td>镜头约束</td><td>overhead game shots；片段内无突变切镜</td></tr><tr><td>标注对象</td><td>只标场上球员；整段 clip 唯一 ID</td></tr></tbody></table>
+<p>有可见身体部分时标完整人体框；若一半躯干出画则跳过。KCF 仅辅助传播，最终框与 ID 人工修正并复核；宽或高小于 5 像素的框被删除。</p>
 <h2 id="问题定义">问题定义</h2>
-<p>通用 MOT benchmark 多来自行人、车辆或监控场景，运动速度、视角变化和遮挡模式都和团队运动有明显差异。体育分析真正需要的是持续跟住场上每个球员，从而支持跑动距离、速度、站位和战术分析。</p>
-<h2 id="方法概述">方法概述</h2>
-<p>论文贡献以数据集和基准为主：收集篮球、排球、足球 3 类运动的 240 段视频，提供超过 150K 帧和 1.6M bounding boxes，并在多种 SOTA tracker 上做系统评测。作者还提出 MixSort，把 MixFormer-like 辅助关联结构接入跟踪管线，用来补强外观相似和运动剧烈场景下的匹配。</p>
-<h2 id="关键发现">关键发现</h2>
+<p>SportsMOT 的两项核心属性是：</p>
+<ol>
+<li><strong>fast and variable-speed motion</strong>：相邻帧 IoU 与 Kalman-based IoU 都低，线性运动预测不可靠；</li>
+<li><strong>similar yet distinguishable appearance</strong>：同队球衣相似，但号码与姿态仍提供弱辨别线索。</li>
+</ol>
+<p>因此论文建议重点看 HOTA、AssA、IDF1，而非只看偏检测的 MOTA。</p>
+<h2 id="方法概述-mixsort">方法概述：MixSort</h2>
+<ol>
+<li>YOLOX 检测，原 tracker 预测现有轨迹位置；</li>
+<li>简化 MixFormer 从 12 层减到 4 层，corner head 改为中心 heatmap；</li>
+<li>用轨迹模板与 search region 计算候选检测的视觉相似度 $V$；</li>
+<li>和 IoU 按 $M=\alpha IoU+(1-\alpha)V$ 融合，用 Hungarian matching；</li>
+<li>仅在新检测遮挡较少时更新单一模板。</li>
+</ol>
+<p>它与普通 ReID 的差异是模板与 search region 直接交互，而非独立 crop 后比较 embedding。</p>
+<h2 id="基线-指标与训练">基线、指标与训练</h2>
 <ul>
-<li>SportsMOT 的规模约为 MOT17 帧数的 15 倍、框数的 3 倍，使体育 MOT 有了可复用的大规模评测入口。</li>
-<li>它把挑战明确归纳为快且变速的运动，以及相似但可区分的球员外观，正好对应 SportMamba 后续要解决的非线性 motion prediction 和 association 问题。</li>
-<li>基准结果显示 SportsMOT 的瓶颈主要在 object association。</li>
+<li>基线：CenterTrack、FairMOT、QDTrack、TransTrack、GTR、ByteTrack、OC-SORT。</li>
+<li>指标：HOTA、IDF1、AssA、MOTA、DetA、LocA、IDs、Frag。</li>
+<li>YOLOX：COCO 初始化，CrowdHuman 80 epochs，再 SportsMOT 80 epochs。</li>
+<li>MixFormer：VOT 初始化，SportsMOT 微调 300 epochs；Adam、lr $10^{-4}$，第 200 epoch 降至 $10^{-5}$；224 search / 96 template。</li>
+<li>线性插值最大 gap 20。</li>
+</ul>
+<p>论文未报告统一硬件、参数量、FLOPs、wall-clock 时间或完整 FPS，不能做受控算力比较。</p>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<p>Table 3 test set：</p>
+<table><thead><tr><th>方法</th><th>HOTA</th><th>IDF1</th><th>AssA</th></tr></thead><tbody><tr><td>ByteTrack (Train+Val)</td><td>64.1</td><td>71.4</td><td>52.3</td></tr><tr><td>MixSort-Byte</td><td><strong>65.7</strong></td><td><strong>74.1</strong></td><td><strong>54.8</strong></td></tr><tr><td>OC-SORT (Train+Val)</td><td>73.7</td><td>74.0</td><td>61.5</td></tr><tr><td>MixSort-OC</td><td><strong>74.1</strong></td><td><strong>74.4</strong></td><td><strong>62.0</strong></td></tr></tbody></table>
+<p>MOTA 可达 96 左右，但 AssA 仅 50–60 多，直接支持“association 是主要瓶颈”。类别最佳 HOTA 为篮球 66.17、足球 73.19、排球 76.91，项目难度明显不同。</p>
+<h2 id="关键消融与压力测试">关键消融与压力测试</h2>
+<ul>
+<li>纯 motion 在三项目上都优于纯 appearance，但适当融合最好；外观 cue 对足球增益最大、篮球最小。</li>
+<li>简单 IoU 关联 HOTA <strong>71.5</strong>；加入线性 Kalman 反降到 <strong>64.1</strong>；IoU+MixSort 达 <strong>73.8</strong>。</li>
+<li>ByteTrack 64.1，通用 ReID 64.8，MixSort 65.7 HOTA，说明 target-conditioned 外观模型优于普通 ReID。</li>
+<li>DanceTrack 上 MixSort-Byte HOTA <strong>46.7</strong>，反而低于 ByteTrack <strong>47.1</strong>；外观增强不是跨域普适规律。</li>
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>数据集仍以三类团队运动为主，和网球、冰球、橄榄球等项目存在场景差异。</li>
-<li>它主要提供 tracking 评价，仍需要和事件识别、战术理解、规则判断等高层任务连接。</li>
+<li>只含篮球、排球、足球职业比赛；没有羽毛球、网球、冰球或业余场景。</li>
+<li>人工排除突变切镜，不能评估整场广播跨镜头 identity。</li>
+<li>只跟球员，不含球、裁判、jersey number 或 team-role 标签。</li>
+<li>MixSort 对 OC-SORT 仅 +0.4 HOTA，收益随底座变化。</li>
+<li>Train 与 Train+Val 结果同表，横向比较必须注意训练数据量。</li>
+<li>与 SportsHHI 共享 MultiSports 数据源，不能当成完全独立的分布证据。</li>
 </ul>
-<h2 id="对当前-wiki-判断的影响">对当前 wiki 判断的影响</h2>
-<p>这是 <a class="wikilink" href="../entities/sportsmot.html">entities/sportsmot</a> 的原始 anchor paper，也解释了为什么 <a class="wikilink" href="../sources/2026-04-23-sportmamba.html">sources/2026-04-23-sportmamba</a> 选择 SportsMOT 作为核心验证场景。 它也让 <a class="wikilink" href="../entities/sportsmot.html">entities/sportsmot</a> 从单一数据集条目扩展成体育 MOT / 轨迹理解分支的导航锚点。</p>
+<h2 id="对羽毛球与体育路线的价值">对羽毛球与体育路线的价值</h2>
+<ul>
+<li>对羽毛球<strong>球员跟踪</strong>有间接实用价值：HOTA/AssA/IDF1、非线性运动、外观—运动融合均可借鉴。</li>
+<li>对<strong>shuttlecock 球路</strong>不直接：论文没有小球；只能提示高速体育对象不宜盲信线性 Kalman。</li>
+<li>对战术理解只是基础层，还需场地标定、球轨迹、击球事件和语义模型。</li>
+</ul>
+<h2 id="与同批工作的边界">与同批工作的边界</h2>
+<ul>
+<li><a class="wikilink" href="../sources/2026-04-24-teamtrack.html">TeamTrack</a> 是全场固定覆盖、多视角高分辨率互补 benchmark；不能只用 HOTA 判断二者谁“更难”。</li>
+<li><a class="wikilink" href="../sources/2026-04-24-sportshhi.html">SportsHHI</a> 识别人对交互，SportsMOT 仅给身份连续。</li>
+<li><a class="wikilink" href="../sources/2026-04-24-transportmer.html">TranSPORTmer</a> 消费规则化场地坐标做下游预测/补全，SportsMOT 本身不提供可直接互换的 22+球坐标序列。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<p><strong>直接支持</strong>“tracking 是体育分析的数据基础，但 association 不等于理解”。它不能单独支撑长时推理、战术智能或羽毛球球路结论。当前没有进入 claim/question 证据列表。</p>
+<h2 id="可复核依据">可复核依据</h2>
+<ul>
+<li>PDF p.1-3，Table 1：任务与精确规模</li>
+<li>PDF p.3-5：标注、运动与外观诊断</li>
+<li>PDF p.5-6：MixSort、指标与训练</li>
+<li>PDF p.7，Table 3：主 benchmark</li>
+<li>PDF p.7-9，Tables 4,6-9：融合、Kalman、ReID 与跨域压力测试</li>
+<li><code>raw/ingest/2026-04-24-sportsmot/paper-text.md:661-1429</code></li>
+</ul>
 <h2 id="原始链接">原始链接</h2>
 <ul>
-<li>https://arxiv.org/abs/2304.05170</li>
-<li>https://arxiv.org/pdf/2304.05170</li>
-<li>https://doi.org/10.1109/ICCV51070.2023.00910</li>
+<li><a href="https://arxiv.org/abs/2304.05170">arXiv 摘要</a></li>
+<li><a href="https://arxiv.org/pdf/2304.05170">论文 PDF</a></li>
+<li><a href="https://doi.org/10.1109/ICCV51070.2023.00910">ICCV DOI</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
-<li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
-<li><a class="wikilink" href="../entities/sportsmot.html">entities/sportsmot</a></li>
+<li><a class="wikilink" href="../topics/video-understanding.html">视频理解</a></li>
+<li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a class="wikilink" href="../entities/sportsmot.html">SportsMOT 与体育轨迹分支</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../topics/video-understanding.html">视频理解</a></li><li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li></ul></div><div class="related-group related-entities"><h3>相关实体<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../entities/sportsmot.html">SportsMOT</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">9</span></h2><ul><li><a href="../entities/sportsmot.html">SportsMOT</a><span>实体</span></li><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-04-23-sportmamba.html">SportMamba：面向团队运动的非线性多目标跟踪</a><span>来源笔记</span></li><li><a href="../sources/2026-04-24-sportshhi.html">SportsHHI：体育视频中的高层人—人交互检测基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-24-teamtrack.html">TeamTrack：全场视角的多运动多目标跟踪数据集</a><span>来源笔记</span></li><li><a href="../sources/2026-04-24-transportmer.html">TranSPORTmer：多智能体体育轨迹理解的统一 Transformer 框架</a><span>来源笔记</span></li><li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a><span>主题</span></li><li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a><span>主题</span></li><li><a href="../topics/video-understanding.html">视频理解</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-04-24-sportsmot&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;SportsMOT（ICCV 2023）：多运动场景下的大规模球员多目标跟踪基准&quot;,
+  &quot;title&quot;: &quot;SportsMOT：多运动场景的大规模球员多目标跟踪基准&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-04-24&quot;,
-  &quot;updated&quot;: &quot;2026-04-24&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;ICCV 2023&quot;,
   &quot;ingested_at&quot;: &quot;2026-04-24&quot;,
   &quot;tags&quot;: [
@@ -134,7 +201,7 @@
   ],
   &quot;claims&quot;: [],
   &quot;questions&quot;: []
-}</pre></section>
+}</pre></details>
     </article>
   </main>
 </body>

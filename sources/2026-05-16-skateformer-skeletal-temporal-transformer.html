@@ -3,12 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SkateFormer：面向人体动作识别的骨架-时间 Transformer · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260523-source-style-v3">
-  <script defer src="../assets/wiki.js?v=20260523-source-style-v3"></script>
+  <meta name="description" content="SkateFormer：用四类骨架—时间分区实现高效联合注意力">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>SkateFormer：用四类骨架—时间分区实现高效联合注意力 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
+  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-16-skateformer-skeletal-temporal-transformer&quot;, &quot;title&quot;: &quot;SkateFormer：面向人体动作识别的骨架-时间 Transformer&quot;, &quot;title_en&quot;: &quot;SkateFormer：面向人体动作识别的骨架-时间 Transformer&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;representation-learning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260523-source-style-v3">
-  <aside class="wiki-sidebar">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-05-16-skateformer-skeletal-temporal-transformer&quot;, &quot;title&quot;: &quot;SkateFormer：用四类骨架—时间分区实现高效联合注意力&quot;, &quot;title_en&quot;: &quot;SkateFormer：用四类骨架—时间分区实现高效联合注意力&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;representation-learning&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
     <nav class="sidebar-nav">
@@ -38,15 +44,15 @@
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
-<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">当前模型仍然难以真正理解视频编辑</a></li>
-<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a></li>
-<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像生成-编辑模型可能会胜过专用流水线</a></li>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
 </ul>
 <h2>问题</h2><ul>
 <li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
-<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像生成编辑模型能否持续压过专用流水线</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
   </aside>
@@ -54,54 +60,97 @@
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-05-16-skateformer-skeletal-temporal-transformer.html">中文</a><a class="" href="../en/sources/2026-05-16-skateformer-skeletal-temporal-transformer.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">source · 2026-05-16</p>
-        <h1><span class="title-main">SkateFormer</span><span class="title-subtitle">面向人体动作识别的骨架-时间 Transformer</span></h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>SkateFormer：用四类骨架—时间分区实现高效联合注意力</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-12</p>
+        <h1><span class="title-main">SkateFormer</span><span class="title-subtitle">用四类骨架—时间分区实现高效联合注意力</span></h1>
         
-        <section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ECCV 2024</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2024-03-14</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-05-16</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2403.09508" title="https://arxiv.org/abs/2403.09508" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2403.09508</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2403.09508" title="https://arxiv.org/pdf/2403.09508" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2403.09508</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section>
-        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#representation-learning">#representation-learning</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#representation-learning">#representation-learning</a><a class="tag" href="../tags.html#efficiency">#efficiency</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
-      <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>SkateFormer 用 skeletal-temporal partition 把骨架关节和时间帧划成四类关系，再在每个分区内做 self-attention，从而在控制计算量的同时捕捉关键关节与关键帧之间的长程关系。</p>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="source-panel"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ECCV 2024</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2024-03-14</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-05-16</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2403.09508" title="https://arxiv.org/abs/2403.09508" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2403.09508</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2403.09508" title="https://arxiv.org/pdf/2403.09508" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2403.09508</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#论文定位">论文定位</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#数据与实验">数据与实验</a></li><li><a href="#核心结果">核心结果</a></li><li><a href="#关键消融">关键消融</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对羽毛球动作纠正-demo-的影响">对羽毛球动作纠正 demo 的影响</a></li><li><a href="#wiki-证据分类">Wiki 证据分类</a></li><li><a href="#原始材料">原始材料</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>SkateFormer把近/远关节与局部/全局时间组合成四类partition-specific attention，在NTU60 single-joint达到92.6/97.0，整网仅2.03M参数、3.62G FLOPs和11.46ms；它适合羽毛球实时骨架encoder，动作纠正仍需击球时刻、拍/球token和错误监督。</p>
 <h2 id="论文定位">论文定位</h2>
-<p>BST 把 SkateFormer 作为 skeleton Transformer 系列的重要 baseline。它和 <a class="wikilink" href="../sources/2026-05-16-tempose-badminton-fine-grained-motion.html">sources/2026-05-16-tempose-badminton-fine-grained-motion</a> 共同说明：羽毛球 stroke-type classification 可以借用通用 SAR 里的时空注意力路线，但需要根据运动项目加入球路、场地位置和动作阶段。</p>
+<p>这是一篇通用 skeleton Transformer。它解决naive joint×frame attention的二次复杂度，并避免先将joint groups压缩为单token。方法保留joint-element粒度，同时融合G-Conv与T-Conv inductive bias。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>GCN沿骨骼边传播，对远距关节关系建模受限；全局Transformer attention内存昂贵。已有方法分开做skeletal/temporal attention或先tokenize joints，容易削弱“某个joint在某些frames”的联合关系。</p>
 <h2 id="方法概述">方法概述</h2>
+<ol>
+<li><strong>Block channel split</strong>：1/4通道做learnable G-Conv，1/4做T-Conv，1/2做Skate-MSA，concat后接FFN。</li>
+<li><strong>四类Skate-Type</strong>：neighboring/distant joints × local/global frames。</li>
+<li><strong>Joint-element attention</strong>：每类partition内做MSA，再reverse回原joint-time位置。</li>
+<li><strong>Skate-Embedding</strong>：learnable skeletal embedding与fixed sampled-time sinusoidal embedding按通道外积。</li>
+<li><strong>增强</strong>：trimmed-uniform frame sampling及跨样本bone-length交换。</li>
+</ol>
+<p>实验配置下Skate-MSA理论attention complexity约为naive attention的1/48；这是attention子层量级，整网仍包含projection、G-Conv、T-Conv和FFN。</p>
+<p>可复核依据：PDF Fig.2–5、Eq.1–9，pp.5–10；<code>paper-text.md</code> 229–697。</p>
+<h2 id="数据与实验">数据与实验</h2>
 <ul>
-<li><strong>问题定义</strong>：全关节、全帧 attention 计算和显存成本高；GCN 的 receptive field 又受骨架连接限制。</li>
-<li><strong>Skate-Type 分区</strong>：把关系拆成身体结构上相邻/远距，以及时间上邻近/远距的组合。</li>
-<li><strong>Skate-MSA</strong>：在每个 skeletal-temporal partition 内做注意力，让模型以更省算力的方式关注关键 joints 和 frames。</li>
-<li><strong>实验结果</strong>：在多个 skeleton action recognition benchmark 上超过近期强方法。</li>
+<li>NTU60：56,880 videos、60类；NTU120：114,480 videos、120类。</li>
+<li>NTU-Inter / NTU-Inter120用于双人interaction分类。</li>
+<li>NW-UCLA：1,475 videos、10类、cross-view。</li>
+<li>NTU输入为24 joints×2 persons、64 frames；500 epochs、AdamW、batch128、single DGX A100 GPU。</li>
+<li>E1/E2/E4分别为joint、joint+bone、四modality独立模型融合。</li>
 </ul>
-<h2 id="对体育-ai-子线的价值">对体育 AI 子线的价值</h2>
-<p>SkateFormer 给体育动作纠正提供了一个很实用的建模提示：很多运动错误来自“某些关节在某些时间点”的组合，而不是整段动作都错。对 <a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 中的羽毛球挥拍 demo，它可以作为动作阶段定位和关键帧选择的参考路线，和 <a class="wikilink" href="../sources/2026-05-12-trackmae.html">sources/2026-05-12-trackmae</a> 的轨迹重建目标形成互补。</p>
+<h2 id="核心结果">核心结果</h2>
+<table><thead><tr><th>Split</th><th>E1</th><th>E2</th><th>E4</th></tr></thead><tbody><tr><td>NTU60 X-Sub</td><td>92.6</td><td>93.0</td><td>93.5</td></tr><tr><td>NTU60 X-View</td><td>97.0</td><td>97.4</td><td>97.8</td></tr><tr><td>NTU120 X-Sub</td><td>87.7</td><td>89.4</td><td>89.8</td></tr><tr><td>NTU120 X-Set</td><td>89.3</td><td>91.0</td><td>91.4</td></tr><tr><td>NW-UCLA</td><td>--</td><td>--</td><td>98.3</td></tr></tbody></table>
+<p>Interaction E1：NTU-Inter 97.1/99.3；NTU-Inter120 92.3/93.2。相对ISTA-Net分别提升+2.2/+1.6和+1.7/+1.5。</p>
+<p>效率：2.03M params、3.62G FLOPs、11.46ms；Hyperformer为2.71M、9.64G、18.07ms。绝对latency依赖公开代码实现与测量硬件。</p>
+<h2 id="关键消融">关键消融</h2>
+<ul>
+<li>无attention 90.7/95.7；naive attention 90.6/95.0且memory 1612.1MB。</li>
+<li>仅skeletal types 91.8/96.4；仅temporal types 91.9/96.6；完整四类92.6/97.0，较baseline +1.9/+1.3，memory 137.6MB。</li>
+<li>Learnable skeletal + fixed temporal embedding为92.6/97.0；learnable temporal版本为91.4/96.2。</li>
+<li>完整trimmed sampling与增强为92.6/97.0；fixed为91.4/96.4，uniform为91.6/96.8。</li>
+<li>Inter-instance augmentation单独在X-View下降0.3，与intra-instance联合时获得峰值，收益依赖evaluation protocol。</li>
+</ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>通用 SAR benchmark 的动作类别和羽毛球 stroke-type 的细粒度标签差异很大，迁移时需要重新设计 label taxonomy。</li>
-<li>partition-specific attention 解决计算问题，但教练可解释输出还需要把 attention / key frame 变成动作阶段和错误原因。</li>
-<li>纯骨架时空建模仍缺少球、拍、场线、击球瞬间等运动项目特有证据。</li>
+<li>Joint partitions是预定义人体分组，羽毛球的手—拍—球关系需要重构partition。</li>
+<li>训练500 epochs；E4独立模型融合显著增加实际推理成本。</li>
+<li>标准Kinect 3D skeleton无法代表真实单摄像机pose抖动、遮挡和深度歧义。</li>
+<li>64-frame固定窗口没有专门对齐击球接触瞬间。</li>
+<li>论文没有阶段定位和explanation fidelity评测，attention权重无法直接等同于错误原因。</li>
+<li>skeleton-only缺少球拍、羽毛球、场地与接触事件。</li>
+</ul>
+<h2 id="对羽毛球动作纠正-demo-的影响">对羽毛球动作纠正 demo 的影响</h2>
+<p><strong>可迁移</strong>：四类relation对应近邻关节链/远端身体协同与局部击球瞬间/全局动作阶段；single-joint E1兼顾实时性；fixed time index适合非均匀动作采样。</p>
+<p><strong>专用改造</strong>：围绕hit frame建立contact-local branch；加入racket head、shuttle与court landmarks；左右手和视角canonicalization；保留pose confidence；用专家错误标签与phase supervision训练。attention map只作为候选证据，需反事实和专家复核。</p>
+<h2 id="wiki-证据分类">Wiki 证据分类</h2>
+<ul>
+<li>对 <a class="wikilink" href="../topics/vision-backbones.html">主流视觉 Backbone</a>：直接支持高效joint-time Transformer。</li>
+<li>对 <a class="wikilink" href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a>：间接支持“关键关节×关键时间”建模。</li>
+<li>对 <a class="wikilink" href="../questions/question-badminton-stroke-correction-demo.html">羽毛球动作纠正 demo</a>：实时姿态encoder候选；关键帧解释与纠正结论待验证。</li>
+<li>最终评级：<strong>A（通用SAR）/ B-（羽毛球纠正迁移）</strong>。</li>
 </ul>
 <h2 id="原始材料">原始材料</h2>
 <ul>
 <li><code>raw/ingest/2026-05-16-skateformer-skeletal-temporal-transformer/paper.pdf</code></li>
 <li><code>raw/ingest/2026-05-16-skateformer-skeletal-temporal-transformer/paper-text.md</code></li>
+<li><code>raw/ingest/2026-05-16-skateformer-skeletal-temporal-transformer/analysis.md</code></li>
 <li><code>raw/ingest/2026-05-16-skateformer-skeletal-temporal-transformer/abstract.md</code></li>
 <li><code>raw/ingest/2026-05-16-skateformer-skeletal-temporal-transformer/links.yaml</code></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../sources/2026-05-16-bst-badminton-stroke-type-transformer.html">sources/2026-05-16-bst-badminton-stroke-type-transformer</a></li>
-<li><a class="wikilink" href="../sources/2026-05-16-tempose-badminton-fine-grained-motion.html">sources/2026-05-16-tempose-badminton-fine-grained-motion</a></li>
-<li><a class="wikilink" href="../sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition.html">sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition</a></li>
-<li><a class="wikilink" href="../sources/2026-05-12-trackmae.html">sources/2026-05-12-trackmae</a></li>
-<li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
-<li><a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
+<li><a class="wikilink" href="../sources/2026-04-25-st-gcn.html">ST-GCN</a></li>
+<li><a class="wikilink" href="../sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition.html">BlockGCN</a></li>
+<li><a class="wikilink" href="../sources/2026-05-16-protogcn-skeleton-action-recognition.html">ProtoGCN</a></li>
+<li><a class="wikilink" href="../sources/2026-05-16-tempose-badminton-fine-grained-motion.html">TemPose</a></li>
+<li><a class="wikilink" href="../sources/2026-05-16-bst-badminton-stroke-type-transformer.html">BST</a></li>
+<li><a class="wikilink" href="../questions/question-badminton-stroke-correction-demo.html">羽毛球动作纠正 demo</a></li>
 </ul></section>
-      <section class="metadata-box" id="metadata"><h2>元数据</h2><pre>{
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">4</span></h3><ul><li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li><li><a class="wikilink" href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li><li><a class="wikilink" href="../topics/video-understanding.html">视频理解</a></li><li><a class="wikilink" href="../topics/vision-backbones.html">主流视觉 Backbone 入门</a></li></ul></div><div class="related-group related-questions"><h3>相关问题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">8</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a><span>问题</span></li><li><a href="../sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition.html">BlockGCN：保留骨架拓扑并轻量建模多种关节关系</a><span>来源笔记</span></li><li><a href="../sources/2026-05-16-protogcn-skeleton-action-recognition.html">ProtoGCN：用运动原型重构放大相似骨架动作的局部差异</a><span>来源笔记</span></li><li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a><span>主题</span></li><li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a><span>主题</span></li><li><a href="../topics/video-understanding.html">视频理解</a><span>主题</span></li><li><a href="../topics/vision-backbones.html">主流视觉 Backbone 入门</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;2026-05-16-skateformer-skeletal-temporal-transformer&quot;,
   &quot;type&quot;: &quot;source&quot;,
-  &quot;title&quot;: &quot;SkateFormer：面向人体动作识别的骨架-时间 Transformer&quot;,
+  &quot;title&quot;: &quot;SkateFormer：用四类骨架—时间分区实现高效联合注意力&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-05-16&quot;,
-  &quot;updated&quot;: &quot;2026-05-16&quot;,
+  &quot;updated&quot;: &quot;2026-07-12&quot;,
   &quot;venue&quot;: &quot;ECCV 2024&quot;,
   &quot;published_at&quot;: &quot;2024-03-14&quot;,
   &quot;ingested_at&quot;: &quot;2026-05-16&quot;,
@@ -109,6 +158,7 @@
     &quot;near-cvpr-2025&quot;,
     &quot;video-understanding&quot;,
     &quot;representation-learning&quot;,
+    &quot;efficiency&quot;,
     &quot;primary-source&quot;
   ],
   &quot;note_status&quot;: &quot;reviewed&quot;,
@@ -120,20 +170,22 @@
   &quot;canonical_links&quot;: [
     &quot;https://arxiv.org/abs/2403.09508&quot;,
     &quot;https://arxiv.org/pdf/2403.09508&quot;,
-    &quot;https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/05796.pdf&quot;
+    &quot;https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/05796.pdf&quot;,
+    &quot;https://kaist-viclab.github.io/SkateFormer_site/&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-05-16-skateformer-skeletal-temporal-transformer/&quot;,
   &quot;topics&quot;: [
     &quot;topics/sports-ai-video-understanding&quot;,
     &quot;topics/sports-ai-roadmap&quot;,
-    &quot;topics/video-understanding&quot;
+    &quot;topics/video-understanding&quot;,
+    &quot;topics/vision-backbones&quot;
   ],
-  &quot;entities&quot;: [
-    &quot;entities/sportsmot&quot;
-  ],
+  &quot;entities&quot;: [],
   &quot;claims&quot;: [],
-  &quot;questions&quot;: []
-}</pre></section>
+  &quot;questions&quot;: [
+    &quot;questions/question-badminton-stroke-correction-demo&quot;
+  ]
+}</pre></details>
     </article>
   </main>
 </body>
