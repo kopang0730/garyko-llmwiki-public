@@ -6,10 +6,10 @@
   <meta name="description" content="追踪体育视频中的球员跟踪、人-人交互、全场轨迹、多智能体时序理解与可部署研究系统。">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>体育 AI 视频理解 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
-  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260714-research-observatory-v2-motion">
+  <script defer src="../assets/wiki.js?v=20260714-research-observatory-v2-motion"></script>
 </head>
-<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/sports-ai-video-understanding&quot;, &quot;title&quot;: &quot;体育 AI 视频理解&quot;, &quot;title_en&quot;: &quot;Sports AI Video Understanding&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;tracking&quot;, &quot;benchmarking&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/sports-ai-video-understanding&quot;, &quot;title&quot;: &quot;体育 AI 视频理解&quot;, &quot;title_en&quot;: &quot;Sports AI Video Understanding&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;tracking&quot;, &quot;benchmarking&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260714-research-observatory-v2-motion">
   <header class="mobile-topbar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
@@ -59,7 +59,8 @@
   <main class="wiki-page">
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../topics/sports-ai-video-understanding.html">中文</a><a class="" href="../en/topics/sports-ai-video-understanding.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
-      <header class="article-header">
+      
+      <header class="article-header" data-motion="reveal">
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>主题</span><span class="crumb-sep" aria-hidden="true">›</span><strong>体育 AI 视频理解</strong></nav>
         <p class="eyebrow">主题 · 更新于 2026-07-12</p>
         <h1><span class="title-main">体育 AI 视频理解</span></h1>
@@ -68,7 +69,24 @@
       </header>
       <div class="article-layout has-rail">
         <aside class="article-rail"><details class="toc" open><summary>目录</summary><ol><li><a href="#公开专题入口">公开专题入口</a></li><li><a href="#当前综合判断">当前综合判断</a></li><li><a href="#方法图谱">方法图谱</a></li><li><a href="#公开专题结构">公开专题结构</a></li><li><a href="#2026-07-12-badminton-全文复核-四层系统与编码器边界">2026-07-12 Badminton 全文复核：四层系统与编码器边界</a><ol><li class="toc-sub"><a href="#基础表征与球员-association-补充">基础表征与球员 association 补充</a></li><li class="toc-sub"><a href="#tracking-trajectory-interaction-的接口链">Tracking → trajectory → interaction 的接口链</a></li><li class="toc-sub"><a href="#pose-hierarchy-aqa-证据边界">Pose / hierarchy / AQA 证据边界</a></li></ol></li><li><a href="#对研究选题的启发">对研究选题的启发</a></li><li><a href="#文献清单拆分后的独立证据">文献清单拆分后的独立证据</a></li><li><a href="#当前局限性">当前局限性</a></li><li><a href="#2026-05-05-小批量补强-从-benchmark-到人机闭环">2026-05-05 小批量补强：从 benchmark 到人机闭环</a></li><li><a href="#2026-05-05-soccernet-基础补强-事件-球场几何与低标注">2026-05-05 SoccerNet 基础补强：事件、球场几何与低标注</a></li><li><a href="#2026-05-05-soccernet-challenge-补强-从任务生态到-tracking-系统">2026-05-05 SoccerNet challenge 补强：从任务生态到 tracking 系统</a></li><li><a href="#2026-05-05-event2tracking-补强-轨迹重建接入事件语义">2026-05-05 Event2Tracking 补强：轨迹重建接入事件语义</a></li><li><a href="#2026-05-23-football-gsr-possession-var-workflow-补强">2026-05-23 Football GSR / possession / VAR workflow 补强</a></li><li><a href="#2026-05-05-referee-sports-mllm-补强-可解释判罚与专业问答">2026-05-05 Referee / sports MLLM 补强：可解释判罚与专业问答</a></li><li><a href="#2026-05-05-badminton-小目标追踪补强-从-2d-shuttle-tracking-到单目-3d-轨迹">2026-05-05 Badminton 小目标追踪补强：从 2D shuttle tracking 到单目 3D 轨迹</a></li><li><a href="#2026-05-16-badminton-related-work-溯源-从球路追踪到击球语义">2026-05-16 Badminton Related Work 溯源：从球路追踪到击球语义</a></li><li><a href="#2026-06-12-badminton-repo-deep-read-tracknetv3-v4-工程化收束">2026-06-12 Badminton repo deep-read：TrackNetV3 / V4 工程化收束</a></li><li><a href="#2026-05-17-badminton-系统-数据-训练反馈补强">2026-05-17 Badminton 系统 / 数据 / 训练反馈补强</a></li><li><a href="#2026-05-12-动作纠正补强-从-motion-representation-到-adaptive-explanation">2026-05-12 动作纠正补强：从 motion representation 到 adaptive explanation</a></li><li><a href="#2026-05-06-tracknetv3-cuda-复现推进">2026-05-06 TrackNetV3 CUDA 复现推进</a></li><li><a href="#当前缺口">当前缺口</a></li><li><a href="#完整来源拆分">完整来源拆分</a></li><li><a href="#关联页面">关联页面</a></li></ol></details></aside>
-        <section class="article-content"><h2 id="公开专题入口">公开专题入口</h2>
+        <section class="article-content">
+<section class="topic-hero-grid" data-motion="reveal">
+  <section class="judgment-panel topic-judgment">
+    <p class="section-kicker">当前判断</p>
+    <h2>体育 AI 视频理解</h2>
+    <p>追踪体育视频中的球员跟踪、人-人交互、全场轨迹、多智能体时序理解与可部署研究系统。</p>
+    <div class="judgment-meta"><span>72 来源笔记</span><span>1 开放问题</span></div>
+  </section>
+  <section class="reading-path">
+    <p class="section-kicker">阅读路径</p>
+    <ol><li><strong>问题</strong><span>明确任务与证据边界</span></li><li><strong>方法</strong><span>比较方法族与结构选择</span></li><li><strong>证据</strong><span>回到论文与可检索全文</span></li><li><strong>开放问题</strong><span>记录仍待验证的张力</span></li></ol>
+  </section>
+</section>
+<section class="method-map" data-motion="reveal" aria-label="研究方法族地图">
+  <div class="method-map-heading"><div><p class="section-kicker">研究方法族地图</p><h2>从问题定义走向可复核的系统能力</h2></div><span>72 来源笔记</span></div>
+  <div class="method-map-track"><div class="method-node"><span>1</span><strong>问题</strong><small>明确任务与证据边界</small></div><div class="method-node"><span>2</span><strong>方法</strong><small>比较方法族与结构选择</small></div><div class="method-node"><span>3</span><strong>证据</strong><small>回到论文与可检索全文</small></div><div class="method-node"><span>4</span><strong>开放问题</strong><small>记录仍待验证的张力</small></div></div>
+</section>
+<h2 id="公开专题入口">公开专题入口</h2>
 <p>这页是公开站 <code>wiki.garyko.com</code> 的体育 AI 专题入口。它把体育视频分析从 <a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a> 中抽成一条独立子线，并连接到 <a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a>。当前证据已经覆盖九层：数据集基准、球员多目标跟踪、人-人交互检测、全场轨迹与多智能体状态理解、football game-state / possession-path semantics、高速小目标 tracking / shuttle trajectory、羽毛球 stroke-type classification、运动轨迹表征与动作纠正、人机闭环 / 可解释训练反馈 / 端到端足球分析系统，以及 rule-grounded officiating / sports MLLM reasoning。</p>
 <p>如果是第一次阅读，建议先按这条路径走：<a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> → <a class="wikilink" href="../topics/vision-backbones.html">topics/vision-backbones</a> → <a class="wikilink" href="../entities/sportsmot.html">entities/sportsmot</a> → <a class="wikilink" href="../sources/2026-04-24-sportsmot.html">sources/2026-04-24-sportsmot</a> → <a class="wikilink" href="../sources/2026-04-24-sportshhi.html">sources/2026-04-24-sportshhi</a> → <a class="wikilink" href="../sources/2026-04-24-transportmer.html">sources/2026-04-24-transportmer</a>。</p>
 <p>需要先建立架构直觉的读者，可以先看 <a class="wikilink" href="../topics/vision-backbones.html">主流视觉 Backbone 入门</a>。这页会把 CNN、U-Net、Transformer/DiT、GCN 与 Mamba/SSM 放进同一张选型表，再回来读 tracking、trajectory 和 action recognition 会更顺。</p>

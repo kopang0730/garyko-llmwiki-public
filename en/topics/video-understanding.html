@@ -6,10 +6,10 @@
   <meta name="description" content="A synthesis page for temporal reasoning, long-context video modeling, sports video understanding, and benchmark design.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>Video Understanding · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
-  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260714-research-observatory-v2-motion">
+  <script defer src="../../assets/wiki.js?v=20260714-research-observatory-v2-motion"></script>
 </head>
-<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/video-understanding&quot;, &quot;title&quot;: &quot;视频理解&quot;, &quot;title_en&quot;: &quot;Video Understanding&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;reasoning&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/video-understanding&quot;, &quot;title&quot;: &quot;视频理解&quot;, &quot;title_en&quot;: &quot;Video Understanding&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;reasoning&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260714-research-observatory-v2-motion">
   <header class="mobile-topbar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
@@ -59,7 +59,8 @@
   <main class="wiki-page">
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../topics/video-understanding.html">中文</a><a class="selected-lang" href="../../en/topics/video-understanding.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
-      <header class="article-header">
+      
+      <header class="article-header" data-motion="reveal">
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Topic</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Video Understanding</strong></nav>
         <p class="eyebrow">Topic · Updated 2026-07-12</p>
         <h1><span class="title-main">Video Understanding</span></h1>
@@ -68,7 +69,24 @@
       </header>
       <div class="article-layout has-rail">
         <aside class="article-rail"><details class="toc" open><summary>Contents</summary><ol><li><a href="#概述">概述</a></li><li><a href="#本页关注什么">本页关注什么</a></li><li><a href="#当前综合判断">当前综合判断</a></li><li><a href="#证据基础">证据基础</a></li><li><a href="#体育多智能体轨迹-事件语义作为长视频上下文">体育多智能体轨迹：事件语义作为长视频上下文</a></li><li><a href="#体育裁判推理-专业规则作为视频理解压力测试">体育裁判推理：专业规则作为视频理解压力测试</a></li><li><a href="#高速小目标追踪-体育视频里的极端-temporal-localization">高速小目标追踪：体育视频里的极端 temporal localization</a></li><li><a href="#细粒度体育动作语义-从骨架动作识别到击球类型">细粒度体育动作语义：从骨架动作识别到击球类型</a></li><li><a href="#动作纠正-运动轨迹表征与按需解释">动作纠正：运动轨迹表征与按需解释</a></li><li><a href="#关联页面">关联页面</a></li><li><a href="#后续值得追踪的问题">后续值得追踪的问题</a></li></ol></details></aside>
-        <section class="article-content"><h2 id="概述">概述</h2>
+        <section class="article-content">
+<section class="topic-hero-grid" data-motion="reveal">
+  <section class="judgment-panel topic-judgment">
+    <p class="section-kicker">Current view</p>
+    <h2>Video Understanding</h2>
+    <p>A synthesis page for temporal reasoning, long-context video modeling, sports video understanding, and benchmark design.</p>
+    <div class="judgment-meta"><span>74 Source notes</span><span>1 Open questions</span></div>
+  </section>
+  <section class="reading-path">
+    <p class="section-kicker">Reading path</p>
+    <ol><li><strong>Problem</strong><span>Define task and evidence boundary</span></li><li><strong>Methods</strong><span>Compare families and design choices</span></li><li><strong>Evidence</strong><span>Return to papers and searchable text</span></li><li><strong>Open questions</strong><span>Track unresolved tensions</span></li></ol>
+  </section>
+</section>
+<section class="method-map" data-motion="reveal" aria-label="Method family map">
+  <div class="method-map-heading"><div><p class="section-kicker">Method family map</p><h2>From problem definition to verifiable system capability</h2></div><span>74 Source notes</span></div>
+  <div class="method-map-track"><div class="method-node"><span>1</span><strong>Problem</strong><small>Define task and evidence boundary</small></div><div class="method-node"><span>2</span><strong>Methods</strong><small>Compare families and design choices</small></div><div class="method-node"><span>3</span><strong>Evidence</strong><small>Return to papers and searchable text</small></div><div class="method-node"><span>4</span><strong>Open questions</strong><small>Track unresolved tensions</small></div></div>
+</section>
+<h2 id="概述">概述</h2>
 <p>这一页追踪的不是单纯的视频分类，而是更复杂的时序表示、长上下文建模、视频-语言推理、体育视频中的目标关联，以及 benchmark 设计问题。当前证据已经覆盖通用 benchmark、失败模式诊断、长视频理解、编辑理解和一个新的体育 tracking 样本，因此这一页开始具备更清晰的问题轮廓：模型怎样处理长时序内容、拥挤场景下的轨迹维持、以及不同 benchmark 到底在测什么能力。</p>
 <h2 id="本页关注什么">本页关注什么</h2>
 <ul>

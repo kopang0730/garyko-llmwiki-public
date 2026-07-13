@@ -6,10 +6,10 @@
   <meta name="description" content="追踪扩散模型作为方法家族在图像、视频、条件控制、可控性与效率权衡中的演化。">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>扩散模型 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260710-evidence-reader-v2">
-  <script defer src="../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260714-research-observatory-v2-motion">
+  <script defer src="../assets/wiki.js?v=20260714-research-observatory-v2-motion"></script>
 </head>
-<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/diffusion-models&quot;, &quot;title&quot;: &quot;扩散模型&quot;, &quot;title_en&quot;: &quot;扩散模型&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260710-evidence-reader-v2">
+<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/diffusion-models&quot;, &quot;title&quot;: &quot;扩散模型&quot;, &quot;title_en&quot;: &quot;扩散模型&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260714-research-observatory-v2-motion">
   <header class="mobile-topbar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
@@ -59,7 +59,8 @@
   <main class="wiki-page">
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../topics/diffusion-models.html">中文</a><a class="" href="../en/topics/diffusion-models.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
     <article class="article-shell">
-      <header class="article-header">
+      
+      <header class="article-header" data-motion="reveal">
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>主题</span><span class="crumb-sep" aria-hidden="true">›</span><strong>扩散模型</strong></nav>
         <p class="eyebrow">主题 · 更新于 2026-07-12</p>
         <h1><span class="title-main">扩散模型</span></h1>
@@ -68,7 +69,24 @@
       </header>
       <div class="article-layout has-rail">
         <aside class="article-rail"><details class="toc" open><summary>目录</summary><ol><li><a href="#概述">概述</a></li><li><a href="#本页关注什么">本页关注什么</a></li><li><a href="#当前综合判断">当前综合判断</a><ol><li class="toc-sub"><a href="#2026-07-12-条件接口与结构化布局复核">2026-07-12 条件接口与结构化布局复核</a></li></ol></li><li><a href="#关联页面">关联页面</a></li><li><a href="#后续值得追踪的问题">后续值得追踪的问题</a></li></ol></details></aside>
-        <section class="article-content"><h2 id="概述">概述</h2>
+        <section class="article-content">
+<section class="topic-hero-grid" data-motion="reveal">
+  <section class="judgment-panel topic-judgment">
+    <p class="section-kicker">当前判断</p>
+    <h2>扩散模型</h2>
+    <p>追踪扩散模型作为方法家族在图像、视频、条件控制、可控性与效率权衡中的演化。</p>
+    <div class="judgment-meta"><span>49 来源笔记</span><span>0 开放问题</span></div>
+  </section>
+  <section class="reading-path">
+    <p class="section-kicker">阅读路径</p>
+    <ol><li><strong>问题</strong><span>明确任务与证据边界</span></li><li><strong>方法</strong><span>比较方法族与结构选择</span></li><li><strong>证据</strong><span>回到论文与可检索全文</span></li><li><strong>开放问题</strong><span>记录仍待验证的张力</span></li></ol>
+  </section>
+</section>
+<section class="method-map" data-motion="reveal" aria-label="研究方法族地图">
+  <div class="method-map-heading"><div><p class="section-kicker">研究方法族地图</p><h2>从问题定义走向可复核的系统能力</h2></div><span>49 来源笔记</span></div>
+  <div class="method-map-track"><div class="method-node"><span>1</span><strong>问题</strong><small>明确任务与证据边界</small></div><div class="method-node"><span>2</span><strong>方法</strong><small>比较方法族与结构选择</small></div><div class="method-node"><span>3</span><strong>证据</strong><small>回到论文与可检索全文</small></div><div class="method-node"><span>4</span><strong>开放问题</strong><small>记录仍待验证的张力</small></div></div>
+</section>
+<h2 id="概述">概述</h2>
 <p>这一页整理扩散模型作为“方法家族”的整体演化。当前材料显示，扩散模型一方面正在成为图像生成、图像编辑乃至部分视频任务的统一技术底座，另一方面其内部架构仍在持续优化，尤其围绕效率、真实性和可控性之间的权衡展开。对这个知识库来说，扩散模型不是单一模型名，而是一条横跨多任务的主干研究路线。</p>
 <h2 id="本页关注什么">本页关注什么</h2>
 <p>扩散模型里的 U-Net、DiT 和 SSM 主干可以先从 <a class="wikilink" href="../topics/vision-backbones.html">主流视觉 Backbone 入门</a> 建立直觉，再回到本页看 diffusion-specific 的采样、控制和部署问题。</p>

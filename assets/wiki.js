@@ -54,6 +54,28 @@ function initResponsiveToc(){
   narrow.addEventListener('change', sync);
 }
 
+function initMotion(){
+  const targets=[...document.querySelectorAll('[data-motion="reveal"]')];
+  if(!targets.length) return;
+  document.body.classList.add('motion-ready');
+  targets.forEach((el,index)=>el.style.setProperty('--motion-delay', `${Math.min(index * 70, 350)}ms`));
+  const reveal=el=>el.classList.add('is-visible');
+  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduced || !('IntersectionObserver' in window)){
+    targets.forEach(reveal);
+    return;
+  }
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(!entry.isIntersecting) return;
+      reveal(entry.target);
+      observer.unobserve(entry.target);
+    });
+  }, {threshold:0.08, rootMargin:'0px 0px -6% 0px'});
+  targets.forEach(target=>observer.observe(target));
+}
+
 initSearch();
 initMobileNav();
 initResponsiveToc();
+initMotion();

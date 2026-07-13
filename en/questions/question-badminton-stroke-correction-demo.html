@@ -6,10 +6,10 @@
   <meta name="description" content="羽毛球挥拍动作纠正 demo 应如何定义">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>羽毛球挥拍动作纠正 demo 应如何定义 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260710-evidence-reader-v2">
-  <script defer src="../../assets/wiki.js?v=20260710-evidence-reader-v2"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260714-research-observatory-v2-motion">
+  <script defer src="../../assets/wiki.js?v=20260714-research-observatory-v2-motion"></script>
 </head>
-<body class="kind-question" data-page="{&quot;slug&quot;: &quot;questions/question-badminton-stroke-correction-demo&quot;, &quot;title&quot;: &quot;羽毛球挥拍动作纠正 demo 应如何定义&quot;, &quot;title_en&quot;: &quot;羽毛球挥拍动作纠正 demo 应如何定义&quot;, &quot;kind&quot;: &quot;question&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;survey-needed&quot;, &quot;video-understanding&quot;, &quot;representation-learning&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260710-evidence-reader-v2">
+<body class="kind-question" data-page="{&quot;slug&quot;: &quot;questions/question-badminton-stroke-correction-demo&quot;, &quot;title&quot;: &quot;羽毛球挥拍动作纠正 demo 应如何定义&quot;, &quot;title_en&quot;: &quot;羽毛球挥拍动作纠正 demo 应如何定义&quot;, &quot;kind&quot;: &quot;question&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;survey-needed&quot;, &quot;video-understanding&quot;, &quot;representation-learning&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260714-research-observatory-v2-motion">
   <header class="mobile-topbar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
@@ -59,7 +59,8 @@
   <main class="wiki-page">
     <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../questions/question-badminton-stroke-correction-demo.html">中文</a><a class="selected-lang" href="../../en/questions/question-badminton-stroke-correction-demo.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
     <article class="article-shell">
-      <header class="article-header">
+      
+      <header class="article-header" data-motion="reveal">
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Question</span><span class="crumb-sep" aria-hidden="true">›</span><strong>羽毛球挥拍动作纠正 demo 应如何定义</strong></nav>
         <p class="eyebrow">Question · Updated 2026-07-12</p>
         <h1><span class="title-main">羽毛球挥拍动作纠正 demo 应如何定义</span></h1>
@@ -68,7 +69,12 @@
       </header>
       <div class="article-layout has-rail">
         <aside class="article-rail"><details class="toc" open><summary>Contents</summary><ol><li><a href="#问题">问题</a></li><li><a href="#demo-最小范围">Demo 最小范围</a></li><li><a href="#2026-07-12-全文复核后的系统约束">2026-07-12 全文复核后的系统约束</a><ol><li class="toc-sub"><a href="#感知到评分必须分层">感知到评分必须分层</a></li><li class="toc-sub"><a href="#编码器按证据层选型">编码器按证据层选型</a></li></ol></li><li><a href="#3-5-个建议错误模式">3–5 个建议错误模式</a></li><li><a href="#标注协议-v0-1">标注协议 v0.1</a><ol><li class="toc-sub"><a href="#样本切分">样本切分</a></li><li class="toc-sub"><a href="#stroke-type-最小集合">Stroke type 最小集合</a></li><li class="toc-sub"><a href="#错误模式标签">错误模式标签</a></li><li class="toc-sub"><a href="#标注置信度">标注置信度</a></li><li class="toc-sub"><a href="#质量控制">质量控制</a></li></ol></li><li><a href="#baseline-规则-v0-1">Baseline 规则 v0.1</a><ol><li class="toc-sub"><a href="#输入特征">输入特征</a></li><li class="toc-sub"><a href="#中间特征">中间特征</a></li><li class="toc-sub"><a href="#规则输出">规则输出</a></li><li class="toc-sub"><a href="#展示输出">展示输出</a></li></ol></li><li><a href="#可执行脚手架">可执行脚手架</a></li><li><a href="#最小验收标准">最小验收标准</a></li><li><a href="#输出格式建议">输出格式建议</a></li><li><a href="#当前更倾向的技术路线">当前更倾向的技术路线</a></li><li><a href="#深分析后的-demo-约束">深分析后的 demo 约束</a></li><li><a href="#2026-06-12-repo-代码深读后的执行收束">2026-06-12 repo 代码深读后的执行收束</a></li><li><a href="#为什么还没有解决">为什么还没有解决</a></li><li><a href="#下一步最有价值的证据">下一步最有价值的证据</a></li><li><a href="#相关页面">相关页面</a></li><li><a href="#2026-05-17-证据补强-系统边界-球员级数据与多传感器上界">2026-05-17 证据补强：系统边界、球员级数据与多传感器上界</a></li></ol></details></aside>
-        <section class="article-content"><h2 id="问题">问题</h2>
+        <section class="article-content">
+<section class="question-hero" data-motion="reveal">
+  <div class="question-hero-copy"><p class="section-kicker">Open question</p><h2>羽毛球挥拍动作纠正 demo 应如何定义</h2><p>This question remains open and needs new primary evidence.</p></div>
+  <div class="open-question-panel"><p class="section-kicker">Next evidence need</p><div class="question-metrics"><strong>16</strong><span>Candidate sources</span><strong>3</strong><span>Related topics</span></div><a class="text-action" href="#related">View evidence paths →</a></div>
+</section>
+<h2 id="问题">问题</h2>
 <p>当前 sports-AI roadmap 已经有羽毛球的球路 tracking、stroke-level dataset、skeleton action recognition 和 adaptive explanation 证据。这个问题页把下一步 demo 收束成一个可执行定义：系统应输入一段羽毛球挥拍片段，输出 stroke type、关键动作阶段、错误模式、置信度和一句教练式反馈。</p>
 <h2 id="demo-最小范围">Demo 最小范围</h2>
 <p>建议先做 <strong>单人挥拍 / 单打片段 / 3–5 类错误模式</strong>，把问题控制在可复现范围内：</p>
