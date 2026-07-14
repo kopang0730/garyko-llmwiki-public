@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SigLIP：语言-图像预训练的 Sigmoid 损失（Sigmoid Loss for Language Image Pre-Training）">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>SigLIP：语言-图像预训练的 Sigmoid 损失（Sigmoid Loss for Language Image Pre-Training） · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260714-research-observatory-v2-motion">
+  <script defer src="../../assets/wiki.js?v=20260714-research-observatory-v2-motion"></script>
+</head>
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-07-14-siglip&quot;, &quot;title&quot;: &quot;SigLIP：语言-图像预训练的 Sigmoid 损失（Sigmoid Loss for Language Image Pre-Training）&quot;, &quot;title_en&quot;: &quot;SigLIP：语言-图像预训练的 Sigmoid 损失（Sigmoid Loss for Language Image Pre-Training）&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;multimodal&quot;, &quot;vision-language&quot;, &quot;representation-learning&quot;, &quot;efficiency&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260714-research-observatory-v2-motion">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a></li>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-backbones.html">Vision Backbones</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/clip.html">CLIP 系列模型（CLIP Family）</a></li>
+<li><a href="../../en/entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a></li>
+<li><a href="../../en/entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a></li>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-baseline-and-specialization.html">双塔负责可扩展召回，细粒度模块负责精排与关系匹配</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-composed-query.html">组合式查询是图文检索中可落地且仍有缺口的研究切口</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-compositionality.html">标准图文检索分数不足以证明组合性理解</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-data-quality.html">图文检索的主要瓶颈仍包括数据质量、分布与概念覆盖</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-research-cut.html">图文检索哪个子方向最适合中等算力的研究生项目？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../sources/2026-07-14-siglip.html">中文</a><a class="selected-lang" href="../../en/sources/2026-07-14-siglip.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      
+      <header class="article-header" data-motion="reveal">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>SigLIP：语言-图像预训练的 Sigmoid 损失（Sigmoid Loss for Language Image Pre-Training）</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-07-14</p>
+        <h1><span class="title-main">SigLIP</span><span class="title-subtitle">语言-图像预训练的 Sigmoid 损失（Sigmoid Loss for Language Image Pre-Training）</span></h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#multimodal">#multimodal</a><a class="tag" href="../../en/tags.html#vision-language">#vision-language</a><a class="tag" href="../../en/tags.html#representation-learning">#representation-learning</a><a class="tag" href="../../en/tags.html#efficiency">#efficiency</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2023-03-27</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-07-14</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2303.15343" title="https://arxiv.org/abs/2303.15343" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>arxiv.org · 2303.15343</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2303.15343" title="https://arxiv.org/pdf/2303.15343" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2303.15343</strong></a><a class="source-link source-link-code" href="https://github.com/google-research/big_vision" title="https://github.com/google-research/big_vision" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · big_vision</strong></a></div></section><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#关键发现">关键发现</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#证据边界">证据边界</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h1 id="siglip-语言-图像预训练的-sigmoid-损失">SigLIP：语言-图像预训练的 Sigmoid 损失</h1>
+<blockquote>会议：ICCV 2023</blockquote>
+<blockquote>发表日期：2023-03-27</blockquote>
+<blockquote>资料加入日期：2026-07-14</blockquote>
+<blockquote>原始材料：<a class="wikilink missing" href="#missing-raw/ingest/2026-07-14-siglip/paper-text">论文提取文本</a> 与 PDF</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<p>SigLIP 的主要变化是把 CLIP 常用的 batch-level softmax 对比损失替换为 pairwise sigmoid loss；它不需要对整个 batch 的相似度做全局归一化，在较小设备上更容易训练和扩展 batch，但没有解决图文语义粒度与评测有效性问题。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>softmax 对比学习的归一化依赖全局 batch，相应的显存和并行通信成本会限制规模。SigLIP 研究能否让每个正/负图文对独立参与损失，并在不同 batch size 下保持效果。</p>
+<h2 id="方法概述">方法概述</h2>
+<ul>
+<li>对配对图文使用正标签，对非配对图文使用负标签，通过 sigmoid 二分类形式优化相似度。</li>
+<li>论文比较了 batch size、正负比例与数据数量，并结合 Locked-image Tuning（LiT）训练 SigLiT。</li>
+<li>论文报告 batch size 增大到约 32K 后收益很快减弱，为小规模复现实验提供了比“无限扩大 batch”更具体的参考。</li>
+</ul>
+<h2 id="关键发现">关键发现</h2>
+<ul>
+<li>SigLIP 在小 batch 和大 batch 设置下都表现有竞争力，并展示了使用少量 TPU 训练 SigLiT 的结果。</li>
+<li>研究重点是训练效率和损失形式，而不是新的检索架构；对研究生项目，它更适合用作可复现的损失/采样基线。</li>
+<li>去掉全局 batch 归一化并不等于去掉负例设计，正负比例和数据质量仍会影响表示学习。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li>论文主要以零样本分类和预训练指标说明收益，不能仅凭 SigLIP 损失推出所有图文检索任务都更好。</li>
+<li>loss 的收益依赖模型、数据配方和优化设置；小 batch 下的“更容易训练”仍需在目标数据域重测。</li>
+<li>细粒度关系、长尾概念和跨语言能力需要额外 benchmark。</li>
+</ul>
+<h2 id="证据边界">证据边界</h2>
+<ul>
+<li>直接证据：pairwise sigmoid loss、batch-size 分析、SigLiT 资源设置与论文实验。</li>
+<li>“适合中等算力”是工程推断，不是论文对任意硬件的保证。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/2303.15343">arXiv 原文</a></li>
+<li><a href="https://arxiv.org/pdf/2303.15343">arXiv PDF</a></li>
+<li><a href="https://github.com/google-research/big_vision">Google Big Vision 代码</a></li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/image-text-retrieval.html">图文检索</a></li>
+<li><a class="wikilink" href="../../en/topics/vision-language.html">视觉语言</a></li>
+<li><a class="wikilink" href="../../en/claims/claim-image-text-retrieval-unified-embedding.html">中等算力下可以做方法与评测研究，但不宜从零训练十亿级基础模型</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a></li><li><a class="wikilink" href="../../en/topics/vision-language.html">视觉-语言</a></li></ul></div><div class="related-group related-entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/clip.html">CLIP 系列模型（CLIP Family）</a></li></ul></div><div class="related-group related-claims"><h3>Related claims<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a></li><li><a class="wikilink" href="../../en/claims/claim-image-text-retrieval-baseline-and-specialization.html">双塔负责可扩展召回，细粒度模块负责精排与关系匹配</a></li></ul></div><div class="related-group related-questions"><h3>Related questions<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-image-text-retrieval-research-cut.html">图文检索哪个子方向最适合中等算力的研究生项目？</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">7</span></h2><ul><li><a href="../../en/claims/claim-image-text-retrieval-baseline-and-specialization.html">双塔负责可扩展召回，细粒度模块负责精排与关系匹配</a><span>Claim</span></li><li><a href="../../en/claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a><span>Claim</span></li><li><a href="../../en/entities/clip.html">CLIP 系列模型（CLIP Family）</a><span>Entity</span></li><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a><span>Question</span></li><li><a href="../../en/topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a><span>Topic</span></li><li><a href="../../en/topics/vision-language.html">视觉-语言</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
+  &quot;id&quot;: &quot;2026-07-14-siglip&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;SigLIP：语言-图像预训练的 Sigmoid 损失（Sigmoid Loss for Language Image Pre-Training）&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-07-14&quot;,
+  &quot;updated&quot;: &quot;2026-07-14&quot;,
+  &quot;venue&quot;: &quot;ICCV 2023&quot;,
+  &quot;ingested_at&quot;: &quot;2026-07-14&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;multimodal&quot;,
+    &quot;vision-language&quot;,
+    &quot;representation-learning&quot;,
+    &quot;efficiency&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Xiaohua Zhai&quot;,
+    &quot;Basil Mustafa&quot;,
+    &quot;Alexander Kolesnikov&quot;,
+    &quot;Lucas Beyer&quot;
+  ],
+  &quot;published_at&quot;: &quot;2023-03-27&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2303.15343&quot;,
+    &quot;https://arxiv.org/pdf/2303.15343&quot;,
+    &quot;https://github.com/google-research/big_vision&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-07-14-siglip/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-text-retrieval&quot;,
+    &quot;topics/vision-language&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/clip&quot;
+  ],
+  &quot;claims&quot;: [
+    &quot;claims/claim-image-text-retrieval-unified-embedding&quot;,
+    &quot;claims/claim-image-text-retrieval-baseline-and-specialization&quot;
+  ],
+  &quot;questions&quot;: [
+    &quot;questions/question-image-text-retrieval-research-cut&quot;
+  ]
+}</pre></details>
+    </article>
+  </main>
+</body>
+</html>

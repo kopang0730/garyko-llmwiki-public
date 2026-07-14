@@ -29,6 +29,7 @@
 <li><a href="../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
 <li><a href="../en/topics/image-editing.html">图像编辑</a></li>
 <li><a href="../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../en/topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a></li>
 <li><a href="../en/topics/sports-ai-roadmap.html">Sports AI</a></li>
 <li><a href="../en/topics/sports-ai-video-understanding.html">Sports Video Understanding</a></li>
 <li><a href="../en/topics/video-editing.html">视频编辑</a></li>
@@ -38,7 +39,11 @@
 <li><a href="../en/topics/vision-language.html">视觉-语言</a></li>
 </ul>
 <h2>Entities</h2><ul>
+<li><a href="../en/entities/clip.html">CLIP 系列模型（CLIP Family）</a></li>
+<li><a href="../en/entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a></li>
+<li><a href="../en/entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a></li>
 <li><a href="../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../en/entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a></li>
 <li><a href="../en/entities/sportsmot.html">SportsMOT</a></li>
 <li><a href="../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
 <li><a href="../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
@@ -46,12 +51,22 @@
 <h2>Claims</h2><ul>
 <li><a href="../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
 <li><a href="../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../en/claims/claim-image-text-retrieval-baseline-and-specialization.html">双塔负责可扩展召回，细粒度模块负责精排与关系匹配</a></li>
+<li><a href="../en/claims/claim-image-text-retrieval-composed-query.html">组合式查询是图文检索中可落地且仍有缺口的研究切口</a></li>
+<li><a href="../en/claims/claim-image-text-retrieval-compositionality.html">标准图文检索分数不足以证明组合性理解</a></li>
+<li><a href="../en/claims/claim-image-text-retrieval-data-quality.html">图文检索的主要瓶颈仍包括数据质量、分布与概念覆盖</a></li>
+<li><a href="../en/claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a></li>
 <li><a href="../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
 </ul>
 <h2>Questions</h2><ul>
 <li><a href="../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
 <li><a href="../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../en/questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a></li>
+<li><a href="../en/questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a></li>
+<li><a href="../en/questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a></li>
+<li><a href="../en/questions/question-image-text-retrieval-research-cut.html">图文检索哪个子方向最适合中等算力的研究生项目？</a></li>
+<li><a href="../en/questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a></li>
 <li><a href="../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul>
 </nav>
@@ -76,14 +91,20 @@
 <section class="tag-section" id="benchmark"><h2>#benchmark<span class="related-count">1</span></h2><ul>
 <li><a href="../en/entities/video-editing-understanding.html">视频编辑理解</a><span>Entity</span></li>
 </ul></section>
-<section class="tag-section" id="benchmarking"><h2>#benchmarking<span class="related-count">47</span></h2><ul>
+<section class="tag-section" id="benchmarking"><h2>#benchmarking<span class="related-count">64</span></h2><ul>
 <li><a href="../en/sources/2026-04-14-aigv-assessor.html">AIGV-Assessor：用大模型评测文本到视频生成感知质量</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-anetqa.html">ANetQA：未裁剪视频细粒度组合推理基准</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-aro.html">ARO：视觉语言模型何时像词袋，以及如何改进（When and why vision-language models behave like bags-of-words）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-athletepose3d.html">AthletePose3D：高速竞技动作的 3D 姿态与运动学验证</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-athleticspose.html">AthleticsPose：真实田径动作的 3D 姿态与部署边界</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-23-broadcast2pitch-game-state-reconstruction.html">Broadcast2Pitch：从非受控足球转播视频重建比赛状态</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-cirr.html">CIRR：用预训练视觉语言模型检索真实世界图像（Image Retrieval on Real-life Images）</a><span>Source note</span></li>
+<li><a href="../en/entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a><span>Entity</span></li>
+<li><a href="../en/sources/2026-07-14-colpali.html">ColPali：用视觉语言模型做高效文档检索（Efficient Document Retrieval with Vision Language Models）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-concon-chi.html">ConCon-Chi：个性化视觉语言的新含义与组合性基准</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-datacomp.html">DataComp：寻找下一代多模态数据集（In search of the next generation of multimodal datasets）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-evalcrafter.html">EvalCrafter：大视频生成模型的多维评测与人工偏好校准</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-fashioniq.html">FashionIQ：用自然语言反馈检索图像（A New Dataset Towards Retrieving Images by Natural Language Feedback）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-five-bench.html">FiVE-Bench：细粒度视频编辑评测基准</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-finediving-repository.html">FineDiving Repository：FineDiving 仓库提供数据集与代码入口。</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-finegym.html">FineGym：体操视频的层级细粒度动作理解</a><span>Source note</span></li>
@@ -95,12 +116,15 @@
 <li><a href="../en/sources/2026-04-14-imagen-editor-editbench.html">Imagen Editor 与 EditBench：推进并评测文本引导图像修补</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-logo-group-action-quality.html">LOGO：多人长视频的群体动作质量评估</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-lvbench.html">LVBench：极长视频理解基准</a><span>Source note</span></li>
+<li><a href="../en/entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a><span>Entity</span></li>
 <li><a href="../en/sources/2026-04-14-maplm.html">MAPLM：地图与交通场景的真实世界多模态问答基准</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-mmmu.html">MMMU：跨学科专家级多模态理解与推理基准</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-mvbench.html">MVBench：综合多模态视频理解基准</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-multisports.html">MultiSports：多人时空动作定位的数据锚点</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-no-zero-shot.html">No Zero-Shot Without Exponential Data：预训练概念频率决定多模态模型性能</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-opencap.html">OpenCap：OpenCap 用智能手机视频估计人体运动学与动力学，降低实验室级运动捕捉门槛。</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-05-refereebench-multi-sport-referees.html">RefereeBench：多运动项目规则化视频裁判评测</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-searle-circo.html">SEARLE：用文本反演做零样本组合式图像检索（Zero-Shot Composed Image Retrieval with Textual Inversion）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-sok-bench.html">SOK-Bench：结合开放世界知识的情境视频推理基准</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-sti-bench.html">STI-Bench：精确时空世界理解基准</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-16-shuttleset-stroke-level-badminton-dataset.html">ShuttleSet：人工标注的羽毛球单打 stroke-level 数据集</a><span>Source note</span></li>
@@ -115,14 +139,22 @@
 <li><a href="../en/sources/2026-04-24-sportshhi.html">SportsHHI：体育视频中的高层人—人交互检测基准</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-sportsmot-dataset-page.html">SportsMOT Dataset Page：SportsMOT 官方数据页记录数据下载、许可和基准说明。</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-24-sportsmot.html">SportsMOT：多运动场景的大规模球员多目标跟踪基准</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-sugarcrepe.html">SugarCrepe：修复可被捷径攻破的视觉语言组合性基准（Fixing Hackable Benchmarks）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-24-teamtrack.html">TeamTrack：全场视角的多运动多目标跟踪数据集</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-uniir-mbeir.html">UniIR：训练和评测通用多模态信息检索器（Training and Benchmarking Universal Multimodal Information Retrievers）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-23-vars-automated-soccer-decision-making.html">VARS：SoccerNet-MVFoul 多视角犯规分类与裁判辅助</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-vbench.html">VBench：视频生成模型综合评测套件</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-vlm2vec-mmeb.html">VLM2Vec：把视觉语言模型训练成通用多模态向量模型（Training Vision-Language Models for Massive Multimodal Embedding Tasks）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-video-bench.html">Video-Bench：人类偏好对齐的视频生成评测</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-wear-outdoor-sports-dataset.html">WEAR：户外健身的第一视角视频与四肢 IMU 数据集</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-winoground.html">Winoground：探测视觉语言组合性（Probing Vision and Language Models for Visio-Linguistic Compositionality）</a><span>Source note</span></li>
+<li><a href="../en/entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a><span>Entity</span></li>
+<li><a href="../en/claims/claim-image-text-retrieval-data-quality.html">图文检索的主要瓶颈仍包括数据质量、分布与概念覆盖</a><span>Claim</span></li>
 <li><a href="../en/sources/2026-04-14-verifiable-human-eval-t2i.html">文本到图像生成的可验证与可复现人工评测</a><span>Source note</span></li>
+<li><a href="../en/claims/claim-image-text-retrieval-compositionality.html">标准图文检索分数不足以证明组合性理解</a><span>Claim</span></li>
 <li><a href="../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a><span>Question</span></li>
 <li><a href="../en/topics/generative-model-evaluation.html">生成模型评测</a><span>Topic</span></li>
+<li><a href="../en/claims/claim-image-text-retrieval-composed-query.html">组合式查询是图文检索中可落地且仍有缺口的研究切口</a><span>Claim</span></li>
 <li><a href="../en/sources/2026-04-14-neuro-symbolic-eval-t2v.html">通过形式化验证评测文本到视频模型的神经符号方法</a><span>Source note</span></li>
 </ul></section>
 <section class="tag-section" id="conditioning"><h2>#conditioning<span class="related-count">24</span></h2><ul>
@@ -280,12 +312,14 @@
 <li><a href="../en/sources/2026-04-14-vive3d.html">VIVE3D：多帧个性化 EG3D 的视角无关人脸视频编辑</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-video-p2p.html">Video-P2P：用 shared-null inversion 与解耦 guidance 做 attention-control 视频编辑</a><span>Source note</span></li>
 </ul></section>
-<section class="tag-section" id="efficiency"><h2>#efficiency<span class="related-count">24</span></h2><ul>
+<section class="tag-section" id="efficiency"><h2>#efficiency<span class="related-count">27</span></h2><ul>
 <li><a href="../en/sources/2026-04-15-act-diffusion.html">ACT-Diffusion：面向一步扩散模型的高效对抗一致性训练</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html">Accelerating Diffusion Sampling with Optimized Time Steps：用优化时间步改善少步扩散采样</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-16-accelerating-dit-gradient-cache.html">Accelerating Diffusion Transformer via Gradient-Optimized Cache：修正 DiT 缓存误差</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-15-analyzing-training-dynamics-diffusion-models.html">Analyzing and Improving the Training Dynamics of Diffusion Models：EDM2 的幅值保持训练与 Post-hoc EMA</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-codi.html">CoDi：条件扩散蒸馏实现 1–4 步图像条件生成</a><span>Source note</span></li>
+<li><a href="../en/entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a><span>Entity</span></li>
+<li><a href="../en/sources/2026-07-14-colpali.html">ColPali：用视觉语言模型做高效文档检索（Efficient Document Retrieval with Vision Language Models）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-16-come-closer-diffuse-faster.html">Come-Closer-Diffuse-Faster：用好初始化缩短条件扩散逆问题路径</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-15-deepcache.html">DeepCache：用高层特征缓存免费加速 U-Net 扩散模型</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">Distilling ODE Solvers of Diffusion Models into Smaller Steps：冻结去噪器的轻量求解器蒸馏</a><span>Source note</span></li>
@@ -297,6 +331,7 @@
 <li><a href="../en/sources/2026-04-16-post-training-quantization-on-diffusion-models.html">Post-Training Quantization on Diffusion Models：面向多 timestep 的 INT8 校准</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-rave-video-editing.html">RAVE：随机噪声重排的快速一致视频编辑</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-16-sana-sprint.html">SANA-Sprint：连续时间一致性与对抗蒸馏的一步线性 DiT</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-siglip.html">SigLIP：语言-图像预训练的 Sigmoid 损失（Sigmoid Loss for Language Image Pre-Training）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-16-skateformer-skeletal-temporal-transformer.html">SkateFormer：用四类骨架—时间分区实现高效联合注意力</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-specialist-diffusion.html">Specialist Diffusion：少样本艺术风格扩散微调工具箱</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-16-text-embedding-quantization-diffusion.html">Text Embedding Knows How to Quantize：用文本条件动态分配扩散激活位宽</a><span>Source note</span></li>
@@ -306,9 +341,10 @@
 <li><a href="../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>Topic</span></li>
 <li><a href="../en/topics/diffusion-models.html">扩散模型</a><span>Topic</span></li>
 </ul></section>
-<section class="tag-section" id="evaluation"><h2>#evaluation<span class="related-count">28</span></h2><ul>
+<section class="tag-section" id="evaluation"><h2>#evaluation<span class="related-count">38</span></h2><ul>
 <li><a href="../en/sources/2026-04-14-aigv-assessor.html">AIGV-Assessor：用大模型评测文本到视频生成感知质量</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-anetqa.html">ANetQA：未裁剪视频细粒度组合推理基准</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-aro.html">ARO：视觉语言模型何时像词袋，以及如何改进（When and why vision-language models behave like bags-of-words）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-concon-chi.html">ConCon-Chi：个性化视觉语言的新含义与组合性基准</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-evalcrafter.html">EvalCrafter：大视频生成模型的多维评测与人工偏好校准</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-five-bench.html">FiVE-Bench：细粒度视频编辑评测基准</a><span>Source note</span></li>
@@ -320,18 +356,27 @@
 <li><a href="../en/sources/2026-04-14-imagen-editor-editbench.html">Imagen Editor 与 EditBench：推进并评测文本引导图像修补</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-logo-group-action-quality.html">LOGO：多人长视频的群体动作质量评估</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-lvbench.html">LVBench：极长视频理解基准</a><span>Source note</span></li>
+<li><a href="../en/entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a><span>Entity</span></li>
 <li><a href="../en/sources/2026-04-14-maplm.html">MAPLM：地图与交通场景的真实世界多模态问答基准</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-mmmu.html">MMMU：跨学科专家级多模态理解与推理基准</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-mvbench.html">MVBench：综合多模态视频理解基准</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-nist-ai-risk-management-framework.html">NIST AI RMF：NIST AI RMF 提供 AI 风险管理框架。</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-no-zero-shot.html">No Zero-Shot Without Exponential Data：预训练概念频率决定多模态模型性能</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-05-refereebench-multi-sport-referees.html">RefereeBench：多运动项目规则化视频裁判评测</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-sok-bench.html">SOK-Bench：结合开放世界知识的情境视频推理基准</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-sportscap.html">SportsCap：单目体育 3D 运动捕捉与细粒度属性理解</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-sugarcrepe.html">SugarCrepe：修复可被捷径攻破的视觉语言组合性基准（Fixing Hackable Benchmarks）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-temporal-parsing-transformer-aqa.html">Temporal Parsing Transformer：无步骤标签的有序部件 AQA</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-05-active-learning-action-spotting-football.html">Towards Active Learning for Action Spotting：足球事件定位的低标注路线</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-vbench.html">VBench：视频生成模型综合评测套件</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-video-bench.html">Video-Bench：人类偏好对齐的视频生成评测</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-winoground.html">Winoground：探测视觉语言组合性（Probing Vision and Language Models for Visio-Linguistic Compositionality）</a><span>Source note</span></li>
+<li><a href="../en/entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a><span>Entity</span></li>
+<li><a href="../en/topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a><span>Topic</span></li>
+<li><a href="../en/questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a><span>Question</span></li>
+<li><a href="../en/questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a><span>Question</span></li>
 <li><a href="../en/sources/2026-04-14-verifiable-human-eval-t2i.html">文本到图像生成的可验证与可复现人工评测</a><span>Source note</span></li>
+<li><a href="../en/claims/claim-image-text-retrieval-compositionality.html">标准图文检索分数不足以证明组合性理解</a><span>Claim</span></li>
 <li><a href="../en/topics/generative-model-evaluation.html">生成模型评测</a><span>Topic</span></li>
 <li><a href="../en/entities/video-editing-understanding.html">视频编辑理解</a><span>Entity</span></li>
 <li><a href="../en/sources/2026-04-14-neuro-symbolic-eval-t2v.html">通过形式化验证评测文本到视频模型的神经符号方法</a><span>Source note</span></li>
@@ -448,21 +493,60 @@
 <li><a href="../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a><span>Entity</span></li>
 <li><a href="../en/entities/diffusion-transformer.html">扩散 Transformer</a><span>Entity</span></li>
 </ul></section>
-<section class="tag-section" id="multimodal"><h2>#multimodal<span class="related-count">5</span></h2><ul>
+<section class="tag-section" id="model"><h2>#model<span class="related-count">1</span></h2><ul>
+<li><a href="../en/entities/clip.html">CLIP 系列模型（CLIP Family）</a><span>Entity</span></li>
+</ul></section>
+<section class="tag-section" id="multimodal"><h2>#multimodal<span class="related-count">38</span></h2><ul>
+<li><a href="../en/sources/2026-07-14-albef.html">ALBEF：先对齐再融合（Align before Fuse）</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-align.html">ALIGN：用噪声文本监督扩展视觉与视觉语言表示学习（Scaling Up Visual and Vision-Language Representation Learning With Noisy Text Supervision）</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-aro.html">ARO：视觉语言模型何时像词袋，以及如何改进（When and why vision-language models behave like bags-of-words）</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-blip.html">BLIP：用自举式图文预训练统一视觉语言理解与生成（Bootstrapping Language-Image Pre-training）</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-cirr.html">CIRR：用预训练视觉语言模型检索真实世界图像（Image Retrieval on Real-life Images）</a><span>Source note</span></li>
+<li><a href="../en/entities/clip.html">CLIP 系列模型（CLIP Family）</a><span>Entity</span></li>
 <li><a href="../en/sources/2026-06-29-clip.html">CLIP：用自然语言监督学习可迁移视觉表示</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-coca.html">CoCa：对比式图像描述器作为图文基础模型（Contrastive Captioners are Image-Text Foundation Models）</a><span>Source note</span></li>
+<li><a href="../en/entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a><span>Entity</span></li>
+<li><a href="../en/sources/2026-07-14-colpali.html">ColPali：用视觉语言模型做高效文档检索（Efficient Document Retrieval with Vision Language Models）</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-datacomp.html">DataComp：寻找下一代多模态数据集（In search of the next generation of multimodal datasets）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-05-event2tracking.html">Event2Tracking：用长时多模态上下文重建多智能体足球轨迹</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-filip.html">FILIP：细粒度交互式语言-图像预训练（Fine-grained Interactive Language-Image Pre-Training）</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-fashioniq.html">FashionIQ：用自然语言反馈检索图像（A New Dataset Towards Retrieving Images by Natural Language Feedback）</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-laion-5b.html">LAION-5B：用于下一代图文模型的开放大规模数据集（An open large-scale dataset for training next generation image-text models）</a><span>Source note</span></li>
+<li><a href="../en/entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a><span>Entity</span></li>
+<li><a href="../en/sources/2026-07-14-no-zero-shot.html">No Zero-Shot Without Exponential Data：预训练概念频率决定多模态模型性能</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-searle-circo.html">SEARLE：用文本反演做零样本组合式图像检索（Zero-Shot Composed Image Retrieval with Textual Inversion）</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-siglip.html">SigLIP：语言-图像预训练的 Sigmoid 损失（Sigmoid Loss for Language Image Pre-Training）</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-sugarcrepe.html">SugarCrepe：修复可被捷径攻破的视觉语言组合性基准（Fixing Hackable Benchmarks）</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-uniir-mbeir.html">UniIR：训练和评测通用多模态信息检索器（Training and Benchmarking Universal Multimodal Information Retrievers）</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-vlm2vec-mmeb.html">VLM2Vec：把视觉语言模型训练成通用多模态向量模型（Training Vision-Language Models for Massive Multimodal Embedding Tasks）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-wear-outdoor-sports-dataset.html">WEAR：户外健身的第一视角视频与四肢 IMU 数据集</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-winoground.html">Winoground：探测视觉语言组合性（Probing Vision and Language Models for Visio-Linguistic Compositionality）</a><span>Source note</span></li>
+<li><a href="../en/claims/claim-image-text-retrieval-baseline-and-specialization.html">双塔负责可扩展召回，细粒度模块负责精排与关系匹配</a><span>Claim</span></li>
+<li><a href="../en/questions/question-image-text-retrieval-research-cut.html">图文检索哪个子方向最适合中等算力的研究生项目？</a><span>Question</span></li>
+<li><a href="../en/claims/claim-image-text-retrieval-data-quality.html">图文检索的主要瓶颈仍包括数据质量、分布与概念覆盖</a><span>Claim</span></li>
+<li><a href="../en/topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a><span>Topic</span></li>
+<li><a href="../en/sources/2026-07-14-multilingual-diversity.html">多语言多样性改善视觉语言表示（Multilingual Diversity Improves Vision-Language Representations）</a><span>Source note</span></li>
+<li><a href="../en/questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a><span>Question</span></li>
+<li><a href="../en/questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a><span>Question</span></li>
+<li><a href="../en/claims/claim-image-text-retrieval-compositionality.html">标准图文检索分数不足以证明组合性理解</a><span>Claim</span></li>
 <li><a href="../en/topics/generative-model-evaluation.html">生成模型评测</a><span>Topic</span></li>
+<li><a href="../en/claims/claim-image-text-retrieval-composed-query.html">组合式查询是图文检索中可落地且仍有缺口的研究切口</a><span>Claim</span></li>
+<li><a href="../en/questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a><span>Question</span></li>
+<li><a href="../en/questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a><span>Question</span></li>
+<li><a href="../en/claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a><span>Claim</span></li>
 <li><a href="../en/topics/vision-language.html">视觉-语言</a><span>Topic</span></li>
 </ul></section>
-<section class="tag-section" id="near-cvpr-2025"><h2>#near-cvpr-2025<span class="related-count">233</span></h2><ul>
+<section class="tag-section" id="near-cvpr-2025"><h2>#near-cvpr-2025<span class="related-count">267</span></h2><ul>
 <li><a href="../en/sources/2026-04-14-video-worth-256-bases.html">A Video is Worth 256 Bases：以时空 EM 低秩基改进零样本视频反演</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-16-a-star.html">A-STAR：测试时分离并保留 cross-attention</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-15-act-diffusion.html">ACT-Diffusion：面向一步扩散模型的高效对抗一致性训练</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-05-ai-driven-soccer-analysis.html">AI Driven Soccer Analysis：单主场足球 2D 映射原型</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-effective-real-image-editing.html">AIDI：以加速定点迭代改进真实图像扩散反演</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-aigv-assessor.html">AIGV-Assessor：用大模型评测文本到视频生成感知质量</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-albef.html">ALBEF：先对齐再融合（Align before Fuse）</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-align.html">ALIGN：用噪声文本监督扩展视觉与视觉语言表示学习（Scaling Up Visual and Vision-Language Representation Learning With Noisy Text Supervision）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-anetqa.html">ANetQA：未裁剪视频细粒度组合推理基准</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-aro.html">ARO：视觉语言模型何时像词袋，以及如何改进（When and why vision-language models behave like bags-of-words）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-avid-video-inpainting.html">AVID：用 Temporal MultiDiffusion 做任意长度视频修补</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html">Accelerating Diffusion Sampling with Optimized Time Steps：用优化时间步改善少步扩散采样</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-16-accelerating-dit-gradient-cache.html">Accelerating Diffusion Transformer via Gradient-Optimized Cache：修正 DiT 缓存误差</a><span>Source note</span></li>
@@ -478,6 +562,7 @@
 <li><a href="../en/sources/2026-04-14-attention-calibration-personalization.html">Attention Calibration for Disentangled Text-to-Image Personalization：解耦式个性化注意力校准</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-automated-offside-detection.html">Automated Offside Detection：基于双固定广角相机的时空越位检测原型</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-16-bbdm-brownian-bridge-diffusion.html">BBDM：以 Brownian Bridge 端点过程建模成对图像翻译</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-blip.html">BLIP：用自举式图文预训练统一视觉语言理解与生成（Bootstrapping Language-Image Pre-training）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-16-bst-badminton-stroke-type-transformer.html">BST：面向羽毛球击球类型识别的骨架动作 Transformer</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-17-badmintondb-player-specific-match-analysis.html">BadmintonDB：面向球员级比赛分析与预测的羽毛球数据集</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-16-blended-diffusion.html">Blended Diffusion：在像素扩散过程中逐步混合文本编辑前景与原图背景</a><span>Source note</span></li>
@@ -487,11 +572,16 @@
 <li><a href="../en/sources/2026-04-16-c3net.html">C3Net：CoDi U-Net 上的图像、文本与音频复合条件协调</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-camel-video-editing.html">CAMEL：面向文本驱动视频编辑的因果运动增强</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-ccedit.html">CCEdit：以结构—外观解耦实现创意可控视频编辑</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-cirr.html">CIRR：用预训练视觉语言模型检索真实世界图像（Image Retrieval on Real-life Images）</a><span>Source note</span></li>
+<li><a href="../en/entities/clip.html">CLIP 系列模型（CLIP Family）</a><span>Entity</span></li>
 <li><a href="../en/sources/2026-06-29-clip.html">CLIP：用自然语言监督学习可迁移视觉表示</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-conform.html">CONFORM：以对比式注意力优化提升文本生成忠实度</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-catapult-athlete-monitoring.html">Catapult Athlete Monitoring：Catapult athlete monitoring 页面展示运动员负荷、训练监测和多模态数据产品。</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-check-locate-rectify.html">Check, Locate, Rectify：训练免费文本到图像布局校准</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-coca.html">CoCa：对比式图像描述器作为图文基础模型（Contrastive Captioners are Image-Text Foundation Models）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-codi.html">CoDi：条件扩散蒸馏实现 1–4 步图像条件生成</a><span>Source note</span></li>
+<li><a href="../en/entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a><span>Entity</span></li>
+<li><a href="../en/sources/2026-07-14-colpali.html">ColPali：用视觉语言模型做高效文档检索（Efficient Document Retrieval with Vision Language Models）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-16-come-closer-diffuse-faster.html">Come-Closer-Diffuse-Faster：用好初始化缩短条件扩散逆问题路径</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-commoncanvas.html">CommonCanvas：Creative Commons 数据上的开放 T2I 扩散训练</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-concon-chi.html">ConCon-Chi：个性化视觉语言的新含义与组合性基准</a><span>Source note</span></li>
@@ -505,6 +595,7 @@
 <li><a href="../en/sources/2026-06-29-detr.html">DETR：把目标检测改写成 Transformer set prediction</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-dive-subject-driven-video-editing.html">DIVE：用 DINO 做主体驱动视频编辑</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-16-dlt-layout-transformer.html">DLT：以联合离散—连续 Transformer diffusion 做属性级布局生成</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-datacomp.html">DataComp：寻找下一代多模态数据集（In search of the next generation of multimodal datasets）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-15-deepcache.html">DeepCache：用高层特征缓存免费加速 U-Net 扩散模型</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-deeplabcut.html">DeepLabCut：DeepLabCut 是少量标注即可训练的无标记关键点追踪工具。</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-16-dense-text-attention-modulation.html">DenseDiffusion：Stable Diffusion 的 training-free 区域文本 attention modulation</a><span>Source note</span></li>
@@ -525,7 +616,9 @@
 <li><a href="../en/sources/2026-04-14-evalcrafter.html">EvalCrafter：大视频生成模型的多维评测与人工偏好校准</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-05-event2tracking.html">Event2Tracking：用长时多模态上下文重建多智能体足球轨迹</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-12-fade.html">FADE：面向视频编辑的频率感知扩散模型分解</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-filip.html">FILIP：细粒度交互式语言-图像预训练（Fine-grained Interactive Language-Image Pre-Training）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-fairy-video-to-video.html">Fairy：用 anchor cross-frame attention 并行加速指令视频编辑</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-fashioniq.html">FashionIQ：用自然语言反馈检索图像（A New Dataset Towards Retrieving Images by Natural Language Feedback）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-fatezero.html">FateZero：融合注意力做零样本文本视频编辑</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-five-bench.html">FiVE-Bench：细粒度视频编辑评测基准</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-05-finecausal-action-quality-assessment.html">FineCausal：可解释细粒度动作质量评估</a><span>Source note</span></li>
@@ -553,6 +646,7 @@
 <li><a href="../en/sources/2026-04-12-insightedit.html">InsightEdit：迈向更强指令跟随的图像编辑</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-instructpix2pix.html">InstructPix2Pix：用合成监督建立自然语言图像编辑接口</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-kinexon-player-tracking.html">KINEXON Player Tracking：KINEXON player tracking 页面展示 UWB/GPS/LPS 球员追踪系统。</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-laion-5b.html">LAION-5B：用于下一代图文模型的开放大规模数据集（An open large-scale dataset for training next generation image-text models）</a><span>Source note</span></li>
 <li><a href="../en/llm-wiki.html">LLM Wiki Pattern</a><span>Entry</span></li>
 <li><a href="../en/sources/2026-04-25-logo-group-action-quality.html">LOGO：多人长视频的群体动作质量评估</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-lvbench.html">LVBench：极长视频理解基准</a><span>Source note</span></li>
@@ -560,6 +654,7 @@
 <li><a href="../en/sources/2026-04-14-layoutdiffusion.html">LayoutDiffusion：以对象框控制像素 U-Net 的 layout-to-image 生成</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-16-layoutdiffusion-graphic-layout-generation.html">LayoutDiffusion：面向离散 graphic layout 的专用腐化与免重训条件生成</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-12-lingen.html">LinGen：面向高分辨率分钟级文本到视频生成的线性复杂度框架</a><span>Source note</span></li>
+<li><a href="../en/entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a><span>Entity</span></li>
 <li><a href="../en/sources/2026-04-14-maplm.html">MAPLM：地图与交通场景的真实世界多模态问答基准</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-mmaction2.html">MMAction2：MMAction2 是 OpenMMLab 视频理解工具箱，支持动作识别、检测和骨架动作等任务。</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-mmmu.html">MMMU：跨学科专家级多模态理解与推理基准</a><span>Source note</span></li>
@@ -578,6 +673,7 @@
 <li><a href="../en/sources/2026-04-25-ap-nfl-hawkeye-first-down.html">NFL Hawk-Eye First Down：AP 报道 NFL 引入基于 Hawk-Eye 的首攻测量技术。</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-nist-ai-risk-management-framework.html">NIST AI RMF：NIST AI RMF 提供 AI 风险管理框架。</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-null-text-inversion.html">NULL-Text Inversion：用 guided diffusion 编辑真实图像</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-no-zero-shot.html">No Zero-Shot Without Exponential Data：预训练概念频率决定多模态模型性能</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-12-osv.html">OSV：高质量图像到视频生成一步就够</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-12-omnigen.html">OmniGen：统一图像生成</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-16-on-distillation-of-guided-diffusion-models.html">On Distillation of Guided Diffusion Models：把 CFG 与采样轨迹联合蒸馏到极少步</a><span>Source note</span></li>
@@ -600,6 +696,7 @@
 <li><a href="../en/sources/2026-05-05-refereebench-multi-sport-referees.html">RefereeBench：多运动项目规则化视频裁判评测</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-16-rethinking-spatial-inconsistency-cfg.html">Rethinking the Spatial Inconsistency in Classifier-Free Diffusion Guidance：语义区域自适应 CFG</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-16-sana-sprint.html">SANA-Sprint：连续时间一致性与对抗蒸馏的一步线性 DiT</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-searle-circo.html">SEARLE：用文本反演做零样本组合式图像检索（Zero-Shot Composed Image Retrieval with Textual Inversion）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-16-self-correcting-llm-controlled-diffusion-models.html">SLD：LLM 驱动的闭环扩散生成纠错</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-sok-bench.html">SOK-Bench：结合开放世界知识的情境视频推理基准</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-st-gcn.html">ST-GCN：骨架动作识别的时空图卷积基线</a><span>Source note</span></li>
@@ -610,6 +707,7 @@
 <li><a href="../en/sources/2026-04-16-self-guided-diffusion-models.html">Self-Guided Diffusion Models：用自监督伪标注替代人工 guidance</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-shape-aware-layered-video-editing.html">Shape-aware Text-driven Layered Video Editing：用 UV 变形突破 atlas 的固定形状</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-16-shuttleset-stroke-level-badminton-dataset.html">ShuttleSet：人工标注的羽毛球单打 stroke-level 数据集</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-siglip.html">SigLIP：语言-图像预训练的 Sigmoid 损失（Sigmoid Loss for Language Image Pre-Training）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-16-skateformer-skeletal-temporal-transformer.html">SkateFormer：用四类骨架—时间分区实现高效联合注意力</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-sketchvideo.html">SketchVideo：基于草图的视频生成与编辑</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-05-soccernet-2022-challenges-results.html">SoccerNet 2022 Challenges Results：足球视频理解挑战早期基线</a><span>Source note</span></li>
@@ -632,6 +730,7 @@
 <li><a href="../en/sources/2026-04-24-sportsmot.html">SportsMOT：多运动场景的大规模球员多目标跟踪基准</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-stablevideo.html">StableVideo：用 layered atlas 稳定扩散视频外观编辑</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-12-streamingt2v.html">StreamingT2V：一致、动态、可扩展的长视频文本生成</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-sugarcrepe.html">SugarCrepe：修复可被捷径攻破的视觉语言组合性基准（Fixing Hackable Benchmarks）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-12-swiftedit.html">SwiftEdit：基于一步扩散的极速文本引导图像编辑</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-tacticai.html">TacticAI:An AI Assistant for Football Tactics</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-24-teamtrack.html">TeamTrack：全场视角的多运动多目标跟踪数据集</a><span>Source note</span></li>
@@ -651,6 +750,7 @@
 <li><a href="../en/sources/2026-05-05-tracknet-high-speed-tiny-objects.html">TrackNet：体育高速小目标追踪网络</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-24-transportmer.html">TranSPORTmer：多智能体体育轨迹理解的统一 Transformer 框架</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-tune-a-video.html">Tune-A-Video：单样本调优图像扩散模型做文本到视频生成</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-uniir-mbeir.html">UniIR：训练和评测通用多模态信息检索器（Training and Benchmarking Universal Multimodal Information Retrievers）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-12-unireal.html">UniReal：通过学习真实世界动态实现通用图像生成与编辑</a><span>Source note</span></li>
 <li><a href="../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a><span>Claim</span></li>
 <li><a href="../en/sources/2026-05-23-vars-automated-soccer-decision-making.html">VARS：SoccerNet-MVFoul 多视角犯规分类与裁判辅助</a><span>Source note</span></li>
@@ -658,6 +758,7 @@
 <li><a href="../en/sources/2026-04-14-veggie.html">VEGGIE：统一指令视频编辑、grounding 与 reasoning segmentation</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-12-veu-bench.html">VEU-Bench:Benchmarking Video Editing Element Understanding in General Vid-LLMs</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-vive3d.html">VIVE3D：多帧个性化 EG3D 的视角无关人脸视频编辑</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-vlm2vec-mmeb.html">VLM2Vec：把视觉语言模型训练成通用多模态向量模型（Training Vision-Language Models for Massive Multimodal Embedding Tasks）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-vidtome.html">VidToMe：用跨帧 token merging 做零样本视频编辑</a><span>Source note</span></li>
 <li><a href="../en/topics/video-understanding.html">Video Understanding</a><span>Topic</span></li>
 <li><a href="../en/sources/2026-04-14-video-bench.html">Video-Bench：人类偏好对齐的视频生成评测</a><span>Source note</span></li>
@@ -669,19 +770,33 @@
 <li><a href="../en/sources/2026-06-29-vision-transformer.html">Vision Transformer：把图像切成 token 的通用视觉主干</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-wear-outdoor-sports-dataset.html">WEAR：户外健身的第一视角视频与四肢 IMU 数据集</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-wavelet-diffusion-models.html">Wavelet Diffusion Models：在小波空间压缩少步扩散 GAN</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-winoground.html">Winoground：探测视觉语言组合性（Probing Vision and Language Models for Visio-Linguistic Compositionality）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-05-x-vars-explainable-football-refereeing.html">X-VARS：可解释足球视频助理裁判系统</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-sports-ai-review-2025.html">体育姿态估计与跟踪综述：方法、数据、挑战与路线图</a><span>Source note</span></li>
+<li><a href="../en/claims/claim-image-text-retrieval-baseline-and-specialization.html">双塔负责可扩展召回，细粒度模块负责精排与关系匹配</a><span>Claim</span></li>
 <li><a href="../en/topics/image-generation.html">图像生成</a><span>Topic</span></li>
 <li><a href="../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a><span>Entity</span></li>
 <li><a href="../en/topics/image-editing.html">图像编辑</a><span>Topic</span></li>
 <li><a href="../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a><span>Question</span></li>
+<li><a href="../en/entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a><span>Entity</span></li>
+<li><a href="../en/questions/question-image-text-retrieval-research-cut.html">图文检索哪个子方向最适合中等算力的研究生项目？</a><span>Question</span></li>
+<li><a href="../en/claims/claim-image-text-retrieval-data-quality.html">图文检索的主要瓶颈仍包括数据质量、分布与概念覆盖</a><span>Claim</span></li>
+<li><a href="../en/topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a><span>Topic</span></li>
+<li><a href="../en/sources/2026-07-14-multilingual-diversity.html">多语言多样性改善视觉语言表示（Multilingual Diversity Improves Vision-Language Representations）</a><span>Source note</span></li>
+<li><a href="../en/questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a><span>Question</span></li>
+<li><a href="../en/questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a><span>Question</span></li>
 <li><a href="../en/entities/diffusion-transformer.html">扩散 Transformer</a><span>Entity</span></li>
 <li><a href="../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>Topic</span></li>
 <li><a href="../en/topics/diffusion-models.html">扩散模型</a><span>Topic</span></li>
 <li><a href="../en/sources/2026-04-14-verifiable-human-eval-t2i.html">文本到图像生成的可验证与可复现人工评测</a><span>Source note</span></li>
+<li><a href="../en/claims/claim-image-text-retrieval-compositionality.html">标准图文检索分数不足以证明组合性理解</a><span>Claim</span></li>
 <li><a href="../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a><span>Question</span></li>
 <li><a href="../en/topics/generative-model-evaluation.html">生成模型评测</a><span>Topic</span></li>
+<li><a href="../en/claims/claim-image-text-retrieval-composed-query.html">组合式查询是图文检索中可落地且仍有缺口的研究切口</a><span>Claim</span></li>
+<li><a href="../en/questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a><span>Question</span></li>
 <li><a href="../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a><span>Question</span></li>
+<li><a href="../en/questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a><span>Question</span></li>
+<li><a href="../en/claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a><span>Claim</span></li>
 <li><a href="../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a><span>Question</span></li>
 <li><a href="../en/topics/vision-language.html">视觉-语言</a><span>Topic</span></li>
 <li><a href="../en/topics/video-generation.html">视频生成</a><span>Topic</span></li>
@@ -694,19 +809,27 @@
 <li><a href="../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a><span>Claim</span></li>
 <li><a href="../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a><span>Claim</span></li>
 </ul></section>
-<section class="tag-section" id="open-claim"><h2>#open-claim<span class="related-count">3</span></h2><ul>
+<section class="tag-section" id="open-claim"><h2>#open-claim<span class="related-count">8</span></h2><ul>
 <li><a href="../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a><span>Claim</span></li>
 <li><a href="../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a><span>Claim</span></li>
 <li><a href="../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a><span>Claim</span></li>
+<li><a href="../en/claims/claim-image-text-retrieval-baseline-and-specialization.html">双塔负责可扩展召回，细粒度模块负责精排与关系匹配</a><span>Claim</span></li>
+<li><a href="../en/claims/claim-image-text-retrieval-data-quality.html">图文检索的主要瓶颈仍包括数据质量、分布与概念覆盖</a><span>Claim</span></li>
+<li><a href="../en/claims/claim-image-text-retrieval-compositionality.html">标准图文检索分数不足以证明组合性理解</a><span>Claim</span></li>
+<li><a href="../en/claims/claim-image-text-retrieval-composed-query.html">组合式查询是图文检索中可落地且仍有缺口的研究切口</a><span>Claim</span></li>
+<li><a href="../en/claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a><span>Claim</span></li>
 </ul></section>
-<section class="tag-section" id="primary-source"><h2>#primary-source<span class="related-count">192</span></h2><ul>
+<section class="tag-section" id="primary-source"><h2>#primary-source<span class="related-count">211</span></h2><ul>
 <li><a href="../en/sources/2026-04-14-video-worth-256-bases.html">A Video is Worth 256 Bases：以时空 EM 低秩基改进零样本视频反演</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-16-a-star.html">A-STAR：测试时分离并保留 cross-attention</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-15-act-diffusion.html">ACT-Diffusion：面向一步扩散模型的高效对抗一致性训练</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-05-ai-driven-soccer-analysis.html">AI Driven Soccer Analysis：单主场足球 2D 映射原型</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-effective-real-image-editing.html">AIDI：以加速定点迭代改进真实图像扩散反演</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-aigv-assessor.html">AIGV-Assessor：用大模型评测文本到视频生成感知质量</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-albef.html">ALBEF：先对齐再融合（Align before Fuse）</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-align.html">ALIGN：用噪声文本监督扩展视觉与视觉语言表示学习（Scaling Up Visual and Vision-Language Representation Learning With Noisy Text Supervision）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-anetqa.html">ANetQA：未裁剪视频细粒度组合推理基准</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-aro.html">ARO：视觉语言模型何时像词袋，以及如何改进（When and why vision-language models behave like bags-of-words）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-avid-video-inpainting.html">AVID：用 Temporal MultiDiffusion 做任意长度视频修补</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html">Accelerating Diffusion Sampling with Optimized Time Steps：用优化时间步改善少步扩散采样</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-16-accelerating-dit-gradient-cache.html">Accelerating Diffusion Transformer via Gradient-Optimized Cache：修正 DiT 缓存误差</a><span>Source note</span></li>
@@ -722,6 +845,7 @@
 <li><a href="../en/sources/2026-04-14-attention-calibration-personalization.html">Attention Calibration for Disentangled Text-to-Image Personalization：解耦式个性化注意力校准</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-automated-offside-detection.html">Automated Offside Detection：基于双固定广角相机的时空越位检测原型</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-16-bbdm-brownian-bridge-diffusion.html">BBDM：以 Brownian Bridge 端点过程建模成对图像翻译</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-blip.html">BLIP：用自举式图文预训练统一视觉语言理解与生成（Bootstrapping Language-Image Pre-training）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-16-bst-badminton-stroke-type-transformer.html">BST：面向羽毛球击球类型识别的骨架动作 Transformer</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-17-badmintondb-player-specific-match-analysis.html">BadmintonDB：面向球员级比赛分析与预测的羽毛球数据集</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-16-blended-diffusion.html">Blended Diffusion：在像素扩散过程中逐步混合文本编辑前景与原图背景</a><span>Source note</span></li>
@@ -731,10 +855,13 @@
 <li><a href="../en/sources/2026-04-16-c3net.html">C3Net：CoDi U-Net 上的图像、文本与音频复合条件协调</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-camel-video-editing.html">CAMEL：面向文本驱动视频编辑的因果运动增强</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-ccedit.html">CCEdit：以结构—外观解耦实现创意可控视频编辑</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-cirr.html">CIRR：用预训练视觉语言模型检索真实世界图像（Image Retrieval on Real-life Images）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-06-29-clip.html">CLIP：用自然语言监督学习可迁移视觉表示</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-conform.html">CONFORM：以对比式注意力优化提升文本生成忠实度</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-check-locate-rectify.html">Check, Locate, Rectify：训练免费文本到图像布局校准</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-coca.html">CoCa：对比式图像描述器作为图文基础模型（Contrastive Captioners are Image-Text Foundation Models）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-codi.html">CoDi：条件扩散蒸馏实现 1–4 步图像条件生成</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-colpali.html">ColPali：用视觉语言模型做高效文档检索（Efficient Document Retrieval with Vision Language Models）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-16-come-closer-diffuse-faster.html">Come-Closer-Diffuse-Faster：用好初始化缩短条件扩散逆问题路径</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-commoncanvas.html">CommonCanvas：Creative Commons 数据上的开放 T2I 扩散训练</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-concon-chi.html">ConCon-Chi：个性化视觉语言的新含义与组合性基准</a><span>Source note</span></li>
@@ -748,6 +875,7 @@
 <li><a href="../en/sources/2026-06-29-detr.html">DETR：把目标检测改写成 Transformer set prediction</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-dive-subject-driven-video-editing.html">DIVE：用 DINO 做主体驱动视频编辑</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-16-dlt-layout-transformer.html">DLT：以联合离散—连续 Transformer diffusion 做属性级布局生成</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-datacomp.html">DataComp：寻找下一代多模态数据集（In search of the next generation of multimodal datasets）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-15-deepcache.html">DeepCache：用高层特征缓存免费加速 U-Net 扩散模型</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-16-dense-text-attention-modulation.html">DenseDiffusion：Stable Diffusion 的 training-free 区域文本 attention modulation</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-diffeditor.html">DiffEditor：以区域采样与图像提示提升细粒度扩散编辑</a><span>Source note</span></li>
@@ -766,7 +894,9 @@
 <li><a href="../en/sources/2026-04-14-evalcrafter.html">EvalCrafter：大视频生成模型的多维评测与人工偏好校准</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-05-event2tracking.html">Event2Tracking：用长时多模态上下文重建多智能体足球轨迹</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-12-fade.html">FADE：面向视频编辑的频率感知扩散模型分解</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-filip.html">FILIP：细粒度交互式语言-图像预训练（Fine-grained Interactive Language-Image Pre-Training）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-fairy-video-to-video.html">Fairy：用 anchor cross-frame attention 并行加速指令视频编辑</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-fashioniq.html">FashionIQ：用自然语言反馈检索图像（A New Dataset Towards Retrieving Images by Natural Language Feedback）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-fatezero.html">FateZero：融合注意力做零样本文本视频编辑</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-five-bench.html">FiVE-Bench：细粒度视频编辑评测基准</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-05-finecausal-action-quality-assessment.html">FineCausal：可解释细粒度动作质量评估</a><span>Source note</span></li>
@@ -789,6 +919,7 @@
 <li><a href="../en/sources/2026-04-14-insvie-1m.html">InsViE-1M：通过精细数据构造实现 instruction-based 视频编辑</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-12-insightedit.html">InsightEdit：迈向更强指令跟随的图像编辑</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-instructpix2pix.html">InstructPix2Pix：用合成监督建立自然语言图像编辑接口</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-laion-5b.html">LAION-5B：用于下一代图文模型的开放大规模数据集（An open large-scale dataset for training next generation image-text models）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-logo-group-action-quality.html">LOGO：多人长视频的群体动作质量评估</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-lvbench.html">LVBench：极长视频理解基准</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-latent-diffusion-models.html">Latent Diffusion Models：高分辨率图像合成的潜空间扩散框架</a><span>Source note</span></li>
@@ -807,6 +938,7 @@
 <li><a href="../en/sources/2026-05-17-multisensebadminton-biomechanical-dataset.html">MultiSenseBadminton：面向羽毛球表现评估的多传感器生物力学数据集</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-multisports.html">MultiSports：多人时空动作定位的数据锚点</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-null-text-inversion.html">NULL-Text Inversion：用 guided diffusion 编辑真实图像</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-no-zero-shot.html">No Zero-Shot Without Exponential Data：预训练概念频率决定多模态模型性能</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-12-osv.html">OSV：高质量图像到视频生成一步就够</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-12-omnigen.html">OmniGen：统一图像生成</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-16-on-distillation-of-guided-diffusion-models.html">On Distillation of Guided Diffusion Models：把 CFG 与采样轨迹联合蒸馏到极少步</a><span>Source note</span></li>
@@ -827,6 +959,7 @@
 <li><a href="../en/sources/2026-05-05-refereebench-multi-sport-referees.html">RefereeBench：多运动项目规则化视频裁判评测</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-16-rethinking-spatial-inconsistency-cfg.html">Rethinking the Spatial Inconsistency in Classifier-Free Diffusion Guidance：语义区域自适应 CFG</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-16-sana-sprint.html">SANA-Sprint：连续时间一致性与对抗蒸馏的一步线性 DiT</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-searle-circo.html">SEARLE：用文本反演做零样本组合式图像检索（Zero-Shot Composed Image Retrieval with Textual Inversion）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-16-self-correcting-llm-controlled-diffusion-models.html">SLD：LLM 驱动的闭环扩散生成纠错</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-sok-bench.html">SOK-Bench：结合开放世界知识的情境视频推理基准</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-st-gcn.html">ST-GCN：骨架动作识别的时空图卷积基线</a><span>Source note</span></li>
@@ -836,6 +969,7 @@
 <li><a href="../en/sources/2026-04-16-self-guided-diffusion-models.html">Self-Guided Diffusion Models：用自监督伪标注替代人工 guidance</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-shape-aware-layered-video-editing.html">Shape-aware Text-driven Layered Video Editing：用 UV 变形突破 atlas 的固定形状</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-16-shuttleset-stroke-level-badminton-dataset.html">ShuttleSet：人工标注的羽毛球单打 stroke-level 数据集</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-siglip.html">SigLIP：语言-图像预训练的 Sigmoid 损失（Sigmoid Loss for Language Image Pre-Training）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-16-skateformer-skeletal-temporal-transformer.html">SkateFormer：用四类骨架—时间分区实现高效联合注意力</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-sketchvideo.html">SketchVideo：基于草图的视频生成与编辑</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-05-soccernet-2022-challenges-results.html">SoccerNet 2022 Challenges Results：足球视频理解挑战早期基线</a><span>Source note</span></li>
@@ -853,6 +987,7 @@
 <li><a href="../en/sources/2026-04-24-sportsmot.html">SportsMOT：多运动场景的大规模球员多目标跟踪基准</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-stablevideo.html">StableVideo：用 layered atlas 稳定扩散视频外观编辑</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-12-streamingt2v.html">StreamingT2V：一致、动态、可扩展的长视频文本生成</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-sugarcrepe.html">SugarCrepe：修复可被捷径攻破的视觉语言组合性基准（Fixing Hackable Benchmarks）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-12-swiftedit.html">SwiftEdit：基于一步扩散的极速文本引导图像编辑</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-tacticai.html">TacticAI:An AI Assistant for Football Tactics</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-24-teamtrack.html">TeamTrack：全场视角的多运动多目标跟踪数据集</a><span>Source note</span></li>
@@ -872,12 +1007,14 @@
 <li><a href="../en/sources/2026-05-05-tracknet-high-speed-tiny-objects.html">TrackNet：体育高速小目标追踪网络</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-24-transportmer.html">TranSPORTmer：多智能体体育轨迹理解的统一 Transformer 框架</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-tune-a-video.html">Tune-A-Video：单样本调优图像扩散模型做文本到视频生成</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-uniir-mbeir.html">UniIR：训练和评测通用多模态信息检索器（Training and Benchmarking Universal Multimodal Information Retrievers）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-12-unireal.html">UniReal：通过学习真实世界动态实现通用图像生成与编辑</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-23-vars-automated-soccer-decision-making.html">VARS：SoccerNet-MVFoul 多视角犯规分类与裁判辅助</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-vbench.html">VBench：视频生成模型综合评测套件</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-veggie.html">VEGGIE：统一指令视频编辑、grounding 与 reasoning segmentation</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-12-veu-bench.html">VEU-Bench:Benchmarking Video Editing Element Understanding in General Vid-LLMs</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-vive3d.html">VIVE3D：多帧个性化 EG3D 的视角无关人脸视频编辑</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-vlm2vec-mmeb.html">VLM2Vec：把视觉语言模型训练成通用多模态向量模型（Training Vision-Language Models for Massive Multimodal Embedding Tasks）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-vidtome.html">VidToMe：用跨帧 token merging 做零样本视频编辑</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-video-bench.html">Video-Bench：人类偏好对齐的视频生成评测</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-video-p2p.html">Video-P2P：用 shared-null inversion 与解耦 guidance 做 attention-control 视频编辑</a><span>Source note</span></li>
@@ -888,7 +1025,9 @@
 <li><a href="../en/sources/2026-06-29-vision-transformer.html">Vision Transformer：把图像切成 token 的通用视觉主干</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-wear-outdoor-sports-dataset.html">WEAR：户外健身的第一视角视频与四肢 IMU 数据集</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-wavelet-diffusion-models.html">Wavelet Diffusion Models：在小波空间压缩少步扩散 GAN</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-winoground.html">Winoground：探测视觉语言组合性（Probing Vision and Language Models for Visio-Linguistic Compositionality）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-05-x-vars-explainable-football-refereeing.html">X-VARS：可解释足球视频助理裁判系统</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-multilingual-diversity.html">多语言多样性改善视觉语言表示（Multilingual Diversity Improves Vision-Language Representations）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-verifiable-human-eval-t2i.html">文本到图像生成的可验证与可复现人工评测</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-language-driven-video-inpainting.html">通过多模态大模型实现语言驱动视频修补</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-neuro-symbolic-eval-t2v.html">通过形式化验证评测文本到视频模型的神经符号方法</a><span>Source note</span></li>
@@ -912,24 +1051,44 @@
 <li><a href="../en/sources/2026-05-12-videoauto-r1.html">VideoAuto-R1（arXiv；CVPR 2026 accepted claim pending proceedings）：按需推理的视频理解框架</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-05-x-vars-explainable-football-refereeing.html">X-VARS：可解释足球视频助理裁判系统</a><span>Source note</span></li>
 </ul></section>
-<section class="tag-section" id="representation-learning"><h2>#representation-learning<span class="related-count">18</span></h2><ul>
+<section class="tag-section" id="representation-learning"><h2>#representation-learning<span class="related-count">38</span></h2><ul>
+<li><a href="../en/sources/2026-07-14-albef.html">ALBEF：先对齐再融合（Align before Fuse）</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-align.html">ALIGN：用噪声文本监督扩展视觉与视觉语言表示学习（Scaling Up Visual and Vision-Language Representation Learning With Noisy Text Supervision）</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-blip.html">BLIP：用自举式图文预训练统一视觉语言理解与生成（Bootstrapping Language-Image Pre-training）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-16-bst-badminton-stroke-type-transformer.html">BST：面向羽毛球击球类型识别的骨架动作 Transformer</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-17-badmintondb-player-specific-match-analysis.html">BadmintonDB：面向球员级比赛分析与预测的羽毛球数据集</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition.html">BlockGCN：保留骨架拓扑并轻量建模多种关节关系</a><span>Source note</span></li>
+<li><a href="../en/entities/clip.html">CLIP 系列模型（CLIP Family）</a><span>Entity</span></li>
 <li><a href="../en/sources/2026-06-29-clip.html">CLIP：用自然语言监督学习可迁移视觉表示</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-coca.html">CoCa：对比式图像描述器作为图文基础模型（Contrastive Captioners are Image-Text Foundation Models）</a><span>Source note</span></li>
+<li><a href="../en/entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a><span>Entity</span></li>
+<li><a href="../en/sources/2026-07-14-colpali.html">ColPali：用视觉语言模型做高效文档检索（Efficient Document Retrieval with Vision Language Models）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-06-29-detr.html">DETR：把目标检测改写成 Transformer set prediction</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-datacomp.html">DataComp：寻找下一代多模态数据集（In search of the next generation of multimodal datasets）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-16-diffusion-autoencoders.html">Diffusion Autoencoders：用语义向量与随机细节码构造可解码扩散表示</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-domain-expansion-image-generators.html">Domain Expansion of Image Generators：图像生成器的领域扩展</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-filip.html">FILIP：细粒度交互式语言-图像预训练（Fine-grained Interactive Language-Image Pre-Training）</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-laion-5b.html">LAION-5B：用于下一代图文模型的开放大规模数据集（An open large-scale dataset for training next generation image-text models）</a><span>Source note</span></li>
 <li><a href="../en/topics/vision-backbones.html">Mainstream Vision Backbones</a><span>Topic</span></li>
 <li><a href="../en/sources/2026-05-17-multisensebadminton-biomechanical-dataset.html">MultiSenseBadminton：面向羽毛球表现评估的多传感器生物力学数据集</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-16-protogcn-skeleton-action-recognition.html">ProtoGCN：用运动原型重构放大相似骨架动作的局部差异</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-searle-circo.html">SEARLE：用文本反演做零样本组合式图像检索（Zero-Shot Composed Image Retrieval with Textual Inversion）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-06-29-segment-anything.html">Segment Anything：把分割做成可提示的视觉基础模型</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-siglip.html">SigLIP：语言-图像预训练的 Sigmoid 损失（Sigmoid Loss for Language Image Pre-Training）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-16-skateformer-skeletal-temporal-transformer.html">SkateFormer：用四类骨架—时间分区实现高效联合注意力</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-sportscap.html">SportsCap：单目体育 3D 运动捕捉与细粒度属性理解</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-16-tempose-badminton-fine-grained-motion.html">TemPose：面向羽毛球细粒度动作识别的骨架 Transformer</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-12-trackmae.html">TrackMAE：用轨迹遮挡与预测学习运动敏感的视频表征</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-uniir-mbeir.html">UniIR：训练和评测通用多模态信息检索器（Training and Benchmarking Universal Multimodal Information Retrievers）</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-vlm2vec-mmeb.html">VLM2Vec：把视觉语言模型训练成通用多模态向量模型（Training Vision-Language Models for Massive Multimodal Embedding Tasks）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-videomae.html">VideoMAE：数据高效的视频掩码自编码预训练</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-06-29-vision-transformer.html">Vision Transformer：把图像切成 token 的通用视觉主干</a><span>Source note</span></li>
+<li><a href="../en/claims/claim-image-text-retrieval-baseline-and-specialization.html">双塔负责可扩展召回，细粒度模块负责精排与关系匹配</a><span>Claim</span></li>
+<li><a href="../en/topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a><span>Topic</span></li>
+<li><a href="../en/sources/2026-07-14-multilingual-diversity.html">多语言多样性改善视觉语言表示（Multilingual Diversity Improves Vision-Language Representations）</a><span>Source note</span></li>
+<li><a href="../en/questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a><span>Question</span></li>
+<li><a href="../en/questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a><span>Question</span></li>
+<li><a href="../en/claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a><span>Claim</span></li>
 <li><a href="../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a><span>Question</span></li>
 </ul></section>
 <section class="tag-section" id="secondary-source"><h2>#secondary-source<span class="related-count">16</span></h2><ul>
@@ -950,10 +1109,15 @@
 <li><a href="../en/sources/2026-04-25-sportsmot-dataset-page.html">SportsMOT Dataset Page：SportsMOT 官方数据页记录数据下载、许可和基准说明。</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-sports-ai-review-2025.html">体育姿态估计与跟踪综述：方法、数据、挑战与路线图</a><span>Source note</span></li>
 </ul></section>
-<section class="tag-section" id="survey-needed"><h2>#survey-needed<span class="related-count">4</span></h2><ul>
+<section class="tag-section" id="survey-needed"><h2>#survey-needed<span class="related-count">9</span></h2><ul>
 <li><a href="../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a><span>Question</span></li>
+<li><a href="../en/questions/question-image-text-retrieval-research-cut.html">图文检索哪个子方向最适合中等算力的研究生项目？</a><span>Question</span></li>
+<li><a href="../en/questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a><span>Question</span></li>
+<li><a href="../en/questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a><span>Question</span></li>
 <li><a href="../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a><span>Question</span></li>
+<li><a href="../en/questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a><span>Question</span></li>
 <li><a href="../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a><span>Question</span></li>
+<li><a href="../en/questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a><span>Question</span></li>
 <li><a href="../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a><span>Question</span></li>
 </ul></section>
 <section class="tag-section" id="tracking"><h2>#tracking<span class="related-count">27</span></h2><ul>
@@ -1128,19 +1292,51 @@
 <li><a href="../en/sources/2026-06-29-segment-anything.html">Segment Anything：把分割做成可提示的视觉基础模型</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-06-29-vision-transformer.html">Vision Transformer：把图像切成 token 的通用视觉主干</a><span>Source note</span></li>
 </ul></section>
-<section class="tag-section" id="vision-language"><h2>#vision-language<span class="related-count">14</span></h2><ul>
+<section class="tag-section" id="vision-language"><h2>#vision-language<span class="related-count">46</span></h2><ul>
+<li><a href="../en/sources/2026-07-14-albef.html">ALBEF：先对齐再融合（Align before Fuse）</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-align.html">ALIGN：用噪声文本监督扩展视觉与视觉语言表示学习（Scaling Up Visual and Vision-Language Representation Learning With Noisy Text Supervision）</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-aro.html">ARO：视觉语言模型何时像词袋，以及如何改进（When and why vision-language models behave like bags-of-words）</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-blip.html">BLIP：用自举式图文预训练统一视觉语言理解与生成（Bootstrapping Language-Image Pre-training）</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-cirr.html">CIRR：用预训练视觉语言模型检索真实世界图像（Image Retrieval on Real-life Images）</a><span>Source note</span></li>
+<li><a href="../en/entities/clip.html">CLIP 系列模型（CLIP Family）</a><span>Entity</span></li>
 <li><a href="../en/sources/2026-06-29-clip.html">CLIP：用自然语言监督学习可迁移视觉表示</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-coca.html">CoCa：对比式图像描述器作为图文基础模型（Contrastive Captioners are Image-Text Foundation Models）</a><span>Source note</span></li>
+<li><a href="../en/entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a><span>Entity</span></li>
+<li><a href="../en/sources/2026-07-14-colpali.html">ColPali：用视觉语言模型做高效文档检索（Efficient Document Retrieval with Vision Language Models）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-concon-chi.html">ConCon-Chi：个性化视觉语言的新含义与组合性基准</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-datacomp.html">DataComp：寻找下一代多模态数据集（In search of the next generation of multimodal datasets）</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-filip.html">FILIP：细粒度交互式语言-图像预训练（Fine-grained Interactive Language-Image Pre-Training）</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-fashioniq.html">FashionIQ：用自然语言反馈检索图像（A New Dataset Towards Retrieving Images by Natural Language Feedback）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-finesports.html">FineSports：多人篮球的层级细粒度时空动作定位</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-hallusionbench.html">HallusionBench：视觉语言幻觉与视觉错觉诊断基准</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-05-human-in-loop-team-sports-retrieval.html">Human-in-the-loop Adaptation：团队运动示例检索的人机适配</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-laion-5b.html">LAION-5B：用于下一代图文模型的开放大规模数据集（An open large-scale dataset for training next generation image-text models）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-maplm.html">MAPLM：地图与交通场景的真实世界多模态问答基准</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-mmmu.html">MMMU：跨学科专家级多模态理解与推理基准</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-no-zero-shot.html">No Zero-Shot Without Exponential Data：预训练概念频率决定多模态模型性能</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-searle-circo.html">SEARLE：用文本反演做零样本组合式图像检索（Zero-Shot Composed Image Retrieval with Textual Inversion）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-sti-bench.html">STI-Bench：精确时空世界理解基准</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-siglip.html">SigLIP：语言-图像预训练的 Sigmoid 损失（Sigmoid Loss for Language Image Pre-Training）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-05-sports-qa-video-question-answering.html">Sports-QA：复杂专业体育视频问答基准</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-sugarcrepe.html">SugarCrepe：修复可被捷径攻破的视觉语言组合性基准（Fixing Hackable Benchmarks）</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-uniir-mbeir.html">UniIR：训练和评测通用多模态信息检索器（Training and Benchmarking Universal Multimodal Information Retrievers）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-veggie.html">VEGGIE：统一指令视频编辑、grounding 与 reasoning segmentation</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-vlm2vec-mmeb.html">VLM2Vec：把视觉语言模型训练成通用多模态向量模型（Training Vision-Language Models for Massive Multimodal Embedding Tasks）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-12-videoauto-r1.html">VideoAuto-R1（arXiv；CVPR 2026 accepted claim pending proceedings）：按需推理的视频理解框架</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-07-14-winoground.html">Winoground：探测视觉语言组合性（Probing Vision and Language Models for Visio-Linguistic Compositionality）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-05-05-x-vars-explainable-football-refereeing.html">X-VARS：可解释足球视频助理裁判系统</a><span>Source note</span></li>
+<li><a href="../en/claims/claim-image-text-retrieval-baseline-and-specialization.html">双塔负责可扩展召回，细粒度模块负责精排与关系匹配</a><span>Claim</span></li>
+<li><a href="../en/questions/question-image-text-retrieval-research-cut.html">图文检索哪个子方向最适合中等算力的研究生项目？</a><span>Question</span></li>
+<li><a href="../en/claims/claim-image-text-retrieval-data-quality.html">图文检索的主要瓶颈仍包括数据质量、分布与概念覆盖</a><span>Claim</span></li>
+<li><a href="../en/topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a><span>Topic</span></li>
+<li><a href="../en/sources/2026-07-14-multilingual-diversity.html">多语言多样性改善视觉语言表示（Multilingual Diversity Improves Vision-Language Representations）</a><span>Source note</span></li>
+<li><a href="../en/questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a><span>Question</span></li>
+<li><a href="../en/questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a><span>Question</span></li>
+<li><a href="../en/claims/claim-image-text-retrieval-compositionality.html">标准图文检索分数不足以证明组合性理解</a><span>Claim</span></li>
+<li><a href="../en/claims/claim-image-text-retrieval-composed-query.html">组合式查询是图文检索中可落地且仍有缺口的研究切口</a><span>Claim</span></li>
+<li><a href="../en/questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a><span>Question</span></li>
+<li><a href="../en/questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a><span>Question</span></li>
+<li><a href="../en/claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a><span>Claim</span></li>
 <li><a href="../en/topics/vision-language.html">视觉-语言</a><span>Topic</span></li>
 <li><a href="../en/sources/2026-04-14-language-driven-video-inpainting.html">通过多模态大模型实现语言驱动视频修补</a><span>Source note</span></li>
 </ul></section></section>
