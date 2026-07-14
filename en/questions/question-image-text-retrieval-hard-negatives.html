@@ -87,7 +87,7 @@
         <section class="article-content">
 <section class="question-hero" data-motion="reveal">
   <div class="question-hero-copy"><p class="section-kicker">Open question</p><h2>怎样构造既难又不错误的图文检索负例？</h2><p>This question remains open and needs new primary evidence.</p></div>
-  <div class="open-question-panel"><p class="section-kicker">Next evidence need</p><div class="question-metrics"><strong>4</strong><span>Candidate sources</span><strong>1</strong><span>Related topics</span></div><a class="text-action" href="#related">View evidence paths →</a></div>
+  <div class="open-question-panel"><p class="section-kicker">Next evidence need</p><div class="question-metrics"><strong>8</strong><span>Candidate sources</span><strong>1</strong><span>Related topics</span></div><a class="text-action" href="#related">View evidence paths →</a></div>
 </section>
 <h2 id="问题">问题</h2>
 <p>怎样让 hard negative 只改变一个可验证的属性、关系、词序或修改意图，同时避免把多个合理答案错误地标成负例？</p>
@@ -98,6 +98,7 @@
 <li>text-only、image-only、词频/长度启发式与视觉模型的对照。</li>
 <li>人工一致性、多真值覆盖、负例来源和关系级标签。</li>
 <li>加入 hard negative 前后的分层收益，以及对普通 Recall、长尾和域外任务的副作用。</li>
+<li>显式负例的 false-positive rate、多个正确答案、query paraphrase 敏感性和多图组合退化；PinPoint 可作为压力测试模板。</li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
@@ -106,8 +107,8 @@
 </ul></section>
       </div>
       
-      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-related_topics"><h3>Related topics<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a></li></ul></div><div class="related-group related-related_entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a></li></ul></div><div class="related-group related-candidate_sources"><h3>Candidate sources<span class="related-count">4</span></h3><ul><li><a class="wikilink" href="../../en/sources/2026-07-14-aro.html">ARO：视觉语言模型何时像词袋，以及如何改进（When and why vision-language models behave like bags-of-words）</a></li><li><a class="wikilink" href="../../en/sources/2026-07-14-sugarcrepe.html">SugarCrepe：修复可被捷径攻破的视觉语言组合性基准（Fixing Hackable Benchmarks）</a></li><li><a class="wikilink" href="../../en/sources/2026-07-14-cirr.html">CIRR：用预训练视觉语言模型检索真实世界图像（Image Retrieval on Real-life Images）</a></li><li><a class="wikilink" href="../../en/sources/2026-07-14-searle-circo.html">SEARLE：用文本反演做零样本组合式图像检索（Zero-Shot Composed Image Retrieval with Textual Inversion）</a></li></ul></div></div></section>
-      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">5</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-07-14-aro.html">ARO：视觉语言模型何时像词袋，以及如何改进（When and why vision-language models behave like bags-of-words）</a><span>Source note</span></li><li><a href="../../en/sources/2026-07-14-sugarcrepe.html">SugarCrepe：修复可被捷径攻破的视觉语言组合性基准（Fixing Hackable Benchmarks）</a><span>Source note</span></li><li><a href="../../en/sources/2026-07-14-winoground.html">Winoground：探测视觉语言组合性（Probing Vision and Language Models for Visio-Linguistic Compositionality）</a><span>Source note</span></li><li><a href="../../en/topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a><span>Topic</span></li></ul></section>
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-related_topics"><h3>Related topics<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a></li></ul></div><div class="related-group related-related_entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a></li></ul></div><div class="related-group related-candidate_sources"><h3>Candidate sources<span class="related-count">8</span></h3><ul><li><a class="wikilink" href="../../en/sources/2026-07-14-aro.html">ARO：视觉语言模型何时像词袋，以及如何改进（When and why vision-language models behave like bags-of-words）</a></li><li><a class="wikilink" href="../../en/sources/2026-07-14-sugarcrepe.html">SugarCrepe：修复可被捷径攻破的视觉语言组合性基准（Fixing Hackable Benchmarks）</a></li><li><a class="wikilink" href="../../en/sources/2026-07-14-cirr.html">CIRR：用预训练视觉语言模型检索真实世界图像（Image Retrieval on Real-life Images）</a></li><li><a class="wikilink" href="../../en/sources/2026-07-14-searle-circo.html">SEARLE：用文本反演做零样本组合式图像检索（Zero-Shot Composed Image Retrieval with Textual Inversion）</a></li><li><a class="wikilink" href="../../en/sources/2026-07-14-cprd.html">如何让 Cross Encoder 成为高效图文检索的好教师？（How to Make Cross Encoder a Good Teacher for Efficient Image-Text Retrieval?）</a></li><li><a class="wikilink" href="../../en/sources/2026-07-14-cola.html">COLA：组合式文本到图像检索基准（A Benchmark for Compositional Text-to-image Retrieval）</a></li><li><a class="wikilink" href="../../en/sources/2026-07-14-cir-robustness.html">文本—图像组合式检索的鲁棒性基准（Benchmarking Robustness of Text-Image Composed Retrieval）</a></li><li><a class="wikilink" href="../../en/sources/2026-07-14-pinpoint.html">PinPoint：带显式负例、多图查询与改写测试的组合式图像检索评测</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">13</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-07-14-aro.html">ARO：视觉语言模型何时像词袋，以及如何改进（When and why vision-language models behave like bags-of-words）</a><span>Source note</span></li><li><a href="../../en/sources/2026-07-14-cir-robustness.html">文本—图像组合式检索的鲁棒性基准（Benchmarking Robustness of Text-Image Composed Retrieval）</a><span>Source note</span></li><li><a href="../../en/sources/2026-07-14-cola.html">COLA：组合式文本到图像检索基准（A Benchmark for Compositional Text-to-image Retrieval）</a><span>Source note</span></li><li><a href="../../en/sources/2026-07-14-collm.html">CoLLM：用于组合式图像检索的大语言模型</a><span>Source note</span></li><li><a href="../../en/sources/2026-07-14-dci.html">一张图胜过 77 个文本 token：在密集描述上评估 CLIP 类模型（A Picture is Worth More Than 77 Text Tokens）</a><span>Source note</span></li><li><a href="../../en/sources/2026-07-14-keds.html">KEDs：知识增强的双流零样本组合式图像检索（Knowledge-Enhanced Dual-stream Zero-shot Composed Image Retrieval）</a><span>Source note</span></li><li><a href="../../en/sources/2026-07-14-pic2word.html">Pic2Word：把图片映射成词，用于零样本组合式图像检索（Mapping Pictures to Words for Zero-shot Composed Image Retrieval）</a><span>Source note</span></li><li><a href="../../en/sources/2026-07-14-pinpoint.html">PinPoint：带显式负例、多图查询与改写测试的组合式图像检索评测</a><span>Source note</span></li><li><a href="../../en/sources/2026-07-14-sugarcrepe.html">SugarCrepe：修复可被捷径攻破的视觉语言组合性基准（Fixing Hackable Benchmarks）</a><span>Source note</span></li><li><a href="../../en/sources/2026-07-14-vilem.html">ViLEM：图文检索的视觉—语言错误建模（Visual-Language Error Modeling for Image-Text Retrieval）</a><span>Source note</span></li><li><a href="../../en/sources/2026-07-14-winoground.html">Winoground：探测视觉语言组合性（Probing Vision and Language Models for Visio-Linguistic Compositionality）</a><span>Source note</span></li><li><a href="../../en/topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a><span>Topic</span></li></ul></section>
       <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;question-image-text-retrieval-hard-negatives&quot;,
   &quot;type&quot;: &quot;question&quot;,
@@ -134,7 +135,11 @@
     &quot;sources/2026-07-14-aro&quot;,
     &quot;sources/2026-07-14-sugarcrepe&quot;,
     &quot;sources/2026-07-14-cirr&quot;,
-    &quot;sources/2026-07-14-searle-circo&quot;
+    &quot;sources/2026-07-14-searle-circo&quot;,
+    &quot;sources/2026-07-14-cprd&quot;,
+    &quot;sources/2026-07-14-cola&quot;,
+    &quot;sources/2026-07-14-cir-robustness&quot;,
+    &quot;sources/2026-07-14-pinpoint&quot;
   ]
 }</pre></details>
     </article>

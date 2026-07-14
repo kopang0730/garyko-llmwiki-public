@@ -87,7 +87,7 @@
         <section class="article-content">
 <section class="question-hero" data-motion="reveal">
   <div class="question-hero-copy"><p class="section-kicker">开放问题</p><h2>如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</h2><p>这个问题仍然开放，需要通过新的 primary evidence 继续收窄。</p></div>
-  <div class="open-question-panel"><p class="section-kicker">下一步证据需求</p><div class="question-metrics"><strong>4</strong><span>候选来源</span><strong>1</strong><span>相关主题</span></div><a class="text-action" href="#related">查看证据入口 →</a></div>
+  <div class="open-question-panel"><p class="section-kicker">下一步证据需求</p><div class="question-metrics"><strong>7</strong><span>候选来源</span><strong>1</strong><span>相关主题</span></div><a class="text-action" href="#related">查看证据入口 →</a></div>
 </section>
 <h2 id="问题">问题</h2>
 <p>怎样判断 Flickr30K、MS COCO、CIR、组合性 benchmark 或自建中文数据中的图像、caption、概念和近重复样本是否已经进入预训练数据？</p>
@@ -98,6 +98,7 @@
 <li>图像 hash、caption 近重复、概念频率和数据版本记录。</li>
 <li>预训练/下游 split 的来源隔离与污染敏感性实验。</li>
 <li>在标准 benchmark、长尾 benchmark 和真实域数据上同时报告结果。</li>
+<li>对合成 query、LLM 生成修改文本和人工筛选 hard negative 保留 provenance，分开记录生成、过滤和最终评测样本。</li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
@@ -107,8 +108,8 @@
 </ul></section>
       </div>
       
-      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-related_topics"><h3>相关主题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a></li></ul></div><div class="related-group related-related_entities"><h3>相关实体<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a></li></ul></div><div class="related-group related-candidate_sources"><h3>候选来源<span class="related-count">4</span></h3><ul><li><a class="wikilink" href="../sources/2026-07-14-laion-5b.html">LAION-5B：用于下一代图文模型的开放大规模数据集（An open large-scale dataset for training next generation image-text models）</a></li><li><a class="wikilink" href="../sources/2026-07-14-datacomp.html">DataComp：寻找下一代多模态数据集（In search of the next generation of multimodal datasets）</a></li><li><a class="wikilink" href="../sources/2026-07-14-sugarcrepe.html">SugarCrepe：修复可被捷径攻破的视觉语言组合性基准（Fixing Hackable Benchmarks）</a></li><li><a class="wikilink" href="../sources/2026-07-14-no-zero-shot.html">No Zero-Shot Without Exponential Data：预训练概念频率决定多模态模型性能</a></li></ul></div></div></section>
-      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">5</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-07-14-datacomp.html">DataComp：寻找下一代多模态数据集（In search of the next generation of multimodal datasets）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-laion-5b.html">LAION-5B：用于下一代图文模型的开放大规模数据集（An open large-scale dataset for training next generation image-text models）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-no-zero-shot.html">No Zero-Shot Without Exponential Data：预训练概念频率决定多模态模型性能</a><span>来源笔记</span></li><li><a href="../topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a><span>主题</span></li></ul></section>
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-related_topics"><h3>相关主题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a></li></ul></div><div class="related-group related-related_entities"><h3>相关实体<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a></li></ul></div><div class="related-group related-candidate_sources"><h3>候选来源<span class="related-count">7</span></h3><ul><li><a class="wikilink" href="../sources/2026-07-14-laion-5b.html">LAION-5B：用于下一代图文模型的开放大规模数据集（An open large-scale dataset for training next generation image-text models）</a></li><li><a class="wikilink" href="../sources/2026-07-14-datacomp.html">DataComp：寻找下一代多模态数据集（In search of the next generation of multimodal datasets）</a></li><li><a class="wikilink" href="../sources/2026-07-14-sugarcrepe.html">SugarCrepe：修复可被捷径攻破的视觉语言组合性基准（Fixing Hackable Benchmarks）</a></li><li><a class="wikilink" href="../sources/2026-07-14-no-zero-shot.html">No Zero-Shot Without Exponential Data：预训练概念频率决定多模态模型性能</a></li><li><a class="wikilink" href="../sources/2026-07-14-collm.html">CoLLM：用于组合式图像检索的大语言模型</a></li><li><a class="wikilink" href="../sources/2026-07-14-mieb.html">MIEB：大规模图像 embedding 评测基准（Massive Image Embedding Benchmark）</a></li><li><a class="wikilink" href="../sources/2026-07-14-pinpoint.html">PinPoint：带显式负例、多图查询与改写测试的组合式图像检索评测</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">6</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-07-14-cola.html">COLA：组合式文本到图像检索基准（A Benchmark for Compositional Text-to-image Retrieval）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-datacomp.html">DataComp：寻找下一代多模态数据集（In search of the next generation of multimodal datasets）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-laion-5b.html">LAION-5B：用于下一代图文模型的开放大规模数据集（An open large-scale dataset for training next generation image-text models）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-no-zero-shot.html">No Zero-Shot Without Exponential Data：预训练概念频率决定多模态模型性能</a><span>来源笔记</span></li><li><a href="../topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a><span>主题</span></li></ul></section>
       <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;question-image-text-retrieval-data-contamination&quot;,
   &quot;type&quot;: &quot;question&quot;,
@@ -135,7 +136,10 @@
     &quot;sources/2026-07-14-laion-5b&quot;,
     &quot;sources/2026-07-14-datacomp&quot;,
     &quot;sources/2026-07-14-sugarcrepe&quot;,
-    &quot;sources/2026-07-14-no-zero-shot&quot;
+    &quot;sources/2026-07-14-no-zero-shot&quot;,
+    &quot;sources/2026-07-14-collm&quot;,
+    &quot;sources/2026-07-14-mieb&quot;,
+    &quot;sources/2026-07-14-pinpoint&quot;
   ]
 }</pre></details>
     </article>

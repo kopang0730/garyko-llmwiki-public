@@ -87,7 +87,7 @@
         <section class="article-content">
 <section class="question-hero" data-motion="reveal">
   <div class="question-hero-copy"><p class="section-kicker">Open question</p><h2>细粒度图文对齐如何兼顾索引效率？</h2><p>This question remains open and needs new primary evidence.</p></div>
-  <div class="open-question-panel"><p class="section-kicker">Next evidence need</p><div class="question-metrics"><strong>3</strong><span>Candidate sources</span><strong>1</strong><span>Related topics</span></div><a class="text-action" href="#related">View evidence paths →</a></div>
+  <div class="open-question-panel"><p class="section-kicker">Next evidence need</p><div class="question-metrics"><strong>7</strong><span>Candidate sources</span><strong>1</strong><span>Related topics</span></div><a class="text-action" href="#related">View evidence paths →</a></div>
 </section>
 <h2 id="问题">问题</h2>
 <p>patch/token 级对齐、cross-encoder 精排和多向量 late interaction 能否在真实图库/文档库中带来稳定收益，并把额外存储、候选打分和延迟控制在可接受范围？</p>
@@ -98,6 +98,7 @@
 <li>同一 backbone、同一图库和同一候选数下的单向量/多向量/cross-encoder 对照。</li>
 <li>关系、属性、局部 OCR/布局等可定位 query 的分层评测。</li>
 <li>量化、token 剪枝、候选重排和失败案例可视化。</li>
+<li>在视觉信息真正重要与文字占主导的页面上分别评估；MIRACL-VISION 的反方结果要求明确报告 OCR-only 与文本 embedding。</li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
@@ -106,8 +107,8 @@
 </ul></section>
       </div>
       
-      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-related_topics"><h3>Related topics<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a></li></ul></div><div class="related-group related-related_entities"><h3>Related entities<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/entities/clip.html">CLIP 系列模型（CLIP Family）</a></li><li><a class="wikilink" href="../../en/entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a></li></ul></div><div class="related-group related-candidate_sources"><h3>Candidate sources<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/sources/2026-07-14-filip.html">FILIP：细粒度交互式语言-图像预训练（Fine-grained Interactive Language-Image Pre-Training）</a></li><li><a class="wikilink" href="../../en/sources/2026-07-14-albef.html">ALBEF：先对齐再融合（Align before Fuse）</a></li><li><a class="wikilink" href="../../en/sources/2026-07-14-colpali.html">ColPali：用视觉语言模型做高效文档检索（Efficient Document Retrieval with Vision Language Models）</a></li></ul></div></div></section>
-      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">5</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-07-14-albef.html">ALBEF：先对齐再融合（Align before Fuse）</a><span>Source note</span></li><li><a href="../../en/sources/2026-07-14-colpali.html">ColPali：用视觉语言模型做高效文档检索（Efficient Document Retrieval with Vision Language Models）</a><span>Source note</span></li><li><a href="../../en/sources/2026-07-14-filip.html">FILIP：细粒度交互式语言-图像预训练（Fine-grained Interactive Language-Image Pre-Training）</a><span>Source note</span></li><li><a href="../../en/topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a><span>Topic</span></li></ul></section>
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-related_topics"><h3>Related topics<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a></li></ul></div><div class="related-group related-related_entities"><h3>Related entities<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/entities/clip.html">CLIP 系列模型（CLIP Family）</a></li><li><a class="wikilink" href="../../en/entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a></li></ul></div><div class="related-group related-candidate_sources"><h3>Candidate sources<span class="related-count">7</span></h3><ul><li><a class="wikilink" href="../../en/sources/2026-07-14-filip.html">FILIP：细粒度交互式语言-图像预训练（Fine-grained Interactive Language-Image Pre-Training）</a></li><li><a class="wikilink" href="../../en/sources/2026-07-14-albef.html">ALBEF：先对齐再融合（Align before Fuse）</a></li><li><a class="wikilink" href="../../en/sources/2026-07-14-colpali.html">ColPali：用视觉语言模型做高效文档检索（Efficient Document Retrieval with Vision Language Models）</a></li><li><a class="wikilink" href="../../en/sources/2026-07-14-msrm.html">多边语义关系建模用于图文检索（Multilateral Semantic Relations Modeling for Image Text Retrieval）</a></li><li><a class="wikilink" href="../../en/sources/2026-07-14-cprd.html">如何让 Cross Encoder 成为高效图文检索的好教师？（How to Make Cross Encoder a Good Teacher for Efficient Image-Text Retrieval?）</a></li><li><a class="wikilink" href="../../en/sources/2026-07-14-visrag.html">VisRAG：面向多模态文档的视觉检索增强生成（Vision-based Retrieval-augmented Generation on Multi-modality Documents）</a></li><li><a class="wikilink" href="../../en/sources/2026-07-14-miracl-vision.html">MIRACL-VISION：大规模多语言视觉文档检索基准</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">10</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-07-14-albef.html">ALBEF：先对齐再融合（Align before Fuse）</a><span>Source note</span></li><li><a href="../../en/sources/2026-07-14-colpali.html">ColPali：用视觉语言模型做高效文档检索（Efficient Document Retrieval with Vision Language Models）</a><span>Source note</span></li><li><a href="../../en/sources/2026-07-14-cprd.html">如何让 Cross Encoder 成为高效图文检索的好教师？（How to Make Cross Encoder a Good Teacher for Efficient Image-Text Retrieval?）</a><span>Source note</span></li><li><a href="../../en/sources/2026-07-14-filip.html">FILIP：细粒度交互式语言-图像预训练（Fine-grained Interactive Language-Image Pre-Training）</a><span>Source note</span></li><li><a href="../../en/sources/2026-07-14-generative-zscir.html">生成式零样本组合式图像检索（Generative Zero-Shot Composed Image Retrieval）</a><span>Source note</span></li><li><a href="../../en/sources/2026-07-14-miracl-vision.html">MIRACL-VISION：大规模多语言视觉文档检索基准</a><span>Source note</span></li><li><a href="../../en/sources/2026-07-14-msrm.html">多边语义关系建模用于图文检索（Multilateral Semantic Relations Modeling for Image Text Retrieval）</a><span>Source note</span></li><li><a href="../../en/sources/2026-07-14-visrag.html">VisRAG：面向多模态文档的视觉检索增强生成（Vision-based Retrieval-augmented Generation on Multi-modality Documents）</a><span>Source note</span></li><li><a href="../../en/topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a><span>Topic</span></li></ul></section>
       <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;question-image-text-retrieval-fine-grained-alignment&quot;,
   &quot;type&quot;: &quot;question&quot;,
@@ -134,7 +135,11 @@
   &quot;candidate_sources&quot;: [
     &quot;sources/2026-07-14-filip&quot;,
     &quot;sources/2026-07-14-albef&quot;,
-    &quot;sources/2026-07-14-colpali&quot;
+    &quot;sources/2026-07-14-colpali&quot;,
+    &quot;sources/2026-07-14-msrm&quot;,
+    &quot;sources/2026-07-14-cprd&quot;,
+    &quot;sources/2026-07-14-visrag&quot;,
+    &quot;sources/2026-07-14-miracl-vision&quot;
   ]
 }</pre></details>
     </article>

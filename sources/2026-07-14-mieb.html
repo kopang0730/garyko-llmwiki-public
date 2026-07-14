@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MIEB：大规模图像 embedding 评测基准（Massive Image Embedding Benchmark）">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>MIEB：大规模图像 embedding 评测基准（Massive Image Embedding Benchmark） · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260714-research-observatory-v2-motion">
+  <script defer src="../assets/wiki.js?v=20260714-research-observatory-v2-motion"></script>
+</head>
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-07-14-mieb&quot;, &quot;title&quot;: &quot;MIEB：大规模图像 embedding 评测基准（Massive Image Embedding Benchmark）&quot;, &quot;title_en&quot;: &quot;MIEB：大规模图像 embedding 评测基准（Massive Image Embedding Benchmark）&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;vision-language&quot;, &quot;benchmarking&quot;, &quot;evaluation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260714-research-observatory-v2-motion">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>入口</h2><ul>
+<li><a href="../index.html">索引</a></li>
+<li><a href="../llm-wiki.html">LLM Wiki</a></li>
+<li><a href="../main.html">首页</a></li>
+</ul>
+<h2>主题</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a></li>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-backbones.html">视觉 Backbone</a></li>
+<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+</ul>
+<h2>实体</h2><ul>
+<li><a href="../entities/clip.html">CLIP 系列模型（CLIP Family）</a></li>
+<li><a href="../entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a></li>
+<li><a href="../entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a></li>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>判断</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-image-text-retrieval-baseline-and-specialization.html">双塔负责可扩展召回，细粒度模块负责精排与关系匹配</a></li>
+<li><a href="../claims/claim-image-text-retrieval-composed-query.html">组合式查询是图文检索中可落地且仍有缺口的研究切口</a></li>
+<li><a href="../claims/claim-image-text-retrieval-compositionality.html">标准图文检索分数不足以证明组合性理解</a></li>
+<li><a href="../claims/claim-image-text-retrieval-data-quality.html">图文检索的主要瓶颈仍包括数据质量、分布与概念覆盖</a></li>
+<li><a href="../claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
+</ul>
+<h2>问题</h2><ul>
+<li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a></li>
+<li><a href="../questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a></li>
+<li><a href="../questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a></li>
+<li><a href="../questions/question-image-text-retrieval-research-cut.html">图文检索哪个子方向最适合中等算力的研究生项目？</a></li>
+<li><a href="../questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../sources/2026-07-14-mieb.html">中文</a><a class="" href="../en/sources/2026-07-14-mieb.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
+    <article class="article-shell">
+      
+      <header class="article-header" data-motion="reveal">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>MIEB：大规模图像 embedding 评测基准（Massive Image Embedding Benchmark）</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-14</p>
+        <h1><span class="title-main">MIEB</span><span class="title-subtitle">大规模图像 embedding 评测基准（Massive Image Embedding Benchmark）</span></h1>
+        
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#vision-language">#vision-language</a><a class="tag" href="../tags.html#benchmarking">#benchmarking</a><a class="tag" href="../tags.html#evaluation">#evaluation</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>arXiv preprint</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2025-04-14</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-07-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2504.10471" title="https://arxiv.org/abs/2504.10471" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2504.10471</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2504.10471" title="https://arxiv.org/pdf/2504.10471" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2504.10471</strong></a><a class="source-link source-link-code" href="https://github.com/embeddings-benchmark/mteb" title="https://github.com/embeddings-benchmark/mteb" target="_blank" rel="noopener noreferrer"><span>代码仓库</span><strong>github.com · mteb</strong></a></div></section><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题-方法与评测协议">问题、方法与评测协议</a></li><li><a href="#数据-指标与关键发现">数据、指标与关键发现</a></li><li><a href="#局限与证据边界">局限与证据边界</a></li><li><a href="#对候选课题-a-b-c-d-的启发">对候选课题 A/B/C/D 的启发</a></li><li><a href="#原始链接">原始链接</a></li></ol></details></aside>
+        <section class="article-content"><h1 id="mieb-大规模图像-embedding-评测基准">MIEB：大规模图像 embedding 评测基准</h1>
+<h2 id="一句话结论">一句话结论</h2>
+<p>MIEB 把图像与图文 embedding 的评测扩展到 38 种语言、130 个任务和 8 类能力，结果显示没有一种方法在所有任务上都占优；这直接支持“不要用一个平均 Recall 宣称通用检索器”的判断。</p>
+<h2 id="问题-方法与评测协议">问题、方法与评测协议</h2>
+<ul>
+<li>论文指出，图像聚类、图文检索、组合性、视觉文本相似度和视觉问答通常被分开评测，模型能力因此难以比较。</li>
+<li>基于 MTEB 框架构建统一基准，覆盖检索、聚类、分类、组合性评测、视觉中心问答、文档理解、视觉语义相似度和多语言任务。</li>
+<li>基准同时包含 instruction-aware retrieval、interleaved retrieval 和高分辨率文档理解，试图测量 embedding 是否真正编码了复杂视觉信息。</li>
+</ul>
+<h2 id="数据-指标与关键发现">数据、指标与关键发现</h2>
+<ul>
+<li>论文评测 50 个模型，跨 38 种语言和 130 个任务；核心指标随任务使用 Recall、准确率、相似度或分类指标。</li>
+<li>没有单一方法统治所有类别，模型在检索、组合性、文档理解和干扰项存在时呈现碎片化能力。</li>
+<li>视觉 encoder 在 MIEB 上的表现与其被放入多模态大模型后的表现具有较高相关性，说明 embedding 评测可作为部分 VLM 能力的早期代理，但不能替代完整下游评测。</li>
+</ul>
+<h2 id="局限与证据边界">局限与证据边界</h2>
+<ul>
+<li>MIEB 是评测框架，不是一个新的检索架构；排行榜差异不能单独说明某种训练方法的因果优势。</li>
+<li>任务类别、语言覆盖和数据构造仍决定结论边界，统一平均分可能掩盖某种语言、领域或任务的退化。</li>
+<li>论文没有解决标准数据的预训练重叠、真实用户满意度和端到端索引成本问题。</li>
+</ul>
+<h2 id="对候选课题-a-b-c-d-的启发">对候选课题 A/B/C/D 的启发</h2>
+<ul>
+<li>A：把组合性、干扰项和多语言分层纳入 hard negative 审计，不再只报标准检索分数。</li>
+<li>B：将 embedding 质量与索引大小、查询延迟、候选数一起记录，避免“更高分但不可部署”。</li>
+<li>C：MIEB 为语言分层实验提供任务框架，但中文/领域数据仍需单独验证。</li>
+<li>D：文档理解任务可以作为视觉页面检索的上游评测，但要区分文字占主导的页面与表格/图表页面。</li>
+</ul>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/2504.10471">arXiv</a></li>
+<li><a href="https://github.com/embeddings-benchmark/mteb">MTEB benchmark code</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a></li><li><a class="wikilink" href="../topics/generative-model-evaluation.html">生成模型评测</a></li></ul></div><div class="related-group related-claims"><h3>相关判断<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a></li><li><a class="wikilink" href="../claims/claim-image-text-retrieval-baseline-and-specialization.html">双塔负责可扩展召回，细粒度模块负责精排与关系匹配</a></li></ul></div><div class="related-group related-questions"><h3>相关问题<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a></li><li><a class="wikilink" href="../questions/question-image-text-retrieval-research-cut.html">图文检索哪个子方向最适合中等算力的研究生项目？</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">8</span></h2><ul><li><a href="../claims/claim-image-text-retrieval-compositionality.html">标准图文检索分数不足以证明组合性理解</a><span>判断</span></li><li><a href="../claims/claim-image-text-retrieval-data-quality.html">图文检索的主要瓶颈仍包括数据质量、分布与概念覆盖</a><span>判断</span></li><li><a href="../claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a><span>判断</span></li><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a><span>问题</span></li><li><a href="../questions/question-image-text-retrieval-research-cut.html">图文检索哪个子方向最适合中等算力的研究生项目？</a><span>问题</span></li><li><a href="../questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a><span>问题</span></li><li><a href="../topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
+  &quot;id&quot;: &quot;2026-07-14-mieb&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;MIEB：大规模图像 embedding 评测基准（Massive Image Embedding Benchmark）&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-07-14&quot;,
+  &quot;updated&quot;: &quot;2026-07-14&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;vision-language&quot;,
+    &quot;benchmarking&quot;,
+    &quot;evaluation&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;venue&quot;: &quot;arXiv preprint&quot;,
+  &quot;authors&quot;: [
+    &quot;Chenghao Xiao&quot;,
+    &quot;Isaac Chung&quot;,
+    &quot;Imene Kerboua&quot;,
+    &quot;Jamie Stirling&quot;,
+    &quot;Xin Zhang&quot;,
+    &quot;Márton Kardos&quot;,
+    &quot;Roman Solomatin&quot;,
+    &quot;Noura Al Moubayed&quot;,
+    &quot;Kenneth Enevoldsen&quot;,
+    &quot;Niklas Muennighoff&quot;
+  ],
+  &quot;published_at&quot;: &quot;2025-04-14&quot;,
+  &quot;ingested_at&quot;: &quot;2026-07-14&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://arxiv.org/abs/2504.10471&quot;,
+    &quot;https://github.com/embeddings-benchmark/mteb&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-07-14-mieb/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-text-retrieval&quot;,
+    &quot;topics/generative-model-evaluation&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [
+    &quot;claims/claim-image-text-retrieval-unified-embedding&quot;,
+    &quot;claims/claim-image-text-retrieval-baseline-and-specialization&quot;
+  ],
+  &quot;questions&quot;: [
+    &quot;questions/question-image-text-retrieval-unified-embedding&quot;,
+    &quot;questions/question-image-text-retrieval-research-cut&quot;
+  ]
+}</pre></details>
+    </article>
+  </main>
+</body>
+</html>
