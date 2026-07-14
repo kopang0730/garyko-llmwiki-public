@@ -6,10 +6,10 @@
   <meta name="description" content="BoxDiff：无训练的框约束扩散生成">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>BoxDiff：无训练的框约束扩散生成 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260714-research-observatory-v2-motion">
-  <script defer src="../../assets/wiki.js?v=20260714-research-observatory-v2-motion"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260714-research-observatory-v5-topic-visuals">
+  <script defer src="../../assets/wiki.js?v=20260714-research-observatory-v5-topic-visuals"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-boxdiff&quot;, &quot;title&quot;: &quot;BoxDiff：无训练的框约束扩散生成&quot;, &quot;title_en&quot;: &quot;BoxDiff：无训练的框约束扩散生成&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;control&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260714-research-observatory-v2-motion">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-04-16-boxdiff&quot;, &quot;title&quot;: &quot;BoxDiff：无训练的框约束扩散生成&quot;, &quot;title_en&quot;: &quot;BoxDiff：无训练的框约束扩散生成&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;control&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260714-research-observatory-v5-topic-visuals">
   <header class="mobile-topbar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
@@ -23,20 +23,30 @@
 <li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
 <li><a href="../../en/main.html">Main page</a></li>
 </ul>
-<h2>Topics</h2><ul>
-<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<h2>Foundations</h2><ul>
+<li><a href="../../en/topics/computer-vision-overview.html">计算机视觉概览</a></li>
+<li><a href="../../en/topics/datasets-metrics-and-benchmark-reliability.html">数据与评测基础</a></li>
 <li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/video-representation-and-temporal-modeling.html">视频表示基础</a></li>
+<li><a href="../../en/topics/vision-backbones.html">Vision Backbones</a></li>
+<li><a href="../../en/topics/vision-language-foundations.html">视觉语言基础</a></li>
+<li><a href="../../en/topics/vision-task-foundations.html">核心视觉任务</a></li>
+<li><a href="../../en/topics/visual-generation-foundations.html">视觉生成基础</a></li>
+</ul>
+<h2>Research topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
 <li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
 <li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
 <li><a href="../../en/topics/image-generation.html">图像生成</a></li>
 <li><a href="../../en/topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a></li>
-<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI</a></li>
 <li><a href="../../en/topics/sports-ai-video-understanding.html">Sports Video Understanding</a></li>
 <li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
 <li><a href="../../en/topics/video-generation.html">视频生成</a></li>
 <li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
-<li><a href="../../en/topics/vision-backbones.html">Vision Backbones</a></li>
-<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉语言</a></li>
+</ul>
+<h2>Roadmaps</h2><ul>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI</a></li>
 </ul>
 <h2>Entities</h2><ul>
 <li><a href="../../en/entities/clip.html">CLIP 系列模型（CLIP Family）</a></li>
@@ -139,8 +149,8 @@
 </ul></section>
       </div>
       
-      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li><li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li></ul></div></div></section>
-      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">9</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-04-14-check-locate-rectify.html">Check, Locate, Rectify：训练免费文本到图像布局校准</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-a-star.html">A-STAR：测试时分离并保留 cross-attention</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-prompt-to-prompt.html">Prompt-to-Prompt：用 cross-attention 控制文本驱动图像编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-rethinking-spatial-inconsistency-cfg.html">Rethinking the Spatial Inconsistency in Classifier-Free Diffusion Guidance：语义区域自适应 CFG</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-self-correcting-llm-controlled-diffusion-models.html">SLD：LLM 驱动的闭环扩散生成纠错</a><span>Source note</span></li><li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>Topic</span></li><li><a href="../../en/topics/diffusion-models.html">扩散模型</a><span>Topic</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li></ul></section>
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-generation.html">Image Generation</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">Diffusion Models</a></li><li><a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">7</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-04-14-check-locate-rectify.html">Check, Locate, Rectify：训练免费文本到图像布局校准</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-a-star.html">A-STAR：测试时分离并保留 cross-attention</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-prompt-to-prompt.html">Prompt-to-Prompt：用 cross-attention 控制文本驱动图像编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-rethinking-spatial-inconsistency-cfg.html">Rethinking the Spatial Inconsistency in Classifier-Free Diffusion Guidance：语义区域自适应 CFG</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-self-correcting-llm-controlled-diffusion-models.html">SLD：LLM 驱动的闭环扩散生成纠错</a><span>Source note</span></li><li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>Topic</span></li></ul></section>
       <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;2026-04-16-boxdiff&quot;,
   &quot;type&quot;: &quot;source&quot;,

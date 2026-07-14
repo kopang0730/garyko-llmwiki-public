@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="用输出结构区分分类、目标检测、语义/实例分割、姿态估计和多目标跟踪，并解释它们怎样共享表示又需要不同标注与指标。">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>分类、检测、分割、姿态与跟踪 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260714-research-observatory-v5-topic-visuals">
+  <script defer src="../assets/wiki.js?v=20260714-research-observatory-v5-topic-visuals"></script>
+</head>
+<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/vision-task-foundations&quot;, &quot;title&quot;: &quot;分类、检测、分割、姿态与跟踪&quot;, &quot;title_en&quot;: &quot;Foundations of Core Vision Tasks&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;classification&quot;, &quot;object-detection&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260714-research-observatory-v5-topic-visuals">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>入口</h2><ul>
+<li><a href="../index.html">索引</a></li>
+<li><a href="../llm-wiki.html">LLM Wiki</a></li>
+<li><a href="../main.html">首页</a></li>
+</ul>
+<h2>基础概念</h2><ul>
+<li><a href="../topics/computer-vision-overview.html">计算机视觉概览</a></li>
+<li><a href="../topics/datasets-metrics-and-benchmark-reliability.html">数据与评测基础</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/video-representation-and-temporal-modeling.html">视频表示基础</a></li>
+<li><a href="../topics/vision-backbones.html">视觉主干</a></li>
+<li><a href="../topics/vision-language-foundations.html">视觉语言基础</a></li>
+<li><a class="active" href="../topics/vision-task-foundations.html">核心视觉任务</a></li>
+<li><a href="../topics/visual-generation-foundations.html">视觉生成基础</a></li>
+</ul>
+<h2>研究专题</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉语言</a></li>
+</ul>
+<h2>应用路线</h2><ul>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI</a></li>
+</ul>
+<h2>实体</h2><ul>
+<li><a href="../entities/clip.html">CLIP 系列模型（CLIP Family）</a></li>
+<li><a href="../entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a></li>
+<li><a href="../entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a></li>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>判断</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-image-text-retrieval-baseline-and-specialization.html">双塔负责可扩展召回，细粒度模块负责精排与关系匹配</a></li>
+<li><a href="../claims/claim-image-text-retrieval-composed-query.html">组合式查询是图文检索中可落地且仍有缺口的研究切口</a></li>
+<li><a href="../claims/claim-image-text-retrieval-compositionality.html">标准图文检索分数不足以证明组合性理解</a></li>
+<li><a href="../claims/claim-image-text-retrieval-data-quality.html">图文检索的主要瓶颈仍包括数据质量、分布与概念覆盖</a></li>
+<li><a href="../claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
+</ul>
+<h2>问题</h2><ul>
+<li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a></li>
+<li><a href="../questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a></li>
+<li><a href="../questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a></li>
+<li><a href="../questions/question-image-text-retrieval-research-cut.html">图文检索哪个子方向最适合中等算力的研究生项目？</a></li>
+<li><a href="../questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../topics/vision-task-foundations.html">中文</a><a class="" href="../en/topics/vision-task-foundations.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
+    <article class="article-shell">
+      
+      <header class="article-header" data-motion="reveal">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>主题</span><span class="crumb-sep" aria-hidden="true">›</span><strong>分类、检测、分割、姿态与跟踪</strong></nav>
+        <p class="eyebrow">主题 · 更新于 2026-07-14</p>
+        <h1><span class="title-main">分类、检测、分割、姿态与跟踪</span></h1>
+        <p class="article-summary">用输出结构区分分类、目标检测、语义/实例分割、姿态估计和多目标跟踪，并解释它们怎样共享表示又需要不同标注与指标。</p>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#classification">#classification</a><a class="tag" href="../tags.html#object-detection">#object-detection</a></div>
+      </header>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话定义">一句话定义</a></li><li><a href="#一张图看懂原理">一张图看懂原理</a></li><li><a href="#前置概念与术语">前置概念与术语</a></li><li><a href="#历史演化">历史演化</a></li><li><a href="#核心机制">核心机制</a></li><li><a href="#主要方法分支">主要方法分支</a></li><li><a href="#奠基论文导读">奠基论文导读</a></li><li><a href="#常见误区与局限">常见误区与局限</a></li><li><a href="#与研究专题的关系">与研究专题的关系</a></li><li><a href="#推荐阅读顺序">推荐阅读顺序</a></li><li><a href="#证据基础">证据基础</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content">
+<section class="topic-hero-grid" data-motion="reveal">
+  <section class="judgment-panel topic-judgment">
+    <p class="section-kicker">基础概念</p>
+    <h2>分类、检测、分割、姿态与跟踪</h2>
+    <p>用输出结构区分分类、目标检测、语义/实例分割、姿态估计和多目标跟踪，并解释它们怎样共享表示又需要不同标注与指标。</p>
+    <div class="judgment-meta"><span>11 来源笔记</span><span>1 开放问题</span></div>
+  </section>
+  <section class="reading-path">
+    <p class="section-kicker">学习路径</p>
+    <ol><li><strong>定义</strong><span>先说清它是什么</span></li><li><strong>机制</strong><span>理解信息怎样流动</span></li><li><strong>演化</strong><span>定位关键论文节点</span></li><li><strong>研究连接</strong><span>进入仍在发展的专题</span></li></ol>
+  </section>
+</section>
+<section class="method-map" data-motion="reveal" aria-label="概念学习地图">
+  <div class="method-map-heading"><div><p class="section-kicker">概念学习地图</p><h2>从直觉理解走向研究连接</h2></div><span>11 来源笔记</span></div>
+  <div class="method-map-track"><div class="method-node"><span>1</span><strong>定义</strong><small>先说清它是什么</small></div><div class="method-node"><span>2</span><strong>机制</strong><small>理解信息怎样流动</small></div><div class="method-node"><span>3</span><strong>演化</strong><small>定位关键论文节点</small></div><div class="method-node"><span>4</span><strong>研究连接</strong><small>进入仍在发展的专题</small></div></div>
+</section>
+<h2 id="一句话定义">一句话定义</h2>
+<p>核心视觉任务的差别首先在输出：分类给整图标签，检测给物体类别与框，分割给像素标签或实例掩码，姿态给结构化关键点，跟踪则在连续帧中维持对象身份与轨迹。</p>
+<p>它们可以共享同一个主干，但不能用同一指标互相替代；检测准确不保证姿态正确，单帧分割也不保证跨帧身份稳定。</p>
+<h2 id="一张图看懂原理">一张图看懂原理</h2>
+<figure class="wiki-visual wiki-visual--map" data-visual-id="vision-task-output-map" aria-labelledby="visual-vision-task-output-map-title" aria-describedby="visual-vision-task-output-map-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">每种核心视觉任务到底要求模型输出什么？</p><div class="wiki-visual-title" id="visual-vision-task-output-map-title" role="heading" aria-level="3">同一张图可以对应五种不同答案</div><p class="wiki-visual-explanation">输出越结构化，标注和匹配越复杂。分类只问“有什么”，跟踪还必须回答“这一帧和上一帧是不是同一个”。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>分类</strong><small>一张图或片段对应类别概率，不要求指出物体位置</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>目标检测</strong><small>为每个物体输出类别、边界框和置信度</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>语义/实例分割</strong><small>为像素赋类，并在实例分割中分开同类个体</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>姿态估计</strong><small>输出人体或物体的关键点、连接与置信度</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">05</span><strong>多目标跟踪</strong><small>跨帧连接检测或特征，为每个对象维持 ID 和轨迹</small></li></ol><figcaption><span>图示依据</span><a class="wikilink" href="../sources/2026-07-14-alexnet.html">AlexNet</a>、<a class="wikilink" href="../sources/2026-07-14-faster-r-cnn.html">Faster R-CNN</a>、<a class="wikilink" href="../sources/2026-07-14-mask-r-cnn.html">Mask R-CNN</a>、<a class="wikilink" href="../sources/2026-04-24-sportsmot.html">SportsMOT</a></figcaption><p class="sr-only" id="visual-vision-task-output-map-alt">分类输出标签，检测输出类别框，语义分割输出像素类别，实例分割和姿态输出个体结构，跟踪输出跨帧身份轨迹。</p></figure>
+<h2 id="前置概念与术语">前置概念与术语</h2>
+<ul>
+<li><strong>类别（class）</strong>：任务预先定义的语义集合；开放世界中类别可能不完整。</li>
+<li><strong>边界框（bounding box）</strong>：通常用中心/宽高或角点描述物体矩形范围。</li>
+<li><strong>交并比（Intersection over Union, IoU）</strong>：预测与真值区域重叠面积除以并集面积。</li>
+<li><strong>平均精度（Average Precision, AP）</strong>：在置信阈值变化下综合 precision-recall；检测、mask 和 keypoint AP 的匹配定义不同。</li>
+<li><strong>语义分割（semantic segmentation）</strong>：同类像素共享类别，不区分个体。</li>
+<li><strong>实例分割（instance segmentation）</strong>：同类不同对象需要独立掩码。</li>
+<li><strong>关键点（keypoint）</strong>：关节或结构位置，常带可见性/置信度。</li>
+<li><strong>数据关联（data association）</strong>：判断跨帧观测属于哪个已有轨迹。</li>
+<li><strong>身份切换（ID switch）</strong>：跟踪器把一个真实对象错误换到另一 ID。</li>
+<li><strong>遮挡（occlusion）</strong>：对象部分或完全不可见，是姿态与跟踪的核心困难。</li>
+</ul>
+<h2 id="历史演化">历史演化</h2>
+<figure class="wiki-visual wiki-visual--timeline" data-visual-id="vision-task-history" aria-labelledby="visual-vision-task-history-title" aria-describedby="visual-vision-task-history-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">核心视觉任务怎样从分类表示逐步扩展？</p><div class="wiki-visual-title" id="visual-vision-task-history-title" role="heading" aria-level="3">从整图标签到可提示、可追踪的结构输出</div><p class="wiki-visual-explanation">时间线按输出结构变化组织：先学习整图表示，再加入候选定位、像素预测、实例对齐、集合预测和可提示接口。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>2012 · 整图分类</strong><small>深度网络从大规模标签学习层级视觉表示</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>2015 · 定位与像素</strong><small>Faster R-CNN 学候选区域，FCN 端到端输出密集类别</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>2017 · 实例与对齐</strong><small>Mask R-CNN 用 RoIAlign 和 mask 分支分开同类个体</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>2020 · 集合预测</strong><small>DETR 用 object query 与二分匹配减少 anchor/proposal/NMS 依赖</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">05</span><strong>2023 · 提示式分割</strong><small>SAM 把点、框、粗 mask 变成通用分割接口</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">06</span><strong>当前 · 视频与开放世界</strong><small>跟踪、开放词汇、交互提示和多任务系统共同扩展输出边界</small></li></ol><figcaption><span>图示依据</span><a class="wikilink" href="../sources/2026-07-14-alexnet.html">AlexNet</a>、<a class="wikilink" href="../sources/2026-07-14-faster-r-cnn.html">Faster R-CNN</a>、<a class="wikilink" href="../sources/2026-07-14-fcn.html">FCN</a>、<a class="wikilink" href="../sources/2026-07-14-mask-r-cnn.html">Mask R-CNN</a>、<a class="wikilink" href="../sources/2026-06-29-detr.html">DETR</a>、<a class="wikilink" href="../sources/2026-06-29-segment-anything.html">SAM</a></figcaption><p class="sr-only" id="visual-vision-task-history-alt">2012 分类转折，2015 检测与全卷积分割，2017 实例分割，2020 DETR 集合预测，2023 SAM 可提示分割，随后多任务基础模型与视频关联发展。</p></figure>
+<h2 id="核心机制">核心机制</h2>
+<ol>
+<li><strong>分类</strong>：主干汇聚空间特征，分类头输出类别概率；训练常用交叉熵，评测 top-k 或多标签指标。</li>
+<li><strong>检测</strong>：预测一组带位置的对象，必须处理类别、坐标、重复预测和正负匹配。Faster R-CNN 用 proposal；DETR 用集合匹配。</li>
+<li><strong>分割</strong>：保持空间特征并恢复分辨率。FCN/U-Net 做语义分割；Mask R-CNN 在实例候选上预测独立掩码；SAM 用提示驱动 mask decoder。</li>
+<li><strong>姿态</strong>：可自顶向下先检测人再估关键点，也可自底向上先找全图关键点再组装。关键点置信与骨架结构影响后续动作模型。</li>
+<li><strong>跟踪</strong>：通常组合检测、外观表示、运动模型和数据关联；遮挡后重新识别与摄像机运动决定 ID 稳定。</li>
+</ol>
+<h2 id="主要方法分支">主要方法分支</h2>
+<figure class="wiki-visual wiki-visual--flow" data-visual-id="vision-task-pipeline" aria-labelledby="visual-vision-task-pipeline-title" aria-describedby="visual-vision-task-pipeline-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">体育或视频系统怎样把检测、姿态和跟踪接起来？</p><div class="wiki-visual-title" id="visual-vision-task-pipeline-title" role="heading" aria-level="3">从单帧感知到跨帧状态</div><p class="wiki-visual-explanation">每一步都可能产生误差并向后传递。动作识别或战术分析的失败，不应自动归因于最后的时序模型。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>帧级检测/分割</strong><small>找到人、球、场地和可见区域</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>姿态与外观</strong><small>提取关键点、局部特征与置信度</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>数据关联</strong><small>结合运动与外观保持跨帧身份</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>轨迹与骨架序列</strong><small>形成可供动作、事件和状态模型使用的结构化输入</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">05</span><strong>下游判断</strong><small>输出动作类别、质量、战术状态或规则化事件</small></li></ol><figcaption><span>图示依据</span><a class="wikilink" href="../sources/2026-04-25-openpose.html">OpenPose</a>、<a class="wikilink" href="../sources/2026-04-24-sportsmot.html">SportsMOT</a>、<a class="wikilink" href="../sources/2026-04-25-st-gcn.html">ST-GCN</a></figcaption><p class="sr-only" id="visual-vision-task-pipeline-alt">视频帧先经检测分割，再估姿态和外观，随后数据关联形成轨迹，最终动作或比赛状态模块使用结构化序列。</p></figure>
+<ul>
+<li><strong>两阶段 vs 一阶段/集合检测</strong>：候选精排、密集直接预测和 object-query 集合预测的速度—收敛—小目标取舍不同。</li>
+<li><strong>语义 vs 实例 vs 全景分割</strong>：分别回答像素类别、个体掩码，以及 stuff/thing 的统一场景解释。</li>
+<li><strong>自顶向下 vs 自底向上姿态</strong>：前者依赖人框，后者依赖关键点组装；拥挤场景错误形态不同。</li>
+<li><strong>tracking-by-detection vs 联合跟踪</strong>：模块化系统易调试，联合系统可共享特征但训练和错误归因更难。</li>
+<li><strong>封闭类别 vs 开放词汇/提示式视觉</strong>：自然语言和交互提示扩展类别，但对齐和域外可靠性需要额外测试。</li>
+</ul>
+<h2 id="奠基论文导读">奠基论文导读</h2>
+<ol>
+<li><strong><a class="wikilink" href="../sources/2026-07-14-alexnet.html">AlexNet</a></strong>：分类表示的现代起点。</li>
+<li><strong><a class="wikilink" href="../sources/2026-07-14-faster-r-cnn.html">Faster R-CNN</a></strong>：proposal、anchor、分类与 box 回归的两阶段检测。</li>
+<li><strong><a class="wikilink" href="../sources/2026-06-29-detr.html">DETR</a></strong>：用集合预测理解现代检测的另一种接口。</li>
+<li><strong><a class="wikilink" href="../sources/2026-07-14-fcn.html">FCN</a></strong>：分类网络如何变成逐像素预测。</li>
+<li><strong><a class="wikilink" href="../sources/2026-07-14-u-net.html">U-Net</a></strong>：编码器—解码器与精细定位。</li>
+<li><strong><a class="wikilink" href="../sources/2026-07-14-mask-r-cnn.html">Mask R-CNN</a></strong>：实例分割和 RoIAlign。</li>
+<li><strong><a class="wikilink" href="../sources/2026-06-29-segment-anything.html">SAM</a></strong>：提示式分割与数据引擎。</li>
+<li><strong><a class="wikilink" href="../sources/2026-04-25-st-gcn.html">ST-GCN</a></strong>：姿态关键点怎样进入时空动作表示。</li>
+<li><strong><a class="wikilink" href="../sources/2026-04-24-sportsmot.html">SportsMOT</a></strong>：体育场景中的多目标跟踪、遮挡与相似外观。</li>
+</ol>
+<h2 id="常见误区与局限">常见误区与局限</h2>
+<ul>
+<li><strong>误区：检测框准，分割和姿态就准。</strong> 框只约束粗位置，内部边界与关键点可能仍错。</li>
+<li><strong>误区：跟踪就是逐帧检测。</strong> 跟踪还要处理 ID、遮挡、重现和时间一致。</li>
+<li><strong>误区：AP 是统一单位。</strong> box AP、mask AP 与 keypoint AP 的匹配对象和误差定义不同。</li>
+<li><strong>误区：SAM 等通用模型无需领域标注。</strong> 提示接口可迁移，但医学、遥感、体育小目标等域仍需系统验证。</li>
+<li><strong>局限：标注定义可能含糊。</strong> 遮挡关键点、群体边界、反射/拖影小球和身份真值都需要协议。</li>
+<li><strong>局限：级联误差。</strong> 上游漏检无法由下游关联修复；评测应既测模块，也测端到端任务。</li>
+</ul>
+<h2 id="与研究专题的关系">与研究专题的关系</h2>
+<ul>
+<li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 研究怎样把检测、轨迹、姿态与比赛语义连接起来。</li>
+<li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a> 关注帧级输出怎样变成事件、关系与长时推理。</li>
+<li><a class="wikilink" href="../topics/image-text-retrieval.html">topics/image-text-retrieval</a> 与 <a class="wikilink" href="../topics/vision-language.html">topics/vision-language</a> 把类别空间扩展到自然语言和开放词汇。</li>
+<li><a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 用这些基础任务定义可执行 Demo 与止损条件。</li>
+</ul>
+<h2 id="推荐阅读顺序">推荐阅读顺序</h2>
+<ol>
+<li>用输出地图区分五个任务，并为每个任务写出最小真值格式。</li>
+<li>对照 Faster R-CNN 与 DETR，理解 proposal/anchor 与集合预测。</li>
+<li>对照 FCN、U-Net、Mask R-CNN 与 SAM，理解语义、实例和提示分割。</li>
+<li>最后读 ST-GCN 与 SportsMOT，理解姿态/跟踪如何把空间问题扩展到时间。</li>
+</ol>
+<h2 id="证据基础">证据基础</h2>
+<ul>
+<li>分类：<a class="wikilink" href="../sources/2026-07-14-alexnet.html">sources/2026-07-14-alexnet</a>。</li>
+<li>检测：<a class="wikilink" href="../sources/2026-07-14-faster-r-cnn.html">sources/2026-07-14-faster-r-cnn</a>、<a class="wikilink" href="../sources/2026-06-29-detr.html">sources/2026-06-29-detr</a>。</li>
+<li>分割：<a class="wikilink" href="../sources/2026-07-14-fcn.html">sources/2026-07-14-fcn</a>、<a class="wikilink" href="../sources/2026-07-14-u-net.html">sources/2026-07-14-u-net</a>、<a class="wikilink" href="../sources/2026-07-14-mask-r-cnn.html">sources/2026-07-14-mask-r-cnn</a>、<a class="wikilink" href="../sources/2026-06-29-segment-anything.html">sources/2026-06-29-segment-anything</a>。</li>
+<li>姿态与骨架：<a class="wikilink" href="../sources/2026-04-25-openpose.html">sources/2026-04-25-openpose</a>、<a class="wikilink" href="../sources/2026-04-25-st-gcn.html">sources/2026-04-25-st-gcn</a>。</li>
+<li>跟踪：<a class="wikilink" href="../sources/2026-04-24-sportsmot.html">sources/2026-04-24-sportsmot</a>。</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/computer-vision-overview.html">计算机视觉概览</a></li>
+<li><a class="wikilink" href="../topics/vision-backbones.html">图像表示与视觉主干网络</a></li>
+<li><a class="wikilink" href="../topics/video-representation-and-temporal-modeling.html">视频表示与时序建模</a></li>
+<li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a class="wikilink" href="../topics/sports-ai-roadmap.html">体育 AI 应用与研究路线</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-related_topics"><h3>相关主题<span class="related-count">5</span></h3><ul><li><a class="wikilink" href="../topics/computer-vision-overview.html">计算机视觉概览与发展脉络</a></li><li><a class="wikilink" href="../topics/vision-backbones.html">图像表示与视觉主干网络</a></li><li><a class="wikilink" href="../topics/video-representation-and-temporal-modeling.html">视频表示、运动信息与时序建模</a></li><li><a class="wikilink" href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li><li><a class="wikilink" href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a></li></ul></div><div class="related-group related-related_entities"><h3>相关实体<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../entities/sportsmot.html">SportsMOT</a></li></ul></div><div class="related-group related-open_questions"><h3>开放问题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li></ul></div><div class="related-group related-source_notes"><h3>来源笔记<span class="related-count">11</span></h3><ul><li><a class="wikilink" href="../sources/2026-07-14-alexnet.html">ImageNet Classification with Deep Convolutional Neural Networks：AlexNet 与深度视觉转折</a></li><li><a class="wikilink" href="../sources/2026-07-14-faster-r-cnn.html">Faster R-CNN：共享特征的区域提议网络</a></li><li><a class="wikilink" href="../sources/2026-06-29-detr.html">DETR：把目标检测改写成 Transformer set prediction</a></li><li><a class="wikilink" href="../sources/2026-07-14-fcn.html">Fully Convolutional Networks for Semantic Segmentation：全卷积语义分割</a></li><li><a class="wikilink" href="../sources/2026-07-14-u-net.html">U-Net：编码器—解码器与跳跃连接的医学图像分割</a></li><li><a class="wikilink" href="../sources/2026-07-14-mask-r-cnn.html">Mask R-CNN：实例分割与 RoIAlign</a></li><li><a class="wikilink" href="../sources/2026-06-29-segment-anything.html">Segment Anything：把分割做成可提示的视觉基础模型</a></li><li><a class="wikilink" href="../sources/2026-04-25-st-gcn.html">ST-GCN：骨架动作识别的时空图卷积基线</a></li><li><a class="wikilink" href="../sources/2026-04-24-sportsmot.html">SportsMOT：多运动场景的大规模球员多目标跟踪基准</a></li><li><a class="wikilink" href="../sources/2026-04-25-openpose.html">OpenPose：OpenPose 是早期多人 2D 关键点检测工具。</a></li><li><a class="wikilink" href="../sources/2026-04-25-mmpose.html">MMPose / RTMPose：MMPose 提供 2D/3D 姿态估计工具链，RTMPose 强调实时部署。</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">7</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-07-14-faster-r-cnn.html">Faster R-CNN：共享特征的区域提议网络</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-fcn.html">Fully Convolutional Networks for Semantic Segmentation：全卷积语义分割</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-mask-r-cnn.html">Mask R-CNN：实例分割与 RoIAlign</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-u-net.html">U-Net：编码器—解码器与跳跃连接的医学图像分割</a><span>来源笔记</span></li><li><a href="../topics/computer-vision-overview.html">计算机视觉概览与发展脉络</a><span>主题</span></li><li><a href="../topics/vision-backbones.html">图像表示与视觉主干网络</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
+  &quot;id&quot;: &quot;topic-vision-task-foundations&quot;,
+  &quot;type&quot;: &quot;topic&quot;,
+  &quot;topic_kind&quot;: &quot;concept&quot;,
+  &quot;title&quot;: &quot;分类、检测、分割、姿态与跟踪&quot;,
+  &quot;title_en&quot;: &quot;Foundations of Core Vision Tasks&quot;,
+  &quot;nav_title&quot;: &quot;核心视觉任务&quot;,
+  &quot;status&quot;: &quot;active&quot;,
+  &quot;created&quot;: &quot;2026-07-14&quot;,
+  &quot;updated&quot;: &quot;2026-07-14&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;classification&quot;,
+    &quot;object-detection&quot;
+  ],
+  &quot;summary&quot;: &quot;用输出结构区分分类、目标检测、语义/实例分割、姿态估计和多目标跟踪，并解释它们怎样共享表示又需要不同标注与指标。&quot;,
+  &quot;source_notes&quot;: [
+    &quot;sources/2026-07-14-alexnet&quot;,
+    &quot;sources/2026-07-14-faster-r-cnn&quot;,
+    &quot;sources/2026-06-29-detr&quot;,
+    &quot;sources/2026-07-14-fcn&quot;,
+    &quot;sources/2026-07-14-u-net&quot;,
+    &quot;sources/2026-07-14-mask-r-cnn&quot;,
+    &quot;sources/2026-06-29-segment-anything&quot;,
+    &quot;sources/2026-04-25-st-gcn&quot;,
+    &quot;sources/2026-04-24-sportsmot&quot;,
+    &quot;sources/2026-04-25-openpose&quot;,
+    &quot;sources/2026-04-25-mmpose&quot;
+  ],
+  &quot;foundational_sources&quot;: [
+    &quot;sources/2026-07-14-alexnet&quot;,
+    &quot;sources/2026-07-14-faster-r-cnn&quot;,
+    &quot;sources/2026-06-29-detr&quot;,
+    &quot;sources/2026-07-14-fcn&quot;,
+    &quot;sources/2026-07-14-u-net&quot;,
+    &quot;sources/2026-07-14-mask-r-cnn&quot;,
+    &quot;sources/2026-06-29-segment-anything&quot;,
+    &quot;sources/2026-04-25-st-gcn&quot;,
+    &quot;sources/2026-04-24-sportsmot&quot;
+  ],
+  &quot;visuals&quot;: [
+    &quot;vision-task-output-map&quot;,
+    &quot;vision-task-history&quot;,
+    &quot;vision-task-pipeline&quot;
+  ],
+  &quot;related_topics&quot;: [
+    &quot;topics/computer-vision-overview&quot;,
+    &quot;topics/vision-backbones&quot;,
+    &quot;topics/video-representation-and-temporal-modeling&quot;,
+    &quot;topics/sports-ai-video-understanding&quot;,
+    &quot;topics/sports-ai-roadmap&quot;
+  ],
+  &quot;related_entities&quot;: [
+    &quot;entities/sportsmot&quot;
+  ],
+  &quot;open_questions&quot;: [
+    &quot;questions/question-badminton-stroke-correction-demo&quot;
+  ]
+}</pre></details>
+    </article>
+  </main>
+</body>
+</html>

@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="追踪以文本驱动和扩散模型为核心的视频编辑方法，重点关注保真度、时序一致性与编辑精度。">
+  <meta name="description" content="研究怎样按文本、草图、主体或运动条件修改现有视频，同时保持跨帧身份、背景、几何、运动与未编辑内容。">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>视频编辑 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260714-research-observatory-v2-motion">
-  <script defer src="../assets/wiki.js?v=20260714-research-observatory-v2-motion"></script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260714-research-observatory-v5-topic-visuals">
+  <script defer src="../assets/wiki.js?v=20260714-research-observatory-v5-topic-visuals"></script>
 </head>
-<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/video-editing&quot;, &quot;title&quot;: &quot;视频编辑&quot;, &quot;title_en&quot;: &quot;视频编辑&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;diffusion&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260714-research-observatory-v2-motion">
+<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/video-editing&quot;, &quot;title&quot;: &quot;视频编辑&quot;, &quot;title_en&quot;: &quot;Video Editing&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-editing&quot;, &quot;diffusion&quot;, &quot;control&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260714-research-observatory-v5-topic-visuals">
   <header class="mobile-topbar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
@@ -23,20 +23,30 @@
 <li><a href="../llm-wiki.html">LLM Wiki</a></li>
 <li><a href="../main.html">首页</a></li>
 </ul>
-<h2>主题</h2><ul>
-<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<h2>基础概念</h2><ul>
+<li><a href="../topics/computer-vision-overview.html">计算机视觉概览</a></li>
+<li><a href="../topics/datasets-metrics-and-benchmark-reliability.html">数据与评测基础</a></li>
 <li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/video-representation-and-temporal-modeling.html">视频表示基础</a></li>
+<li><a href="../topics/vision-backbones.html">视觉主干</a></li>
+<li><a href="../topics/vision-language-foundations.html">视觉语言基础</a></li>
+<li><a href="../topics/vision-task-foundations.html">核心视觉任务</a></li>
+<li><a href="../topics/visual-generation-foundations.html">视觉生成基础</a></li>
+</ul>
+<h2>研究专题</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
 <li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
 <li><a href="../topics/image-editing.html">图像编辑</a></li>
 <li><a href="../topics/image-generation.html">图像生成</a></li>
 <li><a href="../topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a></li>
-<li><a href="../topics/sports-ai-roadmap.html">体育 AI</a></li>
 <li><a href="../topics/sports-ai-video-understanding.html">体育视频理解</a></li>
 <li><a class="active" href="../topics/video-editing.html">视频编辑</a></li>
 <li><a href="../topics/video-generation.html">视频生成</a></li>
 <li><a href="../topics/video-understanding.html">视频理解</a></li>
-<li><a href="../topics/vision-backbones.html">视觉 Backbone</a></li>
-<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+<li><a href="../topics/vision-language.html">视觉语言</a></li>
+</ul>
+<h2>应用路线</h2><ul>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI</a></li>
 </ul>
 <h2>实体</h2><ul>
 <li><a href="../entities/clip.html">CLIP 系列模型（CLIP Family）</a></li>
@@ -77,19 +87,19 @@
       
       <header class="article-header" data-motion="reveal">
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>主题</span><span class="crumb-sep" aria-hidden="true">›</span><strong>视频编辑</strong></nav>
-        <p class="eyebrow">主题 · 更新于 2026-07-12</p>
+        <p class="eyebrow">主题 · 更新于 2026-07-14</p>
         <h1><span class="title-main">视频编辑</span></h1>
-        <p class="article-summary">追踪以文本驱动和扩散模型为核心的视频编辑方法，重点关注保真度、时序一致性与编辑精度。</p>
-        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-editing">#video-editing</a><a class="tag" href="../tags.html#diffusion">#diffusion</a></div>
+        <p class="article-summary">研究怎样按文本、草图、主体或运动条件修改现有视频，同时保持跨帧身份、背景、几何、运动与未编辑内容。</p>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-editing">#video-editing</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#control">#control</a></div>
       </header>
       <div class="article-layout has-rail">
-        <aside class="article-rail"><details class="toc" open><summary>目录</summary><ol><li><a href="#概述">概述</a></li><li><a href="#当前综合判断">当前综合判断</a></li><li><a href="#2026-07-12-三篇执行方法的全文复核">2026-07-12 三篇执行方法的全文复核</a><ol><li class="toc-sub"><a href="#2026-07-12-数据-跨模态借模与-mm-dit-注入">2026-07-12 数据、跨模态借模与 MM-DiT 注入</a></li><li class="toc-sub"><a href="#运动-主体与语言接口的专用编辑路线">运动、主体与语言接口的专用编辑路线</a></li><li class="toc-sub"><a href="#training-free-的真实成本与-failure-benchmark-边界">Training-free 的真实成本与 failure benchmark 边界</a></li><li class="toc-sub"><a href="#p3-几何传播-统一-grounding-与-token-compression">P3：几何传播、统一 grounding 与 token compression</a></li><li class="toc-sub"><a href="#p4-显式-mask-软光流与人体动作编辑">P4：显式 mask、软光流与人体动作编辑</a></li><li class="toc-sub"><a href="#p5-3d-representation-anchor-并行与逐视频-inversion">P5：3D representation、anchor 并行与逐视频 inversion</a></li></ol></li><li><a href="#方法家族">方法家族</a></li><li><a href="#相关实体">相关实体</a></li><li><a href="#证据基础">证据基础</a></li><li><a href="#后续值得追踪的问题">后续值得追踪的问题</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <aside class="article-rail"><details class="toc" open><summary>目录</summary><ol><li><a href="#三分钟摘要">三分钟摘要</a></li><li><a href="#任务或系统流程">任务或系统流程</a></li><li><a href="#当前综合判断">当前综合判断</a></li><li><a href="#近五年演化-2022-2026">近五年演化（2022—2026）</a></li><li><a href="#方法家族与成熟阶段">方法家族与成熟阶段</a><ol><li class="toc-sub"><a href="#方法家族的成熟度">方法家族的成熟度</a></li><li class="toc-sub"><a href="#哪些方向拥挤-哪些方向仍值得做">哪些方向拥挤，哪些方向仍值得做</a></li></ol></li><li><a href="#拥挤方向与研究机会">拥挤方向与研究机会</a></li><li><a href="#反方证据-局限与可证伪条件">反方证据、局限与可证伪条件</a></li><li><a href="#研究生可行的研究入口">研究生可行的研究入口</a><ol><li class="toc-sub"><a href="#候选课题-a-遮挡与镜头切换的编辑失败诊断-优先推荐">候选课题 A：遮挡与镜头切换的编辑失败诊断（优先推荐）</a></li><li class="toc-sub"><a href="#候选课题-b-运动-相机-主体解耦控制-方法型">候选课题 B：运动—相机—主体解耦控制（方法型）</a></li><li class="toc-sub"><a href="#候选课题-c-training-free-完整成本与质量账本-稳健">候选课题 C：training-free 完整成本与质量账本（稳健）</a></li><li class="toc-sub"><a href="#推荐排序与止损条件">推荐排序与止损条件</a></li></ol></li><li><a href="#证据基础">证据基础</a></li><li><a href="#开放问题">开放问题</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
         <section class="article-content">
 <section class="topic-hero-grid" data-motion="reveal">
   <section class="judgment-panel topic-judgment">
     <p class="section-kicker">当前判断</p>
     <h2>视频编辑</h2>
-    <p>追踪以文本驱动和扩散模型为核心的视频编辑方法，重点关注保真度、时序一致性与编辑精度。</p>
+    <p>研究怎样按文本、草图、主体或运动条件修改现有视频，同时保持跨帧身份、背景、几何、运动与未编辑内容。</p>
     <div class="judgment-meta"><span>33 来源笔记</span><span>1 开放问题</span></div>
   </section>
   <section class="reading-path">
@@ -101,178 +111,134 @@
   <div class="method-map-heading"><div><p class="section-kicker">研究方法族地图</p><h2>从问题定义走向可复核的系统能力</h2></div><span>33 来源笔记</span></div>
   <div class="method-map-track"><div class="method-node"><span>1</span><strong>问题</strong><small>明确任务与证据边界</small></div><div class="method-node"><span>2</span><strong>方法</strong><small>比较方法族与结构选择</small></div><div class="method-node"><span>3</span><strong>证据</strong><small>回到论文与可检索全文</small></div><div class="method-node"><span>4</span><strong>开放问题</strong><small>记录仍待验证的张力</small></div></div>
 </section>
-<h2 id="概述">概述</h2>
-<p>这一页聚焦视频编辑。当前批次里最重要的几条线索是：更精准的视频原生控制、利用视频扩散先验的免训练编辑、通过奖励调优改善编辑质量，以及把“视频编辑理解”本身纳入评测问题。整体来看，视频编辑不只是生成更像的视频，而是要同时兼顾指令遵循、时序一致性和未编辑区域的稳定保留。</p>
+<h2 id="三分钟摘要">三分钟摘要</h2>
+<ul>
+<li>视频编辑比图像编辑多一个硬约束：修改必须在时间上稳定，同时尊重源视频运动、身份、背景和遮挡。</li>
+<li>主流路线包括逐视频调优/反演、训练免费注意力或特征传播、显式 mask/光流/3D 几何、主体/运动专门编辑，以及用大规模指令数据训练统一模型。</li>
+<li>“training-free”通常只表示不更新模型参数，不代表没有反演、多轮优化、光流、特征缓存或较高 NFE。</li>
+<li>研究价值更集中在可定位的时间失败、源视频保持协议、运动与主体编辑解耦、以及评测模型是否真正理解编辑意图。</li>
+</ul>
+<h2 id="任务或系统流程">任务或系统流程</h2>
+<figure class="wiki-visual wiki-visual--flow" data-visual-id="video-editing-system-flow" aria-labelledby="visual-video-editing-system-flow-title" aria-describedby="visual-video-editing-system-flow-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">视频编辑在哪些环节建立或失去跨帧一致性？</p><div class="wiki-visual-title" id="visual-video-editing-system-flow-title" role="heading" aria-level="3">源视频怎样被修改而不逐帧漂移</div><p class="wiki-visual-explanation">系统先构造源视频的可编辑表示，再把条件传播到所有帧。任何只在单帧生效的编辑都可能在遮挡、视角和快速运动处失稳。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>源视频解析</strong><small>帧、对象、mask、光流、深度、相机或 3D/latent 表示</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>反演/适配</strong><small>将源片段映射到模型轨迹、缓存特征或逐视频参数</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>编辑条件</strong><small>文本、草图、主体图、运动、局部 mask 或多模态指令</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>时间传播与生成</strong><small>attention 共享、token 融合、光流/几何传播或视频扩散</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">05</span><strong>三类验收</strong><small>目标编辑、源内容保持、跨帧一致与真实端到端成本</small></li></ol><figcaption><span>图示依据</span><a class="wikilink" href="../sources/2026-04-14-fatezero.html">FateZero</a>、<a class="wikilink" href="../sources/2026-04-14-video-p2p.html">Video-P2P</a>、<a class="wikilink" href="../sources/2026-04-14-rave-video-editing.html">RAVE</a>、<a class="wikilink" href="../sources/2026-04-14-five-bench.html">FiVE-Bench</a></figcaption><p class="sr-only" id="visual-video-editing-system-flow-alt">源视频先经反演或编码，再接文本、主体、草图或运动条件，通过时间传播/生成得到结果，最后分开评估编辑、保持和时间一致。</p></figure>
 <h2 id="当前综合判断">当前综合判断</h2>
-<p><a class="wikilink" href="../sources/2026-04-14-shape-aware-layered-video-editing.html">sources/2026-04-14-shape-aware-layered-video-editing</a>、<a class="wikilink" href="../sources/2026-04-14-vive3d.html">sources/2026-04-14-vive3d</a>、<a class="wikilink" href="../sources/2026-04-14-fairy-video-to-video.html">sources/2026-04-14-fairy-video-to-video</a> 和 <a class="wikilink" href="../sources/2026-04-14-flowvid.html">sources/2026-04-14-flowvid</a> 进一步把 layered control、3D-aware viewpoint consistency、高效 video-to-video 合成与 flow-guided consistency 这几条分支补厚了。</p>
-<p><a class="wikilink" href="../sources/2026-04-14-avid-video-inpainting.html">sources/2026-04-14-avid-video-inpainting</a>、<a class="wikilink" href="../sources/2026-04-14-dynvideo-e.html">sources/2026-04-14-dynvideo-e</a> 和 <a class="wikilink" href="../sources/2026-04-14-language-driven-video-inpainting.html">sources/2026-04-14-language-driven-video-inpainting</a> 进一步说明，video-editing 还沿着长视频修补、3D/动态表示和语言驱动修补三条分支继续扩张。</p>
-<p><a class="wikilink" href="../sources/2026-04-14-stablevideo.html">sources/2026-04-14-stablevideo</a>、<a class="wikilink" href="../sources/2026-04-14-pix2video.html">sources/2026-04-14-pix2video</a> 和 <a class="wikilink" href="../sources/2026-04-14-video-worth-256-bases.html">sources/2026-04-14-video-worth-256-bases</a> 进一步把 video-editing 的一致性感知、图像扩散迁移和时空 inversion 三条早中期路线补厚了。</p>
-<p>再补入 <a class="wikilink" href="../sources/2026-04-14-camel-video-editing.html">sources/2026-04-14-camel-video-editing</a>、<a class="wikilink" href="../sources/2026-04-14-vidtome.html">sources/2026-04-14-vidtome</a>、<a class="wikilink" href="../sources/2026-04-14-motionfollower.html">sources/2026-04-14-motionfollower</a> 和 <a class="wikilink" href="../sources/2026-04-14-reangle-a-video.html">sources/2026-04-14-reangle-a-video</a> 后，可以看到 video-editing 近三年还在沿着 motion enhancement、token-merging efficiency、score-guided motion editing 和生成/翻译接口重写四条线持续加厚。</p>
-<p><a class="wikilink" href="../sources/2026-04-14-qk-edit.html">sources/2026-04-14-qk-edit</a>、<a class="wikilink" href="../sources/2026-04-14-insvie-1m.html">sources/2026-04-14-insvie-1m</a> 和 <a class="wikilink" href="../sources/2026-04-14-veggie.html">sources/2026-04-14-veggie</a> 进一步说明，video-editing 现在已经同时沿着新主干可编辑性、数据构造和 reasoning-grounded editing 三条线推进。</p>
-<p><a class="wikilink" href="../sources/2026-04-14-framepainter.html">sources/2026-04-14-framepainter</a> 与 <a class="wikilink" href="../sources/2026-04-14-dive-subject-driven-video-editing.html">sources/2026-04-14-dive-subject-driven-video-editing</a> 进一步说明，video-editing 近三年还在沿着“图像/视频双向借模”和“主体驱动编辑”两条路线加深。</p>
-<p>再补入 <a class="wikilink" href="../sources/2026-04-14-ccedit.html">sources/2026-04-14-ccedit</a> 和 <a class="wikilink" href="../sources/2026-04-14-maskint.html">sources/2026-04-14-maskint</a> 后，这条线还多出了“创意且可控的视频编辑”与“masked transformer 对照路线”两种重要分化。</p>
-<p>再加上 <a class="wikilink" href="../sources/2026-04-14-motioneditor.html">sources/2026-04-14-motioneditor</a> 和 <a class="wikilink" href="../sources/2026-04-14-rave-video-editing.html">sources/2026-04-14-rave-video-editing</a>，可以看到 2024 左右 video-editing 已明显分出“运动编辑专门化”和“高效一致编辑”两条工程化路线。</p>
-<p>跨年份补强之后，这条线的前史与细粒度评测层都更完整了。新补入的 <a class="wikilink" href="../sources/2026-04-14-video-p2p.html">sources/2026-04-14-video-p2p</a> 则把 Prompt-to-Prompt 式 cross-attention control 正式接进视频编辑历史链，说明早期 video-editing 的一条核心路线就是把图像编辑控制机制迁移到时序域。早期的 <a class="wikilink" href="../sources/2026-04-14-fatezero.html">sources/2026-04-14-fatezero</a> 说明 attention 控制和零样本注入很早就是视频编辑的重要方法起点；而新补入的 <a class="wikilink" href="../sources/2026-04-14-five-bench.html">sources/2026-04-14-five-bench</a> 则说明到 2025 阶段，video-editing 已经开始拥有更细粒度的专用 benchmark。现有 source 已经显示出四条主要路线。<a class="wikilink" href="../sources/2026-04-12-videodirector.html">sources/2026-04-12-videodirector</a> 代表视频原生反演与控制路线，强调编辑精度；<a class="wikilink" href="../sources/2026-04-12-fade.html">sources/2026-04-12-fade</a> 说明训练免费编辑在视频里依然有竞争力；<a class="wikilink" href="../sources/2026-04-12-align-a-video.html">sources/2026-04-12-align-a-video</a> 把 reward tuning 引入视频编辑，强调主观偏好对齐与一致性保护；<a class="wikilink" href="../sources/2026-04-12-veu-bench.html">sources/2026-04-12-veu-bench</a> 则把注意力拉回编辑理解评测；新补入的 <a class="wikilink" href="../sources/2026-04-14-aigv-assessor.html">sources/2026-04-14-aigv-assessor</a> 则进一步说明，即使只看感知质量，AIGV 也需要比传统 VQA 更贴近人类判断的评测器。</p>
-<h2 id="2026-07-12-三篇执行方法的全文复核">2026-07-12 三篇执行方法的全文复核</h2>
+<p>视频编辑仍没有单一统一方案。FateZero、Video-P2P 与 RAVE 代表在图像扩散先验上重用 attention/latent 并跨帧传播；MaskINT 提供非扩散 masked transformer 对照；FlowVid、Fairy、shape-aware layered editing 等用光流、特征传播或显式层改善几何一致。它们分别依赖不同源视频假设，不能只按总体视觉偏好排序。</p>
+<p>运动与主体逐渐成为独立编辑对象。MotionEditor、Camel、MotionFollower 关注运动变化，DIVE 与 FramePainter关注主体/参考先验，VIVE3D 和 Re-Angle-a-Video 引入 3D/4D 表示。强控制通常意味着更多中间表示和前处理，也带来新误差来源。</p>
+<p>数据与统一模型正在发展。INSVIE-1M、QK-Edit、VEGGIE 和 VideoDirector 表明指令数据、MM-DiT 注入与 grounded 条件可以扩展任务覆盖，但统一覆盖并未消除 source preservation 和时间失败。VEU-Bench、FiVE-Bench 则显示“会生成编辑结果”与“能理解编辑元素、推理和功能”是不同能力。</p>
+<h2 id="近五年演化-2022-2026">近五年演化（2022—2026）</h2>
+<figure class="wiki-visual wiki-visual--timeline" data-visual-id="video-editing-evolution" aria-labelledby="visual-video-editing-evolution-title" aria-describedby="visual-video-editing-evolution-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">视频编辑近五年的主要能力节点是什么？</p><div class="wiki-visual-title" id="visual-video-editing-evolution-title" role="heading" aria-level="3">从零样本注意力控制到统一指令与几何表示</div><p class="wiki-visual-explanation">时间线按接口变化组织：图像先验迁移、时间传播、显式运动/几何、规模化指令数据和专门评测。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>2022–2023 · 图像先验迁移</strong><small>FateZero、Video-P2P、Pix2Video 等把注意力和反演扩展到时间</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>2024 · 一致与效率工程</strong><small>RAVE、VidToMe、Camel、MaskINT 探索网格、token、运动和非扩散路线</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>2024–2025 · 显式几何/主体</strong><small>FlowVid、VIVE3D、DIVE、FramePainter 引入光流、3D 或参考主体</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>2025 · 指令数据与统一接口</strong><small>INSVIE-1M、QK-Edit、VEGGIE、VideoDirector 扩大任务与条件</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">05</span><strong>2025–2026 · 专门 benchmark</strong><small>FiVE-Bench、VEU-Bench 区分结果质量、编辑理解和功能推理</small></li></ol><figcaption><span>图示依据</span><a class="wikilink" href="../sources/2026-04-14-fatezero.html">FateZero</a>、<a class="wikilink" href="../sources/2026-04-14-rave-video-editing.html">RAVE</a>、<a class="wikilink" href="../sources/2026-04-14-motioneditor.html">MotionEditor</a>、<a class="wikilink" href="../sources/2026-04-14-insvie-1m.html">INSVIE-1M</a>、<a class="wikilink" href="../sources/2026-04-12-veu-bench.html">VEU-Bench</a></figcaption><p class="sr-only" id="visual-video-editing-evolution-alt">2022 到 2023 年零样本/逐视频编辑，2024 年效率、运动和非扩散路线，2025 年统一数据、主体/3D/4D 与 benchmark，2026 年聚焦可证伪保持和理解。</p></figure>
+<h2 id="方法家族与成熟阶段">方法家族与成熟阶段</h2>
+<figure class="wiki-visual wiki-visual--map" data-visual-id="video-editing-method-map" aria-labelledby="visual-video-editing-method-map-title" aria-describedby="visual-video-editing-method-map-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">一致性究竟来自反演、传播、显式运动、3D 还是数据？</p><div class="wiki-visual-title" id="visual-video-editing-method-map-title" role="heading" aria-level="3">视频编辑的六层方法关系</div><p class="wiki-visual-explanation">多数系统混合多层。消融应逐层移除，报告每层对编辑、保持、时间和成本的影响。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>逐视频反演/调优</strong><small>精确贴合源片段，代价是每视频时间、存储和泛化</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>注意力与特征传播</strong><small>复用 T2I 特征跨帧保持语义，遮挡和大运动易失败</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>mask/光流/分层表示</strong><small>显式定位和传播局部变化，依赖估计质量</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>3D/4D 与运动表示</strong><small>用几何或运动先验保持视角和动态，前处理更复杂</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">05</span><strong>指令数据与统一模型</strong><small>从大规模编辑对学习多任务接口，需检查任务干扰</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">06</span><strong>评测与理解模型</strong><small>判断改了什么、保留什么、为什么失败，而不只给总体分</small></li></ol><figcaption><span>图示依据</span><a class="wikilink" href="../sources/2026-04-14-video-p2p.html">Video-P2P</a>、<a class="wikilink" href="../sources/2026-04-14-flowvid.html">FlowVid</a>、<a class="wikilink" href="../sources/2026-04-14-vive3d.html">VIVE3D</a>、<a class="wikilink" href="../sources/2026-04-14-qk-edit.html">QK-Edit</a></figcaption><p class="sr-only" id="visual-video-editing-method-map-alt">方法地图包含逐视频适配、注意力特征传播、光流/mask、3D/4D、指令统一模型、评测理解。</p></figure>
+<h3 id="方法家族的成熟度">方法家族的成熟度</h3>
+<h4 id="注意力-特征传播的零样本编辑">注意力/特征传播的零样本编辑</h4>
 <ul>
-<li><strong>FateZero</strong> 建立 early attention-fusion 路线：Tem-Con 0.965，但 Frame-Acc 0.903 低于逐帧基线 0.958；新动作和巨大形变仍失败，形状编辑还需要每视频 Tune-A-Video 100 iterations。</li>
-<li><strong>VideoDirector</strong> 通过多帧 null-text、STDG 与双路径 self-attention control 改善短视频保真；最大消融来自 self-attention control，去掉后 m.P 21.37→14.87、m.L 0.270→0.537。固定 16 帧、每视频约 9.5 分钟且依赖 SAM2 与手调参数。</li>
-<li><strong>Align-A-Video</strong> 用固定噪声的锚帧 LoRA reward tuning 改善 DOVER 0.708→0.761 与 PickScore 21.039→21.847；CLIP/DINO consistency 仍略低于 TokenFlow，HPSv2 图像奖励没有直接优化运动。</li>
+<li><strong>阶段</strong>：系统优化期</li>
+<li><strong>证据锚点</strong>：FateZero、Video-P2P、RAVE、VidToMe 已形成丰富工程路线。</li>
+<li><strong>研究机会</strong>：遮挡、快速运动、镜头切换与长片段的局部失败定位。</li>
 </ul>
-<p>三篇共同说明，当前主线是对<strong>源保真、编辑语义、时序一致性和实例成本</strong>做工程折中。它们证明编辑执行可以改进，同时没有建立剪辑元素识别、编辑依据推理、叙事功能或真实工作流成功率的理解证据。</p>
-<h3 id="2026-07-12-数据-跨模态借模与-mm-dit-注入">2026-07-12 数据、跨模态借模与 MM-DiT 注入</h3>
+<h4 id="逐视频反演与适配">逐视频反演与适配</h4>
 <ul>
-<li><strong>InsViE-1M</strong>：1,019,593 个 25-frame/1024×576 三元组，64×A100 训练约 100 小时；去掉 GPT/flow filtering 后 temporal、alignment 与 DOVER 均退化。主表八项最优但部分差距很小，GPT-4o 同时参与过滤和评测。</li>
-<li><strong>FramePainter</strong>：将单图编辑重写为 SVD 两帧生成，20k pairs 在 sketch/coarse/points 上分别取得 CLIP-FID 7.783/7.573/8.513；它输出单张编辑图，每种控制单独训练，属于 image-editing 跨任务借模。</li>
-<li><strong>QK-Edit</strong>：vision Q/K replacement 跨 FLUX 与 HunyuanVideo 复用；TGVE+ 真实视频四项中三项最优，ViCLIPdir 0.196 低于 Flatten 0.204。Training-free 仍需要 source/target 双轨迹、cache 和 inversion。</li>
+<li><strong>阶段</strong>：成熟底座</li>
+<li><strong>证据锚点</strong>：StableVideo、Video Worth 256 Bases 等证明逐视频轨迹可增强保持。</li>
+<li><strong>研究机会</strong>：降低每视频成本并建立“重建好不等于可编辑好”的联合指标。</li>
 </ul>
-<p>这组三篇强化两条结论：视频编辑收益同时来自数据、底座和控制接口；生成质量代理指标仍缺少 preserve/change、失败率、剪辑语法与工作流成功率的联合协议。</p>
-<h3 id="运动-主体与语言接口的专用编辑路线">运动、主体与语言接口的专用编辑路线</h3>
+<h4 id="显式-mask-光流与分层几何">显式 mask、光流与分层几何</h4>
 <ul>
-<li><strong>CAMEL</strong>：53 个 32-frame videos、per-video 500 steps；UMT/CLIP-frame 均领先基线，但没有 motion fidelity 指标，“高频=运动”也会混入纹理与镜头变化。</li>
-<li><strong>DIVE</strong>：30 videos/8 identities；参考图模式 identity/temporal/overall 为 84.27/92.33/0.775，用户偏好 65.6%。每 source 50–100 iterations、每 identity 800–1000 LoRA iterations，动作与背景缺少直接误差。</li>
-<li><strong>Language-driven Video Inpainting</strong>：ROVI 5,650 videos/247,018 frames；LGVI-I PSNR 22.24，MLLM 只看首帧，GT 来自 E2FGVI teacher outputs，且过滤 mask&gt;25% 的困难对象。</li>
-<li><strong>MotionFollower</strong>：3K videos、两阶段各 100K steps；24 帧约 50s，FVD 276.04、9.8GB，对照 MotionEditor 395.43/42.6GB。量化依赖同视频分段 pseudo-GT，pose following 不等于动作语义理解。</li>
+<li><strong>阶段</strong>：活跃发展期</li>
+<li><strong>证据锚点</strong>：FlowVid、language-driven inpainting、shape-aware layered editing 等显示结构先验有效。</li>
+<li><strong>研究机会</strong>：估计不确定性、遮挡传播和软/硬约束冲突。</li>
 </ul>
-<p>这四篇分别覆盖 <code>motion preservation / identity replacement / language-grounded removal / target-pose motion replacement</code>。它们都是专用接口，统一的视频编辑指标必须显式分开 identity、motion、background、target-region grounding 与 runtime。</p>
-<h3 id="training-free-的真实成本与-failure-benchmark-边界">Training-free 的真实成本与 failure benchmark 边界</h3>
+<h4 id="主体-运动与-3d-4d-专门编辑">主体、运动与 3D/4D 专门编辑</h4>
 <ul>
-<li><strong>Pix2Video</strong>：冻结 depth-conditioned SD，逐帧 inversion + 50-step sampling + 前 25 步 latent gradient；约 5s/frame（不含 inversion）。CLIP-Text 0.2891 较高，Pixel-MSE 228.62 仍逊于 flow propagation 44.62。</li>
-<li><strong>RAVE</strong>：31 source videos/186 pairs；90 帧全流程 4:28，对 TokenFlow 5:24。Shuffle 让长视频 CLIP-F 92.49→95.99，但 90 帧仍不代表剪辑级长视频。</li>
-<li><strong>GlitchBench</strong>：593 张单帧 glitch images，GPT-4V 主平均 43.4%；主动排除了纯时序故障，只能提供穿模/姿态/纹理 failure taxonomy。</li>
-<li><strong>HallusionBench</strong>：455 control pairs/1,129 questions；GPT-4V qAcc 31.42%，用原图/人工编辑图/无图反事实对诊断视觉依赖。“video”分桶是连续帧，不是原生视频编辑。</li>
+<li><strong>阶段</strong>：活跃发展期</li>
+<li><strong>证据锚点</strong>：MotionEditor、MotionFollower、DIVE、VIVE3D、Re-Angle 分别处理不同专门维度。</li>
+<li><strong>研究机会</strong>：身份、动作、相机与背景四因素解耦及跨域泛化。</li>
 </ul>
-<p>这组证据要求把 <code>training-free</code> 拆为 weight-update=0 与实际 inversion/sampling/gradient/runtime；failure benchmark 也必须区分单帧异常、帧序推理和真实 source→edited video workflow。</p>
-<h3 id="p3-几何传播-统一-grounding-与-token-compression">P3：几何传播、统一 grounding 与 token compression</h3>
+<h4 id="统一指令数据与编辑理解">统一指令数据与编辑理解</h4>
 <ul>
-<li><strong>StableVideo</strong>：NLA atlas 提供对应；单个 <code>car-turn</code> 上 LPIPS-T 0.1851→0.0386，但无正式用户研究，NLA 预处理成本不透明。</li>
-<li><strong>VidToMe</strong>：20 DAVIS videos/60 edits；SD2-Depth 的 Inp.Err 0.139→0.105、Warp 0.020→0.012，峰值 &lt;7GB；仍需 50-step inversion + 50-step sampling。</li>
-<li><strong>VEGGIE</strong>：3.4M image pairs + 约 270K video pairs；132-pair VEG-Bench 上 grounding J/F 37.74/21.83，reasoning segmentation 22.53/15.97。GPT-4o judge 未经人类校准。</li>
-<li><strong>Reangle-A-Video</strong>：28 source videos、per-scene CogVideoX-5B LoRA 约 1 小时，另有 25-path first-frame search；属于多视角/相机重定向。</li>
+<li><strong>阶段</strong>：评测建设期</li>
+<li><strong>证据锚点</strong>：INSVIE-1M、QK-Edit、VEGGIE 与 VEU/FiVE benchmark 建立数据和验收接口。</li>
+<li><strong>研究机会</strong>：同预算任务干扰、真实用户指令、模型评测器循环和失败可解释性。</li>
 </ul>
-<p>四者分别依赖 atlas correspondence、token matching、mask grounding 和 depth/camera warping。它们不应混为通用视频编辑理解；每条路线都要报告前处理、场景适配、推理搜索和外部几何失败率。</p>
-<h3 id="p4-显式-mask-软光流与人体动作编辑">P4：显式 mask、软光流与人体动作编辑</h3>
+<h3 id="哪些方向拥挤-哪些方向仍值得做">哪些方向拥挤，哪些方向仍值得做</h3>
+<h2 id="拥挤方向与研究机会">拥挤方向与研究机会</h2>
+<p><strong>相对拥挤：</strong>对短、慢、单主体片段做总体定性；把不训练参数称为低成本；只测相邻帧相似；在不同源视频/指令上与基线比较。</p>
+<p><strong>仍值得做：</strong>遮挡与镜头切换下的可定位错误；源视频保持和编辑满足的双目标 benchmark；运动/相机/主体解耦；同硬件完整 pipeline 成本；体育、手术、教学等有明确时间语义的专业编辑与理解。</p>
+<h2 id="反方证据-局限与可证伪条件">反方证据、局限与可证伪条件</h2>
 <ul>
-<li><strong>AVID</strong>：125 test videos、16-frame quantitative protocol；mask 外 BP 与 TC 领先，但“any-length”只展示 24–48 frames，重叠窗口线性增加计算。</li>
-<li><strong>CCEdit</strong>：BalanceCC/mini-BalanceCC，33 人 1,119 ratings；overall MOS 3.87，对 TokenFlow win/tie/lose 52.9/14.7/32.4。17 帧全流程约 170s。</li>
-<li><strong>FlowVid</strong>：100K videos、8×A100 4 天；4 秒视频 1.5min，人评 45.7±6.4%，仅略高 TokenFlow 40.4±5.3%。首帧和大遮挡错误会整段传播。</li>
-<li><strong>MotionEditor</strong>：20 cases、per-video 约 10min；CLIP/LPIPS 领先，但没有 pose/trajectory motion metric，双分支 attention 依赖 segmentation。</li>
+<li>若顺序打乱或逐帧编辑获得近似分数，所谓时间一致指标未测到时序能力。</li>
+<li>若 training-free 方法包含昂贵反演、光流、缓存或多次采样，低成本结论必须用端到端延迟重新检验。</li>
+<li>若统一模型在复杂运动/保持任务持续落后专用系统，强统一替代结论应撤回。</li>
+<li>若评测器与编辑模型共享相同视觉语言表示，需用人工或独立诊断集验证。</li>
+<li>共同局限包括遮挡、镜头切换、长时漂移、主体记忆、授权、安全和评测数据规模不足。</li>
 </ul>
-<p>这四条路线都使用 latent diffusion U-Net。Mask、flow、key frame、pose 分别是强外部接口，系统应单独报告这些前置模块的失败率。</p>
-<h3 id="p5-3d-representation-anchor-并行与逐视频-inversion">P5：3D representation、anchor 并行与逐视频 inversion</h3>
+<h2 id="研究生可行的研究入口">研究生可行的研究入口</h2>
+<h3 id="候选课题-a-遮挡与镜头切换的编辑失败诊断-优先推荐">候选课题 A：遮挡与镜头切换的编辑失败诊断（优先推荐）</h3>
 <ul>
-<li><strong>DynVideo-E</strong>：11 videos/24 prompts，dynamic NeRF 每视频约 7.3h；输入参考图和个性化 2D/3D priors，与文本-only baselines 接口不对称。</li>
-<li><strong>Fairy</strong>：50K image-pair steps、8×A100 30h；120 帧 8×A100 13.8s、单卡 78s。对 Rerender 人评只领先 41% vs 36%，动态图效和镜头指令失败。</li>
-<li><strong>Shape-aware Layered Editing</strong>：NLA+UV deformation，每视频 refinement 约20min，缺自动指标和人评，允许人工 warp correction。</li>
-<li><strong>Video-P2P</strong>：10 videos；8 帧 tuning/inversion/edit 共约12min，shared-null 用 2.94M embedding parameters 达 22.75dB，不能改 motion。</li>
+<li><strong>研究问题</strong>：编辑在对象消失/重现和 shot transition 时怎样漂移，能否定位到表示或传播层？</li>
+<li><strong>最小实验</strong>：300–800 个带遮挡/切换的短片段，固定三类公开方法。</li>
+<li><strong>指标</strong>：重现身份、局部编辑、背景保持、首次失效时间和人工错误类型。</li>
+<li><strong>止损条件</strong>：若上游对象真值不稳定，先收窄单对象可见性协议。</li>
 </ul>
-<p>这四篇分别是 dynamic NeRF、U-Net anchor attention、atlas deformation 和 U-Net inversion。高 pairwise 偏好、低延迟或漂亮定性图都受接口与场景选择影响。</p>
-<h2 id="方法家族">方法家族</h2>
+<h3 id="候选课题-b-运动-相机-主体解耦控制-方法型">候选课题 B：运动—相机—主体解耦控制（方法型）</h3>
 <ul>
-<li>视频原生反演与控制：<a class="wikilink" href="../sources/2026-04-12-videodirector.html">sources/2026-04-12-videodirector</a></li>
-<li>训练免费视频编辑：<a class="wikilink" href="../sources/2026-04-12-fade.html">sources/2026-04-12-fade</a></li>
-<li>基于 reward tuning 的编辑：<a class="wikilink" href="../sources/2026-04-12-align-a-video.html">sources/2026-04-12-align-a-video</a></li>
-<li>早期零样本 attention 编辑路线：<a class="wikilink" href="../sources/2026-04-14-fatezero.html">sources/2026-04-14-fatezero</a></li>
-<li>cross-attention control 迁移路线：<a class="wikilink" href="../sources/2026-04-14-video-p2p.html">sources/2026-04-14-video-p2p</a></li>
-<li>高效一致视频编辑路线：<a class="wikilink" href="../sources/2026-04-14-rave-video-editing.html">sources/2026-04-14-rave-video-editing</a></li>
-<li>运动编辑专门化路线：<a class="wikilink" href="../sources/2026-04-14-motioneditor.html">sources/2026-04-14-motioneditor</a></li>
-<li>masked transformer 对照路线：<a class="wikilink" href="../sources/2026-04-14-maskint.html">sources/2026-04-14-maskint</a></li>
-<li>主体驱动视频编辑路线：<a class="wikilink" href="../sources/2026-04-14-dive-subject-driven-video-editing.html">sources/2026-04-14-dive-subject-driven-video-editing</a></li>
-<li>图像/视频双向借模路线：<a class="wikilink" href="../sources/2026-04-14-framepainter.html">sources/2026-04-14-framepainter</a></li>
-<li>creative-control 平衡路线：<a class="wikilink" href="../sources/2026-04-14-ccedit.html">sources/2026-04-14-ccedit</a></li>
-<li>reasoning-grounded 视频编辑：<a class="wikilink" href="../sources/2026-04-14-veggie.html">sources/2026-04-14-veggie</a></li>
-<li>4D video-to-video 翻译路线：<a class="wikilink" href="../sources/2026-04-14-reangle-a-video.html">sources/2026-04-14-reangle-a-video</a></li>
-<li>语言驱动视频修补：<a class="wikilink" href="../sources/2026-04-14-language-driven-video-inpainting.html">sources/2026-04-14-language-driven-video-inpainting</a></li>
-<li>flow-guided consistency 路线：<a class="wikilink" href="../sources/2026-04-14-flowvid.html">sources/2026-04-14-flowvid</a></li>
-<li>高效 video-to-video 合成：<a class="wikilink" href="../sources/2026-04-14-fairy-video-to-video.html">sources/2026-04-14-fairy-video-to-video</a></li>
-<li>3D-aware 视角无关视频编辑：<a class="wikilink" href="../sources/2026-04-14-vive3d.html">sources/2026-04-14-vive3d</a></li>
-<li>layered/compositional 视频编辑：<a class="wikilink" href="../sources/2026-04-14-shape-aware-layered-video-editing.html">sources/2026-04-14-shape-aware-layered-video-editing</a></li>
-<li>dynamic NeRF 人体视频编辑：<a class="wikilink" href="../sources/2026-04-14-dynvideo-e.html">sources/2026-04-14-dynvideo-e</a></li>
-<li>任意长度视频修补：<a class="wikilink" href="../sources/2026-04-14-avid-video-inpainting.html">sources/2026-04-14-avid-video-inpainting</a></li>
-<li>时空 EM inversion 路线：<a class="wikilink" href="../sources/2026-04-14-video-worth-256-bases.html">sources/2026-04-14-video-worth-256-bases</a></li>
-<li>图像扩散迁移到视频编辑：<a class="wikilink" href="../sources/2026-04-14-pix2video.html">sources/2026-04-14-pix2video</a></li>
-<li>consistency-aware 视频编辑：<a class="wikilink" href="../sources/2026-04-14-stablevideo.html">sources/2026-04-14-stablevideo</a></li>
-<li>score-guided motion editing：<a class="wikilink" href="../sources/2026-04-14-motionfollower.html">sources/2026-04-14-motionfollower</a></li>
-<li>token-merging 效率路线：<a class="wikilink" href="../sources/2026-04-14-vidtome.html">sources/2026-04-14-vidtome</a></li>
-<li>因果运动增强路线：<a class="wikilink" href="../sources/2026-04-14-camel-video-editing.html">sources/2026-04-14-camel-video-editing</a></li>
-<li>instruction-based 视频编辑数据构造：<a class="wikilink" href="../sources/2026-04-14-insvie-1m.html">sources/2026-04-14-insvie-1m</a></li>
-<li>MM-DiT 时代的编辑注入路线：<a class="wikilink" href="../sources/2026-04-14-qk-edit.html">sources/2026-04-14-qk-edit</a></li>
-<li>面向编辑理解的评测路线：<a class="wikilink" href="../sources/2026-04-12-veu-bench.html">sources/2026-04-12-veu-bench</a></li>
-<li>面向细粒度视频编辑能力剖面的 benchmark：<a class="wikilink" href="../sources/2026-04-14-five-bench.html">sources/2026-04-14-five-bench</a></li>
-<li>面向人类对齐评测的路线：<a class="wikilink" href="../sources/2026-04-14-video-bench.html">sources/2026-04-14-video-bench</a></li>
-<li>面向草图控制的专门编辑/生成系统：<a class="wikilink" href="../sources/2026-04-14-sketchvideo.html">sources/2026-04-14-sketchvideo</a></li>
+<li><strong>研究问题</strong>：怎样只改对象运动，不误改相机、身份和场景？</li>
+<li><strong>最小实验</strong>：合成可控 + 少量真实体育片段，对比文本、轨迹、光流/姿态条件。</li>
+<li><strong>指标</strong>：运动命中、身份、相机轨迹、背景和额外成本。</li>
+<li><strong>止损条件</strong>：若真值不可获得，先做诊断 benchmark 而非声称因果解耦。</li>
 </ul>
-<h2 id="相关实体">相关实体</h2>
+<h3 id="候选课题-c-training-free-完整成本与质量账本-稳健">候选课题 C：training-free 完整成本与质量账本（稳健）</h3>
 <ul>
-<li><a class="wikilink" href="../entities/video-editing-understanding.html">entities/video-editing-understanding</a> 代表“视频编辑理解”这一评测与推理层，对判断编辑模型是否真正完成任务非常关键。</li>
+<li><strong>研究问题</strong>：反演、预处理、缓存、NFE 与解码各占多少，收益在哪些片段消失？</li>
+<li><strong>最小实验</strong>：统一硬件、输入时长/分辨率，记录 P50/P95 和失败。</li>
+<li><strong>指标</strong>：总延迟、峰值显存、编辑/保持、时长扩展曲线。</li>
+<li><strong>止损条件</strong>：模型实现不可复现时只保留可测 subset，不填补缺失数字。</li>
 </ul>
+<h3 id="推荐排序与止损条件">推荐排序与止损条件</h3>
+<p>A 兼具评测与方法延展，B 新颖但真值难，C 最稳健。先完成可测基线，再决定是否训练专用模块。</p>
 <h2 id="证据基础">证据基础</h2>
 <ul>
-<li><a class="wikilink" href="../sources/2026-04-12-videodirector.html">sources/2026-04-12-videodirector</a></li>
-<li><a class="wikilink" href="../sources/2026-04-12-fade.html">sources/2026-04-12-fade</a></li>
-<li><a class="wikilink" href="../sources/2026-04-12-align-a-video.html">sources/2026-04-12-align-a-video</a></li>
-<li><a class="wikilink" href="../sources/2026-04-12-veu-bench.html">sources/2026-04-12-veu-bench</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-aigv-assessor.html">sources/2026-04-14-aigv-assessor</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-sketchvideo.html">sources/2026-04-14-sketchvideo</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-video-bench.html">sources/2026-04-14-video-bench</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-fatezero.html">sources/2026-04-14-fatezero</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-five-bench.html">sources/2026-04-14-five-bench</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-video-p2p.html">sources/2026-04-14-video-p2p</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-rave-video-editing.html">sources/2026-04-14-rave-video-editing</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-motioneditor.html">sources/2026-04-14-motioneditor</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-maskint.html">sources/2026-04-14-maskint</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-dive-subject-driven-video-editing.html">sources/2026-04-14-dive-subject-driven-video-editing</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-framepainter.html">sources/2026-04-14-framepainter</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-ccedit.html">sources/2026-04-14-ccedit</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-veggie.html">sources/2026-04-14-veggie</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-reangle-a-video.html">sources/2026-04-14-reangle-a-video</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-video-worth-256-bases.html">sources/2026-04-14-video-worth-256-bases</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-language-driven-video-inpainting.html">sources/2026-04-14-language-driven-video-inpainting</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-flowvid.html">sources/2026-04-14-flowvid</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-fairy-video-to-video.html">sources/2026-04-14-fairy-video-to-video</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-vive3d.html">sources/2026-04-14-vive3d</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-shape-aware-layered-video-editing.html">sources/2026-04-14-shape-aware-layered-video-editing</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-dynvideo-e.html">sources/2026-04-14-dynvideo-e</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-avid-video-inpainting.html">sources/2026-04-14-avid-video-inpainting</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-pix2video.html">sources/2026-04-14-pix2video</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-stablevideo.html">sources/2026-04-14-stablevideo</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-motionfollower.html">sources/2026-04-14-motionfollower</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-vidtome.html">sources/2026-04-14-vidtome</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-camel-video-editing.html">sources/2026-04-14-camel-video-editing</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-insvie-1m.html">sources/2026-04-14-insvie-1m</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-qk-edit.html">sources/2026-04-14-qk-edit</a></li>
+<li>注意力/反演：<a class="wikilink" href="../sources/2026-04-14-fatezero.html">sources/2026-04-14-fatezero</a>、<a class="wikilink" href="../sources/2026-04-14-video-p2p.html">sources/2026-04-14-video-p2p</a>、<a class="wikilink" href="../sources/2026-04-14-rave-video-editing.html">sources/2026-04-14-rave-video-editing</a>、<a class="wikilink" href="../sources/2026-04-14-stablevideo.html">sources/2026-04-14-stablevideo</a>、<a class="wikilink" href="../sources/2026-04-14-pix2video.html">sources/2026-04-14-pix2video</a>、<a class="wikilink" href="../sources/2026-04-14-video-worth-256-bases.html">sources/2026-04-14-video-worth-256-bases</a>。</li>
+<li>传播与几何：<a class="wikilink" href="../sources/2026-04-12-fade.html">sources/2026-04-12-fade</a>、<a class="wikilink" href="../sources/2026-04-14-vidtome.html">sources/2026-04-14-vidtome</a>、<a class="wikilink" href="../sources/2026-04-14-avid-video-inpainting.html">sources/2026-04-14-avid-video-inpainting</a>、<a class="wikilink" href="../sources/2026-04-14-dynvideo-e.html">sources/2026-04-14-dynvideo-e</a>、<a class="wikilink" href="../sources/2026-04-14-language-driven-video-inpainting.html">sources/2026-04-14-language-driven-video-inpainting</a>、<a class="wikilink" href="../sources/2026-04-14-shape-aware-layered-video-editing.html">sources/2026-04-14-shape-aware-layered-video-editing</a>、<a class="wikilink" href="../sources/2026-04-14-fairy-video-to-video.html">sources/2026-04-14-fairy-video-to-video</a>、<a class="wikilink" href="../sources/2026-04-14-flowvid.html">sources/2026-04-14-flowvid</a>。</li>
+<li>运动/主体/3D：<a class="wikilink" href="../sources/2026-04-14-motioneditor.html">sources/2026-04-14-motioneditor</a>、<a class="wikilink" href="../sources/2026-04-14-camel-video-editing.html">sources/2026-04-14-camel-video-editing</a>、<a class="wikilink" href="../sources/2026-04-14-motionfollower.html">sources/2026-04-14-motionfollower</a>、<a class="wikilink" href="../sources/2026-04-14-framepainter.html">sources/2026-04-14-framepainter</a>、<a class="wikilink" href="../sources/2026-04-14-dive-subject-driven-video-editing.html">sources/2026-04-14-dive-subject-driven-video-editing</a>、<a class="wikilink" href="../sources/2026-04-14-vive3d.html">sources/2026-04-14-vive3d</a>、<a class="wikilink" href="../sources/2026-04-14-reangle-a-video.html">sources/2026-04-14-reangle-a-video</a>、<a class="wikilink" href="../sources/2026-04-14-sketchvideo.html">sources/2026-04-14-sketchvideo</a>。</li>
+<li>统一数据与模型：<a class="wikilink" href="../sources/2026-04-12-videodirector.html">sources/2026-04-12-videodirector</a>、<a class="wikilink" href="../sources/2026-04-12-align-a-video.html">sources/2026-04-12-align-a-video</a>、<a class="wikilink" href="../sources/2026-04-14-qk-edit.html">sources/2026-04-14-qk-edit</a>、<a class="wikilink" href="../sources/2026-04-14-insvie-1m.html">sources/2026-04-14-insvie-1m</a>、<a class="wikilink" href="../sources/2026-04-14-veggie.html">sources/2026-04-14-veggie</a>、<a class="wikilink" href="../sources/2026-04-14-maskint.html">sources/2026-04-14-maskint</a>、<a class="wikilink" href="../sources/2026-04-14-ccedit.html">sources/2026-04-14-ccedit</a>。</li>
+<li>评测：<a class="wikilink" href="../sources/2026-04-12-veu-bench.html">sources/2026-04-12-veu-bench</a>、<a class="wikilink" href="../sources/2026-04-14-five-bench.html">sources/2026-04-14-five-bench</a>、<a class="wikilink" href="../sources/2026-04-14-video-bench.html">sources/2026-04-14-video-bench</a>、<a class="wikilink" href="../sources/2026-04-14-aigv-assessor.html">sources/2026-04-14-aigv-assessor</a>。</li>
 </ul>
-<h2 id="后续值得追踪的问题">后续值得追踪的问题</h2>
+<h2 id="开放问题">开放问题</h2>
 <ul>
-<li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a> — 现有评测是否真的刻画了视频编辑理解能力。</li>
-<li>视频原生 T2V 编辑器是否会明显优于图像编辑延伸路线？</li>
-<li>reward tuning 在什么条件下会比强训练免费方法更有效？</li>
-<li>当前 benchmark 与真实用户满意度之间的关系到底有多强？</li>
+<li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">benchmark 是否真正覆盖视频编辑理解？</a></li>
+<li>怎样在多轮视频编辑中保持可撤销性与时间状态？</li>
+<li>独立评测器怎样避免与生成/编辑模型共享捷径？</li>
+<li>显式 3D/运动表示在何种视频上值得其前处理成本？</li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../topics/video-generation.html">topics/video-generation</a></li>
-<li><a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../topics/generative-model-evaluation.html">topics/generative-model-evaluation</a></li>
-<li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
+<li><a class="wikilink" href="../topics/video-representation-and-temporal-modeling.html">视频表示基础</a></li>
+<li><a class="wikilink" href="../topics/video-generation.html">视频生成</a></li>
+<li><a class="wikilink" href="../topics/video-understanding.html">视频理解</a></li>
+<li><a class="wikilink" href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a class="wikilink" href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul></section>
       </div>
       
-      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-related_topics"><h3>相关主题<span class="related-count">4</span></h3><ul><li><a class="wikilink" href="../topics/video-generation.html">视频生成</a></li><li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li><li><a class="wikilink" href="../topics/generative-model-evaluation.html">生成模型评测</a></li><li><a class="wikilink" href="../topics/video-understanding.html">视频理解</a></li></ul></div><div class="related-group related-related_entities"><h3>相关实体<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../entities/video-editing-understanding.html">视频编辑理解</a></li></ul></div><div class="related-group related-open_questions"><h3>开放问题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li></ul></div><div class="related-group related-source_notes"><h3>来源笔记<span class="related-count">33</span></h3><ul><li><a class="wikilink" href="../sources/2026-04-12-videodirector.html">VideoDirector：借助文本到视频模型实现精确视频编辑</a></li><li><a class="wikilink" href="../sources/2026-04-12-fade.html">FADE：面向视频编辑的频率感知扩散模型分解</a></li><li><a class="wikilink" href="../sources/2026-04-12-align-a-video.html">Align-A-Video：面向一致视频编辑的确定性奖励调优</a></li><li><a class="wikilink" href="../sources/2026-04-12-veu-bench.html">VEU-Bench：通用 Vid-LLM 的视频剪辑元素理解基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-aigv-assessor.html">AIGV-Assessor：用大模型评测文本到视频生成感知质量</a></li><li><a class="wikilink" href="../sources/2026-04-14-sketchvideo.html">SketchVideo：基于草图的视频生成与编辑</a></li><li><a class="wikilink" href="../sources/2026-04-14-video-bench.html">Video-Bench：人类偏好对齐的视频生成评测</a></li><li><a class="wikilink" href="../sources/2026-04-14-fatezero.html">FateZero：融合注意力做零样本文本视频编辑</a></li><li><a class="wikilink" href="../sources/2026-04-14-five-bench.html">FiVE-Bench：细粒度视频编辑评测基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-video-p2p.html">Video-P2P：用 shared-null inversion 与解耦 guidance 做 attention-control 视频编辑</a></li><li><a class="wikilink" href="../sources/2026-04-14-rave-video-editing.html">RAVE：随机噪声重排的快速一致视频编辑</a></li><li><a class="wikilink" href="../sources/2026-04-14-motioneditor.html">MotionEditor：参考姿态驱动的人体视频运动编辑</a></li><li><a class="wikilink" href="../sources/2026-04-14-maskint.html">MaskINT：关键帧扩散编辑与非自回归结构插帧的视频编辑</a></li><li><a class="wikilink" href="../sources/2026-04-14-ccedit.html">CCEdit：以结构—外观解耦实现创意可控视频编辑</a></li><li><a class="wikilink" href="../sources/2026-04-14-framepainter.html">FramePainter：用视频扩散先验增强交互式图像编辑</a></li><li><a class="wikilink" href="../sources/2026-04-14-dive-subject-driven-video-editing.html">DIVE：用 DINO 做主体驱动视频编辑</a></li><li><a class="wikilink" href="../sources/2026-04-14-qk-edit.html">QK-Edit：在 MM-DiT 中重构图像与视频编辑的 attention 注入</a></li><li><a class="wikilink" href="../sources/2026-04-14-insvie-1m.html">InsViE-1M：通过精细数据构造实现 instruction-based 视频编辑</a></li><li><a class="wikilink" href="../sources/2026-04-14-veggie.html">VEGGIE：统一指令视频编辑、grounding 与 reasoning segmentation</a></li><li><a class="wikilink" href="../sources/2026-04-14-camel-video-editing.html">CAMEL：面向文本驱动视频编辑的因果运动增强</a></li><li><a class="wikilink" href="../sources/2026-04-14-vidtome.html">VidToMe：用跨帧 token merging 做零样本视频编辑</a></li><li><a class="wikilink" href="../sources/2026-04-14-motionfollower.html">MotionFollower：通过 score-guided diffusion 编辑视频运动</a></li><li><a class="wikilink" href="../sources/2026-04-14-reangle-a-video.html">Reangle-A-Video：把单目视频重演为多视角同步视频</a></li><li><a class="wikilink" href="../sources/2026-04-14-stablevideo.html">StableVideo：用 layered atlas 稳定扩散视频外观编辑</a></li><li><a class="wikilink" href="../sources/2026-04-14-pix2video.html">Pix2Video：利用图像扩散进行视频编辑</a></li><li><a class="wikilink" href="../sources/2026-04-14-video-worth-256-bases.html">A Video is Worth 256 Bases：以时空 EM 低秩基改进零样本视频反演</a></li><li><a class="wikilink" href="../sources/2026-04-14-avid-video-inpainting.html">AVID：用 Temporal MultiDiffusion 做任意长度视频修补</a></li><li><a class="wikilink" href="../sources/2026-04-14-dynvideo-e.html">DynVideo-E：用动态 NeRF 编辑大运动与大视角人体视频</a></li><li><a class="wikilink" href="../sources/2026-04-14-language-driven-video-inpainting.html">通过多模态大模型实现语言驱动视频修补</a></li><li><a class="wikilink" href="../sources/2026-04-14-shape-aware-layered-video-editing.html">Shape-aware Text-driven Layered Video Editing：用 UV 变形突破 atlas 的固定形状</a></li><li><a class="wikilink" href="../sources/2026-04-14-vive3d.html">VIVE3D：多帧个性化 EG3D 的视角无关人脸视频编辑</a></li><li><a class="wikilink" href="../sources/2026-04-14-fairy-video-to-video.html">Fairy：用 anchor cross-frame attention 并行加速指令视频编辑</a></li><li><a class="wikilink" href="../sources/2026-04-14-flowvid.html">FlowVid：把不完美光流作为软条件的视频编辑</a></li></ul></div></div></section>
-      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">36</span></h2><ul><li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a><span>判断</span></li><li><a href="../entities/video-editing-understanding.html">视频编辑理解</a><span>实体</span></li><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a><span>问题</span></li><li><a href="../sources/2026-04-12-align-a-video.html">Align-A-Video：面向一致视频编辑的确定性奖励调优</a><span>来源笔记</span></li><li><a href="../sources/2026-04-12-fade.html">FADE：面向视频编辑的频率感知扩散模型分解</a><span>来源笔记</span></li><li><a href="../sources/2026-04-12-veu-bench.html">VEU-Bench：通用 Vid-LLM 的视频剪辑元素理解基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-12-videodirector.html">VideoDirector：借助文本到视频模型实现精确视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-aigv-assessor.html">AIGV-Assessor：用大模型评测文本到视频生成感知质量</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-avid-video-inpainting.html">AVID：用 Temporal MultiDiffusion 做任意长度视频修补</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-camel-video-editing.html">CAMEL：面向文本驱动视频编辑的因果运动增强</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-ccedit.html">CCEdit：以结构—外观解耦实现创意可控视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-dive-subject-driven-video-editing.html">DIVE：用 DINO 做主体驱动视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-dynvideo-e.html">DynVideo-E：用动态 NeRF 编辑大运动与大视角人体视频</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-fairy-video-to-video.html">Fairy：用 anchor cross-frame attention 并行加速指令视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-fatezero.html">FateZero：融合注意力做零样本文本视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-five-bench.html">FiVE-Bench：细粒度视频编辑评测基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-flowvid.html">FlowVid：把不完美光流作为软条件的视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-framepainter.html">FramePainter：用视频扩散先验增强交互式图像编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-insvie-1m.html">InsViE-1M：通过精细数据构造实现 instruction-based 视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-language-driven-video-inpainting.html">通过多模态大模型实现语言驱动视频修补</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-maskint.html">MaskINT：关键帧扩散编辑与非自回归结构插帧的视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-motioneditor.html">MotionEditor：参考姿态驱动的人体视频运动编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-motionfollower.html">MotionFollower：通过 score-guided diffusion 编辑视频运动</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-pix2video.html">Pix2Video：利用图像扩散进行视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-qk-edit.html">QK-Edit：在 MM-DiT 中重构图像与视频编辑的 attention 注入</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-rave-video-editing.html">RAVE：随机噪声重排的快速一致视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-shape-aware-layered-video-editing.html">Shape-aware Text-driven Layered Video Editing：用 UV 变形突破 atlas 的固定形状</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-sketchvideo.html">SketchVideo：基于草图的视频生成与编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-stablevideo.html">StableVideo：用 layered atlas 稳定扩散视频外观编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-veggie.html">VEGGIE：统一指令视频编辑、grounding 与 reasoning segmentation</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-video-bench.html">Video-Bench：人类偏好对齐的视频生成评测</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-video-p2p.html">Video-P2P：用 shared-null inversion 与解耦 guidance 做 attention-control 视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-video-worth-256-bases.html">A Video is Worth 256 Bases：以时空 EM 低秩基改进零样本视频反演</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-vidtome.html">VidToMe：用跨帧 token merging 做零样本视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-vive3d.html">VIVE3D：多帧个性化 EG3D 的视角无关人脸视频编辑</a><span>来源笔记</span></li></ul></section>
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-related_topics"><h3>相关主题<span class="related-count">5</span></h3><ul><li><a class="wikilink" href="../topics/video-representation-and-temporal-modeling.html">视频表示、运动信息与时序建模</a></li><li><a class="wikilink" href="../topics/video-generation.html">视频生成</a></li><li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li><li><a class="wikilink" href="../topics/generative-model-evaluation.html">生成模型评测</a></li><li><a class="wikilink" href="../topics/video-understanding.html">视频理解</a></li></ul></div><div class="related-group related-related_entities"><h3>相关实体<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../entities/video-editing-understanding.html">视频编辑理解</a></li></ul></div><div class="related-group related-open_questions"><h3>开放问题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li></ul></div><div class="related-group related-source_notes"><h3>来源笔记<span class="related-count">33</span></h3><ul><li><a class="wikilink" href="../sources/2026-04-12-videodirector.html">VideoDirector：借助文本到视频模型实现精确视频编辑</a></li><li><a class="wikilink" href="../sources/2026-04-12-fade.html">FADE：面向视频编辑的频率感知扩散模型分解</a></li><li><a class="wikilink" href="../sources/2026-04-12-align-a-video.html">Align-A-Video：面向一致视频编辑的确定性奖励调优</a></li><li><a class="wikilink" href="../sources/2026-04-12-veu-bench.html">VEU-Bench：通用 Vid-LLM 的视频剪辑元素理解基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-aigv-assessor.html">AIGV-Assessor：用大模型评测文本到视频生成感知质量</a></li><li><a class="wikilink" href="../sources/2026-04-14-sketchvideo.html">SketchVideo：基于草图的视频生成与编辑</a></li><li><a class="wikilink" href="../sources/2026-04-14-video-bench.html">Video-Bench：人类偏好对齐的视频生成评测</a></li><li><a class="wikilink" href="../sources/2026-04-14-fatezero.html">FateZero：融合注意力做零样本文本视频编辑</a></li><li><a class="wikilink" href="../sources/2026-04-14-five-bench.html">FiVE-Bench：细粒度视频编辑评测基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-video-p2p.html">Video-P2P：用 shared-null inversion 与解耦 guidance 做 attention-control 视频编辑</a></li><li><a class="wikilink" href="../sources/2026-04-14-rave-video-editing.html">RAVE：随机噪声重排的快速一致视频编辑</a></li><li><a class="wikilink" href="../sources/2026-04-14-motioneditor.html">MotionEditor：参考姿态驱动的人体视频运动编辑</a></li><li><a class="wikilink" href="../sources/2026-04-14-maskint.html">MaskINT：关键帧扩散编辑与非自回归结构插帧的视频编辑</a></li><li><a class="wikilink" href="../sources/2026-04-14-ccedit.html">CCEdit：以结构—外观解耦实现创意可控视频编辑</a></li><li><a class="wikilink" href="../sources/2026-04-14-framepainter.html">FramePainter：用视频扩散先验增强交互式图像编辑</a></li><li><a class="wikilink" href="../sources/2026-04-14-dive-subject-driven-video-editing.html">DIVE：用 DINO 做主体驱动视频编辑</a></li><li><a class="wikilink" href="../sources/2026-04-14-qk-edit.html">QK-Edit：在 MM-DiT 中重构图像与视频编辑的 attention 注入</a></li><li><a class="wikilink" href="../sources/2026-04-14-insvie-1m.html">InsViE-1M：通过精细数据构造实现 instruction-based 视频编辑</a></li><li><a class="wikilink" href="../sources/2026-04-14-veggie.html">VEGGIE：统一指令视频编辑、grounding 与 reasoning segmentation</a></li><li><a class="wikilink" href="../sources/2026-04-14-camel-video-editing.html">CAMEL：面向文本驱动视频编辑的因果运动增强</a></li><li><a class="wikilink" href="../sources/2026-04-14-vidtome.html">VidToMe：用跨帧 token merging 做零样本视频编辑</a></li><li><a class="wikilink" href="../sources/2026-04-14-motionfollower.html">MotionFollower：通过 score-guided diffusion 编辑视频运动</a></li><li><a class="wikilink" href="../sources/2026-04-14-reangle-a-video.html">Reangle-A-Video：把单目视频重演为多视角同步视频</a></li><li><a class="wikilink" href="../sources/2026-04-14-stablevideo.html">StableVideo：用 layered atlas 稳定扩散视频外观编辑</a></li><li><a class="wikilink" href="../sources/2026-04-14-pix2video.html">Pix2Video：利用图像扩散进行视频编辑</a></li><li><a class="wikilink" href="../sources/2026-04-14-video-worth-256-bases.html">A Video is Worth 256 Bases：以时空 EM 低秩基改进零样本视频反演</a></li><li><a class="wikilink" href="../sources/2026-04-14-avid-video-inpainting.html">AVID：用 Temporal MultiDiffusion 做任意长度视频修补</a></li><li><a class="wikilink" href="../sources/2026-04-14-dynvideo-e.html">DynVideo-E：用动态 NeRF 编辑大运动与大视角人体视频</a></li><li><a class="wikilink" href="../sources/2026-04-14-language-driven-video-inpainting.html">通过多模态大模型实现语言驱动视频修补</a></li><li><a class="wikilink" href="../sources/2026-04-14-shape-aware-layered-video-editing.html">Shape-aware Text-driven Layered Video Editing：用 UV 变形突破 atlas 的固定形状</a></li><li><a class="wikilink" href="../sources/2026-04-14-vive3d.html">VIVE3D：多帧个性化 EG3D 的视角无关人脸视频编辑</a></li><li><a class="wikilink" href="../sources/2026-04-14-fairy-video-to-video.html">Fairy：用 anchor cross-frame attention 并行加速指令视频编辑</a></li><li><a class="wikilink" href="../sources/2026-04-14-flowvid.html">FlowVid：把不完美光流作为软条件的视频编辑</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">39</span></h2><ul><li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a><span>判断</span></li><li><a href="../entities/video-editing-understanding.html">视频编辑理解</a><span>实体</span></li><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a><span>问题</span></li><li><a href="../sources/2026-04-12-align-a-video.html">Align-A-Video：面向一致视频编辑的确定性奖励调优</a><span>来源笔记</span></li><li><a href="../sources/2026-04-12-fade.html">FADE：面向视频编辑的频率感知扩散模型分解</a><span>来源笔记</span></li><li><a href="../sources/2026-04-12-veu-bench.html">VEU-Bench：通用 Vid-LLM 的视频剪辑元素理解基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-12-videodirector.html">VideoDirector：借助文本到视频模型实现精确视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-aigv-assessor.html">AIGV-Assessor：用大模型评测文本到视频生成感知质量</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-avid-video-inpainting.html">AVID：用 Temporal MultiDiffusion 做任意长度视频修补</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-camel-video-editing.html">CAMEL：面向文本驱动视频编辑的因果运动增强</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-ccedit.html">CCEdit：以结构—外观解耦实现创意可控视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-dive-subject-driven-video-editing.html">DIVE：用 DINO 做主体驱动视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-dynvideo-e.html">DynVideo-E：用动态 NeRF 编辑大运动与大视角人体视频</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-fairy-video-to-video.html">Fairy：用 anchor cross-frame attention 并行加速指令视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-fatezero.html">FateZero：融合注意力做零样本文本视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-five-bench.html">FiVE-Bench：细粒度视频编辑评测基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-flowvid.html">FlowVid：把不完美光流作为软条件的视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-framepainter.html">FramePainter：用视频扩散先验增强交互式图像编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-insvie-1m.html">InsViE-1M：通过精细数据构造实现 instruction-based 视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-language-driven-video-inpainting.html">通过多模态大模型实现语言驱动视频修补</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-maskint.html">MaskINT：关键帧扩散编辑与非自回归结构插帧的视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-motioneditor.html">MotionEditor：参考姿态驱动的人体视频运动编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-motionfollower.html">MotionFollower：通过 score-guided diffusion 编辑视频运动</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-pix2video.html">Pix2Video：利用图像扩散进行视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-qk-edit.html">QK-Edit：在 MM-DiT 中重构图像与视频编辑的 attention 注入</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-rave-video-editing.html">RAVE：随机噪声重排的快速一致视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-shape-aware-layered-video-editing.html">Shape-aware Text-driven Layered Video Editing：用 UV 变形突破 atlas 的固定形状</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-sketchvideo.html">SketchVideo：基于草图的视频生成与编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-stablevideo.html">StableVideo：用 layered atlas 稳定扩散视频外观编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-veggie.html">VEGGIE：统一指令视频编辑、grounding 与 reasoning segmentation</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-video-bench.html">Video-Bench：人类偏好对齐的视频生成评测</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-video-p2p.html">Video-P2P：用 shared-null inversion 与解耦 guidance 做 attention-control 视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-video-worth-256-bases.html">A Video is Worth 256 Bases：以时空 EM 低秩基改进零样本视频反演</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-vidtome.html">VidToMe：用跨帧 token merging 做零样本视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-vive3d.html">VIVE3D：多帧个性化 EG3D 的视角无关人脸视频编辑</a><span>来源笔记</span></li><li><a href="../topics/generative-model-evaluation.html">生成模型评测</a><span>主题</span></li><li><a href="../topics/video-representation-and-temporal-modeling.html">视频表示、运动信息与时序建模</a><span>主题</span></li><li><a href="../topics/vision-language.html">视觉语言</a><span>主题</span></li></ul></section>
       <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;topic-video-editing&quot;,
   &quot;type&quot;: &quot;topic&quot;,
+  &quot;topic_kind&quot;: &quot;research&quot;,
   &quot;title&quot;: &quot;视频编辑&quot;,
+  &quot;title_en&quot;: &quot;Video Editing&quot;,
+  &quot;nav_title&quot;: &quot;视频编辑&quot;,
   &quot;status&quot;: &quot;active&quot;,
   &quot;created&quot;: &quot;2026-04-12&quot;,
-  &quot;updated&quot;: &quot;2026-07-12&quot;,
+  &quot;updated&quot;: &quot;2026-07-14&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;video-editing&quot;,
-    &quot;diffusion&quot;
+    &quot;diffusion&quot;,
+    &quot;control&quot;
   ],
-  &quot;summary&quot;: &quot;追踪以文本驱动和扩散模型为核心的视频编辑方法，重点关注保真度、时序一致性与编辑精度。&quot;,
+  &quot;summary&quot;: &quot;研究怎样按文本、草图、主体或运动条件修改现有视频，同时保持跨帧身份、背景、几何、运动与未编辑内容。&quot;,
   &quot;source_notes&quot;: [
     &quot;sources/2026-04-12-videodirector&quot;,
     &quot;sources/2026-04-12-fade&quot;,
@@ -308,7 +274,19 @@
     &quot;sources/2026-04-14-fairy-video-to-video&quot;,
     &quot;sources/2026-04-14-flowvid&quot;
   ],
+  &quot;foundational_sources&quot;: [
+    &quot;sources/2026-04-14-fatezero&quot;,
+    &quot;sources/2026-04-14-video-p2p&quot;,
+    &quot;sources/2026-04-14-rave-video-editing&quot;,
+    &quot;sources/2026-04-14-five-bench&quot;
+  ],
+  &quot;visuals&quot;: [
+    &quot;video-editing-system-flow&quot;,
+    &quot;video-editing-evolution&quot;,
+    &quot;video-editing-method-map&quot;
+  ],
   &quot;related_topics&quot;: [
+    &quot;topics/video-representation-and-temporal-modeling&quot;,
     &quot;topics/video-generation&quot;,
     &quot;topics/diffusion-models&quot;,
     &quot;topics/generative-model-evaluation&quot;,

@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="追踪影响本知识库核心方向的多模态条件控制、对齐与语言驱动推理。">
+  <meta name="description" content="研究视觉与语言如何从共享表示扩展到细粒度定位、指令控制、统一生成编辑和可验证多模态推理。">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
-  <title>视觉-语言 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260714-research-observatory-v2-motion">
-  <script defer src="../assets/wiki.js?v=20260714-research-observatory-v2-motion"></script>
+  <title>视觉语言 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260714-research-observatory-v5-topic-visuals">
+  <script defer src="../assets/wiki.js?v=20260714-research-observatory-v5-topic-visuals"></script>
 </head>
-<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/vision-language&quot;, &quot;title&quot;: &quot;视觉-语言&quot;, &quot;title_en&quot;: &quot;视觉-语言&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;multimodal&quot;, &quot;vision-language&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260714-research-observatory-v2-motion">
+<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/vision-language&quot;, &quot;title&quot;: &quot;视觉语言&quot;, &quot;title_en&quot;: &quot;视觉语言&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;multimodal&quot;, &quot;vision-language&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260714-research-observatory-v5-topic-visuals">
   <header class="mobile-topbar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
@@ -23,20 +23,30 @@
 <li><a href="../llm-wiki.html">LLM Wiki</a></li>
 <li><a href="../main.html">首页</a></li>
 </ul>
-<h2>主题</h2><ul>
-<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<h2>基础概念</h2><ul>
+<li><a href="../topics/computer-vision-overview.html">计算机视觉概览</a></li>
+<li><a href="../topics/datasets-metrics-and-benchmark-reliability.html">数据与评测基础</a></li>
 <li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/video-representation-and-temporal-modeling.html">视频表示基础</a></li>
+<li><a href="../topics/vision-backbones.html">视觉主干</a></li>
+<li><a href="../topics/vision-language-foundations.html">视觉语言基础</a></li>
+<li><a href="../topics/vision-task-foundations.html">核心视觉任务</a></li>
+<li><a href="../topics/visual-generation-foundations.html">视觉生成基础</a></li>
+</ul>
+<h2>研究专题</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
 <li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
 <li><a href="../topics/image-editing.html">图像编辑</a></li>
 <li><a href="../topics/image-generation.html">图像生成</a></li>
 <li><a href="../topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a></li>
-<li><a href="../topics/sports-ai-roadmap.html">体育 AI</a></li>
 <li><a href="../topics/sports-ai-video-understanding.html">体育视频理解</a></li>
 <li><a href="../topics/video-editing.html">视频编辑</a></li>
 <li><a href="../topics/video-generation.html">视频生成</a></li>
 <li><a href="../topics/video-understanding.html">视频理解</a></li>
-<li><a href="../topics/vision-backbones.html">视觉 Backbone</a></li>
-<li><a class="active" href="../topics/vision-language.html">视觉-语言</a></li>
+<li><a class="active" href="../topics/vision-language.html">视觉语言</a></li>
+</ul>
+<h2>应用路线</h2><ul>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI</a></li>
 </ul>
 <h2>实体</h2><ul>
 <li><a href="../entities/clip.html">CLIP 系列模型（CLIP Family）</a></li>
@@ -76,21 +86,21 @@
     <article class="article-shell">
       
       <header class="article-header" data-motion="reveal">
-        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>主题</span><span class="crumb-sep" aria-hidden="true">›</span><strong>视觉-语言</strong></nav>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>主题</span><span class="crumb-sep" aria-hidden="true">›</span><strong>视觉语言</strong></nav>
         <p class="eyebrow">主题 · 更新于 2026-07-14</p>
-        <h1><span class="title-main">视觉-语言</span></h1>
-        <p class="article-summary">追踪影响本知识库核心方向的多模态条件控制、对齐与语言驱动推理。</p>
+        <h1><span class="title-main">视觉语言</span></h1>
+        <p class="article-summary">研究视觉与语言如何从共享表示扩展到细粒度定位、指令控制、统一生成编辑和可验证多模态推理。</p>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#multimodal">#multimodal</a><a class="tag" href="../tags.html#vision-language">#vision-language</a></div>
       </header>
       <div class="article-layout has-rail">
-        <aside class="article-rail"><details class="toc" open><summary>目录</summary><ol><li><a href="#概述">概述</a></li><li><a href="#本页关注什么">本页关注什么</a></li><li><a href="#当前综合判断">当前综合判断</a></li><li><a href="#关联页面">关联页面</a></li><li><a href="#后续值得追踪的问题">后续值得追踪的问题</a></li></ol></details></aside>
+        <aside class="article-rail"><details class="toc" open><summary>目录</summary><ol><li><a href="#三分钟摘要">三分钟摘要</a></li><li><a href="#任务或系统流程">任务或系统流程</a></li><li><a href="#当前综合判断">当前综合判断</a><ol><li class="toc-sub"><a href="#1-共享表示是基础设施-不是完整视觉理解">1. 共享表示是基础设施，不是完整视觉理解</a></li><li class="toc-sub"><a href="#2-细粒度对齐正在从模型技巧变成系统分层">2. 细粒度对齐正在从模型技巧变成系统分层</a></li><li class="toc-sub"><a href="#3-语言已成为视觉生成与编辑的主控制接口">3. 语言已成为视觉生成与编辑的主控制接口</a></li><li class="toc-sub"><a href="#4-统一接口正在形成-但通用能力仍需分任务验证">4. 统一接口正在形成，但通用能力仍需分任务验证</a></li><li class="toc-sub"><a href="#5-benchmark-正从答案正确转向-证据是否在视觉里">5. Benchmark 正从答案正确转向“证据是否在视觉里”</a></li></ol></li><li><a href="#近五年演化-2022-2026">近五年演化（2022—2026）</a></li><li><a href="#方法家族与成熟阶段">方法家族与成熟阶段</a><ol><li class="toc-sub"><a href="#方法家族的成熟度">方法家族的成熟度</a></li></ol></li><li><a href="#拥挤方向与研究机会">拥挤方向与研究机会</a></li><li><a href="#反方证据-局限与可证伪条件">反方证据、局限与可证伪条件</a></li><li><a href="#研究生可行的研究入口">研究生可行的研究入口</a><ol><li class="toc-sub"><a href="#候选课题-a-区域证据驱动的指令跟随评测-最推荐">候选课题 A：区域证据驱动的指令跟随评测（最推荐）</a></li><li class="toc-sub"><a href="#候选课题-b-统一视觉语言接口的任务冲突-推荐">候选课题 B：统一视觉语言接口的任务冲突（推荐）</a></li><li class="toc-sub"><a href="#候选课题-c-中文与多语言细粒度视觉指令-条件推荐">候选课题 C：中文与多语言细粒度视觉指令（条件推荐）</a></li><li class="toc-sub"><a href="#推荐排序与止损条件">推荐排序与止损条件</a></li></ol></li><li><a href="#证据基础">证据基础</a></li><li><a href="#开放问题">开放问题</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
         <section class="article-content">
 <section class="topic-hero-grid" data-motion="reveal">
   <section class="judgment-panel topic-judgment">
     <p class="section-kicker">当前判断</p>
-    <h2>视觉-语言</h2>
-    <p>追踪影响本知识库核心方向的多模态条件控制、对齐与语言驱动推理。</p>
-    <div class="judgment-meta"><span>26 来源笔记</span><span>0 开放问题</span></div>
+    <h2>视觉语言</h2>
+    <p>研究视觉与语言如何从共享表示扩展到细粒度定位、指令控制、统一生成编辑和可验证多模态推理。</p>
+    <div class="judgment-meta"><span>27 来源笔记</span><span>0 开放问题</span></div>
   </section>
   <section class="reading-path">
     <p class="section-kicker">阅读路径</p>
@@ -98,50 +108,145 @@
   </section>
 </section>
 <section class="method-map" data-motion="reveal" aria-label="研究方法族地图">
-  <div class="method-map-heading"><div><p class="section-kicker">研究方法族地图</p><h2>从问题定义走向可复核的系统能力</h2></div><span>26 来源笔记</span></div>
+  <div class="method-map-heading"><div><p class="section-kicker">研究方法族地图</p><h2>从问题定义走向可复核的系统能力</h2></div><span>27 来源笔记</span></div>
   <div class="method-map-track"><div class="method-node"><span>1</span><strong>问题</strong><small>明确任务与证据边界</small></div><div class="method-node"><span>2</span><strong>方法</strong><small>比较方法族与结构选择</small></div><div class="method-node"><span>3</span><strong>证据</strong><small>回到论文与可检索全文</small></div><div class="method-node"><span>4</span><strong>开放问题</strong><small>记录仍待验证的张力</small></div></div>
 </section>
-<h2 id="概述">概述</h2>
-<p>这一页整理视觉-语言接口在本知识库中的作用。当前证据显示，语言已经不只是一个外部提示层，而是在越来越多生成和编辑系统中成为核心交互方式与建模入口。换句话说，vision-language 在这里既影响模型如何接收指令，也影响模型如何完成多任务统一、条件控制和后续评测。</p>
-<h2 id="本页关注什么">本页关注什么</h2>
+<h2 id="三分钟摘要">三分钟摘要</h2>
 <ul>
-<li>视觉与文本对齐机制</li>
-<li>prompting 与条件控制范式</li>
-<li>多模态预训练模式</li>
-<li>语言驱动的评测与推理</li>
+<li><strong>它研究什么</strong>：让视觉内容与自然语言在表示、定位、推理和生成控制四个层面发生可验证的对应。</li>
+<li><strong>基础已经成熟的部分</strong>：大规模图文对比学习能够得到可迁移的共享表示，双编码器是检索和零样本识别的稳定底座。</li>
+<li><strong>仍未解决的部分</strong>：全局相似度不等于对象—属性绑定、空间关系或时序理解；更强的语言接口也不自动意味着更深的视觉理解。</li>
+<li><strong>当前前沿</strong>：细粒度 grounding、统一多模态向量、指令驱动生成/编辑，以及能检查局部证据和失败原因的评测。</li>
 </ul>
+<p>本页关注 2022—2026 年的研究前沿。若需要先理解对比学习、双编码器和视觉语言预训练，请从 <a class="wikilink" href="../topics/vision-language-foundations.html">视觉语言基础</a> 开始。</p>
+<h2 id="任务或系统流程">任务或系统流程</h2>
+<figure class="wiki-visual wiki-visual--flow" data-visual-id="vision-language-system-flow" aria-labelledby="visual-vision-language-system-flow-title" aria-describedby="visual-vision-language-system-flow-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">视觉语言系统怎样把“看见、理解、按指令行动”串成一条链？</p><div class="wiki-visual-title" id="visual-vision-language-system-flow-title" role="heading" aria-level="3">从视觉输入与语言意图到可验证输出</div><p class="wiki-visual-explanation">系统先建立图文表示，再根据任务进行局部对齐或跨模态融合，最终输出检索、回答、定位或生成结果；证据与评测必须回到对象、区域和时间片段。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>多模态输入</strong><small>图像或视频、文本查询、指令与可选区域条件</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>共享表示</strong><small>对比学习建立可检索、可迁移的图文空间</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>局部对齐</strong><small>patch—token、区域或跨注意力建立细粒度对应</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>任务推理</strong><small>根据检索、问答、定位、生成或编辑任务融合信息</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">05</span><strong>可控输出</strong><small>返回答案、证据区域、目标内容或编辑结果</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">06</span><strong>证据验收</strong><small>检查绑定、空间、保持性、时序与跨域可靠性</small></li></ol><figcaption><span>图示依据</span><a class="wikilink" href="../sources/2026-06-29-clip.html">CLIP</a>、<a class="wikilink" href="../sources/2026-07-14-albef.html">ALBEF</a>、<a class="wikilink" href="../sources/2026-04-14-gligen.html">GLIGEN</a>、<a class="wikilink" href="../sources/2026-04-12-fireedit.html">FireEdit</a></figcaption><p class="sr-only" id="visual-vision-language-system-flow-alt">图像或视频与语言指令分别编码，经过共享对齐和局部融合形成任务表示，再输出检索、问答、定位或生成编辑结果，最后核验局部视觉证据。</p></figure>
 <h2 id="当前综合判断">当前综合判断</h2>
-<p><a class="wikilink" href="../sources/2026-04-14-condition-aware-neural-network.html">sources/2026-04-14-condition-aware-neural-network</a> 也进一步把条件感知控制结构接回了 vision-language 条件接口层。</p>
-<p><a class="wikilink" href="../sources/2026-04-14-check-locate-rectify.html">sources/2026-04-14-check-locate-rectify</a> 也把布局校准这一类更结构化的条件接口接回了 vision-language 页面。</p>
-<p><a class="wikilink" href="../sources/2026-04-14-reco.html">sources/2026-04-14-reco</a> 进一步把区域控制接口接回 vision-language 条件层，使这页对细粒度区域条件的覆盖更完整。</p>
-<p><a class="wikilink" href="../sources/2026-04-14-mmmu.html">sources/2026-04-14-mmmu</a>、<a class="wikilink" href="../sources/2026-04-14-maplm.html">sources/2026-04-14-maplm</a>、<a class="wikilink" href="../sources/2026-04-14-concon-chi.html">sources/2026-04-14-concon-chi</a> 和 <a class="wikilink" href="../sources/2026-04-14-sti-bench.html">sources/2026-04-14-sti-bench</a> 让 vision-language 页在通用推理、现实场景、个性化与精确时空理解四个方向都多了 benchmark 支点。</p>
-<p><a class="wikilink" href="../sources/2026-04-14-layoutdiffusion.html">sources/2026-04-14-layoutdiffusion</a> 也说明 vision-language/condition interface 不只体现在 grounding，还体现在更显式的空间布局控制。</p>
-<p><a class="wikilink" href="../sources/2026-04-14-language-driven-video-inpainting.html">sources/2026-04-14-language-driven-video-inpainting</a> 进一步说明视觉语言接口正在深入视频修补与编辑任务。</p>
-<p><a class="wikilink" href="../sources/2026-04-14-veggie.html">sources/2026-04-14-veggie</a> 与 <a class="wikilink" href="../sources/2026-04-14-hallusionbench.html">sources/2026-04-14-hallusionbench</a> 也说明视觉语言接口正在同时承载 grounded editing 与 failure diagnosis 两类任务。</p>
-<p>本轮图文检索编译补上了视觉语言接口的检索侧：<a class="wikilink" href="../topics/image-text-retrieval.html">图文检索</a> 将双塔表示、细粒度对齐、组合式查询和统一多模态 embedding 放到同一条证据链中；<a class="wikilink" href="../sources/2026-06-29-clip.html">CLIP</a>、<a class="wikilink" href="../sources/2026-07-14-align.html">ALIGN</a>、<a class="wikilink" href="../sources/2026-07-14-albef.html">ALBEF</a> 与 <a class="wikilink" href="../sources/2026-07-14-vlm2vec-mmeb.html">VLM2Vec</a> 分别代表可扩展表示、混合匹配和统一向量化的不同位置。</p>
-<p><a class="wikilink" href="../sources/2026-04-14-anydoor.html">sources/2026-04-14-anydoor</a> 说明对象级条件控制正在继续把视觉生成系统推向更强的多模态接口。</p>
-<p>第二批 source 明显强化了一个判断：指令接口正在从“编辑系统附加层”变成“生成系统核心接口”。<a class="wikilink" href="../sources/2026-04-12-dreamomni.html">sources/2026-04-12-dreamomni</a> 和 <a class="wikilink" href="../sources/2026-04-12-omnigen.html">sources/2026-04-12-omnigen</a> 都把统一的指令驱动使用方式视为产品与模型设计的一部分。这意味着视觉-语言接口在本库里不仅关系到交互体验，也关系到模型是否能真正支撑统一多任务范式。</p>
-<h2 id="关联页面">关联页面</h2>
+<h3 id="1-共享表示是基础设施-不是完整视觉理解">1. 共享表示是基础设施，不是完整视觉理解</h3>
+<p>CLIP 与 ALIGN 证明双编码器可从大规模图文对学习可迁移表示；SigLIP 又从损失与训练效率继续强化这条路线（<a class="wikilink" href="../sources/2026-06-29-clip.html">CLIP</a>、<a class="wikilink" href="../sources/2026-07-14-align.html">ALIGN</a>、<a class="wikilink" href="../sources/2026-07-14-siglip.html">SigLIP</a>）。但全局相似度容易依赖关键词和场景共现，不能自然保证对象属性、数量、关系和文字顺序被正确理解。</p>
+<h3 id="2-细粒度对齐正在从模型技巧变成系统分层">2. 细粒度对齐正在从模型技巧变成系统分层</h3>
+<p>FILIP 的 patch—token late interaction 与 ALBEF 的“先对齐、再融合”说明，规模化召回和精细关系判断通常需要不同计算路径（<a class="wikilink" href="../sources/2026-07-14-filip.html">FILIP</a>、<a class="wikilink" href="../sources/2026-07-14-albef.html">ALBEF</a>）。BLIP 与 CoCa 又把图文对比、匹配和生成式语言目标放在同一预训练系统中（<a class="wikilink" href="../sources/2026-07-14-blip.html">BLIP</a>、<a class="wikilink" href="../sources/2026-07-14-coca.html">CoCa</a>）。因此，更合理的比较不是“融合一定优于双塔”，而是质量、索引和推理成本在具体任务中的折中。</p>
+<h3 id="3-语言已成为视觉生成与编辑的主控制接口">3. 语言已成为视觉生成与编辑的主控制接口</h3>
+<p>ReCo、GLIGEN 和 LayoutDiffusion 把坐标、区域与布局条件接入生成模型；AnyDoor、FireEdit 和 InsightEdit进一步处理对象级保持、区域感知与复杂指令（<a class="wikilink" href="../sources/2026-04-14-reco.html">ReCo</a>、<a class="wikilink" href="../sources/2026-04-14-gligen.html">GLIGEN</a>、<a class="wikilink" href="../sources/2026-04-14-layoutdiffusion.html">LayoutDiffusion</a>、<a class="wikilink" href="../sources/2026-04-14-anydoor.html">AnyDoor</a>、<a class="wikilink" href="../sources/2026-04-12-fireedit.html">FireEdit</a>、<a class="wikilink" href="../sources/2026-04-12-insightedit.html">InsightEdit</a>）。这条线的研究价值不再只是“能听懂一句话”，而是语言约束能否落到正确对象、区域和未编辑内容。</p>
+<h3 id="4-统一接口正在形成-但通用能力仍需分任务验证">4. 统一接口正在形成，但通用能力仍需分任务验证</h3>
+<p>OmniGen 与 DreamOmni探索统一图像生成和编辑，VEGGIE把视频编辑、grounding 与 reasoning segmentation 接到统一指令入口（<a class="wikilink" href="../sources/2026-04-12-omnigen.html">OmniGen</a>、<a class="wikilink" href="../sources/2026-04-12-dreamomni.html">DreamOmni</a>、<a class="wikilink" href="../sources/2026-04-14-veggie.html">VEGGIE</a>）。检索侧，UniIR 与 VLM2Vec把不同模态和任务压入统一向量空间（<a class="wikilink" href="../sources/2026-07-14-uniir-mbeir.html">UniIR/M-BEIR</a>、<a class="wikilink" href="../sources/2026-07-14-vlm2vec-mmeb.html">VLM2Vec/MMEB</a>）。统一接口减少了任务专用模块，但平均分可能掩盖某类输入、语言或任务明显退化。</p>
+<h3 id="5-benchmark-正从答案正确转向-证据是否在视觉里">5. Benchmark 正从答案正确转向“证据是否在视觉里”</h3>
+<p>MMMU 测跨学科多模态推理，MAPLM 与 ConCon-Chi 分别检查现实场景和个性化组合，STI-Bench 聚焦精确时空关系，HallusionBench 则定位视觉幻觉（<a class="wikilink" href="../sources/2026-04-14-mmmu.html">MMMU</a>、<a class="wikilink" href="../sources/2026-04-14-maplm.html">MAPLM</a>、<a class="wikilink" href="../sources/2026-04-14-concon-chi.html">ConCon-Chi</a>、<a class="wikilink" href="../sources/2026-04-14-sti-bench.html">STI-Bench</a>、<a class="wikilink" href="../sources/2026-04-14-hallusionbench.html">HallusionBench</a>）。共同问题是：模型给出流畅答案并不证明它使用了正确视觉证据。</p>
+<h2 id="近五年演化-2022-2026">近五年演化（2022—2026）</h2>
+<figure class="wiki-visual wiki-visual--timeline" data-visual-id="vision-language-evolution" aria-labelledby="visual-vision-language-evolution-title" aria-describedby="visual-vision-language-evolution-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">近五年视觉语言研究的重心如何移动？</p><div class="wiki-visual-title" id="visual-vision-language-evolution-title" role="heading" aria-level="3">从共享表示到统一视觉语言接口</div><p class="wiki-visual-explanation">时间线呈现能力边界的扩展：先建立开放词汇表示，再强化区域和布局控制，随后走向统一指令、视频接口和跨任务向量。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>2022</strong><small>图文预训练成为开放词汇视觉任务的公共表示层</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>2023</strong><small>坐标、框、区域和布局被系统地接入语言控制生成</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>2024</strong><small>组合式检索与统一多模态向量扩展查询和目标类型</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>2025</strong><small>统一生成编辑、区域感知编辑和视频指令接口快速发展</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">05</span><strong>2026</strong><small>研究焦点转向局部证据、跨语言退化和统一模型的任务边界</small></li></ol><figcaption><span>图示依据</span><a class="wikilink" href="../sources/2026-04-14-reco.html">ReCo</a>、<a class="wikilink" href="../sources/2026-04-14-gligen.html">GLIGEN</a>、<a class="wikilink" href="../sources/2026-07-14-uniir-mbeir.html">UniIR/M-BEIR</a>、<a class="wikilink" href="../sources/2026-04-12-omnigen.html">OmniGen</a>、<a class="wikilink" href="../sources/2026-04-14-veggie.html">VEGGIE</a></figcaption><p class="sr-only" id="visual-vision-language-evolution-alt">2022 年共享表示与区域控制扩展，2023 年开放区域和布局生成成熟，2024 年统一检索与多任务表示发展，2025 年统一生成编辑和视频接口增长，2026 年重点转向证据可靠性和跨语言边界。</p></figure>
+<p>重要变化不是“语言取代视觉模块”，而是语言成为调用视觉能力的公共接口。系统是否真正理解视觉，仍必须由定位、反事实、保持性和跨域测试来判断。</p>
+<h2 id="方法家族与成熟阶段">方法家族与成熟阶段</h2>
+<h3 id="方法家族的成熟度">方法家族的成熟度</h3>
+<h4 id="双编码器与共享表示">双编码器与共享表示</h4>
 <ul>
-<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../topics/image-editing.html">topics/image-editing</a></li>
-<li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
-<li><a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../topics/generative-model-evaluation.html">topics/generative-model-evaluation</a></li>
+<li><strong>阶段</strong>：成熟底座</li>
+<li><strong>证据锚点</strong>：CLIP、ALIGN 与 SigLIP 奠定了可扩展对比预训练和开放词汇迁移。</li>
+<li><strong>研究机会</strong>：数据分布、中文与长尾概念、校准和低成本部署，而不是简单替换骨干。</li>
 </ul>
-<h2 id="后续值得追踪的问题">后续值得追踪的问题</h2>
+<h4 id="局部对齐与跨模态融合">局部对齐与跨模态融合</h4>
 <ul>
-<li>更强的语言监督带来的到底是更深的因果理解，还是更好的 prompt following？</li>
-<li>多模态预训练在生成任务与理解任务之间的迁移边界在哪里？</li>
+<li><strong>阶段</strong>：系统优化期</li>
+<li><strong>证据锚点</strong>：FILIP、ALBEF、BLIP 和 CoCa 形成多向量、融合编码与多目标预训练路线。</li>
+<li><strong>研究机会</strong>：验证局部证据是否真实改善组合性，并量化候选预算和推理成本。</li>
+</ul>
+<h4 id="grounding-与结构化条件控制">Grounding 与结构化条件控制</h4>
+<ul>
+<li><strong>阶段</strong>：活跃发展期</li>
+<li><strong>证据锚点</strong>：ReCo、GLIGEN、LayoutDiffusion、Check-Locate-Rectify 和条件感知网络覆盖坐标、框、布局与纠错。</li>
+<li><strong>研究机会</strong>：对象绑定、遮挡、复杂关系、条件冲突与训练域外布局。</li>
+</ul>
+<h4 id="统一生成与编辑接口">统一生成与编辑接口</h4>
+<ul>
+<li><strong>阶段</strong>：早期整合期</li>
+<li><strong>证据锚点</strong>：OmniGen、DreamOmni、FireEdit、InsightEdit 与 VEGGIE 尝试用指令统一生成、编辑和定位。</li>
+<li><strong>研究机会</strong>：能力冲突、保真—编辑强度折中、视频时间一致性与可解释失败。</li>
+</ul>
+<h4 id="统一向量与多语言接口">统一向量与多语言接口</h4>
+<ul>
+<li><strong>阶段</strong>：评测建设期</li>
+<li><strong>证据锚点</strong>：UniIR、VLM2Vec 与多语言多样性研究把多任务、多模态和语言分布放入同一表示框架。</li>
+<li><strong>研究机会</strong>：分语言、分任务、分地域报告，避免平均分掩盖退化。</li>
+</ul>
+<figure class="wiki-visual wiki-visual--map" data-visual-id="vision-language-method-map" aria-labelledby="visual-vision-language-method-map-title" aria-describedby="visual-vision-language-method-map-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">表示、融合、grounding、生成接口和统一向量分别位于系统哪里？</p><div class="wiki-visual-title" id="visual-vision-language-method-map-title" role="heading" aria-level="3">五类视觉语言方法的关系</div><p class="wiki-visual-explanation">各方法不是线性替代关系；共享表示提供底座，局部融合增强证据，grounding连接空间约束，统一接口连接任务，评测负责判断能力是否真实。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>共享表示</strong><small>让图像和文本可比较、可迁移、可检索</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>局部对齐</strong><small>保留对象、区域和词元之间的细粒度对应</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>Grounding 控制</strong><small>把语言约束落到框、坐标、布局或具体对象</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>指令式生成编辑</strong><small>用自然语言统一创建、修改和保持约束</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">05</span><strong>统一多模态向量</strong><small>以指令声明查询和目标，服务跨任务检索</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">06</span><strong>证据可靠性</strong><small>用反事实、定位和分布外测试检查视觉依据</small></li></ol><figcaption><span>图示依据</span><a class="wikilink" href="../sources/2026-06-29-clip.html">CLIP</a>、<a class="wikilink" href="../sources/2026-07-14-filip.html">FILIP</a>、<a class="wikilink" href="../sources/2026-04-14-gligen.html">GLIGEN</a>、<a class="wikilink" href="../sources/2026-04-12-dreamomni.html">DreamOmni</a>、<a class="wikilink" href="../sources/2026-04-14-hallusionbench.html">HallusionBench</a></figcaption><p class="sr-only" id="visual-vision-language-method-map-alt">共享表示位于底层，局部对齐和融合向上提供细粒度证据，grounding连接区域条件，统一生成编辑与统一向量扩展任务，可靠评测贯穿所有层。</p></figure>
+<h2 id="拥挤方向与研究机会">拥挤方向与研究机会</h2>
+<ul>
+<li><strong>相对拥挤</strong>：只换视觉或语言骨干、只报告通用问答平均分、把更长提示带来的提升解释成视觉推理。</li>
+<li><strong>仍值得做</strong>：对象—属性绑定、复杂空间关系、局部证据可视化、语言与视觉条件冲突、视频编辑中的时间保持。</li>
+<li><strong>有限算力切口</strong>：冻结基础模型，研究任务协议、区域对照、反事实指令、轻量适配器和跨语言评测。</li>
+<li><strong>高风险高价值</strong>：统一模型是否能在检索、理解、生成和编辑间共享能力，而不发生某个任务被平均分掩盖的退化。</li>
+</ul>
+<h2 id="反方证据-局限与可证伪条件">反方证据、局限与可证伪条件</h2>
+<p>最强反驳是：当前视觉语言系统的提升可能主要来自更大数据、语言先验和评测污染，而不是更好的视觉因果理解。统一接口也可能只是把多个能力包装在同一输入格式中。</p>
+<p>可证伪研究应：</p>
+<ol>
+<li>加入文本-only、遮挡视觉、打乱区域和反事实指令对照；</li>
+<li>要求答案或编辑结果回链到局部区域、对象或时间片段；</li>
+<li>在至少一个训练域外数据和一种非英语语言上复测；</li>
+<li>分任务报告统一模型相对专用模型的退化；</li>
+<li>若提升只在更长提示或更大模型上出现，应将结论限定为提示/规模效应。</li>
+</ol>
+<h2 id="研究生可行的研究入口">研究生可行的研究入口</h2>
+<h3 id="候选课题-a-区域证据驱动的指令跟随评测-最推荐">候选课题 A：区域证据驱动的指令跟随评测（最推荐）</h3>
+<ul>
+<li><strong>精确研究问题</strong>：模型完成编辑或回答时，是否依赖了正确对象和区域，而不是语言捷径？</li>
+<li><strong>最小实验</strong>：围绕对象、属性、关系和保持性构造 500—2,000 个带区域证据的指令，对比文本-only、遮挡和区域打乱基线。</li>
+<li><strong>贡献形式</strong>：可复核协议、失败类型和轻量校准方法。</li>
+<li><strong>止损条件</strong>：若区域标注一致性低，收窄到对象替换或属性修改。</li>
+</ul>
+<h3 id="候选课题-b-统一视觉语言接口的任务冲突-推荐">候选课题 B：统一视觉语言接口的任务冲突（推荐）</h3>
+<ul>
+<li><strong>精确研究问题</strong>：同一模型统一检索、生成和编辑后，哪些能力互相促进，哪些发生负迁移？</li>
+<li><strong>最小实验</strong>：固定公开模型和小型多任务集，比较专用提示、共享适配器和任务特定适配器。</li>
+<li><strong>贡献形式</strong>：任务干扰矩阵、参数高效缓解方法和分任务成本报告。</li>
+<li><strong>止损条件</strong>：若无法稳定复现统一模型，先做公开模型的黑盒诊断，不训练大模型。</li>
+</ul>
+<h3 id="候选课题-c-中文与多语言细粒度视觉指令-条件推荐">候选课题 C：中文与多语言细粒度视觉指令（条件推荐）</h3>
+<ul>
+<li><strong>精确研究问题</strong>：翻译、语序和地域概念怎样影响定位、检索与编辑指令跟随？</li>
+<li><strong>最小实验</strong>：从公开集构造中英平行与自然中文查询，分对象、关系、属性和长尾概念报告。</li>
+<li><strong>贡献形式</strong>：数据审计、跨语言退化归因和轻量适配。</li>
+<li><strong>止损条件</strong>：若中文数据许可或标注不可控，转为公开数据的跨语言评测。</li>
+</ul>
+<h3 id="推荐排序与止损条件">推荐排序与止损条件</h3>
+<ul>
+<li>首选 A：问题可证伪、算力低，并能连接检索、编辑和评测。</li>
+<li>有稳定工程能力时选 B；有高质量中文数据与语言背景时选 C。</li>
+<li>不建议从零训练通用视觉语言基础模型，也不建议只在单一平均分上做结构微调。</li>
+</ul>
+<h2 id="证据基础">证据基础</h2>
+<ul>
+<li><strong>共享表示与融合</strong>：<a class="wikilink" href="../sources/2026-06-29-clip.html">CLIP</a>、<a class="wikilink" href="../sources/2026-07-14-align.html">ALIGN</a>、<a class="wikilink" href="../sources/2026-07-14-siglip.html">SigLIP</a>、<a class="wikilink" href="../sources/2026-07-14-filip.html">FILIP</a>、<a class="wikilink" href="../sources/2026-07-14-albef.html">ALBEF</a>、<a class="wikilink" href="../sources/2026-07-14-blip.html">BLIP</a>、<a class="wikilink" href="../sources/2026-07-14-coca.html">CoCa</a>。</li>
+<li><strong>Grounding 与条件控制</strong>：<a class="wikilink" href="../sources/2026-04-14-reco.html">ReCo</a>、<a class="wikilink" href="../sources/2026-04-14-gligen.html">GLIGEN</a>、<a class="wikilink" href="../sources/2026-04-14-layoutdiffusion.html">LayoutDiffusion</a>、<a class="wikilink" href="../sources/2026-04-14-check-locate-rectify.html">Check-Locate-Rectify</a>、<a class="wikilink" href="../sources/2026-04-14-condition-aware-neural-network.html">条件感知网络</a>、<a class="wikilink" href="../sources/2026-04-14-anydoor.html">AnyDoor</a>。</li>
+<li><strong>统一生成与编辑</strong>：<a class="wikilink" href="../sources/2026-04-12-fireedit.html">FireEdit</a>、<a class="wikilink" href="../sources/2026-04-12-insightedit.html">InsightEdit</a>、<a class="wikilink" href="../sources/2026-04-12-dreamomni.html">DreamOmni</a>、<a class="wikilink" href="../sources/2026-04-12-omnigen.html">OmniGen</a>、<a class="wikilink" href="../sources/2026-04-14-veggie.html">VEGGIE</a>、<a class="wikilink" href="../sources/2026-04-14-language-driven-video-inpainting.html">语言驱动视频修补</a>。</li>
+<li><strong>统一向量与多语言</strong>：<a class="wikilink" href="../sources/2026-07-14-uniir-mbeir.html">UniIR/M-BEIR</a>、<a class="wikilink" href="../sources/2026-07-14-vlm2vec-mmeb.html">VLM2Vec/MMEB</a>、<a class="wikilink" href="../sources/2026-07-14-multilingual-diversity.html">多语言多样性</a>。</li>
+<li><strong>推理与可靠性</strong>：<a class="wikilink" href="../sources/2026-04-14-mmmu.html">MMMU</a>、<a class="wikilink" href="../sources/2026-04-14-maplm.html">MAPLM</a>、<a class="wikilink" href="../sources/2026-04-14-concon-chi.html">ConCon-Chi</a>、<a class="wikilink" href="../sources/2026-04-14-sti-bench.html">STI-Bench</a>、<a class="wikilink" href="../sources/2026-04-14-hallusionbench.html">HallusionBench</a>。</li>
+</ul>
+<h2 id="开放问题">开放问题</h2>
+<ul>
+<li>统一视觉语言模型是在共享视觉概念，还是只共享指令格式？</li>
+<li>局部证据监督能否改善真实组合性，而不只改善定位分数？</li>
+<li>中文与多语言能力的退化来自语料、分词、对齐还是评测翻译？</li>
+<li>生成、编辑与理解任务之间的负迁移如何被提前检测？</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/vision-language-foundations.html">视觉语言基础</a></li>
+<li><a class="wikilink" href="../topics/image-text-retrieval.html">图文检索</a></li>
+<li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../topics/image-editing.html">图像编辑</a></li>
+<li><a class="wikilink" href="../topics/video-understanding.html">视频理解</a></li>
+<li><a class="wikilink" href="../topics/video-editing.html">视频编辑</a></li>
+<li><a class="wikilink" href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
 </ul></section>
       </div>
       
-      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-related_topics"><h3>相关主题<span class="related-count">6</span></h3><ul><li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../topics/image-editing.html">图像编辑</a></li><li><a class="wikilink" href="../topics/video-understanding.html">视频理解</a></li><li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li><li><a class="wikilink" href="../topics/generative-model-evaluation.html">生成模型评测</a></li><li><a class="wikilink" href="../topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a></li></ul></div><div class="related-group related-source_notes"><h3>来源笔记<span class="related-count">26</span></h3><ul><li><a class="wikilink" href="../sources/2026-04-12-fireedit.html">FireEdit：基于区域感知视觉语言模型的细粒度指令图像编辑</a></li><li><a class="wikilink" href="../sources/2026-04-12-insightedit.html">InsightEdit：迈向更强指令跟随的图像编辑</a></li><li><a class="wikilink" href="../sources/2026-04-12-dreamomni.html">DreamOmni：统一图像生成与编辑</a></li><li><a class="wikilink" href="../sources/2026-04-12-omnigen.html">OmniGen：统一图像生成</a></li><li><a class="wikilink" href="../sources/2026-04-14-gligen.html">GLIGEN：以冻结基础模型和门控适配器实现开放集合 grounded 生成</a></li><li><a class="wikilink" href="../sources/2026-04-14-veggie.html">VEGGIE：统一指令视频编辑、grounding 与 reasoning segmentation</a></li><li><a class="wikilink" href="../sources/2026-04-14-hallusionbench.html">HallusionBench：视觉语言幻觉与视觉错觉诊断基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-language-driven-video-inpainting.html">通过多模态大模型实现语言驱动视频修补</a></li><li><a class="wikilink" href="../sources/2026-04-14-layoutdiffusion.html">LayoutDiffusion：以对象框控制像素 U-Net 的 layout-to-image 生成</a></li><li><a class="wikilink" href="../sources/2026-04-14-mmmu.html">MMMU：跨学科专家级多模态理解与推理基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-maplm.html">MAPLM：地图与交通场景的真实世界多模态问答基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-concon-chi.html">ConCon-Chi：个性化视觉语言的新含义与组合性基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-sti-bench.html">STI-Bench：精确时空世界理解基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-reco.html">ReCo：以坐标 token 和开放区域文本控制图像生成</a></li><li><a class="wikilink" href="../sources/2026-04-14-check-locate-rectify.html">Check, Locate, Rectify：训练免费文本到图像布局校准</a></li><li><a class="wikilink" href="../sources/2026-04-14-condition-aware-neural-network.html">Condition-Aware Neural Network：以动态权重控制扩散 Transformer</a></li><li><a class="wikilink" href="../sources/2026-06-29-clip.html">CLIP：用自然语言监督学习可迁移视觉表示</a></li><li><a class="wikilink" href="../sources/2026-07-14-align.html">ALIGN：用噪声文本监督扩展视觉与视觉语言表示学习（Scaling Up Visual and Vision-Language Representation Learning With Noisy Text Supervision）</a></li><li><a class="wikilink" href="../sources/2026-07-14-filip.html">FILIP：细粒度交互式语言-图像预训练（Fine-grained Interactive Language-Image Pre-Training）</a></li><li><a class="wikilink" href="../sources/2026-07-14-albef.html">ALBEF：先对齐再融合（Align before Fuse）</a></li><li><a class="wikilink" href="../sources/2026-07-14-blip.html">BLIP：用自举式图文预训练统一视觉语言理解与生成（Bootstrapping Language-Image Pre-training）</a></li><li><a class="wikilink" href="../sources/2026-07-14-coca.html">CoCa：对比式图像描述器作为图文基础模型（Contrastive Captioners are Image-Text Foundation Models）</a></li><li><a class="wikilink" href="../sources/2026-07-14-siglip.html">SigLIP：语言-图像预训练的 Sigmoid 损失（Sigmoid Loss for Language Image Pre-Training）</a></li><li><a class="wikilink" href="../sources/2026-07-14-uniir-mbeir.html">UniIR：训练和评测通用多模态信息检索器（Training and Benchmarking Universal Multimodal Information Retrievers）</a></li><li><a class="wikilink" href="../sources/2026-07-14-vlm2vec-mmeb.html">VLM2Vec：把视觉语言模型训练成通用多模态向量模型（Training Vision-Language Models for Massive Multimodal Embedding Tasks）</a></li><li><a class="wikilink" href="../sources/2026-07-14-multilingual-diversity.html">多语言多样性改善视觉语言表示（Multilingual Diversity Improves Vision-Language Representations）</a></li></ul></div></div></section>
-      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">48</span></h2><ul><li><a href="../entities/clip.html">CLIP 系列模型（CLIP Family）</a><span>实体</span></li><li><a href="../entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a><span>实体</span></li><li><a href="../entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a><span>实体</span></li><li><a href="../entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a><span>实体</span></li><li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a><span>实体</span></li><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-04-14-anydoor.html">AnyDoor：训练一次的零样本对象级图像定制</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-concon-chi.html">ConCon-Chi：个性化视觉语言的新含义与组合性基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-gligen.html">GLIGEN：以冻结基础模型和门控适配器实现开放集合 grounded 生成</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-hallusionbench.html">HallusionBench：视觉语言幻觉与视觉错觉诊断基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-language-driven-video-inpainting.html">通过多模态大模型实现语言驱动视频修补</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-maplm.html">MAPLM：地图与交通场景的真实世界多模态问答基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-mmmu.html">MMMU：跨学科专家级多模态理解与推理基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-reco.html">ReCo：以坐标 token 和开放区域文本控制图像生成</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-sti-bench.html">STI-Bench：精确时空世界理解基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-veggie.html">VEGGIE：统一指令视频编辑、grounding 与 reasoning segmentation</a><span>来源笔记</span></li><li><a href="../sources/2026-06-29-clip.html">CLIP：用自然语言监督学习可迁移视觉表示</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-albef.html">ALBEF：先对齐再融合（Align before Fuse）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-align.html">ALIGN：用噪声文本监督扩展视觉与视觉语言表示学习（Scaling Up Visual and Vision-Language Representation Learning With Noisy Text Supervision）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-aro.html">ARO：视觉语言模型何时像词袋，以及如何改进（When and why vision-language models behave like bags-of-words）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-blip.html">BLIP：用自举式图文预训练统一视觉语言理解与生成（Bootstrapping Language-Image Pre-training）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-cirr.html">CIRR：用预训练视觉语言模型检索真实世界图像（Image Retrieval on Real-life Images）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-coca.html">CoCa：对比式图像描述器作为图文基础模型（Contrastive Captioners are Image-Text Foundation Models）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-collm.html">CoLLM：用于组合式图像检索的大语言模型</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-colpali.html">ColPali：用视觉语言模型做高效文档检索（Efficient Document Retrieval with Vision Language Models）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-datacomp.html">DataComp：寻找下一代多模态数据集（In search of the next generation of multimodal datasets）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-e5v.html">E5-V：使用多模态大语言模型的通用 embedding（Universal Embeddings with Multimodal Large Language Models）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-fashioniq.html">FashionIQ：用自然语言反馈检索图像（A New Dataset Towards Retrieving Images by Natural Language Feedback）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-filip.html">FILIP：细粒度交互式语言-图像预训练（Fine-grained Interactive Language-Image Pre-Training）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-laion-5b.html">LAION-5B：用于下一代图文模型的开放大规模数据集（An open large-scale dataset for training next generation image-text models）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-miracl-vision.html">MIRACL-VISION：大规模多语言视觉文档检索基准</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-multilingual-diversity.html">多语言多样性改善视觉语言表示（Multilingual Diversity Improves Vision-Language Representations）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-no-zero-shot.html">No Zero-Shot Without Exponential Data：预训练概念频率决定多模态模型性能</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-searle-circo.html">SEARLE：用文本反演做零样本组合式图像检索（Zero-Shot Composed Image Retrieval with Textual Inversion）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-siglip.html">SigLIP：语言-图像预训练的 Sigmoid 损失（Sigmoid Loss for Language Image Pre-Training）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-siglip2.html">SigLIP 2：具有更强语义理解、定位与 dense features 的多语言视觉语言编码器</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-sugarcrepe.html">SugarCrepe：修复可被捷径攻破的视觉语言组合性基准（Fixing Hackable Benchmarks）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-uniir-mbeir.html">UniIR：训练和评测通用多模态信息检索器（Training and Benchmarking Universal Multimodal Information Retrievers）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-vilem.html">ViLEM：图文检索的视觉—语言错误建模（Visual-Language Error Modeling for Image-Text Retrieval）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-visrag.html">VisRAG：面向多模态文档的视觉检索增强生成（Vision-based Retrieval-augmented Generation on Multi-modality Documents）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-vlm2vec-mmeb.html">VLM2Vec：把视觉语言模型训练成通用多模态向量模型（Training Vision-Language Models for Massive Multimodal Embedding Tasks）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-winoground.html">Winoground：探测视觉语言组合性（Probing Vision and Language Models for Visio-Linguistic Compositionality）</a><span>来源笔记</span></li><li><a href="../topics/generative-model-evaluation.html">生成模型评测</a><span>主题</span></li><li><a href="../topics/image-editing.html">图像编辑</a><span>主题</span></li><li><a href="../topics/image-generation.html">图像生成</a><span>主题</span></li><li><a href="../topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a><span>主题</span></li><li><a href="../topics/video-understanding.html">视频理解</a><span>主题</span></li><li><a href="../topics/vision-backbones.html">主流视觉 Backbone 入门</a><span>主题</span></li></ul></section>
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-related_topics"><h3>相关主题<span class="related-count">7</span></h3><ul><li><a class="wikilink" href="../topics/vision-language-foundations.html">图文对齐、视觉语言模型与多模态表示基础</a></li><li><a class="wikilink" href="../topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a></li><li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../topics/image-editing.html">图像编辑</a></li><li><a class="wikilink" href="../topics/video-understanding.html">视频理解</a></li><li><a class="wikilink" href="../topics/video-editing.html">视频编辑</a></li><li><a class="wikilink" href="../topics/generative-model-evaluation.html">生成模型评测</a></li></ul></div><div class="related-group related-related_entities"><h3>相关实体<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../entities/clip.html">CLIP 系列模型（CLIP Family）</a></li></ul></div><div class="related-group related-source_notes"><h3>来源笔记<span class="related-count">27</span></h3><ul><li><a class="wikilink" href="../sources/2026-04-12-fireedit.html">FireEdit：基于区域感知视觉语言模型的细粒度指令图像编辑</a></li><li><a class="wikilink" href="../sources/2026-04-12-insightedit.html">InsightEdit：迈向更强指令跟随的图像编辑</a></li><li><a class="wikilink" href="../sources/2026-04-12-dreamomni.html">DreamOmni：统一图像生成与编辑</a></li><li><a class="wikilink" href="../sources/2026-04-12-omnigen.html">OmniGen：统一图像生成</a></li><li><a class="wikilink" href="../sources/2026-04-14-gligen.html">GLIGEN：以冻结基础模型和门控适配器实现开放集合 grounded 生成</a></li><li><a class="wikilink" href="../sources/2026-04-14-veggie.html">VEGGIE：统一指令视频编辑、grounding 与 reasoning segmentation</a></li><li><a class="wikilink" href="../sources/2026-04-14-hallusionbench.html">HallusionBench：视觉语言幻觉与视觉错觉诊断基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-language-driven-video-inpainting.html">通过多模态大模型实现语言驱动视频修补</a></li><li><a class="wikilink" href="../sources/2026-04-14-layoutdiffusion.html">LayoutDiffusion：以对象框控制像素 U-Net 的 layout-to-image 生成</a></li><li><a class="wikilink" href="../sources/2026-04-14-mmmu.html">MMMU：跨学科专家级多模态理解与推理基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-maplm.html">MAPLM：地图与交通场景的真实世界多模态问答基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-concon-chi.html">ConCon-Chi：个性化视觉语言的新含义与组合性基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-sti-bench.html">STI-Bench：精确时空世界理解基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-reco.html">ReCo：以坐标 token 和开放区域文本控制图像生成</a></li><li><a class="wikilink" href="../sources/2026-04-14-check-locate-rectify.html">Check, Locate, Rectify：训练免费文本到图像布局校准</a></li><li><a class="wikilink" href="../sources/2026-04-14-condition-aware-neural-network.html">Condition-Aware Neural Network：以动态权重控制扩散 Transformer</a></li><li><a class="wikilink" href="../sources/2026-04-14-anydoor.html">AnyDoor：训练一次的零样本对象级图像定制</a></li><li><a class="wikilink" href="../sources/2026-06-29-clip.html">CLIP：用自然语言监督学习可迁移视觉表示</a></li><li><a class="wikilink" href="../sources/2026-07-14-align.html">ALIGN：用噪声文本监督扩展视觉与视觉语言表示学习（Scaling Up Visual and Vision-Language Representation Learning With Noisy Text Supervision）</a></li><li><a class="wikilink" href="../sources/2026-07-14-filip.html">FILIP：细粒度交互式语言-图像预训练（Fine-grained Interactive Language-Image Pre-Training）</a></li><li><a class="wikilink" href="../sources/2026-07-14-albef.html">ALBEF：先对齐再融合（Align before Fuse）</a></li><li><a class="wikilink" href="../sources/2026-07-14-blip.html">BLIP：用自举式图文预训练统一视觉语言理解与生成（Bootstrapping Language-Image Pre-training）</a></li><li><a class="wikilink" href="../sources/2026-07-14-coca.html">CoCa：对比式图像描述器作为图文基础模型（Contrastive Captioners are Image-Text Foundation Models）</a></li><li><a class="wikilink" href="../sources/2026-07-14-siglip.html">SigLIP：语言-图像预训练的 Sigmoid 损失（Sigmoid Loss for Language Image Pre-Training）</a></li><li><a class="wikilink" href="../sources/2026-07-14-uniir-mbeir.html">UniIR：训练和评测通用多模态信息检索器（Training and Benchmarking Universal Multimodal Information Retrievers）</a></li><li><a class="wikilink" href="../sources/2026-07-14-vlm2vec-mmeb.html">VLM2Vec：把视觉语言模型训练成通用多模态向量模型（Training Vision-Language Models for Massive Multimodal Embedding Tasks）</a></li><li><a class="wikilink" href="../sources/2026-07-14-multilingual-diversity.html">多语言多样性改善视觉语言表示（Multilingual Diversity Improves Vision-Language Representations）</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">51</span></h2><ul><li><a href="../entities/clip.html">CLIP 系列模型（CLIP Family）</a><span>实体</span></li><li><a href="../entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a><span>实体</span></li><li><a href="../entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a><span>实体</span></li><li><a href="../entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a><span>实体</span></li><li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a><span>实体</span></li><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-04-14-anydoor.html">AnyDoor：训练一次的零样本对象级图像定制</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-concon-chi.html">ConCon-Chi：个性化视觉语言的新含义与组合性基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-gligen.html">GLIGEN：以冻结基础模型和门控适配器实现开放集合 grounded 生成</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-hallusionbench.html">HallusionBench：视觉语言幻觉与视觉错觉诊断基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-language-driven-video-inpainting.html">通过多模态大模型实现语言驱动视频修补</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-maplm.html">MAPLM：地图与交通场景的真实世界多模态问答基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-mmmu.html">MMMU：跨学科专家级多模态理解与推理基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-reco.html">ReCo：以坐标 token 和开放区域文本控制图像生成</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-sti-bench.html">STI-Bench：精确时空世界理解基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-veggie.html">VEGGIE：统一指令视频编辑、grounding 与 reasoning segmentation</a><span>来源笔记</span></li><li><a href="../sources/2026-06-29-clip.html">CLIP：用自然语言监督学习可迁移视觉表示</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-albef.html">ALBEF：先对齐再融合（Align before Fuse）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-align.html">ALIGN：用噪声文本监督扩展视觉与视觉语言表示学习（Scaling Up Visual and Vision-Language Representation Learning With Noisy Text Supervision）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-aro.html">ARO：视觉语言模型何时像词袋，以及如何改进（When and why vision-language models behave like bags-of-words）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-blip.html">BLIP：用自举式图文预训练统一视觉语言理解与生成（Bootstrapping Language-Image Pre-training）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-cirr.html">CIRR：用预训练视觉语言模型检索真实世界图像（Image Retrieval on Real-life Images）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-clipscore.html">CLIPScore：基于 CLIP 的无参考图文评测</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-coca.html">CoCa：对比式图像描述器作为图文基础模型（Contrastive Captioners are Image-Text Foundation Models）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-collm.html">CoLLM：用于组合式图像检索的大语言模型</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-colpali.html">ColPali：用视觉语言模型做高效文档检索（Efficient Document Retrieval with Vision Language Models）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-datacomp.html">DataComp：寻找下一代多模态数据集（In search of the next generation of multimodal datasets）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-e5v.html">E5-V：使用多模态大语言模型的通用 embedding（Universal Embeddings with Multimodal Large Language Models）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-fashioniq.html">FashionIQ：用自然语言反馈检索图像（A New Dataset Towards Retrieving Images by Natural Language Feedback）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-filip.html">FILIP：细粒度交互式语言-图像预训练（Fine-grained Interactive Language-Image Pre-Training）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-laion-5b.html">LAION-5B：用于下一代图文模型的开放大规模数据集（An open large-scale dataset for training next generation image-text models）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-miracl-vision.html">MIRACL-VISION：大规模多语言视觉文档检索基准</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-multilingual-diversity.html">多语言多样性改善视觉语言表示（Multilingual Diversity Improves Vision-Language Representations）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-no-zero-shot.html">No Zero-Shot Without Exponential Data：预训练概念频率决定多模态模型性能</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-searle-circo.html">SEARLE：用文本反演做零样本组合式图像检索（Zero-Shot Composed Image Retrieval with Textual Inversion）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-siglip.html">SigLIP：语言-图像预训练的 Sigmoid 损失（Sigmoid Loss for Language Image Pre-Training）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-siglip2.html">SigLIP 2：具有更强语义理解、定位与 dense features 的多语言视觉语言编码器</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-sugarcrepe.html">SugarCrepe：修复可被捷径攻破的视觉语言组合性基准（Fixing Hackable Benchmarks）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-uniir-mbeir.html">UniIR：训练和评测通用多模态信息检索器（Training and Benchmarking Universal Multimodal Information Retrievers）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-vilem.html">ViLEM：图文检索的视觉—语言错误建模（Visual-Language Error Modeling for Image-Text Retrieval）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-visrag.html">VisRAG：面向多模态文档的视觉检索增强生成（Vision-based Retrieval-augmented Generation on Multi-modality Documents）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-vlm2vec-mmeb.html">VLM2Vec：把视觉语言模型训练成通用多模态向量模型（Training Vision-Language Models for Massive Multimodal Embedding Tasks）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-winoground.html">Winoground：探测视觉语言组合性（Probing Vision and Language Models for Visio-Linguistic Compositionality）</a><span>来源笔记</span></li><li><a href="../topics/datasets-metrics-and-benchmark-reliability.html">数据集、评测指标与基准可靠性</a><span>主题</span></li><li><a href="../topics/generative-model-evaluation.html">生成模型评测</a><span>主题</span></li><li><a href="../topics/image-editing.html">图像编辑</a><span>主题</span></li><li><a href="../topics/image-generation.html">图像生成</a><span>主题</span></li><li><a href="../topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a><span>主题</span></li><li><a href="../topics/video-understanding.html">视频理解</a><span>主题</span></li><li><a href="../topics/vision-language-foundations.html">图文对齐、视觉语言模型与多模态表示基础</a><span>主题</span></li><li><a href="../topics/vision-task-foundations.html">分类、检测、分割、姿态与跟踪</a><span>主题</span></li></ul></section>
       <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;topic-vision-language&quot;,
   &quot;type&quot;: &quot;topic&quot;,
-  &quot;title&quot;: &quot;视觉-语言&quot;,
+  &quot;topic_kind&quot;: &quot;research&quot;,
+  &quot;title&quot;: &quot;视觉语言&quot;,
   &quot;status&quot;: &quot;active&quot;,
   &quot;created&quot;: &quot;2026-04-12&quot;,
   &quot;updated&quot;: &quot;2026-07-14&quot;,
@@ -150,7 +255,20 @@
     &quot;multimodal&quot;,
     &quot;vision-language&quot;
   ],
-  &quot;summary&quot;: &quot;追踪影响本知识库核心方向的多模态条件控制、对齐与语言驱动推理。&quot;,
+  &quot;summary&quot;: &quot;研究视觉与语言如何从共享表示扩展到细粒度定位、指令控制、统一生成编辑和可验证多模态推理。&quot;,
+  &quot;foundational_sources&quot;: [
+    &quot;sources/2026-06-29-clip&quot;,
+    &quot;sources/2026-07-14-align&quot;,
+    &quot;sources/2026-07-14-albef&quot;,
+    &quot;sources/2026-07-14-blip&quot;,
+    &quot;sources/2026-07-14-coca&quot;,
+    &quot;sources/2026-04-14-gligen&quot;
+  ],
+  &quot;visuals&quot;: [
+    &quot;vision-language-system-flow&quot;,
+    &quot;vision-language-evolution&quot;,
+    &quot;vision-language-method-map&quot;
+  ],
   &quot;source_notes&quot;: [
     &quot;sources/2026-04-12-fireedit&quot;,
     &quot;sources/2026-04-12-insightedit&quot;,
@@ -168,6 +286,7 @@
     &quot;sources/2026-04-14-reco&quot;,
     &quot;sources/2026-04-14-check-locate-rectify&quot;,
     &quot;sources/2026-04-14-condition-aware-neural-network&quot;,
+    &quot;sources/2026-04-14-anydoor&quot;,
     &quot;sources/2026-06-29-clip&quot;,
     &quot;sources/2026-07-14-align&quot;,
     &quot;sources/2026-07-14-filip&quot;,
@@ -180,14 +299,17 @@
     &quot;sources/2026-07-14-multilingual-diversity&quot;
   ],
   &quot;related_topics&quot;: [
+    &quot;topics/vision-language-foundations&quot;,
+    &quot;topics/image-text-retrieval&quot;,
     &quot;topics/image-generation&quot;,
     &quot;topics/image-editing&quot;,
     &quot;topics/video-understanding&quot;,
-    &quot;topics/diffusion-models&quot;,
-    &quot;topics/generative-model-evaluation&quot;,
-    &quot;topics/image-text-retrieval&quot;
+    &quot;topics/video-editing&quot;,
+    &quot;topics/generative-model-evaluation&quot;
   ],
-  &quot;related_entities&quot;: [],
+  &quot;related_entities&quot;: [
+    &quot;entities/clip&quot;
+  ],
   &quot;open_questions&quot;: []
 }</pre></details>
     </article>

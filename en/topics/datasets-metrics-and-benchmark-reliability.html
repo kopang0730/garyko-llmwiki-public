@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="把数据来源、任务定义、划分、指标、评测器与人类协议视为一条证据链，理解 IS、FID、CLIPScore 和诊断基准分别能测什么、不能测什么。">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Datasets, Metrics, and Benchmark Reliability · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260714-research-observatory-v5-topic-visuals">
+  <script defer src="../../assets/wiki.js?v=20260714-research-observatory-v5-topic-visuals"></script>
+</head>
+<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/datasets-metrics-and-benchmark-reliability&quot;, &quot;title&quot;: &quot;数据集、评测指标与基准可靠性&quot;, &quot;title_en&quot;: &quot;Datasets, Metrics, and Benchmark Reliability&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260714-research-observatory-v5-topic-visuals">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Main page</a></li>
+</ul>
+<h2>Foundations</h2><ul>
+<li><a href="../../en/topics/computer-vision-overview.html">计算机视觉概览</a></li>
+<li><a class="active" href="../../en/topics/datasets-metrics-and-benchmark-reliability.html">数据与评测基础</a></li>
+<li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/video-representation-and-temporal-modeling.html">视频表示基础</a></li>
+<li><a href="../../en/topics/vision-backbones.html">Vision Backbones</a></li>
+<li><a href="../../en/topics/vision-language-foundations.html">视觉语言基础</a></li>
+<li><a href="../../en/topics/vision-task-foundations.html">核心视觉任务</a></li>
+<li><a href="../../en/topics/visual-generation-foundations.html">视觉生成基础</a></li>
+</ul>
+<h2>Research topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a href="../../en/topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
+<li><a href="../../en/topics/video-generation.html">视频生成</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉语言</a></li>
+</ul>
+<h2>Roadmaps</h2><ul>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/clip.html">CLIP 系列模型（CLIP Family）</a></li>
+<li><a href="../../en/entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a></li>
+<li><a href="../../en/entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a></li>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-baseline-and-specialization.html">双塔负责可扩展召回，细粒度模块负责精排与关系匹配</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-composed-query.html">组合式查询是图文检索中可落地且仍有缺口的研究切口</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-compositionality.html">标准图文检索分数不足以证明组合性理解</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-data-quality.html">图文检索的主要瓶颈仍包括数据质量、分布与概念覆盖</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-research-cut.html">图文检索哪个子方向最适合中等算力的研究生项目？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="" href="../../topics/datasets-metrics-and-benchmark-reliability.html">中文</a><a class="selected-lang" href="../../en/topics/datasets-metrics-and-benchmark-reliability.html">English</a></nav><a class="selected">Article</a><a href="#metadata">Metadata</a><a href="../../en/main.html">Main page</a></header>
+    <article class="article-shell">
+      
+      <header class="article-header" data-motion="reveal">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Topic</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Datasets, Metrics, and Benchmark Reliability</strong></nav>
+        <p class="eyebrow">Topic · Updated 2026-07-14</p>
+        <h1><span class="title-main">Datasets, Metrics, and Benchmark Reliability</span></h1>
+        <p class="article-summary">把数据来源、任务定义、划分、指标、评测器与人类协议视为一条证据链，理解 IS、FID、CLIPScore 和诊断基准分别能测什么、不能测什么。</p>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#evaluation">#evaluation</a><a class="tag" href="../../en/tags.html#benchmarking">#benchmarking</a></div>
+      </header>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话定义">一句话定义</a></li><li><a href="#一张图看懂原理">一张图看懂原理</a></li><li><a href="#前置概念与术语">前置概念与术语</a></li><li><a href="#历史演化">历史演化</a></li><li><a href="#核心机制">核心机制</a></li><li><a href="#主要方法分支">主要方法分支</a></li><li><a href="#奠基论文导读">奠基论文导读</a></li><li><a href="#常见误区与局限">常见误区与局限</a></li><li><a href="#与研究专题的关系">与研究专题的关系</a></li><li><a href="#推荐阅读顺序">推荐阅读顺序</a></li><li><a href="#证据基础">证据基础</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content">
+<section class="topic-hero-grid" data-motion="reveal">
+  <section class="judgment-panel topic-judgment">
+    <p class="section-kicker">Foundation</p>
+    <h2>Datasets, Metrics, and Benchmark Reliability</h2>
+    <p>把数据来源、任务定义、划分、指标、评测器与人类协议视为一条证据链，理解 IS、FID、CLIPScore 和诊断基准分别能测什么、不能测什么。</p>
+    <div class="judgment-meta"><span>10 Source notes</span><span>2 Open questions</span></div>
+  </section>
+  <section class="reading-path">
+    <p class="section-kicker">Learning path</p>
+    <ol><li><strong>Definition</strong><span>Clarify what it is</span></li><li><strong>Mechanism</strong><span>Follow the information flow</span></li><li><strong>Evolution</strong><span>Locate landmark papers</span></li><li><strong>Research</strong><span>Continue into active topics</span></li></ol>
+  </section>
+</section>
+<section class="method-map" data-motion="reveal" aria-label="Concept map">
+  <div class="method-map-heading"><div><p class="section-kicker">Concept map</p><h2>From intuition to research connections</h2></div><span>10 Source notes</span></div>
+  <div class="method-map-track"><div class="method-node"><span>1</span><strong>Definition</strong><small>Clarify what it is</small></div><div class="method-node"><span>2</span><strong>Mechanism</strong><small>Follow the information flow</small></div><div class="method-node"><span>3</span><strong>Evolution</strong><small>Locate landmark papers</small></div><div class="method-node"><span>4</span><strong>Research</strong><small>Continue into active topics</small></div></div>
+</section>
+<h2 id="一句话定义">一句话定义</h2>
+<p>数据集（dataset）提供样本和标注，指标（metric）把某类误差压缩为数值，基准（benchmark）则把任务、数据划分、评测代码和比较协议组合起来；可靠评测研究这些数字是否真正支持论文声称的能力。</p>
+<p>没有“万能指标”。同一个低 FID、高 Recall 或高相关性，只能在明确数据、特征、样本数、任务和评估器边界内解释。</p>
+<h2 id="一张图看懂原理">一张图看懂原理</h2>
+<figure class="wiki-visual wiki-visual--flow" data-visual-id="benchmark-evidence-chain" aria-labelledby="visual-benchmark-evidence-chain-title" aria-describedby="visual-benchmark-evidence-chain-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">一个 benchmark 分数要经过哪些检查才能支持研究判断？</p><div class="wiki-visual-title" id="visual-benchmark-evidence-chain-title" role="heading" aria-level="3">从研究问题到可相信结论的证据链</div><p class="wiki-visual-explanation">先定义能力，再选样本和真值，最后才是指标。若数据泄漏、标签含糊或指标不覆盖主张，重复运行代码也不能修复证据错位。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>能力主张</strong><small>明确要测质量、对齐、关系、速度、鲁棒性还是人类效用</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>数据与划分</strong><small>记录来源、许可、语言、时间、去重和 train/test 隔离</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>真值与协议</strong><small>定义标注单位、歧义、专家资格、重复标注和一致性</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>指标与评测器</strong><small>说明特征模型、阈值、样本数、实现版本和成本</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">05</span><strong>统计与失败审计</strong><small>报告方差、置信区间、子群、反例和不可证伪条件</small></li></ol><figcaption><span>Diagram evidence</span><a class="wikilink" href="../../en/sources/2026-07-14-datacomp.html">DataComp</a>、<a class="wikilink" href="../../en/sources/2026-04-14-verifiable-human-eval-t2i.html">可验证人评</a>、<a class="wikilink" href="../../en/sources/2026-07-14-sugarcrepe.html">SugarCrepe</a></figcaption><p class="sr-only" id="visual-benchmark-evidence-chain-alt">研究问题经过任务定义、数据来源与划分、标注协议、指标评测器、统计与失败审计，形成有限范围结论。</p></figure>
+<h2 id="前置概念与术语">前置概念与术语</h2>
+<ul>
+<li><strong>训练/验证/测试划分（train/validation/test split）</strong>：分别用于拟合、选型和最终评估；反复看测试集会造成适配。</li>
+<li><strong>数据泄漏（data leakage）</strong>：测试信息直接或间接进入训练、提示或超参数选择。</li>
+<li><strong>污染/重叠（contamination / overlap）</strong>：预训练语料包含 benchmark 样本、近重复或同概念模板。</li>
+<li><strong>标签噪声（label noise）</strong>：标注错误、含糊或定义不一致。</li>
+<li><strong>精确率/召回率（precision / recall）</strong>：预测正确性与真值覆盖的不同侧面。</li>
+<li><strong>校准（calibration）</strong>：模型置信度是否匹配真实正确概率。</li>
+<li><strong>相关性（correlation）</strong>：两个评分共同变化，不代表逐样本一致或因果有效。</li>
+<li><strong>评测器偏差（evaluator bias）</strong>：自动模型或人群的训练分布、文化和任务偏好进入分数。</li>
+<li><strong>统计功效（statistical power）</strong>：样本量与噪声是否足以检测真实差异。</li>
+<li><strong>可复现性（reproducibility）</strong>：同协议能否得到一致结果，不等于协议测对了能力。</li>
+</ul>
+<h2 id="历史演化">历史演化</h2>
+<figure class="wiki-visual wiki-visual--timeline" data-visual-id="benchmark-history" aria-labelledby="visual-benchmark-history-title" aria-describedby="visual-benchmark-history-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">为什么生成与多模态研究不断增加新 benchmark？</p><div class="wiki-visual-title" id="visual-benchmark-history-title" role="heading" aria-level="3">视觉评测从单分数走向多维诊断</div><p class="wiki-visual-explanation">新指标通常修复上一代的盲点，但也引入新的评测器依赖。可靠性进步来自更清楚的能力分解与反方测试，不只是更多数字。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>2016 · 分类器代理</strong><small>IS 用类别置信和集合多样性粗测生成样本</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>2017 · 真实分布参照</strong><small>FID 比较真实与生成特征的一、二阶统计</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>2021 · 跨模态评测器</strong><small>CLIPScore 直接估计图文语义兼容</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>2022–2023 · 组合性诊断</strong><small>Winoground、ARO 与 SugarCrepe 检查关系和文本捷径</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">05</span><strong>2023 · 数据成为实验变量</strong><small>DataComp 固定训练预算比较过滤、去重与来源</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">06</span><strong>2024 以后 · 多维与协议审计</strong><small>VBench、人评规范、多语言与污染分析补齐单分数盲区</small></li></ol><figcaption><span>Diagram evidence</span><a class="wikilink" href="../../en/sources/2026-07-14-inception-score.html">IS</a>、<a class="wikilink" href="../../en/sources/2026-07-14-fid.html">FID</a>、<a class="wikilink" href="../../en/sources/2026-07-14-clipscore.html">CLIPScore</a>、<a class="wikilink" href="../../en/sources/2026-07-14-winoground.html">Winoground</a>、<a class="wikilink" href="../../en/sources/2026-04-14-vbench.html">VBench</a></figcaption><p class="sr-only" id="visual-benchmark-history-alt">2016 IS，2017 FID，2021 CLIPScore，2022 Winoground，2023 ARO/DataComp/SugarCrepe，2024 VBench 与可验证协议，之后多语言和污染审计。</p></figure>
+<h2 id="核心机制">核心机制</h2>
+<p>可靠 benchmark 包含五个相互依赖的设计：</p>
+<ol>
+<li><strong>构念定义</strong>：把“质量”“理解”“真实性”等抽象词拆成可观察维度。</li>
+<li><strong>样本设计</strong>：覆盖常见、长尾、对抗、域外和时间变化，而不只随机抽平均样本。</li>
+<li><strong>真值设计</strong>：处理多真值、主观偏好、专家分歧和不可观察状态。</li>
+<li><strong>测量模型</strong>：明确自动特征、阈值或人评怎样把输出变成分数。</li>
+<li><strong>推断边界</strong>：只对被测数据、模型版本和协议作结论，并主动寻找反例。</li>
+</ol>
+<p>DataComp 证明数据过滤可以在固定训练系统下被受控比较；SugarCrepe 则提醒 benchmark 的负例也可能带文本分布捷径。两者共同说明“数据集设计”本身就是研究方法。</p>
+<h2 id="主要方法分支">主要方法分支</h2>
+<figure class="wiki-visual wiki-visual--map" data-visual-id="metric-coverage-map" aria-labelledby="visual-metric-coverage-map-title" aria-describedby="visual-metric-coverage-map-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">生成、检索和视频系统为什么需要指标组合？</p><div class="wiki-visual-title" id="visual-metric-coverage-map-title" role="heading" aria-level="3">常见指标各自覆盖哪一小块能力</div><p class="wiki-visual-explanation">每类指标都有盲区。分布指标不看 prompt，图文指标可能忽略关系，人评受样本和人群影响，系统指标不说明内容正确。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>任务指标</strong><small>accuracy、AP、IoU、Recall@K 等直接对应标签任务，但受真值定义限制</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>分布指标</strong><small>IS/FID 比较分类器特征统计，不验证条件或逐样本事实</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>跨模态对齐</strong><small>CLIPScore/相似度衡量表示兼容，可能忽略属性绑定与否定</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>诊断基准</strong><small>ARO/Winoground/SugarCrepe 用最小对照暴露组合与捷径</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">05</span><strong>人类/专家评测</strong><small>能覆盖主观与领域效用，但需样本量、资格、一致性和工资协议</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">06</span><strong>系统指标</strong><small>延迟、吞吐、显存、能耗、索引大小和失败恢复衡量可部署性</small></li></ol><figcaption><span>Diagram evidence</span><a class="wikilink" href="../../en/sources/2026-07-14-fid.html">FID</a>、<a class="wikilink" href="../../en/sources/2026-07-14-clipscore.html">CLIPScore</a>、<a class="wikilink" href="../../en/sources/2026-07-14-aro.html">ARO</a>、<a class="wikilink" href="../../en/sources/2026-04-14-verifiable-human-eval-t2i.html">可验证人评</a></figcaption><p class="sr-only" id="visual-metric-coverage-map-alt">指标地图包括任务正确性、分布质量、跨模态对齐、诊断压力测试、人类评测和系统成本。</p></figure>
+<ul>
+<li><strong>聚合 benchmark</strong>：覆盖许多任务后取平均，适合广度比较，也可能掩盖最差任务和分布差异。</li>
+<li><strong>诊断 benchmark</strong>：用控制变量或最小对照针对一个能力，解释力强但覆盖窄。</li>
+<li><strong>静态 vs 动态 benchmark</strong>：静态集易复现，也更容易被过拟合；滚动或隐藏测试更难维护。</li>
+<li><strong>自动 vs 人类评测</strong>：自动便宜稳定，人类更接近效用；二者都可能偏，应相互校验。</li>
+<li><strong>封闭集 vs 开放世界</strong>：固定类别便于计分，真实系统还要处理未知、拒答与分布变化。</li>
+</ul>
+<h2 id="奠基论文导读">奠基论文导读</h2>
+<ol>
+<li><strong><a class="wikilink" href="../../en/sources/2026-07-14-inception-score.html">Inception Score 来源论文</a></strong>：理解“分类器置信 + 类别多样性”及无真实参照的盲点。</li>
+<li><strong><a class="wikilink" href="../../en/sources/2026-07-14-fid.html">FID 来源论文</a></strong>：理解特征高斯距离、有限样本和实现依赖。</li>
+<li><strong><a class="wikilink" href="../../en/sources/2026-07-14-clipscore.html">CLIPScore</a></strong>：无参考图文相似与评测器偏差。</li>
+<li><strong><a class="wikilink" href="../../en/sources/2026-07-14-datacomp.html">DataComp</a></strong>：固定模型、代码和算力比较数据设计。</li>
+<li><strong><a class="wikilink" href="../../en/sources/2026-07-14-winoground.html">Winoground</a></strong>：小型最小对照如何测组合关系。</li>
+<li><strong><a class="wikilink" href="../../en/sources/2026-07-14-aro.html">ARO</a></strong>：标准检索与属性/关系理解之间的落差。</li>
+<li><strong><a class="wikilink" href="../../en/sources/2026-07-14-sugarcrepe.html">SugarCrepe</a></strong>：benchmark 本身的文本捷径审计。</li>
+<li><strong><a class="wikilink" href="../../en/sources/2026-04-14-vbench.html">VBench</a></strong>：把视频生成拆为多维质量与条件维度。</li>
+<li><strong><a class="wikilink" href="../../en/sources/2026-04-14-verifiable-human-eval-t2i.html">可验证人评</a></strong>：标注者、样本量、IAA 和报酬如何进入证据。</li>
+<li><strong><a class="wikilink" href="../../en/sources/2026-07-14-mieb.html">MIEB</a></strong>：统一 embedding 平均分与语言/任务退化的边界。</li>
+</ol>
+<h2 id="常见误区与局限">常见误区与局限</h2>
+<ul>
+<li><strong>误区：一个数字能代表“整体质量”。</strong> 指标只覆盖构念的一部分。</li>
+<li><strong>误区：公开 benchmark 就没有污染。</strong> 预训练、检索、prompt 调试和重复图都可能泄漏。</li>
+<li><strong>误区：人评天然可靠。</strong> 人群、指令、展示顺序、报酬和低一致性会改变结论。</li>
+<li><strong>误区：相关性高就能逐样本替代人。</strong> 模型级相关可掩盖大量样本级错序。</li>
+<li><strong>误区：多任务平均分高就通用。</strong> 平均值会掩盖语言、领域和最差任务退化。</li>
+<li><strong>局限：benchmark 会老化。</strong> 模型适配和数据传播后，测试集区分度下降，需要版本与隐藏集。</li>
+<li><strong>局限：负结果也依赖协议。</strong> 小样本或错误真值可能把真实能力写成失败；反方证据同样要审计。</li>
+</ul>
+<h2 id="与研究专题的关系">与研究专题的关系</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">topics/generative-model-evaluation</a> 深入研究生成质量、人评、视频维度与可靠性。</li>
+<li><a class="wikilink" href="../../en/topics/image-text-retrieval.html">topics/image-text-retrieval</a> 使用 Recall@K、组合性、索引与成本，必须审计数据重叠。</li>
+<li><a class="wikilink" href="../../en/topics/vision-language.html">topics/vision-language</a> 与 <a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a> 面临评测器循环、长视频采样和推理构念问题。</li>
+<li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a> 需要把离线精度转成真实片段、专家标注和失败止损条件。</li>
+</ul>
+<h2 id="推荐阅读顺序">推荐阅读顺序</h2>
+<ol>
+<li>为自己的研究问题写一句“能力主张”，再列出指标不能覆盖的部分。</li>
+<li>对照 IS、FID、CLIPScore，理解三种代理的输入和盲区。</li>
+<li>读 Winoground/ARO/SugarCrepe，学习最小对照与 benchmark 反审计。</li>
+<li>读 DataComp 与可验证人评，建立数据和人工协议账本。</li>
+<li>最后才决定聚合分数、诊断集、人评和系统指标的组合。</li>
+</ol>
+<h2 id="证据基础">证据基础</h2>
+<ul>
+<li>生成代理指标：<a class="wikilink" href="../../en/sources/2026-07-14-inception-score.html">sources/2026-07-14-inception-score</a>、<a class="wikilink" href="../../en/sources/2026-07-14-fid.html">sources/2026-07-14-fid</a>。</li>
+<li>跨模态评测：<a class="wikilink" href="../../en/sources/2026-07-14-clipscore.html">sources/2026-07-14-clipscore</a>、<a class="wikilink" href="../../en/sources/2026-07-14-aro.html">sources/2026-07-14-aro</a>、<a class="wikilink" href="../../en/sources/2026-07-14-winoground.html">sources/2026-07-14-winoground</a>、<a class="wikilink" href="../../en/sources/2026-07-14-sugarcrepe.html">sources/2026-07-14-sugarcrepe</a>。</li>
+<li>数据与多任务：<a class="wikilink" href="../../en/sources/2026-07-14-datacomp.html">sources/2026-07-14-datacomp</a>、<a class="wikilink" href="../../en/sources/2026-07-14-mieb.html">sources/2026-07-14-mieb</a>。</li>
+<li>多维与人类协议：<a class="wikilink" href="../../en/sources/2026-04-14-vbench.html">sources/2026-04-14-vbench</a>、<a class="wikilink" href="../../en/sources/2026-04-14-verifiable-human-eval-t2i.html">sources/2026-04-14-verifiable-human-eval-t2i</a>。</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a class="wikilink" href="../../en/topics/image-text-retrieval.html">图文检索</a></li>
+<li><a class="wikilink" href="../../en/topics/vision-language-foundations.html">视觉语言基础</a></li>
+<li><a class="wikilink" href="../../en/topics/video-understanding.html">视频理解</a></li>
+<li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">体育 AI 应用路线</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-related_topics"><h3>Related topics<span class="related-count">6</span></h3><ul><li><a class="wikilink" href="../../en/topics/computer-vision-overview.html">Computer Vision Overview</a></li><li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li><li><a class="wikilink" href="../../en/topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a></li><li><a class="wikilink" href="../../en/topics/vision-language-foundations.html">Vision-Language and Multimodal Representation Foundations</a></li><li><a class="wikilink" href="../../en/topics/video-understanding.html">Video Understanding</a></li><li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li></ul></div><div class="related-group related-related_entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a></li></ul></div><div class="related-group related-open_questions"><h3>Open questions<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a></li><li><a class="wikilink" href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li></ul></div><div class="related-group related-source_notes"><h3>Source notes<span class="related-count">10</span></h3><ul><li><a class="wikilink" href="../../en/sources/2026-07-14-inception-score.html">Improved Techniques for Training GANs：Inception Score 的来源与边界</a></li><li><a class="wikilink" href="../../en/sources/2026-07-14-fid.html">GANs Trained by a Two Time-Scale Update Rule：FID 的来源与边界</a></li><li><a class="wikilink" href="../../en/sources/2026-07-14-clipscore.html">CLIPScore：基于 CLIP 的无参考图文评测</a></li><li><a class="wikilink" href="../../en/sources/2026-07-14-datacomp.html">DataComp：寻找下一代多模态数据集（In search of the next generation of multimodal datasets）</a></li><li><a class="wikilink" href="../../en/sources/2026-07-14-aro.html">ARO：视觉语言模型何时像词袋，以及如何改进（When and why vision-language models behave like bags-of-words）</a></li><li><a class="wikilink" href="../../en/sources/2026-07-14-winoground.html">Winoground：探测视觉语言组合性（Probing Vision and Language Models for Visio-Linguistic Compositionality）</a></li><li><a class="wikilink" href="../../en/sources/2026-07-14-sugarcrepe.html">SugarCrepe：修复可被捷径攻破的视觉语言组合性基准（Fixing Hackable Benchmarks）</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-vbench.html">VBench：视频生成模型综合评测套件</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-verifiable-human-eval-t2i.html">文本到图像生成的可验证与可复现人工评测</a></li><li><a class="wikilink" href="../../en/sources/2026-07-14-mieb.html">MIEB：大规模图像 embedding 评测基准（Massive Image Embedding Benchmark）</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">8</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-07-14-clipscore.html">CLIPScore：基于 CLIP 的无参考图文评测</a><span>Source note</span></li><li><a href="../../en/sources/2026-07-14-fid.html">GANs Trained by a Two Time-Scale Update Rule：FID 的来源与边界</a><span>Source note</span></li><li><a href="../../en/sources/2026-07-14-inception-score.html">Improved Techniques for Training GANs：Inception Score 的来源与边界</a><span>Source note</span></li><li><a href="../../en/topics/computer-vision-overview.html">Computer Vision Overview</a><span>Topic</span></li><li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a><span>Topic</span></li><li><a href="../../en/topics/vision-language-foundations.html">Vision-Language and Multimodal Representation Foundations</a><span>Topic</span></li><li><a href="../../en/topics/visual-generation-foundations.html">Foundations of Visual Generative Models</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
+  &quot;id&quot;: &quot;topic-datasets-metrics-and-benchmark-reliability&quot;,
+  &quot;type&quot;: &quot;topic&quot;,
+  &quot;topic_kind&quot;: &quot;concept&quot;,
+  &quot;title&quot;: &quot;数据集、评测指标与基准可靠性&quot;,
+  &quot;title_en&quot;: &quot;Datasets, Metrics, and Benchmark Reliability&quot;,
+  &quot;nav_title&quot;: &quot;数据与评测基础&quot;,
+  &quot;status&quot;: &quot;active&quot;,
+  &quot;created&quot;: &quot;2026-07-14&quot;,
+  &quot;updated&quot;: &quot;2026-07-14&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;evaluation&quot;,
+    &quot;benchmarking&quot;
+  ],
+  &quot;summary&quot;: &quot;把数据来源、任务定义、划分、指标、评测器与人类协议视为一条证据链，理解 IS、FID、CLIPScore 和诊断基准分别能测什么、不能测什么。&quot;,
+  &quot;source_notes&quot;: [
+    &quot;sources/2026-07-14-inception-score&quot;,
+    &quot;sources/2026-07-14-fid&quot;,
+    &quot;sources/2026-07-14-clipscore&quot;,
+    &quot;sources/2026-07-14-datacomp&quot;,
+    &quot;sources/2026-07-14-aro&quot;,
+    &quot;sources/2026-07-14-winoground&quot;,
+    &quot;sources/2026-07-14-sugarcrepe&quot;,
+    &quot;sources/2026-04-14-vbench&quot;,
+    &quot;sources/2026-04-14-verifiable-human-eval-t2i&quot;,
+    &quot;sources/2026-07-14-mieb&quot;
+  ],
+  &quot;foundational_sources&quot;: [
+    &quot;sources/2026-07-14-inception-score&quot;,
+    &quot;sources/2026-07-14-fid&quot;,
+    &quot;sources/2026-07-14-clipscore&quot;,
+    &quot;sources/2026-07-14-datacomp&quot;,
+    &quot;sources/2026-07-14-aro&quot;,
+    &quot;sources/2026-07-14-winoground&quot;,
+    &quot;sources/2026-07-14-sugarcrepe&quot;,
+    &quot;sources/2026-04-14-vbench&quot;,
+    &quot;sources/2026-04-14-verifiable-human-eval-t2i&quot;,
+    &quot;sources/2026-07-14-mieb&quot;
+  ],
+  &quot;visuals&quot;: [
+    &quot;benchmark-evidence-chain&quot;,
+    &quot;benchmark-history&quot;,
+    &quot;metric-coverage-map&quot;
+  ],
+  &quot;related_topics&quot;: [
+    &quot;topics/computer-vision-overview&quot;,
+    &quot;topics/generative-model-evaluation&quot;,
+    &quot;topics/image-text-retrieval&quot;,
+    &quot;topics/vision-language-foundations&quot;,
+    &quot;topics/video-understanding&quot;,
+    &quot;topics/sports-ai-roadmap&quot;
+  ],
+  &quot;related_entities&quot;: [
+    &quot;entities/clip-retrieval-benchmarks&quot;
+  ],
+  &quot;open_questions&quot;: [
+    &quot;questions/question-image-text-retrieval-data-contamination&quot;,
+    &quot;questions/question-do-benchmarks-track-real-video-editing-understanding&quot;
+  ]
+}</pre></details>
+    </article>
+  </main>
+</body>
+</html>

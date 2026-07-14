@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="追踪文本到视频与图像到视频生成，重点关注可控性、效率与长程一致性。">
+  <meta name="description" content="研究文本到视频与图像到视频怎样同时获得空间质量、运动可控、主体一致、长时结构和可承受的训练/推理成本。">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
-  <title>视频生成 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260714-research-observatory-v2-motion">
-  <script defer src="../../assets/wiki.js?v=20260714-research-observatory-v2-motion"></script>
+  <title>Video Generation · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260714-research-observatory-v5-topic-visuals">
+  <script defer src="../../assets/wiki.js?v=20260714-research-observatory-v5-topic-visuals"></script>
 </head>
-<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/video-generation&quot;, &quot;title&quot;: &quot;视频生成&quot;, &quot;title_en&quot;: &quot;视频生成&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-generation&quot;, &quot;diffusion&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260714-research-observatory-v2-motion">
+<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/video-generation&quot;, &quot;title&quot;: &quot;视频生成&quot;, &quot;title_en&quot;: &quot;Video Generation&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-generation&quot;, &quot;diffusion&quot;, &quot;control&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260714-research-observatory-v5-topic-visuals">
   <header class="mobile-topbar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
@@ -23,20 +23,30 @@
 <li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
 <li><a href="../../en/main.html">Main page</a></li>
 </ul>
-<h2>Topics</h2><ul>
-<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<h2>Foundations</h2><ul>
+<li><a href="../../en/topics/computer-vision-overview.html">计算机视觉概览</a></li>
+<li><a href="../../en/topics/datasets-metrics-and-benchmark-reliability.html">数据与评测基础</a></li>
 <li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/video-representation-and-temporal-modeling.html">视频表示基础</a></li>
+<li><a href="../../en/topics/vision-backbones.html">Vision Backbones</a></li>
+<li><a href="../../en/topics/vision-language-foundations.html">视觉语言基础</a></li>
+<li><a href="../../en/topics/vision-task-foundations.html">核心视觉任务</a></li>
+<li><a href="../../en/topics/visual-generation-foundations.html">视觉生成基础</a></li>
+</ul>
+<h2>Research topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
 <li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
 <li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
 <li><a href="../../en/topics/image-generation.html">图像生成</a></li>
 <li><a href="../../en/topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a></li>
-<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI</a></li>
 <li><a href="../../en/topics/sports-ai-video-understanding.html">Sports Video Understanding</a></li>
 <li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
 <li><a class="active" href="../../en/topics/video-generation.html">视频生成</a></li>
 <li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
-<li><a href="../../en/topics/vision-backbones.html">Vision Backbones</a></li>
-<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉语言</a></li>
+</ul>
+<h2>Roadmaps</h2><ul>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI</a></li>
 </ul>
 <h2>Entities</h2><ul>
 <li><a href="../../en/entities/clip.html">CLIP 系列模型（CLIP Family）</a></li>
@@ -76,20 +86,20 @@
     <article class="article-shell">
       
       <header class="article-header" data-motion="reveal">
-        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Topic</span><span class="crumb-sep" aria-hidden="true">›</span><strong>视频生成</strong></nav>
-        <p class="eyebrow">Topic · Updated 2026-07-12</p>
-        <h1><span class="title-main">视频生成</span></h1>
-        <p class="article-summary">追踪文本到视频与图像到视频生成，重点关注可控性、效率与长程一致性。</p>
-        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-generation">#video-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a></div>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Topic</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Video Generation</strong></nav>
+        <p class="eyebrow">Topic · Updated 2026-07-14</p>
+        <h1><span class="title-main">Video Generation</span></h1>
+        <p class="article-summary">研究文本到视频与图像到视频怎样同时获得空间质量、运动可控、主体一致、长时结构和可承受的训练/推理成本。</p>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-generation">#video-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#control">#control</a></div>
       </header>
       <div class="article-layout has-rail">
-        <aside class="article-rail"><details class="toc" open><summary>Contents</summary><ol><li><a href="#概述">概述</a></li><li><a href="#当前综合判断">当前综合判断</a></li><li><a href="#跨年份阶段性演化小结">跨年份阶段性演化小结</a></li><li><a href="#当前阶段结论">当前阶段结论</a></li><li><a href="#方法家族">方法家族</a></li><li><a href="#相关实体">相关实体</a></li><li><a href="#证据基础">证据基础</a></li><li><a href="#后续值得追踪的问题">后续值得追踪的问题</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <aside class="article-rail"><details class="toc" open><summary>Contents</summary><ol><li><a href="#三分钟摘要">三分钟摘要</a></li><li><a href="#任务或系统流程">任务或系统流程</a></li><li><a href="#当前综合判断">当前综合判断</a></li><li><a href="#近五年演化-2022-2026">近五年演化（2022—2026）</a></li><li><a href="#方法家族与成熟阶段">方法家族与成熟阶段</a><ol><li class="toc-sub"><a href="#方法家族的成熟度">方法家族的成熟度</a></li><li class="toc-sub"><a href="#哪些方向拥挤-哪些方向仍值得做">哪些方向拥挤，哪些方向仍值得做</a></li></ol></li><li><a href="#拥挤方向与研究机会">拥挤方向与研究机会</a></li><li><a href="#反方证据-局限与可证伪条件">反方证据、局限与可证伪条件</a></li><li><a href="#研究生可行的研究入口">研究生可行的研究入口</a><ol><li class="toc-sub"><a href="#候选课题-a-长时错误增长与可定位评测-优先推荐">候选课题 A：长时错误增长与可定位评测（优先推荐）</a></li><li class="toc-sub"><a href="#候选课题-b-多对象轨迹与遮挡控制-方法型">候选课题 B：多对象轨迹与遮挡控制（方法型）</a></li><li class="toc-sub"><a href="#候选课题-c-同预算-i2v-长视频系统账本-稳健">候选课题 C：同预算 I2V/长视频系统账本（稳健）</a></li><li class="toc-sub"><a href="#推荐排序与止损条件">推荐排序与止损条件</a></li></ol></li><li><a href="#证据基础">证据基础</a></li><li><a href="#开放问题">开放问题</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
         <section class="article-content">
 <section class="topic-hero-grid" data-motion="reveal">
   <section class="judgment-panel topic-judgment">
     <p class="section-kicker">Current view</p>
-    <h2>视频生成</h2>
-    <p>追踪文本到视频与图像到视频生成，重点关注可控性、效率与长程一致性。</p>
+    <h2>Video Generation</h2>
+    <p>研究文本到视频与图像到视频怎样同时获得空间质量、运动可控、主体一致、长时结构和可承受的训练/推理成本。</p>
     <div class="judgment-meta"><span>34 Source notes</span><span>0 Open questions</span></div>
   </section>
   <section class="reading-path">
@@ -101,123 +111,135 @@
   <div class="method-map-heading"><div><p class="section-kicker">Method family map</p><h2>From problem definition to verifiable system capability</h2></div><span>34 Source notes</span></div>
   <div class="method-map-track"><div class="method-node"><span>1</span><strong>Problem</strong><small>Define task and evidence boundary</small></div><div class="method-node"><span>2</span><strong>Methods</strong><small>Compare families and design choices</small></div><div class="method-node"><span>3</span><strong>Evidence</strong><small>Return to papers and searchable text</small></div><div class="method-node"><span>4</span><strong>Open questions</strong><small>Track unresolved tensions</small></div></div>
 </section>
-<h2 id="概述">概述</h2>
-<p>这一页整理视频生成方向的主要演化路径。当前批次显示，视频生成正在分成几条相互竞争又彼此补充的路线：一条是面向长视频的可扩展建模，一条是面向快速推理的一步式生成，一条是面向运动质量与可控性的轨迹条件控制，还有一条是通过记忆机制提升长程一致性。整体上看，长时一致性、速度和控制能力是这个方向最核心的三角矛盾。</p>
+<h2 id="三分钟摘要">三分钟摘要</h2>
+<ul>
+<li>视频生成不是“每帧图像生成”。系统必须同时保持主体/场景、产生合理运动、覆盖足够时间、服从条件并控制时空 token 成本。</li>
+<li>短视频质量已经很强，但长时一致、事件推进、物理/几何、可重复运动控制和可靠评测仍是主要瓶颈。</li>
+<li>近五年形成四条并行主线：复用图像扩散先验、构建视频预训练底座、显式轨迹/草图/运动控制、以及流式/线性/一步生成效率。</li>
+<li>适合研究生的入口是可诊断的运动控制、长时错误指标、同预算系统测量和专业场景数据，而不是从头训练通用视频基础模型。</li>
+</ul>
+<h2 id="任务或系统流程">任务或系统流程</h2>
+<figure class="wiki-visual wiki-visual--flow" data-visual-id="video-generation-system-flow" aria-labelledby="visual-video-generation-system-flow-title" aria-describedby="visual-video-generation-system-flow-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">一段视频的内容、运动、时间和成本分别由哪里决定？</p><div class="wiki-visual-title" id="visual-video-generation-system-flow-title" role="heading" aria-level="3">条件怎样变成可验收视频</div><p class="wiki-visual-explanation">条件先被编码，模型还要规划或隐式表示时间；时空生成主干产生 latent 序列，解码后必须同时检查空间与时间维度。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>条件输入</strong><small>文本、首帧/参考图、轨迹、草图、摄像机或结构控制</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>时空表示/规划</strong><small>帧 token、3D latent、运动 token、窗口或长短期记忆</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>生成主干</strong><small>视频 U-Net、DiT、分解 attention、线性模块或少步学生</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>解码与拼接</strong><small>从 latent 恢复帧，并处理窗口边界、分辨率与流式上下文</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">05</span><strong>联合验收</strong><small>空间质量、时间一致、动态程度、条件遵循、时长和真实成本</small></li></ol><figcaption><span>Diagram evidence</span><a class="wikilink" href="../../en/sources/2026-04-14-videocrafter2.html">VideoCrafter2</a>、<a class="wikilink" href="../../en/sources/2026-04-12-tora.html">Tora</a>、<a class="wikilink" href="../../en/sources/2026-04-12-streamingt2v.html">StreamingT2V</a>、<a class="wikilink" href="../../en/sources/2026-04-14-video-bench.html">Video-Bench</a></figcaption><p class="sr-only" id="visual-video-generation-system-flow-alt">文本、图像或轨迹条件经编码和时间规划，进入时空生成主干，解码为帧序列，再评估画质、运动、主体一致、条件遵循与延迟。</p></figure>
 <h2 id="当前综合判断">当前综合判断</h2>
-<p><a class="wikilink" href="../../en/sources/2026-04-14-neuro-symbolic-eval-t2v.html">sources/2026-04-14-neuro-symbolic-eval-t2v</a> 也说明视频生成评测正在从“看起来像不像”进一步走向“能否被更严格验证”。</p>
-<p><a class="wikilink" href="../../en/sources/2026-04-14-shape-aware-layered-video-editing.html">sources/2026-04-14-shape-aware-layered-video-editing</a>、<a class="wikilink" href="../../en/sources/2026-04-14-vive3d.html">sources/2026-04-14-vive3d</a>、<a class="wikilink" href="../../en/sources/2026-04-14-fairy-video-to-video.html">sources/2026-04-14-fairy-video-to-video</a> 和 <a class="wikilink" href="../../en/sources/2026-04-14-flowvid.html">sources/2026-04-14-flowvid</a> 也说明视频生成底座继续被 layered control、3D-aware consistency、高效翻译接口和显式 flow consistency 这些需求反向塑形。</p>
-<p><a class="wikilink" href="../../en/sources/2026-04-14-avid-video-inpainting.html">sources/2026-04-14-avid-video-inpainting</a> 与 <a class="wikilink" href="../../en/sources/2026-04-14-dynvideo-e.html">sources/2026-04-14-dynvideo-e</a> 也说明视频生成底座在继续被修补任务和 3D/动态表示需求牵引。</p>
-<p><a class="wikilink" href="../../en/sources/2026-04-14-stablevideo.html">sources/2026-04-14-stablevideo</a> 与 <a class="wikilink" href="../../en/sources/2026-04-14-pix2video.html">sources/2026-04-14-pix2video</a> 还说明视频生成能力长期在反向支撑视频编辑，而 <a class="wikilink" href="../../en/sources/2026-04-14-glitchbench.html">sources/2026-04-14-glitchbench</a> 则提醒我们动态异常理解也会影响对视频系统能力的判断。</p>
-<p><a class="wikilink" href="../../en/sources/2026-04-14-camel-video-editing.html">sources/2026-04-14-camel-video-editing</a>、<a class="wikilink" href="../../en/sources/2026-04-14-vidtome.html">sources/2026-04-14-vidtome</a>、<a class="wikilink" href="../../en/sources/2026-04-14-motionfollower.html">sources/2026-04-14-motionfollower</a> 和 <a class="wikilink" href="../../en/sources/2026-04-14-reangle-a-video.html">sources/2026-04-14-reangle-a-video</a> 也说明视频生成底座正越来越直接地被运动编辑、效率和翻译式接口需求重新塑形。</p>
-<p><a class="wikilink" href="../../en/sources/2026-04-14-qk-edit.html">sources/2026-04-14-qk-edit</a> 与 <a class="wikilink" href="../../en/sources/2026-04-14-insvie-1m.html">sources/2026-04-14-insvie-1m</a> 也说明视频生成底座开始越来越直接地受视频编辑能力需求反向塑形。</p>
-<p><a class="wikilink" href="../../en/sources/2026-04-14-framepainter.html">sources/2026-04-14-framepainter</a> 还进一步说明，视频生成 learned priors 已经开始反向成为图像编辑系统的能力来源。</p>
-<p><a class="wikilink" href="../../en/sources/2026-04-14-ccedit.html">sources/2026-04-14-ccedit</a> 与 <a class="wikilink" href="../../en/sources/2026-04-14-maskint.html">sources/2026-04-14-maskint</a> 也从侧面说明，视频生成底座正在被不同类型的视频编辑方法反向检验其控制性、表达性和架构适配性。</p>
-<p>同时，<a class="wikilink" href="../../en/sources/2026-04-14-motioneditor.html">sources/2026-04-14-motioneditor</a> 与 <a class="wikilink" href="../../en/sources/2026-04-14-rave-video-editing.html">sources/2026-04-14-rave-video-editing</a> 也说明视频生成主线与视频编辑主线正在更深地共享底层扩散能力与效率约束。</p>
-<p>跨年份证据把这条主题的前史与升级路径都补了出来。早期的 <a class="wikilink" href="../../en/sources/2026-04-14-tune-a-video.html">sources/2026-04-14-tune-a-video</a> 说明图像扩散模型可以通过极小样本调优迁移到视频生成；而 <a class="wikilink" href="../../en/sources/2026-04-14-videocrafter2.html">sources/2026-04-14-videocrafter2</a> 则进入更成熟阶段，开始正面处理“公开视频数据质量不够”这一核心瓶颈。结合现有 2025 证据看，视频生成主线已经从“能不能把图像模型改成视频模型”逐步走向“怎样在有限数据条件下把质量真正拉高”。目前最清晰的四条路线分别由四篇 source 代表。<a class="wikilink" href="../../en/sources/2026-04-12-lingen.html">sources/2026-04-12-lingen</a> 把长高分辨率视频生成问题视为计算复杂度问题；<a class="wikilink" href="../../en/sources/2026-04-12-osv.html">sources/2026-04-12-osv</a> 把一步式 I2V 作为加速路径；<a class="wikilink" href="../../en/sources/2026-04-12-tora.html">sources/2026-04-12-tora</a> 强调轨迹条件带来的运动控制；<a class="wikilink" href="../../en/sources/2026-04-12-streamingt2v.html">sources/2026-04-12-streamingt2v</a> 则把长时一致性问题重写为记忆问题。综合来看，视频生成已经不再是单一“提升画质”的问题，而是同时涉及扩展性、控制性、速度和一致性。新补入的 <a class="wikilink" href="../../en/sources/2026-04-14-encapsulated-composition-t2i-t2v.html">sources/2026-04-14-encapsulated-composition-t2i-t2v</a> 还说明，模块组合式系统也可能在质量和速度上同时占优；<a class="wikilink" href="../../en/sources/2026-04-14-aigv-assessor.html">sources/2026-04-14-aigv-assessor</a> 则提醒我们，评测工具本身也在决定这类结论看起来是否成立。</p>
-<p>Tune-A-Video 全文复核把“极小代价”具体化为每个 32-frame source video 的 500-step tuning：A100 约 10 分钟训练与 1 分钟采样；DAVIS 42 videos/140 edited prompts 上 frame/text CLIP 为 92.40/27.58。其 sparse ST-Attention 只更新 attention projections，主干仍是 Stable Diffusion convolutional U-Net。Source motion 主要由 DDIM inversion 复制，多对象遮挡会混合，说明早期迁移路线解决的是实例适配和结构保留，不是开放式动力学学习。</p>
-<h2 id="跨年份阶段性演化小结">跨年份阶段性演化小结</h2>
-<p>把当前证据按年份展开，这条主线也能分成相对清楚的三个阶段。第一阶段是 <strong>迁移验证期</strong>：<a class="wikilink" href="../../en/sources/2026-04-14-tune-a-video.html">sources/2026-04-14-tune-a-video</a> 这类工作证明，强图像扩散模型并不是只能停留在静态图像，它们可以通过很小代价被迁移到视频生成任务。第二阶段是 <strong>质量提升期</strong>：<a class="wikilink" href="../../en/sources/2026-04-14-videocrafter2.html">sources/2026-04-14-videocrafter2</a> 开始正面回答社区视频模型为什么总是不如商业系统，核心矛盾从“有没有视频模型”转向“在公开数据条件下怎样把质量做上去”。第三阶段是 <strong>路线分化期</strong>：到 <a class="wikilink" href="../../en/sources/2026-04-12-lingen.html">sources/2026-04-12-lingen</a>、<a class="wikilink" href="../../en/sources/2026-04-12-osv.html">sources/2026-04-12-osv</a>、<a class="wikilink" href="../../en/sources/2026-04-12-tora.html">sources/2026-04-12-tora</a>、<a class="wikilink" href="../../en/sources/2026-04-12-streamingt2v.html">sources/2026-04-12-streamingt2v</a> 再到 <a class="wikilink" href="../../en/sources/2026-04-14-encapsulated-composition-t2i-t2v.html">sources/2026-04-14-encapsulated-composition-t2i-t2v</a>、<a class="wikilink" href="../../en/sources/2026-04-14-motionstone.html">sources/2026-04-14-motionstone</a>，研究已经不再围绕单一目标展开，而是分裂成长视频扩展、速度优化、运动控制、结构调制、模块组合和评测对齐等多条支线。</p>
-<p>这说明 video-generation 的真实演化不是“画质越来越高”这么简单，而是目标函数本身在不断变复杂：早期先证明迁移可行，中期处理质量与数据限制，后期则开始把一致性、控制、效率、评测和系统设计一起纳入竞争。当前 topic 的复杂度，也正是这条跨年份演化自然堆出来的结果。</p>
-<h2 id="当前阶段结论">当前阶段结论</h2>
+<p>视频生成的核心竞争已从“能不能动”转向“怎样按意图稳定地动，并持续足够长”。<a class="wikilink" href="../../en/sources/2026-04-14-tune-a-video.html">Tune-A-Video</a> 展示图像扩散模型可通过轻量时序适配迁移到视频，<a class="wikilink" href="../../en/sources/2026-04-14-videocrafter2.html">VideoCrafter2</a> 则代表专门视频数据与训练系统。两者说明图像先验重要，但视频运动不能只靠复制帧级语义。</p>
+<p>长视频和效率需要分层判断。<a class="wikilink" href="../../en/sources/2026-04-12-streamingt2v.html">StreamingT2V</a> 用短/长期记忆扩展生成，<a class="wikilink" href="../../en/sources/2026-04-12-lingen.html">LinGen</a> 通过线性复杂度模块冲击分钟级生成，<a class="wikilink" href="../../en/sources/2026-04-12-osv.html">OSV</a> 将 image-to-video 压到一步并保留 refinement。它们分别改变上下文管理、单步主干和采样步数，不能只用“更快/更长”合并。</p>
+<p>控制接口正在从文本扩展到轨迹、草图和运动强度。<a class="wikilink" href="../../en/sources/2026-04-12-tora.html">Tora</a>、<a class="wikilink" href="../../en/sources/2026-04-14-motionstone.html">MotionStone</a> 与 <a class="wikilink" href="../../en/sources/2026-04-14-sketchvideo.html">SketchVideo</a> 表明显式结构有用，但控制正确不等于物理真实、身份稳定或长时事件合理。</p>
+<h2 id="近五年演化-2022-2026">近五年演化（2022—2026）</h2>
+<figure class="wiki-visual wiki-visual--timeline" data-visual-id="video-generation-evolution" aria-labelledby="visual-video-generation-evolution-title" aria-describedby="visual-video-generation-evolution-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">视频生成近五年的研究重心如何变化？</p><div class="wiki-visual-title" id="visual-video-generation-evolution-title" role="heading" aria-level="3">从图像先验迁移到长视频与少步系统</div><p class="wiki-visual-explanation">节点按系统能力组织；编辑论文作为反方/邻近证据，只用于解释一致性和控制接口，不等同于纯生成结果。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>2022–2023 · 迁移图像先验</strong><small>单视频适配与时序模块让 T2I 扩散进入视频</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>2023–2024 · 专门视频底座</strong><small>VideoCrafter2 等扩大视频数据与训练，质量/运动开始分开优化</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>2024 · 多维评测</strong><small>EvalCrafter、Video-Bench 等强调画质、时间与条件的不同维度</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>2025 · 显式运动控制</strong><small>Tora、MotionStone、SketchVideo 将轨迹、强度和草图接入生成</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">05</span><strong>2025 · 长时与效率</strong><small>StreamingT2V、LinGen、OSV 分别推进记忆、线性主干和一步 I2V</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">06</span><strong>2026 · 可靠系统比较</strong><small>重点转向真实时长、事件一致、物理失败和完整训练/推理预算</small></li></ol><figcaption><span>Diagram evidence</span><a class="wikilink" href="../../en/sources/2026-04-14-tune-a-video.html">Tune-A-Video</a>、<a class="wikilink" href="../../en/sources/2026-04-14-videocrafter2.html">VideoCrafter2</a>、<a class="wikilink" href="../../en/sources/2026-04-14-evalcrafter.html">EvalCrafter</a>、<a class="wikilink" href="../../en/sources/2026-04-12-lingen.html">LinGen</a>、<a class="wikilink" href="../../en/sources/2026-04-12-osv.html">OSV</a></figcaption><p class="sr-only" id="visual-video-generation-evolution-alt">2022 到 2023 年复用图像扩散和视频训练，2024 年评测与一致性，2025 年轨迹、流式、线性和一步生成，2026 年强调同预算长时可靠性。</p></figure>
+<h2 id="方法家族与成熟阶段">方法家族与成熟阶段</h2>
+<figure class="wiki-visual wiki-visual--map" data-visual-id="video-generation-method-map" aria-labelledby="visual-video-generation-method-map-title" aria-describedby="visual-video-generation-method-map-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">一篇论文是在提高画面、运动、时长、控制还是效率？</p><div class="wiki-visual-title" id="visual-video-generation-method-map-title" role="heading" aria-level="3">视频生成的五类方法对应五种瓶颈</div><p class="wiki-visual-explanation">同一方法常同时改多层；必须用对应指标和消融分开验证，避免只凭整体偏好分数归因。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>图像先验迁移</strong><small>在预训练 T2I 上加入时间层、adapter 或逐视频微调</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>专用视频底座</strong><small>用视频数据从头/继续训练时空 U-Net 或 DiT</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>结构化运动控制</strong><small>轨迹、光流、草图、姿态或摄像机控制运动路径</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>长时与流式扩展</strong><small>窗口生成、记忆、层级计划或线性序列模块延长时间</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">05</span><strong>少步与系统效率</strong><small>蒸馏、缓存、token 压缩、量化和解码并行降低成本</small></li></ol><figcaption><span>Diagram evidence</span><a class="wikilink" href="../../en/sources/2026-04-14-tune-a-video.html">Tune-A-Video</a>、<a class="wikilink" href="../../en/sources/2026-04-12-tora.html">Tora</a>、<a class="wikilink" href="../../en/sources/2026-04-12-streamingt2v.html">StreamingT2V</a>、<a class="wikilink" href="../../en/sources/2026-04-12-osv.html">OSV</a></figcaption><p class="sr-only" id="visual-video-generation-method-map-alt">方法地图包括图像先验迁移、专用视频底座、结构化运动控制、长时记忆/流式生成、效率与评测。</p></figure>
+<h3 id="方法家族的成熟度">方法家族的成熟度</h3>
+<h4 id="短视频扩散底座">短视频扩散底座</h4>
 <ul>
-<li>2023 年更像是在验证图像扩散模型能否迁移出视频生成能力。</li>
-<li>2024 年开始更系统地处理高质量视频扩散训练的现实瓶颈。</li>
-<li>到当前 2025 语境里，视频生成已经进入“质量、控制、效率、一致性、评测共同竞争”的多目标阶段。</li>
+<li><strong>阶段</strong>：成熟底座</li>
+<li><strong>证据锚点</strong>：Tune-A-Video、VideoCrafter2 等已建立可复现时空扩散平台。</li>
+<li><strong>研究机会</strong>：价值转向数据治理、域外运动和受控成本，而非再证明视频扩散可行。</li>
 </ul>
-<h2 id="方法家族">方法家族</h2>
+<h4 id="图像到视频与首帧保持">图像到视频与首帧保持</h4>
 <ul>
-<li>早期图像到视频迁移路线：<a class="wikilink" href="../../en/sources/2026-04-14-tune-a-video.html">sources/2026-04-14-tune-a-video</a></li>
-<li>面向长视频的高效生成：<a class="wikilink" href="../../en/sources/2026-04-12-lingen.html">sources/2026-04-12-lingen</a>、<a class="wikilink" href="../../en/sources/2026-04-12-streamingt2v.html">sources/2026-04-12-streamingt2v</a></li>
-<li>面向高质量训练方案的视频扩散路线：<a class="wikilink" href="../../en/sources/2026-04-14-videocrafter2.html">sources/2026-04-14-videocrafter2</a></li>
-<li>面向快速推理的生成：<a class="wikilink" href="../../en/sources/2026-04-12-osv.html">sources/2026-04-12-osv</a></li>
-<li>轨迹控制生成：<a class="wikilink" href="../../en/sources/2026-04-12-tora.html">sources/2026-04-12-tora</a></li>
-<li>模块组合式视频合成：<a class="wikilink" href="../../en/sources/2026-04-14-encapsulated-composition-t2i-t2v.html">sources/2026-04-14-encapsulated-composition-t2i-t2v</a></li>
-<li>强调架构侧运动调制：<a class="wikilink" href="../../en/sources/2026-04-14-motionstone.html">sources/2026-04-14-motionstone</a></li>
-<li>强调专门控制模态的生成/编辑系统：<a class="wikilink" href="../../en/sources/2026-04-14-sketchvideo.html">sources/2026-04-14-sketchvideo</a></li>
-<li>非扩散视频编辑对照架构：<a class="wikilink" href="../../en/sources/2026-04-14-maskint.html">sources/2026-04-14-maskint</a></li>
-<li>视频先验外溢到图像编辑：<a class="wikilink" href="../../en/sources/2026-04-14-framepainter.html">sources/2026-04-14-framepainter</a></li>
-<li>视频底座的统一编辑能力压力测试：<a class="wikilink" href="../../en/sources/2026-04-14-qk-edit.html">sources/2026-04-14-qk-edit</a></li>
-<li>video-to-video 4D 接口改写：<a class="wikilink" href="../../en/sources/2026-04-14-reangle-a-video.html">sources/2026-04-14-reangle-a-video</a></li>
-<li>score-guided motion editing 压力测试：<a class="wikilink" href="../../en/sources/2026-04-14-motionfollower.html">sources/2026-04-14-motionfollower</a></li>
-<li>token-merging 效率优化：<a class="wikilink" href="../../en/sources/2026-04-14-vidtome.html">sources/2026-04-14-vidtome</a></li>
-<li>运动增强反向约束视频底座：<a class="wikilink" href="../../en/sources/2026-04-14-camel-video-editing.html">sources/2026-04-14-camel-video-editing</a></li>
-<li>dynamic NeRF 表示路线：<a class="wikilink" href="../../en/sources/2026-04-14-dynvideo-e.html">sources/2026-04-14-dynvideo-e</a></li>
-<li>长视频修补对底座的约束：<a class="wikilink" href="../../en/sources/2026-04-14-avid-video-inpainting.html">sources/2026-04-14-avid-video-inpainting</a></li>
-<li>图像扩散迁移到视频编辑的前史：<a class="wikilink" href="../../en/sources/2026-04-14-pix2video.html">sources/2026-04-14-pix2video</a></li>
-<li>一致性感知视频编辑对底座的要求：<a class="wikilink" href="../../en/sources/2026-04-14-stablevideo.html">sources/2026-04-14-stablevideo</a></li>
-<li>creative-control 视频编辑侧压力测试：<a class="wikilink" href="../../en/sources/2026-04-14-ccedit.html">sources/2026-04-14-ccedit</a></li>
-<li>借视频生成反向服务图像编辑：<a class="wikilink" href="../../en/sources/2026-04-14-pathways-image-manifold.html">sources/2026-04-14-pathways-image-manifold</a></li>
+<li><strong>阶段</strong>：活跃发展期</li>
+<li><strong>证据锚点</strong>：OSV、MotionStone 等表明首帧条件与运动调制可产生强 I2V。</li>
+<li><strong>研究机会</strong>：身份/几何保持与动态幅度的可校准 Pareto 边界。</li>
 </ul>
-<h2 id="相关实体">相关实体</h2>
+<h4 id="轨迹-草图与显式运动控制">轨迹、草图与显式运动控制</h4>
 <ul>
-<li><a class="wikilink" href="../../en/entities/diffusion-transformer.html">entities/diffusion-transformer</a> 是当前视频生成批次里最稳定的主干架构抽象，尤其出现在可扩展性、可控性和长视频建模场景中。</li>
+<li><strong>阶段</strong>：活跃发展期</li>
+<li><strong>证据锚点</strong>：Tora、SketchVideo 提供结构条件接口，但复杂交互和物理约束不足。</li>
+<li><strong>研究机会</strong>：多对象轨迹冲突、遮挡、摄像机与对象运动解耦。</li>
 </ul>
+<h4 id="长时-流式与记忆">长时、流式与记忆</h4>
+<ul>
+<li><strong>阶段</strong>：早期整合期</li>
+<li><strong>证据锚点</strong>：StreamingT2V、LinGen 已推进可生成时长，长事件语义和误差累积仍是边界。</li>
+<li><strong>研究机会</strong>：事件级计划、可回滚记忆和随时长增长的失效曲线。</li>
+</ul>
+<h4 id="少步部署与可靠评测">少步部署与可靠评测</h4>
+<ul>
+<li><strong>阶段</strong>：评测建设期</li>
+<li><strong>证据锚点</strong>：OSV 展示一步 I2V；AIGV-Assessor、EvalCrafter、Video-Bench、神经符号评测拆分质量与条件。</li>
+<li><strong>研究机会</strong>：同硬件端到端延迟、长时/控制维度和人评一致性的统一协议。</li>
+</ul>
+<h3 id="哪些方向拥挤-哪些方向仍值得做">哪些方向拥挤，哪些方向仍值得做</h3>
+<h2 id="拥挤方向与研究机会">拥挤方向与研究机会</h2>
+<p><strong>相对拥挤：</strong>只做短 prompt 短视频总体质量；仅增加 attention 层而不控制数据/预算；只用精选样例证明长时一致；只报告生成步数或 backbone FLOPs。</p>
+<p><strong>仍值得做：</strong>轨迹和多对象交互的可证伪控制；随时长增长的身份/场景/事件错误曲线；中文或体育/工业专业运动数据；统一报告主干、NFE、解码与流式缓存成本；评测器与人类偏好的失效审计。</p>
+<h2 id="反方证据-局限与可证伪条件">反方证据、局限与可证伪条件</h2>
+<ul>
+<li>如果随机抽取长片段后主体/场景错误随时长快速增长，“长视频生成已解决”应被否定，即使拼接后总时长很长。</li>
+<li>如果轨迹命中依赖简单背景/单对象，或控制器改善位置却损害外观，不能宣称通用运动控制。</li>
+<li>如果一步模型的训练成本、解码器或 refinement 被排除在延迟外，效率结论必须收窄。</li>
+<li><a class="wikilink" href="../../en/sources/2026-04-14-glitchbench.html">GlitchBench</a> 与多维评测说明定性平滑可能掩盖物理/时序异常；自动评测器也可能只捕捉表面一致。</li>
+<li>数据许可、人物身份、记忆、安全、音视频同步和真实物理仍是共同风险。</li>
+</ul>
+<h2 id="研究生可行的研究入口">研究生可行的研究入口</h2>
+<h3 id="候选课题-a-长时错误增长与可定位评测-优先推荐">候选课题 A：长时错误增长与可定位评测（优先推荐）</h3>
+<ul>
+<li><strong>研究问题</strong>：身份、背景、动作、事件和物理错误怎样随生成时长增长？</li>
+<li><strong>最小实验</strong>：固定 2–3 个公开模型，按 2/4/8/16 秒切片，人工核验 300–500 个 prompt。</li>
+<li><strong>指标</strong>：首次失效时间、错误持续/恢复、身份和条件命中、评测器—人类一致性。</li>
+<li><strong>止损条件</strong>：若模型输出时长不可比，先固定短窗口滚动生成协议。</li>
+</ul>
+<h3 id="候选课题-b-多对象轨迹与遮挡控制-方法型">候选课题 B：多对象轨迹与遮挡控制（方法型）</h3>
+<ul>
+<li><strong>研究问题</strong>：轨迹条件怎样处理交叉、遮挡和摄像机运动，能否定位控制冲突？</li>
+<li><strong>最小实验</strong>：合成/体育轨迹小集，对比文本、单轨迹和多轨迹控制。</li>
+<li><strong>指标</strong>：轨迹误差、ID 保持、遮挡恢复、外观质量和额外延迟。</li>
+<li><strong>止损条件</strong>：若基础模型无法生成目标对象，先缩小到单一域并分离概念覆盖。</li>
+</ul>
+<h3 id="候选课题-c-同预算-i2v-长视频系统账本-稳健">候选课题 C：同预算 I2V/长视频系统账本（稳健）</h3>
+<ul>
+<li><strong>研究问题</strong>：采样步数、单步主干、token、解码与流式缓存分别贡献多少成本？</li>
+<li><strong>最小实验</strong>：公开 checkpoint + 统一硬件，报告端到端 P50/P95、显存和质量。</li>
+<li><strong>指标</strong>：秒视频/秒计算、峰值显存、能耗代理、动态/保持和失败率。</li>
+<li><strong>止损条件</strong>：若训练预算不透明，结论限定为推理系统，不外推全生命周期。</li>
+</ul>
+<h3 id="推荐排序与止损条件">推荐排序与止损条件</h3>
+<p>A 的评测资产最易复用，B 的方法新颖度更高，C 可建立工程基线。任何方法改造前先用 A/C 协议证明问题存在且可测。</p>
 <h2 id="证据基础">证据基础</h2>
 <ul>
-<li><a class="wikilink" href="../../en/sources/2026-04-12-lingen.html">sources/2026-04-12-lingen</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-12-osv.html">sources/2026-04-12-osv</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-12-tora.html">sources/2026-04-12-tora</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-12-streamingt2v.html">sources/2026-04-12-streamingt2v</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-encapsulated-composition-t2i-t2v.html">sources/2026-04-14-encapsulated-composition-t2i-t2v</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-aigv-assessor.html">sources/2026-04-14-aigv-assessor</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-motionstone.html">sources/2026-04-14-motionstone</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-sketchvideo.html">sources/2026-04-14-sketchvideo</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-video-bench.html">sources/2026-04-14-video-bench</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-evalcrafter.html">sources/2026-04-14-evalcrafter</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-rave-video-editing.html">sources/2026-04-14-rave-video-editing</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-motioneditor.html">sources/2026-04-14-motioneditor</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-pathways-image-manifold.html">sources/2026-04-14-pathways-image-manifold</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-tune-a-video.html">sources/2026-04-14-tune-a-video</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-videocrafter2.html">sources/2026-04-14-videocrafter2</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-maskint.html">sources/2026-04-14-maskint</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-framepainter.html">sources/2026-04-14-framepainter</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-insvie-1m.html">sources/2026-04-14-insvie-1m</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-reangle-a-video.html">sources/2026-04-14-reangle-a-video</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-flowvid.html">sources/2026-04-14-flowvid</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-fairy-video-to-video.html">sources/2026-04-14-fairy-video-to-video</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-vive3d.html">sources/2026-04-14-vive3d</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-neuro-symbolic-eval-t2v.html">sources/2026-04-14-neuro-symbolic-eval-t2v</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-shape-aware-layered-video-editing.html">sources/2026-04-14-shape-aware-layered-video-editing</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-motionfollower.html">sources/2026-04-14-motionfollower</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-vidtome.html">sources/2026-04-14-vidtome</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-camel-video-editing.html">sources/2026-04-14-camel-video-editing</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-dynvideo-e.html">sources/2026-04-14-dynvideo-e</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-avid-video-inpainting.html">sources/2026-04-14-avid-video-inpainting</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-pix2video.html">sources/2026-04-14-pix2video</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-stablevideo.html">sources/2026-04-14-stablevideo</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-qk-edit.html">sources/2026-04-14-qk-edit</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-14-ccedit.html">sources/2026-04-14-ccedit</a></li>
+<li>底座与迁移：<a class="wikilink" href="../../en/sources/2026-04-14-tune-a-video.html">sources/2026-04-14-tune-a-video</a>、<a class="wikilink" href="../../en/sources/2026-04-14-videocrafter2.html">sources/2026-04-14-videocrafter2</a>、<a class="wikilink" href="../../en/sources/2026-04-14-encapsulated-composition-t2i-t2v.html">sources/2026-04-14-encapsulated-composition-t2i-t2v</a>。</li>
+<li>控制与主干：<a class="wikilink" href="../../en/sources/2026-04-12-tora.html">sources/2026-04-12-tora</a>、<a class="wikilink" href="../../en/sources/2026-04-14-motionstone.html">sources/2026-04-14-motionstone</a>、<a class="wikilink" href="../../en/sources/2026-04-14-sketchvideo.html">sources/2026-04-14-sketchvideo</a>、<a class="wikilink" href="../../en/sources/2026-04-14-pathways-image-manifold.html">sources/2026-04-14-pathways-image-manifold</a>。</li>
+<li>长时与效率：<a class="wikilink" href="../../en/sources/2026-04-12-lingen.html">sources/2026-04-12-lingen</a>、<a class="wikilink" href="../../en/sources/2026-04-12-osv.html">sources/2026-04-12-osv</a>、<a class="wikilink" href="../../en/sources/2026-04-12-streamingt2v.html">sources/2026-04-12-streamingt2v</a>。</li>
+<li>评测：<a class="wikilink" href="../../en/sources/2026-04-14-aigv-assessor.html">sources/2026-04-14-aigv-assessor</a>、<a class="wikilink" href="../../en/sources/2026-04-14-video-bench.html">sources/2026-04-14-video-bench</a>、<a class="wikilink" href="../../en/sources/2026-04-14-evalcrafter.html">sources/2026-04-14-evalcrafter</a>、<a class="wikilink" href="../../en/sources/2026-04-14-glitchbench.html">sources/2026-04-14-glitchbench</a>、<a class="wikilink" href="../../en/sources/2026-04-14-neuro-symbolic-eval-t2v.html">sources/2026-04-14-neuro-symbolic-eval-t2v</a>。</li>
+<li>邻近编辑/一致性证据：<a class="wikilink" href="../../en/sources/2026-04-14-rave-video-editing.html">sources/2026-04-14-rave-video-editing</a>、<a class="wikilink" href="../../en/sources/2026-04-14-motioneditor.html">sources/2026-04-14-motioneditor</a>、<a class="wikilink" href="../../en/sources/2026-04-14-maskint.html">sources/2026-04-14-maskint</a>、<a class="wikilink" href="../../en/sources/2026-04-14-ccedit.html">sources/2026-04-14-ccedit</a>、<a class="wikilink" href="../../en/sources/2026-04-14-framepainter.html">sources/2026-04-14-framepainter</a>、<a class="wikilink" href="../../en/sources/2026-04-14-qk-edit.html">sources/2026-04-14-qk-edit</a>、<a class="wikilink" href="../../en/sources/2026-04-14-insvie-1m.html">sources/2026-04-14-insvie-1m</a>、<a class="wikilink" href="../../en/sources/2026-04-14-camel-video-editing.html">sources/2026-04-14-camel-video-editing</a>、<a class="wikilink" href="../../en/sources/2026-04-14-vidtome.html">sources/2026-04-14-vidtome</a>、<a class="wikilink" href="../../en/sources/2026-04-14-motionfollower.html">sources/2026-04-14-motionfollower</a>、<a class="wikilink" href="../../en/sources/2026-04-14-reangle-a-video.html">sources/2026-04-14-reangle-a-video</a>、<a class="wikilink" href="../../en/sources/2026-04-14-stablevideo.html">sources/2026-04-14-stablevideo</a>、<a class="wikilink" href="../../en/sources/2026-04-14-pix2video.html">sources/2026-04-14-pix2video</a>、<a class="wikilink" href="../../en/sources/2026-04-14-avid-video-inpainting.html">sources/2026-04-14-avid-video-inpainting</a>、<a class="wikilink" href="../../en/sources/2026-04-14-dynvideo-e.html">sources/2026-04-14-dynvideo-e</a>、<a class="wikilink" href="../../en/sources/2026-04-14-shape-aware-layered-video-editing.html">sources/2026-04-14-shape-aware-layered-video-editing</a>、<a class="wikilink" href="../../en/sources/2026-04-14-vive3d.html">sources/2026-04-14-vive3d</a>、<a class="wikilink" href="../../en/sources/2026-04-14-fairy-video-to-video.html">sources/2026-04-14-fairy-video-to-video</a>、<a class="wikilink" href="../../en/sources/2026-04-14-flowvid.html">sources/2026-04-14-flowvid</a>。</li>
 </ul>
-<h2 id="后续值得追踪的问题">后续值得追踪的问题</h2>
+<h2 id="开放问题">开放问题</h2>
 <ul>
-<li>长视频生成里，线性复杂度路线和记忆增强路线，哪条最终更占优？</li>
-<li>一步式方法在复杂运动和时序连贯性上能否真正站稳？</li>
-<li>除了显式轨迹，还有没有更自然的人机运动控制接口？</li>
+<li>怎样定义“长时一致”而不只比较相邻帧？</li>
+<li>事件计划与像素生成应统一还是分层？</li>
+<li>视频评测器能否抵抗静态高质量、低动态和 prompt 捷径？</li>
+<li>训练数据的授权、身份与时序重复怎样审计？</li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a></li>
-<li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">topics/generative-model-evaluation</a></li>
+<li><a class="wikilink" href="../../en/topics/video-representation-and-temporal-modeling.html">视频表示基础</a></li>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/topics/video-understanding.html">视频理解</a></li>
+<li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a class="wikilink" href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
 </ul></section>
       </div>
       
-      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-related_topics"><h3>Related topics<span class="related-count">4</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li><li><a class="wikilink" href="../../en/topics/video-understanding.html">Video Understanding</a></li><li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li></ul></div><div class="related-group related-related_entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li></ul></div><div class="related-group related-source_notes"><h3>Source notes<span class="related-count">34</span></h3><ul><li><a class="wikilink" href="../../en/sources/2026-04-12-lingen.html">LinGen：面向高分辨率分钟级文本到视频生成的线性复杂度框架</a></li><li><a class="wikilink" href="../../en/sources/2026-04-12-osv.html">OSV：高质量图像到视频生成一步就够</a></li><li><a class="wikilink" href="../../en/sources/2026-04-12-tora.html">Tora：面向视频生成的轨迹导向扩散 Transformer</a></li><li><a class="wikilink" href="../../en/sources/2026-04-12-streamingt2v.html">StreamingT2V：一致、动态、可扩展的长视频文本生成</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-pathways-image-manifold.html">Pathways on the Image Manifold：通过视频生成做图像编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-encapsulated-composition-t2i-t2v.html">Encapsulated Composition：组合式文本到图像/视频模型高质量视频合成</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-aigv-assessor.html">AIGV-Assessor：用大模型评测文本到视频生成感知质量</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-motionstone.html">MotionStone：用 DiT 解耦运动强度调制的图像到视频生成</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-sketchvideo.html">SketchVideo：基于草图的视频生成与编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-video-bench.html">Video-Bench：人类偏好对齐的视频生成评测</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-tune-a-video.html">Tune-A-Video：单样本调优图像扩散模型做文本到视频生成</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-videocrafter2.html">VideoCrafter2：低质量视频与高质量图像协同训练的视频扩散模型</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-evalcrafter.html">EvalCrafter：大视频生成模型的多维评测与人工偏好校准</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-rave-video-editing.html">RAVE：随机噪声重排的快速一致视频编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-motioneditor.html">MotionEditor：参考姿态驱动的人体视频运动编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-maskint.html">MaskINT：关键帧扩散编辑与非自回归结构插帧的视频编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-ccedit.html">CCEdit：以结构—外观解耦实现创意可控视频编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-framepainter.html">FramePainter：用视频扩散先验增强交互式图像编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-qk-edit.html">QK-Edit：在 MM-DiT 中重构图像与视频编辑的 attention 注入</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-insvie-1m.html">InsViE-1M：通过精细数据构造实现 instruction-based 视频编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-camel-video-editing.html">CAMEL：面向文本驱动视频编辑的因果运动增强</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-vidtome.html">VidToMe：用跨帧 token merging 做零样本视频编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-motionfollower.html">MotionFollower：通过 score-guided diffusion 编辑视频运动</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-reangle-a-video.html">Reangle-A-Video：把单目视频重演为多视角同步视频</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-stablevideo.html">StableVideo：用 layered atlas 稳定扩散视频外观编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-pix2video.html">Pix2Video：利用图像扩散进行视频编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-glitchbench.html">GlitchBench：大型多模态模型能否识别电子游戏故障</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-avid-video-inpainting.html">AVID：用 Temporal MultiDiffusion 做任意长度视频修补</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-dynvideo-e.html">DynVideo-E：用动态 NeRF 编辑大运动与大视角人体视频</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-shape-aware-layered-video-editing.html">Shape-aware Text-driven Layered Video Editing：用 UV 变形突破 atlas 的固定形状</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-vive3d.html">VIVE3D：多帧个性化 EG3D 的视角无关人脸视频编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-fairy-video-to-video.html">Fairy：用 anchor cross-frame attention 并行加速指令视频编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-flowvid.html">FlowVid：把不完美光流作为软条件的视频编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-neuro-symbolic-eval-t2v.html">通过形式化验证评测文本到视频模型的神经符号方法</a></li></ul></div></div></section>
-      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">33</span></h2><ul><li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a><span>Claim</span></li><li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a><span>Entity</span></li><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-04-12-align-a-video.html">Align-A-Video：面向一致视频编辑的确定性奖励调优</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-12-lingen.html">LinGen：面向高分辨率分钟级文本到视频生成的线性复杂度框架</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-12-osv.html">OSV：高质量图像到视频生成一步就够</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-12-streamingt2v.html">StreamingT2V：一致、动态、可扩展的长视频文本生成</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-12-tora.html">Tora：面向视频生成的轨迹导向扩散 Transformer</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-12-veu-bench.html">VEU-Bench:Benchmarking Video Editing Element Understanding in General Vid-LLMs</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-12-videodirector.html">VideoDirector：借助文本到视频模型实现精确视频编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-aigv-assessor.html">AIGV-Assessor：用大模型评测文本到视频生成感知质量</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-camel-video-editing.html">CAMEL：面向文本驱动视频编辑的因果运动增强</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-encapsulated-composition-t2i-t2v.html">Encapsulated Composition：组合式文本到图像/视频模型高质量视频合成</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-evalcrafter.html">EvalCrafter：大视频生成模型的多维评测与人工偏好校准</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-fatezero.html">FateZero：融合注意力做零样本文本视频编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-framepainter.html">FramePainter：用视频扩散先验增强交互式图像编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-insvie-1m.html">InsViE-1M：通过精细数据构造实现 instruction-based 视频编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-maskint.html">MaskINT：关键帧扩散编辑与非自回归结构插帧的视频编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-motionfollower.html">MotionFollower：通过 score-guided diffusion 编辑视频运动</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-motionstone.html">MotionStone：用 DiT 解耦运动强度调制的图像到视频生成</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-neuro-symbolic-eval-t2v.html">通过形式化验证评测文本到视频模型的神经符号方法</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-pathways-image-manifold.html">Pathways on the Image Manifold：通过视频生成做图像编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-pix2video.html">Pix2Video：利用图像扩散进行视频编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-qk-edit.html">QK-Edit：在 MM-DiT 中重构图像与视频编辑的 attention 注入</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-rave-video-editing.html">RAVE：随机噪声重排的快速一致视频编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-reangle-a-video.html">Reangle-A-Video：把单目视频重演为多视角同步视频</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-sketchvideo.html">SketchVideo：基于草图的视频生成与编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-tune-a-video.html">Tune-A-Video：单样本调优图像扩散模型做文本到视频生成</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-vbench.html">VBench：视频生成模型综合评测套件</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-video-bench.html">Video-Bench：人类偏好对齐的视频生成评测</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-videocrafter2.html">VideoCrafter2：低质量视频与高质量图像协同训练的视频扩散模型</a><span>Source note</span></li><li><a href="../../en/topics/video-editing.html">视频编辑</a><span>Topic</span></li><li><a href="../../en/topics/vision-backbones.html">Mainstream Vision Backbones</a><span>Topic</span></li></ul></section>
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-related_topics"><h3>Related topics<span class="related-count">5</span></h3><ul><li><a class="wikilink" href="../../en/topics/video-representation-and-temporal-modeling.html">Video Representation and Temporal Modeling</a></li><li><a class="wikilink" href="../../en/topics/image-generation.html">Image Generation</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">Diffusion Models</a></li><li><a class="wikilink" href="../../en/topics/video-understanding.html">Video Understanding</a></li><li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li></ul></div><div class="related-group related-related_entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li></ul></div><div class="related-group related-source_notes"><h3>Source notes<span class="related-count">34</span></h3><ul><li><a class="wikilink" href="../../en/sources/2026-04-12-lingen.html">LinGen：面向高分辨率分钟级文本到视频生成的线性复杂度框架</a></li><li><a class="wikilink" href="../../en/sources/2026-04-12-osv.html">OSV：高质量图像到视频生成一步就够</a></li><li><a class="wikilink" href="../../en/sources/2026-04-12-tora.html">Tora：面向视频生成的轨迹导向扩散 Transformer</a></li><li><a class="wikilink" href="../../en/sources/2026-04-12-streamingt2v.html">StreamingT2V：一致、动态、可扩展的长视频文本生成</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-pathways-image-manifold.html">Pathways on the Image Manifold：通过视频生成做图像编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-encapsulated-composition-t2i-t2v.html">Encapsulated Composition：组合式文本到图像/视频模型高质量视频合成</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-aigv-assessor.html">AIGV-Assessor：用大模型评测文本到视频生成感知质量</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-motionstone.html">MotionStone：用 DiT 解耦运动强度调制的图像到视频生成</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-sketchvideo.html">SketchVideo：基于草图的视频生成与编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-video-bench.html">Video-Bench：人类偏好对齐的视频生成评测</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-tune-a-video.html">Tune-A-Video：单样本调优图像扩散模型做文本到视频生成</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-videocrafter2.html">VideoCrafter2：低质量视频与高质量图像协同训练的视频扩散模型</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-evalcrafter.html">EvalCrafter：大视频生成模型的多维评测与人工偏好校准</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-rave-video-editing.html">RAVE：随机噪声重排的快速一致视频编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-motioneditor.html">MotionEditor：参考姿态驱动的人体视频运动编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-maskint.html">MaskINT：关键帧扩散编辑与非自回归结构插帧的视频编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-ccedit.html">CCEdit：以结构—外观解耦实现创意可控视频编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-framepainter.html">FramePainter：用视频扩散先验增强交互式图像编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-qk-edit.html">QK-Edit：在 MM-DiT 中重构图像与视频编辑的 attention 注入</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-insvie-1m.html">InsViE-1M：通过精细数据构造实现 instruction-based 视频编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-camel-video-editing.html">CAMEL：面向文本驱动视频编辑的因果运动增强</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-vidtome.html">VidToMe：用跨帧 token merging 做零样本视频编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-motionfollower.html">MotionFollower：通过 score-guided diffusion 编辑视频运动</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-reangle-a-video.html">Reangle-A-Video：把单目视频重演为多视角同步视频</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-stablevideo.html">StableVideo：用 layered atlas 稳定扩散视频外观编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-pix2video.html">Pix2Video：利用图像扩散进行视频编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-glitchbench.html">GlitchBench：大型多模态模型能否识别电子游戏故障</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-avid-video-inpainting.html">AVID：用 Temporal MultiDiffusion 做任意长度视频修补</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-dynvideo-e.html">DynVideo-E：用动态 NeRF 编辑大运动与大视角人体视频</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-shape-aware-layered-video-editing.html">Shape-aware Text-driven Layered Video Editing：用 UV 变形突破 atlas 的固定形状</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-vive3d.html">VIVE3D：多帧个性化 EG3D 的视角无关人脸视频编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-fairy-video-to-video.html">Fairy：用 anchor cross-frame attention 并行加速指令视频编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-flowvid.html">FlowVid：把不完美光流作为软条件的视频编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-neuro-symbolic-eval-t2v.html">通过形式化验证评测文本到视频模型的神经符号方法</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">36</span></h2><ul><li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a><span>Claim</span></li><li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a><span>Entity</span></li><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-04-12-align-a-video.html">Align-A-Video：面向一致视频编辑的确定性奖励调优</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-12-lingen.html">LinGen：面向高分辨率分钟级文本到视频生成的线性复杂度框架</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-12-osv.html">OSV：高质量图像到视频生成一步就够</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-12-streamingt2v.html">StreamingT2V：一致、动态、可扩展的长视频文本生成</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-12-tora.html">Tora：面向视频生成的轨迹导向扩散 Transformer</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-12-veu-bench.html">VEU-Bench:Benchmarking Video Editing Element Understanding in General Vid-LLMs</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-12-videodirector.html">VideoDirector：借助文本到视频模型实现精确视频编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-aigv-assessor.html">AIGV-Assessor：用大模型评测文本到视频生成感知质量</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-camel-video-editing.html">CAMEL：面向文本驱动视频编辑的因果运动增强</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-encapsulated-composition-t2i-t2v.html">Encapsulated Composition：组合式文本到图像/视频模型高质量视频合成</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-evalcrafter.html">EvalCrafter：大视频生成模型的多维评测与人工偏好校准</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-fatezero.html">FateZero：融合注意力做零样本文本视频编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-framepainter.html">FramePainter：用视频扩散先验增强交互式图像编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-insvie-1m.html">InsViE-1M：通过精细数据构造实现 instruction-based 视频编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-maskint.html">MaskINT：关键帧扩散编辑与非自回归结构插帧的视频编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-motionfollower.html">MotionFollower：通过 score-guided diffusion 编辑视频运动</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-motionstone.html">MotionStone：用 DiT 解耦运动强度调制的图像到视频生成</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-neuro-symbolic-eval-t2v.html">通过形式化验证评测文本到视频模型的神经符号方法</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-pathways-image-manifold.html">Pathways on the Image Manifold：通过视频生成做图像编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-pix2video.html">Pix2Video：利用图像扩散进行视频编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-qk-edit.html">QK-Edit：在 MM-DiT 中重构图像与视频编辑的 attention 注入</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-rave-video-editing.html">RAVE：随机噪声重排的快速一致视频编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-reangle-a-video.html">Reangle-A-Video：把单目视频重演为多视角同步视频</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-sketchvideo.html">SketchVideo：基于草图的视频生成与编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-tune-a-video.html">Tune-A-Video：单样本调优图像扩散模型做文本到视频生成</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-vbench.html">VBench：视频生成模型综合评测套件</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-video-bench.html">Video-Bench：人类偏好对齐的视频生成评测</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-videocrafter2.html">VideoCrafter2：低质量视频与高质量图像协同训练的视频扩散模型</a><span>Source note</span></li><li><a href="../../en/topics/diffusion-models.html">Diffusion Models</a><span>Topic</span></li><li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a><span>Topic</span></li><li><a href="../../en/topics/video-editing.html">Video Editing</a><span>Topic</span></li><li><a href="../../en/topics/video-representation-and-temporal-modeling.html">Video Representation and Temporal Modeling</a><span>Topic</span></li><li><a href="../../en/topics/visual-generation-foundations.html">Foundations of Visual Generative Models</a><span>Topic</span></li></ul></section>
       <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;topic-video-generation&quot;,
   &quot;type&quot;: &quot;topic&quot;,
+  &quot;topic_kind&quot;: &quot;research&quot;,
   &quot;title&quot;: &quot;视频生成&quot;,
+  &quot;title_en&quot;: &quot;Video Generation&quot;,
+  &quot;nav_title&quot;: &quot;视频生成&quot;,
   &quot;status&quot;: &quot;active&quot;,
   &quot;created&quot;: &quot;2026-04-12&quot;,
-  &quot;updated&quot;: &quot;2026-07-12&quot;,
+  &quot;updated&quot;: &quot;2026-07-14&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;video-generation&quot;,
-    &quot;diffusion&quot;
+    &quot;diffusion&quot;,
+    &quot;control&quot;
   ],
-  &quot;summary&quot;: &quot;追踪文本到视频与图像到视频生成，重点关注可控性、效率与长程一致性。&quot;,
+  &quot;summary&quot;: &quot;研究文本到视频与图像到视频怎样同时获得空间质量、运动可控、主体一致、长时结构和可承受的训练/推理成本。&quot;,
   &quot;source_notes&quot;: [
     &quot;sources/2026-04-12-lingen&quot;,
     &quot;sources/2026-04-12-osv&quot;,
@@ -254,7 +276,18 @@
     &quot;sources/2026-04-14-flowvid&quot;,
     &quot;sources/2026-04-14-neuro-symbolic-eval-t2v&quot;
   ],
+  &quot;foundational_sources&quot;: [
+    &quot;sources/2026-04-14-tune-a-video&quot;,
+    &quot;sources/2026-04-14-videocrafter2&quot;,
+    &quot;sources/2026-04-14-vbench&quot;
+  ],
+  &quot;visuals&quot;: [
+    &quot;video-generation-system-flow&quot;,
+    &quot;video-generation-evolution&quot;,
+    &quot;video-generation-method-map&quot;
+  ],
   &quot;related_topics&quot;: [
+    &quot;topics/video-representation-and-temporal-modeling&quot;,
     &quot;topics/image-generation&quot;,
     &quot;topics/diffusion-models&quot;,
     &quot;topics/video-understanding&quot;,

@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="追踪扩散模型从主干缩放到采样加速、部署压缩与 guidance 工程化的完整效率技术栈。">
+  <meta name="description" content="研究扩散模型从表示空间、主干训练到采样、缓存、蒸馏、量化与条件控制的质量—成本边界。">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>扩散效率工程 · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260714-research-observatory-v2-motion">
-  <script defer src="../../assets/wiki.js?v=20260714-research-observatory-v2-motion"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260714-research-observatory-v5-topic-visuals">
+  <script defer src="../../assets/wiki.js?v=20260714-research-observatory-v5-topic-visuals"></script>
 </head>
-<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/diffusion-efficiency-engineering&quot;, &quot;title&quot;: &quot;扩散效率工程&quot;, &quot;title_en&quot;: &quot;扩散效率工程&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260714-research-observatory-v2-motion">
+<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/diffusion-efficiency-engineering&quot;, &quot;title&quot;: &quot;扩散效率工程&quot;, &quot;title_en&quot;: &quot;扩散效率工程&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;efficiency&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260714-research-observatory-v5-topic-visuals">
   <header class="mobile-topbar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
@@ -23,20 +23,30 @@
 <li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
 <li><a href="../../en/main.html">Main page</a></li>
 </ul>
-<h2>Topics</h2><ul>
-<li><a class="active" href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<h2>Foundations</h2><ul>
+<li><a href="../../en/topics/computer-vision-overview.html">计算机视觉概览</a></li>
+<li><a href="../../en/topics/datasets-metrics-and-benchmark-reliability.html">数据与评测基础</a></li>
 <li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/video-representation-and-temporal-modeling.html">视频表示基础</a></li>
+<li><a href="../../en/topics/vision-backbones.html">Vision Backbones</a></li>
+<li><a href="../../en/topics/vision-language-foundations.html">视觉语言基础</a></li>
+<li><a href="../../en/topics/vision-task-foundations.html">核心视觉任务</a></li>
+<li><a href="../../en/topics/visual-generation-foundations.html">视觉生成基础</a></li>
+</ul>
+<h2>Research topics</h2><ul>
+<li><a class="active" href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
 <li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
 <li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
 <li><a href="../../en/topics/image-generation.html">图像生成</a></li>
 <li><a href="../../en/topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a></li>
-<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI</a></li>
 <li><a href="../../en/topics/sports-ai-video-understanding.html">Sports Video Understanding</a></li>
 <li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
 <li><a href="../../en/topics/video-generation.html">视频生成</a></li>
 <li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
-<li><a href="../../en/topics/vision-backbones.html">Vision Backbones</a></li>
-<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉语言</a></li>
+</ul>
+<h2>Roadmaps</h2><ul>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI</a></li>
 </ul>
 <h2>Entities</h2><ul>
 <li><a href="../../en/entities/clip.html">CLIP 系列模型（CLIP Family）</a></li>
@@ -77,20 +87,20 @@
       
       <header class="article-header" data-motion="reveal">
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Topic</span><span class="crumb-sep" aria-hidden="true">›</span><strong>扩散效率工程</strong></nav>
-        <p class="eyebrow">Topic · Updated 2026-07-12</p>
+        <p class="eyebrow">Topic · Updated 2026-07-14</p>
         <h1><span class="title-main">扩散效率工程</span></h1>
-        <p class="article-summary">追踪扩散模型从主干缩放到采样加速、部署压缩与 guidance 工程化的完整效率技术栈。</p>
+        <p class="article-summary">研究扩散模型从表示空间、主干训练到采样、缓存、蒸馏、量化与条件控制的质量—成本边界。</p>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#efficiency">#efficiency</a></div>
       </header>
       <div class="article-layout has-rail">
-        <aside class="article-rail"><details class="toc" open><summary>Contents</summary><ol><li><a href="#概述">概述</a></li><li><a href="#当前综合判断">当前综合判断</a><ol><li class="toc-sub"><a href="#2026-07-12-缓存-路径缩短-一步蒸馏与动态量化复核">2026-07-12 缓存、路径缩短、一步蒸馏与动态量化复核</a></li><li class="toc-sub"><a href="#2026-07-12-条件接口不等于效率复核">2026-07-12 条件接口不等于效率复核</a></li><li class="toc-sub"><a href="#2026-07-12-attention-control-与闭环控制复核">2026-07-12 Attention control 与闭环控制复核</a></li><li class="toc-sub"><a href="#2026-07-12-sampling-训练与-solver-的四种效率变量">2026-07-12 Sampling、训练与 solver 的四种效率变量</a></li><li class="toc-sub"><a href="#2026-07-12-并行-solver-空间-cfg-条件蒸馏与-wavelet-表示复核">2026-07-12 并行 solver、空间 CFG、条件蒸馏与 wavelet 表示复核</a></li><li class="toc-sub"><a href="#2026-07-12-spatial-control-engineering-的训练-推理转移">2026-07-12 Spatial/control engineering 的训练—推理转移</a></li><li class="toc-sub"><a href="#p3-feature-guidance-engineering-的成本边界">P3：feature/guidance engineering 的成本边界</a></li></ol></li><li><a href="#方法家族">方法家族</a></li><li><a href="#五层工程栈">五层工程栈</a><ol><li class="toc-sub"><a href="#0-representation-space-层">0. representation-space 层</a></li><li class="toc-sub"><a href="#1-backbone-scaling-层">1. backbone / scaling 层</a></li><li class="toc-sub"><a href="#2-sampling-acceleration-层">2. sampling acceleration 层</a></li><li class="toc-sub"><a href="#3-deployment-compression-层">3. deployment compression 层</a></li><li class="toc-sub"><a href="#4-guidance-engineering-层">4. guidance engineering 层</a></li></ol></li><li><a href="#证据基础">证据基础</a></li><li><a href="#开放问题">开放问题</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <aside class="article-rail"><details class="toc" open><summary>Contents</summary><ol><li><a href="#三分钟摘要">三分钟摘要</a></li><li><a href="#任务或系统流程">任务或系统流程</a></li><li><a href="#当前综合判断">当前综合判断</a><ol><li class="toc-sub"><a href="#1-潜空间选择先决定效率上限">1. 潜空间选择先决定效率上限</a></li><li class="toc-sub"><a href="#2-主干扩展与训练动力学仍是第一层工程问题">2. 主干扩展与训练动力学仍是第一层工程问题</a></li><li class="toc-sub"><a href="#3-少步采样已经可用-但质量点和离线成本决定价值">3. 少步采样已经可用，但质量点和离线成本决定价值</a></li><li class="toc-sub"><a href="#4-缓存和动态计算适合高质量多步区间">4. 缓存和动态计算适合高质量多步区间</a></li><li class="toc-sub"><a href="#5-低比特部署仍处于硬件与质量共同验证期">5. 低比特部署仍处于硬件与质量共同验证期</a></li><li class="toc-sub"><a href="#6-控制接口的复用不等于生成更快">6. 控制接口的复用不等于生成更快</a></li></ol></li><li><a href="#近五年演化-2022-2026">近五年演化（2022—2026）</a></li><li><a href="#方法家族与成熟阶段">方法家族与成熟阶段</a><ol><li class="toc-sub"><a href="#方法家族的成熟度">方法家族的成熟度</a></li></ol></li><li><a href="#拥挤方向与研究机会">拥挤方向与研究机会</a></li><li><a href="#反方证据-局限与可证伪条件">反方证据、局限与可证伪条件</a></li><li><a href="#研究生可行的研究入口">研究生可行的研究入口</a><ol><li class="toc-sub"><a href="#候选课题-a-扩散加速的统一质量-成本协议-最推荐">候选课题 A：扩散加速的统一质量—成本协议（最推荐）</a></li><li class="toc-sub"><a href="#候选课题-b-误差感知的动态特征缓存-推荐">候选课题 B：误差感知的动态特征缓存（推荐）</a></li><li class="toc-sub"><a href="#候选课题-c-条件链路的硬件感知低比特部署-条件推荐">候选课题 C：条件链路的硬件感知低比特部署（条件推荐）</a></li><li class="toc-sub"><a href="#推荐排序与止损条件">推荐排序与止损条件</a></li></ol></li><li><a href="#证据基础">证据基础</a></li><li><a href="#开放问题">开放问题</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
         <section class="article-content">
 <section class="topic-hero-grid" data-motion="reveal">
   <section class="judgment-panel topic-judgment">
     <p class="section-kicker">Current view</p>
     <h2>扩散效率工程</h2>
-    <p>追踪扩散模型从主干缩放到采样加速、部署压缩与 guidance 工程化的完整效率技术栈。</p>
-    <div class="judgment-meta"><span>32 Source notes</span><span>1 Open questions</span></div>
+    <p>研究扩散模型从表示空间、主干训练到采样、缓存、蒸馏、量化与条件控制的质量—成本边界。</p>
+    <div class="judgment-meta"><span>38 Source notes</span><span>1 Open questions</span></div>
   </section>
   <section class="reading-path">
     <p class="section-kicker">Reading path</p>
@@ -98,201 +108,179 @@
   </section>
 </section>
 <section class="method-map" data-motion="reveal" aria-label="Method family map">
-  <div class="method-map-heading"><div><p class="section-kicker">Method family map</p><h2>From problem definition to verifiable system capability</h2></div><span>32 Source notes</span></div>
+  <div class="method-map-heading"><div><p class="section-kicker">Method family map</p><h2>From problem definition to verifiable system capability</h2></div><span>38 Source notes</span></div>
   <div class="method-map-track"><div class="method-node"><span>1</span><strong>Problem</strong><small>Define task and evidence boundary</small></div><div class="method-node"><span>2</span><strong>Methods</strong><small>Compare families and design choices</small></div><div class="method-node"><span>3</span><strong>Evidence</strong><small>Return to papers and searchable text</small></div><div class="method-node"><span>4</span><strong>Open questions</strong><small>Track unresolved tensions</small></div></div>
 </section>
-<h2 id="概述">概述</h2>
-<p>这一页专门整理 diffusion engineering 这条子主线。它关注的核心问题不是“扩散模型能不能生成”，而是“扩散路线怎样成为一个更可扩展、更可部署、更容易挂接控制能力的工程平台”。在当前知识库里，这条线已经从表示空间、backbone 选择延伸到了采样提速、训练动力学、部署压缩、以及 guidance 接口工程化。</p>
-<p><a class="wikilink" href="../../en/sources/2026-04-14-latent-diffusion-models.html">sources/2026-04-14-latent-diffusion-models</a> 的全文复核补上最底层的表示空间工程：固定 A100、同参数和训练步数下，$f=4$–8 是压缩与重建的 sweet spot；inpainting 中 pixel LDM-1 到 LDM-4 VQ 的 train/sample@256/sample@512 throughput 从 0.11/0.26/0.07 提升到 0.33/0.97/0.34，epoch 时间 20.66→7.04 小时。其主干是 U-Net，支持 latent platform 的效率基础，不提供 DiT adoption 证据。</p>
+<h2 id="三分钟摘要">三分钟摘要</h2>
+<ul>
+<li><strong>它研究什么</strong>：在质量、条件遵循和可控性不明显退化的前提下，降低扩散模型训练、采样、显存、索引和部署成本。</li>
+<li><strong>不能混为一谈的成本</strong>：去噪步数（NFE）、每步浮点运算、真实硬件延迟、显存、离线蒸馏/校准成本和额外控制模型成本。</li>
+<li><strong>当前判断</strong>：潜空间（latent space）和扩散 Transformer（Diffusion Transformer, DiT）已成为主要平台；少步蒸馏、缓存与量化仍高度依赖模型、硬件和质量点。</li>
+<li><strong>研究机会</strong>：建立可复现的质量—成本协议，以及根据提示、时间步和样本难度动态分配计算，而不是只追逐最大加速倍数。</li>
+</ul>
+<p>效率不是单一技巧。一个方法把 50 步缩到 4 步，却需要大规模教师蒸馏、额外控制网络或更昂贵的单步主干，并不等价于端到端系统更便宜。</p>
+<h2 id="任务或系统流程">任务或系统流程</h2>
+<figure class="wiki-visual wiki-visual--flow" data-visual-id="diffusion-efficiency-cost-flow" aria-labelledby="visual-diffusion-efficiency-cost-flow-title" aria-describedby="visual-diffusion-efficiency-cost-flow-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">扩散系统的“更快”应沿哪些环节测量？</p><div class="wiki-visual-title" id="visual-diffusion-efficiency-cost-flow-title" role="heading" aria-level="3">一次生成的成本从哪里来</div><p class="wiki-visual-explanation">训练、条件编码、重复去噪、解码和控制模块都可能成为瓶颈；最终结论必须落到指定硬件与质量约束下的端到端测量。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>数据与训练</strong><small>模型规模、训练步数、分辨率和教师蒸馏决定离线成本</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>条件编码</strong><small>文本、布局与控制信号带来额外编码器和适配器</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>重复去噪</strong><small>步数乘以单步主干成本，是推理的主要计算来源</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>特征复用</strong><small>缓存、早停和并行求解器减少重复计算</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">05</span><strong>解码与后处理</strong><small>潜变量解码、超分和安全过滤仍计入端到端延迟</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">06</span><strong>统一验收</strong><small>在相同硬件、batch、分辨率和质量点报告成本</small></li></ol><figcaption><span>Diagram evidence</span><a class="wikilink" href="../../en/sources/2026-04-14-latent-diffusion-models.html">潜空间扩散</a>、<a class="wikilink" href="../../en/sources/2026-04-15-scalable-diffusion-models-with-transformers.html">DiT</a>、<a class="wikilink" href="../../en/sources/2026-04-15-deepcache.html">DeepCache</a>、<a class="wikilink" href="../../en/sources/2026-04-16-post-training-quantization-on-diffusion-models.html">PTQ4DM</a></figcaption><p class="sr-only" id="visual-diffusion-efficiency-cost-flow-alt">数据与训练得到模型，文本和控制条件被编码，去噪器重复执行多个时间步，再经解码器输出图像，最后统一测量质量、延迟、显存和离线成本。</p></figure>
 <h2 id="当前综合判断">当前综合判断</h2>
-<p>当前证据已经足够把 diffusion efficiency 看成一张完整工程图谱，而不是几篇互相分散的技巧论文。<a class="wikilink" href="../../en/sources/2026-04-15-all-are-worth-words.html">sources/2026-04-15-all-are-worth-words</a> 与 <a class="wikilink" href="../../en/sources/2026-04-15-scalable-diffusion-models-with-transformers.html">sources/2026-04-15-scalable-diffusion-models-with-transformers</a> 负责给出 backbone 与 scaling 的起点；<a class="wikilink" href="../../en/sources/2026-04-15-analyzing-training-dynamics-diffusion-models.html">sources/2026-04-15-analyzing-training-dynamics-diffusion-models</a> 说明训练动力学本身会决定质量上限；<a class="wikilink" href="../../en/sources/2026-04-16-come-closer-diffuse-faster.html">sources/2026-04-16-come-closer-diffuse-faster</a>、<a class="wikilink" href="../../en/sources/2026-04-15-act-diffusion.html">sources/2026-04-15-act-diffusion</a>、<a class="wikilink" href="../../en/sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">sources/2026-04-15-distilling-ode-solvers-diffusion-models</a>、<a class="wikilink" href="../../en/sources/2026-04-16-on-distillation-of-guided-diffusion-models.html">sources/2026-04-16-on-distillation-of-guided-diffusion-models</a>、<a class="wikilink" href="../../en/sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html">sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps</a>、<a class="wikilink" href="../../en/sources/2026-04-15-deepcache.html">sources/2026-04-15-deepcache</a> 与 <a class="wikilink" href="../../en/sources/2026-04-16-sana-sprint.html">sources/2026-04-16-sana-sprint</a> 则把“如何更快生成”拆成更完整的时间纵深：从 2022 年的早期 conditional acceleration，一直到 2025 年的一步一致性蒸馏前沿。</p>
-<p>再往后，<a class="wikilink" href="../../en/sources/2026-04-16-high-fidelity-guided-image-synthesis.html">sources/2026-04-16-high-fidelity-guided-image-synthesis</a> 把高保真 latent guidance 明确抬成独立问题，<a class="wikilink" href="../../en/sources/2026-04-16-post-training-quantization-on-diffusion-models.html">sources/2026-04-16-post-training-quantization-on-diffusion-models</a> 把这条线推进到低比特部署，<a class="wikilink" href="../../en/sources/2026-04-16-towards-practical-plug-and-play-diffusion-models.html">sources/2026-04-16-towards-practical-plug-and-play-diffusion-models</a> 与 <a class="wikilink" href="../../en/sources/2026-04-16-self-guided-diffusion-models.html">sources/2026-04-16-self-guided-diffusion-models</a> 又把效率问题和控制问题重新绑在一起：一个降低外部 guidance 接入成本，一个降低 guidance 对人工标签的依赖。放在一起看，diffusion 现在更像一个正在长出完整工程子生态的技术平台。</p>
-<p><a class="wikilink" href="../../en/sources/2026-04-16-plug-and-play-diffusion-features.html">sources/2026-04-16-plug-and-play-diffusion-features</a> 还补了一层更细的接口工程证据：控制能力可以直接建立在 diffusion feature 复用上，而不只体现在单独的 guidance 模块设计上。</p>
-<p><a class="wikilink" href="../../en/sources/2026-04-16-rethinking-spatial-inconsistency-cfg.html">sources/2026-04-16-rethinking-spatial-inconsistency-cfg</a> 还提醒我们，guidance engineering 的难点已经从“接不接得上去”继续推进到“空间上稳不稳定”。</p>
-<p><a class="wikilink" href="../../en/sources/2026-04-16-controlnet.html">sources/2026-04-16-controlnet</a>、<a class="wikilink" href="../../en/sources/2026-04-16-a-star.html">sources/2026-04-16-a-star</a>、<a class="wikilink" href="../../en/sources/2026-04-16-boxdiff.html">sources/2026-04-16-boxdiff</a> 与 <a class="wikilink" href="../../en/sources/2026-04-16-dense-text-attention-modulation.html">sources/2026-04-16-dense-text-attention-modulation</a> 又把这条层次继续拆开：有的路线通过 side-branch adapter 扩展条件控制，有的路线直接在测试时治理 cross-attention，还有的路线把空间布局约束做成 training-free guidance。说明 guidance engineering 已经不是单一技巧，而是一组围绕“接口设计、attention 轨迹与空间一致性”的系统工程问题。</p>
-<p><a class="wikilink" href="../../en/sources/2026-04-16-prompt-to-prompt.html">sources/2026-04-16-prompt-to-prompt</a>、<a class="wikilink" href="../../en/sources/2026-04-16-attend-and-excite.html">sources/2026-04-16-attend-and-excite</a>、<a class="wikilink" href="../../en/sources/2026-04-16-multidiffusion.html">sources/2026-04-16-multidiffusion</a> 与 <a class="wikilink" href="../../en/sources/2026-04-16-dlt-layout-transformer.html">sources/2026-04-16-dlt-layout-transformer</a> 则继续把 control 路线向 composition 层扩张：现在不仅能修 attention、加 box 或 layout，还能把语义完整性、多路径融合和抽象布局建模一起纳入 controllability 叙事。换句话说，diffusion control 正在从若干小技巧逐步长成一套分层接口标准。</p>
-<p><a class="wikilink" href="../../en/sources/2026-04-16-self-correcting-llm-controlled-diffusion-models.html">sources/2026-04-16-self-correcting-llm-controlled-diffusion-models</a>、<a class="wikilink" href="../../en/sources/2026-04-16-c3net.html">sources/2026-04-16-c3net</a>、<a class="wikilink" href="../../en/sources/2026-04-16-layoutdiffusion-graphic-layout-generation.html">sources/2026-04-16-layoutdiffusion-graphic-layout-generation</a> 与 <a class="wikilink" href="../../en/sources/2026-04-16-dc-controlnet.html">sources/2026-04-16-dc-controlnet</a> 又把这套标准往收敛阶段推进：现在已经能看到 controller-based、compound-adapter-based、layout-native 与 hierarchical-control 这几种接口边界开始分明。</p>
-<p><a class="wikilink" href="../../en/sources/2026-04-16-accelerating-dit-gradient-cache.html">sources/2026-04-16-accelerating-dit-gradient-cache</a>、<a class="wikilink" href="../../en/sources/2026-04-16-distilling-parallel-gradients-ode-solvers.html">sources/2026-04-16-distilling-parallel-gradients-ode-solvers</a> 与 <a class="wikilink" href="../../en/sources/2026-04-16-text-embedding-quantization-diffusion.html">sources/2026-04-16-text-embedding-quantization-diffusion</a> 则把 deployment / hardware-friendly 这条线真正补厚了：缓存策略开始 DiT-aware，solver 蒸馏开始并行化，quantization 也开始深入到 text-guided 条件链路。</p>
-<p>2026-07-12 的全文复核把四篇容易与 DiT 叙事混合的工程论文重新钉在各自层级：<a class="wikilink" href="../../en/sources/2026-04-16-on-distillation-of-guided-diffusion-models.html">sources/2026-04-16-on-distillation-of-guided-diffusion-models</a> 在 U-Net / Stable Diffusion 上联合压缩 CFG 双分支与采样步数；<a class="wikilink" href="../../en/sources/2026-04-16-post-training-quantization-on-diffusion-models.html">sources/2026-04-16-post-training-quantization-on-diffusion-models</a> 以 U-Net-like CNN 验证 timestep-aware INT8 PTQ；<a class="wikilink" href="../../en/sources/2026-04-16-towards-practical-plug-and-play-diffusion-models.html">sources/2026-04-16-towards-practical-plug-and-play-diffusion-models</a> 在 ADM / GLIDE 上用分段专家稳定外部 guidance；<a class="wikilink" href="../../en/sources/2026-04-16-self-guided-diffusion-models.html">sources/2026-04-16-self-guided-diffusion-models</a> 依靠 DINO / LOST / STEGO 产生伪条件，再训练 traditional U-Net。四者共同证明 diffusion 工程栈已经覆盖轨迹蒸馏、单步网络压缩、外部控制接口和低标注条件构造；它们属于架构无关或 U-Net 时代的工程证据，不能直接计入 DiT 采用率。</p>
-<p>这批全文结果也给出更具体的部署边界：guidance distillation 在 LAION 512 的 2–4 步区间相对 DDIM/DPM++ 优势最明显，到 8 步差距缩小；PTQ4DM 的 A6000 单次网络延迟约改善 1.6–2.3×，同时部分 DDIM 设置的 FID 明显退化；PPAP 仍需 500k 合成图与 300k iterations，data-free 表示免原始标签/数据集访问；self-guidance 的空间控制仍集中在 64×64。当前更可靠的工程判断是：这些模块提供可组合的效率与控制旋钮，每个旋钮都保留训练成本、数据域、硬件和质量边界。</p>
-<h3 id="2026-07-12-缓存-路径缩短-一步蒸馏与动态量化复核">2026-07-12 缓存、路径缩短、一步蒸馏与动态量化复核</h3>
+<h3 id="1-潜空间选择先决定效率上限">1. 潜空间选择先决定效率上限</h3>
+<p>原始 DDPM 与 Score SDE建立了扩散/得分模型的生成框架；潜空间扩散把去噪从像素空间移到压缩表示，显著降低高分辨率计算（<a class="wikilink" href="../../en/sources/2026-07-14-ddpm.html">DDPM</a>、<a class="wikilink" href="../../en/sources/2026-07-14-score-sde.html">Score SDE</a>、<a class="wikilink" href="../../en/sources/2026-04-14-latent-diffusion-models.html">潜空间扩散</a>）。但压缩越强并非越好：重建误差、细节损失和解码成本会反向限制质量。</p>
+<h3 id="2-主干扩展与训练动力学仍是第一层工程问题">2. 主干扩展与训练动力学仍是第一层工程问题</h3>
+<p>DiT 证明 Transformer 主干可随计算规模扩展；U-ViT 类方法、无注意力扩散和训练动力学分析则说明 token 化、跳连、归一化与优化日程都会影响训练效率和质量上限（<a class="wikilink" href="../../en/sources/2026-04-15-all-are-worth-words.html">U-ViT</a>、<a class="wikilink" href="../../en/sources/2026-04-15-scalable-diffusion-models-with-transformers.html">DiT</a>、<a class="wikilink" href="../../en/sources/2026-04-15-diffusion-models-without-attention.html">无注意力扩散</a>、<a class="wikilink" href="../../en/sources/2026-04-15-analyzing-training-dynamics-diffusion-models.html">训练动力学</a>）。因此，推理加速不能脱离教师模型和训练配方讨论。</p>
+<h3 id="3-少步采样已经可用-但质量点和离线成本决定价值">3. 少步采样已经可用，但质量点和离线成本决定价值</h3>
+<p>优化时间步、ODE 求解器蒸馏、引导蒸馏、并行梯度与一步一致性蒸馏从不同位置缩短采样轨迹（<a class="wikilink" href="../../en/sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html">时间步优化</a>、<a class="wikilink" href="../../en/sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">ODE 求解器蒸馏</a>、<a class="wikilink" href="../../en/sources/2026-04-16-on-distillation-of-guided-diffusion-models.html">引导蒸馏</a>、<a class="wikilink" href="../../en/sources/2026-04-16-distilling-parallel-gradients-ode-solvers.html">并行梯度蒸馏</a>、<a class="wikilink" href="../../en/sources/2026-04-16-sana-sprint.html">SANA-Sprint</a>）。这些方法可把采样推向少步甚至一步，但需要同时披露教师调优、蒸馏数据和质量退化。</p>
+<h3 id="4-缓存和动态计算适合高质量多步区间">4. 缓存和动态计算适合高质量多步区间</h3>
+<p>DeepCache 利用 U-Net 中高层特征变化较慢的性质复用中间结果，DiT 梯度缓存方法则针对 Transformer 轨迹修正缓存误差（<a class="wikilink" href="../../en/sources/2026-04-15-deepcache.html">DeepCache</a>、<a class="wikilink" href="../../en/sources/2026-04-16-accelerating-dit-gradient-cache.html">DiT 梯度缓存</a>）。缓存通常比重训教师轻量，但收益取决于时间步、提示、分辨率和底层算子；不能把理论 FLOPs 直接当作端到端加速。</p>
+<h3 id="5-低比特部署仍处于硬件与质量共同验证期">5. 低比特部署仍处于硬件与质量共同验证期</h3>
+<p>扩散模型后训练量化和文本条件感知量化说明，时间步与提示会改变激活分布，普通静态量化容易在低比特下放大质量损失（<a class="wikilink" href="../../en/sources/2026-04-16-post-training-quantization-on-diffusion-models.html">PTQ4DM</a>、<a class="wikilink" href="../../en/sources/2026-04-16-text-embedding-quantization-diffusion.html">文本条件量化</a>）。真正有用的结果应报告目标 GPU/加速器上的延迟、显存和功耗，而不是只有 BitOPs。</p>
+<h3 id="6-控制接口的复用不等于生成更快">6. 控制接口的复用不等于生成更快</h3>
+<p>ControlNet、Prompt-to-Prompt、Attend-and-Excite、BoxDiff 和 MultiDiffusion让冻结模型获得结构、注意力或区域控制（<a class="wikilink" href="../../en/sources/2026-04-16-controlnet.html">ControlNet</a>、<a class="wikilink" href="../../en/sources/2026-04-16-prompt-to-prompt.html">Prompt-to-Prompt</a>、<a class="wikilink" href="../../en/sources/2026-04-16-attend-and-excite.html">Attend-and-Excite</a>、<a class="wikilink" href="../../en/sources/2026-04-16-boxdiff.html">BoxDiff</a>、<a class="wikilink" href="../../en/sources/2026-04-16-multidiffusion.html">MultiDiffusion</a>）。这类工作可能降低每种任务重新训练的成本，却常增加每次采样的模块、反向梯度或多路径融合。应将“接口复用效率”与“推理延迟”分开报告。</p>
+<h2 id="近五年演化-2022-2026">近五年演化（2022—2026）</h2>
+<figure class="wiki-visual wiki-visual--timeline" data-visual-id="diffusion-efficiency-evolution" aria-labelledby="visual-diffusion-efficiency-evolution-title" aria-describedby="visual-diffusion-efficiency-evolution-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">效率研究如何从表示压缩扩展到少步、缓存和硬件部署？</p><div class="wiki-visual-title" id="visual-diffusion-efficiency-evolution-title" role="heading" aria-level="3">扩散效率技术栈的近五年演化</div><p class="wiki-visual-explanation">每个阶段解决不同成本项；后来的方法并未让早期问题消失，而是把端到端测量变得更重要。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>2022</strong><small>潜空间压缩和冻结主干的控制接口降低高分辨率与任务适配门槛</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>2023</strong><small>DiT 扩展规律、时间步优化与特征缓存形成独立工程路线</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>2024</strong><small>少步蒸馏、引导压缩和后训练量化开始覆盖完整推理链</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>2025</strong><small>一步蒸馏、DiT 轨迹缓存和条件感知低比特部署进入前沿</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">05</span><strong>2026</strong><small>研究重点转向真实硬件、离线成本和质量—延迟可复现边界</small></li></ol><figcaption><span>Diagram evidence</span><a class="wikilink" href="../../en/sources/2026-04-14-latent-diffusion-models.html">潜空间扩散</a>、<a class="wikilink" href="../../en/sources/2026-04-15-scalable-diffusion-models-with-transformers.html">DiT</a>、<a class="wikilink" href="../../en/sources/2026-04-15-deepcache.html">DeepCache</a>、<a class="wikilink" href="../../en/sources/2026-04-16-sana-sprint.html">SANA-Sprint</a></figcaption><p class="sr-only" id="visual-diffusion-efficiency-evolution-alt">2022 年潜空间和可控接口建立平台，2023 年 DiT 扩展和缓存发展，2024 年蒸馏与量化系统化，2025 年一步模型和 DiT 缓存推进，2026 年强调质量成本协议与动态计算。</p></figure>
+<h2 id="方法家族与成熟阶段">方法家族与成熟阶段</h2>
+<h3 id="方法家族的成熟度">方法家族的成熟度</h3>
+<h4 id="潜空间与主干设计">潜空间与主干设计</h4>
 <ul>
-<li><strong>DeepCache / U-Net reuse</strong>：SD v1.5 在 RTX 2080 上约 2.1–2.15× throughput，CLIP 只降 0.05–0.07；LDM 高倍 7–10× 点伴随 FID 4.41–8.23，适合引用的高质量区间是 2.1–4.1×。</li>
-<li><strong>GOC / DiT cache correction</strong>：在 FORA 50% 的相同 2× FLOPs 下，把 FID 6.857 拉回 3.907，A40 latency 只增约 2%；2× 来源是 FORA，GOC 的贡献是误差修正。PixArt/COCO FID 只改善 0.013，跨模型收益差异明显。</li>
-<li><strong>CCDF / inverse warm-start</strong>：MRI 等有观测逆问题可将 1000 NFE 缩到 20，并保持或改善 PSNR；论文没有 wall-clock，$t_0$ 需按任务试验，不能外推为开放式 T2I few-step。</li>
-<li><strong>SANA-Sprint / one-step distillation</strong>：A100、1024²、BF16、batch 1 的 one-step 端到端时间为 0.21s，FID 7.04；transformer-only 0.03s 与 H100 0.10s 属于不同口径。方案仍需 32×A100、25K iterations 的 teacher tuning + distillation。</li>
-<li><strong>QLIP / prompt-adaptive PTQ</strong>：RTX 3090 上相对 W4A16 从 5.58s 降到 4.85s，约 1.15×；W4A8 更快但 FID 28.32，QLIP 以 24.72 换回质量。text embedding 是位宽策略输入，被量化对象是 denoiser activation。</li>
+<li><strong>阶段</strong>：成熟底座</li>
+<li><strong>证据锚点</strong>：潜空间扩散和 DiT 已成为高分辨率生成的主要平台，U-Net 仍在大量控制与部署工作中使用。</li>
+<li><strong>研究机会</strong>：压缩率、token 数、分辨率与重建误差的统一成本曲线。</li>
 </ul>
-<p>这五篇把“加速”拆成四个必须分开报告的量：NFE、denoiser FLOPs/BitOPs、真实硬件 latency、离线训练/校准成本。Wiki 后续统一禁止只报最大倍数而隐藏质量点、硬件、batch 和额外模型成本。</p>
-<h3 id="2026-07-12-条件接口不等于效率复核">2026-07-12 条件接口不等于效率复核</h3>
+<h4 id="时间步与求解器优化">时间步与求解器优化</h4>
 <ul>
-<li><strong>BBDM</strong>：单卡 RTX 3090 可训练不等于轻量；每个域对仍训练 237.09M–258.11M 参数，默认 200 步且未报告 wall-clock/延迟。它属于 diffusion path design。</li>
-<li><strong>C3Net</strong>：所谓效率是避免为每种输入模态组合单独训练 controller；每个输出模态仍保留独立 U-Net/Control U-Net/decoder，论文没有参数量、GPU-hours 或推理延迟。</li>
-<li><strong>DLT</strong>：100-step layout diffusion 在 RICO/PubLayNet 相对 autoregressive baselines 约慢 2×，只在 Magazine 约快 1.65×；核心贡献是属性级 conditioning，不是采样加速。</li>
-<li><strong>LayoutDiffusion（graphic layout）</strong>：条件子任务免重训，但推理仍需 50–200 次 BERT-base 风格 Transformer pass；200 步 FID 2.490，1000 步仍可到 2.295。</li>
+<li><strong>阶段</strong>：系统优化期</li>
+<li><strong>证据锚点</strong>：优化时间步、逆问题 warm-start 与 ODE 求解器蒸馏都能减少函数评估次数。</li>
+<li><strong>研究机会</strong>：按样本和任务选择轨迹，而不是为所有提示固定同一步数。</li>
 </ul>
-<p>这四篇应留在 guidance/interface 工程版图中，但不得用来支撑“低训练成本、低延迟或通用 diffusion acceleration”。今后接口论文也必须分别报告 controller 复用收益、每输出模态模型成本、NFE 与真实 latency。</p>
-<h3 id="2026-07-12-attention-control-与闭环控制复核">2026-07-12 Attention control 与闭环控制复核</h3>
+<h4 id="教师蒸馏与一步生成">教师蒸馏与一步生成</h4>
 <ul>
-<li><strong>Prompt-to-Prompt</strong>：首次系统展示 cross-attention injection/reweighting 能保留构图并局部改 prompt；论文没有定量 benchmark，且真实图依赖不精确 DDIM inversion。</li>
-<li><strong>Attend-and-Excite</strong>：276 prompts×64 seeds，二主体 BLIP 分数从 SD 的 0.767/0.793/0.765 提升到 0.806/0.830/0.811；A100 latency 从约 5.6s 增至 9.7–15.4s。它减少主体遗漏，没有解决关系和计数。</li>
-<li><strong>A-STAR</strong>：segregation + retention 在三类二主体任务达 0.82/0.84/0.82，组合消融优于单项；关系动作仍由 base model 决定。</li>
-<li><strong>BoxDiff</strong>：SD 的 layout AP 2.8→22.3；GLIGEN 29.7→40.2。用户已经提供 box，结果支持 spatial guidance，不代表模型自己理解布局。</li>
-<li><strong>SLD</strong>：DALL-E 3 平均准确率 52.0→78.5，LMD+ 79.3→88.3；Stable Diffusion 一轮/两轮为 54.5/60.0。推理来自 GPT-4、OWL-ViT、SAM 与 diffusion 的检测—规划—修正闭环。</li>
+<li><strong>阶段</strong>：活跃发展期</li>
+<li><strong>证据锚点</strong>：引导蒸馏、并行梯度蒸馏和 SANA-Sprint 将高质量生成压到少步/一步。</li>
+<li><strong>研究机会</strong>：把教师训练、蒸馏数据和学生部署放入同一生命周期成本。</li>
 </ul>
-<p>这五篇形成递进栈：<code>attention reuse → token completeness → overlap/retention governance → explicit spatial constraints → external closed-loop controller</code>。前四篇都只在 Stable Diffusion/Imagen U-Net attention 上验证；SLD 的提升来自外部模块系统。它们不能计入 DiT adoption，也不能把执行改善写成 diffusion backbone 原生理解。</p>
-<h3 id="2026-07-12-sampling-训练与-solver-的四种效率变量">2026-07-12 Sampling、训练与 solver 的四种效率变量</h3>
+<h4 id="特征缓存与动态计算">特征缓存与动态计算</h4>
 <ul>
-<li><strong>Optimized Time Steps</strong>：固定 denoiser/solver/NFE，只改离散时间点。DiT-XL/2 ImageNet-256 的 5-NFE FID 23.48→8.66，PixArt-α COCO 16.22→9.90；离线 CPU 1.9–14.1s，没有真实生成 latency。</li>
-<li><strong>D-ODE</strong>：冻结 denoiser，按数据集/solver/NFE 用 teacher trajectories 拟合每步标量；CIFAR-10 10-NFE DDIM FID 18.85→8.67。在线 NFE 不变，离线为数 CPU 分钟，仍属于 solver distillation。</li>
-<li><strong>ACT-Diffusion</strong>：训练新的 1-NFE consistency generator + discriminator；ImageNet FID 13.0→10.6，batch 2048→320、steps 800K→400K。缺少 GPU-hours/wall-clock，且大 adversarial weight 会 mode collapse。</li>
-<li><strong>EDM2</strong>：在 ADM U-Net 内重构 magnitude、effective LR 与 post-hoc EMA；ImageNet-512 无 CFG FID 8.00→2.56，XXL CFG 达 1.81。绝对训练预算约 2.147B seen images，63 NFE，作者把 DiT 迁移列为未来工作。</li>
+<li><strong>阶段</strong>：活跃发展期</li>
+<li><strong>证据锚点</strong>：DeepCache 与 DiT 梯度缓存显示中间特征可复用，但收益随架构和提示变化。</li>
+<li><strong>研究机会</strong>：用误差或不确定性预测何时缓存、何时完整计算。</li>
 </ul>
-<p>四篇必须分别记为 <code>schedule optimization / solver distillation / one-step model training / training-dynamics engineering</code>。NFE、网络 FLOPs、端到端 latency、离线 calibration/distillation、主训练预算和质量点缺一不可；其中只有 optimized-time-steps 把 DiT/PixArt 当适用 backbone，研究变量仍不是 DiT 架构。</p>
-<h3 id="2026-07-12-并行-solver-空间-cfg-条件蒸馏与-wavelet-表示复核">2026-07-12 并行 solver、空间 CFG、条件蒸馏与 wavelet 表示复核</h3>
+<h4 id="量化与硬件协同">量化与硬件协同</h4>
 <ul>
-<li><strong>EPD-Solver</strong>：每个 ODE 区间以 $K=2$ 并行计算两个学习方向；CIFAR/ImageNet 5 Para. NFE 的 FID 分别到 4.33/6.35，但 Para. NFE 是串行 critical path，不是总 denoiser evaluations。单 4090、batch 1 延迟近似不增，不代表 FLOPs、显存、能耗或服务吞吐免费。</li>
-<li><strong>S-CFG</strong>：在 SD/IF U-Net attention 上按语义区域重标 CFG；多数 FID/CLIP 改善较小，人评偏好较明显，单 A100 latency 增约 1.6%–2.9%。它属于 guidance quality governance，不属于 sampling acceleration。</li>
-<li><strong>CoDi</strong>：训练 task-specific conditional U-Net/adapter，把条件适配与 consistency distillation 合并；4-step SR FID/LPIPS 19.637/0.2656 接近 250-step LDM 的 19.200/0.2639，TPUv5 latency 107ms 对 50-step LDM 977ms。代价是每任务训练、364M PE adapter，以及 8-day/64 TPU-v4 的实验上下文。</li>
-<li><strong>WaveDiff</strong>：在 DDGAN-style 2–4 step U-Net 上用 DWT 把空间网格减半；256² FLOPs/显存从 70.82G/3.21G 降至 28.54G/1.07G。它从头训练 adversarial diffusion，速度还来自减深网络，不是现代 LDM/DiT 的通用表示结论。</li>
+<li><strong>阶段</strong>：早期整合期</li>
+<li><strong>证据锚点</strong>：PTQ4DM 与条件感知量化已证明时间步/文本条件必须参与位宽策略。</li>
+<li><strong>研究机会</strong>：在真实 GPU/NPU 上联合优化 denoiser、文本编码器和解码器。</li>
 </ul>
-<p>这四篇把效率账本进一步拆成五个正交量：<strong>总 denoiser evaluations、可并行 critical path、单次网络 FLOPs/显存、离线训练/蒸馏预算、质量与条件忠实度</strong>。后续禁止把 <code>Para. NFE</code>、training-free guidance、parameter-efficient adapter 或 wavelet FLOPs 降低统称为同一种“加速”。四篇生成主干均为 U-Net/SD/IF/DDGAN 生态，不计入 DiT adoption evidence。</p>
-<h3 id="2026-07-12-spatial-control-engineering-的训练-推理转移">2026-07-12 Spatial/control engineering 的训练—推理转移</h3>
+<h4 id="guidance-与控制接口">Guidance 与控制接口</h4>
 <ul>
-<li><strong>ControlNet</strong>：复制 SD U-Net encoder/middle 构成深侧支；A100 每训练 step 相对 full SD 约 +23% 显存/+34% 时间。冻结主干保护先验，却不是小参数或采样加速。</li>
-<li><strong>DC-ControlNet</strong>：SDXL U-Net 上拆分 intra-element content/layout 与 inter-element order；8×A100 三阶段训练，主文主要是定性证据。FLUX 只生成 DMC-120k 数据。</li>
-<li><strong>MultiDiffusion</strong>：训练为零，每步按 crop/region 多次运行 denoiser 并做最小二乘融合；512×4608 panorama FID 10.3±4.8，调用数随区域/画布增长。</li>
-<li><strong>DenseDiffusion</strong>：SD U-Net 的 training-free cross/self-attention modulation；SOA-I/IoU 77.61/34.99。去 mask-area 后 IoU 升至 38.00，语义出现和自然度反而下降。</li>
+<li><strong>阶段</strong>：应用验证期</li>
+<li><strong>证据锚点</strong>：ControlNet、外部 plug-and-play guidance、自引导和 attention control 形成可组合接口。</li>
+<li><strong>研究机会</strong>：量化控制收益、额外延迟、训练数据和模块冲突，避免把复用误写成加速。</li>
 </ul>
-<p>控制工程必须同时报告条件忠实、语义出现、自然度、条件冲突、训练存储与推理调用数。四篇均在 Stable Diffusion/SDXL U-Net 验证，不提供 DiT/FLUX 控制适配证据。</p>
-<h3 id="p3-feature-guidance-engineering-的成本边界">P3：feature/guidance engineering 的成本边界</h3>
+<figure class="wiki-visual wiki-visual--stack" data-visual-id="diffusion-efficiency-method-stack" aria-labelledby="visual-diffusion-efficiency-method-stack-title" aria-describedby="visual-diffusion-efficiency-method-stack-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">不同加速方法作用于模型生命周期的哪一层？</p><div class="wiki-visual-title" id="visual-diffusion-efficiency-method-stack-title" role="heading" aria-level="3">六层扩散效率工程栈</div><p class="wiki-visual-explanation">从表示到硬件逐层定位成本，有助于避免把 NFE、FLOPs、延迟和开发复用混成一个“加速倍数”。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>表示与主干</strong><small>压缩率、token 数、U-Net/DiT 和单步计算量</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>训练与教师</strong><small>数据、优化日程、教师调优和蒸馏生命周期</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>采样轨迹</strong><small>时间步、求解器、引导分支与函数评估次数</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>中间特征</strong><small>缓存、跳步、误差修正和动态计算预算</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">05</span><strong>数值与硬件</strong><small>权重/激活位宽、内核、显存、吞吐与功耗</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">06</span><strong>系统验收</strong><small>图像质量、条件遵循、延迟和离线成本共同决定 Pareto 前沿</small></li></ol><figcaption><span>Diagram evidence</span><a class="wikilink" href="../../en/sources/2026-04-14-latent-diffusion-models.html">潜空间扩散</a>、<a class="wikilink" href="../../en/sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">求解器蒸馏</a>、<a class="wikilink" href="../../en/sources/2026-04-15-deepcache.html">DeepCache</a>、<a class="wikilink" href="../../en/sources/2026-04-16-post-training-quantization-on-diffusion-models.html">PTQ4DM</a></figcaption><p class="sr-only" id="visual-diffusion-efficiency-method-stack-alt">工程栈底层是潜空间和主干，其上依次为训练、采样轨迹、特征缓存、量化硬件、控制接口与端到端验收。</p></figure>
+<h2 id="拥挤方向与研究机会">拥挤方向与研究机会</h2>
 <ul>
-<li><strong>FreeU</strong>：U-Net decoder backbone/skip 频域重加权；无训练、无额外 U-Net forward/step，但含 FFT/IFFT，缺严格 latency/FLOPs 表。</li>
-<li><strong>DiffusionCLIP</strong>：每目标方向全量微调 DDPM U-Net，41.3s–7min/属性；单图 1.958–10.132s。</li>
-<li><strong>GradOP+</strong>：每图 20–60 次 latent gradients，mixed precision 8.86s，对 SDEdit 4.45s。</li>
-<li><strong>PnP Features</strong>：真实图 1000-step inversion，translation 每步 source/target 两条 U-Net，约 2× forward count。</li>
+<li><strong>相对拥挤</strong>：只报去噪步数减少、只比较 FLOPs、只在单一 GPU 与单一提示集展示最大倍数。</li>
+<li><strong>仍值得做</strong>：提示/时间步自适应缓存、端到端低比特链路、离线蒸馏成本摊销、统一质量—延迟协议。</li>
+<li><strong>容易被误判的方向</strong>：冻结主干的控制接口节省了任务适配成本，但未必减少单次推理；应单列训练、存储和延迟。</li>
+<li><strong>有限资源优势</strong>：无需从零训练基础模型，可以冻结公开模型，围绕测量、缓存预测、轻量量化和错误分析建立贡献。</li>
 </ul>
-<p>四篇说明训练成本、checkpoint 数、inversion、U-Net forward 与 latent gradients 必须分栏报告。它们的生成主干均为 U-Net/LDM U-Net。</p>
-<p>Inversion/editing P4 继续强化该口径：Blended Diffusion 无训练但每候选约 30s 且每步 CLIP backward；EDICT 无优化但每步两次 denoiser；Imagic 每图 7–8min 适配并从 8 seeds 选结果；Diff-AE 训练吞吐比 DDIM 慢约 20%，还需语义与图像两段 diffusion。<code>training-free / exact / autoencoder / per-image adaptation</code> 都不能直接映射为低部署成本。</p>
-<p>CoDi 展示任务专用 few-step distillation：4-step latency 107±3ms 对 50-step 977±1ms，同时 PE-CoDi 每任务仍有364M adapter，实验背景为64 TPU-v4×8天且未拆边际成本。CommonCanvas 约20K A100-hours/run与1120 A100-hours captioning，LayoutDiffusion COCO Full 约216.55 V100-days；少步、开放数据和空间控制都不等于低训练成本。</p>
-<p>同时，<a class="wikilink" href="../../en/sources/2026-04-15-diffusion-models-without-attention.html">sources/2026-04-15-diffusion-models-without-attention</a> 依然提供了重要约束：效率工程在强化 diffusion 主线的平台性，但主干路线本身仍存在 attention / non-attention 的结构竞争。这让当前更合理的综合判断变成：<strong>diffusion efficiency 的主线已经很清楚，主干架构的最终收敛形态仍值得继续观察。</strong></p>
-<h2 id="方法家族">方法家族</h2>
+<h2 id="反方证据-局限与可证伪条件">反方证据、局限与可证伪条件</h2>
+<p>最强反方意见是：很多加速收益依赖特定架构、编译栈和低质量点，换到不同分辨率、提示或硬件后可能消失；少步学生还可能把教师偏差固化。</p>
+<p>一项效率研究至少应：</p>
+<ol>
+<li>在相同硬件、精度、batch、分辨率和质量约束下比较；</li>
+<li>分别报告 NFE、FLOPs/BitOPs、真实延迟、峰值显存和离线成本；</li>
+<li>覆盖简单与复杂提示、不同随机种子和至少两个模型家族；</li>
+<li>同时测视觉质量、条件遵循与失败类型；</li>
+<li>预先规定止损：若收益只存在于明显质量退化点或被解码/控制模块抵消，不得宣称端到端加速。</li>
+</ol>
+<h2 id="研究生可行的研究入口">研究生可行的研究入口</h2>
+<h3 id="候选课题-a-扩散加速的统一质量-成本协议-最推荐">候选课题 A：扩散加速的统一质量—成本协议（最推荐）</h3>
 <ul>
-<li>backbone / scaling：<a class="wikilink" href="../../en/sources/2026-04-15-all-are-worth-words.html">sources/2026-04-15-all-are-worth-words</a>、<a class="wikilink" href="../../en/sources/2026-04-15-scalable-diffusion-models-with-transformers.html">sources/2026-04-15-scalable-diffusion-models-with-transformers</a></li>
-<li>训练动力学校正：<a class="wikilink" href="../../en/sources/2026-04-15-analyzing-training-dynamics-diffusion-models.html">sources/2026-04-15-analyzing-training-dynamics-diffusion-models</a></li>
-<li>一步扩散训练：<a class="wikilink" href="../../en/sources/2026-04-15-act-diffusion.html">sources/2026-04-15-act-diffusion</a></li>
-<li>早期 conditional acceleration：<a class="wikilink" href="../../en/sources/2026-04-16-come-closer-diffuse-faster.html">sources/2026-04-16-come-closer-diffuse-faster</a></li>
-<li>推理缓存加速：<a class="wikilink" href="../../en/sources/2026-04-15-deepcache.html">sources/2026-04-15-deepcache</a></li>
-<p> - DiT-aware cache：<a class="wikilink" href="../../en/sources/2026-04-16-accelerating-dit-gradient-cache.html">sources/2026-04-16-accelerating-dit-gradient-cache</a></p>
-<li>推理期免费提质：<a class="wikilink" href="../../en/sources/2026-04-15-freeu.html">sources/2026-04-15-freeu</a></li>
-<li>求解器蒸馏：<a class="wikilink" href="../../en/sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">sources/2026-04-15-distilling-ode-solvers-diffusion-models</a></li>
-<p> - 并行梯度 solver 蒸馏：<a class="wikilink" href="../../en/sources/2026-04-16-distilling-parallel-gradients-ode-solvers.html">sources/2026-04-16-distilling-parallel-gradients-ode-solvers</a></p>
-<li>guidance 蒸馏：<a class="wikilink" href="../../en/sources/2026-04-16-on-distillation-of-guided-diffusion-models.html">sources/2026-04-16-on-distillation-of-guided-diffusion-models</a></li>
-<p> - 高保真 latent guidance：<a class="wikilink" href="../../en/sources/2026-04-16-high-fidelity-guided-image-synthesis.html">sources/2026-04-16-high-fidelity-guided-image-synthesis</a></p>
-<p> - feature-level plug-and-play：<a class="wikilink" href="../../en/sources/2026-04-16-plug-and-play-diffusion-features.html">sources/2026-04-16-plug-and-play-diffusion-features</a></p>
-<li>时间步优化：<a class="wikilink" href="../../en/sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html">sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps</a></li>
-<li>低比特部署：<a class="wikilink" href="../../en/sources/2026-04-16-post-training-quantization-on-diffusion-models.html">sources/2026-04-16-post-training-quantization-on-diffusion-models</a></li>
-<p> - text-guided 条件链路量化：<a class="wikilink" href="../../en/sources/2026-04-16-text-embedding-quantization-diffusion.html">sources/2026-04-16-text-embedding-quantization-diffusion</a></p>
-<li>plug-and-play guidance 工程化：<a class="wikilink" href="../../en/sources/2026-04-16-towards-practical-plug-and-play-diffusion-models.html">sources/2026-04-16-towards-practical-plug-and-play-diffusion-models</a></li>
-<li>条件控制侧支接口：<a class="wikilink" href="../../en/sources/2026-04-16-controlnet.html">sources/2026-04-16-controlnet</a></li>
-<li>自监督 guidance：<a class="wikilink" href="../../en/sources/2026-04-16-self-guided-diffusion-models.html">sources/2026-04-16-self-guided-diffusion-models</a></li>
-<li>test-time attention 治理：<a class="wikilink" href="../../en/sources/2026-04-16-a-star.html">sources/2026-04-16-a-star</a></li>
-<li>training-free box guidance：<a class="wikilink" href="../../en/sources/2026-04-16-boxdiff.html">sources/2026-04-16-boxdiff</a></li>
-<li>dense caption / layout attention modulation：<a class="wikilink" href="../../en/sources/2026-04-16-dense-text-attention-modulation.html">sources/2026-04-16-dense-text-attention-modulation</a></li>
-<li>prompt-only cross-attention 编辑：<a class="wikilink" href="../../en/sources/2026-04-16-prompt-to-prompt.html">sources/2026-04-16-prompt-to-prompt</a></li>
-<li>semantic completeness guidance：<a class="wikilink" href="../../en/sources/2026-04-16-attend-and-excite.html">sources/2026-04-16-attend-and-excite</a></li>
-<li>compositional multi-path control：<a class="wikilink" href="../../en/sources/2026-04-16-multidiffusion.html">sources/2026-04-16-multidiffusion</a></li>
-<li>conditioned layout diffusion：<a class="wikilink" href="../../en/sources/2026-04-16-dlt-layout-transformer.html">sources/2026-04-16-dlt-layout-transformer</a></li>
-<li>closed-loop LLM controller：<a class="wikilink" href="../../en/sources/2026-04-16-self-correcting-llm-controlled-diffusion-models.html">sources/2026-04-16-self-correcting-llm-controlled-diffusion-models</a></li>
-<li>compound-conditioned ControlNet：<a class="wikilink" href="../../en/sources/2026-04-16-c3net.html">sources/2026-04-16-c3net</a></li>
-<li>graphic-layout discrete diffusion：<a class="wikilink" href="../../en/sources/2026-04-16-layoutdiffusion-graphic-layout-generation.html">sources/2026-04-16-layoutdiffusion-graphic-layout-generation</a></li>
-<li>hierarchical ControlNet：<a class="wikilink" href="../../en/sources/2026-04-16-dc-controlnet.html">sources/2026-04-16-dc-controlnet</a></li>
-<li>CFG 空间一致性治理：<a class="wikilink" href="../../en/sources/2026-04-16-rethinking-spatial-inconsistency-cfg.html">sources/2026-04-16-rethinking-spatial-inconsistency-cfg</a></li>
-<li>one-step consistency frontier：<a class="wikilink" href="../../en/sources/2026-04-16-sana-sprint.html">sources/2026-04-16-sana-sprint</a></li>
-<li>非 attention 主干对照：<a class="wikilink" href="../../en/sources/2026-04-15-diffusion-models-without-attention.html">sources/2026-04-15-diffusion-models-without-attention</a></li>
+<li><strong>精确研究问题</strong>：不同步数、缓存、蒸馏和量化方法在统一硬件与质量约束下的真实 Pareto 前沿是什么？</li>
+<li><strong>最小实验</strong>：选择一个 U-Net 和一个 DiT 公开模型，复现 3 类加速方法并记录端到端延迟、显存、FID/CLIPScore 与提示失败。</li>
+<li><strong>主要贡献</strong>：可复现实验框架、测量口径和错误归因。</li>
+<li><strong>止损条件</strong>：若跨方法实现差异无法公平控制，先收窄为同一模型内的时间步—缓存比较。</li>
 </ul>
-<h2 id="五层工程栈">五层工程栈</h2>
-<h3 id="0-representation-space-层">0. representation-space 层</h3>
-<p>这一层回答“denoiser 在什么表示空间运行”。<a class="wikilink" href="../../en/sources/2026-04-14-latent-diffusion-models.html">sources/2026-04-14-latent-diffusion-models</a> 证明 mild latent compression 可以同时降低训练和采样成本，$f=4$–8 又显示压缩存在 reconstruction ceiling。Autoencoder 的编码、解码、重建误差和训练成本都属于端到端效率账本。</p>
-<h3 id="1-backbone-scaling-层">1. backbone / scaling 层</h3>
-<p>这一层回答“什么样的主干更适合持续扩展”。当前证据说明 ViT/DiT 路线已经具备很强的平台势能，尤其适合承接后续的效率和控制模块。</p>
-<h3 id="2-sampling-acceleration-层">2. sampling acceleration 层</h3>
-<p>这一层回答“怎样减少生成时间”。当前已覆盖 solver、schedule、cache、guidance distillation、多步到少步压缩等多条路线，说明 few-step diffusion 已经从单点技巧发展成系统工程问题。</p>
-<h3 id="3-deployment-compression-层">3. deployment compression 层</h3>
-<p>这一层回答“怎样让模型更容易部署”。<a class="wikilink" href="../../en/sources/2026-04-16-post-training-quantization-on-diffusion-models.html">sources/2026-04-16-post-training-quantization-on-diffusion-models</a> 把单步网络成本压缩纳入主线，说明 diffusion 的落地问题已经进入比特宽度和硬件友好性层面。</p>
-<h3 id="4-guidance-engineering-层">4. guidance engineering 层</h3>
-<p>这一层回答“怎样把控制能力更稳定、更低成本地接进系统”。当前已经同时覆盖 guidance 蒸馏、插件化 guidance、自监督 guidance、side-branch condition adapters，以及 test-time / training-free spatial guidance，这说明 controllability 本身也正在被工程化，而不是只靠单一条件器方案。</p>
-<p>现在这一层至少可以再细分成六类：一类是 module-level guidance framework，例如 <a class="wikilink" href="../../en/sources/2026-04-16-towards-practical-plug-and-play-diffusion-models.html">sources/2026-04-16-towards-practical-plug-and-play-diffusion-models</a>；一类是 feature-level control reuse，例如 <a class="wikilink" href="../../en/sources/2026-04-16-plug-and-play-diffusion-features.html">sources/2026-04-16-plug-and-play-diffusion-features</a>；一类是 side-branch adapters，例如 <a class="wikilink" href="../../en/sources/2026-04-16-controlnet.html">sources/2026-04-16-controlnet</a>；一类是 inference-time attention / spatial guidance，例如 <a class="wikilink" href="../../en/sources/2026-04-16-a-star.html">sources/2026-04-16-a-star</a>、<a class="wikilink" href="../../en/sources/2026-04-16-boxdiff.html">sources/2026-04-16-boxdiff</a> 与 <a class="wikilink" href="../../en/sources/2026-04-16-dense-text-attention-modulation.html">sources/2026-04-16-dense-text-attention-modulation</a>；一类是 compositional / layout control framework，例如 <a class="wikilink" href="../../en/sources/2026-04-16-multidiffusion.html">sources/2026-04-16-multidiffusion</a>、<a class="wikilink" href="../../en/sources/2026-04-16-dlt-layout-transformer.html">sources/2026-04-16-dlt-layout-transformer</a> 与 <a class="wikilink" href="../../en/sources/2026-04-16-prompt-to-prompt.html">sources/2026-04-16-prompt-to-prompt</a>；还有一类是 controller / hierarchical control system，例如 <a class="wikilink" href="../../en/sources/2026-04-16-self-correcting-llm-controlled-diffusion-models.html">sources/2026-04-16-self-correcting-llm-controlled-diffusion-models</a>、<a class="wikilink" href="../../en/sources/2026-04-16-c3net.html">sources/2026-04-16-c3net</a> 与 <a class="wikilink" href="../../en/sources/2026-04-16-dc-controlnet.html">sources/2026-04-16-dc-controlnet</a>。</p>
+<h3 id="候选课题-b-误差感知的动态特征缓存-推荐">候选课题 B：误差感知的动态特征缓存（推荐）</h3>
+<ul>
+<li><strong>精确研究问题</strong>：能否根据时间步、提示复杂度和特征变化预测何时安全复用缓存？</li>
+<li><strong>最小实验</strong>：冻结公开 U-Net/DiT，训练轻量误差预测器，比较固定间隔、阈值和动态策略。</li>
+<li><strong>主要贡献</strong>：在相同质量下减少不必要计算，并解释失败提示。</li>
+<li><strong>止损条件</strong>：若预测器开销抵消收益，转为离线规则或只做误差分析。</li>
+</ul>
+<h3 id="候选课题-c-条件链路的硬件感知低比特部署-条件推荐">候选课题 C：条件链路的硬件感知低比特部署（条件推荐）</h3>
+<ul>
+<li><strong>精确研究问题</strong>：文本编码、去噪器和解码器怎样分配位宽才能在目标设备上保持指令遵循？</li>
+<li><strong>最小实验</strong>：以公开模型和一种 GPU/NPU 为目标，比较静态、时间步感知和提示感知量化。</li>
+<li><strong>主要贡献</strong>：真实延迟/显存与条件失败曲线。</li>
+<li><strong>止损条件</strong>：若缺少低比特内核或设备测量权限，改做可复现 GPU 混合精度研究。</li>
+</ul>
+<h3 id="推荐排序与止损条件">推荐排序与止损条件</h3>
+<ul>
+<li>首选 A，先建立严谨测量能力；有模型系统经验后进入 B；有硬件工具链再选 C。</li>
+<li>不建议把“把步数从 N 改到 M”单独作为课题，也不建议只复述论文最大加速倍数。</li>
+<li>三个月内若无法稳定复现质量与延迟基线，应先缩小模型、分辨率和方法范围。</li>
+</ul>
 <h2 id="证据基础">证据基础</h2>
 <ul>
-<li><a class="wikilink" href="../../en/sources/2026-04-15-all-are-worth-words.html">sources/2026-04-15-all-are-worth-words</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-15-scalable-diffusion-models-with-transformers.html">sources/2026-04-15-scalable-diffusion-models-with-transformers</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-15-analyzing-training-dynamics-diffusion-models.html">sources/2026-04-15-analyzing-training-dynamics-diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-15-act-diffusion.html">sources/2026-04-15-act-diffusion</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-15-deepcache.html">sources/2026-04-15-deepcache</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-15-freeu.html">sources/2026-04-15-freeu</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">sources/2026-04-15-distilling-ode-solvers-diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-on-distillation-of-guided-diffusion-models.html">sources/2026-04-16-on-distillation-of-guided-diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-high-fidelity-guided-image-synthesis.html">sources/2026-04-16-high-fidelity-guided-image-synthesis</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-plug-and-play-diffusion-features.html">sources/2026-04-16-plug-and-play-diffusion-features</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-come-closer-diffuse-faster.html">sources/2026-04-16-come-closer-diffuse-faster</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-rethinking-spatial-inconsistency-cfg.html">sources/2026-04-16-rethinking-spatial-inconsistency-cfg</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-sana-sprint.html">sources/2026-04-16-sana-sprint</a></li>
-<p> - <a class="wikilink" href="../../en/sources/2026-04-16-accelerating-dit-gradient-cache.html">sources/2026-04-16-accelerating-dit-gradient-cache</a></p>
-<p> - <a class="wikilink" href="../../en/sources/2026-04-16-distilling-parallel-gradients-ode-solvers.html">sources/2026-04-16-distilling-parallel-gradients-ode-solvers</a></p>
-<p> - <a class="wikilink" href="../../en/sources/2026-04-16-text-embedding-quantization-diffusion.html">sources/2026-04-16-text-embedding-quantization-diffusion</a></p>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-post-training-quantization-on-diffusion-models.html">sources/2026-04-16-post-training-quantization-on-diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-towards-practical-plug-and-play-diffusion-models.html">sources/2026-04-16-towards-practical-plug-and-play-diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-self-guided-diffusion-models.html">sources/2026-04-16-self-guided-diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-controlnet.html">sources/2026-04-16-controlnet</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-a-star.html">sources/2026-04-16-a-star</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-boxdiff.html">sources/2026-04-16-boxdiff</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-dense-text-attention-modulation.html">sources/2026-04-16-dense-text-attention-modulation</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-prompt-to-prompt.html">sources/2026-04-16-prompt-to-prompt</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-attend-and-excite.html">sources/2026-04-16-attend-and-excite</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-multidiffusion.html">sources/2026-04-16-multidiffusion</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-dlt-layout-transformer.html">sources/2026-04-16-dlt-layout-transformer</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-self-correcting-llm-controlled-diffusion-models.html">sources/2026-04-16-self-correcting-llm-controlled-diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-c3net.html">sources/2026-04-16-c3net</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-layoutdiffusion-graphic-layout-generation.html">sources/2026-04-16-layoutdiffusion-graphic-layout-generation</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-16-dc-controlnet.html">sources/2026-04-16-dc-controlnet</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html">sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-15-diffusion-models-without-attention.html">sources/2026-04-15-diffusion-models-without-attention</a></li>
+<li><strong>扩散与表示基础</strong>：<a class="wikilink" href="../../en/sources/2026-07-14-ddpm.html">DDPM</a>、<a class="wikilink" href="../../en/sources/2026-07-14-score-sde.html">Score SDE</a>、<a class="wikilink" href="../../en/sources/2026-04-14-latent-diffusion-models.html">潜空间扩散</a>、<a class="wikilink" href="../../en/sources/2026-04-14-wavelet-diffusion-models.html">小波扩散</a>。</li>
+<li><strong>主干与训练</strong>：<a class="wikilink" href="../../en/sources/2026-04-15-all-are-worth-words.html">U-ViT</a>、<a class="wikilink" href="../../en/sources/2026-04-15-scalable-diffusion-models-with-transformers.html">DiT</a>、<a class="wikilink" href="../../en/sources/2026-04-15-analyzing-training-dynamics-diffusion-models.html">训练动力学</a>、<a class="wikilink" href="../../en/sources/2026-04-15-diffusion-models-without-attention.html">无注意力扩散</a>、<a class="wikilink" href="../../en/sources/2026-04-14-codi.html">CoDi</a>。</li>
+<li><strong>采样与蒸馏</strong>：<a class="wikilink" href="../../en/sources/2026-04-15-act-diffusion.html">ACT-Diffusion</a>、<a class="wikilink" href="../../en/sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">ODE 求解器蒸馏</a>、<a class="wikilink" href="../../en/sources/2026-04-16-on-distillation-of-guided-diffusion-models.html">引导蒸馏</a>、<a class="wikilink" href="../../en/sources/2026-04-16-come-closer-diffuse-faster.html">CCDF</a>、<a class="wikilink" href="../../en/sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html">时间步优化</a>、<a class="wikilink" href="../../en/sources/2026-04-16-distilling-parallel-gradients-ode-solvers.html">并行梯度蒸馏</a>、<a class="wikilink" href="../../en/sources/2026-04-16-sana-sprint.html">SANA-Sprint</a>。</li>
+<li><strong>缓存与推理修正</strong>：<a class="wikilink" href="../../en/sources/2026-04-15-deepcache.html">DeepCache</a>、<a class="wikilink" href="../../en/sources/2026-04-16-accelerating-dit-gradient-cache.html">DiT 梯度缓存</a>、<a class="wikilink" href="../../en/sources/2026-04-15-freeu.html">FreeU</a>。</li>
+<li><strong>量化与部署</strong>：<a class="wikilink" href="../../en/sources/2026-04-16-post-training-quantization-on-diffusion-models.html">PTQ4DM</a>、<a class="wikilink" href="../../en/sources/2026-04-16-text-embedding-quantization-diffusion.html">文本条件量化</a>。</li>
+<li><strong>引导与特征接口</strong>：<a class="wikilink" href="../../en/sources/2026-04-16-high-fidelity-guided-image-synthesis.html">高保真引导</a>、<a class="wikilink" href="../../en/sources/2026-04-16-plug-and-play-diffusion-features.html">扩散特征复用</a>、<a class="wikilink" href="../../en/sources/2026-04-16-towards-practical-plug-and-play-diffusion-models.html">实用外部引导</a>、<a class="wikilink" href="../../en/sources/2026-04-16-self-guided-diffusion-models.html">自引导</a>、<a class="wikilink" href="../../en/sources/2026-04-16-rethinking-spatial-inconsistency-cfg.html">空间一致性 CFG</a>。</li>
+<li><strong>控制与布局接口</strong>：<a class="wikilink" href="../../en/sources/2026-04-16-controlnet.html">ControlNet</a>、<a class="wikilink" href="../../en/sources/2026-04-16-prompt-to-prompt.html">Prompt-to-Prompt</a>、<a class="wikilink" href="../../en/sources/2026-04-16-attend-and-excite.html">Attend-and-Excite</a>、<a class="wikilink" href="../../en/sources/2026-04-16-a-star.html">A-STAR</a>、<a class="wikilink" href="../../en/sources/2026-04-16-boxdiff.html">BoxDiff</a>、<a class="wikilink" href="../../en/sources/2026-04-16-dense-text-attention-modulation.html">密集文本注意力调制</a>、<a class="wikilink" href="../../en/sources/2026-04-16-multidiffusion.html">MultiDiffusion</a>。</li>
+<li><strong>复合控制系统</strong>：<a class="wikilink" href="../../en/sources/2026-04-16-dlt-layout-transformer.html">DLT</a>、<a class="wikilink" href="../../en/sources/2026-04-16-self-correcting-llm-controlled-diffusion-models.html">LLM 自纠控制</a>、<a class="wikilink" href="../../en/sources/2026-04-16-c3net.html">C3Net</a>、<a class="wikilink" href="../../en/sources/2026-04-16-layoutdiffusion-graphic-layout-generation.html">图形布局扩散</a>、<a class="wikilink" href="../../en/sources/2026-04-16-dc-controlnet.html">DC-ControlNet</a>。</li>
 </ul>
 <h2 id="开放问题">开放问题</h2>
 <ul>
-<li>这些效率路线里，哪些在真实部署里会形成稳定组合，而不是只在论文设定里各自成立？</li>
-<li>低比特部署和 few-step 路线叠加后，质量-速度边界会怎样变化？</li>
-<li>guidance engineering 的主流方向最终会更偏外部插件化，还是更偏模型内生 self-guidance？</li>
-<li>DiT 主干是否会继续吸收这些工程模块，还是会被更轻的新 backbone 接手？</li>
+<li>少步学生能否在长尾提示上保持教师的组合性与空间一致性？</li>
+<li>缓存策略能否跨 U-Net、DiT、分辨率和编译后端泛化？</li>
+<li>怎样把蒸馏训练成本合理摊入模型生命周期？</li>
+<li>条件编码器和解码器何时会成为加速后的新瓶颈？</li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../../en/topics/image-editing.html">topics/image-editing</a></li>
-<li><a class="wikilink" href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">claims/claim-dit-is-becoming-the-default-scalable-generation-backbone</a></li>
-<li><a class="wikilink" href="../../en/entities/diffusion-transformer.html">entities/diffusion-transformer</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../../en/topics/image-editing.html">图像编辑</a></li>
+<li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a class="wikilink" href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
 </ul></section>
       </div>
       
-      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-related_topics"><h3>Related topics<span class="related-count">4</span></h3><ul><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../../en/topics/image-editing.html">图像编辑</a></li><li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li></ul></div><div class="related-group related-related_entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li></ul></div><div class="related-group related-open_questions"><h3>Open questions<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li></ul></div><div class="related-group related-source_notes"><h3>Source notes<span class="related-count">32</span></h3><ul><li><a class="wikilink" href="../../en/sources/2026-04-14-codi.html">CoDi：条件扩散蒸馏实现 1–4 步图像条件生成</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-wavelet-diffusion-models.html">Wavelet Diffusion Models：在小波空间压缩少步扩散 GAN</a></li><li><a class="wikilink" href="../../en/sources/2026-04-15-all-are-worth-words.html">All Are Worth Words：把 ViT 直接变成扩散模型主干</a></li><li><a class="wikilink" href="../../en/sources/2026-04-15-scalable-diffusion-models-with-transformers.html">Scalable Diffusion Models with Transformers：DiT 把 Transformer 真正坐实为可扩展扩散主干</a></li><li><a class="wikilink" href="../../en/sources/2026-04-15-analyzing-training-dynamics-diffusion-models.html">Analyzing and Improving the Training Dynamics of Diffusion Models：EDM2 的幅值保持训练与 Post-hoc EMA</a></li><li><a class="wikilink" href="../../en/sources/2026-04-15-act-diffusion.html">ACT-Diffusion：面向一步扩散模型的高效对抗一致性训练</a></li><li><a class="wikilink" href="../../en/sources/2026-04-15-deepcache.html">DeepCache：用高层特征缓存免费加速 U-Net 扩散模型</a></li><li><a class="wikilink" href="../../en/sources/2026-04-15-freeu.html">FreeU：不重训的扩散 U-Net 特征重加权</a></li><li><a class="wikilink" href="../../en/sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">Distilling ODE Solvers of Diffusion Models into Smaller Steps：冻结去噪器的轻量求解器蒸馏</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-on-distillation-of-guided-diffusion-models.html">On Distillation of Guided Diffusion Models：把 CFG 与采样轨迹联合蒸馏到极少步</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-high-fidelity-guided-image-synthesis.html">High-Fidelity Guided Image Synthesis：笔触约束下的 latent diffusion 测试时优化</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-plug-and-play-diffusion-features.html">Plug-and-Play Diffusion Features：用 U-Net 内部特征控制文本图像翻译</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-come-closer-diffuse-faster.html">Come-Closer-Diffuse-Faster：用好初始化缩短条件扩散逆问题路径</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-rethinking-spatial-inconsistency-cfg.html">Rethinking the Spatial Inconsistency in Classifier-Free Diffusion Guidance：语义区域自适应 CFG</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-sana-sprint.html">SANA-Sprint：连续时间一致性与对抗蒸馏的一步线性 DiT</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-post-training-quantization-on-diffusion-models.html">Post-Training Quantization on Diffusion Models：面向多 timestep 的 INT8 校准</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-towards-practical-plug-and-play-diffusion-models.html">Towards Practical Plug-and-Play Diffusion Models：噪声分段外部 guidance 工程</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-self-guided-diffusion-models.html">Self-Guided Diffusion Models：用自监督伪标注替代人工 guidance</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-controlnet.html">Adding Conditional Control to Text-to-Image Diffusion Models：冻结 U-Net 主干的空间条件侧支</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-a-star.html">A-STAR：测试时分离并保留 cross-attention</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-boxdiff.html">BoxDiff：无训练的框约束扩散生成</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-dense-text-attention-modulation.html">DenseDiffusion：Stable Diffusion 的 training-free 区域文本 attention modulation</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-prompt-to-prompt.html">Prompt-to-Prompt：用 cross-attention 控制文本驱动图像编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-attend-and-excite.html">Attend-and-Excite：用 attention guidance 修复主体遗漏</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-multidiffusion.html">MultiDiffusion：用最小二乘融合多条去噪路径的 training-free 组合控制</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-dlt-layout-transformer.html">DLT：以联合离散—连续 Transformer diffusion 做属性级布局生成</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-self-correcting-llm-controlled-diffusion-models.html">SLD：LLM 驱动的闭环扩散生成纠错</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-c3net.html">C3Net：CoDi U-Net 上的图像、文本与音频复合条件协调</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-layoutdiffusion-graphic-layout-generation.html">LayoutDiffusion：面向离散 graphic layout 的专用腐化与免重训条件生成</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-dc-controlnet.html">DC-ControlNet：SDXL U-Net 上的元素内/元素间层次化多条件控制</a></li><li><a class="wikilink" href="../../en/sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html">Accelerating Diffusion Sampling with Optimized Time Steps：用优化时间步改善少步扩散采样</a></li><li><a class="wikilink" href="../../en/sources/2026-04-15-diffusion-models-without-attention.html">Diffusion Models Without Attention：不用注意力也能做高分辨率扩散</a></li></ul></div></div></section>
-      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">27</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-04-12-osv.html">OSV：高质量图像到视频生成一步就够</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-codi.html">CoDi：条件扩散蒸馏实现 1–4 步图像条件生成</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-latent-diffusion-models.html">Latent Diffusion Models：高分辨率图像合成的潜空间扩散框架</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-wavelet-diffusion-models.html">Wavelet Diffusion Models：在小波空间压缩少步扩散 GAN</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html">Accelerating Diffusion Sampling with Optimized Time Steps：用优化时间步改善少步扩散采样</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-15-act-diffusion.html">ACT-Diffusion：面向一步扩散模型的高效对抗一致性训练</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-15-analyzing-training-dynamics-diffusion-models.html">Analyzing and Improving the Training Dynamics of Diffusion Models：EDM2 的幅值保持训练与 Post-hoc EMA</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-15-deepcache.html">DeepCache：用高层特征缓存免费加速 U-Net 扩散模型</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">Distilling ODE Solvers of Diffusion Models into Smaller Steps：冻结去噪器的轻量求解器蒸馏</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-a-star.html">A-STAR：测试时分离并保留 cross-attention</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-accelerating-dit-gradient-cache.html">Accelerating Diffusion Transformer via Gradient-Optimized Cache：修正 DiT 缓存误差</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-attend-and-excite.html">Attend-and-Excite：用 attention guidance 修复主体遗漏</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-boxdiff.html">BoxDiff：无训练的框约束扩散生成</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-come-closer-diffuse-faster.html">Come-Closer-Diffuse-Faster：用好初始化缩短条件扩散逆问题路径</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-controlnet.html">Adding Conditional Control to Text-to-Image Diffusion Models：冻结 U-Net 主干的空间条件侧支</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-dc-controlnet.html">DC-ControlNet：SDXL U-Net 上的元素内/元素间层次化多条件控制</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-dense-text-attention-modulation.html">DenseDiffusion：Stable Diffusion 的 training-free 区域文本 attention modulation</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-distilling-parallel-gradients-ode-solvers.html">Distilling Parallel Gradients for Fast ODE Solvers of Diffusion Models：并行方向蒸馏扩散 ODE 求解器</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-multidiffusion.html">MultiDiffusion：用最小二乘融合多条去噪路径的 training-free 组合控制</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-prompt-to-prompt.html">Prompt-to-Prompt：用 cross-attention 控制文本驱动图像编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-rethinking-spatial-inconsistency-cfg.html">Rethinking the Spatial Inconsistency in Classifier-Free Diffusion Guidance：语义区域自适应 CFG</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-sana-sprint.html">SANA-Sprint：连续时间一致性与对抗蒸馏的一步线性 DiT</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-self-correcting-llm-controlled-diffusion-models.html">SLD：LLM 驱动的闭环扩散生成纠错</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-text-embedding-quantization-diffusion.html">Text Embedding Knows How to Quantize：用文本条件动态分配扩散激活位宽</a><span>Source note</span></li><li><a href="../../en/topics/diffusion-models.html">扩散模型</a><span>Topic</span></li><li><a href="../../en/topics/image-generation.html">图像生成</a><span>Topic</span></li></ul></section>
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-related_topics"><h3>Related topics<span class="related-count">4</span></h3><ul><li><a class="wikilink" href="../../en/topics/diffusion-models.html">Diffusion Models</a></li><li><a class="wikilink" href="../../en/topics/image-generation.html">Image Generation</a></li><li><a class="wikilink" href="../../en/topics/image-editing.html">Image Editing</a></li><li><a class="wikilink" href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li></ul></div><div class="related-group related-related_entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li></ul></div><div class="related-group related-open_questions"><h3>Open questions<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li></ul></div><div class="related-group related-source_notes"><h3>Source notes<span class="related-count">38</span></h3><ul><li><a class="wikilink" href="../../en/sources/2026-07-14-ddpm.html">Denoising Diffusion Probabilistic Models：现代去噪扩散模型的关键基线</a></li><li><a class="wikilink" href="../../en/sources/2026-07-14-score-sde.html">Score-Based Generative Modeling through Stochastic Differential Equations：分数模型的连续时间统一框架</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-latent-diffusion-models.html">Latent Diffusion Models：高分辨率图像合成的潜空间扩散框架</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-codi.html">CoDi：条件扩散蒸馏实现 1–4 步图像条件生成</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-wavelet-diffusion-models.html">Wavelet Diffusion Models：在小波空间压缩少步扩散 GAN</a></li><li><a class="wikilink" href="../../en/sources/2026-04-15-all-are-worth-words.html">All Are Worth Words：把 ViT 直接变成扩散模型主干</a></li><li><a class="wikilink" href="../../en/sources/2026-04-15-scalable-diffusion-models-with-transformers.html">Scalable Diffusion Models with Transformers：DiT 把 Transformer 真正坐实为可扩展扩散主干</a></li><li><a class="wikilink" href="../../en/sources/2026-04-15-analyzing-training-dynamics-diffusion-models.html">Analyzing and Improving the Training Dynamics of Diffusion Models：EDM2 的幅值保持训练与 Post-hoc EMA</a></li><li><a class="wikilink" href="../../en/sources/2026-04-15-act-diffusion.html">ACT-Diffusion：面向一步扩散模型的高效对抗一致性训练</a></li><li><a class="wikilink" href="../../en/sources/2026-04-15-deepcache.html">DeepCache：用高层特征缓存免费加速 U-Net 扩散模型</a></li><li><a class="wikilink" href="../../en/sources/2026-04-15-freeu.html">FreeU：不重训的扩散 U-Net 特征重加权</a></li><li><a class="wikilink" href="../../en/sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">Distilling ODE Solvers of Diffusion Models into Smaller Steps：冻结去噪器的轻量求解器蒸馏</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-on-distillation-of-guided-diffusion-models.html">On Distillation of Guided Diffusion Models：把 CFG 与采样轨迹联合蒸馏到极少步</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-high-fidelity-guided-image-synthesis.html">High-Fidelity Guided Image Synthesis：笔触约束下的 latent diffusion 测试时优化</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-plug-and-play-diffusion-features.html">Plug-and-Play Diffusion Features：用 U-Net 内部特征控制文本图像翻译</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-come-closer-diffuse-faster.html">Come-Closer-Diffuse-Faster：用好初始化缩短条件扩散逆问题路径</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-rethinking-spatial-inconsistency-cfg.html">Rethinking the Spatial Inconsistency in Classifier-Free Diffusion Guidance：语义区域自适应 CFG</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-sana-sprint.html">SANA-Sprint：连续时间一致性与对抗蒸馏的一步线性 DiT</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-accelerating-dit-gradient-cache.html">Accelerating Diffusion Transformer via Gradient-Optimized Cache：修正 DiT 缓存误差</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-distilling-parallel-gradients-ode-solvers.html">Distilling Parallel Gradients for Fast ODE Solvers of Diffusion Models：并行方向蒸馏扩散 ODE 求解器</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-text-embedding-quantization-diffusion.html">Text Embedding Knows How to Quantize：用文本条件动态分配扩散激活位宽</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-post-training-quantization-on-diffusion-models.html">Post-Training Quantization on Diffusion Models：面向多 timestep 的 INT8 校准</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-towards-practical-plug-and-play-diffusion-models.html">Towards Practical Plug-and-Play Diffusion Models：噪声分段外部 guidance 工程</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-self-guided-diffusion-models.html">Self-Guided Diffusion Models：用自监督伪标注替代人工 guidance</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-controlnet.html">Adding Conditional Control to Text-to-Image Diffusion Models：冻结 U-Net 主干的空间条件侧支</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-a-star.html">A-STAR：测试时分离并保留 cross-attention</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-boxdiff.html">BoxDiff：无训练的框约束扩散生成</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-dense-text-attention-modulation.html">DenseDiffusion：Stable Diffusion 的 training-free 区域文本 attention modulation</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-prompt-to-prompt.html">Prompt-to-Prompt：用 cross-attention 控制文本驱动图像编辑</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-attend-and-excite.html">Attend-and-Excite：用 attention guidance 修复主体遗漏</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-multidiffusion.html">MultiDiffusion：用最小二乘融合多条去噪路径的 training-free 组合控制</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-dlt-layout-transformer.html">DLT：以联合离散—连续 Transformer diffusion 做属性级布局生成</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-self-correcting-llm-controlled-diffusion-models.html">SLD：LLM 驱动的闭环扩散生成纠错</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-c3net.html">C3Net：CoDi U-Net 上的图像、文本与音频复合条件协调</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-layoutdiffusion-graphic-layout-generation.html">LayoutDiffusion：面向离散 graphic layout 的专用腐化与免重训条件生成</a></li><li><a class="wikilink" href="../../en/sources/2026-04-16-dc-controlnet.html">DC-ControlNet：SDXL U-Net 上的元素内/元素间层次化多条件控制</a></li><li><a class="wikilink" href="../../en/sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html">Accelerating Diffusion Sampling with Optimized Time Steps：用优化时间步改善少步扩散采样</a></li><li><a class="wikilink" href="../../en/sources/2026-04-15-diffusion-models-without-attention.html">Diffusion Models Without Attention：不用注意力也能做高分辨率扩散</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">28</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-04-12-osv.html">OSV：高质量图像到视频生成一步就够</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-codi.html">CoDi：条件扩散蒸馏实现 1–4 步图像条件生成</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-latent-diffusion-models.html">Latent Diffusion Models：高分辨率图像合成的潜空间扩散框架</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-14-wavelet-diffusion-models.html">Wavelet Diffusion Models：在小波空间压缩少步扩散 GAN</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html">Accelerating Diffusion Sampling with Optimized Time Steps：用优化时间步改善少步扩散采样</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-15-act-diffusion.html">ACT-Diffusion：面向一步扩散模型的高效对抗一致性训练</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-15-analyzing-training-dynamics-diffusion-models.html">Analyzing and Improving the Training Dynamics of Diffusion Models：EDM2 的幅值保持训练与 Post-hoc EMA</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-15-deepcache.html">DeepCache：用高层特征缓存免费加速 U-Net 扩散模型</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-15-distilling-ode-solvers-diffusion-models.html">Distilling ODE Solvers of Diffusion Models into Smaller Steps：冻结去噪器的轻量求解器蒸馏</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-a-star.html">A-STAR：测试时分离并保留 cross-attention</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-accelerating-dit-gradient-cache.html">Accelerating Diffusion Transformer via Gradient-Optimized Cache：修正 DiT 缓存误差</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-attend-and-excite.html">Attend-and-Excite：用 attention guidance 修复主体遗漏</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-boxdiff.html">BoxDiff：无训练的框约束扩散生成</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-come-closer-diffuse-faster.html">Come-Closer-Diffuse-Faster：用好初始化缩短条件扩散逆问题路径</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-controlnet.html">Adding Conditional Control to Text-to-Image Diffusion Models：冻结 U-Net 主干的空间条件侧支</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-dc-controlnet.html">DC-ControlNet：SDXL U-Net 上的元素内/元素间层次化多条件控制</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-dense-text-attention-modulation.html">DenseDiffusion：Stable Diffusion 的 training-free 区域文本 attention modulation</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-distilling-parallel-gradients-ode-solvers.html">Distilling Parallel Gradients for Fast ODE Solvers of Diffusion Models：并行方向蒸馏扩散 ODE 求解器</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-multidiffusion.html">MultiDiffusion：用最小二乘融合多条去噪路径的 training-free 组合控制</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-prompt-to-prompt.html">Prompt-to-Prompt：用 cross-attention 控制文本驱动图像编辑</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-rethinking-spatial-inconsistency-cfg.html">Rethinking the Spatial Inconsistency in Classifier-Free Diffusion Guidance：语义区域自适应 CFG</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-sana-sprint.html">SANA-Sprint：连续时间一致性与对抗蒸馏的一步线性 DiT</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-self-correcting-llm-controlled-diffusion-models.html">SLD：LLM 驱动的闭环扩散生成纠错</a><span>Source note</span></li><li><a href="../../en/sources/2026-04-16-text-embedding-quantization-diffusion.html">Text Embedding Knows How to Quantize：用文本条件动态分配扩散激活位宽</a><span>Source note</span></li><li><a href="../../en/topics/diffusion-models.html">Diffusion Models</a><span>Topic</span></li><li><a href="../../en/topics/image-generation.html">Image Generation</a><span>Topic</span></li><li><a href="../../en/topics/vision-backbones.html">Visual Representations and Backbones</a><span>Topic</span></li></ul></section>
       <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;topic-diffusion-efficiency-engineering&quot;,
   &quot;type&quot;: &quot;topic&quot;,
+  &quot;topic_kind&quot;: &quot;research&quot;,
   &quot;title&quot;: &quot;扩散效率工程&quot;,
   &quot;status&quot;: &quot;active&quot;,
   &quot;created&quot;: &quot;2026-04-16&quot;,
-  &quot;updated&quot;: &quot;2026-07-12&quot;,
+  &quot;updated&quot;: &quot;2026-07-14&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;image-generation&quot;,
     &quot;diffusion&quot;,
     &quot;efficiency&quot;
   ],
-  &quot;summary&quot;: &quot;追踪扩散模型从主干缩放到采样加速、部署压缩与 guidance 工程化的完整效率技术栈。&quot;,
+  &quot;summary&quot;: &quot;研究扩散模型从表示空间、主干训练到采样、缓存、蒸馏、量化与条件控制的质量—成本边界。&quot;,
+  &quot;foundational_sources&quot;: [
+    &quot;sources/2026-07-14-ddpm&quot;,
+    &quot;sources/2026-07-14-score-sde&quot;,
+    &quot;sources/2026-04-14-latent-diffusion-models&quot;,
+    &quot;sources/2026-04-15-scalable-diffusion-models-with-transformers&quot;,
+    &quot;sources/2026-04-15-distilling-ode-solvers-diffusion-models&quot;
+  ],
+  &quot;visuals&quot;: [
+    &quot;diffusion-efficiency-cost-flow&quot;,
+    &quot;diffusion-efficiency-evolution&quot;,
+    &quot;diffusion-efficiency-method-stack&quot;
+  ],
   &quot;source_notes&quot;: [
+    &quot;sources/2026-07-14-ddpm&quot;,
+    &quot;sources/2026-07-14-score-sde&quot;,
+    &quot;sources/2026-04-14-latent-diffusion-models&quot;,
     &quot;sources/2026-04-14-codi&quot;,
     &quot;sources/2026-04-14-wavelet-diffusion-models&quot;,
     &quot;sources/2026-04-15-all-are-worth-words&quot;,
@@ -308,6 +296,9 @@
     &quot;sources/2026-04-16-come-closer-diffuse-faster&quot;,
     &quot;sources/2026-04-16-rethinking-spatial-inconsistency-cfg&quot;,
     &quot;sources/2026-04-16-sana-sprint&quot;,
+    &quot;sources/2026-04-16-accelerating-dit-gradient-cache&quot;,
+    &quot;sources/2026-04-16-distilling-parallel-gradients-ode-solvers&quot;,
+    &quot;sources/2026-04-16-text-embedding-quantization-diffusion&quot;,
     &quot;sources/2026-04-16-post-training-quantization-on-diffusion-models&quot;,
     &quot;sources/2026-04-16-towards-practical-plug-and-play-diffusion-models&quot;,
     &quot;sources/2026-04-16-self-guided-diffusion-models&quot;,

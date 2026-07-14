@@ -28,10 +28,42 @@
     "search_text": "LLM Wiki LLM Wiki LLM Wiki Pattern LLM Wiki Pattern Karpathy 提出的 LLM Wiki 模式：用 LLM 持续维护一组互相链接的 Markdown 知识页。 Karpathy's pattern for maintaining a persistent, interlinked Markdown knowledge base with an LLM compiler. llm-wiki root near-cvpr-2025"
   },
   {
+    "slug": "topics/computer-vision-overview",
+    "title": "计算机视觉概览与发展脉络",
+    "title_en": "Computer Vision Overview",
+    "summary": "从输入、表示、任务输出和证据四层理解现代计算机视觉，并沿奠基论文进入主干、检测分割、视频、多模态与生成研究。",
+    "summary_en": "",
+    "kind": "topic",
+    "tags": [
+      "near-cvpr-2025",
+      "vision-foundations",
+      "representation-learning"
+    ],
+    "url": "topics/computer-vision-overview.html",
+    "url_en": "en/topics/computer-vision-overview.html",
+    "search_text": "计算机视觉概览与发展脉络 计算机视觉概览与发展脉络 Computer Vision Overview Computer Vision Overview 从输入、表示、任务输出和证据四层理解现代计算机视觉，并沿奠基论文进入主干、检测分割、视频、多模态与生成研究。  topics/computer-vision-overview topic near-cvpr-2025 vision-foundations representation-learning"
+  },
+  {
+    "slug": "topics/datasets-metrics-and-benchmark-reliability",
+    "title": "数据集、评测指标与基准可靠性",
+    "title_en": "Datasets, Metrics, and Benchmark Reliability",
+    "summary": "把数据来源、任务定义、划分、指标、评测器与人类协议视为一条证据链，理解 IS、FID、CLIPScore 和诊断基准分别能测什么、不能测什么。",
+    "summary_en": "",
+    "kind": "topic",
+    "tags": [
+      "near-cvpr-2025",
+      "evaluation",
+      "benchmarking"
+    ],
+    "url": "topics/datasets-metrics-and-benchmark-reliability.html",
+    "url_en": "en/topics/datasets-metrics-and-benchmark-reliability.html",
+    "search_text": "数据集、评测指标与基准可靠性 数据集、评测指标与基准可靠性 Datasets, Metrics, and Benchmark Reliability Datasets, Metrics, and Benchmark Reliability 把数据来源、任务定义、划分、指标、评测器与人类协议视为一条证据链，理解 IS、FID、CLIPScore 和诊断基准分别能测什么、不能测什么。  topics/datasets-metrics-and-benchmark-reliability topic near-cvpr-2025 evaluation benchmarking"
+  },
+  {
     "slug": "topics/diffusion-efficiency-engineering",
     "title": "扩散效率工程",
     "title_en": "扩散效率工程",
-    "summary": "追踪扩散模型从主干缩放到采样加速、部署压缩与 guidance 工程化的完整效率技术栈。",
+    "summary": "研究扩散模型从表示空间、主干训练到采样、缓存、蒸馏、量化与条件控制的质量—成本边界。",
     "summary_en": "",
     "kind": "topic",
     "tags": [
@@ -42,29 +74,29 @@
     ],
     "url": "topics/diffusion-efficiency-engineering.html",
     "url_en": "en/topics/diffusion-efficiency-engineering.html",
-    "search_text": "扩散效率工程 扩散效率工程 扩散效率工程 扩散效率工程 追踪扩散模型从主干缩放到采样加速、部署压缩与 guidance 工程化的完整效率技术栈。  topics/diffusion-efficiency-engineering topic near-cvpr-2025 image-generation diffusion efficiency"
+    "search_text": "扩散效率工程 扩散效率工程 扩散效率工程 扩散效率工程 研究扩散模型从表示空间、主干训练到采样、缓存、蒸馏、量化与条件控制的质量—成本边界。  topics/diffusion-efficiency-engineering topic near-cvpr-2025 image-generation diffusion efficiency"
   },
   {
     "slug": "topics/diffusion-models",
     "title": "扩散模型",
-    "title_en": "扩散模型",
-    "summary": "追踪扩散模型作为方法家族在图像、视频、条件控制、可控性与效率权衡中的演化。",
+    "title_en": "Diffusion Models",
+    "summary": "从“逐步破坏数据，再学习逆过程”理解扩散模型，以及噪声过程、预测目标、去噪主干、条件接口和求解器之间的分层关系。",
     "summary_en": "",
     "kind": "topic",
     "tags": [
       "near-cvpr-2025",
-      "diffusion",
-      "efficiency"
+      "image-generation",
+      "diffusion"
     ],
     "url": "topics/diffusion-models.html",
     "url_en": "en/topics/diffusion-models.html",
-    "search_text": "扩散模型 扩散模型 扩散模型 扩散模型 追踪扩散模型作为方法家族在图像、视频、条件控制、可控性与效率权衡中的演化。  topics/diffusion-models topic near-cvpr-2025 diffusion efficiency"
+    "search_text": "扩散模型 扩散模型 Diffusion Models Diffusion Models 从“逐步破坏数据，再学习逆过程”理解扩散模型，以及噪声过程、预测目标、去噪主干、条件接口和求解器之间的分层关系。  topics/diffusion-models topic near-cvpr-2025 image-generation diffusion"
   },
   {
     "slug": "topics/generative-model-evaluation",
     "title": "生成模型评测",
     "title_en": "生成模型评测",
-    "summary": "追踪生成式与多模态视觉系统的评测方式，包括指标质量、benchmark 盲点与证据强度。",
+    "summary": "研究图像与视频生成、编辑和多模态系统的评测协议，重点判断指标是否测到目标能力、是否与人类判断一致，以及结论能否跨模型复现。",
     "summary_en": "",
     "kind": "topic",
     "tags": [
@@ -75,39 +107,42 @@
     ],
     "url": "topics/generative-model-evaluation.html",
     "url_en": "en/topics/generative-model-evaluation.html",
-    "search_text": "生成模型评测 生成模型评测 生成模型评测 生成模型评测 追踪生成式与多模态视觉系统的评测方式，包括指标质量、benchmark 盲点与证据强度。  topics/generative-model-evaluation topic near-cvpr-2025 evaluation benchmarking multimodal"
+    "search_text": "生成模型评测 生成模型评测 生成模型评测 生成模型评测 研究图像与视频生成、编辑和多模态系统的评测协议，重点判断指标是否测到目标能力、是否与人类判断一致，以及结论能否跨模型复现。  topics/generative-model-evaluation topic near-cvpr-2025 evaluation benchmarking multimodal"
   },
   {
     "slug": "topics/image-editing",
     "title": "图像编辑",
-    "title_en": "图像编辑",
-    "summary": "追踪 CVPR 2025 范围内基于指令、可控且重视效率的图像编辑方法。",
+    "title_en": "Image Editing",
+    "summary": "研究怎样按文本、参考图或空间条件改变真实/生成图像，同时保持未编辑区域、主体身份、几何和可验证效率。",
     "summary_en": "",
     "kind": "topic",
     "tags": [
       "near-cvpr-2025",
       "image-editing",
-      "diffusion"
+      "diffusion",
+      "control"
     ],
     "url": "topics/image-editing.html",
     "url_en": "en/topics/image-editing.html",
-    "search_text": "图像编辑 图像编辑 图像编辑 图像编辑 追踪 CVPR 2025 范围内基于指令、可控且重视效率的图像编辑方法。  topics/image-editing topic near-cvpr-2025 image-editing diffusion"
+    "search_text": "图像编辑 图像编辑 Image Editing Image Editing 研究怎样按文本、参考图或空间条件改变真实/生成图像，同时保持未编辑区域、主体身份、几何和可验证效率。  topics/image-editing topic near-cvpr-2025 image-editing diffusion control"
   },
   {
     "slug": "topics/image-generation",
     "title": "图像生成",
-    "title_en": "图像生成",
-    "summary": "追踪 CVPR 2025 邻近工作中的图像合成、编辑一体化、可控性与条件机制演化。",
+    "title_en": "Image Generation",
+    "summary": "研究如何把生成底座、条件控制、数据与评测接成可靠图像系统，并判断统一生成—编辑、少步部署和组合控制中仍有价值的问题。",
     "summary_en": "",
     "kind": "topic",
     "tags": [
       "near-cvpr-2025",
       "image-generation",
-      "diffusion"
+      "evaluation",
+      "diffusion",
+      "control"
     ],
     "url": "topics/image-generation.html",
     "url_en": "en/topics/image-generation.html",
-    "search_text": "图像生成 图像生成 图像生成 图像生成 追踪 CVPR 2025 邻近工作中的图像合成、编辑一体化、可控性与条件机制演化。  topics/image-generation topic near-cvpr-2025 image-generation diffusion"
+    "search_text": "图像生成 图像生成 Image Generation Image Generation 研究如何把生成底座、条件控制、数据与评测接成可靠图像系统，并判断统一生成—编辑、少步部署和组合控制中仍有价值的问题。  topics/image-generation topic near-cvpr-2025 image-generation evaluation diffusion control"
   },
   {
     "slug": "topics/image-text-retrieval",
@@ -131,74 +166,93 @@
     "slug": "topics/sports-ai-roadmap",
     "title": "体育 AI 研究路线图",
     "title_en": "Sports AI Research Roadmap",
-    "summary": "把体育 AI 从论文列表整理成公开可读的研究路线：感知、跟踪、交互、轨迹、战术、评估与部署。",
-    "summary_en": "A public research roadmap organizing sports AI evidence across perception, tracking, interaction, trajectories, tactics, evaluation, and deployment.",
+    "summary": "把体育 AI 的感知、跟踪、轨迹、比赛状态、规则与训练反馈组织成可执行的阅读和实验路线。",
+    "summary_en": "An executable reading and experiment roadmap across sports perception, tracking, trajectories, game state, rules, and training feedback.",
     "kind": "topic",
     "tags": [
       "near-cvpr-2025",
       "video-understanding",
       "tracking",
-      "benchmarking"
+      "reasoning"
     ],
     "url": "topics/sports-ai-roadmap.html",
     "url_en": "en/topics/sports-ai-roadmap.html",
-    "search_text": "体育 AI 研究路线图 体育 AI 研究路线图 Sports AI Research Roadmap Sports AI Research Roadmap 把体育 AI 从论文列表整理成公开可读的研究路线：感知、跟踪、交互、轨迹、战术、评估与部署。 A public research roadmap organizing sports AI evidence across perception, tracking, interaction, trajectories, tactics, evaluation, and deployment. topics/sports-ai-roadmap topic near-cvpr-2025 video-understanding tracking benchmarking"
+    "search_text": "体育 AI 研究路线图 体育 AI 研究路线图 Sports AI Research Roadmap Sports AI Research Roadmap 把体育 AI 的感知、跟踪、轨迹、比赛状态、规则与训练反馈组织成可执行的阅读和实验路线。 An executable reading and experiment roadmap across sports perception, tracking, trajectories, game state, rules, and training feedback. topics/sports-ai-roadmap topic near-cvpr-2025 video-understanding tracking reasoning"
   },
   {
     "slug": "topics/sports-ai-video-understanding",
     "title": "体育 AI 视频理解",
     "title_en": "Sports AI Video Understanding",
-    "summary": "追踪体育视频中的球员跟踪、人-人交互、全场轨迹、多智能体时序理解与可部署研究系统。",
-    "summary_en": "A topic hub for player tracking, human-human interaction, full-field trajectories, multi-agent temporal understanding, and deployable sports AI systems.",
+    "summary": "研究体育视频中的球员与小目标跟踪、比赛状态重建、动作质量、规则化决策和可复核人机协作。",
+    "summary_en": "Research on player and tiny-object tracking, game-state reconstruction, action quality, rule-grounded decisions, and auditable human-in-the-loop sports video systems.",
     "kind": "topic",
     "tags": [
       "near-cvpr-2025",
       "video-understanding",
       "tracking",
-      "benchmarking"
+      "reasoning"
     ],
     "url": "topics/sports-ai-video-understanding.html",
     "url_en": "en/topics/sports-ai-video-understanding.html",
-    "search_text": "体育 AI 视频理解 体育 AI 视频理解 Sports AI Video Understanding Sports AI Video Understanding 追踪体育视频中的球员跟踪、人-人交互、全场轨迹、多智能体时序理解与可部署研究系统。 A topic hub for player tracking, human-human interaction, full-field trajectories, multi-agent temporal understanding, and deployable sports AI systems. topics/sports-ai-video-understanding topic near-cvpr-2025 video-understanding tracking benchmarking"
+    "search_text": "体育 AI 视频理解 体育 AI 视频理解 Sports AI Video Understanding Sports AI Video Understanding 研究体育视频中的球员与小目标跟踪、比赛状态重建、动作质量、规则化决策和可复核人机协作。 Research on player and tiny-object tracking, game-state reconstruction, action quality, rule-grounded decisions, and auditable human-in-the-loop sports video systems. topics/sports-ai-video-understanding topic near-cvpr-2025 video-understanding tracking reasoning"
   },
   {
     "slug": "topics/video-editing",
     "title": "视频编辑",
-    "title_en": "视频编辑",
-    "summary": "追踪以文本驱动和扩散模型为核心的视频编辑方法，重点关注保真度、时序一致性与编辑精度。",
+    "title_en": "Video Editing",
+    "summary": "研究怎样按文本、草图、主体或运动条件修改现有视频，同时保持跨帧身份、背景、几何、运动与未编辑内容。",
     "summary_en": "",
     "kind": "topic",
     "tags": [
       "near-cvpr-2025",
       "video-editing",
-      "diffusion"
+      "diffusion",
+      "control"
     ],
     "url": "topics/video-editing.html",
     "url_en": "en/topics/video-editing.html",
-    "search_text": "视频编辑 视频编辑 视频编辑 视频编辑 追踪以文本驱动和扩散模型为核心的视频编辑方法，重点关注保真度、时序一致性与编辑精度。  topics/video-editing topic near-cvpr-2025 video-editing diffusion"
+    "search_text": "视频编辑 视频编辑 Video Editing Video Editing 研究怎样按文本、草图、主体或运动条件修改现有视频，同时保持跨帧身份、背景、几何、运动与未编辑内容。  topics/video-editing topic near-cvpr-2025 video-editing diffusion control"
   },
   {
     "slug": "topics/video-generation",
     "title": "视频生成",
-    "title_en": "视频生成",
-    "summary": "追踪文本到视频与图像到视频生成，重点关注可控性、效率与长程一致性。",
+    "title_en": "Video Generation",
+    "summary": "研究文本到视频与图像到视频怎样同时获得空间质量、运动可控、主体一致、长时结构和可承受的训练/推理成本。",
     "summary_en": "",
     "kind": "topic",
     "tags": [
       "near-cvpr-2025",
       "video-generation",
-      "diffusion"
+      "diffusion",
+      "control"
     ],
     "url": "topics/video-generation.html",
     "url_en": "en/topics/video-generation.html",
-    "search_text": "视频生成 视频生成 视频生成 视频生成 追踪文本到视频与图像到视频生成，重点关注可控性、效率与长程一致性。  topics/video-generation topic near-cvpr-2025 video-generation diffusion"
+    "search_text": "视频生成 视频生成 Video Generation Video Generation 研究文本到视频与图像到视频怎样同时获得空间质量、运动可控、主体一致、长时结构和可承受的训练/推理成本。  topics/video-generation topic near-cvpr-2025 video-generation diffusion control"
+  },
+  {
+    "slug": "topics/video-representation-and-temporal-modeling",
+    "title": "视频表示、运动信息与时序建模",
+    "title_en": "Video Representation and Temporal Modeling",
+    "summary": "从帧采样、显式运动、3D 卷积、视频 Transformer、掩码预训练、骨架图和状态空间模型理解视频中“时间证据”如何进入表示。",
+    "summary_en": "",
+    "kind": "topic",
+    "tags": [
+      "near-cvpr-2025",
+      "video-representation",
+      "video-understanding",
+      "representation-learning"
+    ],
+    "url": "topics/video-representation-and-temporal-modeling.html",
+    "url_en": "en/topics/video-representation-and-temporal-modeling.html",
+    "search_text": "视频表示、运动信息与时序建模 视频表示、运动信息与时序建模 Video Representation and Temporal Modeling Video Representation and Temporal Modeling 从帧采样、显式运动、3D 卷积、视频 Transformer、掩码预训练、骨架图和状态空间模型理解视频中“时间证据”如何进入表示。  topics/video-representation-and-temporal-modeling topic near-cvpr-2025 video-representation video-understanding representation-learning"
   },
   {
     "slug": "topics/video-understanding",
     "title": "视频理解",
     "title_en": "Video Understanding",
-    "summary": "追踪视频系统中的时序推理、长上下文建模、体育视频跟踪、体育 AI 视频理解与 benchmark 设计问题。",
-    "summary_en": "A synthesis page for temporal reasoning, long-context video modeling, sports video understanding, and benchmark design.",
+    "summary": "研究模型如何从视频中定位事件、维持长时记忆、理解多主体运动与规则，并用可追踪证据支撑答案。",
+    "summary_en": "A synthesis of temporal localization, long-context memory, multi-agent state understanding, rule-grounded reasoning, and evidence-based evaluation.",
     "kind": "topic",
     "tags": [
       "near-cvpr-2025",
@@ -207,30 +261,46 @@
     ],
     "url": "topics/video-understanding.html",
     "url_en": "en/topics/video-understanding.html",
-    "search_text": "视频理解 视频理解 Video Understanding Video Understanding 追踪视频系统中的时序推理、长上下文建模、体育视频跟踪、体育 AI 视频理解与 benchmark 设计问题。 A synthesis page for temporal reasoning, long-context video modeling, sports video understanding, and benchmark design. topics/video-understanding topic near-cvpr-2025 video-understanding reasoning"
+    "search_text": "视频理解 视频理解 Video Understanding Video Understanding 研究模型如何从视频中定位事件、维持长时记忆、理解多主体运动与规则，并用可追踪证据支撑答案。 A synthesis of temporal localization, long-context memory, multi-agent state understanding, rule-grounded reasoning, and evidence-based evaluation. topics/video-understanding topic near-cvpr-2025 video-understanding reasoning"
   },
   {
     "slug": "topics/vision-backbones",
-    "title": "主流视觉 Backbone 入门",
-    "title_en": "Mainstream Vision Backbones",
-    "summary": "用小白友好的方式解释 CNN、U-Net、Transformer、DiT、GCN、Mamba/SSM 等视觉主干，并连接到生成、视频理解和体育 AI 选型。",
-    "summary_en": "A beginner-friendly map of CNN, U-Net, Transformer, DiT, GCN, and Mamba/SSM vision backbones for generation, video understanding, and sports AI.",
+    "title": "图像表示与视觉主干网络",
+    "title_en": "Visual Representations and Backbones",
+    "summary": "比较 CNN、U-Net、ViT、层级 Transformer、GCN 与状态空间模型怎样编码局部、全局、多尺度和时序信息，以及怎样按任务与预算选主干。",
+    "summary_en": "",
     "kind": "topic",
     "tags": [
       "near-cvpr-2025",
-      "video-understanding",
-      "image-generation",
+      "vision-foundations",
       "representation-learning"
     ],
     "url": "topics/vision-backbones.html",
     "url_en": "en/topics/vision-backbones.html",
-    "search_text": "主流视觉 Backbone 入门 主流视觉 Backbone 入门 Mainstream Vision Backbones Mainstream Vision Backbones 用小白友好的方式解释 CNN、U-Net、Transformer、DiT、GCN、Mamba/SSM 等视觉主干，并连接到生成、视频理解和体育 AI 选型。 A beginner-friendly map of CNN, U-Net, Transformer, DiT, GCN, and Mamba/SSM vision backbones for generation, video understanding, and sports AI. topics/vision-backbones topic near-cvpr-2025 video-understanding image-generation representation-learning"
+    "search_text": "图像表示与视觉主干网络 图像表示与视觉主干网络 Visual Representations and Backbones Visual Representations and Backbones 比较 CNN、U-Net、ViT、层级 Transformer、GCN 与状态空间模型怎样编码局部、全局、多尺度和时序信息，以及怎样按任务与预算选主干。  topics/vision-backbones topic near-cvpr-2025 vision-foundations representation-learning"
+  },
+  {
+    "slug": "topics/vision-language-foundations",
+    "title": "图文对齐、视觉语言模型与多模态表示基础",
+    "title_en": "Vision-Language and Multimodal Representation Foundations",
+    "summary": "从双编码对齐、跨模态融合、生成式训练、数据规模和组合性评测理解视觉与语言怎样共享表示，以及标准检索高分为何不等于关系理解。",
+    "summary_en": "",
+    "kind": "topic",
+    "tags": [
+      "near-cvpr-2025",
+      "vision-language",
+      "multimodal",
+      "representation-learning"
+    ],
+    "url": "topics/vision-language-foundations.html",
+    "url_en": "en/topics/vision-language-foundations.html",
+    "search_text": "图文对齐、视觉语言模型与多模态表示基础 图文对齐、视觉语言模型与多模态表示基础 Vision-Language and Multimodal Representation Foundations Vision-Language and Multimodal Representation Foundations 从双编码对齐、跨模态融合、生成式训练、数据规模和组合性评测理解视觉与语言怎样共享表示，以及标准检索高分为何不等于关系理解。  topics/vision-language-foundations topic near-cvpr-2025 vision-language multimodal representation-learning"
   },
   {
     "slug": "topics/vision-language",
-    "title": "视觉-语言",
-    "title_en": "视觉-语言",
-    "summary": "追踪影响本知识库核心方向的多模态条件控制、对齐与语言驱动推理。",
+    "title": "视觉语言",
+    "title_en": "视觉语言",
+    "summary": "研究视觉与语言如何从共享表示扩展到细粒度定位、指令控制、统一生成编辑和可验证多模态推理。",
     "summary_en": "",
     "kind": "topic",
     "tags": [
@@ -240,7 +310,39 @@
     ],
     "url": "topics/vision-language.html",
     "url_en": "en/topics/vision-language.html",
-    "search_text": "视觉-语言 视觉-语言 视觉-语言 视觉-语言 追踪影响本知识库核心方向的多模态条件控制、对齐与语言驱动推理。  topics/vision-language topic near-cvpr-2025 multimodal vision-language"
+    "search_text": "视觉语言 视觉语言 视觉语言 视觉语言 研究视觉与语言如何从共享表示扩展到细粒度定位、指令控制、统一生成编辑和可验证多模态推理。  topics/vision-language topic near-cvpr-2025 multimodal vision-language"
+  },
+  {
+    "slug": "topics/vision-task-foundations",
+    "title": "分类、检测、分割、姿态与跟踪",
+    "title_en": "Foundations of Core Vision Tasks",
+    "summary": "用输出结构区分分类、目标检测、语义/实例分割、姿态估计和多目标跟踪，并解释它们怎样共享表示又需要不同标注与指标。",
+    "summary_en": "",
+    "kind": "topic",
+    "tags": [
+      "near-cvpr-2025",
+      "classification",
+      "object-detection"
+    ],
+    "url": "topics/vision-task-foundations.html",
+    "url_en": "en/topics/vision-task-foundations.html",
+    "search_text": "分类、检测、分割、姿态与跟踪 分类、检测、分割、姿态与跟踪 Foundations of Core Vision Tasks Foundations of Core Vision Tasks 用输出结构区分分类、目标检测、语义/实例分割、姿态估计和多目标跟踪，并解释它们怎样共享表示又需要不同标注与指标。  topics/vision-task-foundations topic near-cvpr-2025 classification object-detection"
+  },
+  {
+    "slug": "topics/visual-generation-foundations",
+    "title": "视觉生成模型基础",
+    "title_en": "Foundations of Visual Generative Models",
+    "summary": "比较 VAE、GAN、自回归、规范化流和扩散模型怎样表示图像分布、训练与采样，以及质量、覆盖、似然、可控性和成本的基本取舍。",
+    "summary_en": "",
+    "kind": "topic",
+    "tags": [
+      "near-cvpr-2025",
+      "image-generation",
+      "representation-learning"
+    ],
+    "url": "topics/visual-generation-foundations.html",
+    "url_en": "en/topics/visual-generation-foundations.html",
+    "search_text": "视觉生成模型基础 视觉生成模型基础 Foundations of Visual Generative Models Foundations of Visual Generative Models 比较 VAE、GAN、自回归、规范化流和扩散模型怎样表示图像分布、训练与采样，以及质量、覆盖、似然、可控性和成本的基本取舍。  topics/visual-generation-foundations topic near-cvpr-2025 image-generation representation-learning"
   },
   {
     "slug": "sources/2026-04-12-align-a-video",
@@ -3897,6 +3999,23 @@
     "search_text": "ALBEF：先对齐再融合（Align before Fuse） ALBEF：先对齐再融合（Align before Fuse） ALBEF：先对齐再融合（Align before Fuse） ALBEF：先对齐再融合（Align before Fuse）   sources/2026-07-14-albef source near-cvpr-2025 multimodal vision-language representation-learning primary-source"
   },
   {
+    "slug": "sources/2026-07-14-alexnet",
+    "title": "ImageNet Classification with Deep Convolutional Neural Networks：AlexNet 与深度视觉转折",
+    "title_en": "ImageNet Classification with Deep Convolutional Neural Networks：AlexNet 与深度视觉转折",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "vision-foundations",
+      "representation-learning",
+      "primary-source"
+    ],
+    "url": "sources/2026-07-14-alexnet.html",
+    "url_en": "en/sources/2026-07-14-alexnet.html",
+    "search_text": "ImageNet Classification with Deep Convolutional Neural Networks：AlexNet 与深度视觉转折 ImageNet Classification with Deep Convolutional Neural Networks：AlexNet 与深度视觉转折 ImageNet Classification with Deep Convolutional Neural Networks：AlexNet 与深度视觉转折 ImageNet Classification with Deep Convolutional Neural Networks：AlexNet 与深度视觉转折   sources/2026-07-14-alexnet source near-cvpr-2025 vision-foundations representation-learning primary-source"
+  },
+  {
     "slug": "sources/2026-07-14-align",
     "title": "ALIGN：用噪声文本监督扩展视觉与视觉语言表示学习（Scaling Up Visual and Vision-Language Representation Learning With Noisy Text Supervision）",
     "title_en": "ALIGN：用噪声文本监督扩展视觉与视觉语言表示学习（Scaling Up Visual and Vision-Language Representation Learning With Noisy Text Supervision）",
@@ -4005,6 +4124,23 @@
     "search_text": "有效的条件式与组合式图像检索：结合 CLIP 特征（Effective Conditioned and Composed Image Retrieval Combining CLIP-Based Features） 有效的条件式与组合式图像检索：结合 CLIP 特征（Effective Conditioned and Composed Image Retrieval Combining CLIP-Based Features） 有效的条件式与组合式图像检索：结合 CLIP 特征（Effective Conditioned and Composed Image Retrieval Combining CLIP-Based Features） 有效的条件式与组合式图像检索：结合 CLIP 特征（Effective Conditioned and Composed Image Retrieval Combining CLIP-Based Features）   sources/2026-07-14-clip4cir source near-cvpr-2025 vision-language representation-learning conditioning primary-source"
   },
   {
+    "slug": "sources/2026-07-14-clipscore",
+    "title": "CLIPScore：基于 CLIP 的无参考图文评测",
+    "title_en": "CLIPScore：基于 CLIP 的无参考图文评测",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "evaluation",
+      "vision-language",
+      "primary-source"
+    ],
+    "url": "sources/2026-07-14-clipscore.html",
+    "url_en": "en/sources/2026-07-14-clipscore.html",
+    "search_text": "CLIPScore：基于 CLIP 的无参考图文评测 CLIPScore：基于 CLIP 的无参考图文评测 CLIPScore：基于 CLIP 的无参考图文评测 CLIPScore：基于 CLIP 的无参考图文评测   sources/2026-07-14-clipscore source near-cvpr-2025 evaluation vision-language primary-source"
+  },
+  {
     "slug": "sources/2026-07-14-coca",
     "title": "CoCa：对比式图像描述器作为图文基础模型（Contrastive Captioners are Image-Text Foundation Models）",
     "title_en": "CoCa：对比式图像描述器作为图文基础模型（Contrastive Captioners are Image-Text Foundation Models）",
@@ -4079,6 +4215,23 @@
     "search_text": "ColPali：用视觉语言模型做高效文档检索（Efficient Document Retrieval with Vision Language Models） ColPali：用视觉语言模型做高效文档检索（Efficient Document Retrieval with Vision Language Models） ColPali：用视觉语言模型做高效文档检索（Efficient Document Retrieval with Vision Language Models） ColPali：用视觉语言模型做高效文档检索（Efficient Document Retrieval with Vision Language Models）   sources/2026-07-14-colpali source near-cvpr-2025 multimodal vision-language representation-learning efficiency benchmarking primary-source"
   },
   {
+    "slug": "sources/2026-07-14-convnext",
+    "title": "A ConvNet for the 2020s：ConvNeXt 与现代卷积主干",
+    "title_en": "A ConvNet for the 2020s：ConvNeXt 与现代卷积主干",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "vision-foundations",
+      "representation-learning",
+      "primary-source"
+    ],
+    "url": "sources/2026-07-14-convnext.html",
+    "url_en": "en/sources/2026-07-14-convnext.html",
+    "search_text": "A ConvNet for the 2020s：ConvNeXt 与现代卷积主干 A ConvNet for the 2020s：ConvNeXt 与现代卷积主干 A ConvNet for the 2020s：ConvNeXt 与现代卷积主干 A ConvNet for the 2020s：ConvNeXt 与现代卷积主干   sources/2026-07-14-convnext source near-cvpr-2025 vision-foundations representation-learning primary-source"
+  },
+  {
     "slug": "sources/2026-07-14-cprd",
     "title": "如何让 Cross Encoder 成为高效图文检索的好教师？（How to Make Cross Encoder a Good Teacher for Efficient Image-Text Retrieval?）",
     "title_en": "如何让 Cross Encoder 成为高效图文检索的好教师？（How to Make Cross Encoder a Good Teacher for Efficient Image-Text Retrieval?）",
@@ -4134,6 +4287,23 @@
     "search_text": "一张图胜过 77 个文本 token：在密集描述上评估 CLIP 类模型（A Picture is Worth More Than 77 Text Tokens） 一张图胜过 77 个文本 token：在密集描述上评估 CLIP 类模型（A Picture is Worth More Than 77 Text Tokens） 一张图胜过 77 个文本 token：在密集描述上评估 CLIP 类模型（A Picture is Worth More Than 77 Text Tokens） 一张图胜过 77 个文本 token：在密集描述上评估 CLIP 类模型（A Picture is Worth More Than 77 Text Tokens）   sources/2026-07-14-dci source near-cvpr-2025 vision-language benchmarking evaluation primary-source"
   },
   {
+    "slug": "sources/2026-07-14-ddpm",
+    "title": "Denoising Diffusion Probabilistic Models：现代去噪扩散模型的关键基线",
+    "title_en": "Denoising Diffusion Probabilistic Models：现代去噪扩散模型的关键基线",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "image-generation",
+      "diffusion",
+      "primary-source"
+    ],
+    "url": "sources/2026-07-14-ddpm.html",
+    "url_en": "en/sources/2026-07-14-ddpm.html",
+    "search_text": "Denoising Diffusion Probabilistic Models：现代去噪扩散模型的关键基线 Denoising Diffusion Probabilistic Models：现代去噪扩散模型的关键基线 Denoising Diffusion Probabilistic Models：现代去噪扩散模型的关键基线 Denoising Diffusion Probabilistic Models：现代去噪扩散模型的关键基线   sources/2026-07-14-ddpm source near-cvpr-2025 image-generation diffusion primary-source"
+  },
+  {
     "slug": "sources/2026-07-14-e5v",
     "title": "E5-V：使用多模态大语言模型的通用 embedding（Universal Embeddings with Multimodal Large Language Models）",
     "title_en": "E5-V：使用多模态大语言模型的通用 embedding（Universal Embeddings with Multimodal Large Language Models）",
@@ -4168,6 +4338,57 @@
     "url": "sources/2026-07-14-fashioniq.html",
     "url_en": "en/sources/2026-07-14-fashioniq.html",
     "search_text": "FashionIQ：用自然语言反馈检索图像（A New Dataset Towards Retrieving Images by Natural Language Feedback） FashionIQ：用自然语言反馈检索图像（A New Dataset Towards Retrieving Images by Natural Language Feedback） FashionIQ：用自然语言反馈检索图像（A New Dataset Towards Retrieving Images by Natural Language Feedback） FashionIQ：用自然语言反馈检索图像（A New Dataset Towards Retrieving Images by Natural Language Feedback）   sources/2026-07-14-fashioniq source near-cvpr-2025 multimodal vision-language benchmarking primary-source"
+  },
+  {
+    "slug": "sources/2026-07-14-faster-r-cnn",
+    "title": "Faster R-CNN：共享特征的区域提议网络",
+    "title_en": "Faster R-CNN：共享特征的区域提议网络",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "object-detection",
+      "representation-learning",
+      "primary-source"
+    ],
+    "url": "sources/2026-07-14-faster-r-cnn.html",
+    "url_en": "en/sources/2026-07-14-faster-r-cnn.html",
+    "search_text": "Faster R-CNN：共享特征的区域提议网络 Faster R-CNN：共享特征的区域提议网络 Faster R-CNN：共享特征的区域提议网络 Faster R-CNN：共享特征的区域提议网络   sources/2026-07-14-faster-r-cnn source near-cvpr-2025 object-detection representation-learning primary-source"
+  },
+  {
+    "slug": "sources/2026-07-14-fcn",
+    "title": "Fully Convolutional Networks for Semantic Segmentation：全卷积语义分割",
+    "title_en": "Fully Convolutional Networks for Semantic Segmentation：全卷积语义分割",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "segmentation",
+      "representation-learning",
+      "primary-source"
+    ],
+    "url": "sources/2026-07-14-fcn.html",
+    "url_en": "en/sources/2026-07-14-fcn.html",
+    "search_text": "Fully Convolutional Networks for Semantic Segmentation：全卷积语义分割 Fully Convolutional Networks for Semantic Segmentation：全卷积语义分割 Fully Convolutional Networks for Semantic Segmentation：全卷积语义分割 Fully Convolutional Networks for Semantic Segmentation：全卷积语义分割   sources/2026-07-14-fcn source near-cvpr-2025 segmentation representation-learning primary-source"
+  },
+  {
+    "slug": "sources/2026-07-14-fid",
+    "title": "GANs Trained by a Two Time-Scale Update Rule：FID 的来源与边界",
+    "title_en": "GANs Trained by a Two Time-Scale Update Rule：FID 的来源与边界",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "evaluation",
+      "benchmarking",
+      "primary-source"
+    ],
+    "url": "sources/2026-07-14-fid.html",
+    "url_en": "en/sources/2026-07-14-fid.html",
+    "search_text": "GANs Trained by a Two Time-Scale Update Rule：FID 的来源与边界 GANs Trained by a Two Time-Scale Update Rule：FID 的来源与边界 GANs Trained by a Two Time-Scale Update Rule：FID 的来源与边界 GANs Trained by a Two Time-Scale Update Rule：FID 的来源与边界   sources/2026-07-14-fid source near-cvpr-2025 evaluation benchmarking primary-source"
   },
   {
     "slug": "sources/2026-07-14-filip",
@@ -4206,6 +4427,22 @@
     "search_text": "单 GPU 上的数据高效多模态融合（Data-Efficient Multimodal Fusion on a Single GPU） 单 GPU 上的数据高效多模态融合（Data-Efficient Multimodal Fusion on a Single GPU） 单 GPU 上的数据高效多模态融合（Data-Efficient Multimodal Fusion on a Single GPU） 单 GPU 上的数据高效多模态融合（Data-Efficient Multimodal Fusion on a Single GPU）   sources/2026-07-14-fusemix source near-cvpr-2025 vision-language efficiency representation-learning primary-source"
   },
   {
+    "slug": "sources/2026-07-14-gan",
+    "title": "Generative Adversarial Nets：生成对抗网络",
+    "title_en": "Generative Adversarial Nets：生成对抗网络",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "image-generation",
+      "primary-source"
+    ],
+    "url": "sources/2026-07-14-gan.html",
+    "url_en": "en/sources/2026-07-14-gan.html",
+    "search_text": "Generative Adversarial Nets：生成对抗网络 Generative Adversarial Nets：生成对抗网络 Generative Adversarial Nets：生成对抗网络 Generative Adversarial Nets：生成对抗网络   sources/2026-07-14-gan source near-cvpr-2025 image-generation primary-source"
+  },
+  {
     "slug": "sources/2026-07-14-generative-zscir",
     "title": "生成式零样本组合式图像检索（Generative Zero-Shot Composed Image Retrieval）",
     "title_en": "生成式零样本组合式图像检索（Generative Zero-Shot Composed Image Retrieval）",
@@ -4222,6 +4459,57 @@
     "url": "sources/2026-07-14-generative-zscir.html",
     "url_en": "en/sources/2026-07-14-generative-zscir.html",
     "search_text": "生成式零样本组合式图像检索（Generative Zero-Shot Composed Image Retrieval） 生成式零样本组合式图像检索（Generative Zero-Shot Composed Image Retrieval） 生成式零样本组合式图像检索（Generative Zero-Shot Composed Image Retrieval） 生成式零样本组合式图像检索（Generative Zero-Shot Composed Image Retrieval）   sources/2026-07-14-generative-zscir source near-cvpr-2025 vision-language conditioning representation-learning primary-source"
+  },
+  {
+    "slug": "sources/2026-07-14-glow",
+    "title": "Glow：可逆 1×1 卷积的生成流模型",
+    "title_en": "Glow：可逆 1×1 卷积的生成流模型",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "image-generation",
+      "primary-source"
+    ],
+    "url": "sources/2026-07-14-glow.html",
+    "url_en": "en/sources/2026-07-14-glow.html",
+    "search_text": "Glow：可逆 1×1 卷积的生成流模型 Glow：可逆 1×1 卷积的生成流模型 Glow：可逆 1×1 卷积的生成流模型 Glow：可逆 1×1 卷积的生成流模型   sources/2026-07-14-glow source near-cvpr-2025 image-generation primary-source"
+  },
+  {
+    "slug": "sources/2026-07-14-i3d",
+    "title": "Quo Vadis, Action Recognition?：I3D、Kinetics 与 3D 视频预训练",
+    "title_en": "Quo Vadis, Action Recognition?：I3D、Kinetics 与 3D 视频预训练",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "video-representation",
+      "video-understanding",
+      "representation-learning",
+      "primary-source"
+    ],
+    "url": "sources/2026-07-14-i3d.html",
+    "url_en": "en/sources/2026-07-14-i3d.html",
+    "search_text": "Quo Vadis, Action Recognition?：I3D、Kinetics 与 3D 视频预训练 Quo Vadis, Action Recognition?：I3D、Kinetics 与 3D 视频预训练 Quo Vadis, Action Recognition?：I3D、Kinetics 与 3D 视频预训练 Quo Vadis, Action Recognition?：I3D、Kinetics 与 3D 视频预训练   sources/2026-07-14-i3d source near-cvpr-2025 video-representation video-understanding representation-learning primary-source"
+  },
+  {
+    "slug": "sources/2026-07-14-inception-score",
+    "title": "Improved Techniques for Training GANs：Inception Score 的来源与边界",
+    "title_en": "Improved Techniques for Training GANs：Inception Score 的来源与边界",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "evaluation",
+      "benchmarking",
+      "primary-source"
+    ],
+    "url": "sources/2026-07-14-inception-score.html",
+    "url_en": "en/sources/2026-07-14-inception-score.html",
+    "search_text": "Improved Techniques for Training GANs：Inception Score 的来源与边界 Improved Techniques for Training GANs：Inception Score 的来源与边界 Improved Techniques for Training GANs：Inception Score 的来源与边界 Improved Techniques for Training GANs：Inception Score 的来源与边界   sources/2026-07-14-inception-score source near-cvpr-2025 evaluation benchmarking primary-source"
   },
   {
     "slug": "sources/2026-07-14-keds",
@@ -4276,6 +4564,23 @@
     "url": "sources/2026-07-14-lincir.html",
     "url_en": "en/sources/2026-07-14-lincir.html",
     "search_text": "LinCIR：仅用语言高效训练零样本组合式图像检索（Language-only Efficient Training of Zero-shot Composed Image Retrieval） LinCIR：仅用语言高效训练零样本组合式图像检索（Language-only Efficient Training of Zero-shot Composed Image Retrieval） LinCIR：仅用语言高效训练零样本组合式图像检索（Language-only Efficient Training of Zero-shot Composed Image Retrieval） LinCIR：仅用语言高效训练零样本组合式图像检索（Language-only Efficient Training of Zero-shot Composed Image Retrieval）   sources/2026-07-14-lincir source near-cvpr-2025 vision-language efficiency conditioning primary-source"
+  },
+  {
+    "slug": "sources/2026-07-14-mask-r-cnn",
+    "title": "Mask R-CNN：实例分割与 RoIAlign",
+    "title_en": "Mask R-CNN：实例分割与 RoIAlign",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "segmentation",
+      "object-detection",
+      "primary-source"
+    ],
+    "url": "sources/2026-07-14-mask-r-cnn.html",
+    "url_en": "en/sources/2026-07-14-mask-r-cnn.html",
+    "search_text": "Mask R-CNN：实例分割与 RoIAlign Mask R-CNN：实例分割与 RoIAlign Mask R-CNN：实例分割与 RoIAlign Mask R-CNN：实例分割与 RoIAlign   sources/2026-07-14-mask-r-cnn source near-cvpr-2025 segmentation object-detection primary-source"
   },
   {
     "slug": "sources/2026-07-14-mieb",
@@ -4422,6 +4727,57 @@
     "search_text": "PinPoint：带显式负例、多图查询与改写测试的组合式图像检索评测 PinPoint：带显式负例、多图查询与改写测试的组合式图像检索评测 PinPoint：带显式负例、多图查询与改写测试的组合式图像检索评测 PinPoint：带显式负例、多图查询与改写测试的组合式图像检索评测   sources/2026-07-14-pinpoint source near-cvpr-2025 evaluation benchmarking reasoning primary-source"
   },
   {
+    "slug": "sources/2026-07-14-pixelrnn",
+    "title": "Pixel Recurrent Neural Networks：像素级自回归图像建模",
+    "title_en": "Pixel Recurrent Neural Networks：像素级自回归图像建模",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "image-generation",
+      "autoregressive",
+      "primary-source"
+    ],
+    "url": "sources/2026-07-14-pixelrnn.html",
+    "url_en": "en/sources/2026-07-14-pixelrnn.html",
+    "search_text": "Pixel Recurrent Neural Networks：像素级自回归图像建模 Pixel Recurrent Neural Networks：像素级自回归图像建模 Pixel Recurrent Neural Networks：像素级自回归图像建模 Pixel Recurrent Neural Networks：像素级自回归图像建模   sources/2026-07-14-pixelrnn source near-cvpr-2025 image-generation autoregressive primary-source"
+  },
+  {
+    "slug": "sources/2026-07-14-resnet",
+    "title": "Deep Residual Learning for Image Recognition：ResNet 与残差学习",
+    "title_en": "Deep Residual Learning for Image Recognition：ResNet 与残差学习",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "vision-foundations",
+      "representation-learning",
+      "primary-source"
+    ],
+    "url": "sources/2026-07-14-resnet.html",
+    "url_en": "en/sources/2026-07-14-resnet.html",
+    "search_text": "Deep Residual Learning for Image Recognition：ResNet 与残差学习 Deep Residual Learning for Image Recognition：ResNet 与残差学习 Deep Residual Learning for Image Recognition：ResNet 与残差学习 Deep Residual Learning for Image Recognition：ResNet 与残差学习   sources/2026-07-14-resnet source near-cvpr-2025 vision-foundations representation-learning primary-source"
+  },
+  {
+    "slug": "sources/2026-07-14-score-sde",
+    "title": "Score-Based Generative Modeling through Stochastic Differential Equations：分数模型的连续时间统一框架",
+    "title_en": "Score-Based Generative Modeling through Stochastic Differential Equations：分数模型的连续时间统一框架",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "image-generation",
+      "diffusion",
+      "primary-source"
+    ],
+    "url": "sources/2026-07-14-score-sde.html",
+    "url_en": "en/sources/2026-07-14-score-sde.html",
+    "search_text": "Score-Based Generative Modeling through Stochastic Differential Equations：分数模型的连续时间统一框架 Score-Based Generative Modeling through Stochastic Differential Equations：分数模型的连续时间统一框架 Score-Based Generative Modeling through Stochastic Differential Equations：分数模型的连续时间统一框架 Score-Based Generative Modeling through Stochastic Differential Equations：分数模型的连续时间统一框架   sources/2026-07-14-score-sde source near-cvpr-2025 image-generation diffusion primary-source"
+  },
+  {
     "slug": "sources/2026-07-14-searle-circo",
     "title": "SEARLE：用文本反演做零样本组合式图像检索（Zero-Shot Composed Image Retrieval with Textual Inversion）",
     "title_en": "SEARLE：用文本反演做零样本组合式图像检索（Zero-Shot Composed Image Retrieval with Textual Inversion）",
@@ -4497,6 +4853,58 @@
     "search_text": "SugarCrepe：修复可被捷径攻破的视觉语言组合性基准（Fixing Hackable Benchmarks） SugarCrepe：修复可被捷径攻破的视觉语言组合性基准（Fixing Hackable Benchmarks） SugarCrepe：修复可被捷径攻破的视觉语言组合性基准（Fixing Hackable Benchmarks） SugarCrepe：修复可被捷径攻破的视觉语言组合性基准（Fixing Hackable Benchmarks）   sources/2026-07-14-sugarcrepe source near-cvpr-2025 multimodal vision-language evaluation benchmarking primary-source"
   },
   {
+    "slug": "sources/2026-07-14-swin-transformer",
+    "title": "Swin Transformer：移位窗口与层级视觉 Transformer",
+    "title_en": "Swin Transformer：移位窗口与层级视觉 Transformer",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "vision-foundations",
+      "representation-learning",
+      "primary-source"
+    ],
+    "url": "sources/2026-07-14-swin-transformer.html",
+    "url_en": "en/sources/2026-07-14-swin-transformer.html",
+    "search_text": "Swin Transformer：移位窗口与层级视觉 Transformer Swin Transformer：移位窗口与层级视觉 Transformer Swin Transformer：移位窗口与层级视觉 Transformer Swin Transformer：移位窗口与层级视觉 Transformer   sources/2026-07-14-swin-transformer source near-cvpr-2025 vision-foundations representation-learning primary-source"
+  },
+  {
+    "slug": "sources/2026-07-14-two-stream-convnet",
+    "title": "Two-Stream Convolutional Networks for Action Recognition：RGB 与光流双流视频表示",
+    "title_en": "Two-Stream Convolutional Networks for Action Recognition：RGB 与光流双流视频表示",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "video-representation",
+      "video-understanding",
+      "representation-learning",
+      "primary-source"
+    ],
+    "url": "sources/2026-07-14-two-stream-convnet.html",
+    "url_en": "en/sources/2026-07-14-two-stream-convnet.html",
+    "search_text": "Two-Stream Convolutional Networks for Action Recognition：RGB 与光流双流视频表示 Two-Stream Convolutional Networks for Action Recognition：RGB 与光流双流视频表示 Two-Stream Convolutional Networks for Action Recognition：RGB 与光流双流视频表示 Two-Stream Convolutional Networks for Action Recognition：RGB 与光流双流视频表示   sources/2026-07-14-two-stream-convnet source near-cvpr-2025 video-representation video-understanding representation-learning primary-source"
+  },
+  {
+    "slug": "sources/2026-07-14-u-net",
+    "title": "U-Net：编码器—解码器与跳跃连接的医学图像分割",
+    "title_en": "U-Net：编码器—解码器与跳跃连接的医学图像分割",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "segmentation",
+      "representation-learning",
+      "primary-source"
+    ],
+    "url": "sources/2026-07-14-u-net.html",
+    "url_en": "en/sources/2026-07-14-u-net.html",
+    "search_text": "U-Net：编码器—解码器与跳跃连接的医学图像分割 U-Net：编码器—解码器与跳跃连接的医学图像分割 U-Net：编码器—解码器与跳跃连接的医学图像分割 U-Net：编码器—解码器与跳跃连接的医学图像分割   sources/2026-07-14-u-net source near-cvpr-2025 segmentation representation-learning primary-source"
+  },
+  {
     "slug": "sources/2026-07-14-uniir-mbeir",
     "title": "UniIR：训练和评测通用多模态信息检索器（Training and Benchmarking Universal Multimodal Information Retrievers）",
     "title_en": "UniIR：训练和评测通用多模态信息检索器（Training and Benchmarking Universal Multimodal Information Retrievers）",
@@ -4514,6 +4922,23 @@
     "url": "sources/2026-07-14-uniir-mbeir.html",
     "url_en": "en/sources/2026-07-14-uniir-mbeir.html",
     "search_text": "UniIR：训练和评测通用多模态信息检索器（Training and Benchmarking Universal Multimodal Information Retrievers） UniIR：训练和评测通用多模态信息检索器（Training and Benchmarking Universal Multimodal Information Retrievers） UniIR：训练和评测通用多模态信息检索器（Training and Benchmarking Universal Multimodal Information Retrievers） UniIR：训练和评测通用多模态信息检索器（Training and Benchmarking Universal Multimodal Information Retrievers）   sources/2026-07-14-uniir-mbeir source near-cvpr-2025 multimodal vision-language representation-learning benchmarking primary-source"
+  },
+  {
+    "slug": "sources/2026-07-14-vae",
+    "title": "Auto-Encoding Variational Bayes：变分自编码器与重参数化",
+    "title_en": "Auto-Encoding Variational Bayes：变分自编码器与重参数化",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "image-generation",
+      "representation-learning",
+      "primary-source"
+    ],
+    "url": "sources/2026-07-14-vae.html",
+    "url_en": "en/sources/2026-07-14-vae.html",
+    "search_text": "Auto-Encoding Variational Bayes：变分自编码器与重参数化 Auto-Encoding Variational Bayes：变分自编码器与重参数化 Auto-Encoding Variational Bayes：变分自编码器与重参数化 Auto-Encoding Variational Bayes：变分自编码器与重参数化   sources/2026-07-14-vae source near-cvpr-2025 image-generation representation-learning primary-source"
   },
   {
     "slug": "sources/2026-07-14-vilem",

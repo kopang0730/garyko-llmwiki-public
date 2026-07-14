@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="追踪生成式与多模态视觉系统的评测方式，包括指标质量、benchmark 盲点与证据强度。">
+  <meta name="description" content="研究图像与视频生成、编辑和多模态系统的评测协议，重点判断指标是否测到目标能力、是否与人类判断一致，以及结论能否跨模型复现。">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>生成模型评测 · llmwiki</title>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260714-research-observatory-v2-motion">
-  <script defer src="../assets/wiki.js?v=20260714-research-observatory-v2-motion"></script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260714-research-observatory-v5-topic-visuals">
+  <script defer src="../assets/wiki.js?v=20260714-research-observatory-v5-topic-visuals"></script>
 </head>
-<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/generative-model-evaluation&quot;, &quot;title&quot;: &quot;生成模型评测&quot;, &quot;title_en&quot;: &quot;生成模型评测&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;multimodal&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260714-research-observatory-v2-motion">
+<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/generative-model-evaluation&quot;, &quot;title&quot;: &quot;生成模型评测&quot;, &quot;title_en&quot;: &quot;生成模型评测&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;multimodal&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260714-research-observatory-v5-topic-visuals">
   <header class="mobile-topbar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
@@ -23,20 +23,30 @@
 <li><a href="../llm-wiki.html">LLM Wiki</a></li>
 <li><a href="../main.html">首页</a></li>
 </ul>
-<h2>主题</h2><ul>
-<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<h2>基础概念</h2><ul>
+<li><a href="../topics/computer-vision-overview.html">计算机视觉概览</a></li>
+<li><a href="../topics/datasets-metrics-and-benchmark-reliability.html">数据与评测基础</a></li>
 <li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/video-representation-and-temporal-modeling.html">视频表示基础</a></li>
+<li><a href="../topics/vision-backbones.html">视觉主干</a></li>
+<li><a href="../topics/vision-language-foundations.html">视觉语言基础</a></li>
+<li><a href="../topics/vision-task-foundations.html">核心视觉任务</a></li>
+<li><a href="../topics/visual-generation-foundations.html">视觉生成基础</a></li>
+</ul>
+<h2>研究专题</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
 <li><a class="active" href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
 <li><a href="../topics/image-editing.html">图像编辑</a></li>
 <li><a href="../topics/image-generation.html">图像生成</a></li>
 <li><a href="../topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a></li>
-<li><a href="../topics/sports-ai-roadmap.html">体育 AI</a></li>
 <li><a href="../topics/sports-ai-video-understanding.html">体育视频理解</a></li>
 <li><a href="../topics/video-editing.html">视频编辑</a></li>
 <li><a href="../topics/video-generation.html">视频生成</a></li>
 <li><a href="../topics/video-understanding.html">视频理解</a></li>
-<li><a href="../topics/vision-backbones.html">视觉 Backbone</a></li>
-<li><a href="../topics/vision-language.html">视觉-语言</a></li>
+<li><a href="../topics/vision-language.html">视觉语言</a></li>
+</ul>
+<h2>应用路线</h2><ul>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI</a></li>
 </ul>
 <h2>实体</h2><ul>
 <li><a href="../entities/clip.html">CLIP 系列模型（CLIP Family）</a></li>
@@ -77,20 +87,20 @@
       
       <header class="article-header" data-motion="reveal">
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>主题</span><span class="crumb-sep" aria-hidden="true">›</span><strong>生成模型评测</strong></nav>
-        <p class="eyebrow">主题 · 更新于 2026-07-12</p>
+        <p class="eyebrow">主题 · 更新于 2026-07-14</p>
         <h1><span class="title-main">生成模型评测</span></h1>
-        <p class="article-summary">追踪生成式与多模态视觉系统的评测方式，包括指标质量、benchmark 盲点与证据强度。</p>
+        <p class="article-summary">研究图像与视频生成、编辑和多模态系统的评测协议，重点判断指标是否测到目标能力、是否与人类判断一致，以及结论能否跨模型复现。</p>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#evaluation">#evaluation</a><a class="tag" href="../tags.html#benchmarking">#benchmarking</a><a class="tag" href="../tags.html#multimodal">#multimodal</a></div>
       </header>
       <div class="article-layout has-rail">
-        <aside class="article-rail"><details class="toc" open><summary>目录</summary><ol><li><a href="#概述">概述</a></li><li><a href="#本页关注什么">本页关注什么</a></li><li><a href="#当前综合判断">当前综合判断</a></li><li><a href="#证据基础">证据基础</a></li><li><a href="#关联页面">关联页面</a></li><li><a href="#后续值得追踪的问题">后续值得追踪的问题</a></li></ol></details></aside>
+        <aside class="article-rail"><details class="toc" open><summary>目录</summary><ol><li><a href="#三分钟摘要">三分钟摘要</a></li><li><a href="#任务或系统流程">任务或系统流程</a></li><li><a href="#当前综合判断">当前综合判断</a><ol><li class="toc-sub"><a href="#1-不存在跨任务通用的-单一最好分数">1. 不存在跨任务通用的“单一最好分数”</a></li><li class="toc-sub"><a href="#2-评测必须和任务中的-保持-改变-约束对齐">2. 评测必须和任务中的“保持—改变”约束对齐</a></li><li class="toc-sub"><a href="#3-大模型评审器是测量工具-不是无需校准的裁判">3. 大模型评审器是测量工具，不是无需校准的裁判</a></li><li class="toc-sub"><a href="#4-输入预算和数据污染是评测结论的一部分">4. 输入预算和数据污染是评测结论的一部分</a></li><li class="toc-sub"><a href="#5-好的-benchmark-应定位失败-而不只是扩大题量">5. 好的 benchmark 应定位失败，而不只是扩大题量</a></li></ol></li><li><a href="#近五年演化-2022-2026">近五年演化（2022—2026）</a></li><li><a href="#方法家族与成熟阶段">方法家族与成熟阶段</a><ol><li class="toc-sub"><a href="#方法家族的成熟度">方法家族的成熟度</a></li></ol></li><li><a href="#拥挤方向与研究机会">拥挤方向与研究机会</a></li><li><a href="#反方证据-局限与可证伪条件">反方证据、局限与可证伪条件</a></li><li><a href="#研究生可行的研究入口">研究生可行的研究入口</a><ol><li class="toc-sub"><a href="#候选课题-a-视频编辑的保持-改变评测-最推荐">候选课题 A：视频编辑的保持—改变评测（最推荐）</a></li><li class="toc-sub"><a href="#候选课题-b-多模态评审器的偏差与版本鲁棒性-推荐">候选课题 B：多模态评审器的偏差与版本鲁棒性（推荐）</a></li><li class="toc-sub"><a href="#候选课题-c-保序的低成本评测采样-条件推荐">候选课题 C：保序的低成本评测采样（条件推荐）</a></li><li class="toc-sub"><a href="#推荐排序与止损条件">推荐排序与止损条件</a></li></ol></li><li><a href="#证据基础">证据基础</a></li><li><a href="#开放问题">开放问题</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
         <section class="article-content">
 <section class="topic-hero-grid" data-motion="reveal">
   <section class="judgment-panel topic-judgment">
     <p class="section-kicker">当前判断</p>
     <h2>生成模型评测</h2>
-    <p>追踪生成式与多模态视觉系统的评测方式，包括指标质量、benchmark 盲点与证据强度。</p>
-    <div class="judgment-meta"><span>20 来源笔记</span><span>1 开放问题</span></div>
+    <p>研究图像与视频生成、编辑和多模态系统的评测协议，重点判断指标是否测到目标能力、是否与人类判断一致，以及结论能否跨模型复现。</p>
+    <div class="judgment-meta"><span>24 来源笔记</span><span>1 开放问题</span></div>
   </section>
   <section class="reading-path">
     <p class="section-kicker">阅读路径</p>
@@ -98,91 +108,173 @@
   </section>
 </section>
 <section class="method-map" data-motion="reveal" aria-label="研究方法族地图">
-  <div class="method-map-heading"><div><p class="section-kicker">研究方法族地图</p><h2>从问题定义走向可复核的系统能力</h2></div><span>20 来源笔记</span></div>
+  <div class="method-map-heading"><div><p class="section-kicker">研究方法族地图</p><h2>从问题定义走向可复核的系统能力</h2></div><span>24 来源笔记</span></div>
   <div class="method-map-track"><div class="method-node"><span>1</span><strong>问题</strong><small>明确任务与证据边界</small></div><div class="method-node"><span>2</span><strong>方法</strong><small>比较方法族与结构选择</small></div><div class="method-node"><span>3</span><strong>证据</strong><small>回到论文与可检索全文</small></div><div class="method-node"><span>4</span><strong>开放问题</strong><small>记录仍待验证的张力</small></div></div>
 </section>
-<h2 id="概述">概述</h2>
-<p>这一页整理生成模型评测问题。它关注的不只是分数高低，而是“我们到底在测什么、这些指标有没有意义、哪些能力被现有 benchmark 忽略了”。在当前 vault 里，这一页尤其重要，因为图像编辑、视频编辑和统一多模态系统都在快速发展，如果评测方式跟不上，很多看似漂亮的结果可能并不能真实反映模型能力。</p>
-<h2 id="本页关注什么">本页关注什么</h2>
+<h2 id="三分钟摘要">三分钟摘要</h2>
 <ul>
-<li>benchmark 设计方式</li>
-<li>定量评测与人工评测的关系</li>
-<li>鲁棒性与失败案例分析</li>
-<li>任务特定评测盲点</li>
+<li><strong>它研究什么</strong>：不是简单给模型排榜，而是验证“指标是否真的测到了论文声称的能力”。</li>
+<li><strong>当前共识</strong>：生成质量、条件一致性、运动、时序一致性、编辑保持性和真实用户偏好不能被一个分数完整概括。</li>
+<li><strong>主要风险</strong>：分布指标可能忽略指令语义，语义指标可能忽略视觉质量，大模型评审器（LLM/VLM judge）又会引入版本、提示和模型家族偏差。</li>
+<li><strong>研究机会</strong>：任务专用协议、可验证人工评测、低成本但不改变模型排序的采样，以及能定位失败原因的诊断集。</li>
 </ul>
+<p>评测是整个研究链的测量仪器。如果测量对象、输入预算和统计协议没有先定义清楚，模型分数再精确也无法支持可靠结论。</p>
+<h2 id="任务或系统流程">任务或系统流程</h2>
+<figure class="wiki-visual wiki-visual--flow" data-visual-id="generative-evaluation-evidence-loop" aria-labelledby="visual-generative-evaluation-evidence-loop-title" aria-describedby="visual-generative-evaluation-evidence-loop-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">一项生成模型评测怎样避免“先算分、后解释”？</p><div class="wiki-visual-title" id="visual-generative-evaluation-evidence-loop-title" role="heading" aria-level="3">从研究主张到可复核结论</div><p class="wiki-visual-explanation">先把论文主张拆成可观察能力，再组合自动指标、人工判断和失败诊断；最后必须通过重复采样、置信区间和跨模型检查验证结论。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>明确主张</strong><small>指定要测生成质量、语义遵循、运动、保持性或工作流成功</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>固定协议</strong><small>冻结提示、随机种子、输入预算、模型版本与采样数量</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>多轴测量</strong><small>分布、语义、感知、时序和任务专用指标各司其职</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>人工校准</strong><small>用盲评和清晰问题检查自动指标是否跟随人类判断</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">05</span><strong>失败诊断</strong><small>把低分还原为对象遗漏、关系错误、闪烁、漂移或编辑破坏</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">06</span><strong>统计复核</strong><small>报告置信区间、评审一致性、敏感性和可复现实验资产</small></li></ol><figcaption><span>图示依据</span><a class="wikilink" href="../sources/2026-04-14-verifiable-human-eval-t2i.html">可验证人工评测</a>、<a class="wikilink" href="../sources/2026-04-14-vbench.html">VBench</a>、<a class="wikilink" href="../sources/2026-04-14-video-bench.html">Video-Bench</a></figcaption><p class="sr-only" id="visual-generative-evaluation-evidence-loop-alt">研究主张被拆为能力维度，能力决定样本与对照，自动指标和人工评测并行执行，再做失败诊断、统计复核和结论收窄。</p></figure>
 <h2 id="当前综合判断">当前综合判断</h2>
-<p>2026-07-12 的全文复核将视频评测线整理成五个互补坐标：<a class="wikilink" href="../sources/2026-04-14-mvbench.html">sources/2026-04-14-mvbench</a> 测 5–35 秒短视频的通用时序技能；<a class="wikilink" href="../sources/2026-04-14-lvbench.html">sources/2026-04-14-lvbench</a> 测平均约 68 分钟的长程检索、记忆与总结；<a class="wikilink" href="../sources/2026-04-14-sti-bench.html">sources/2026-04-14-sti-bench</a> 测尺寸、距离、速度、轨迹和相机位姿等量化时空 grounding；<a class="wikilink" href="../sources/2026-04-14-vbench.html">sources/2026-04-14-vbench</a> 用 16 个专用维度分解 T2V 输出质量；<a class="wikilink" href="../sources/2026-04-14-video-bench.html">sources/2026-04-14-video-bench</a> 用 MLLM evaluator 对齐人类对生成质量与条件满足的评分。它们共同提供能力底座与结果质量坐标，真实视频编辑理解仍需要源视频、编辑指令、preserve/change 约束、镜头语法和工作流成功率。</p>
-<p>这批全文也给出明确的解释边界：MVBench 的纯文本基线达到 34.7%，提示语言先验风险；LVBench 的帧密度消融显示 50 帧到 1 FPS 才出现最大跃升；STI-Bench 最佳模型约 41%，量化空间与动力学仍薄弱；VBench 的人类相关性建立在四个模型级点上；Video-Bench 在时间一致性上的 Spearman 仅 0.402，并对 GPT-4o evaluator 版本敏感。评测报告应同时展示任务定义、输入预算、评价器版本、样本层相关性和失败类型。</p>
-<p>EvalCrafter 的全文复核补上输出层评测的早期量化锚点：700+ prompts、17 个指标、2,500 个视频和 8,647 条原始人工反馈。不同维度没有统一赢家；CLIP-Score 与人工评分的 Spearman 仅 0.063，Warping Error 达 0.690，运动幅度简单平均甚至呈负相关 -0.382，经人工权重校准后才转为 0.450。<a class="wikilink" href="../sources/2026-04-14-videocrafter2.html">sources/2026-04-14-videocrafter2</a> 又提供同一模型的压力测试：视觉质量接近商业系统，motion 和 temporal 分数仍落后，证明“高质量视频模型”必须拆成 appearance、alignment、motion 与 consistency 四个轴。</p>
-<p>P5 benchmark 继续分层：ANetQA 测合成组合视频 QA，MMMU 是静态跨学科推理，SOK-Bench 测视频情境常识，FlashEval 只搜索可复用 prompt 子集。Blind prior、公开派生数据污染、judge-family coupling 与预付搜索成本都需独立披露；四者都不能直接代替 source-conditioned editing success。</p>
-<p>EditBench 为图像编辑补充细粒度坐标：240 图、Mask-Simple/Mask-Rich/Full 三种 prompts、18 名 annotators 与 11.5K tasks，分别判断 object presence、attribute、binding 和 quality。T2I CLIPScore 对同 prompt pairwise 人评的一致率约 68.4–76.0%，四模型 winner selection 只有约 38.5–48.1%；它适合开发筛选，仍不足以替代人评。该 benchmark 的结论范围限于 mask-guided inpainting。</p>
-<p><a class="wikilink" href="../sources/2026-04-14-sti-bench.html">sources/2026-04-14-sti-bench</a>、<a class="wikilink" href="../sources/2026-04-14-mmmu.html">sources/2026-04-14-mmmu</a>、<a class="wikilink" href="../sources/2026-04-14-maplm.html">sources/2026-04-14-maplm</a> 和 <a class="wikilink" href="../sources/2026-04-14-concon-chi.html">sources/2026-04-14-concon-chi</a> 又让 evaluation 层补入了精确时空理解、上位多模态推理、现实场景 VL benchmark 与个性化 VL benchmark 几条线。</p>
-<p>ConCon-Chi 全文复核把个性化评测的失败定位为“识别概念但不会组合”：20 concepts、101 contexts、1,084 retrieval queries/4,008 real images；5-shot SEARLE mAP/mRR/R@1 为 30.74/43.83/33.49。PALAVRA 的 concept/context F1 91.52/28.56，DreamBooth 的 chimeric Density/Coverage 相对 common 从 6.55/0.28 降到 4.81/0.14，传统 CLIP fidelity 未清楚暴露该差距。</p>
-<p><a class="wikilink" href="../sources/2026-04-14-lvbench.html">sources/2026-04-14-lvbench</a>、<a class="wikilink" href="../sources/2026-04-14-sok-bench.html">sources/2026-04-14-sok-bench</a>、<a class="wikilink" href="../sources/2026-04-14-anetqa.html">sources/2026-04-14-anetqa</a> 和 <a class="wikilink" href="../sources/2026-04-14-neuro-symbolic-eval-t2v.html">sources/2026-04-14-neuro-symbolic-eval-t2v</a> 进一步让 evaluation 层形成了“长视频 / 情境推理 / 组合推理 / 形式化验证”四种不同评测逻辑。</p>
-<p><a class="wikilink" href="../sources/2026-04-14-vbench.html">sources/2026-04-14-vbench</a> 与 <a class="wikilink" href="../sources/2026-04-14-mvbench.html">sources/2026-04-14-mvbench</a> 进一步把 evaluation 层补成“综合 suite + 通用视频理解 benchmark + failure diagnosis”的更完整结构。</p>
-<p><a class="wikilink" href="../sources/2026-04-14-glitchbench.html">sources/2026-04-14-glitchbench</a> 继续补入了动态异常诊断 benchmark，说明评测层也在往更具体的 failure setting 拆分。</p>
-<p><a class="wikilink" href="../sources/2026-04-14-hallusionbench.html">sources/2026-04-14-hallusionbench</a> 又补入了 failure-mode diagnosis 这一层，说明评测并不只是排序模型，也在审计模型理解偏差。</p>
-<p>新补入的 <a class="wikilink" href="../sources/2026-04-14-verifiable-human-eval-t2i.html">sources/2026-04-14-verifiable-human-eval-t2i</a> 又把“人类评测协议本身如何更可验证、更可复现”补成一条独立路线。</p>
-<p>这一主题现在已经开始显露出跨年份脉络。<a class="wikilink" href="../sources/2026-04-14-imagen-editor-editbench.html">sources/2026-04-14-imagen-editor-editbench</a> 把 image-editing 侧的专门 benchmark 接进来，而 <a class="wikilink" href="../sources/2026-04-14-flasheval.html">sources/2026-04-14-flasheval</a> 又把快速评测器这一条图像侧路线补上。较早的 <a class="wikilink" href="../sources/2026-04-14-evalcrafter.html">sources/2026-04-14-evalcrafter</a> 把“大视频生成模型怎么评”推成独立问题；到 <a class="wikilink" href="../sources/2026-04-14-aigv-assessor.html">sources/2026-04-14-aigv-assessor</a>、<a class="wikilink" href="../sources/2026-04-14-video-bench.html">sources/2026-04-14-video-bench</a>，评测进一步分化出 LMM-assessor 与 human-aligned 两条路线；而 <a class="wikilink" href="../sources/2026-04-14-five-bench.html">sources/2026-04-14-five-bench</a> 又把 video-editing benchmark 往更细粒度能力切开。这说明 evaluation 本身也在演化，而不是静态工具箱。这一主题已经开始有更具体的证据支撑。<a class="wikilink" href="../sources/2026-04-14-aigv-assessor.html">sources/2026-04-14-aigv-assessor</a> 明确说明，AIGV 场景需要区别于传统 VQA 的专门评测器，而且 LMM 参与的评测框架可能更接近人类感知质量；而 <a class="wikilink" href="../sources/2026-04-14-video-bench.html">sources/2026-04-14-video-bench</a> 又进一步把“human-aligned benchmark”单独拉成一条路线。也因此，这一页不再只是“汇总评测问题”的框架页，而开始进入“比较不同评测逻辑”阶段。</p>
+<h3 id="1-不存在跨任务通用的-单一最好分数">1. 不存在跨任务通用的“单一最好分数”</h3>
+<p>Inception Score（IS）和弗雷歇 Inception 距离（Fréchet Inception Distance, FID）为图像生成提供了分布级比较工具，CLIPScore 又把文本—图像一致性纳入自动评估（<a class="wikilink" href="../sources/2026-07-14-inception-score.html">IS</a>、<a class="wikilink" href="../sources/2026-07-14-fid.html">FID</a>、<a class="wikilink" href="../sources/2026-07-14-clipscore.html">CLIPScore</a>）。但三者测量对象不同：一个分数改善不能自动推出视觉质量、组合性和真实偏好都改善。</p>
+<p>视频进一步增加运动幅度、时间一致性和镜头合理性。EvalCrafter 与 VBench 都采用多维评测，而 VideoCrafter2 的结果也说明外观质量强不等于运动与时序同样强（<a class="wikilink" href="../sources/2026-04-14-evalcrafter.html">EvalCrafter</a>、<a class="wikilink" href="../sources/2026-04-14-vbench.html">VBench</a>、<a class="wikilink" href="../sources/2026-04-14-videocrafter2.html">VideoCrafter2</a>）。</p>
+<h3 id="2-评测必须和任务中的-保持-改变-约束对齐">2. 评测必须和任务中的“保持—改变”约束对齐</h3>
+<p>文本到图像生成、局部修补、指令编辑和视频编辑不能共用同一成功定义。EditBench 把对象、属性、绑定和质量拆开；FiVE-Bench 则要求视频编辑同时考虑指令完成、未编辑区域保持和时间稳定性（<a class="wikilink" href="../sources/2026-04-14-imagen-editor-editbench.html">EditBench</a>、<a class="wikilink" href="../sources/2026-04-14-five-bench.html">FiVE-Bench</a>）。只比较最终帧的语义相似度，会漏掉身份漂移、背景破坏和时间闪烁。</p>
+<h3 id="3-大模型评审器是测量工具-不是无需校准的裁判">3. 大模型评审器是测量工具，不是无需校准的裁判</h3>
+<p>AIGV-Assessor 与 Video-Bench 说明视觉语言模型可以汇总复杂感知维度，但评审器版本、提示措辞、输入帧数和待评模型家族都会改变结果（<a class="wikilink" href="../sources/2026-04-14-aigv-assessor.html">AIGV-Assessor</a>、<a class="wikilink" href="../sources/2026-04-14-video-bench.html">Video-Bench</a>）。可靠协议应公开评审提示、版本、重复次数和与独立人评的样本级相关性，不能只报告模型级四五个点的相关系数。</p>
+<h3 id="4-输入预算和数据污染是评测结论的一部分">4. 输入预算和数据污染是评测结论的一部分</h3>
+<p>MVBench、LVBench 与 STI-Bench 分别覆盖短视频技能、长视频检索记忆和精确时空量化；它们不能互相替代（<a class="wikilink" href="../sources/2026-04-14-mvbench.html">MVBench</a>、<a class="wikilink" href="../sources/2026-04-14-lvbench.html">LVBench</a>、<a class="wikilink" href="../sources/2026-04-14-sti-bench.html">STI-Bench</a>）。抽多少帧、是否提供字幕、视频多长、答案是否能靠语言先验猜出，都会决定分数到底在测视频还是测捷径。</p>
+<h3 id="5-好的-benchmark-应定位失败-而不只是扩大题量">5. 好的 benchmark 应定位失败，而不只是扩大题量</h3>
+<p>HallusionBench、GlitchBench、SOK-Bench、ANetQA、神经符号视频生成评测分别针对幻觉、动态异常、情境常识、组合问答和形式化约束（<a class="wikilink" href="../sources/2026-04-14-hallusionbench.html">HallusionBench</a>、<a class="wikilink" href="../sources/2026-04-14-glitchbench.html">GlitchBench</a>、<a class="wikilink" href="../sources/2026-04-14-sok-bench.html">SOK-Bench</a>、<a class="wikilink" href="../sources/2026-04-14-anetqa.html">ANetQA</a>、<a class="wikilink" href="../sources/2026-04-14-neuro-symbolic-eval-t2v.html">神经符号评测</a>）。这类诊断集的价值在于解释模型为什么失败，而不是把不同能力压成一个平均分。</p>
+<h2 id="近五年演化-2022-2026">近五年演化（2022—2026）</h2>
+<figure class="wiki-visual wiki-visual--timeline" data-visual-id="generative-evaluation-evolution" aria-labelledby="visual-generative-evaluation-evolution-title" aria-describedby="visual-generative-evaluation-evolution-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">近五年生成与多模态评测的重点如何变化？</p><div class="wiki-visual-title" id="visual-generative-evaluation-evolution-title" role="heading" aria-level="3">评测从单分数走向证据协议</div><p class="wiki-visual-explanation">演化主线是从通用自动分数，转向任务专用维度、人评可复现、长视频输入控制和评审器审计。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>2022</strong><small>图像编辑开始把对象、属性、绑定和视觉质量分别验收</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>2023</strong><small>人工评测的任务定义、标注一致性与可复现性成为研究对象</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>2024</strong><small>视频生成形成多维套件，并研究代表性提示采样以降低评测成本</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>2025</strong><small>长视频、精确时空、细粒度视频编辑和大模型评审器快速扩展</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">05</span><strong>2026</strong><small>可信结论要求披露输入预算、评审器版本、失败类型与统计不确定性</small></li></ol><figcaption><span>图示依据</span><a class="wikilink" href="../sources/2026-04-14-imagen-editor-editbench.html">EditBench</a>、<a class="wikilink" href="../sources/2026-04-14-verifiable-human-eval-t2i.html">可验证人工评测</a>、<a class="wikilink" href="../sources/2026-04-14-vbench.html">VBench</a>、<a class="wikilink" href="../sources/2026-04-14-flasheval.html">FlashEval</a>、<a class="wikilink" href="../sources/2026-04-14-five-bench.html">FiVE-Bench</a></figcaption><p class="sr-only" id="visual-generative-evaluation-evolution-alt">2022 年前后形成编辑专用维度，2023 年强调可验证人评，2024 年出现视频多维套件和低成本采样，2025 年聚焦长视频、细粒度编辑与模型评审器，2026 年收敛为可复核证据协议。</p></figure>
+<p>这条演化不是旧指标被完全淘汰。FID、CLIPScore 等仍适合规模化筛选，但它们应成为证据组合的一部分，而不是论文结论的唯一支柱。</p>
+<h2 id="方法家族与成熟阶段">方法家族与成熟阶段</h2>
+<h3 id="方法家族的成熟度">方法家族的成熟度</h3>
+<h4 id="分布与表征指标">分布与表征指标</h4>
+<ul>
+<li><strong>阶段</strong>：成熟底座</li>
+<li><strong>证据锚点</strong>：IS、FID 和 CLIPScore 已成为图像生成的常用自动测量，但分别受特征空间、样本量和语义捷径限制。</li>
+<li><strong>研究机会</strong>：明确适用边界、置信区间和跨域稳定性，而不是再造一个未经人评校准的综合分。</li>
+</ul>
+<h4 id="任务专用多维-benchmark">任务专用多维 benchmark</h4>
+<ul>
+<li><strong>阶段</strong>：活跃发展期</li>
+<li><strong>证据锚点</strong>：VBench、EvalCrafter、EditBench 和 FiVE-Bench 把生成、编辑、运动与保持约束拆成不同维度。</li>
+<li><strong>研究机会</strong>：验证维度是否互相独立，能否预测真实用户任务成功，以及模型排名是否对提示分布稳定。</li>
+</ul>
+<h4 id="可验证人工评测">可验证人工评测</h4>
+<ul>
+<li><strong>阶段</strong>：系统优化期</li>
+<li><strong>证据锚点</strong>：可验证文本到图像人评工作强调清晰问题、盲评和协议复现；Video-Bench 尝试将人类偏好结构化。</li>
+<li><strong>研究机会</strong>：降低标注成本，同时保留评审一致性、置信度和失败原因。</li>
+</ul>
+<h4 id="大模型自动评审">大模型自动评审</h4>
+<ul>
+<li><strong>阶段</strong>：早期整合期</li>
+<li><strong>证据锚点</strong>：AIGV-Assessor、Video-Bench 等显示多模态评审器能覆盖复杂维度，但时间一致性和版本鲁棒性仍有限。</li>
+<li><strong>研究机会</strong>：评审器交叉验证、模型家族偏差、顺序偏差、提示敏感性与拒答机制。</li>
+</ul>
+<h4 id="快速与自适应评测">快速与自适应评测</h4>
+<ul>
+<li><strong>阶段</strong>：评测建设期</li>
+<li><strong>证据锚点</strong>：FlashEval 用代表性提示子集降低成本，但搜索成本和跨模型复用边界必须单独核算。</li>
+<li><strong>研究机会</strong>：在给定误差容忍度下选择样本，并验证小样本不会改变模型排序或掩盖长尾失败。</li>
+</ul>
+<figure class="wiki-visual wiki-visual--map" data-visual-id="generative-evaluation-method-map" aria-labelledby="visual-generative-evaluation-method-map-title" aria-describedby="visual-generative-evaluation-method-map-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">自动指标、人评、模型评审器和诊断集应怎样分工？</p><div class="wiki-visual-title" id="visual-generative-evaluation-method-map-title" role="heading" aria-level="3">不同评测方法测量什么</div><p class="wiki-visual-explanation">四类方法分别解决规模、真实偏好、复杂语义和失败定位；可靠研究需要交叉验证，而不是互相替代。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>分布与表征指标</strong><small>高吞吐比较样本集合，但不能解释具体失败</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>任务专用指标</strong><small>对齐对象、属性、运动、保持性等明确约束</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>人工盲评</strong><small>最接近真实偏好，但成本高且需要一致性控制</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>多模态评审器</strong><small>可扩展复杂判断，但必须审计版本和模型偏差</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">05</span><strong>诊断 benchmark</strong><small>用反事实或压力测试定位捷径与能力缺口</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">06</span><strong>统计与复现</strong><small>通过重复、区间和敏感性决定结论能否成立</small></li></ol><figcaption><span>图示依据</span><a class="wikilink" href="../sources/2026-07-14-fid.html">FID</a>、<a class="wikilink" href="../sources/2026-07-14-clipscore.html">CLIPScore</a>、<a class="wikilink" href="../sources/2026-04-14-verifiable-human-eval-t2i.html">可验证人工评测</a>、<a class="wikilink" href="../sources/2026-04-14-hallusionbench.html">HallusionBench</a></figcaption><p class="sr-only" id="visual-generative-evaluation-method-map-alt">分布和语义指标负责规模化筛选，任务专用指标负责约束验收，人工与模型评审器负责偏好判断，诊断集负责失败归因，统计层贯穿所有方法。</p></figure>
+<h2 id="拥挤方向与研究机会">拥挤方向与研究机会</h2>
+<ul>
+<li><strong>相对拥挤</strong>：把多个旧指标线性相加、只在少量模型上报告相关性、只扩大题量却不检查捷径。</li>
+<li><strong>仍有价值</strong>：编辑保持性与局部证据、长视频输入预算、真实工作流成功率、评审器跨版本稳定性。</li>
+<li><strong>高价值交界</strong>：研究“低成本评测是否保持模型排序”时，同时测总体排名、长尾失败和不同模型家族，避免只优化平均相关性。</li>
+<li><strong>可形成资产的方向</strong>：公开提示、样本、评审说明、原始评分、置信区间和失败标签；一个透明的小 benchmark 往往比一个不可审计的大分数更有长期价值。</li>
+</ul>
+<h2 id="反方证据-局限与可证伪条件">反方证据、局限与可证伪条件</h2>
+<p>最强反方意见是：benchmark 很容易快速过时，模型可能针对公开测试集调优，而新指标也可能只是换一种偏好。因此“与人评相关”不能单独证明指标有效。</p>
+<p>一项评测研究至少应满足：</p>
+<ol>
+<li>在未参与指标设计的模型家族和提示分布上复测；</li>
+<li>同时报告模型级与样本级一致性，避免少数模型点造成虚高相关；</li>
+<li>公开输入预算、评审器版本、提示模板和随机性；</li>
+<li>加入简单启发式、文本先验或静态帧基线，确认任务确实需要目标能力；</li>
+<li>预先规定失败条件：若新协议不能稳定区分已知能力差异，或排序对样本轻微变化高度敏感，应收窄结论。</li>
+</ol>
+<h2 id="研究生可行的研究入口">研究生可行的研究入口</h2>
+<h3 id="候选课题-a-视频编辑的保持-改变评测-最推荐">候选课题 A：视频编辑的保持—改变评测（最推荐）</h3>
+<ul>
+<li><strong>精确研究问题</strong>：编辑指令完成度、未编辑区域保持、身份一致性和时间稳定性如何被分开测量？</li>
+<li><strong>最小实验</strong>：选两类编辑任务、3—5 个公开模型和约 300 个样本，建立区域/时间约束、自动指标与盲评对照。</li>
+<li><strong>主要贡献</strong>：任务协议、失败标签和跨指标一致性，而不是训练更大的生成模型。</li>
+<li><strong>止损条件</strong>：若标注者无法稳定理解任务，先缩小到对象替换或局部属性编辑，不继续扩任务。</li>
+</ul>
+<h3 id="候选课题-b-多模态评审器的偏差与版本鲁棒性-推荐">候选课题 B：多模态评审器的偏差与版本鲁棒性（推荐）</h3>
+<ul>
+<li><strong>精确研究问题</strong>：评审器模型、提示、帧采样和候选顺序变化会在多大程度上改变生成模型排名？</li>
+<li><strong>最小实验</strong>：固定视频集合，交叉比较两个评审器、两种帧预算、两套提示和人工盲评。</li>
+<li><strong>主要贡献</strong>：偏差分解、校准方法与可复现评审脚本。</li>
+<li><strong>止损条件</strong>：若无法取得稳定人工基准，就将研究收窄为测量不确定性报告，不声称“更接近人类”。</li>
+</ul>
+<h3 id="候选课题-c-保序的低成本评测采样-条件推荐">候选课题 C：保序的低成本评测采样（条件推荐）</h3>
+<ul>
+<li><strong>精确研究问题</strong>：能否用更少提示和样本保持总体排序，同时不丢失长尾失败？</li>
+<li><strong>最小实验</strong>：在公开 benchmark 上比较随机、聚类和难例感知采样，报告排序相关、置信区间与失败覆盖率。</li>
+<li><strong>主要贡献</strong>：质量—成本曲线和跨模型复用边界。</li>
+<li><strong>止损条件</strong>：若子集只对参与选择的模型有效，应将结论限定为一次性评测压缩。</li>
+</ul>
+<h3 id="推荐排序与止损条件">推荐排序与止损条件</h3>
+<ul>
+<li>首选 A，任务定义具体、算力低且能直接连接图像/视频编辑研究。</li>
+<li>偏测量科学与多模态模型时选 B；偏系统和统计时选 C。</li>
+<li>不建议把“提出一个总分”当作首个课题，除非已有大规模、独立且可复核的人类判断。</li>
+</ul>
 <h2 id="证据基础">证据基础</h2>
 <ul>
-<li><a class="wikilink" href="../sources/2026-04-14-evalcrafter.html">sources/2026-04-14-evalcrafter</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-aigv-assessor.html">sources/2026-04-14-aigv-assessor</a></li>
-<li><a class="wikilink" href="../sources/2026-04-12-veu-bench.html">sources/2026-04-12-veu-bench</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-videocrafter2.html">sources/2026-04-14-videocrafter2</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-video-bench.html">sources/2026-04-14-video-bench</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-five-bench.html">sources/2026-04-14-five-bench</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-imagen-editor-editbench.html">sources/2026-04-14-imagen-editor-editbench</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-flasheval.html">sources/2026-04-14-flasheval</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-verifiable-human-eval-t2i.html">sources/2026-04-14-verifiable-human-eval-t2i</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-hallusionbench.html">sources/2026-04-14-hallusionbench</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-glitchbench.html">sources/2026-04-14-glitchbench</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-mvbench.html">sources/2026-04-14-mvbench</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-neuro-symbolic-eval-t2v.html">sources/2026-04-14-neuro-symbolic-eval-t2v</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-concon-chi.html">sources/2026-04-14-concon-chi</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-maplm.html">sources/2026-04-14-maplm</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-mmmu.html">sources/2026-04-14-mmmu</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-sti-bench.html">sources/2026-04-14-sti-bench</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-anetqa.html">sources/2026-04-14-anetqa</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-sok-bench.html">sources/2026-04-14-sok-bench</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-lvbench.html">sources/2026-04-14-lvbench</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-vbench.html">sources/2026-04-14-vbench</a></li>
+<li><strong>通用图像指标</strong>：<a class="wikilink" href="../sources/2026-07-14-inception-score.html">Inception Score</a>、<a class="wikilink" href="../sources/2026-07-14-fid.html">FID</a>、<a class="wikilink" href="../sources/2026-07-14-clipscore.html">CLIPScore</a>。</li>
+<li><strong>图像生成与编辑</strong>：<a class="wikilink" href="../sources/2026-04-14-imagen-editor-editbench.html">EditBench</a>、<a class="wikilink" href="../sources/2026-04-14-flasheval.html">FlashEval</a>、<a class="wikilink" href="../sources/2026-04-14-verifiable-human-eval-t2i.html">可验证人工评测</a>。</li>
+<li><strong>视频生成与编辑</strong>：<a class="wikilink" href="../sources/2026-04-14-evalcrafter.html">EvalCrafter</a>、<a class="wikilink" href="../sources/2026-04-14-vbench.html">VBench</a>、<a class="wikilink" href="../sources/2026-04-14-videocrafter2.html">VideoCrafter2</a>、<a class="wikilink" href="../sources/2026-04-14-video-bench.html">Video-Bench</a>、<a class="wikilink" href="../sources/2026-04-14-aigv-assessor.html">AIGV-Assessor</a>、<a class="wikilink" href="../sources/2026-04-14-five-bench.html">FiVE-Bench</a>、<a class="wikilink" href="../sources/2026-04-12-veu-bench.html">VEU-Bench</a>。</li>
+<li><strong>视频理解压力测试</strong>：<a class="wikilink" href="../sources/2026-04-14-mvbench.html">MVBench</a>、<a class="wikilink" href="../sources/2026-04-14-lvbench.html">LVBench</a>、<a class="wikilink" href="../sources/2026-04-14-sti-bench.html">STI-Bench</a>、<a class="wikilink" href="../sources/2026-04-14-sok-bench.html">SOK-Bench</a>、<a class="wikilink" href="../sources/2026-04-14-anetqa.html">ANetQA</a>。</li>
+<li><strong>失败与组合性诊断</strong>：<a class="wikilink" href="../sources/2026-04-14-hallusionbench.html">HallusionBench</a>、<a class="wikilink" href="../sources/2026-04-14-glitchbench.html">GlitchBench</a>、<a class="wikilink" href="../sources/2026-04-14-neuro-symbolic-eval-t2v.html">神经符号视频评测</a>、<a class="wikilink" href="../sources/2026-04-14-mmmu.html">MMMU</a>、<a class="wikilink" href="../sources/2026-04-14-maplm.html">MAPLM</a>、<a class="wikilink" href="../sources/2026-04-14-concon-chi.html">ConCon-Chi</a>。</li>
 </ul>
-<h2 id="关联页面">关联页面</h2>
+<h2 id="开放问题">开放问题</h2>
 <ul>
-<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a></li>
-<li><a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../topics/vision-language.html">topics/vision-language</a></li>
-<li><a class="wikilink" href="../entities/video-editing-understanding.html">entities/video-editing-understanding</a></li>
+<li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有 benchmark 是否追踪真实视频编辑理解</a></li>
+<li>模型评审器如何在版本更新后保持纵向可比？</li>
+<li>怎样在低成本评测中保留少数但高风险的失败？</li>
+<li>用户工作流成功率与离线感知指标之间能否建立稳定关系？</li>
 </ul>
-<h2 id="后续值得追踪的问题">后续值得追踪的问题</h2>
+<h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">questions/question-do-benchmarks-track-real-video-editing-understanding</a> — 视频编辑理解 benchmark 与真实任务完成度之间是否存在稳定映射。</li>
-<li>哪些指标真的和研究者或用户的主观判断相关？</li>
-<li>哪些 benchmark 已经出现“看似饱和、实则能力不足”的情况？</li>
-<li>面向可控生成和指令跟随生成，评测体系需要怎样变化？</li>
-<li>图像侧的快速评测器能否在保持可靠性的同时真正加快研究迭代？</li>
+<li><a class="wikilink" href="../topics/datasets-metrics-and-benchmark-reliability.html">数据集、指标与 Benchmark 可靠性</a></li>
+<li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../topics/image-editing.html">图像编辑</a></li>
+<li><a class="wikilink" href="../topics/video-generation.html">视频生成</a></li>
+<li><a class="wikilink" href="../topics/video-editing.html">视频编辑</a></li>
+<li><a class="wikilink" href="../topics/video-understanding.html">视频理解</a></li>
+<li><a class="wikilink" href="../topics/vision-language.html">视觉语言</a></li>
 </ul></section>
       </div>
       
-      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-related_topics"><h3>相关主题<span class="related-count">4</span></h3><ul><li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../topics/video-understanding.html">视频理解</a></li><li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li><li><a class="wikilink" href="../topics/vision-language.html">视觉-语言</a></li></ul></div><div class="related-group related-related_entities"><h3>相关实体<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../entities/video-editing-understanding.html">视频编辑理解</a></li></ul></div><div class="related-group related-open_questions"><h3>开放问题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li></ul></div><div class="related-group related-source_notes"><h3>来源笔记<span class="related-count">20</span></h3><ul><li><a class="wikilink" href="../sources/2026-04-14-aigv-assessor.html">AIGV-Assessor：用大模型评测文本到视频生成感知质量</a></li><li><a class="wikilink" href="../sources/2026-04-14-video-bench.html">Video-Bench：人类偏好对齐的视频生成评测</a></li><li><a class="wikilink" href="../sources/2026-04-14-videocrafter2.html">VideoCrafter2：低质量视频与高质量图像协同训练的视频扩散模型</a></li><li><a class="wikilink" href="../sources/2026-04-14-evalcrafter.html">EvalCrafter：大视频生成模型的多维评测与人工偏好校准</a></li><li><a class="wikilink" href="../sources/2026-04-14-five-bench.html">FiVE-Bench：细粒度视频编辑评测基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-imagen-editor-editbench.html">Imagen Editor 与 EditBench：推进并评测文本引导图像修补</a></li><li><a class="wikilink" href="../sources/2026-04-14-flasheval.html">FlashEval：用代表性 prompt 子集加速文本到图像模型评测</a></li><li><a class="wikilink" href="../sources/2026-04-14-verifiable-human-eval-t2i.html">文本到图像生成的可验证与可复现人工评测</a></li><li><a class="wikilink" href="../sources/2026-04-14-hallusionbench.html">HallusionBench：视觉语言幻觉与视觉错觉诊断基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-glitchbench.html">GlitchBench：大型多模态模型能否识别电子游戏故障</a></li><li><a class="wikilink" href="../sources/2026-04-14-vbench.html">VBench：视频生成模型综合评测套件</a></li><li><a class="wikilink" href="../sources/2026-04-14-mvbench.html">MVBench：综合多模态视频理解基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-lvbench.html">LVBench：极长视频理解基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-sok-bench.html">SOK-Bench：结合开放世界知识的情境视频推理基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-anetqa.html">ANetQA：未裁剪视频细粒度组合推理基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-neuro-symbolic-eval-t2v.html">通过形式化验证评测文本到视频模型的神经符号方法</a></li><li><a class="wikilink" href="../sources/2026-04-14-sti-bench.html">STI-Bench：精确时空世界理解基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-mmmu.html">MMMU：跨学科专家级多模态理解与推理基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-maplm.html">MAPLM：地图与交通场景的真实世界多模态问答基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-concon-chi.html">ConCon-Chi：个性化视觉语言的新含义与组合性基准</a></li></ul></div></div></section>
-      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">46</span></h2><ul><li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a><span>判断</span></li><li><a href="../claims/claim-image-text-retrieval-compositionality.html">标准图文检索分数不足以证明组合性理解</a><span>判断</span></li><li><a href="../entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a><span>实体</span></li><li><a href="../entities/video-editing-understanding.html">视频编辑理解</a><span>实体</span></li><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a><span>问题</span></li><li><a href="../sources/2026-04-12-align-a-video.html">Align-A-Video：面向一致视频编辑的确定性奖励调优</a><span>来源笔记</span></li><li><a href="../sources/2026-04-12-lingen.html">LinGen：面向高分辨率分钟级文本到视频生成的线性复杂度框架</a><span>来源笔记</span></li><li><a href="../sources/2026-04-12-tora.html">Tora：面向视频生成的轨迹导向扩散 Transformer</a><span>来源笔记</span></li><li><a href="../sources/2026-04-12-veu-bench.html">VEU-Bench：通用 Vid-LLM 的视频剪辑元素理解基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-12-videodirector.html">VideoDirector：借助文本到视频模型实现精确视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-aigv-assessor.html">AIGV-Assessor：用大模型评测文本到视频生成感知质量</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-anetqa.html">ANetQA：未裁剪视频细粒度组合推理基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-concon-chi.html">ConCon-Chi：个性化视觉语言的新含义与组合性基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-evalcrafter.html">EvalCrafter：大视频生成模型的多维评测与人工偏好校准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-five-bench.html">FiVE-Bench：细粒度视频编辑评测基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-flasheval.html">FlashEval：用代表性 prompt 子集加速文本到图像模型评测</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-glitchbench.html">GlitchBench：大型多模态模型能否识别电子游戏故障</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-hallusionbench.html">HallusionBench：视觉语言幻觉与视觉错觉诊断基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-imagen-editor-editbench.html">Imagen Editor 与 EditBench：推进并评测文本引导图像修补</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-lvbench.html">LVBench：极长视频理解基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-maplm.html">MAPLM：地图与交通场景的真实世界多模态问答基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-mmmu.html">MMMU：跨学科专家级多模态理解与推理基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-mvbench.html">MVBench：综合多模态视频理解基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-neuro-symbolic-eval-t2v.html">通过形式化验证评测文本到视频模型的神经符号方法</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-sok-bench.html">SOK-Bench：结合开放世界知识的情境视频推理基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-sti-bench.html">STI-Bench：精确时空世界理解基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-vbench.html">VBench：视频生成模型综合评测套件</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-verifiable-human-eval-t2i.html">文本到图像生成的可验证与可复现人工评测</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-video-bench.html">Video-Bench：人类偏好对齐的视频生成评测</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-videocrafter2.html">VideoCrafter2：低质量视频与高质量图像协同训练的视频扩散模型</a><span>来源笔记</span></li><li><a href="../sources/2026-04-25-nist-ai-risk-management-framework.html">NIST AI RMF：NIST AI RMF 提供 AI 风险管理框架。</a><span>来源笔记</span></li><li><a href="../sources/2026-06-29-clip.html">CLIP：用自然语言监督学习可迁移视觉表示</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-mieb.html">MIEB：大规模图像 embedding 评测基准（Massive Image Embedding Benchmark）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-pinpoint.html">PinPoint：带显式负例、多图查询与改写测试的组合式图像检索评测</a><span>来源笔记</span></li><li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>主题</span></li><li><a href="../topics/diffusion-models.html">扩散模型</a><span>主题</span></li><li><a href="../topics/image-editing.html">图像编辑</a><span>主题</span></li><li><a href="../topics/image-generation.html">图像生成</a><span>主题</span></li><li><a href="../topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a><span>主题</span></li><li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a><span>主题</span></li><li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a><span>主题</span></li><li><a href="../topics/video-editing.html">视频编辑</a><span>主题</span></li><li><a href="../topics/video-generation.html">视频生成</a><span>主题</span></li><li><a href="../topics/video-understanding.html">视频理解</a><span>主题</span></li><li><a href="../topics/vision-language.html">视觉-语言</a><span>主题</span></li></ul></section>
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-related_topics"><h3>相关主题<span class="related-count">7</span></h3><ul><li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../topics/image-editing.html">图像编辑</a></li><li><a class="wikilink" href="../topics/video-generation.html">视频生成</a></li><li><a class="wikilink" href="../topics/video-editing.html">视频编辑</a></li><li><a class="wikilink" href="../topics/video-understanding.html">视频理解</a></li><li><a class="wikilink" href="../topics/diffusion-models.html">扩散模型</a></li><li><a class="wikilink" href="../topics/vision-language.html">视觉语言</a></li></ul></div><div class="related-group related-related_entities"><h3>相关实体<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../entities/video-editing-understanding.html">视频编辑理解</a></li></ul></div><div class="related-group related-open_questions"><h3>开放问题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li></ul></div><div class="related-group related-source_notes"><h3>来源笔记<span class="related-count">24</span></h3><ul><li><a class="wikilink" href="../sources/2026-07-14-inception-score.html">Improved Techniques for Training GANs：Inception Score 的来源与边界</a></li><li><a class="wikilink" href="../sources/2026-07-14-fid.html">GANs Trained by a Two Time-Scale Update Rule：FID 的来源与边界</a></li><li><a class="wikilink" href="../sources/2026-07-14-clipscore.html">CLIPScore：基于 CLIP 的无参考图文评测</a></li><li><a class="wikilink" href="../sources/2026-04-12-veu-bench.html">VEU-Bench：通用 Vid-LLM 的视频剪辑元素理解基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-aigv-assessor.html">AIGV-Assessor：用大模型评测文本到视频生成感知质量</a></li><li><a class="wikilink" href="../sources/2026-04-14-video-bench.html">Video-Bench：人类偏好对齐的视频生成评测</a></li><li><a class="wikilink" href="../sources/2026-04-14-videocrafter2.html">VideoCrafter2：低质量视频与高质量图像协同训练的视频扩散模型</a></li><li><a class="wikilink" href="../sources/2026-04-14-evalcrafter.html">EvalCrafter：大视频生成模型的多维评测与人工偏好校准</a></li><li><a class="wikilink" href="../sources/2026-04-14-five-bench.html">FiVE-Bench：细粒度视频编辑评测基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-imagen-editor-editbench.html">Imagen Editor 与 EditBench：推进并评测文本引导图像修补</a></li><li><a class="wikilink" href="../sources/2026-04-14-flasheval.html">FlashEval：用代表性 prompt 子集加速文本到图像模型评测</a></li><li><a class="wikilink" href="../sources/2026-04-14-verifiable-human-eval-t2i.html">文本到图像生成的可验证与可复现人工评测</a></li><li><a class="wikilink" href="../sources/2026-04-14-hallusionbench.html">HallusionBench：视觉语言幻觉与视觉错觉诊断基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-glitchbench.html">GlitchBench：大型多模态模型能否识别电子游戏故障</a></li><li><a class="wikilink" href="../sources/2026-04-14-vbench.html">VBench：视频生成模型综合评测套件</a></li><li><a class="wikilink" href="../sources/2026-04-14-mvbench.html">MVBench：综合多模态视频理解基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-lvbench.html">LVBench：极长视频理解基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-sok-bench.html">SOK-Bench：结合开放世界知识的情境视频推理基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-anetqa.html">ANetQA：未裁剪视频细粒度组合推理基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-neuro-symbolic-eval-t2v.html">通过形式化验证评测文本到视频模型的神经符号方法</a></li><li><a class="wikilink" href="../sources/2026-04-14-sti-bench.html">STI-Bench：精确时空世界理解基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-mmmu.html">MMMU：跨学科专家级多模态理解与推理基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-maplm.html">MAPLM：地图与交通场景的真实世界多模态问答基准</a></li><li><a class="wikilink" href="../sources/2026-04-14-concon-chi.html">ConCon-Chi：个性化视觉语言的新含义与组合性基准</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">52</span></h2><ul><li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a><span>判断</span></li><li><a href="../claims/claim-image-text-retrieval-compositionality.html">标准图文检索分数不足以证明组合性理解</a><span>判断</span></li><li><a href="../entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a><span>实体</span></li><li><a href="../entities/video-editing-understanding.html">视频编辑理解</a><span>实体</span></li><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a><span>问题</span></li><li><a href="../sources/2026-04-12-align-a-video.html">Align-A-Video：面向一致视频编辑的确定性奖励调优</a><span>来源笔记</span></li><li><a href="../sources/2026-04-12-lingen.html">LinGen：面向高分辨率分钟级文本到视频生成的线性复杂度框架</a><span>来源笔记</span></li><li><a href="../sources/2026-04-12-tora.html">Tora：面向视频生成的轨迹导向扩散 Transformer</a><span>来源笔记</span></li><li><a href="../sources/2026-04-12-veu-bench.html">VEU-Bench：通用 Vid-LLM 的视频剪辑元素理解基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-12-videodirector.html">VideoDirector：借助文本到视频模型实现精确视频编辑</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-aigv-assessor.html">AIGV-Assessor：用大模型评测文本到视频生成感知质量</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-anetqa.html">ANetQA：未裁剪视频细粒度组合推理基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-concon-chi.html">ConCon-Chi：个性化视觉语言的新含义与组合性基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-evalcrafter.html">EvalCrafter：大视频生成模型的多维评测与人工偏好校准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-five-bench.html">FiVE-Bench：细粒度视频编辑评测基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-flasheval.html">FlashEval：用代表性 prompt 子集加速文本到图像模型评测</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-glitchbench.html">GlitchBench：大型多模态模型能否识别电子游戏故障</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-hallusionbench.html">HallusionBench：视觉语言幻觉与视觉错觉诊断基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-imagen-editor-editbench.html">Imagen Editor 与 EditBench：推进并评测文本引导图像修补</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-lvbench.html">LVBench：极长视频理解基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-maplm.html">MAPLM：地图与交通场景的真实世界多模态问答基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-mmmu.html">MMMU：跨学科专家级多模态理解与推理基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-mvbench.html">MVBench：综合多模态视频理解基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-neuro-symbolic-eval-t2v.html">通过形式化验证评测文本到视频模型的神经符号方法</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-sok-bench.html">SOK-Bench：结合开放世界知识的情境视频推理基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-sti-bench.html">STI-Bench：精确时空世界理解基准</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-vbench.html">VBench：视频生成模型综合评测套件</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-verifiable-human-eval-t2i.html">文本到图像生成的可验证与可复现人工评测</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-video-bench.html">Video-Bench：人类偏好对齐的视频生成评测</a><span>来源笔记</span></li><li><a href="../sources/2026-04-14-videocrafter2.html">VideoCrafter2：低质量视频与高质量图像协同训练的视频扩散模型</a><span>来源笔记</span></li><li><a href="../sources/2026-04-25-nist-ai-risk-management-framework.html">NIST AI RMF：NIST AI RMF 提供 AI 风险管理框架。</a><span>来源笔记</span></li><li><a href="../sources/2026-06-29-clip.html">CLIP：用自然语言监督学习可迁移视觉表示</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-clipscore.html">CLIPScore：基于 CLIP 的无参考图文评测</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-fid.html">GANs Trained by a Two Time-Scale Update Rule：FID 的来源与边界</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-inception-score.html">Improved Techniques for Training GANs：Inception Score 的来源与边界</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-mieb.html">MIEB：大规模图像 embedding 评测基准（Massive Image Embedding Benchmark）</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-pinpoint.html">PinPoint：带显式负例、多图查询与改写测试的组合式图像检索评测</a><span>来源笔记</span></li><li><a href="../topics/computer-vision-overview.html">计算机视觉概览与发展脉络</a><span>主题</span></li><li><a href="../topics/datasets-metrics-and-benchmark-reliability.html">数据集、评测指标与基准可靠性</a><span>主题</span></li><li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a><span>主题</span></li><li><a href="../topics/diffusion-models.html">扩散模型</a><span>主题</span></li><li><a href="../topics/image-editing.html">图像编辑</a><span>主题</span></li><li><a href="../topics/image-generation.html">图像生成</a><span>主题</span></li><li><a href="../topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a><span>主题</span></li><li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a><span>主题</span></li><li><a href="../topics/sports-ai-video-understanding.html">体育 AI 视频理解</a><span>主题</span></li><li><a href="../topics/video-editing.html">视频编辑</a><span>主题</span></li><li><a href="../topics/video-generation.html">视频生成</a><span>主题</span></li><li><a href="../topics/video-understanding.html">视频理解</a><span>主题</span></li><li><a href="../topics/vision-language.html">视觉语言</a><span>主题</span></li><li><a href="../topics/visual-generation-foundations.html">视觉生成模型基础</a><span>主题</span></li></ul></section>
       <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
   &quot;id&quot;: &quot;topic-generative-model-evaluation&quot;,
   &quot;type&quot;: &quot;topic&quot;,
+  &quot;topic_kind&quot;: &quot;research&quot;,
   &quot;title&quot;: &quot;生成模型评测&quot;,
   &quot;status&quot;: &quot;active&quot;,
   &quot;created&quot;: &quot;2026-04-12&quot;,
-  &quot;updated&quot;: &quot;2026-07-12&quot;,
+  &quot;updated&quot;: &quot;2026-07-14&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;evaluation&quot;,
     &quot;benchmarking&quot;,
     &quot;multimodal&quot;
   ],
-  &quot;summary&quot;: &quot;追踪生成式与多模态视觉系统的评测方式，包括指标质量、benchmark 盲点与证据强度。&quot;,
+  &quot;summary&quot;: &quot;研究图像与视频生成、编辑和多模态系统的评测协议，重点判断指标是否测到目标能力、是否与人类判断一致，以及结论能否跨模型复现。&quot;,
+  &quot;foundational_sources&quot;: [
+    &quot;sources/2026-07-14-inception-score&quot;,
+    &quot;sources/2026-07-14-fid&quot;,
+    &quot;sources/2026-07-14-clipscore&quot;,
+    &quot;sources/2026-04-14-evalcrafter&quot;,
+    &quot;sources/2026-04-14-vbench&quot;
+  ],
+  &quot;visuals&quot;: [
+    &quot;generative-evaluation-evidence-loop&quot;,
+    &quot;generative-evaluation-evolution&quot;,
+    &quot;generative-evaluation-method-map&quot;
+  ],
   &quot;source_notes&quot;: [
+    &quot;sources/2026-07-14-inception-score&quot;,
+    &quot;sources/2026-07-14-fid&quot;,
+    &quot;sources/2026-07-14-clipscore&quot;,
+    &quot;sources/2026-04-12-veu-bench&quot;,
     &quot;sources/2026-04-14-aigv-assessor&quot;,
     &quot;sources/2026-04-14-video-bench&quot;,
     &quot;sources/2026-04-14-videocrafter2&quot;,
@@ -206,6 +298,9 @@
   ],
   &quot;related_topics&quot;: [
     &quot;topics/image-generation&quot;,
+    &quot;topics/image-editing&quot;,
+    &quot;topics/video-generation&quot;,
+    &quot;topics/video-editing&quot;,
     &quot;topics/video-understanding&quot;,
     &quot;topics/diffusion-models&quot;,
     &quot;topics/vision-language&quot;

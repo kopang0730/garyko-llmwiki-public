@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A beginner-friendly map of CNN, U-Net, Transformer, DiT, GCN, and Mamba/SSM vision backbones for generation, video understanding, and sports AI.">
+  <meta name="description" content="比较 CNN、U-Net、ViT、层级 Transformer、GCN 与状态空间模型怎样编码局部、全局、多尺度和时序信息，以及怎样按任务与预算选主干。">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
-  <title>Mainstream Vision Backbones · llmwiki</title>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260714-research-observatory-v2-motion">
-  <script defer src="../../assets/wiki.js?v=20260714-research-observatory-v2-motion"></script>
+  <title>Visual Representations and Backbones · llmwiki</title>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260714-research-observatory-v5-topic-visuals">
+  <script defer src="../../assets/wiki.js?v=20260714-research-observatory-v5-topic-visuals"></script>
 </head>
-<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/vision-backbones&quot;, &quot;title&quot;: &quot;主流视觉 Backbone 入门&quot;, &quot;title_en&quot;: &quot;Mainstream Vision Backbones&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;image-generation&quot;, &quot;representation-learning&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260714-research-observatory-v2-motion">
+<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/vision-backbones&quot;, &quot;title&quot;: &quot;图像表示与视觉主干网络&quot;, &quot;title_en&quot;: &quot;Visual Representations and Backbones&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;vision-foundations&quot;, &quot;representation-learning&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260714-research-observatory-v5-topic-visuals">
   <header class="mobile-topbar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> Menu</button>
@@ -23,20 +23,30 @@
 <li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
 <li><a href="../../en/main.html">Main page</a></li>
 </ul>
-<h2>Topics</h2><ul>
-<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<h2>Foundations</h2><ul>
+<li><a href="../../en/topics/computer-vision-overview.html">计算机视觉概览</a></li>
+<li><a href="../../en/topics/datasets-metrics-and-benchmark-reliability.html">数据与评测基础</a></li>
 <li><a href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../../en/topics/video-representation-and-temporal-modeling.html">视频表示基础</a></li>
+<li><a class="active" href="../../en/topics/vision-backbones.html">Vision Backbones</a></li>
+<li><a href="../../en/topics/vision-language-foundations.html">视觉语言基础</a></li>
+<li><a href="../../en/topics/vision-task-foundations.html">核心视觉任务</a></li>
+<li><a href="../../en/topics/visual-generation-foundations.html">视觉生成基础</a></li>
+</ul>
+<h2>Research topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
 <li><a href="../../en/topics/generative-model-evaluation.html">生成模型评测</a></li>
 <li><a href="../../en/topics/image-editing.html">图像编辑</a></li>
 <li><a href="../../en/topics/image-generation.html">图像生成</a></li>
 <li><a href="../../en/topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a></li>
-<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI</a></li>
 <li><a href="../../en/topics/sports-ai-video-understanding.html">Sports Video Understanding</a></li>
 <li><a href="../../en/topics/video-editing.html">视频编辑</a></li>
 <li><a href="../../en/topics/video-generation.html">视频生成</a></li>
 <li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
-<li><a class="active" href="../../en/topics/vision-backbones.html">Vision Backbones</a></li>
-<li><a href="../../en/topics/vision-language.html">视觉-语言</a></li>
+<li><a href="../../en/topics/vision-language.html">视觉语言</a></li>
+</ul>
+<h2>Roadmaps</h2><ul>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI</a></li>
 </ul>
 <h2>Entities</h2><ul>
 <li><a href="../../en/entities/clip.html">CLIP 系列模型（CLIP Family）</a></li>
@@ -76,106 +86,139 @@
     <article class="article-shell">
       
       <header class="article-header" data-motion="reveal">
-        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Topic</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Mainstream Vision Backbones</strong></nav>
-        <p class="eyebrow">Topic · Updated 2026-06-29</p>
-        <h1><span class="title-main">Mainstream Vision Backbones</span></h1>
-        <p class="article-summary">A beginner-friendly map of CNN, U-Net, Transformer, DiT, GCN, and Mamba/SSM vision backbones for generation, video understanding, and sports AI.</p>
-        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#representation-learning">#representation-learning</a></div>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Topic</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Visual Representations and Backbones</strong></nav>
+        <p class="eyebrow">Topic · Updated 2026-07-14</p>
+        <h1><span class="title-main">Visual Representations and Backbones</span></h1>
+        <p class="article-summary">比较 CNN、U-Net、ViT、层级 Transformer、GCN 与状态空间模型怎样编码局部、全局、多尺度和时序信息，以及怎样按任务与预算选主干。</p>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#vision-foundations">#vision-foundations</a><a class="tag" href="../../en/tags.html#representation-learning">#representation-learning</a></div>
       </header>
       <div class="article-layout has-rail">
-        <aside class="article-rail"><details class="toc" open><summary>Contents</summary><ol><li><a href="#这页解决什么">这页解决什么</a></li><li><a href="#一张总图">一张总图</a></li><li><a href="#怎么快速判断一篇论文用了哪类-backbone">怎么快速判断一篇论文用了哪类 backbone</a></li><li><a href="#各主干的入门解释">各主干的入门解释</a><ol><li class="toc-sub"><a href="#1-cnn-系列-视觉感知的工程底座">1. CNN 系列：视觉感知的工程底座</a></li><li class="toc-sub"><a href="#2-u-net-系列-生成和-dense-prediction-的细节机器">2. U-Net 系列：生成和 dense prediction 的细节机器</a></li><li class="toc-sub"><a href="#3-transformer-系列-把视觉变成-token-序列">3. Transformer 系列：把视觉变成 token 序列</a></li><li class="toc-sub"><a href="#4-dit-系列-生成模型的可扩展平台">4. DiT 系列：生成模型的可扩展平台</a></li><li class="toc-sub"><a href="#5-gcn-skeleton-transformer-把人体动作变成结构化图">5. GCN / Skeleton Transformer：把人体动作变成结构化图</a></li><li class="toc-sub"><a href="#6-mamba-ssm-长序列和高分辨率效率路线">6. Mamba / SSM：长序列和高分辨率效率路线</a></li></ol></li><li><a href="#体育-ai-里的选型速查">体育 AI 里的选型速查</a></li><li><a href="#生成式视觉里的选型速查">生成式视觉里的选型速查</a></li><li><a href="#2026-06-29-loop-批次-第一批-canonical-anchors">2026-06-29 loop 批次：第一批 canonical anchors</a></li><li><a href="#当前-wiki-已覆盖和待补">当前 wiki 已覆盖和待补</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <aside class="article-rail"><details class="toc" open><summary>Contents</summary><ol><li><a href="#一句话定义">一句话定义</a></li><li><a href="#一张图看懂原理">一张图看懂原理</a></li><li><a href="#前置概念与术语">前置概念与术语</a></li><li><a href="#历史演化">历史演化</a></li><li><a href="#核心机制">核心机制</a></li><li><a href="#主要方法分支">主要方法分支</a></li><li><a href="#奠基论文导读">奠基论文导读</a></li><li><a href="#常见误区与局限">常见误区与局限</a></li><li><a href="#与研究专题的关系">与研究专题的关系</a></li><li><a href="#推荐阅读顺序">推荐阅读顺序</a></li><li><a href="#证据基础">证据基础</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
         <section class="article-content">
 <section class="topic-hero-grid" data-motion="reveal">
   <section class="judgment-panel topic-judgment">
-    <p class="section-kicker">Current view</p>
-    <h2>Mainstream Vision Backbones</h2>
-    <p>A beginner-friendly map of CNN, U-Net, Transformer, DiT, GCN, and Mamba/SSM vision backbones for generation, video understanding, and sports AI.</p>
-    <div class="judgment-meta"><span>20 Source notes</span><span>2 Open questions</span></div>
+    <p class="section-kicker">Foundation</p>
+    <h2>Visual Representations and Backbones</h2>
+    <p>比较 CNN、U-Net、ViT、层级 Transformer、GCN 与状态空间模型怎样编码局部、全局、多尺度和时序信息，以及怎样按任务与预算选主干。</p>
+    <div class="judgment-meta"><span>25 Source notes</span><span>2 Open questions</span></div>
   </section>
   <section class="reading-path">
-    <p class="section-kicker">Reading path</p>
-    <ol><li><strong>Problem</strong><span>Define task and evidence boundary</span></li><li><strong>Methods</strong><span>Compare families and design choices</span></li><li><strong>Evidence</strong><span>Return to papers and searchable text</span></li><li><strong>Open questions</strong><span>Track unresolved tensions</span></li></ol>
+    <p class="section-kicker">Learning path</p>
+    <ol><li><strong>Definition</strong><span>Clarify what it is</span></li><li><strong>Mechanism</strong><span>Follow the information flow</span></li><li><strong>Evolution</strong><span>Locate landmark papers</span></li><li><strong>Research</strong><span>Continue into active topics</span></li></ol>
   </section>
 </section>
-<section class="method-map" data-motion="reveal" aria-label="Method family map">
-  <div class="method-map-heading"><div><p class="section-kicker">Method family map</p><h2>From problem definition to verifiable system capability</h2></div><span>20 Source notes</span></div>
-  <div class="method-map-track"><div class="method-node"><span>1</span><strong>Problem</strong><small>Define task and evidence boundary</small></div><div class="method-node"><span>2</span><strong>Methods</strong><small>Compare families and design choices</small></div><div class="method-node"><span>3</span><strong>Evidence</strong><small>Return to papers and searchable text</small></div><div class="method-node"><span>4</span><strong>Open questions</strong><small>Track unresolved tensions</small></div></div>
+<section class="method-map" data-motion="reveal" aria-label="Concept map">
+  <div class="method-map-heading"><div><p class="section-kicker">Concept map</p><h2>From intuition to research connections</h2></div><span>25 Source notes</span></div>
+  <div class="method-map-track"><div class="method-node"><span>1</span><strong>Definition</strong><small>Clarify what it is</small></div><div class="method-node"><span>2</span><strong>Mechanism</strong><small>Follow the information flow</small></div><div class="method-node"><span>3</span><strong>Evolution</strong><small>Locate landmark papers</small></div><div class="method-node"><span>4</span><strong>Research</strong><small>Continue into active topics</small></div></div>
 </section>
-<h2 id="这页解决什么">这页解决什么</h2>
-<p>Backbone 是模型的“骨架”：它把图像、视频帧、轨迹、骨架点或 latent token 编码成可复用表示。检测头、分割头、生成解码器、tracking association、动作分类器、VLM / LLM 推理模块，通常都接在 backbone 后面。</p>
-<p>读体育 AI、视频理解和生成论文时，先看 backbone，基本能快速判断论文在解决哪一类问题：感知、时序、结构化运动、生成质量、控制接口，还是部署效率。</p>
-<h2 id="一张总图">一张总图</h2>
-<table><thead><tr><th>Backbone 家族</th><th>小白直觉</th><th>常见代表</th><th>擅长什么</th><th>主要代价</th><th>本 wiki 证据</th></tr></thead><tbody><tr><td>CNN / ResNet / EfficientNet / ConvNeXt</td><td>像滑动窗口一样从局部纹理逐层组合成物体和场景</td><td>ResNet、EfficientNet、ConvNeXt、YOLO 系列检测底座</td><td>实时感知、局部纹理、边缘部署、检测/姿态/跟踪前端</td><td>全局关系和长时序通常要接额外模块</td><td><a class="wikilink" href="../../en/sources/2026-04-25-openpose.html">OpenPose</a>、<a class="wikilink" href="../../en/sources/2026-04-25-mmpose.html">MMPose</a>、<a class="wikilink" href="../../en/sources/2026-05-05-tracknet-high-speed-tiny-objects.html">TrackNet</a></td></tr><tr><td>U-Net / Latent Diffusion U-Net</td><td>编码器压缩语义，解码器恢复细节，跳连保留空间信息</td><td>Stable Diffusion U-Net、ControlNet 风格 side branch</td><td>图像生成、图像编辑、局部控制、dense 输出</td><td>大分辨率和长视频会放大单步网络成本</td><td><a class="wikilink" href="../../en/sources/2026-04-14-latent-diffusion-models.html">Latent Diffusion</a>、<a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></td></tr><tr><td>ViT / Transformer</td><td>把图像或视频切成 token，让 token 之间互相看见</td><td>ViT、Swin、TimeSformer、VideoMAE、CLIP image encoder</td><td>全局关系、多模态接口、大数据预训练、长距离依赖</td><td>token 数增长会推高 attention 计算与显存</td><td><a class="wikilink" href="../../en/sources/2026-06-29-vision-transformer.html">ViT</a>、<a class="wikilink" href="../../en/sources/2026-06-29-clip.html">CLIP</a>、<a class="wikilink" href="../../en/sources/2026-04-25-timesformer.html">TimeSformer</a>、<a class="wikilink" href="../../en/sources/2026-04-25-videomae.html">VideoMAE</a></td></tr><tr><td>DiT / MM-DiT</td><td>把 Transformer 放进扩散生成流程，让生成模型吃到 scaling 红利</td><td>U-ViT、DiT、MM-DiT</td><td>大规模图像/视频生成、统一生成编辑、条件控制</td><td>训练和推理预算高，工程优化空间大</td><td><a class="wikilink" href="../../en/sources/2026-04-15-all-are-worth-words.html">U-ViT</a>、<a class="wikilink" href="../../en/sources/2026-04-15-scalable-diffusion-models-with-transformers.html">DiT</a>、<a class="wikilink" href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></td></tr><tr><td>GCN / Skeleton Transformer</td><td>把人体关键点当成图，显式建模关节和时间关系</td><td>ST-GCN、BlockGCN、ProtoGCN、SkateFormer、TemPose</td><td>姿态动作识别、体育动作质量、stroke classification</td><td>依赖关键点质量，球和场地信息需要融合</td><td><a class="wikilink" href="../../en/sources/2026-04-25-st-gcn.html">ST-GCN</a>、<a class="wikilink" href="../../en/sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition.html">BlockGCN</a>、<a class="wikilink" href="../../en/sources/2026-05-16-protogcn-skeleton-action-recognition.html">ProtoGCN</a>、<a class="wikilink" href="../../en/sources/2026-05-16-skateformer-skeletal-temporal-transformer.html">SkateFormer</a></td></tr><tr><td>Mamba / SSM</td><td>用状态空间扫描序列，用更轻的序列建模覆盖长上下文</td><td>Mamba、SportMamba、DiffuSSM</td><td>长序列、高分辨率、轨迹建模、低延迟时序任务</td><td>预训练生态和多模态接口仍在快速形成</td><td><a class="wikilink" href="../../en/sources/2026-04-23-sportmamba.html">SportMamba</a>、<a class="wikilink" href="../../en/sources/2026-04-15-diffusion-models-without-attention.html">DiffuSSM</a></td></tr></tbody></table>
-<h2 id="怎么快速判断一篇论文用了哪类-backbone">怎么快速判断一篇论文用了哪类 backbone</h2>
-<table><thead><tr><th>论文里出现的信号</th><th>大概率对应的 backbone 家族</th><th>该怎么读</th></tr></thead><tbody><tr><td>convolution、feature pyramid、YOLO、heatmap、pose estimator</td><td>CNN / ConvNeXt / detection backbone</td><td>先看局部感知能力、速度、输入分辨率和部署约束。</td></tr><tr><td>patch、token、attention、window attention、masked autoencoding</td><td>ViT / Swin / video Transformer</td><td>先看 token 长度、预训练数据、时空 attention 设计和显存成本。</td></tr><tr><td>diffusion transformer、DiT、MM-DiT、AdaLN、latent token</td><td>DiT / 生成式 Transformer</td><td>先看 scaling、条件注入、推理步数、控制接口和部署优化。</td></tr><tr><td>skeleton、joints、graph convolution、spatial-temporal partition</td><td>GCN / Skeleton Transformer</td><td>先看关键点来源、关节拓扑、动作阶段和细粒度类别。</td></tr><tr><td>selective scan、state space、linear-time sequence model</td><td>Mamba / SSM</td><td>先看序列长度、延迟、长程依赖和替代 attention 的实验边界。</td></tr></tbody></table>
-<h2 id="各主干的入门解释">各主干的入门解释</h2>
-<h3 id="1-cnn-系列-视觉感知的工程底座">1. CNN 系列：视觉感知的工程底座</h3>
-<p>CNN 的核心直觉是“局部模式逐层组合”。前几层学边缘和纹理，中间层学部件，后面学对象和场景。它适合实时检测、姿态估计、小目标 heatmap、运动员定位和移动端部署。</p>
-<p>体育 AI 里，很多系统先用 CNN / ConvNeXt / YOLO 类前端把人、球、场线、关键点找出来，再把这些结构化结果交给 tracking、trajectory 或 action recognition 模块。<a class="wikilink" href="../../en/sources/2026-05-05-tracknet-high-speed-tiny-objects.html">TrackNet</a>、<a class="wikilink" href="../../en/sources/2026-04-25-openpose.html">OpenPose</a> 和 <a class="wikilink" href="../../en/sources/2026-04-25-mmpose.html">MMPose</a> 都属于这类感知前端的可读入口。</p>
-<h3 id="2-u-net-系列-生成和-dense-prediction-的细节机器">2. U-Net 系列：生成和 dense prediction 的细节机器</h3>
-<p>U-Net 的核心直觉是“先压缩理解，再逐步还原”。编码器负责抽象语义，解码器负责恢复空间细节，skip connection 让局部纹理和边界更容易保留下来。潜空间扩散把这套结构推进到图像生成和图像编辑主流系统里，<a class="wikilink" href="../../en/sources/2026-04-14-latent-diffusion-models.html">Latent Diffusion</a> 是本 wiki 的关键入口。</p>
-<p>在生成式视觉里，U-Net 适合 stable diffusion 生态、ControlNet 类 adapter、inpainting、局部编辑和低门槛产品化。它的核心阅读点是：条件信号插在哪里，skip / feature 层怎样被重加权，推理步数和单步网络成本怎样被压缩。</p>
-<h3 id="3-transformer-系列-把视觉变成-token-序列">3. Transformer 系列：把视觉变成 token 序列</h3>
-<p>Transformer 的核心直觉是“把图像或视频切成 token，再让 token 之间建立全局关系”。这条路线把视觉模型和语言模型的接口拉近，也让大规模预训练、masked modeling、多模态对齐更容易统一。</p>
-<p>在视频理解里，<a class="wikilink" href="../../en/sources/2026-04-25-timesformer.html">TimeSformer</a> 用纯 attention 建模时空关系，<a class="wikilink" href="../../en/sources/2026-04-25-videomae.html">VideoMAE</a> 用 masked autoencoding 做视频自监督预训练。读这类论文时，重点看三件事：token 怎样切、时间和空间 attention 怎样分配、预训练数据怎样支撑下游任务。</p>
-<h3 id="4-dit-系列-生成模型的可扩展平台">4. DiT 系列：生成模型的可扩展平台</h3>
-<p>DiT 可以理解成“把 Transformer 变成扩散模型的主干”。它让生成模型获得更清晰的 scaling 叙事：模型更大、token 更多、训练更充分时，质量和泛化能力可以继续增长。<a class="wikilink" href="../../en/sources/2026-04-15-all-are-worth-words.html">U-ViT</a> 提供前史，<a class="wikilink" href="../../en/sources/2026-04-15-scalable-diffusion-models-with-transformers.html">DiT</a> 把这条路线变成可跟踪的主线。</p>
-<p>本 wiki 已经有专门判断页 <a class="wikilink" href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">扩散 Transformer 正在成为默认的可扩展生成主干</a> 和实体页 <a class="wikilink" href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a>。读图像生成、视频生成和统一生成/编辑论文时，可以先问：这篇是在换掉 backbone，还是在 DiT 平台上加控制、加速、压缩或扩展上下文。</p>
-<h3 id="5-gcn-skeleton-transformer-把人体动作变成结构化图">5. GCN / Skeleton Transformer：把人体动作变成结构化图</h3>
-<p>骨架动作识别的输入通常是人体关键点。GCN 把关节和骨骼连接建成图，Transformer 则把关节、帧和动作阶段切成 token。它们适合体育动作识别、动作质量评估、stroke type classification 和训练反馈。</p>
-<p>体育 AI 里，这条线对羽毛球、体操、跳水、篮球动作都很重要。<a class="wikilink" href="../../en/sources/2026-04-25-st-gcn.html">ST-GCN</a> 是经典图卷积锚点，<a class="wikilink" href="../../en/sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition.html">BlockGCN</a>、<a class="wikilink" href="../../en/sources/2026-05-16-protogcn-skeleton-action-recognition.html">ProtoGCN</a> 和 <a class="wikilink" href="../../en/sources/2026-05-16-skateformer-skeletal-temporal-transformer.html">SkateFormer</a> 展示了近年的结构升级，<a class="wikilink" href="../../en/sources/2026-05-16-tempose-badminton-fine-grained-motion.html">TemPose</a> 把这条线接到羽毛球细粒度动作。</p>
-<h3 id="6-mamba-ssm-长序列和高分辨率效率路线">6. Mamba / SSM：长序列和高分辨率效率路线</h3>
-<p>Mamba / SSM 的核心直觉是“用状态更新来扫描序列”。它把长序列建模从全局 attention 的高成本关系建模，改成更轻的状态递推和选择性记忆，适合长视频、轨迹、运动员跟踪和高分辨率生成中的效率压力。</p>
-<p><a class="wikilink" href="../../en/sources/2026-04-23-sportmamba.html">SportMamba</a> 把 Mamba-attention 用到团队运动多目标跟踪，<a class="wikilink" href="../../en/sources/2026-04-15-diffusion-models-without-attention.html">DiffuSSM</a> 则把 state space backbone 带进高分辨率扩散生成。读这类论文时，重点看它把哪一段序列压低成本：像素 token、视频帧、轨迹点，还是 diffusion latent。</p>
-<h2 id="体育-ai-里的选型速查">体育 AI 里的选型速查</h2>
-<table><thead><tr><th>任务</th><th>更常见的 backbone 选择</th><th>选型理由</th></tr></thead><tbody><tr><td>球员 / 球 / 场线检测</td><td>CNN / ConvNeXt / ViT detector + task head</td><td>需要稳定局部感知、实时速度和高分辨率输入；<a class="wikilink" href="../../en/sources/2026-06-29-detr.html">DETR</a> 提供 Transformer detector 的 canonical 入口。</td></tr><tr><td>多目标跟踪与 ReID</td><td>CNN / ViT appearance encoder + Transformer / Mamba sequence model</td><td>外观相似、遮挡和非线性运动需要同时处理。</td></tr><tr><td>全场状态重建与轨迹补全</td><td>Transformer / Mamba / trajectory model</td><td>输入已经变成坐标、轨迹和事件 token，长时序关系最重要。</td></tr><tr><td>骨架动作识别 / stroke type</td><td>GCN / Skeleton Transformer</td><td>人体关节拓扑和动作阶段是核心信号。</td></tr><tr><td>训练反馈 / 动作纠正</td><td>Skeleton backbone + trajectory backbone + explanation module</td><td>需要同时输出动作类别、错误阶段、关键证据和教练式反馈。</td></tr><tr><td>VAR / rule-grounded officiating</td><td>感知 backbone + 轨迹/事件模型 + 规则推理模块</td><td>视觉证据、比赛规则、可解释复核需要串成 workflow。</td></tr></tbody></table>
-<h2 id="生成式视觉里的选型速查">生成式视觉里的选型速查</h2>
-<table><thead><tr><th>任务</th><th>更常见的 backbone 选择</th><th>选型理由</th></tr></thead><tbody><tr><td>Stable Diffusion 生态、局部编辑、ControlNet 类控制</td><td>U-Net / Latent Diffusion U-Net</td><td>生态成熟，adapter 多，空间细节和局部控制友好。</td></tr><tr><td>大规模图像 / 视频生成</td><td>DiT / MM-DiT</td><td>scaling 叙事清楚，适合统一生成、编辑、条件控制和多模态接口。</td></tr><tr><td>高分辨率低成本生成</td><td>SSM / 高效 Transformer / 混合主干</td><td>重点在降低 token、attention 或单步网络成本。</td></tr><tr><td>视频生成和视频编辑</td><td>DiT / video Transformer / U-Net 混合结构</td><td>需要同时处理空间保真、时间一致性和条件控制。</td></tr></tbody></table>
-<h2 id="2026-06-29-loop-批次-第一批-canonical-anchors">2026-06-29 loop 批次：第一批 canonical anchors</h2>
-<p>用户同意 loop 操作后，本轮先执行 advisory brief 推荐的 <strong>backbone canonical backfill</strong>，补入四个跨主线复用率最高的 primary-source anchors：</p>
-<table><thead><tr><th>Source</th><th>解决的 backbone 缺口</th><th>对本 wiki 的作用</th></tr></thead><tbody><tr><td><a class="wikilink" href="../../en/sources/2026-06-29-vision-transformer.html">ViT</a></td><td>视觉 token 化与纯 Transformer image encoder</td><td>给 TimeSformer、VideoMAE、CLIP/SAM image encoder 和 DiT 的共同底层补源头。</td></tr><tr><td><a class="wikilink" href="../../en/sources/2026-06-29-clip.html">CLIP</a></td><td>图文对比学习与自然语言监督</td><td>把 <a class="wikilink" href="../../en/topics/vision-language.html">topics/vision-language</a>、生成式视觉 prompt 接口和多模态检索接起来。</td></tr><tr><td><a class="wikilink" href="../../en/sources/2026-06-29-detr.html">DETR</a></td><td>Transformer detection / set prediction</td><td>给体育 AI 的球员、球、场线检测前端补 detection anchor，并为 RT-DETR 后续回填留接口。</td></tr><tr><td><a class="wikilink" href="../../en/sources/2026-06-29-segment-anything.html">SAM</a></td><td>Promptable segmentation foundation model</td><td>给标注、mask、交互式分割和体育训练反馈 demo 补 segmentation anchor。</td></tr></tbody></table>
-<h2 id="当前-wiki-已覆盖和待补">当前 wiki 已覆盖和待补</h2>
-<p>已覆盖的主干证据主要集中在五条线上：</p>
+<h2 id="一句话定义">一句话定义</h2>
+<p>视觉主干网络（vision backbone）把图像、视频、关键点或潜变量编码为可复用表示；分类头、检测头、分割解码器、跟踪关联、生成过程或多模态模块再使用这些表示完成任务。</p>
+<p>主干不是整套模型，也没有脱离任务与硬件的“绝对最好”。局部纹理、全局关系、多尺度细节、长时序、显存和延迟会推动不同架构取舍。</p>
+<h2 id="一张图看懂原理">一张图看懂原理</h2>
+<figure class="wiki-visual wiki-visual--flow" data-visual-id="backbone-role" aria-labelledby="visual-backbone-role-title" aria-describedby="visual-backbone-role-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">为什么同一个主干可以被多个任务复用？</p><div class="wiki-visual-title" id="visual-backbone-role-title" role="heading" aria-level="3">主干位于输入与任务头之间</div><p class="wiki-visual-explanation">主干负责把原始输入变成层级或 token 表示；任务头只读取需要的层和尺度。生成模型中的去噪器也可视为任务专用主干，但还接收时间和条件。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>输入与切分</strong><small>像素、patch、帧、关键点或 latent token</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>主干编码</strong><small>通过卷积、注意力、图传播或状态更新形成表示</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>多尺度/时序特征</strong><small>兼顾语义抽象、空间细节与时间关系</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>任务适配</strong><small>分类、框、mask、轨迹、条件去噪或跨模态对齐</small></li></ol><figcaption><span>Diagram evidence</span><a class="wikilink" href="../../en/sources/2026-07-14-resnet.html">ResNet</a>、<a class="wikilink" href="../../en/sources/2026-06-29-vision-transformer.html">ViT</a>、<a class="wikilink" href="../../en/sources/2026-07-14-u-net.html">U-Net</a></figcaption><p class="sr-only" id="visual-backbone-role-alt">图像、视频或结构化输入先被主干编码成多尺度特征，再由分类、检测、分割、跟踪、生成或多模态头使用。</p></figure>
+<h2 id="前置概念与术语">前置概念与术语</h2>
 <ul>
-<li>生成式 Transformer：<a class="wikilink" href="../../en/sources/2026-04-15-all-are-worth-words.html">U-ViT</a>、<a class="wikilink" href="../../en/sources/2026-04-15-scalable-diffusion-models-with-transformers.html">DiT</a>、<a class="wikilink" href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a>。</li>
-<li>扩散 U-Net：<a class="wikilink" href="../../en/sources/2026-04-14-latent-diffusion-models.html">Latent Diffusion</a> 与 <a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a>。</li>
-<li>通用视觉 Transformer / 视觉语言 / 检测分割基础锚点：<a class="wikilink" href="../../en/sources/2026-06-29-vision-transformer.html">ViT</a>、<a class="wikilink" href="../../en/sources/2026-06-29-clip.html">CLIP</a>、<a class="wikilink" href="../../en/sources/2026-06-29-detr.html">DETR</a>、<a class="wikilink" href="../../en/sources/2026-06-29-segment-anything.html">SAM</a>。</li>
-<li>视频 Transformer：<a class="wikilink" href="../../en/sources/2026-04-25-timesformer.html">TimeSformer</a>、<a class="wikilink" href="../../en/sources/2026-04-25-videomae.html">VideoMAE</a>、<a class="wikilink" href="../../en/sources/2026-05-12-trackmae.html">TrackMAE</a>。</li>
-<li>骨架 GCN / Skeleton Transformer：<a class="wikilink" href="../../en/sources/2026-04-25-st-gcn.html">ST-GCN</a>、<a class="wikilink" href="../../en/sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition.html">BlockGCN</a>、<a class="wikilink" href="../../en/sources/2026-05-16-skateformer-skeletal-temporal-transformer.html">SkateFormer</a>、<a class="wikilink" href="../../en/sources/2026-05-16-protogcn-skeleton-action-recognition.html">ProtoGCN</a>。</li>
-<li>Mamba / SSM：<a class="wikilink" href="../../en/sources/2026-04-23-sportmamba.html">SportMamba</a> 与 <a class="wikilink" href="../../en/sources/2026-04-15-diffusion-models-without-attention.html">DiffuSSM</a>。</li>
+<li><strong>感受野（receptive field）</strong>：某个特征能受多大输入区域影响。</li>
+<li><strong>下采样（downsampling）</strong>：降低空间尺寸以扩大语义范围和节省计算，也可能损失小目标与边界。</li>
+<li><strong>多尺度特征（multi-scale features）</strong>：同时保留不同分辨率的表示，常用于检测、分割和生成。</li>
+<li><strong>patch / token</strong>：把图像区域映射为向量后按序列处理。</li>
+<li><strong>自注意力（self-attention）</strong>：按内容动态汇聚 token；全局注意力计算通常随 token 数平方增长。</li>
+<li><strong>跳跃连接（skip connection）</strong>：跨层直接传递特征；残差相加与 U-Net 拼接是两种不同用法。</li>
+<li><strong>归一化（normalization）</strong>：控制激活尺度；BatchNorm、LayerNorm 等适用协议不同。</li>
+<li><strong>预训练表示</strong>：先从大数据学习的特征，其迁移能力取决于数据、目标和域匹配。</li>
+<li><strong>FLOPs、显存与延迟</strong>：理论运算、峰值内存和真实时间不是同一个效率指标。</li>
 </ul>
-<p>下一批值得补成 source notes 的 canonical backbone 锚点：ResNet、EfficientNet、ConvNeXt、Swin Transformer、RT-DETR，以及检测 / 分割方向的后续工程变体。第一批 ViT、CLIP、DETR、SAM 已经补上，因此后续可以把重心转到 CNN 工程底座与实时检测分支。</p>
+<h2 id="历史演化">历史演化</h2>
+<figure class="wiki-visual wiki-visual--timeline" data-visual-id="backbone-history" aria-labelledby="visual-backbone-history-title" aria-describedby="visual-backbone-history-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">视觉主干为什么没有收敛为单一架构？</p><div class="wiki-visual-title" id="visual-backbone-history-title" role="heading" aria-level="3">从卷积层级到多种表示家族并存</div><p class="wiki-visual-explanation">每次演化都在重新平衡可训练深度、空间细节、全局关系和计算。后来的架构通常继承前一代机制，而非完全清零。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>2012 · 深卷积表示</strong><small>AlexNet 用大数据与 GPU 证明端到端层级特征</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>2015–2016 · 残差与多尺度</strong><small>ResNet 解决深度优化，U-Net 用对称跳连恢复空间细节</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>2020–2021 · 视觉 token</strong><small>ViT 建立全局 token 表示，Swin 引入层级和局部窗口</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>2022 · 架构再平衡</strong><small>ConvNeXt 证明现代卷积仍能与 Transformer 竞争</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">05</span><strong>当前 · 任务化主干</strong><small>GCN、DiT、视频 Transformer 与 SSM 按结构、生成和长序列需求分化</small></li></ol><figcaption><span>Diagram evidence</span><a class="wikilink" href="../../en/sources/2026-07-14-alexnet.html">AlexNet</a>、<a class="wikilink" href="../../en/sources/2026-07-14-resnet.html">ResNet</a>、<a class="wikilink" href="../../en/sources/2026-07-14-u-net.html">U-Net</a>、<a class="wikilink" href="../../en/sources/2026-07-14-swin-transformer.html">Swin</a>、<a class="wikilink" href="../../en/sources/2026-07-14-convnext.html">ConvNeXt</a></figcaption><p class="sr-only" id="visual-backbone-history-alt">时间线从 AlexNet、ResNet 和 U-Net，发展到 ViT、Swin、ConvNeXt，再到图网络、DiT 与状态空间主干并存。</p></figure>
+<h2 id="核心机制">核心机制</h2>
+<ul>
+<li><strong>CNN / ConvNeXt</strong>：共享局部卷积核，天然编码局部性和平移结构；层级下采样适合多尺度任务。</li>
+<li><strong>残差网络</strong>：让 block 学相对恒等映射的增量，改善深层优化；残差机制也被 Transformer 和生成模型继承。</li>
+<li><strong>U-Net</strong>：编码器抽象语义，解码器恢复分辨率，同尺度跳连保留细节；适合分割和条件去噪。</li>
+<li><strong>ViT / Swin</strong>：把图像转为 token；ViT 强调全局注意力与数据规模，Swin 用窗口和层级结构适配高分辨率密集任务。</li>
+<li><strong>GCN / Skeleton Transformer</strong>：按人体关节或其他非规则结构传播信息；输入拓扑与关键点质量是能力前提。</li>
+<li><strong>SSM / Mamba 类主干</strong>：用状态更新或扫描降低长序列成本；效率需要真实硬件验证。</li>
+</ul>
+<h2 id="主要方法分支">主要方法分支</h2>
+<figure class="wiki-visual wiki-visual--decision" data-visual-id="backbone-selection" aria-labelledby="visual-backbone-selection-title" aria-describedby="visual-backbone-selection-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">面对一个视觉任务，先问什么才能缩小主干选择？</p><div class="wiki-visual-title" id="visual-backbone-selection-title" role="heading" aria-level="3">按输入结构和瓶颈选择主干</div><p class="wiki-visual-explanation">先判断输出是否要求精细空间、长时间或结构化拓扑，再看数据与部署预算。模型流行度应排在这些约束之后。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>实时局部感知</strong><small>优先 CNN/ConvNeXt，并测高分辨率吞吐与小目标召回</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>精细空间恢复</strong><small>使用 U-Net、特征金字塔或层级主干，保留浅层细节</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>全局关系与大规模预训练</strong><small>选择 ViT/Swin，检查 token 数、数据规模和注意力成本</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>关键点或图结构</strong><small>选择 GCN/Skeleton Transformer，先验证姿态前端质量</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">05</span><strong>长视频与轨迹</strong><small>比较视频 Transformer、TCN、SSM/Mamba，报告有效时间覆盖</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">06</span><strong>扩散去噪</strong><small>比较 U-Net、DiT 与 SSM，同时核算 NFE、单步成本与条件接口</small></li></ol><figcaption><span>Diagram evidence</span><a class="wikilink" href="../../en/sources/2026-07-14-convnext.html">ConvNeXt</a>、<a class="wikilink" href="../../en/sources/2026-07-14-swin-transformer.html">Swin</a>、<a class="wikilink" href="../../en/sources/2026-04-25-st-gcn.html">ST-GCN</a>、<a class="wikilink" href="../../en/sources/2026-04-15-diffusion-models-without-attention.html">DiffuSSM</a></figcaption><p class="sr-only" id="visual-backbone-selection-alt">决策图按局部实时、精细空间、全局 token、骨架图、长序列和生成去噪六种需求选择架构家族。</p></figure>
+<h2 id="奠基论文导读">奠基论文导读</h2>
+<ol>
+<li><strong><a class="wikilink" href="../../en/sources/2026-07-14-alexnet.html">AlexNet</a></strong>：端到端深卷积表示的历史转折。</li>
+<li><strong><a class="wikilink" href="../../en/sources/2026-07-14-resnet.html">ResNet</a></strong>：残差连接与深层优化，重点区分机制与具体家族。</li>
+<li><strong><a class="wikilink" href="../../en/sources/2026-07-14-u-net.html">U-Net</a></strong>：编码器—解码器与同尺度细节恢复。</li>
+<li><strong><a class="wikilink" href="../../en/sources/2026-06-29-vision-transformer.html">ViT</a></strong>：patch token 与大数据条件下的纯 Transformer。</li>
+<li><strong><a class="wikilink" href="../../en/sources/2026-07-14-swin-transformer.html">Swin Transformer</a></strong>：窗口注意力、跨窗口连接与层级表示。</li>
+<li><strong><a class="wikilink" href="../../en/sources/2026-07-14-convnext.html">ConvNeXt</a></strong>：现代化卷积对“注意力唯一性”的反证。</li>
+<li><strong><a class="wikilink" href="../../en/sources/2026-04-25-st-gcn.html">ST-GCN</a></strong>：非规则骨架图上的时空表示。</li>
+<li><strong><a class="wikilink" href="../../en/sources/2026-04-15-diffusion-models-without-attention.html">DiffuSSM</a></strong>：状态空间模型作为高分辨率扩散主干对照。</li>
+</ol>
+<h2 id="常见误区与局限">常见误区与局限</h2>
+<ul>
+<li><strong>误区：backbone 越新越好。</strong> 数据量、任务头、分辨率和硬件不同会翻转排序。</li>
+<li><strong>误区：FLOPs 低就更快。</strong> 内存访问、算子融合、batch、输入形状和实现同样决定延迟。</li>
+<li><strong>误区：全局注意力必然理解全局关系。</strong> 能建立连接不等于训练目标要求正确属性绑定或时序因果。</li>
+<li><strong>误区：U-Net 就是扩散。</strong> U-Net 是网络形状，扩散是概率过程与训练/采样机制。</li>
+<li><strong>误区：关键点模型天然可解释。</strong> 姿态估计错误、遮挡和视角偏差会进入 GCN，关节热图仍需证据校准。</li>
+<li><strong>局限：主干比较常不公平。</strong> 数据增强、预训练、分辨率、训练步数与下游 head 必须同时记录。</li>
+</ul>
+<h2 id="与研究专题的关系">与研究专题的关系</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a> 和 <a class="wikilink" href="../../en/topics/diffusion-efficiency-engineering.html">topics/diffusion-efficiency-engineering</a> 比较 U-Net、DiT 与 SSM 在生成质量和成本中的角色。</li>
+<li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a> 关注主干能否从短 clip 扩展到长时事件和推理。</li>
+<li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a> 把检测、轨迹、骨架和比赛状态接成系统。</li>
+<li><a class="wikilink" href="../../en/topics/image-text-retrieval.html">topics/image-text-retrieval</a> 比较双编码视觉主干的召回质量、局部对齐与索引成本。</li>
+</ul>
+<h2 id="推荐阅读顺序">推荐阅读顺序</h2>
+<ol>
+<li>读 ResNet 与 U-Net，掌握残差相加和跨尺度拼接的区别。</li>
+<li>读 ViT、Swin、ConvNeXt，比较全局、局部、层级与现代训练配方。</li>
+<li>根据任务进入 ST-GCN、TimeSformer/VideoMAE 或 DiT/DiffuSSM。</li>
+<li>做选型时记录数据、输入形状、真实延迟和下游输出，不只复制 leaderboard。</li>
+</ol>
+<h2 id="证据基础">证据基础</h2>
+<ul>
+<li>CNN 与残差：<a class="wikilink" href="../../en/sources/2026-07-14-alexnet.html">sources/2026-07-14-alexnet</a>、<a class="wikilink" href="../../en/sources/2026-07-14-resnet.html">sources/2026-07-14-resnet</a>、<a class="wikilink" href="../../en/sources/2026-07-14-convnext.html">sources/2026-07-14-convnext</a>。</li>
+<li>编码器—解码器：<a class="wikilink" href="../../en/sources/2026-07-14-u-net.html">sources/2026-07-14-u-net</a>、<a class="wikilink" href="../../en/sources/2026-04-14-latent-diffusion-models.html">sources/2026-04-14-latent-diffusion-models</a>。</li>
+<li>视觉 Transformer：<a class="wikilink" href="../../en/sources/2026-06-29-vision-transformer.html">sources/2026-06-29-vision-transformer</a>、<a class="wikilink" href="../../en/sources/2026-07-14-swin-transformer.html">sources/2026-07-14-swin-transformer</a>、<a class="wikilink" href="../../en/sources/2026-04-25-timesformer.html">sources/2026-04-25-timesformer</a>。</li>
+<li>结构与长序列：<a class="wikilink" href="../../en/sources/2026-04-25-st-gcn.html">sources/2026-04-25-st-gcn</a>、<a class="wikilink" href="../../en/sources/2026-04-23-sportmamba.html">sources/2026-04-23-sportmamba</a>、<a class="wikilink" href="../../en/sources/2026-04-15-diffusion-models-without-attention.html">sources/2026-04-15-diffusion-models-without-attention</a>。</li>
+</ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a></li>
-<li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">topics/sports-ai-video-understanding</a></li>
-<li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a></li>
-<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/entities/diffusion-transformer.html">entities/diffusion-transformer</a></li>
+<li><a class="wikilink" href="../../en/topics/computer-vision-overview.html">计算机视觉概览</a></li>
+<li><a class="wikilink" href="../../en/topics/vision-task-foundations.html">分类、检测、分割、姿态与跟踪</a></li>
+<li><a class="wikilink" href="../../en/topics/video-representation-and-temporal-modeling.html">视频表示与时序建模</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li>
+<li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">体育 AI 视频理解</a></li>
+<li><a class="wikilink" href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
 </ul></section>
       </div>
       
-      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-related_topics"><h3>Related topics<span class="related-count">6</span></h3><ul><li><a class="wikilink" href="../../en/topics/diffusion-models.html">扩散模型</a></li><li><a class="wikilink" href="../../en/topics/image-generation.html">图像生成</a></li><li><a class="wikilink" href="../../en/topics/video-generation.html">视频生成</a></li><li><a class="wikilink" href="../../en/topics/video-understanding.html">Video Understanding</a></li><li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li><li><a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a></li></ul></div><div class="related-group related-related_entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li></ul></div><div class="related-group related-open_questions"><h3>Open questions<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li><li><a class="wikilink" href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li></ul></div><div class="related-group related-source_notes"><h3>Source notes<span class="related-count">20</span></h3><ul><li><a class="wikilink" href="../../en/sources/2026-04-14-latent-diffusion-models.html">Latent Diffusion Models：高分辨率图像合成的潜空间扩散框架</a></li><li><a class="wikilink" href="../../en/sources/2026-04-15-all-are-worth-words.html">All Are Worth Words：把 ViT 直接变成扩散模型主干</a></li><li><a class="wikilink" href="../../en/sources/2026-04-15-scalable-diffusion-models-with-transformers.html">Scalable Diffusion Models with Transformers：DiT 把 Transformer 真正坐实为可扩展扩散主干</a></li><li><a class="wikilink" href="../../en/sources/2026-04-15-diffusion-models-without-attention.html">Diffusion Models Without Attention：不用注意力也能做高分辨率扩散</a></li><li><a class="wikilink" href="../../en/sources/2026-04-23-sportmamba.html">SportMamba：面向团队运动的非线性多目标跟踪</a></li><li><a class="wikilink" href="../../en/sources/2026-04-25-timesformer.html">TimeSformer：用于视频理解的分解式时空注意力</a></li><li><a class="wikilink" href="../../en/sources/2026-04-25-st-gcn.html">ST-GCN：骨架动作识别的时空图卷积基线</a></li><li><a class="wikilink" href="../../en/sources/2026-04-25-videomae.html">VideoMAE：数据高效的视频掩码自编码预训练</a></li><li><a class="wikilink" href="../../en/sources/2026-04-25-openpose.html">OpenPose：OpenPose 是早期多人 2D 关键点检测工具。</a></li><li><a class="wikilink" href="../../en/sources/2026-04-25-mmpose.html">MMPose / RTMPose：MMPose 提供 2D/3D 姿态估计工具链，RTMPose 强调实时部署。</a></li><li><a class="wikilink" href="../../en/sources/2026-05-05-tracknet-high-speed-tiny-objects.html">TrackNet：体育高速小目标追踪网络</a></li><li><a class="wikilink" href="../../en/sources/2026-05-12-trackmae.html">TrackMAE：用轨迹遮挡与预测学习运动敏感的视频表征</a></li><li><a class="wikilink" href="../../en/sources/2026-05-16-tempose-badminton-fine-grained-motion.html">TemPose：面向羽毛球细粒度动作识别的骨架 Transformer</a></li><li><a class="wikilink" href="../../en/sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition.html">BlockGCN：保留骨架拓扑并轻量建模多种关节关系</a></li><li><a class="wikilink" href="../../en/sources/2026-05-16-skateformer-skeletal-temporal-transformer.html">SkateFormer：用四类骨架—时间分区实现高效联合注意力</a></li><li><a class="wikilink" href="../../en/sources/2026-05-16-protogcn-skeleton-action-recognition.html">ProtoGCN：用运动原型重构放大相似骨架动作的局部差异</a></li><li><a class="wikilink" href="../../en/sources/2026-06-29-vision-transformer.html">Vision Transformer：把图像切成 token 的通用视觉主干</a></li><li><a class="wikilink" href="../../en/sources/2026-06-29-clip.html">CLIP：用自然语言监督学习可迁移视觉表示</a></li><li><a class="wikilink" href="../../en/sources/2026-06-29-detr.html">DETR：把目标检测改写成 Transformer set prediction</a></li><li><a class="wikilink" href="../../en/sources/2026-06-29-segment-anything.html">Segment Anything：把分割做成可提示的视觉基础模型</a></li></ul></div></div></section>
-      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">15</span></h2><ul><li><a href="../../en/entities/clip.html">CLIP 系列模型（CLIP Family）</a><span>Entity</span></li><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-05-12-trackmae.html">TrackMAE：用轨迹遮挡与预测学习运动敏感的视频表征</a><span>Source note</span></li><li><a href="../../en/sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition.html">BlockGCN：保留骨架拓扑并轻量建模多种关节关系</a><span>Source note</span></li><li><a href="../../en/sources/2026-05-16-protogcn-skeleton-action-recognition.html">ProtoGCN：用运动原型重构放大相似骨架动作的局部差异</a><span>Source note</span></li><li><a href="../../en/sources/2026-05-16-skateformer-skeletal-temporal-transformer.html">SkateFormer：用四类骨架—时间分区实现高效联合注意力</a><span>Source note</span></li><li><a href="../../en/sources/2026-06-29-clip.html">CLIP：用自然语言监督学习可迁移视觉表示</a><span>Source note</span></li><li><a href="../../en/sources/2026-06-29-detr.html">DETR：把目标检测改写成 Transformer set prediction</a><span>Source note</span></li><li><a href="../../en/sources/2026-06-29-segment-anything.html">Segment Anything：把分割做成可提示的视觉基础模型</a><span>Source note</span></li><li><a href="../../en/sources/2026-06-29-vision-transformer.html">Vision Transformer：把图像切成 token 的通用视觉主干</a><span>Source note</span></li><li><a href="../../en/topics/diffusion-models.html">扩散模型</a><span>Topic</span></li><li><a href="../../en/topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a><span>Topic</span></li><li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a><span>Topic</span></li><li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a><span>Topic</span></li><li><a href="../../en/topics/video-understanding.html">Video Understanding</a><span>Topic</span></li></ul></section>
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-related_topics"><h3>Related topics<span class="related-count">5</span></h3><ul><li><a class="wikilink" href="../../en/topics/computer-vision-overview.html">Computer Vision Overview</a></li><li><a class="wikilink" href="../../en/topics/vision-task-foundations.html">Foundations of Core Vision Tasks</a></li><li><a class="wikilink" href="../../en/topics/diffusion-models.html">Diffusion Models</a></li><li><a class="wikilink" href="../../en/topics/video-representation-and-temporal-modeling.html">Video Representation and Temporal Modeling</a></li><li><a class="wikilink" href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a></li></ul></div><div class="related-group related-related_entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li></ul></div><div class="related-group related-open_questions"><h3>Open questions<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li><li><a class="wikilink" href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li></ul></div><div class="related-group related-source_notes"><h3>Source notes<span class="related-count">25</span></h3><ul><li><a class="wikilink" href="../../en/sources/2026-07-14-alexnet.html">ImageNet Classification with Deep Convolutional Neural Networks：AlexNet 与深度视觉转折</a></li><li><a class="wikilink" href="../../en/sources/2026-07-14-resnet.html">Deep Residual Learning for Image Recognition：ResNet 与残差学习</a></li><li><a class="wikilink" href="../../en/sources/2026-06-29-vision-transformer.html">Vision Transformer：把图像切成 token 的通用视觉主干</a></li><li><a class="wikilink" href="../../en/sources/2026-07-14-swin-transformer.html">Swin Transformer：移位窗口与层级视觉 Transformer</a></li><li><a class="wikilink" href="../../en/sources/2026-07-14-convnext.html">A ConvNet for the 2020s：ConvNeXt 与现代卷积主干</a></li><li><a class="wikilink" href="../../en/sources/2026-07-14-u-net.html">U-Net：编码器—解码器与跳跃连接的医学图像分割</a></li><li><a class="wikilink" href="../../en/sources/2026-04-14-latent-diffusion-models.html">Latent Diffusion Models：高分辨率图像合成的潜空间扩散框架</a></li><li><a class="wikilink" href="../../en/sources/2026-04-15-all-are-worth-words.html">All Are Worth Words：把 ViT 直接变成扩散模型主干</a></li><li><a class="wikilink" href="../../en/sources/2026-04-15-scalable-diffusion-models-with-transformers.html">Scalable Diffusion Models with Transformers：DiT 把 Transformer 真正坐实为可扩展扩散主干</a></li><li><a class="wikilink" href="../../en/sources/2026-04-15-diffusion-models-without-attention.html">Diffusion Models Without Attention：不用注意力也能做高分辨率扩散</a></li><li><a class="wikilink" href="../../en/sources/2026-04-23-sportmamba.html">SportMamba：面向团队运动的非线性多目标跟踪</a></li><li><a class="wikilink" href="../../en/sources/2026-04-25-timesformer.html">TimeSformer：用于视频理解的分解式时空注意力</a></li><li><a class="wikilink" href="../../en/sources/2026-04-25-st-gcn.html">ST-GCN：骨架动作识别的时空图卷积基线</a></li><li><a class="wikilink" href="../../en/sources/2026-04-25-videomae.html">VideoMAE：数据高效的视频掩码自编码预训练</a></li><li><a class="wikilink" href="../../en/sources/2026-04-25-openpose.html">OpenPose：OpenPose 是早期多人 2D 关键点检测工具。</a></li><li><a class="wikilink" href="../../en/sources/2026-04-25-mmpose.html">MMPose / RTMPose：MMPose 提供 2D/3D 姿态估计工具链，RTMPose 强调实时部署。</a></li><li><a class="wikilink" href="../../en/sources/2026-05-05-tracknet-high-speed-tiny-objects.html">TrackNet：体育高速小目标追踪网络</a></li><li><a class="wikilink" href="../../en/sources/2026-05-12-trackmae.html">TrackMAE：用轨迹遮挡与预测学习运动敏感的视频表征</a></li><li><a class="wikilink" href="../../en/sources/2026-05-16-tempose-badminton-fine-grained-motion.html">TemPose：面向羽毛球细粒度动作识别的骨架 Transformer</a></li><li><a class="wikilink" href="../../en/sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition.html">BlockGCN：保留骨架拓扑并轻量建模多种关节关系</a></li><li><a class="wikilink" href="../../en/sources/2026-05-16-skateformer-skeletal-temporal-transformer.html">SkateFormer：用四类骨架—时间分区实现高效联合注意力</a></li><li><a class="wikilink" href="../../en/sources/2026-05-16-protogcn-skeleton-action-recognition.html">ProtoGCN：用运动原型重构放大相似骨架动作的局部差异</a></li><li><a class="wikilink" href="../../en/sources/2026-06-29-clip.html">CLIP：用自然语言监督学习可迁移视觉表示</a></li><li><a class="wikilink" href="../../en/sources/2026-06-29-detr.html">DETR：把目标检测改写成 Transformer set prediction</a></li><li><a class="wikilink" href="../../en/sources/2026-06-29-segment-anything.html">Segment Anything：把分割做成可提示的视觉基础模型</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">23</span></h2><ul><li><a href="../../en/entities/clip.html">CLIP 系列模型（CLIP Family）</a><span>Entity</span></li><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-05-12-trackmae.html">TrackMAE：用轨迹遮挡与预测学习运动敏感的视频表征</a><span>Source note</span></li><li><a href="../../en/sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition.html">BlockGCN：保留骨架拓扑并轻量建模多种关节关系</a><span>Source note</span></li><li><a href="../../en/sources/2026-05-16-protogcn-skeleton-action-recognition.html">ProtoGCN：用运动原型重构放大相似骨架动作的局部差异</a><span>Source note</span></li><li><a href="../../en/sources/2026-05-16-skateformer-skeletal-temporal-transformer.html">SkateFormer：用四类骨架—时间分区实现高效联合注意力</a><span>Source note</span></li><li><a href="../../en/sources/2026-06-29-clip.html">CLIP：用自然语言监督学习可迁移视觉表示</a><span>Source note</span></li><li><a href="../../en/sources/2026-06-29-detr.html">DETR：把目标检测改写成 Transformer set prediction</a><span>Source note</span></li><li><a href="../../en/sources/2026-06-29-segment-anything.html">Segment Anything：把分割做成可提示的视觉基础模型</a><span>Source note</span></li><li><a href="../../en/sources/2026-06-29-vision-transformer.html">Vision Transformer：把图像切成 token 的通用视觉主干</a><span>Source note</span></li><li><a href="../../en/sources/2026-07-14-alexnet.html">ImageNet Classification with Deep Convolutional Neural Networks：AlexNet 与深度视觉转折</a><span>Source note</span></li><li><a href="../../en/sources/2026-07-14-convnext.html">A ConvNet for the 2020s：ConvNeXt 与现代卷积主干</a><span>Source note</span></li><li><a href="../../en/sources/2026-07-14-resnet.html">Deep Residual Learning for Image Recognition：ResNet 与残差学习</a><span>Source note</span></li><li><a href="../../en/sources/2026-07-14-swin-transformer.html">Swin Transformer：移位窗口与层级视觉 Transformer</a><span>Source note</span></li><li><a href="../../en/topics/computer-vision-overview.html">Computer Vision Overview</a><span>Topic</span></li><li><a href="../../en/topics/diffusion-models.html">Diffusion Models</a><span>Topic</span></li><li><a href="../../en/topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a><span>Topic</span></li><li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a><span>Topic</span></li><li><a href="../../en/topics/sports-ai-video-understanding.html">Sports AI Video Understanding</a><span>Topic</span></li><li><a href="../../en/topics/video-representation-and-temporal-modeling.html">Video Representation and Temporal Modeling</a><span>Topic</span></li><li><a href="../../en/topics/video-understanding.html">Video Understanding</a><span>Topic</span></li><li><a href="../../en/topics/vision-language-foundations.html">Vision-Language and Multimodal Representation Foundations</a><span>Topic</span></li><li><a href="../../en/topics/vision-task-foundations.html">Foundations of Core Vision Tasks</a><span>Topic</span></li></ul></section>
       <details class="metadata-box" id="metadata"><summary>Metadata</summary><pre>{
   &quot;id&quot;: &quot;topic-vision-backbones&quot;,
   &quot;type&quot;: &quot;topic&quot;,
-  &quot;title&quot;: &quot;主流视觉 Backbone 入门&quot;,
-  &quot;title_en&quot;: &quot;Mainstream Vision Backbones&quot;,
-  &quot;nav_title&quot;: &quot;视觉 Backbone&quot;,
+  &quot;topic_kind&quot;: &quot;concept&quot;,
+  &quot;title&quot;: &quot;图像表示与视觉主干网络&quot;,
+  &quot;title_en&quot;: &quot;Visual Representations and Backbones&quot;,
+  &quot;nav_title&quot;: &quot;视觉主干&quot;,
   &quot;nav_title_en&quot;: &quot;Vision Backbones&quot;,
   &quot;status&quot;: &quot;active&quot;,
   &quot;created&quot;: &quot;2026-05-23&quot;,
-  &quot;updated&quot;: &quot;2026-06-29&quot;,
+  &quot;updated&quot;: &quot;2026-07-14&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
-    &quot;video-understanding&quot;,
-    &quot;image-generation&quot;,
+    &quot;vision-foundations&quot;,
     &quot;representation-learning&quot;
   ],
-  &quot;summary&quot;: &quot;用小白友好的方式解释 CNN、U-Net、Transformer、DiT、GCN、Mamba/SSM 等视觉主干，并连接到生成、视频理解和体育 AI 选型。&quot;,
-  &quot;summary_en&quot;: &quot;A beginner-friendly map of CNN, U-Net, Transformer, DiT, GCN, and Mamba/SSM vision backbones for generation, video understanding, and sports AI.&quot;,
+  &quot;summary&quot;: &quot;比较 CNN、U-Net、ViT、层级 Transformer、GCN 与状态空间模型怎样编码局部、全局、多尺度和时序信息，以及怎样按任务与预算选主干。&quot;,
   &quot;source_notes&quot;: [
+    &quot;sources/2026-07-14-alexnet&quot;,
+    &quot;sources/2026-07-14-resnet&quot;,
+    &quot;sources/2026-06-29-vision-transformer&quot;,
+    &quot;sources/2026-07-14-swin-transformer&quot;,
+    &quot;sources/2026-07-14-convnext&quot;,
+    &quot;sources/2026-07-14-u-net&quot;,
     &quot;sources/2026-04-14-latent-diffusion-models&quot;,
     &quot;sources/2026-04-15-all-are-worth-words&quot;,
     &quot;sources/2026-04-15-scalable-diffusion-models-with-transformers&quot;,
@@ -192,18 +235,31 @@
     &quot;sources/2026-05-16-blockgcn-topology-aware-skeleton-action-recognition&quot;,
     &quot;sources/2026-05-16-skateformer-skeletal-temporal-transformer&quot;,
     &quot;sources/2026-05-16-protogcn-skeleton-action-recognition&quot;,
-    &quot;sources/2026-06-29-vision-transformer&quot;,
     &quot;sources/2026-06-29-clip&quot;,
     &quot;sources/2026-06-29-detr&quot;,
     &quot;sources/2026-06-29-segment-anything&quot;
   ],
+  &quot;foundational_sources&quot;: [
+    &quot;sources/2026-07-14-alexnet&quot;,
+    &quot;sources/2026-07-14-resnet&quot;,
+    &quot;sources/2026-06-29-vision-transformer&quot;,
+    &quot;sources/2026-07-14-swin-transformer&quot;,
+    &quot;sources/2026-07-14-convnext&quot;,
+    &quot;sources/2026-07-14-u-net&quot;,
+    &quot;sources/2026-04-25-st-gcn&quot;,
+    &quot;sources/2026-04-15-diffusion-models-without-attention&quot;
+  ],
+  &quot;visuals&quot;: [
+    &quot;backbone-role&quot;,
+    &quot;backbone-history&quot;,
+    &quot;backbone-selection&quot;
+  ],
   &quot;related_topics&quot;: [
+    &quot;topics/computer-vision-overview&quot;,
+    &quot;topics/vision-task-foundations&quot;,
     &quot;topics/diffusion-models&quot;,
-    &quot;topics/image-generation&quot;,
-    &quot;topics/video-generation&quot;,
-    &quot;topics/video-understanding&quot;,
-    &quot;topics/sports-ai-video-understanding&quot;,
-    &quot;topics/sports-ai-roadmap&quot;
+    &quot;topics/video-representation-and-temporal-modeling&quot;,
+    &quot;topics/sports-ai-video-understanding&quot;
   ],
   &quot;related_entities&quot;: [
     &quot;entities/diffusion-transformer&quot;

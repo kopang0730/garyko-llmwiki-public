@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="从输入、表示、任务输出和证据四层理解现代计算机视觉，并沿奠基论文进入主干、检测分割、视频、多模态与生成研究。">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>计算机视觉概览与发展脉络 · llmwiki</title>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260714-research-observatory-v5-topic-visuals">
+  <script defer src="../assets/wiki.js?v=20260714-research-observatory-v5-topic-visuals"></script>
+</head>
+<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/computer-vision-overview&quot;, &quot;title&quot;: &quot;计算机视觉概览与发展脉络&quot;, &quot;title_en&quot;: &quot;Computer Vision Overview&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;vision-foundations&quot;, &quot;representation-learning&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260714-research-observatory-v5-topic-visuals">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar"><span aria-hidden="true">☰</span> 菜单</button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
+    <form class="search-box" role="search"><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
+    <nav class="sidebar-nav">
+<h2>入口</h2><ul>
+<li><a href="../index.html">索引</a></li>
+<li><a href="../llm-wiki.html">LLM Wiki</a></li>
+<li><a href="../main.html">首页</a></li>
+</ul>
+<h2>基础概念</h2><ul>
+<li><a class="active" href="../topics/computer-vision-overview.html">计算机视觉概览</a></li>
+<li><a href="../topics/datasets-metrics-and-benchmark-reliability.html">数据与评测基础</a></li>
+<li><a href="../topics/diffusion-models.html">扩散模型</a></li>
+<li><a href="../topics/video-representation-and-temporal-modeling.html">视频表示基础</a></li>
+<li><a href="../topics/vision-backbones.html">视觉主干</a></li>
+<li><a href="../topics/vision-language-foundations.html">视觉语言基础</a></li>
+<li><a href="../topics/vision-task-foundations.html">核心视觉任务</a></li>
+<li><a href="../topics/visual-generation-foundations.html">视觉生成基础</a></li>
+</ul>
+<h2>研究专题</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html">扩散效率工程</a></li>
+<li><a href="../topics/generative-model-evaluation.html">生成模型评测</a></li>
+<li><a href="../topics/image-editing.html">图像编辑</a></li>
+<li><a href="../topics/image-generation.html">图像生成</a></li>
+<li><a href="../topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a></li>
+<li><a href="../topics/sports-ai-video-understanding.html">体育视频理解</a></li>
+<li><a href="../topics/video-editing.html">视频编辑</a></li>
+<li><a href="../topics/video-generation.html">视频生成</a></li>
+<li><a href="../topics/video-understanding.html">视频理解</a></li>
+<li><a href="../topics/vision-language.html">视觉语言</a></li>
+</ul>
+<h2>应用路线</h2><ul>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI</a></li>
+</ul>
+<h2>实体</h2><ul>
+<li><a href="../entities/clip.html">CLIP 系列模型（CLIP Family）</a></li>
+<li><a href="../entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a></li>
+<li><a href="../entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a></li>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>判断</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-image-text-retrieval-baseline-and-specialization.html">双塔负责可扩展召回，细粒度模块负责精排与关系匹配</a></li>
+<li><a href="../claims/claim-image-text-retrieval-composed-query.html">组合式查询是图文检索中可落地且仍有缺口的研究切口</a></li>
+<li><a href="../claims/claim-image-text-retrieval-compositionality.html">标准图文检索分数不足以证明组合性理解</a></li>
+<li><a href="../claims/claim-image-text-retrieval-data-quality.html">图文检索的主要瓶颈仍包括数据质量、分布与概念覆盖</a></li>
+<li><a href="../claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
+</ul>
+<h2>问题</h2><ul>
+<li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a></li>
+<li><a href="../questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a></li>
+<li><a href="../questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a></li>
+<li><a href="../questions/question-image-text-retrieval-research-cut.html">图文检索哪个子方向最适合中等算力的研究生项目？</a></li>
+<li><a href="../questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
+</ul>
+</nav>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><a class="selected-lang" href="../topics/computer-vision-overview.html">中文</a><a class="" href="../en/topics/computer-vision-overview.html">English</a></nav><a class="selected">正文</a><a href="#metadata">元数据</a><a href="../main.html">首页</a></header>
+    <article class="article-shell">
+      
+      <header class="article-header" data-motion="reveal">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>主题</span><span class="crumb-sep" aria-hidden="true">›</span><strong>计算机视觉概览与发展脉络</strong></nav>
+        <p class="eyebrow">主题 · 更新于 2026-07-14</p>
+        <h1><span class="title-main">计算机视觉概览与发展脉络</span></h1>
+        <p class="article-summary">从输入、表示、任务输出和证据四层理解现代计算机视觉，并沿奠基论文进入主干、检测分割、视频、多模态与生成研究。</p>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#vision-foundations">#vision-foundations</a><a class="tag" href="../tags.html#representation-learning">#representation-learning</a></div>
+      </header>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><details class="toc" open><summary>目录</summary><ol><li><a href="#一句话定义">一句话定义</a></li><li><a href="#一张图看懂原理">一张图看懂原理</a></li><li><a href="#前置概念与术语">前置概念与术语</a></li><li><a href="#历史演化">历史演化</a></li><li><a href="#核心机制">核心机制</a></li><li><a href="#主要方法分支">主要方法分支</a></li><li><a href="#奠基论文导读">奠基论文导读</a></li><li><a href="#常见误区与局限">常见误区与局限</a></li><li><a href="#与研究专题的关系">与研究专题的关系</a></li><li><a href="#推荐阅读顺序">推荐阅读顺序</a></li><li><a href="#证据基础">证据基础</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content">
+<section class="topic-hero-grid" data-motion="reveal">
+  <section class="judgment-panel topic-judgment">
+    <p class="section-kicker">基础概念</p>
+    <h2>计算机视觉概览与发展脉络</h2>
+    <p>从输入、表示、任务输出和证据四层理解现代计算机视觉，并沿奠基论文进入主干、检测分割、视频、多模态与生成研究。</p>
+    <div class="judgment-meta"><span>8 来源笔记</span><span>0 开放问题</span></div>
+  </section>
+  <section class="reading-path">
+    <p class="section-kicker">学习路径</p>
+    <ol><li><strong>定义</strong><span>先说清它是什么</span></li><li><strong>机制</strong><span>理解信息怎样流动</span></li><li><strong>演化</strong><span>定位关键论文节点</span></li><li><strong>研究连接</strong><span>进入仍在发展的专题</span></li></ol>
+  </section>
+</section>
+<section class="method-map" data-motion="reveal" aria-label="概念学习地图">
+  <div class="method-map-heading"><div><p class="section-kicker">概念学习地图</p><h2>从直觉理解走向研究连接</h2></div><span>8 来源笔记</span></div>
+  <div class="method-map-track"><div class="method-node"><span>1</span><strong>定义</strong><small>先说清它是什么</small></div><div class="method-node"><span>2</span><strong>机制</strong><small>理解信息怎样流动</small></div><div class="method-node"><span>3</span><strong>演化</strong><small>定位关键论文节点</small></div><div class="method-node"><span>4</span><strong>研究连接</strong><small>进入仍在发展的专题</small></div></div>
+</section>
+<h2 id="一句话定义">一句话定义</h2>
+<p>计算机视觉（computer vision）研究怎样让机器从图像、视频和几何/传感数据中提取可验证的信息，或依据条件生成新的视觉内容。</p>
+<p>“看懂”不是一个单独任务。模型可能只输出整图类别，也可能输出物体框、像素掩码、人体关键点、跨帧轨迹、图文相似度、问题答案或生成图像；输出不同，所需数据、损失和证据也不同。</p>
+<h2 id="一张图看懂原理">一张图看懂原理</h2>
+<figure class="wiki-visual wiki-visual--flow" data-visual-id="cv-system-view" aria-labelledby="visual-cv-system-view-title" aria-describedby="visual-cv-system-view-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">从像素输入到研究结论，中间必须经过哪些层？</p><div class="wiki-visual-title" id="visual-cv-system-view-title" role="heading" aria-level="3">一个视觉系统的四层结构</div><p class="wiki-visual-explanation">主干把输入变成表示，任务头把表示变成特定输出，评测再判断输出是否真的满足任务。任何一层变化都可能改变结果。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>输入与监督</strong><small>图像、视频、文本、关键点或轨迹，以及标签和数据划分</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>视觉表示</strong><small>CNN、Transformer 或其他主干把原始输入编码成特征</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>任务输出</strong><small>类别、框、掩码、姿态、轨迹、相似度、回答或生成内容</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>证据与反馈</strong><small>指标、人评、失败案例和域外测试决定结论是否成立</small></li></ol><figcaption><span>图示依据</span><a class="wikilink" href="../sources/2026-07-14-alexnet.html">AlexNet</a>、<a class="wikilink" href="../sources/2026-07-14-resnet.html">ResNet</a>、<a class="wikilink" href="../sources/2026-06-29-vision-transformer.html">ViT</a></figcaption><p class="sr-only" id="visual-cv-system-view-alt">图像或视频经过采样与标注、视觉表示、任务头，最后由数据划分和指标进行验证。</p></figure>
+<p>初学者最有用的阅读问题不是“这是不是大模型”，而是：输入是什么、输出是什么、监督从哪里来、哪一层可学习、用什么证据证明有效。</p>
+<h2 id="前置概念与术语">前置概念与术语</h2>
+<ul>
+<li><strong>像素（pixel）</strong>：数字图像的采样单元；像素值不是物体语义本身。</li>
+<li><strong>特征/表示（feature / representation）</strong>：模型从输入提取、可供下游任务使用的数值结构。</li>
+<li><strong>主干网络（backbone）</strong>：负责产生通用或可复用表示的主体网络。</li>
+<li><strong>任务头（task head）</strong>：把主干表示变成类别、框、掩码等具体输出。</li>
+<li><strong>监督学习（supervised learning）</strong>：利用人工或自动标签训练；标签质量决定可学目标。</li>
+<li><strong>自监督学习（self-supervised learning）</strong>：从数据自身构造训练任务，例如遮挡重建或跨模态配对。</li>
+<li><strong>预训练与微调（pre-training / fine-tuning）</strong>：先在大数据上学习表示，再适配具体任务。</li>
+<li><strong>归纳偏置（inductive bias）</strong>：架构对局部性、平移、层级或序列关系的先验偏好。</li>
+<li><strong>泛化（generalization）</strong>：模型在未见样本、场景、语言或设备上保持能力。</li>
+<li><strong>基准（benchmark）</strong>：数据、任务、划分、指标和提交协议的组合，不只是一个数据集名称。</li>
+</ul>
+<h2 id="历史演化">历史演化</h2>
+<figure class="wiki-visual wiki-visual--timeline" data-visual-id="cv-history" aria-labelledby="visual-cv-history-title" aria-describedby="visual-cv-history-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">哪些工作改变了视觉问题的表示或接口？</p><div class="wiki-visual-title" id="visual-cv-history-title" role="heading" aria-level="3">现代计算机视觉的六个范式节点</div><p class="wiki-visual-explanation">传统手工特征只作为前史；时间线从端到端深度表示开始，依次进入可训练深度、密集任务、token 化、多模态自然语言监督和可提示基础模型。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>2012 · 深度表示转折</strong><small>AlexNet 把 ImageNet、GPU 与深卷积训练接成胜出的分类系统</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>2015–2016 · 定位与深度</strong><small>FCN、Faster R-CNN、ResNet 建立密集预测、两阶段检测和残差学习</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>2020 · 视觉 token 与集合预测</strong><small>ViT 证明纯 Transformer 表示，DETR 把检测改写为集合输出</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>2021 · 图文对齐</strong><small>CLIP 用自然语言监督把分类、检索和跨模态表示接到共享空间</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">05</span><strong>2022–2023 · 生成与提示接口</strong><small>扩散平台和 SAM 等模型把条件、提示与通用视觉能力工程化</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">06</span><strong>当前 · 可靠系统研究</strong><small>数据来源、组合性、成本、域外泛化和可证伪评测成为能力边界</small></li></ol><figcaption><span>图示依据</span><a class="wikilink" href="../sources/2026-07-14-alexnet.html">AlexNet</a>、<a class="wikilink" href="../sources/2026-07-14-resnet.html">ResNet</a>、<a class="wikilink" href="../sources/2026-06-29-detr.html">DETR</a>、<a class="wikilink" href="../sources/2026-06-29-clip.html">CLIP</a>、<a class="wikilink" href="../sources/2026-06-29-segment-anything.html">SAM</a></figcaption><p class="sr-only" id="visual-cv-history-alt">时间线列出 2012 AlexNet、2015 FCN/Faster R-CNN、2016 ResNet、2020 ViT/DETR、2021 CLIP、2023 SAM。</p></figure>
+<p>SIFT、HOG 等手工方法在历史上重要，但本 Wiki 只在解释“为什么端到端表示学习是转折”时保留它们，不建立传统特征主线。</p>
+<h2 id="核心机制">核心机制</h2>
+<p>现代视觉系统通常反复使用四个机制：</p>
+<ol>
+<li><strong>局部到全局的层级表示</strong>：卷积或局部窗口先组合边缘与纹理，再形成部件、对象和场景。</li>
+<li><strong>压缩与选择</strong>：下采样、patch 化、注意力或状态更新在有限计算下保留任务相关信息。</li>
+<li><strong>共享表示与任务适配</strong>：预训练主干提供通用特征，检测/分割/检索/生成头重新组织这些特征。</li>
+<li><strong>由监督定义能力</strong>：分类标签教类别，框教定位，掩码教边界，图文对教语义对齐；模型不会自动学会未被数据或目标约束的能力。</li>
+</ol>
+<p><a class="wikilink" href="../sources/2026-07-14-alexnet.html">AlexNet</a>、<a class="wikilink" href="../sources/2026-07-14-resnet.html">ResNet</a> 与 <a class="wikilink" href="../sources/2026-06-29-vision-transformer.html">ViT</a> 的差异说明：表示能力来自架构、数据、算力和优化共同作用，不能把时代变化简化为“某种算子取代另一种算子”。</p>
+<h2 id="主要方法分支">主要方法分支</h2>
+<figure class="wiki-visual wiki-visual--map" data-visual-id="cv-task-outputs" aria-labelledby="visual-cv-task-outputs-title" aria-describedby="visual-cv-task-outputs-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">分类、检测、分割、姿态、跟踪、多模态和生成的边界在哪里？</p><div class="wiki-visual-title" id="visual-cv-task-outputs-title" role="heading" aria-level="3">不同视觉任务实际输出什么</div><p class="wiki-visual-explanation">任务可以共享主干，但输出结构和验证方式不同。把一个任务的高分外推为另一个任务的能力，是视觉研究中最常见的错误之一。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>分类</strong><small>为整图或片段给一个或多个类别，重点是语义判别</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>检测与分割</strong><small>输出物体位置、像素类别或实例掩码，重点是空间对应</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>姿态与跟踪</strong><small>输出关键点和跨帧身份，重点是结构与时间一致</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>视频理解</strong><small>从片段、事件和长时间上下文中判断动作、状态与因果</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">05</span><strong>视觉语言</strong><small>把视觉与文本对齐、融合或生成，重点是跨模态语义与组合</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">06</span><strong>视觉生成</strong><small>从噪声、token 或条件产生图像/视频，重点是分布、控制与可靠评测</small></li></ol><figcaption><span>图示依据</span><a class="wikilink" href="../sources/2026-07-14-faster-r-cnn.html">Faster R-CNN</a>、<a class="wikilink" href="../sources/2026-07-14-fcn.html">FCN</a>、<a class="wikilink" href="../sources/2026-06-29-detr.html">DETR</a>、<a class="wikilink" href="../sources/2026-06-29-clip.html">CLIP</a></figcaption><p class="sr-only" id="visual-cv-task-outputs-alt">方法地图从整图标签扩展到物体框、像素掩码、关键点、跨帧轨迹、图文表示与生成内容。</p></figure>
+<ul>
+<li><strong>图像表示与主干</strong>：见 <a class="wikilink" href="../topics/vision-backbones.html">topics/vision-backbones</a>。</li>
+<li><strong>分类、检测、分割、姿态与跟踪</strong>：见 <a class="wikilink" href="../topics/vision-task-foundations.html">topics/vision-task-foundations</a>。</li>
+<li><strong>视频与时序表示</strong>：见 <a class="wikilink" href="../topics/video-representation-and-temporal-modeling.html">topics/video-representation-and-temporal-modeling</a>。</li>
+<li><strong>图文对齐与视觉语言</strong>：见 <a class="wikilink" href="../topics/vision-language-foundations.html">topics/vision-language-foundations</a>。</li>
+<li><strong>生成模型家族</strong>：见 <a class="wikilink" href="../topics/visual-generation-foundations.html">topics/visual-generation-foundations</a> 与 <a class="wikilink" href="../topics/diffusion-models.html">topics/diffusion-models</a>。</li>
+<li><strong>数据与评测</strong>：见 <a class="wikilink" href="../topics/datasets-metrics-and-benchmark-reliability.html">topics/datasets-metrics-and-benchmark-reliability</a>。</li>
+</ul>
+<h2 id="奠基论文导读">奠基论文导读</h2>
+<ol>
+<li><strong><a class="wikilink" href="../sources/2026-07-14-alexnet.html">AlexNet</a></strong>：理解端到端深度表示为何在 ImageNet 上成为转折，同时记录数据和 GPU 的作用。</li>
+<li><strong><a class="wikilink" href="../sources/2026-07-14-resnet.html">ResNet</a></strong>：理解残差连接怎样改变深网络优化，以及机制为何超越具体 CNN 家族。</li>
+<li><strong><a class="wikilink" href="../sources/2026-07-14-faster-r-cnn.html">Faster R-CNN</a></strong>：认识两阶段检测中的 proposal、分类、回归与共享特征。</li>
+<li><strong><a class="wikilink" href="../sources/2026-07-14-fcn.html">FCN</a></strong>：从整图分类走向逐像素语义分割。</li>
+<li><strong><a class="wikilink" href="../sources/2026-06-29-vision-transformer.html">ViT</a></strong>：理解 patch token、全局自注意力和大数据预训练条件。</li>
+<li><strong><a class="wikilink" href="../sources/2026-06-29-detr.html">DETR</a></strong>：观察 Transformer 如何用 object query 与集合匹配重写检测接口。</li>
+<li><strong><a class="wikilink" href="../sources/2026-06-29-clip.html">CLIP</a></strong>：理解自然语言监督与双编码共享空间。</li>
+<li><strong><a class="wikilink" href="../sources/2026-06-29-segment-anything.html">SAM</a></strong>：理解提示式分割、数据引擎和基础模型接口，也检查其域外边界。</li>
+</ol>
+<h2 id="常见误区与局限">常见误区与局限</h2>
+<ul>
+<li><strong>误区：高分类准确率代表模型看懂一切。</strong> 分类不要求精确定位、计数、关系或时间推理。</li>
+<li><strong>误区：backbone 就是完整系统。</strong> 数据、预处理、任务头、损失、后处理和评测都可能决定结果。</li>
+<li><strong>误区：参数越大，研究结论越可靠。</strong> 若数据、预算和评测同时变化，无法知道增益来源。</li>
+<li><strong>误区：benchmark 高分等于真实部署。</strong> 域偏移、传感器、延迟、标注歧义和长尾失败可能完全不同。</li>
+<li><strong>局限：视觉不是被动读取事实。</strong> 像素存在遮挡、视角和采样损失；“真实标签”也可能依赖任务定义和人类判断。</li>
+<li><strong>局限：基础模型仍受数据覆盖约束。</strong> 罕见对象、专业图像、非英语文本、细粒度关系和时序证据都需要专门验证。</li>
+</ul>
+<h2 id="与研究专题的关系">与研究专题的关系</h2>
+<p>基础概念页解释稳定框架；Research Topic 则回答近五年哪些路线成熟、哪里仍值得研究。建议从本页按需要进入 <a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a>、<a class="wikilink" href="../topics/image-text-retrieval.html">topics/image-text-retrieval</a>、<a class="wikilink" href="../topics/video-understanding.html">topics/video-understanding</a>、<a class="wikilink" href="../topics/generative-model-evaluation.html">topics/generative-model-evaluation</a> 或 <a class="wikilink" href="../topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a>，并在每个判断处回到 source note。</p>
+<h2 id="推荐阅读顺序">推荐阅读顺序</h2>
+<ol>
+<li>先用“任务输出图”说清分类、检测、分割、姿态、跟踪、检索和生成的差别。</li>
+<li>读 AlexNet 与 ResNet，理解深度表示学习的起点。</li>
+<li>在 Faster R-CNN/FCN 与 DETR/SAM 之间比较任务接口变化。</li>
+<li>读 ViT 与 CLIP，理解 token 化、大规模预训练和跨模态对齐。</li>
+<li>最后进入数据评测页，检查每个能力结论的证据边界。</li>
+</ol>
+<h2 id="证据基础">证据基础</h2>
+<ul>
+<li><a class="wikilink" href="../sources/2026-07-14-alexnet.html">sources/2026-07-14-alexnet</a>、<a class="wikilink" href="../sources/2026-07-14-resnet.html">sources/2026-07-14-resnet</a>：深度视觉表示与优化转折。</li>
+<li><a class="wikilink" href="../sources/2026-07-14-faster-r-cnn.html">sources/2026-07-14-faster-r-cnn</a>、<a class="wikilink" href="../sources/2026-07-14-fcn.html">sources/2026-07-14-fcn</a>：检测与密集预测基础。</li>
+<li><a class="wikilink" href="../sources/2026-06-29-vision-transformer.html">sources/2026-06-29-vision-transformer</a>、<a class="wikilink" href="../sources/2026-06-29-detr.html">sources/2026-06-29-detr</a>：视觉 token 与集合预测。</li>
+<li><a class="wikilink" href="../sources/2026-06-29-clip.html">sources/2026-06-29-clip</a>、<a class="wikilink" href="../sources/2026-06-29-segment-anything.html">sources/2026-06-29-segment-anything</a>：多模态监督与提示式视觉接口。</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/vision-backbones.html">图像表示与视觉主干网络</a></li>
+<li><a class="wikilink" href="../topics/vision-task-foundations.html">分类、检测、分割、姿态与跟踪</a></li>
+<li><a class="wikilink" href="../topics/video-representation-and-temporal-modeling.html">视频表示与时序建模</a></li>
+<li><a class="wikilink" href="../topics/vision-language-foundations.html">视觉语言与多模态表示基础</a></li>
+<li><a class="wikilink" href="../topics/visual-generation-foundations.html">视觉生成模型基础</a></li>
+<li><a class="wikilink" href="../topics/datasets-metrics-and-benchmark-reliability.html">数据集、指标与基准可靠性</a></li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-related_topics"><h3>相关主题<span class="related-count">6</span></h3><ul><li><a class="wikilink" href="../topics/vision-backbones.html">图像表示与视觉主干网络</a></li><li><a class="wikilink" href="../topics/vision-task-foundations.html">分类、检测、分割、姿态与跟踪</a></li><li><a class="wikilink" href="../topics/video-representation-and-temporal-modeling.html">视频表示、运动信息与时序建模</a></li><li><a class="wikilink" href="../topics/vision-language-foundations.html">图文对齐、视觉语言模型与多模态表示基础</a></li><li><a class="wikilink" href="../topics/visual-generation-foundations.html">视觉生成模型基础</a></li><li><a class="wikilink" href="../topics/datasets-metrics-and-benchmark-reliability.html">数据集、评测指标与基准可靠性</a></li></ul></div><div class="related-group related-source_notes"><h3>来源笔记<span class="related-count">8</span></h3><ul><li><a class="wikilink" href="../sources/2026-07-14-alexnet.html">ImageNet Classification with Deep Convolutional Neural Networks：AlexNet 与深度视觉转折</a></li><li><a class="wikilink" href="../sources/2026-07-14-resnet.html">Deep Residual Learning for Image Recognition：ResNet 与残差学习</a></li><li><a class="wikilink" href="../sources/2026-06-29-vision-transformer.html">Vision Transformer：把图像切成 token 的通用视觉主干</a></li><li><a class="wikilink" href="../sources/2026-07-14-faster-r-cnn.html">Faster R-CNN：共享特征的区域提议网络</a></li><li><a class="wikilink" href="../sources/2026-07-14-fcn.html">Fully Convolutional Networks for Semantic Segmentation：全卷积语义分割</a></li><li><a class="wikilink" href="../sources/2026-06-29-detr.html">DETR：把目标检测改写成 Transformer set prediction</a></li><li><a class="wikilink" href="../sources/2026-06-29-clip.html">CLIP：用自然语言监督学习可迁移视觉表示</a></li><li><a class="wikilink" href="../sources/2026-06-29-segment-anything.html">Segment Anything：把分割做成可提示的视觉基础模型</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">14</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-07-14-alexnet.html">ImageNet Classification with Deep Convolutional Neural Networks：AlexNet 与深度视觉转折</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-convnext.html">A ConvNet for the 2020s：ConvNeXt 与现代卷积主干</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-faster-r-cnn.html">Faster R-CNN：共享特征的区域提议网络</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-fcn.html">Fully Convolutional Networks for Semantic Segmentation：全卷积语义分割</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-mask-r-cnn.html">Mask R-CNN：实例分割与 RoIAlign</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-resnet.html">Deep Residual Learning for Image Recognition：ResNet 与残差学习</a><span>来源笔记</span></li><li><a href="../sources/2026-07-14-swin-transformer.html">Swin Transformer：移位窗口与层级视觉 Transformer</a><span>来源笔记</span></li><li><a href="../topics/datasets-metrics-and-benchmark-reliability.html">数据集、评测指标与基准可靠性</a><span>主题</span></li><li><a href="../topics/sports-ai-roadmap.html">体育 AI 研究路线图</a><span>主题</span></li><li><a href="../topics/video-representation-and-temporal-modeling.html">视频表示、运动信息与时序建模</a><span>主题</span></li><li><a href="../topics/vision-backbones.html">图像表示与视觉主干网络</a><span>主题</span></li><li><a href="../topics/vision-language-foundations.html">图文对齐、视觉语言模型与多模态表示基础</a><span>主题</span></li><li><a href="../topics/vision-task-foundations.html">分类、检测、分割、姿态与跟踪</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary>元数据</summary><pre>{
+  &quot;id&quot;: &quot;topic-computer-vision-overview&quot;,
+  &quot;type&quot;: &quot;topic&quot;,
+  &quot;topic_kind&quot;: &quot;concept&quot;,
+  &quot;title&quot;: &quot;计算机视觉概览与发展脉络&quot;,
+  &quot;title_en&quot;: &quot;Computer Vision Overview&quot;,
+  &quot;nav_title&quot;: &quot;计算机视觉概览&quot;,
+  &quot;status&quot;: &quot;active&quot;,
+  &quot;created&quot;: &quot;2026-07-14&quot;,
+  &quot;updated&quot;: &quot;2026-07-14&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;vision-foundations&quot;,
+    &quot;representation-learning&quot;
+  ],
+  &quot;summary&quot;: &quot;从输入、表示、任务输出和证据四层理解现代计算机视觉，并沿奠基论文进入主干、检测分割、视频、多模态与生成研究。&quot;,
+  &quot;source_notes&quot;: [
+    &quot;sources/2026-07-14-alexnet&quot;,
+    &quot;sources/2026-07-14-resnet&quot;,
+    &quot;sources/2026-06-29-vision-transformer&quot;,
+    &quot;sources/2026-07-14-faster-r-cnn&quot;,
+    &quot;sources/2026-07-14-fcn&quot;,
+    &quot;sources/2026-06-29-detr&quot;,
+    &quot;sources/2026-06-29-clip&quot;,
+    &quot;sources/2026-06-29-segment-anything&quot;
+  ],
+  &quot;foundational_sources&quot;: [
+    &quot;sources/2026-07-14-alexnet&quot;,
+    &quot;sources/2026-07-14-resnet&quot;,
+    &quot;sources/2026-06-29-vision-transformer&quot;,
+    &quot;sources/2026-07-14-faster-r-cnn&quot;,
+    &quot;sources/2026-07-14-fcn&quot;,
+    &quot;sources/2026-06-29-detr&quot;,
+    &quot;sources/2026-06-29-clip&quot;,
+    &quot;sources/2026-06-29-segment-anything&quot;
+  ],
+  &quot;visuals&quot;: [
+    &quot;cv-system-view&quot;,
+    &quot;cv-history&quot;,
+    &quot;cv-task-outputs&quot;
+  ],
+  &quot;related_topics&quot;: [
+    &quot;topics/vision-backbones&quot;,
+    &quot;topics/vision-task-foundations&quot;,
+    &quot;topics/video-representation-and-temporal-modeling&quot;,
+    &quot;topics/vision-language-foundations&quot;,
+    &quot;topics/visual-generation-foundations&quot;,
+    &quot;topics/datasets-metrics-and-benchmark-reliability&quot;
+  ],
+  &quot;related_entities&quot;: [],
+  &quot;open_questions&quot;: []
+}</pre></details>
+    </article>
+  </main>
+</body>
+</html>
