@@ -45,6 +45,44 @@ function initMobileNav(){
   });
 }
 
+function initDesktopSidebar(){
+  const root=document.documentElement;
+  const toggle=document.querySelector('.sidebar-collapse-toggle');
+  const panel=document.getElementById('sidebar-panel');
+  if(!toggle||!panel) return;
+  const desktop=window.matchMedia('(min-width: 861px)');
+  const storageKey='llmwiki.sidebarCollapsed';
+  const icon=toggle.querySelector('[aria-hidden="true"]');
+  const readStoredState=()=>{
+    try{return localStorage.getItem(storageKey)==='true';}
+    catch(error){return false;}
+  };
+  const persist=collapsed=>{
+    try{localStorage.setItem(storageKey,String(collapsed));}
+    catch(error){}
+  };
+  if(readStoredState()) root.classList.add('sidebar-collapsed');
+  const sync=()=>{
+    const collapsed=desktop.matches&&root.classList.contains('sidebar-collapsed');
+    const label=collapsed ? toggle.dataset.expandLabel : toggle.dataset.collapseLabel;
+    toggle.setAttribute('aria-expanded',String(!collapsed));
+    toggle.setAttribute('aria-label',label);
+    toggle.setAttribute('title',label);
+    if(icon) icon.textContent=collapsed ? '›' : '‹';
+    panel.inert=collapsed;
+    if(collapsed) panel.setAttribute('aria-hidden','true');
+    else panel.removeAttribute('aria-hidden');
+  };
+  toggle.addEventListener('click',()=>{
+    if(!desktop.matches) return;
+    const collapsed=root.classList.toggle('sidebar-collapsed');
+    persist(collapsed);
+    sync();
+  });
+  desktop.addEventListener('change',sync);
+  sync();
+}
+
 function initResponsiveToc(){
   const toc=document.querySelector('details.toc');
   if(!toc) return;
@@ -76,6 +114,7 @@ function initMotion(){
 }
 
 initSearch();
+initDesktopSidebar();
 initMobileNav();
 initResponsiveToc();
 initMotion();
