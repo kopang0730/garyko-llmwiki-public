@@ -136,13 +136,18 @@ function initKnowledgeGraph(){
   const lang=document.documentElement.lang==='en' ? 'en' : 'zh';
   const copy=lang==='en' ? {
     groups:{concept:'Foundation',research:'Research topic',roadmap:'Application roadmap',entity:'Method entity',claim:'Evidence claim',question:'Open question'},
-    evidence:'Evidence links',relations:'Direct relations',updated:'Updated',open:'Open full page',neighbors:'Directly connected',empty:'No visible nodes',visible:'visible nodes',edges:'relations'
+    evidence:'Evidence links',relations:'Direct relations',updated:'Updated',
+    open:{concept:'Read the foundation',research:'Explore this research topic',roadmap:'Open the application roadmap',entity:'Inspect the method entity',claim:'Review the evidence claim',question:'Explore the open question'},
+    openHint:'Continue into the wiki',neighbors:'Connected knowledge',neighborHint:'Select a card to move through the map',relationSuffix:'direct relations',empty:'No visible nodes',visible:'visible nodes',edges:'relations'
   } : {
     groups:{concept:'基础概念',research:'研究专题',roadmap:'应用路线',entity:'方法实体',claim:'证据判断',question:'开放问题'},
-    evidence:'证据入口',relations:'直接关系',updated:'更新于',open:'进入完整页面',neighbors:'直接相连',empty:'没有符合条件的节点',visible:'个可见节点',edges:'条关系'
+    evidence:'证据入口',relations:'直接关系',updated:'更新于',
+    open:{concept:'阅读基础概念',research:'查看研究专题',roadmap:'打开应用路线',entity:'查看方法实体',claim:'核对证据判断',question:'查看开放问题'},
+    openHint:'继续深入 Wiki',neighbors:'相连的知识',neighborHint:'点击卡片，在地图中继续探索',relationSuffix:'个直接关系',empty:'没有符合条件的节点',visible:'个可见节点',edges:'条关系'
   };
   const viewport=svg.querySelector('.knowledge-graph-viewport');
   const detail=document.getElementById('graph-detail');
+  const emptyDetailMarkup=detail?.innerHTML||'';
   const status=document.getElementById('graph-status');
   const search=document.getElementById('graph-search-input');
   const filterButtons=[...document.querySelectorAll('[data-graph-filter]')];
@@ -279,38 +284,70 @@ function initKnowledgeGraph(){
   let query='';
   const visibleNodes=new Set(data.nodes.map(node=>node.id));
 
+  const renderEmptyDetail=()=>{
+    if(!detail) return;
+    detail.innerHTML=emptyDetailMarkup;
+    detail.classList.add('graph-detail-empty');
+    detail.classList.remove('graph-detail-selected');
+  };
+
   const renderDetail=node=>{
     if(!detail||!node) return;
     const neighbors=[...(adjacency.get(node.id)||[])].map(id=>nodeById.get(id)).filter(Boolean)
-      .sort((a,b)=>b.connection_count-a.connection_count||a.title.localeCompare(b.title)).slice(0,8);
+      .sort((a,b)=>b.connection_count-a.connection_count||a.title.localeCompare(b.title));
     detail.replaceChildren();
-    const kicker=document.createElement('p'); kicker.className='section-kicker'; kicker.textContent=copy.groups[node.group];
+    detail.classList.remove('graph-detail-empty');
+    detail.classList.add('graph-detail-selected');
+    const header=document.createElement('div'); header.className='graph-detail-header';
+    const kicker=document.createElement('p'); kicker.className='graph-detail-kind';
+    const kickerDot=document.createElement('span'); kickerDot.className=`graph-filter-dot graph-filter-dot--${node.group}`; kickerDot.setAttribute('aria-hidden','true');
+    const kickerText=document.createElement('span'); kickerText.textContent=copy.groups[node.group];
+    kicker.append(kickerDot,kickerText);
     const heading=document.createElement('h2'); heading.textContent=node.title;
-    detail.append(kicker,heading);
+    header.append(kicker,heading);
     if(node.title_en&&node.title_en!==node.title){
       const translation=document.createElement('p'); translation.className='graph-detail-translation'; translation.lang='en'; translation.textContent=node.title_en;
-      detail.appendChild(translation);
+      header.appendChild(translation);
     }
-    if(node.summary){ const summary=document.createElement('p'); summary.textContent=node.summary; detail.appendChild(summary); }
+    if(node.summary){ const summary=document.createElement('p'); summary.className='graph-detail-summary'; summary.textContent=node.summary; header.appendChild(summary); }
+    detail.appendChild(header);
     const metrics=document.createElement('dl'); metrics.className='graph-detail-metrics';
-    [[copy.evidence,node.evidence_count],[copy.relations,node.connection_count],[copy.updated,node.updated||'—']].forEach(([label,value])=>{
+    [[copy.evidence,node.evidence_count],[copy.relations,node.connection_count],[copy.updated,node.updated||'—']].forEach(([label,value],index)=>{
       const cell=document.createElement('div'), dt=document.createElement('dt'), dd=document.createElement('dd');
+      if(index===2) cell.className='graph-detail-metric graph-detail-metric--updated';
+      else cell.className='graph-detail-metric';
       dt.textContent=label; dd.textContent=String(value); cell.append(dt,dd); metrics.appendChild(cell);
     });
     detail.appendChild(metrics);
     if(neighbors.length){
-      const neighborTitle=document.createElement('h3'); neighborTitle.textContent=copy.neighbors;
+      const relationSection=document.createElement('section'); relationSection.className='graph-relations';
+      const neighborHeading=document.createElement('div'); neighborHeading.className='graph-detail-section-heading';
+      const neighborHeadingCopy=document.createElement('div');
+      const neighborLabel=document.createElement('p'); neighborLabel.className='graph-detail-label'; neighborLabel.textContent=copy.neighbors;
+      const neighborHint=document.createElement('h3'); neighborHint.textContent=copy.neighborHint;
+      const neighborCount=document.createElement('span'); neighborCount.className='graph-neighbor-count'; neighborCount.textContent=String(neighbors.length);
+      neighborHeadingCopy.append(neighborLabel,neighborHint); neighborHeading.append(neighborHeadingCopy,neighborCount);
       const list=document.createElement('ul'); list.className='graph-neighbor-list';
       neighbors.forEach(neighbor=>{
         const li=document.createElement('li'), button=document.createElement('button');
-        button.type='button'; button.dataset.graphNeighbor=neighbor.id; button.textContent=neighbor.title;
+        button.type='button'; button.className='graph-neighbor-card'; button.dataset.graphNeighbor=neighbor.id;
+        const dot=document.createElement('span'); dot.className=`graph-filter-dot graph-filter-dot--${neighbor.group}`; dot.setAttribute('aria-hidden','true');
+        const cardCopy=document.createElement('span'); cardCopy.className='graph-neighbor-copy';
+        const title=document.createElement('strong'); title.textContent=neighbor.title;
+        const meta=document.createElement('small'); meta.textContent=`${copy.groups[neighbor.group]} · ${neighbor.connection_count} ${copy.relationSuffix}`;
+        const arrow=document.createElement('span'); arrow.className='graph-neighbor-arrow'; arrow.textContent='→'; arrow.setAttribute('aria-hidden','true');
+        cardCopy.append(title,meta); button.append(dot,cardCopy,arrow);
         li.appendChild(button); list.appendChild(li);
       });
-      detail.append(neighborTitle,list);
+      relationSection.append(neighborHeading,list); detail.appendChild(relationSection);
     }
-    const open=document.createElement('a'); open.className='primary-action graph-open-page'; open.href=node.href;
-    const span=document.createElement('span'); span.textContent=copy.open;
-    open.appendChild(span); detail.appendChild(open);
+    const open=document.createElement('a'); open.className='graph-open-page'; open.href=node.href;
+    open.setAttribute('aria-label',`${copy.open[node.group]}：${node.title}`);
+    const openCopy=document.createElement('span'); openCopy.className='graph-open-page-copy';
+    const openHint=document.createElement('small'); openHint.textContent=copy.openHint;
+    const openLabel=document.createElement('strong'); openLabel.textContent=copy.open[node.group];
+    const openArrow=document.createElement('span'); openArrow.className='graph-open-page-arrow'; openArrow.textContent='→'; openArrow.setAttribute('aria-hidden','true');
+    openCopy.append(openHint,openLabel); open.append(openCopy,openArrow); detail.appendChild(open);
   };
 
   const highlight=id=>{
@@ -344,7 +381,18 @@ function initKnowledgeGraph(){
   });
   detail?.addEventListener('click',event=>{
     const button=event.target.closest('[data-graph-neighbor]');
-    if(button) selectNode(button.dataset.graphNeighbor);
+    if(!button) return;
+    if(!visibleNodes.has(button.dataset.graphNeighbor)){
+      activeFilter='all'; query='';
+      if(search) search.value='';
+      filterButtons.forEach(item=>{
+        const active=item.dataset.graphFilter==='all';
+        item.classList.toggle('is-active',active);
+        item.setAttribute('aria-pressed',String(active));
+      });
+      applyFilter();
+    }
+    selectNode(button.dataset.graphNeighbor);
   });
 
   const applyFilter=()=>{
@@ -365,7 +413,7 @@ function initKnowledgeGraph(){
       const text=item.textContent.toLowerCase();
       item.hidden=!((activeFilter==='all'||item.dataset.graphListGroup===activeFilter)&&(!query||text.includes(query)));
     });
-    if(selectedId&&!visibleNodes.has(selectedId)){ selectedId=''; highlight(''); }
+    if(selectedId&&!visibleNodes.has(selectedId)){ selectedId=''; highlight(''); renderEmptyDetail(); }
     if(status){
       status.textContent=visibleNodes.size ? `${visibleNodes.size} ${copy.visible} · ${visibleEdgeCount} ${copy.edges}` : copy.empty;
     }
@@ -423,9 +471,8 @@ function initKnowledgeGraph(){
   svg.addEventListener('pointerup',endPan);
   svg.addEventListener('pointercancel',endPan);
   svg.addEventListener('click',event=>{
-    if(event.target===svg||event.target.classList.contains('knowledge-graph-viewport')){
-      selectedId=''; highlight('');
-    }
+    if(event.target.closest('.graph-node')) return;
+    selectedId=''; highlight(''); renderEmptyDetail();
   });
   syncView();
   applyFilter();
