@@ -7,10 +7,10 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>Video Generation · llmwiki</title>
   <script>try{if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')document.documentElement.classList.add('sidebar-collapsed')}catch(e){}</script>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260715-research-observatory-v8-beginner-research-cards">
-  <script defer src="../../assets/wiki.js?v=20260715-research-observatory-v8-beginner-research-cards"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260715-knowledge-map-v9">
+  <script defer src="../../assets/wiki.js?v=20260715-knowledge-map-v9"></script>
 </head>
-<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/video-generation&quot;, &quot;title&quot;: &quot;视频生成&quot;, &quot;title_en&quot;: &quot;Video Generation&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-generation&quot;, &quot;diffusion&quot;, &quot;control&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260715-research-observatory-v8-beginner-research-cards">
+<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/video-generation&quot;, &quot;title&quot;: &quot;视频生成&quot;, &quot;title_en&quot;: &quot;Video Generation&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-generation&quot;, &quot;diffusion&quot;, &quot;control&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260715-knowledge-map-v9">
   <header class="mobile-topbar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar" aria-label="Menu" title="Menu" data-menu-label="Menu" data-close-label="Close menu"><svg class="ui-icon menu-icon menu-icon--open" data-icon="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="ui-icon menu-icon menu-icon--close" data-icon="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="menu-toggle-label">Menu</span></button>
@@ -22,9 +22,10 @@
       <form class="search-box" role="search"><label class="visually-hidden" for="site-search">Search llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
       <nav class="sidebar-nav">
 <h2>Entry</h2><ul>
-<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/catalog.html">Full paper catalog</a></li>
+<li><a href="../../en/index.html">Research map</a></li>
 <li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
-<li><a href="../../en/main.html">Main page</a></li>
+<li><a href="../../en/main.html">Reading portal</a></li>
 </ul>
 <h2>Foundations</h2><ul>
 <li><a href="../../en/topics/computer-vision-overview.html">Computer Vision Overview</a></li>
@@ -86,7 +87,7 @@
     </div>
   </aside>
   <main class="wiki-page">
-    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="" href="../../topics/video-generation.html">中文</a><a class="selected-lang" href="../../en/topics/video-generation.html">English</a></nav><a class="selected" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>Article</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>Metadata</span></a><a href="../../en/main.html"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>Main page</span></a></header>
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="" href="../../topics/video-generation.html">中文</a><a class="selected-lang" href="../../en/topics/video-generation.html">English</a></nav><a class="selected" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>Article</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>Metadata</span></a><a href="../../en/main.html"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>Reading portal</span></a></header>
     <article class="article-shell">
       
       <header class="article-header" data-motion="reveal">
@@ -97,7 +98,7 @@
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-generation">#video-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#control">#control</a></div>
       </header>
       <div class="article-layout has-rail">
-        <aside class="article-rail"><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#三分钟摘要">三分钟摘要</a></li><li><a href="#任务或系统流程">任务或系统流程</a></li><li><a href="#当前综合判断">当前综合判断</a></li><li><a href="#近五年演化-2022-2026">近五年演化（2022—2026）</a></li><li><a href="#方法家族与成熟阶段">方法家族与成熟阶段</a><ol><li class="toc-sub"><a href="#方法家族的成熟度">方法家族的成熟度</a></li><li class="toc-sub"><a href="#哪些方向拥挤-哪些方向仍值得做">哪些方向拥挤，哪些方向仍值得做</a></li></ol></li><li><a href="#拥挤方向与研究机会">拥挤方向与研究机会</a></li><li><a href="#反方证据-局限与可证伪条件">反方证据、局限与可证伪条件</a></li><li><a href="#研究生可行的研究入口">研究生可行的研究入口</a><ol><li class="toc-sub"><a href="#候选课题-a-长时错误增长与可定位评测-优先推荐">候选课题 A：长时错误增长与可定位评测（优先推荐）</a></li><li class="toc-sub"><a href="#候选课题-b-多对象轨迹与遮挡控制-方法型">候选课题 B：多对象轨迹与遮挡控制（方法型）</a></li><li class="toc-sub"><a href="#候选课题-c-同预算-i2v-长视频系统账本-稳健">候选课题 C：同预算 I2V/长视频系统账本（稳健）</a></li><li class="toc-sub"><a href="#推荐排序与止损条件">推荐排序与止损条件</a></li></ol></li><li><a href="#证据基础">证据基础</a></li><li><a href="#开放问题">开放问题</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <aside class="article-rail"><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#三分钟摘要">三分钟摘要</a></li><li><a href="#任务或系统流程">任务或系统流程</a></li><li><a href="#当前综合判断">当前综合判断</a></li><li><a href="#近五年演化-2022-2026">近五年演化（2022—2026）</a></li><li><a href="#方法家族与成熟阶段">方法家族与成熟阶段</a><ol><li class="toc-sub"><a href="#方法家族的成熟度">方法家族的成熟度</a></li><li class="toc-sub"><a href="#哪些方向拥挤-哪些方向仍值得做">哪些方向拥挤，哪些方向仍值得做</a></li></ol></li><li><a href="#拥挤方向与研究机会">拥挤方向与研究机会</a></li><li><a href="#反方证据-局限与可证伪条件">反方证据、局限与可证伪条件</a></li><li><a href="#研究生可行的研究入口">研究生可行的研究入口</a><ol><li class="toc-sub"><a href="#推荐排序与止损条件">推荐排序与止损条件</a></li></ol></li><li><a href="#证据基础">证据基础</a></li><li><a href="#开放问题">开放问题</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
         <section class="article-content">
 <section class="topic-hero-grid" data-motion="reveal">
   <section class="judgment-panel topic-judgment">
@@ -133,36 +134,11 @@
 <h2 id="方法家族与成熟阶段">方法家族与成熟阶段</h2>
 <figure class="wiki-visual wiki-visual--map" data-visual-id="video-generation-method-map" aria-labelledby="visual-video-generation-method-map-title" aria-describedby="visual-video-generation-method-map-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">一篇论文是在提高画面、运动、时长、控制还是效率？</p><div class="wiki-visual-title" id="visual-video-generation-method-map-title" role="heading" aria-level="3">视频生成的五类方法对应五种瓶颈</div><p class="wiki-visual-explanation">同一方法常同时改多层；必须用对应指标和消融分开验证，避免只凭整体偏好分数归因。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>图像先验迁移</strong><small>在预训练 T2I 上加入时间层、adapter 或逐视频微调</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>专用视频底座</strong><small>用视频数据从头/继续训练时空 U-Net 或 DiT</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>结构化运动控制</strong><small>轨迹、光流、草图、姿态或摄像机控制运动路径</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>长时与流式扩展</strong><small>窗口生成、记忆、层级计划或线性序列模块延长时间</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">05</span><strong>少步与系统效率</strong><small>蒸馏、缓存、token 压缩、量化和解码并行降低成本</small></li></ol><figcaption><span>Diagram evidence</span><a class="wikilink" href="../../en/sources/2026-04-14-tune-a-video.html">Tune-A-Video</a>、<a class="wikilink" href="../../en/sources/2026-04-12-tora.html">Tora</a>、<a class="wikilink" href="../../en/sources/2026-04-12-streamingt2v.html">StreamingT2V</a>、<a class="wikilink" href="../../en/sources/2026-04-12-osv.html">OSV</a></figcaption><p class="sr-only" id="visual-video-generation-method-map-alt">方法地图包括图像先验迁移、专用视频底座、结构化运动控制、长时记忆/流式生成、效率与评测。</p></figure>
 <h3 id="方法家族的成熟度">方法家族的成熟度</h3>
-<h4 id="短视频扩散底座">短视频扩散底座</h4>
-<ul>
-<li><strong>阶段</strong>：成熟底座</li>
-<li><strong>证据锚点</strong>：Tune-A-Video、VideoCrafter2 等已建立可复现时空扩散平台。</li>
-<li><strong>研究机会</strong>：价值转向数据治理、域外运动和受控成本，而非再证明视频扩散可行。</li>
-</ul>
-<h4 id="图像到视频与首帧保持">图像到视频与首帧保持</h4>
-<ul>
-<li><strong>阶段</strong>：活跃发展期</li>
-<li><strong>证据锚点</strong>：OSV、MotionStone 等表明首帧条件与运动调制可产生强 I2V。</li>
-<li><strong>研究机会</strong>：身份/几何保持与动态幅度的可校准 Pareto 边界。</li>
-</ul>
-<h4 id="轨迹-草图与显式运动控制">轨迹、草图与显式运动控制</h4>
-<ul>
-<li><strong>阶段</strong>：活跃发展期</li>
-<li><strong>证据锚点</strong>：Tora、SketchVideo 提供结构条件接口，但复杂交互和物理约束不足。</li>
-<li><strong>研究机会</strong>：多对象轨迹冲突、遮挡、摄像机与对象运动解耦。</li>
-</ul>
-<h4 id="长时-流式与记忆">长时、流式与记忆</h4>
-<ul>
-<li><strong>阶段</strong>：早期整合期</li>
-<li><strong>证据锚点</strong>：StreamingT2V、LinGen 已推进可生成时长，长事件语义和误差累积仍是边界。</li>
-<li><strong>研究机会</strong>：事件级计划、可回滚记忆和随时长增长的失效曲线。</li>
-</ul>
-<h4 id="少步部署与可靠评测">少步部署与可靠评测</h4>
-<ul>
-<li><strong>阶段</strong>：评测建设期</li>
-<li><strong>证据锚点</strong>：OSV 展示一步 I2V；AIGV-Assessor、EvalCrafter、Video-Bench、神经符号评测拆分质量与条件。</li>
-<li><strong>研究机会</strong>：同硬件端到端延迟、长时/控制维度和人评一致性的统一协议。</li>
-</ul>
+<div class="maturity-grid" data-motion="reveal"><article class="maturity-card maturity-card--stable" aria-labelledby="短视频扩散底座"><div class="maturity-card-top"><span class="maturity-index" aria-hidden="true">01</span><span class="maturity-stage"><small>Current stage</small><strong>成熟底座</strong></span></div><h4 id="短视频扩散底座" class="maturity-title">短视频扩散底座</h4><div class="maturity-evidence"><span>Evidence anchors</span><p>Tune-A-Video、VideoCrafter2 等已建立可复现时空扩散平台。</p></div><div class="maturity-opportunity"><span>Research opportunity</span><p>价值转向数据治理、域外运动和受控成本，而非再证明视频扩散可行。</p></div></article>
+<article class="maturity-card maturity-card--active" aria-labelledby="图像到视频与首帧保持"><div class="maturity-card-top"><span class="maturity-index" aria-hidden="true">02</span><span class="maturity-stage"><small>Current stage</small><strong>活跃发展期</strong></span></div><h4 id="图像到视频与首帧保持" class="maturity-title">图像到视频与首帧保持</h4><div class="maturity-evidence"><span>Evidence anchors</span><p>OSV、MotionStone 等表明首帧条件与运动调制可产生强 I2V。</p></div><div class="maturity-opportunity"><span>Research opportunity</span><p>身份/几何保持与动态幅度的可校准 Pareto 边界。</p></div></article>
+<article class="maturity-card maturity-card--active" aria-labelledby="轨迹-草图与显式运动控制"><div class="maturity-card-top"><span class="maturity-index" aria-hidden="true">03</span><span class="maturity-stage"><small>Current stage</small><strong>活跃发展期</strong></span></div><h4 id="轨迹-草图与显式运动控制" class="maturity-title">轨迹、草图与显式运动控制</h4><div class="maturity-evidence"><span>Evidence anchors</span><p>Tora、SketchVideo 提供结构条件接口，但复杂交互和物理约束不足。</p></div><div class="maturity-opportunity"><span>Research opportunity</span><p>多对象轨迹冲突、遮挡、摄像机与对象运动解耦。</p></div></article>
+<article class="maturity-card maturity-card--exploratory" aria-labelledby="长时-流式与记忆"><div class="maturity-card-top"><span class="maturity-index" aria-hidden="true">04</span><span class="maturity-stage"><small>Current stage</small><strong>早期整合期</strong></span></div><h4 id="长时-流式与记忆" class="maturity-title">长时、流式与记忆</h4><div class="maturity-evidence"><span>Evidence anchors</span><p>StreamingT2V、LinGen 已推进可生成时长，长事件语义和误差累积仍是边界。</p></div><div class="maturity-opportunity"><span>Research opportunity</span><p>事件级计划、可回滚记忆和随时长增长的失效曲线。</p></div></article>
+<article class="maturity-card maturity-card--evaluation" aria-labelledby="少步部署与可靠评测"><div class="maturity-card-top"><span class="maturity-index" aria-hidden="true">05</span><span class="maturity-stage"><small>Current stage</small><strong>评测建设期</strong></span></div><h4 id="少步部署与可靠评测" class="maturity-title">少步部署与可靠评测</h4><div class="maturity-evidence"><span>Evidence anchors</span><p>OSV 展示一步 I2V；AIGV-Assessor、EvalCrafter、Video-Bench、神经符号评测拆分质量与条件。</p></div><div class="maturity-opportunity"><span>Research opportunity</span><p>同硬件端到端延迟、长时/控制维度和人评一致性的统一协议。</p></div></article></div>
 <h3 id="哪些方向拥挤-哪些方向仍值得做">哪些方向拥挤，哪些方向仍值得做</h3>
 <h2 id="拥挤方向与研究机会">拥挤方向与研究机会</h2>
 <p><strong>相对拥挤：</strong>只做短 prompt 短视频总体质量；仅增加 attention 层而不控制数据/预算；只用精选样例证明长时一致；只报告生成步数或 backbone FLOPs。</p>
@@ -176,28 +152,10 @@
 <li>数据许可、人物身份、记忆、安全、音视频同步和真实物理仍是共同风险。</li>
 </ul>
 <h2 id="研究生可行的研究入口">研究生可行的研究入口</h2>
-<h3 id="候选课题-a-长时错误增长与可定位评测-优先推荐">候选课题 A：长时错误增长与可定位评测（优先推荐）</h3>
-<ul>
-<li><strong>研究问题</strong>：身份、背景、动作、事件和物理错误怎样随生成时长增长？</li>
-<li><strong>最小实验</strong>：固定 2–3 个公开模型，按 2/4/8/16 秒切片，人工核验 300–500 个 prompt。</li>
-<li><strong>指标</strong>：首次失效时间、错误持续/恢复、身份和条件命中、评测器—人类一致性。</li>
-<li><strong>止损条件</strong>：若模型输出时长不可比，先固定短窗口滚动生成协议。</li>
-</ul>
-<h3 id="候选课题-b-多对象轨迹与遮挡控制-方法型">候选课题 B：多对象轨迹与遮挡控制（方法型）</h3>
-<ul>
-<li><strong>研究问题</strong>：轨迹条件怎样处理交叉、遮挡和摄像机运动，能否定位控制冲突？</li>
-<li><strong>最小实验</strong>：合成/体育轨迹小集，对比文本、单轨迹和多轨迹控制。</li>
-<li><strong>指标</strong>：轨迹误差、ID 保持、遮挡恢复、外观质量和额外延迟。</li>
-<li><strong>止损条件</strong>：若基础模型无法生成目标对象，先缩小到单一域并分离概念覆盖。</li>
-</ul>
-<h3 id="候选课题-c-同预算-i2v-长视频系统账本-稳健">候选课题 C：同预算 I2V/长视频系统账本（稳健）</h3>
-<ul>
-<li><strong>研究问题</strong>：采样步数、单步主干、token、解码与流式缓存分别贡献多少成本？</li>
-<li><strong>最小实验</strong>：公开 checkpoint + 统一硬件，报告端到端 P50/P95、显存和质量。</li>
-<li><strong>指标</strong>：秒视频/秒计算、峰值显存、能耗代理、动态/保持和失败率。</li>
-<li><strong>止损条件</strong>：若训练预算不透明，结论限定为推理系统，不外推全生命周期。</li>
-</ul>
-<h3 id="推荐排序与止损条件">推荐排序与止损条件</h3>
+<div class="topic-candidate-grid"><section class="topic-candidate-card" aria-labelledby="候选课题-a-长时错误增长与可定位评测-优先推荐"><h3 id="候选课题-a-长时错误增长与可定位评测-优先推荐" class="candidate-title"><span>候选课题 A：长时错误增长与可定位评测</span><em class="candidate-badge">优先推荐</em></h3><details class="candidate-details"><summary><span class="candidate-details-label candidate-details-label--open">Expand research design</span><span class="candidate-details-label candidate-details-label--close">Collapse research design</span><svg class="ui-icon candidate-details-icon" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><div class="candidate-facts"><div class="candidate-fact"><strong>研究问题</strong><p>身份、背景、动作、事件和物理错误怎样随生成时长增长？</p></div><div class="candidate-fact"><strong>最小实验</strong><p>固定 2–3 个公开模型，按 2/4/8/16 秒切片，人工核验 300–500 个 prompt。</p></div><div class="candidate-fact"><strong>指标</strong><p>首次失效时间、错误持续/恢复、身份和条件命中、评测器—人类一致性。</p></div><div class="candidate-fact"><strong>止损条件</strong><p>若模型输出时长不可比，先固定短窗口滚动生成协议。</p></div></div></details></section>
+<section class="topic-candidate-card" aria-labelledby="候选课题-b-多对象轨迹与遮挡控制-方法型"><h3 id="候选课题-b-多对象轨迹与遮挡控制-方法型" class="candidate-title"><span>候选课题 B：多对象轨迹与遮挡控制</span><em class="candidate-badge">方法型</em></h3><details class="candidate-details"><summary><span class="candidate-details-label candidate-details-label--open">Expand research design</span><span class="candidate-details-label candidate-details-label--close">Collapse research design</span><svg class="ui-icon candidate-details-icon" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><div class="candidate-facts"><div class="candidate-fact"><strong>研究问题</strong><p>轨迹条件怎样处理交叉、遮挡和摄像机运动，能否定位控制冲突？</p></div><div class="candidate-fact"><strong>最小实验</strong><p>合成/体育轨迹小集，对比文本、单轨迹和多轨迹控制。</p></div><div class="candidate-fact"><strong>指标</strong><p>轨迹误差、ID 保持、遮挡恢复、外观质量和额外延迟。</p></div><div class="candidate-fact"><strong>止损条件</strong><p>若基础模型无法生成目标对象，先缩小到单一域并分离概念覆盖。</p></div></div></details></section>
+<section class="topic-candidate-card" aria-labelledby="候选课题-c-同预算-i2v-长视频系统账本-稳健"><h3 id="候选课题-c-同预算-i2v-长视频系统账本-稳健" class="candidate-title"><span>候选课题 C：同预算 I2V/长视频系统账本</span><em class="candidate-badge">稳健</em></h3><details class="candidate-details"><summary><span class="candidate-details-label candidate-details-label--open">Expand research design</span><span class="candidate-details-label candidate-details-label--close">Collapse research design</span><svg class="ui-icon candidate-details-icon" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><div class="candidate-facts"><div class="candidate-fact"><strong>研究问题</strong><p>采样步数、单步主干、token、解码与流式缓存分别贡献多少成本？</p></div><div class="candidate-fact"><strong>最小实验</strong><p>公开 checkpoint + 统一硬件，报告端到端 P50/P95、显存和质量。</p></div><div class="candidate-fact"><strong>指标</strong><p>秒视频/秒计算、峰值显存、能耗代理、动态/保持和失败率。</p></div><div class="candidate-fact"><strong>止损条件</strong><p>若训练预算不透明，结论限定为推理系统，不外推全生命周期。</p></div></div></details></section>
+</div><h3 id="推荐排序与止损条件">推荐排序与止损条件</h3>
 <p>A 的评测资产最易复用，B 的方法新颖度更高，C 可建立工程基线。任何方法改造前先用 A/C 协议证明问题存在且可测。</p>
 <h2 id="证据基础">证据基础</h2>
 <ul>
@@ -238,6 +196,9 @@
   &quot;status&quot;: &quot;active&quot;,
   &quot;created&quot;: &quot;2026-04-12&quot;,
   &quot;updated&quot;: &quot;2026-07-14&quot;,
+  &quot;research_stage&quot;: &quot;evidence_map&quot;,
+  &quot;evidence_window&quot;: &quot;2022-2026 + seminal&quot;,
+  &quot;last_evidence_review&quot;: &quot;2026-07-14&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;video-generation&quot;,

@@ -7,10 +7,10 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>生成模型评测 · llmwiki</title>
   <script>try{if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')document.documentElement.classList.add('sidebar-collapsed')}catch(e){}</script>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260715-research-observatory-v8-beginner-research-cards">
-  <script defer src="../assets/wiki.js?v=20260715-research-observatory-v8-beginner-research-cards"></script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260715-knowledge-map-v9">
+  <script defer src="../assets/wiki.js?v=20260715-knowledge-map-v9"></script>
 </head>
-<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/generative-model-evaluation&quot;, &quot;title&quot;: &quot;生成模型评测&quot;, &quot;title_en&quot;: &quot;Generative Model Evaluation&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;multimodal&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260715-research-observatory-v8-beginner-research-cards">
+<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/generative-model-evaluation&quot;, &quot;title&quot;: &quot;生成模型评测&quot;, &quot;title_en&quot;: &quot;Generative Model Evaluation&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;evaluation&quot;, &quot;benchmarking&quot;, &quot;multimodal&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260715-knowledge-map-v9">
   <header class="mobile-topbar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar" aria-label="菜单" title="菜单" data-menu-label="菜单" data-close-label="关闭菜单"><svg class="ui-icon menu-icon menu-icon--open" data-icon="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="ui-icon menu-icon menu-icon--close" data-icon="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="menu-toggle-label">菜单</span></button>
@@ -22,9 +22,10 @@
       <form class="search-box" role="search"><label class="visually-hidden" for="site-search">搜索 llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
       <nav class="sidebar-nav">
 <h2>入口</h2><ul>
-<li><a href="../index.html">索引</a></li>
+<li><a href="../catalog.html">完整论文目录</a></li>
+<li><a href="../index.html">研究地图</a></li>
 <li><a href="../llm-wiki.html">LLM Wiki</a></li>
-<li><a href="../main.html">首页</a></li>
+<li><a href="../main.html">阅读入口</a></li>
 </ul>
 <h2>基础概念</h2><ul>
 <li><a href="../topics/computer-vision-overview.html"><span class="nav-title-primary">计算机视觉概览</span><span class="nav-title-translation" lang="en">（Computer Vision Overview）</span></a></li>
@@ -86,7 +87,7 @@
     </div>
   </aside>
   <main class="wiki-page">
-    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="selected-lang" href="../topics/generative-model-evaluation.html">中文</a><a class="" href="../en/topics/generative-model-evaluation.html">English</a></nav><a class="selected" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>正文</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></a><a href="../main.html"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>首页</span></a></header>
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="selected-lang" href="../topics/generative-model-evaluation.html">中文</a><a class="" href="../en/topics/generative-model-evaluation.html">English</a></nav><a class="selected" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>正文</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></a><a href="../main.html"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>阅读入口</span></a></header>
     <article class="article-shell">
       
       <header class="article-header" data-motion="reveal">
@@ -97,7 +98,7 @@
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#evaluation">#evaluation</a><a class="tag" href="../tags.html#benchmarking">#benchmarking</a><a class="tag" href="../tags.html#multimodal">#multimodal</a></div>
       </header>
       <div class="article-layout has-rail">
-        <aside class="article-rail"><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>目录</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#三分钟摘要">三分钟摘要</a></li><li><a href="#任务或系统流程">任务或系统流程</a></li><li><a href="#当前综合判断">当前综合判断</a><ol><li class="toc-sub"><a href="#1-不存在跨任务通用的-单一最好分数">1. 不存在跨任务通用的“单一最好分数”</a></li><li class="toc-sub"><a href="#2-评测必须和任务中的-保持-改变-约束对齐">2. 评测必须和任务中的“保持—改变”约束对齐</a></li><li class="toc-sub"><a href="#3-大模型评审器是测量工具-不是无需校准的裁判">3. 大模型评审器是测量工具，不是无需校准的裁判</a></li><li class="toc-sub"><a href="#4-输入预算和数据污染是评测结论的一部分">4. 输入预算和数据污染是评测结论的一部分</a></li><li class="toc-sub"><a href="#5-好的-benchmark-应定位失败-而不只是扩大题量">5. 好的 benchmark 应定位失败，而不只是扩大题量</a></li></ol></li><li><a href="#近五年演化-2022-2026">近五年演化（2022—2026）</a></li><li><a href="#方法家族与成熟阶段">方法家族与成熟阶段</a><ol><li class="toc-sub"><a href="#方法家族的成熟度">方法家族的成熟度</a></li></ol></li><li><a href="#拥挤方向与研究机会">拥挤方向与研究机会</a></li><li><a href="#反方证据-局限与可证伪条件">反方证据、局限与可证伪条件</a></li><li><a href="#研究生可行的研究入口">研究生可行的研究入口</a><ol><li class="toc-sub"><a href="#候选课题-a-视频编辑的保持-改变评测-最推荐">候选课题 A：视频编辑的保持—改变评测（最推荐）</a></li><li class="toc-sub"><a href="#候选课题-b-多模态评审器的偏差与版本鲁棒性-推荐">候选课题 B：多模态评审器的偏差与版本鲁棒性（推荐）</a></li><li class="toc-sub"><a href="#候选课题-c-保序的低成本评测采样-条件推荐">候选课题 C：保序的低成本评测采样（条件推荐）</a></li><li class="toc-sub"><a href="#推荐排序与止损条件">推荐排序与止损条件</a></li></ol></li><li><a href="#证据基础">证据基础</a></li><li><a href="#开放问题">开放问题</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <aside class="article-rail"><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>目录</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#三分钟摘要">三分钟摘要</a></li><li><a href="#任务或系统流程">任务或系统流程</a></li><li><a href="#当前综合判断">当前综合判断</a><ol><li class="toc-sub"><a href="#1-不存在跨任务通用的-单一最好分数">1. 不存在跨任务通用的“单一最好分数”</a></li><li class="toc-sub"><a href="#2-评测必须和任务中的-保持-改变-约束对齐">2. 评测必须和任务中的“保持—改变”约束对齐</a></li><li class="toc-sub"><a href="#3-大模型评审器是测量工具-不是无需校准的裁判">3. 大模型评审器是测量工具，不是无需校准的裁判</a></li><li class="toc-sub"><a href="#4-输入预算和数据污染是评测结论的一部分">4. 输入预算和数据污染是评测结论的一部分</a></li><li class="toc-sub"><a href="#5-好的-benchmark-应定位失败-而不只是扩大题量">5. 好的 benchmark 应定位失败，而不只是扩大题量</a></li></ol></li><li><a href="#近五年演化-2022-2026">近五年演化（2022—2026）</a></li><li><a href="#方法家族与成熟阶段">方法家族与成熟阶段</a><ol><li class="toc-sub"><a href="#方法家族的成熟度">方法家族的成熟度</a></li></ol></li><li><a href="#拥挤方向与研究机会">拥挤方向与研究机会</a></li><li><a href="#反方证据-局限与可证伪条件">反方证据、局限与可证伪条件</a></li><li><a href="#研究生可行的研究入口">研究生可行的研究入口</a><ol><li class="toc-sub"><a href="#推荐排序与止损条件">推荐排序与止损条件</a></li></ol></li><li><a href="#证据基础">证据基础</a></li><li><a href="#开放问题">开放问题</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
         <section class="article-content">
 <section class="topic-hero-grid" data-motion="reveal">
   <section class="judgment-panel topic-judgment">
@@ -142,36 +143,11 @@
 <p>这条演化不是旧指标被完全淘汰。FID、CLIPScore 等仍适合规模化筛选，但它们应成为证据组合的一部分，而不是论文结论的唯一支柱。</p>
 <h2 id="方法家族与成熟阶段">方法家族与成熟阶段</h2>
 <h3 id="方法家族的成熟度">方法家族的成熟度</h3>
-<h4 id="分布与表征指标">分布与表征指标</h4>
-<ul>
-<li><strong>阶段</strong>：成熟底座</li>
-<li><strong>证据锚点</strong>：IS、FID 和 CLIPScore 已成为图像生成的常用自动测量，但分别受特征空间、样本量和语义捷径限制。</li>
-<li><strong>研究机会</strong>：明确适用边界、置信区间和跨域稳定性，而不是再造一个未经人评校准的综合分。</li>
-</ul>
-<h4 id="任务专用多维-benchmark">任务专用多维 benchmark</h4>
-<ul>
-<li><strong>阶段</strong>：活跃发展期</li>
-<li><strong>证据锚点</strong>：VBench、EvalCrafter、EditBench 和 FiVE-Bench 把生成、编辑、运动与保持约束拆成不同维度。</li>
-<li><strong>研究机会</strong>：验证维度是否互相独立，能否预测真实用户任务成功，以及模型排名是否对提示分布稳定。</li>
-</ul>
-<h4 id="可验证人工评测">可验证人工评测</h4>
-<ul>
-<li><strong>阶段</strong>：系统优化期</li>
-<li><strong>证据锚点</strong>：可验证文本到图像人评工作强调清晰问题、盲评和协议复现；Video-Bench 尝试将人类偏好结构化。</li>
-<li><strong>研究机会</strong>：降低标注成本，同时保留评审一致性、置信度和失败原因。</li>
-</ul>
-<h4 id="大模型自动评审">大模型自动评审</h4>
-<ul>
-<li><strong>阶段</strong>：早期整合期</li>
-<li><strong>证据锚点</strong>：AIGV-Assessor、Video-Bench 等显示多模态评审器能覆盖复杂维度，但时间一致性和版本鲁棒性仍有限。</li>
-<li><strong>研究机会</strong>：评审器交叉验证、模型家族偏差、顺序偏差、提示敏感性与拒答机制。</li>
-</ul>
-<h4 id="快速与自适应评测">快速与自适应评测</h4>
-<ul>
-<li><strong>阶段</strong>：评测建设期</li>
-<li><strong>证据锚点</strong>：FlashEval 用代表性提示子集降低成本，但搜索成本和跨模型复用边界必须单独核算。</li>
-<li><strong>研究机会</strong>：在给定误差容忍度下选择样本，并验证小样本不会改变模型排序或掩盖长尾失败。</li>
-</ul>
+<div class="maturity-grid" data-motion="reveal"><article class="maturity-card maturity-card--stable" aria-labelledby="分布与表征指标"><div class="maturity-card-top"><span class="maturity-index" aria-hidden="true">01</span><span class="maturity-stage"><small>当前阶段</small><strong>成熟底座</strong></span></div><h4 id="分布与表征指标" class="maturity-title">分布与表征指标</h4><div class="maturity-evidence"><span>证据锚点</span><p>IS、FID 和 CLIPScore 已成为图像生成的常用自动测量，但分别受特征空间、样本量和语义捷径限制。</p></div><div class="maturity-opportunity"><span>研究机会</span><p>明确适用边界、置信区间和跨域稳定性，而不是再造一个未经人评校准的综合分。</p></div></article>
+<article class="maturity-card maturity-card--active" aria-labelledby="任务专用多维-benchmark"><div class="maturity-card-top"><span class="maturity-index" aria-hidden="true">02</span><span class="maturity-stage"><small>当前阶段</small><strong>活跃发展期</strong></span></div><h4 id="任务专用多维-benchmark" class="maturity-title">任务专用多维 benchmark</h4><div class="maturity-evidence"><span>证据锚点</span><p>VBench、EvalCrafter、EditBench 和 FiVE-Bench 把生成、编辑、运动与保持约束拆成不同维度。</p></div><div class="maturity-opportunity"><span>研究机会</span><p>验证维度是否互相独立，能否预测真实用户任务成功，以及模型排名是否对提示分布稳定。</p></div></article>
+<article class="maturity-card maturity-card--optimizing" aria-labelledby="可验证人工评测"><div class="maturity-card-top"><span class="maturity-index" aria-hidden="true">03</span><span class="maturity-stage"><small>当前阶段</small><strong>系统优化期</strong></span></div><h4 id="可验证人工评测" class="maturity-title">可验证人工评测</h4><div class="maturity-evidence"><span>证据锚点</span><p>可验证文本到图像人评工作强调清晰问题、盲评和协议复现；Video-Bench 尝试将人类偏好结构化。</p></div><div class="maturity-opportunity"><span>研究机会</span><p>降低标注成本，同时保留评审一致性、置信度和失败原因。</p></div></article>
+<article class="maturity-card maturity-card--exploratory" aria-labelledby="大模型自动评审"><div class="maturity-card-top"><span class="maturity-index" aria-hidden="true">04</span><span class="maturity-stage"><small>当前阶段</small><strong>早期整合期</strong></span></div><h4 id="大模型自动评审" class="maturity-title">大模型自动评审</h4><div class="maturity-evidence"><span>证据锚点</span><p>AIGV-Assessor、Video-Bench 等显示多模态评审器能覆盖复杂维度，但时间一致性和版本鲁棒性仍有限。</p></div><div class="maturity-opportunity"><span>研究机会</span><p>评审器交叉验证、模型家族偏差、顺序偏差、提示敏感性与拒答机制。</p></div></article>
+<article class="maturity-card maturity-card--evaluation" aria-labelledby="快速与自适应评测"><div class="maturity-card-top"><span class="maturity-index" aria-hidden="true">05</span><span class="maturity-stage"><small>当前阶段</small><strong>评测建设期</strong></span></div><h4 id="快速与自适应评测" class="maturity-title">快速与自适应评测</h4><div class="maturity-evidence"><span>证据锚点</span><p>FlashEval 用代表性提示子集降低成本，但搜索成本和跨模型复用边界必须单独核算。</p></div><div class="maturity-opportunity"><span>研究机会</span><p>在给定误差容忍度下选择样本，并验证小样本不会改变模型排序或掩盖长尾失败。</p></div></article></div>
 <figure class="wiki-visual wiki-visual--map" data-visual-id="generative-evaluation-method-map" aria-labelledby="visual-generative-evaluation-method-map-title" aria-describedby="visual-generative-evaluation-method-map-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">自动指标、人评、模型评审器和诊断集应怎样分工？</p><div class="wiki-visual-title" id="visual-generative-evaluation-method-map-title" role="heading" aria-level="3">不同评测方法测量什么</div><p class="wiki-visual-explanation">四类方法分别解决规模、真实偏好、复杂语义和失败定位；可靠研究需要交叉验证，而不是互相替代。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>分布与表征指标</strong><small>高吞吐比较样本集合，但不能解释具体失败</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>任务专用指标</strong><small>对齐对象、属性、运动、保持性等明确约束</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>人工盲评</strong><small>最接近真实偏好，但成本高且需要一致性控制</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>多模态评审器</strong><small>可扩展复杂判断，但必须审计版本和模型偏差</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">05</span><strong>诊断 benchmark</strong><small>用反事实或压力测试定位捷径与能力缺口</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">06</span><strong>统计与复现</strong><small>通过重复、区间和敏感性决定结论能否成立</small></li></ol><figcaption><span>图示依据</span><a class="wikilink" href="../sources/2026-07-14-fid.html">FID</a>、<a class="wikilink" href="../sources/2026-07-14-clipscore.html">CLIPScore</a>、<a class="wikilink" href="../sources/2026-04-14-verifiable-human-eval-t2i.html">可验证人工评测</a>、<a class="wikilink" href="../sources/2026-04-14-hallusionbench.html">HallusionBench</a></figcaption><p class="sr-only" id="visual-generative-evaluation-method-map-alt">分布和语义指标负责规模化筛选，任务专用指标负责约束验收，人工与模型评审器负责偏好判断，诊断集负责失败归因，统计层贯穿所有方法。</p></figure>
 <h2 id="拥挤方向与研究机会">拥挤方向与研究机会</h2>
 <ul>
@@ -191,28 +167,10 @@
 <li>预先规定失败条件：若新协议不能稳定区分已知能力差异，或排序对样本轻微变化高度敏感，应收窄结论。</li>
 </ol>
 <h2 id="研究生可行的研究入口">研究生可行的研究入口</h2>
-<h3 id="候选课题-a-视频编辑的保持-改变评测-最推荐">候选课题 A：视频编辑的保持—改变评测（最推荐）</h3>
-<ul>
-<li><strong>精确研究问题</strong>：编辑指令完成度、未编辑区域保持、身份一致性和时间稳定性如何被分开测量？</li>
-<li><strong>最小实验</strong>：选两类编辑任务、3—5 个公开模型和约 300 个样本，建立区域/时间约束、自动指标与盲评对照。</li>
-<li><strong>主要贡献</strong>：任务协议、失败标签和跨指标一致性，而不是训练更大的生成模型。</li>
-<li><strong>止损条件</strong>：若标注者无法稳定理解任务，先缩小到对象替换或局部属性编辑，不继续扩任务。</li>
-</ul>
-<h3 id="候选课题-b-多模态评审器的偏差与版本鲁棒性-推荐">候选课题 B：多模态评审器的偏差与版本鲁棒性（推荐）</h3>
-<ul>
-<li><strong>精确研究问题</strong>：评审器模型、提示、帧采样和候选顺序变化会在多大程度上改变生成模型排名？</li>
-<li><strong>最小实验</strong>：固定视频集合，交叉比较两个评审器、两种帧预算、两套提示和人工盲评。</li>
-<li><strong>主要贡献</strong>：偏差分解、校准方法与可复现评审脚本。</li>
-<li><strong>止损条件</strong>：若无法取得稳定人工基准，就将研究收窄为测量不确定性报告，不声称“更接近人类”。</li>
-</ul>
-<h3 id="候选课题-c-保序的低成本评测采样-条件推荐">候选课题 C：保序的低成本评测采样（条件推荐）</h3>
-<ul>
-<li><strong>精确研究问题</strong>：能否用更少提示和样本保持总体排序，同时不丢失长尾失败？</li>
-<li><strong>最小实验</strong>：在公开 benchmark 上比较随机、聚类和难例感知采样，报告排序相关、置信区间与失败覆盖率。</li>
-<li><strong>主要贡献</strong>：质量—成本曲线和跨模型复用边界。</li>
-<li><strong>止损条件</strong>：若子集只对参与选择的模型有效，应将结论限定为一次性评测压缩。</li>
-</ul>
-<h3 id="推荐排序与止损条件">推荐排序与止损条件</h3>
+<div class="topic-candidate-grid"><section class="topic-candidate-card" aria-labelledby="候选课题-a-视频编辑的保持-改变评测-最推荐"><h3 id="候选课题-a-视频编辑的保持-改变评测-最推荐" class="candidate-title"><span>候选课题 A：视频编辑的保持—改变评测</span><em class="candidate-badge">最推荐</em></h3><details class="candidate-details"><summary><span class="candidate-details-label candidate-details-label--open">展开研究设计</span><span class="candidate-details-label candidate-details-label--close">收起研究设计</span><svg class="ui-icon candidate-details-icon" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><div class="candidate-facts"><div class="candidate-fact"><strong>精确研究问题</strong><p>编辑指令完成度、未编辑区域保持、身份一致性和时间稳定性如何被分开测量？</p></div><div class="candidate-fact"><strong>最小实验</strong><p>选两类编辑任务、3—5 个公开模型和约 300 个样本，建立区域/时间约束、自动指标与盲评对照。</p></div><div class="candidate-fact"><strong>主要贡献</strong><p>任务协议、失败标签和跨指标一致性，而不是训练更大的生成模型。</p></div><div class="candidate-fact"><strong>止损条件</strong><p>若标注者无法稳定理解任务，先缩小到对象替换或局部属性编辑，不继续扩任务。</p></div></div></details></section>
+<section class="topic-candidate-card" aria-labelledby="候选课题-b-多模态评审器的偏差与版本鲁棒性-推荐"><h3 id="候选课题-b-多模态评审器的偏差与版本鲁棒性-推荐" class="candidate-title"><span>候选课题 B：多模态评审器的偏差与版本鲁棒性</span><em class="candidate-badge">推荐</em></h3><details class="candidate-details"><summary><span class="candidate-details-label candidate-details-label--open">展开研究设计</span><span class="candidate-details-label candidate-details-label--close">收起研究设计</span><svg class="ui-icon candidate-details-icon" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><div class="candidate-facts"><div class="candidate-fact"><strong>精确研究问题</strong><p>评审器模型、提示、帧采样和候选顺序变化会在多大程度上改变生成模型排名？</p></div><div class="candidate-fact"><strong>最小实验</strong><p>固定视频集合，交叉比较两个评审器、两种帧预算、两套提示和人工盲评。</p></div><div class="candidate-fact"><strong>主要贡献</strong><p>偏差分解、校准方法与可复现评审脚本。</p></div><div class="candidate-fact"><strong>止损条件</strong><p>若无法取得稳定人工基准，就将研究收窄为测量不确定性报告，不声称“更接近人类”。</p></div></div></details></section>
+<section class="topic-candidate-card" aria-labelledby="候选课题-c-保序的低成本评测采样-条件推荐"><h3 id="候选课题-c-保序的低成本评测采样-条件推荐" class="candidate-title"><span>候选课题 C：保序的低成本评测采样</span><em class="candidate-badge">条件推荐</em></h3><details class="candidate-details"><summary><span class="candidate-details-label candidate-details-label--open">展开研究设计</span><span class="candidate-details-label candidate-details-label--close">收起研究设计</span><svg class="ui-icon candidate-details-icon" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><div class="candidate-facts"><div class="candidate-fact"><strong>精确研究问题</strong><p>能否用更少提示和样本保持总体排序，同时不丢失长尾失败？</p></div><div class="candidate-fact"><strong>最小实验</strong><p>在公开 benchmark 上比较随机、聚类和难例感知采样，报告排序相关、置信区间与失败覆盖率。</p></div><div class="candidate-fact"><strong>主要贡献</strong><p>质量—成本曲线和跨模型复用边界。</p></div><div class="candidate-fact"><strong>止损条件</strong><p>若子集只对参与选择的模型有效，应将结论限定为一次性评测压缩。</p></div></div></details></section>
+</div><h3 id="推荐排序与止损条件">推荐排序与止损条件</h3>
 <ul>
 <li>首选 A，任务定义具体、算力低且能直接连接图像/视频编辑研究。</li>
 <li>偏测量科学与多模态模型时选 B；偏系统和统计时选 C。</li>
@@ -258,6 +216,9 @@
   &quot;status&quot;: &quot;active&quot;,
   &quot;created&quot;: &quot;2026-04-12&quot;,
   &quot;updated&quot;: &quot;2026-07-14&quot;,
+  &quot;research_stage&quot;: &quot;evidence_map&quot;,
+  &quot;evidence_window&quot;: &quot;2022-2026 + seminal&quot;,
+  &quot;last_evidence_review&quot;: &quot;2026-07-14&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;evaluation&quot;,

@@ -7,10 +7,10 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>Image Generation · llmwiki</title>
   <script>try{if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')document.documentElement.classList.add('sidebar-collapsed')}catch(e){}</script>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260715-research-observatory-v8-beginner-research-cards">
-  <script defer src="../../assets/wiki.js?v=20260715-research-observatory-v8-beginner-research-cards"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260715-knowledge-map-v9">
+  <script defer src="../../assets/wiki.js?v=20260715-knowledge-map-v9"></script>
 </head>
-<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/image-generation&quot;, &quot;title&quot;: &quot;图像生成&quot;, &quot;title_en&quot;: &quot;Image Generation&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;evaluation&quot;, &quot;diffusion&quot;, &quot;control&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260715-research-observatory-v8-beginner-research-cards">
+<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/image-generation&quot;, &quot;title&quot;: &quot;图像生成&quot;, &quot;title_en&quot;: &quot;Image Generation&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;evaluation&quot;, &quot;diffusion&quot;, &quot;control&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260715-knowledge-map-v9">
   <header class="mobile-topbar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar" aria-label="Menu" title="Menu" data-menu-label="Menu" data-close-label="Close menu"><svg class="ui-icon menu-icon menu-icon--open" data-icon="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="ui-icon menu-icon menu-icon--close" data-icon="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="menu-toggle-label">Menu</span></button>
@@ -22,9 +22,10 @@
       <form class="search-box" role="search"><label class="visually-hidden" for="site-search">Search llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
       <nav class="sidebar-nav">
 <h2>Entry</h2><ul>
-<li><a href="../../en/index.html">Index</a></li>
+<li><a href="../../en/catalog.html">Full paper catalog</a></li>
+<li><a href="../../en/index.html">Research map</a></li>
 <li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
-<li><a href="../../en/main.html">Main page</a></li>
+<li><a href="../../en/main.html">Reading portal</a></li>
 </ul>
 <h2>Foundations</h2><ul>
 <li><a href="../../en/topics/computer-vision-overview.html">Computer Vision Overview</a></li>
@@ -86,7 +87,7 @@
     </div>
   </aside>
   <main class="wiki-page">
-    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="" href="../../topics/image-generation.html">中文</a><a class="selected-lang" href="../../en/topics/image-generation.html">English</a></nav><a class="selected" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>Article</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>Metadata</span></a><a href="../../en/main.html"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>Main page</span></a></header>
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="" href="../../topics/image-generation.html">中文</a><a class="selected-lang" href="../../en/topics/image-generation.html">English</a></nav><a class="selected" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>Article</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>Metadata</span></a><a href="../../en/main.html"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>Reading portal</span></a></header>
     <article class="article-shell">
       
       <header class="article-header" data-motion="reveal">
@@ -97,7 +98,7 @@
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#evaluation">#evaluation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#control">#control</a></div>
       </header>
       <div class="article-layout has-rail">
-        <aside class="article-rail"><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#三分钟摘要">三分钟摘要</a></li><li><a href="#任务或系统流程">任务或系统流程</a></li><li><a href="#当前综合判断">当前综合判断</a></li><li><a href="#近五年演化-2022-2026">近五年演化（2022—2026）</a></li><li><a href="#方法家族与成熟阶段">方法家族与成熟阶段</a><ol><li class="toc-sub"><a href="#方法家族的成熟度">方法家族的成熟度</a></li><li class="toc-sub"><a href="#哪些方向拥挤-哪些方向仍值得做">哪些方向拥挤，哪些方向仍值得做</a></li></ol></li><li><a href="#拥挤方向与研究机会">拥挤方向与研究机会</a></li><li><a href="#反方证据-局限与可证伪条件">反方证据、局限与可证伪条件</a></li><li><a href="#研究生可行的研究入口">研究生可行的研究入口</a><ol><li class="toc-sub"><a href="#候选课题-a-多条件冲突的可解释诊断-优先推荐">候选课题 A：多条件冲突的可解释诊断（优先推荐）</a></li><li class="toc-sub"><a href="#候选课题-b-同预算主干与少步方法账本-稳健">候选课题 B：同预算主干与少步方法账本（稳健）</a></li><li class="toc-sub"><a href="#候选课题-c-中文或专业领域的许可数据与可靠人评-应用驱动">候选课题 C：中文或专业领域的许可数据与可靠人评（应用驱动）</a></li><li class="toc-sub"><a href="#候选课题-d-统一模型与模块化系统的受控边界-高风险">候选课题 D：统一模型与模块化系统的受控边界（高风险）</a></li><li class="toc-sub"><a href="#推荐排序与止损条件">推荐排序与止损条件</a></li></ol></li><li><a href="#证据基础">证据基础</a></li><li><a href="#开放问题">开放问题</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <aside class="article-rail"><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#三分钟摘要">三分钟摘要</a></li><li><a href="#任务或系统流程">任务或系统流程</a></li><li><a href="#当前综合判断">当前综合判断</a></li><li><a href="#近五年演化-2022-2026">近五年演化（2022—2026）</a></li><li><a href="#方法家族与成熟阶段">方法家族与成熟阶段</a><ol><li class="toc-sub"><a href="#方法家族的成熟度">方法家族的成熟度</a></li><li class="toc-sub"><a href="#哪些方向拥挤-哪些方向仍值得做">哪些方向拥挤，哪些方向仍值得做</a></li></ol></li><li><a href="#拥挤方向与研究机会">拥挤方向与研究机会</a></li><li><a href="#反方证据-局限与可证伪条件">反方证据、局限与可证伪条件</a></li><li><a href="#研究生可行的研究入口">研究生可行的研究入口</a><ol><li class="toc-sub"><a href="#推荐排序与止损条件">推荐排序与止损条件</a></li></ol></li><li><a href="#证据基础">证据基础</a></li><li><a href="#开放问题">开放问题</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
         <section class="article-content">
 <section class="topic-hero-grid" data-motion="reveal">
   <section class="judgment-panel topic-judgment">
@@ -141,42 +142,12 @@
 <h2 id="方法家族与成熟阶段">方法家族与成熟阶段</h2>
 <figure class="wiki-visual wiki-visual--map" data-visual-id="image-generation-method-map" aria-labelledby="visual-image-generation-method-map-title" aria-describedby="visual-image-generation-method-map-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">常被放在同一排行榜的方法，实际分别解决什么？</p><div class="wiki-visual-title" id="visual-image-generation-method-map-title" role="heading" aria-level="3">图像生成的六类方法对应六种不同问题</div><p class="wiki-visual-explanation">底座、主干、个性化、空间控制、统一接口和部署优化并非可互换路线。比较前必须先对齐任务、数据、预算与输出约束。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>表示与基础生成</strong><small>像素或潜空间决定细节上限和计算尺度</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>主干与扩展</strong><small>U-Net、DiT、SSM 或混合网络决定单步表示与硬件特性</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>个性化与主体保持</strong><small>少样本适配、视觉提示或检索增强解决特定主体一致性</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>空间与组合控制</strong><small>box、mask、pose、depth、layout 和多条件冲突需要显式接口</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">05</span><strong>统一生成—编辑</strong><small>共享模型与任务路由减少工作流割裂，但可能发生任务干扰</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">06</span><strong>效率与部署</strong><small>蒸馏、求解器、缓存、量化和解码器共同形成端到端成本</small></li></ol><figcaption><span>Diagram evidence</span><a class="wikilink" href="../../en/sources/2026-04-14-latent-diffusion-models.html">LDM</a>、<a class="wikilink" href="../../en/sources/2026-04-14-dreambooth.html">DreamBooth</a>、<a class="wikilink" href="../../en/sources/2026-04-16-controlnet.html">ControlNet</a>、<a class="wikilink" href="../../en/sources/2026-04-12-omnigen.html">OmniGen</a>、<a class="wikilink" href="../../en/sources/2026-04-16-sana-sprint.html">SANA-Sprint</a></figcaption><p class="sr-only" id="visual-image-generation-method-map-alt">方法地图列出潜空间底座、可扩展主干、个性化、空间控制、统一生成编辑、效率与部署六个分支。</p></figure>
 <h3 id="方法家族的成熟度">方法家族的成熟度</h3>
-<h4 id="潜空间扩散与基础生成">潜空间扩散与基础生成</h4>
-<ul>
-<li><strong>阶段</strong>：成熟底座</li>
-<li><strong>证据锚点</strong>：<a class="wikilink" href="../../en/sources/2026-04-14-latent-diffusion-models.html">LDM</a> 已用固定预算比较像素与多个压缩率；现代系统广泛复用这层表示，但精细文字和几何仍受解码上限影响。</li>
-<li><strong>研究机会</strong>：价值不在重复证明潜空间更省，而在可测量地改进压缩—细节—延迟取舍。</li>
-</ul>
-<h4 id="可扩展去噪主干">可扩展去噪主干</h4>
-<ul>
-<li><strong>阶段</strong>：系统优化期</li>
-<li><strong>证据锚点</strong>：<a class="wikilink" href="../../en/sources/2026-04-15-scalable-diffusion-models-with-transformers.html">DiT</a> 证明计算规模与 FID 强相关；<a class="wikilink" href="../../en/sources/2026-04-15-diffusion-models-without-attention.html">DiffuSSM</a> 说明注意力并非唯一扩展路径。</li>
-<li><strong>研究机会</strong>：同 FLOPs、显存和真实硬件下比较混合主干，避免只以参数量或单数据集 FID 排名。</li>
-</ul>
-<h4 id="个性化与主体驱动生成">个性化与主体驱动生成</h4>
-<ul>
-<li><strong>阶段</strong>：活跃发展期</li>
-<li><strong>证据锚点</strong>：<a class="wikilink" href="../../en/sources/2026-04-14-dreambooth.html">DreamBooth</a> 建立少样本主体适配基线，<a class="wikilink" href="../../en/sources/2026-04-14-anydoor.html">AnyDoor</a> 与 <a class="wikilink" href="../../en/sources/2026-04-14-cosmicman.html">CosmicMan</a> 扩展对象与人物专门能力。</li>
-<li><strong>研究机会</strong>：身份保持、组合多个主体、版权/记忆审计和低存储适配仍可形成明确问题。</li>
-</ul>
-<h4 id="空间与多条件控制">空间与多条件控制</h4>
-<ul>
-<li><strong>阶段</strong>：活跃发展期</li>
-<li><strong>证据锚点</strong>：<a class="wikilink" href="../../en/sources/2026-04-14-gligen.html">GLIGEN</a> 与 <a class="wikilink" href="../../en/sources/2026-04-16-controlnet.html">ControlNet</a> 证明专用接口有效，但复杂冲突条件、多模态组合和跨主干迁移证据不足。</li>
-<li><strong>研究机会</strong>：建立冲突条件诊断集、控制强度校准与局部证据指标，比再加一个条件器更有辨识度。</li>
-</ul>
-<h4 id="统一生成-编辑系统">统一生成—编辑系统</h4>
-<ul>
-<li><strong>阶段</strong>：早期整合期</li>
-<li><strong>证据锚点</strong>：<a class="wikilink" href="../../en/sources/2026-04-12-omnigen.html">OmniGen</a>、<a class="wikilink" href="../../en/sources/2026-04-12-dreamomni.html">DreamOmni</a>、<a class="wikilink" href="../../en/sources/2026-04-12-unireal.html">UniReal</a> 证明共享接口与联合训练可行，但统一模型与强专用系统缺少同预算全任务对照。</li>
-<li><strong>研究机会</strong>：测量任务干扰、路由、数据混合和模块化补偿，回答“统一到哪一层最划算”。</li>
-</ul>
-<h4 id="少步生成-数据与可靠评测">少步生成、数据与可靠评测</h4>
-<ul>
-<li><strong>阶段</strong>：评测建设期</li>
-<li><strong>证据锚点</strong>：<a class="wikilink" href="../../en/sources/2026-04-16-sana-sprint.html">SANA-Sprint</a> 展示特定硬件上的一步端到端延迟；<a class="wikilink" href="../../en/sources/2026-04-14-commoncanvas.html">CommonCanvas</a> 与 <a class="wikilink" href="../../en/sources/2026-04-14-verifiable-human-eval-t2i.html">可验证人评</a> 分别暴露数据来源和评测协议的重要性。</li>
-<li><strong>研究机会</strong>：把训练预算、真实延迟、偏好、组合遵循和数据许可放进同一可复现实验账本。</li>
-</ul>
+<div class="maturity-grid" data-motion="reveal"><article class="maturity-card maturity-card--stable" aria-labelledby="潜空间扩散与基础生成"><div class="maturity-card-top"><span class="maturity-index" aria-hidden="true">01</span><span class="maturity-stage"><small>Current stage</small><strong>成熟底座</strong></span></div><h4 id="潜空间扩散与基础生成" class="maturity-title">潜空间扩散与基础生成</h4><div class="maturity-evidence"><span>Evidence anchors</span><p><a class="wikilink" href="../../en/sources/2026-04-14-latent-diffusion-models.html">LDM</a> 已用固定预算比较像素与多个压缩率；现代系统广泛复用这层表示，但精细文字和几何仍受解码上限影响。</p></div><div class="maturity-opportunity"><span>Research opportunity</span><p>价值不在重复证明潜空间更省，而在可测量地改进压缩—细节—延迟取舍。</p></div></article>
+<article class="maturity-card maturity-card--optimizing" aria-labelledby="可扩展去噪主干"><div class="maturity-card-top"><span class="maturity-index" aria-hidden="true">02</span><span class="maturity-stage"><small>Current stage</small><strong>系统优化期</strong></span></div><h4 id="可扩展去噪主干" class="maturity-title">可扩展去噪主干</h4><div class="maturity-evidence"><span>Evidence anchors</span><p><a class="wikilink" href="../../en/sources/2026-04-15-scalable-diffusion-models-with-transformers.html">DiT</a> 证明计算规模与 FID 强相关；<a class="wikilink" href="../../en/sources/2026-04-15-diffusion-models-without-attention.html">DiffuSSM</a> 说明注意力并非唯一扩展路径。</p></div><div class="maturity-opportunity"><span>Research opportunity</span><p>同 FLOPs、显存和真实硬件下比较混合主干，避免只以参数量或单数据集 FID 排名。</p></div></article>
+<article class="maturity-card maturity-card--active" aria-labelledby="个性化与主体驱动生成"><div class="maturity-card-top"><span class="maturity-index" aria-hidden="true">03</span><span class="maturity-stage"><small>Current stage</small><strong>活跃发展期</strong></span></div><h4 id="个性化与主体驱动生成" class="maturity-title">个性化与主体驱动生成</h4><div class="maturity-evidence"><span>Evidence anchors</span><p><a class="wikilink" href="../../en/sources/2026-04-14-dreambooth.html">DreamBooth</a> 建立少样本主体适配基线，<a class="wikilink" href="../../en/sources/2026-04-14-anydoor.html">AnyDoor</a> 与 <a class="wikilink" href="../../en/sources/2026-04-14-cosmicman.html">CosmicMan</a> 扩展对象与人物专门能力。</p></div><div class="maturity-opportunity"><span>Research opportunity</span><p>身份保持、组合多个主体、版权/记忆审计和低存储适配仍可形成明确问题。</p></div></article>
+<article class="maturity-card maturity-card--active" aria-labelledby="空间与多条件控制"><div class="maturity-card-top"><span class="maturity-index" aria-hidden="true">04</span><span class="maturity-stage"><small>Current stage</small><strong>活跃发展期</strong></span></div><h4 id="空间与多条件控制" class="maturity-title">空间与多条件控制</h4><div class="maturity-evidence"><span>Evidence anchors</span><p><a class="wikilink" href="../../en/sources/2026-04-14-gligen.html">GLIGEN</a> 与 <a class="wikilink" href="../../en/sources/2026-04-16-controlnet.html">ControlNet</a> 证明专用接口有效，但复杂冲突条件、多模态组合和跨主干迁移证据不足。</p></div><div class="maturity-opportunity"><span>Research opportunity</span><p>建立冲突条件诊断集、控制强度校准与局部证据指标，比再加一个条件器更有辨识度。</p></div></article>
+<article class="maturity-card maturity-card--exploratory" aria-labelledby="统一生成-编辑系统"><div class="maturity-card-top"><span class="maturity-index" aria-hidden="true">05</span><span class="maturity-stage"><small>Current stage</small><strong>早期整合期</strong></span></div><h4 id="统一生成-编辑系统" class="maturity-title">统一生成—编辑系统</h4><div class="maturity-evidence"><span>Evidence anchors</span><p><a class="wikilink" href="../../en/sources/2026-04-12-omnigen.html">OmniGen</a>、<a class="wikilink" href="../../en/sources/2026-04-12-dreamomni.html">DreamOmni</a>、<a class="wikilink" href="../../en/sources/2026-04-12-unireal.html">UniReal</a> 证明共享接口与联合训练可行，但统一模型与强专用系统缺少同预算全任务对照。</p></div><div class="maturity-opportunity"><span>Research opportunity</span><p>测量任务干扰、路由、数据混合和模块化补偿，回答“统一到哪一层最划算”。</p></div></article>
+<article class="maturity-card maturity-card--evaluation" aria-labelledby="少步生成-数据与可靠评测"><div class="maturity-card-top"><span class="maturity-index" aria-hidden="true">06</span><span class="maturity-stage"><small>Current stage</small><strong>评测建设期</strong></span></div><h4 id="少步生成-数据与可靠评测" class="maturity-title">少步生成、数据与可靠评测</h4><div class="maturity-evidence"><span>Evidence anchors</span><p><a class="wikilink" href="../../en/sources/2026-04-16-sana-sprint.html">SANA-Sprint</a> 展示特定硬件上的一步端到端延迟；<a class="wikilink" href="../../en/sources/2026-04-14-commoncanvas.html">CommonCanvas</a> 与 <a class="wikilink" href="../../en/sources/2026-04-14-verifiable-human-eval-t2i.html">可验证人评</a> 分别暴露数据来源和评测协议的重要性。</p></div><div class="maturity-opportunity"><span>Research opportunity</span><p>把训练预算、真实延迟、偏好、组合遵循和数据许可放进同一可复现实验账本。</p></div></article></div>
 <h3 id="哪些方向拥挤-哪些方向仍值得做">哪些方向拥挤，哪些方向仍值得做</h3>
 <p>成熟度描述的是“证据与基础设施到了哪里”，不是给方向贴好坏标签。底座成熟后，研究需要更窄、更可证伪的问题定义。</p>
 <h2 id="拥挤方向与研究机会">拥挤方向与研究机会</h2>
@@ -204,39 +175,11 @@
 <li><strong>共同局限</strong>：训练数据许可、记忆、偏差、深度伪造、文字/手部/细几何失败及模型更新后的不可复现性，不能由更低 FID 自动消除。</li>
 </ul>
 <h2 id="研究生可行的研究入口">研究生可行的研究入口</h2>
-<h3 id="候选课题-a-多条件冲突的可解释诊断-优先推荐">候选课题 A：多条件冲突的可解释诊断（优先推荐）</h3>
-<ul>
-<li><strong>研究问题</strong>：当文本、布局、姿态与参考主体冲突时，系统在哪一层失效，能否用局部证据定位并校准控制强度？</li>
-<li><strong>最小基线</strong>：冻结同一个公开底座，对比纯文本、ControlNet/GLIGEN 类条件器与简单组合。</li>
-<li><strong>最小数据</strong>：先构造 300–1000 组可程序生成的冲突/非冲突条件，人工核验一小部分。</li>
-<li><strong>指标</strong>：全局语义、局部区域命中、关系/计数正确率、身份相似度、延迟与失败类型。</li>
-<li><strong>止损条件</strong>：若错误主要来自基础模型无法生成目标概念，先收窄为单一专业域；不要把概念缺失误判为控制器失败。</li>
-</ul>
-<h3 id="候选课题-b-同预算主干与少步方法账本-稳健">候选课题 B：同预算主干与少步方法账本（稳健）</h3>
-<ul>
-<li><strong>研究问题</strong>：在固定训练/推理预算和硬件上，主干、NFE、CFG、解码器分别贡献多少质量与延迟？</li>
-<li><strong>最小基线</strong>：选择 2–3 个公开 checkpoint，不从头训练超大模型；统一分辨率、prompt、样本数和测量脚本。</li>
-<li><strong>最小实验</strong>：先比较 1/4/20/50 步、开启/关闭 CFG、端到端和仅主干延迟，再决定是否训练轻量蒸馏模型。</li>
-<li><strong>指标</strong>：质量、文本/组合遵循、显存、吞吐、P50/P95 延迟和能耗代理。</li>
-<li><strong>止损条件</strong>：若 checkpoint 数据与规模差异无法控制，就把结论限定为系统测量，不声称架构因果。</li>
-</ul>
-<h3 id="候选课题-c-中文或专业领域的许可数据与可靠人评-应用驱动">候选课题 C：中文或专业领域的许可数据与可靠人评（应用驱动）</h3>
-<ul>
-<li><strong>研究问题</strong>：领域术语、文字渲染、关系和文化实体的失败来自数据覆盖、文本编码还是生成器？</li>
-<li><strong>最小基线</strong>：公开模型零样本、轻量适配和检索增强三组；数据许可与来源逐条记录。</li>
-<li><strong>最小数据</strong>：500–3000 条高信息 prompt，包含对照、改写和困难负例；先做评测集再决定训练集。</li>
-<li><strong>指标</strong>：专家正确率、可验证属性、文字 OCR、人评一致性、数据重叠与成本。</li>
-<li><strong>止损条件</strong>：若专家标注一致性不足，先修订任务定义，不用模型分数掩盖标签歧义。</li>
-</ul>
-<h3 id="候选课题-d-统一模型与模块化系统的受控边界-高风险">候选课题 D：统一模型与模块化系统的受控边界（高风险）</h3>
-<ul>
-<li><strong>研究问题</strong>：统一训练在哪些任务产生正迁移，在哪些任务发生干扰；轻量路由或 adapter 能否恢复？</li>
-<li><strong>最小基线</strong>：共享底座 + 独立适配、联合训练统一模型、带路由统一模型三组。</li>
-<li><strong>最小数据</strong>：只选 2–3 个互补任务，固定总样本与更新步数，避免“大而全”。</li>
-<li><strong>指标</strong>：每任务质量、最差任务退化、参数/存储、训练算力与任务扩展成本。</li>
-<li><strong>止损条件</strong>：若无法获得可比训练预算，退回表征/梯度冲突的小模型实验，不外推到基础模型。</li>
-</ul>
-<h3 id="推荐排序与止损条件">推荐排序与止损条件</h3>
+<div class="topic-candidate-grid"><section class="topic-candidate-card" aria-labelledby="候选课题-a-多条件冲突的可解释诊断-优先推荐"><h3 id="候选课题-a-多条件冲突的可解释诊断-优先推荐" class="candidate-title"><span>候选课题 A：多条件冲突的可解释诊断</span><em class="candidate-badge">优先推荐</em></h3><details class="candidate-details"><summary><span class="candidate-details-label candidate-details-label--open">Expand research design</span><span class="candidate-details-label candidate-details-label--close">Collapse research design</span><svg class="ui-icon candidate-details-icon" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><div class="candidate-facts"><div class="candidate-fact"><strong>研究问题</strong><p>当文本、布局、姿态与参考主体冲突时，系统在哪一层失效，能否用局部证据定位并校准控制强度？</p></div><div class="candidate-fact"><strong>最小基线</strong><p>冻结同一个公开底座，对比纯文本、ControlNet/GLIGEN 类条件器与简单组合。</p></div><div class="candidate-fact"><strong>最小数据</strong><p>先构造 300–1000 组可程序生成的冲突/非冲突条件，人工核验一小部分。</p></div><div class="candidate-fact"><strong>指标</strong><p>全局语义、局部区域命中、关系/计数正确率、身份相似度、延迟与失败类型。</p></div><div class="candidate-fact"><strong>止损条件</strong><p>若错误主要来自基础模型无法生成目标概念，先收窄为单一专业域；不要把概念缺失误判为控制器失败。</p></div></div></details></section>
+<section class="topic-candidate-card" aria-labelledby="候选课题-b-同预算主干与少步方法账本-稳健"><h3 id="候选课题-b-同预算主干与少步方法账本-稳健" class="candidate-title"><span>候选课题 B：同预算主干与少步方法账本</span><em class="candidate-badge">稳健</em></h3><details class="candidate-details"><summary><span class="candidate-details-label candidate-details-label--open">Expand research design</span><span class="candidate-details-label candidate-details-label--close">Collapse research design</span><svg class="ui-icon candidate-details-icon" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><div class="candidate-facts"><div class="candidate-fact"><strong>研究问题</strong><p>在固定训练/推理预算和硬件上，主干、NFE、CFG、解码器分别贡献多少质量与延迟？</p></div><div class="candidate-fact"><strong>最小基线</strong><p>选择 2–3 个公开 checkpoint，不从头训练超大模型；统一分辨率、prompt、样本数和测量脚本。</p></div><div class="candidate-fact"><strong>最小实验</strong><p>先比较 1/4/20/50 步、开启/关闭 CFG、端到端和仅主干延迟，再决定是否训练轻量蒸馏模型。</p></div><div class="candidate-fact"><strong>指标</strong><p>质量、文本/组合遵循、显存、吞吐、P50/P95 延迟和能耗代理。</p></div><div class="candidate-fact"><strong>止损条件</strong><p>若 checkpoint 数据与规模差异无法控制，就把结论限定为系统测量，不声称架构因果。</p></div></div></details></section>
+<section class="topic-candidate-card" aria-labelledby="候选课题-c-中文或专业领域的许可数据与可靠人评-应用驱动"><h3 id="候选课题-c-中文或专业领域的许可数据与可靠人评-应用驱动" class="candidate-title"><span>候选课题 C：中文或专业领域的许可数据与可靠人评</span><em class="candidate-badge">应用驱动</em></h3><details class="candidate-details"><summary><span class="candidate-details-label candidate-details-label--open">Expand research design</span><span class="candidate-details-label candidate-details-label--close">Collapse research design</span><svg class="ui-icon candidate-details-icon" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><div class="candidate-facts"><div class="candidate-fact"><strong>研究问题</strong><p>领域术语、文字渲染、关系和文化实体的失败来自数据覆盖、文本编码还是生成器？</p></div><div class="candidate-fact"><strong>最小基线</strong><p>公开模型零样本、轻量适配和检索增强三组；数据许可与来源逐条记录。</p></div><div class="candidate-fact"><strong>最小数据</strong><p>500–3000 条高信息 prompt，包含对照、改写和困难负例；先做评测集再决定训练集。</p></div><div class="candidate-fact"><strong>指标</strong><p>专家正确率、可验证属性、文字 OCR、人评一致性、数据重叠与成本。</p></div><div class="candidate-fact"><strong>止损条件</strong><p>若专家标注一致性不足，先修订任务定义，不用模型分数掩盖标签歧义。</p></div></div></details></section>
+<section class="topic-candidate-card" aria-labelledby="候选课题-d-统一模型与模块化系统的受控边界-高风险"><h3 id="候选课题-d-统一模型与模块化系统的受控边界-高风险" class="candidate-title"><span>候选课题 D：统一模型与模块化系统的受控边界</span><em class="candidate-badge">高风险</em></h3><details class="candidate-details"><summary><span class="candidate-details-label candidate-details-label--open">Expand research design</span><span class="candidate-details-label candidate-details-label--close">Collapse research design</span><svg class="ui-icon candidate-details-icon" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><div class="candidate-facts"><div class="candidate-fact"><strong>研究问题</strong><p>统一训练在哪些任务产生正迁移，在哪些任务发生干扰；轻量路由或 adapter 能否恢复？</p></div><div class="candidate-fact"><strong>最小基线</strong><p>共享底座 + 独立适配、联合训练统一模型、带路由统一模型三组。</p></div><div class="candidate-fact"><strong>最小数据</strong><p>只选 2–3 个互补任务，固定总样本与更新步数，避免“大而全”。</p></div><div class="candidate-fact"><strong>指标</strong><p>每任务质量、最差任务退化、参数/存储、训练算力与任务扩展成本。</p></div><div class="candidate-fact"><strong>止损条件</strong><p>若无法获得可比训练预算，退回表征/梯度冲突的小模型实验，不外推到基础模型。</p></div></div></details></section>
+</div><h3 id="推荐排序与止损条件">推荐排序与止损条件</h3>
 <p>优先级建议为 A → B → C → D。A 最容易形成“数据集 + 诊断指标 + 方法”连续成果；B 最可复现；C 需要真实领域资源；D 的训练预算与因果控制风险最高。任何入口都先用小规模数据证明测量可靠，再扩大模型或训练量。</p>
 <h2 id="证据基础">证据基础</h2>
 <ul>
@@ -280,6 +223,9 @@
   &quot;status&quot;: &quot;active&quot;,
   &quot;created&quot;: &quot;2026-04-12&quot;,
   &quot;updated&quot;: &quot;2026-07-14&quot;,
+  &quot;research_stage&quot;: &quot;evidence_map&quot;,
+  &quot;evidence_window&quot;: &quot;2022-2026 + seminal&quot;,
+  &quot;last_evidence_review&quot;: &quot;2026-07-14&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;image-generation&quot;,

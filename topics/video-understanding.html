@@ -7,10 +7,10 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>视频理解 · llmwiki</title>
   <script>try{if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')document.documentElement.classList.add('sidebar-collapsed')}catch(e){}</script>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260715-research-observatory-v8-beginner-research-cards">
-  <script defer src="../assets/wiki.js?v=20260715-research-observatory-v8-beginner-research-cards"></script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260715-knowledge-map-v9">
+  <script defer src="../assets/wiki.js?v=20260715-knowledge-map-v9"></script>
 </head>
-<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/video-understanding&quot;, &quot;title&quot;: &quot;视频理解&quot;, &quot;title_en&quot;: &quot;Video Understanding&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;reasoning&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260715-research-observatory-v8-beginner-research-cards">
+<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/video-understanding&quot;, &quot;title&quot;: &quot;视频理解&quot;, &quot;title_en&quot;: &quot;Video Understanding&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;reasoning&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260715-knowledge-map-v9">
   <header class="mobile-topbar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar" aria-label="菜单" title="菜单" data-menu-label="菜单" data-close-label="关闭菜单"><svg class="ui-icon menu-icon menu-icon--open" data-icon="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="ui-icon menu-icon menu-icon--close" data-icon="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="menu-toggle-label">菜单</span></button>
@@ -22,9 +22,10 @@
       <form class="search-box" role="search"><label class="visually-hidden" for="site-search">搜索 llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
       <nav class="sidebar-nav">
 <h2>入口</h2><ul>
-<li><a href="../index.html">索引</a></li>
+<li><a href="../catalog.html">完整论文目录</a></li>
+<li><a href="../index.html">研究地图</a></li>
 <li><a href="../llm-wiki.html">LLM Wiki</a></li>
-<li><a href="../main.html">首页</a></li>
+<li><a href="../main.html">阅读入口</a></li>
 </ul>
 <h2>基础概念</h2><ul>
 <li><a href="../topics/computer-vision-overview.html"><span class="nav-title-primary">计算机视觉概览</span><span class="nav-title-translation" lang="en">（Computer Vision Overview）</span></a></li>
@@ -86,7 +87,7 @@
     </div>
   </aside>
   <main class="wiki-page">
-    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="selected-lang" href="../topics/video-understanding.html">中文</a><a class="" href="../en/topics/video-understanding.html">English</a></nav><a class="selected" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>正文</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></a><a href="../main.html"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>首页</span></a></header>
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="selected-lang" href="../topics/video-understanding.html">中文</a><a class="" href="../en/topics/video-understanding.html">English</a></nav><a class="selected" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>正文</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></a><a href="../main.html"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>阅读入口</span></a></header>
     <article class="article-shell">
       
       <header class="article-header" data-motion="reveal">
@@ -97,7 +98,7 @@
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#video-understanding">#video-understanding</a><a class="tag" href="../tags.html#reasoning">#reasoning</a></div>
       </header>
       <div class="article-layout has-rail">
-        <aside class="article-rail"><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>目录</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#三分钟摘要">三分钟摘要</a></li><li><a href="#任务或系统流程">任务或系统流程</a></li><li><a href="#当前综合判断">当前综合判断</a><ol><li class="toc-sub"><a href="#1-时空主干已经成熟-输入选择仍决定上限">1. 时空主干已经成熟，输入选择仍决定上限</a></li><li class="toc-sub"><a href="#2-长视频理解需要-检索-记忆-验证-不只是更长上下文">2. 长视频理解需要“检索—记忆—验证”，不只是更长上下文</a></li><li class="toc-sub"><a href="#3-结构化状态比自由文本答案更可验证">3. 结构化状态比自由文本答案更可验证</a></li><li class="toc-sub"><a href="#4-动作理解正从分类走向质量-阶段和因果反馈">4. 动作理解正从分类走向质量、阶段和因果反馈</a></li><li class="toc-sub"><a href="#5-视频语言模型需要专业规则与失败诊断">5. 视频语言模型需要专业规则与失败诊断</a></li></ol></li><li><a href="#近五年演化-2022-2026">近五年演化（2022—2026）</a></li><li><a href="#方法家族与成熟阶段">方法家族与成熟阶段</a><ol><li class="toc-sub"><a href="#方法家族的成熟度">方法家族的成熟度</a></li></ol></li><li><a href="#拥挤方向与研究机会">拥挤方向与研究机会</a></li><li><a href="#反方证据-局限与可证伪条件">反方证据、局限与可证伪条件</a></li><li><a href="#研究生可行的研究入口">研究生可行的研究入口</a><ol><li class="toc-sub"><a href="#候选课题-a-长视频的证据感知采样与记忆-最推荐">候选课题 A：长视频的证据感知采样与记忆（最推荐）</a></li><li class="toc-sub"><a href="#候选课题-b-轨迹-事件双向一致性-推荐">候选课题 B：轨迹—事件双向一致性（推荐）</a></li><li class="toc-sub"><a href="#候选课题-c-规则化视频决策的证据与拒答-条件推荐">候选课题 C：规则化视频决策的证据与拒答（条件推荐）</a></li><li class="toc-sub"><a href="#推荐排序与止损条件">推荐排序与止损条件</a></li></ol></li><li><a href="#证据基础">证据基础</a></li><li><a href="#开放问题">开放问题</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <aside class="article-rail"><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>目录</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#三分钟摘要">三分钟摘要</a></li><li><a href="#任务或系统流程">任务或系统流程</a></li><li><a href="#当前综合判断">当前综合判断</a><ol><li class="toc-sub"><a href="#1-时空主干已经成熟-输入选择仍决定上限">1. 时空主干已经成熟，输入选择仍决定上限</a></li><li class="toc-sub"><a href="#2-长视频理解需要-检索-记忆-验证-不只是更长上下文">2. 长视频理解需要“检索—记忆—验证”，不只是更长上下文</a></li><li class="toc-sub"><a href="#3-结构化状态比自由文本答案更可验证">3. 结构化状态比自由文本答案更可验证</a></li><li class="toc-sub"><a href="#4-动作理解正从分类走向质量-阶段和因果反馈">4. 动作理解正从分类走向质量、阶段和因果反馈</a></li><li class="toc-sub"><a href="#5-视频语言模型需要专业规则与失败诊断">5. 视频语言模型需要专业规则与失败诊断</a></li></ol></li><li><a href="#近五年演化-2022-2026">近五年演化（2022—2026）</a></li><li><a href="#方法家族与成熟阶段">方法家族与成熟阶段</a><ol><li class="toc-sub"><a href="#方法家族的成熟度">方法家族的成熟度</a></li></ol></li><li><a href="#拥挤方向与研究机会">拥挤方向与研究机会</a></li><li><a href="#反方证据-局限与可证伪条件">反方证据、局限与可证伪条件</a></li><li><a href="#研究生可行的研究入口">研究生可行的研究入口</a><ol><li class="toc-sub"><a href="#推荐排序与止损条件">推荐排序与止损条件</a></li></ol></li><li><a href="#证据基础">证据基础</a></li><li><a href="#开放问题">开放问题</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
         <section class="article-content">
 <section class="topic-hero-grid" data-motion="reveal">
   <section class="judgment-panel topic-judgment">
@@ -140,36 +141,11 @@
 <figure class="wiki-visual wiki-visual--timeline" data-visual-id="video-understanding-evolution" aria-labelledby="visual-video-understanding-evolution-title" aria-describedby="visual-video-understanding-evolution-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">研究为何从片段识别转向长程证据和结构化状态？</p><div class="wiki-visual-title" id="visual-video-understanding-evolution-title" role="heading" aria-level="3">近五年视频理解的问题迁移</div><p class="wiki-visual-explanation">随着预训练主干成熟，瓶颈逐步从表示转移到长视频输入预算、多主体状态、专业规则和可信评测。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>2022</strong><small>掩码视频预训练降低动作识别对密集标签的依赖</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>2023</strong><small>多能力视频问答、多人跟踪和细粒度动作 benchmark 扩展</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>2024</strong><small>长视频检索记忆、轨迹补全和比赛状态重建成为独立问题</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>2025</strong><small>精确时空量化、规则化判罚和可解释动作质量快速发展</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">05</span><strong>2026</strong><small>研究重点转向预算内证据定位、拒答和跨场景可靠性</small></li></ol><figcaption><span>图示依据</span><a class="wikilink" href="../sources/2026-04-25-videomae.html">VideoMAE</a>、<a class="wikilink" href="../sources/2026-04-14-mvbench.html">MVBench</a>、<a class="wikilink" href="../sources/2026-04-25-soccernet-game-state-reconstruction.html">SoccerNet-GSR</a>、<a class="wikilink" href="../sources/2026-04-14-lvbench.html">LVBench</a>、<a class="wikilink" href="../sources/2026-05-05-refereebench-multi-sport-referees.html">RefereeBench</a></figcaption><p class="sr-only" id="visual-video-understanding-evolution-alt">2022 年掩码预训练强化视频表示，2023 年通用视频问答和体育跟踪基准增长，2024 年长视频与比赛状态重建发展，2025 年精确时空和规则推理兴起，2026 年聚焦证据定位与跨域可靠性。</p></figure>
 <h2 id="方法家族与成熟阶段">方法家族与成熟阶段</h2>
 <h3 id="方法家族的成熟度">方法家族的成熟度</h3>
-<h4 id="时空表征与预训练">时空表征与预训练</h4>
-<ul>
-<li><strong>阶段</strong>：成熟底座</li>
-<li><strong>证据锚点</strong>：双流、I3D、TimeSformer、VideoMAE 和 TrackMAE形成外观、运动、注意力与轨迹感知预训练路线。</li>
-<li><strong>研究机会</strong>：真实长视频中的自适应 token/帧预算和跨域适配。</li>
-</ul>
-<h4 id="动作定位与质量评估">动作定位与质量评估</h4>
-<ul>
-<li><strong>阶段</strong>：系统优化期</li>
-<li><strong>证据锚点</strong>：FineGym、MultiSports、FineDiving、LOGO 与时间解析 Transformer覆盖阶段、多人动作和质量评分。</li>
-<li><strong>研究机会</strong>：错误阶段定位、因果反馈、少样本专家标签和跨运动泛化。</li>
-</ul>
-<h4 id="长视频记忆与视频语言推理">长视频记忆与视频语言推理</h4>
-<ul>
-<li><strong>阶段</strong>：活跃发展期</li>
-<li><strong>证据锚点</strong>：MVBench、LVBench、SOK-Bench、ANetQA 与 STI-Bench把短片技能扩展到长程和精确时空问题。</li>
-<li><strong>研究机会</strong>：证据检索、记忆更新、输入预算控制和字幕/语言先验审计。</li>
-</ul>
-<h4 id="多主体轨迹与状态建模">多主体轨迹与状态建模</h4>
-<ul>
-<li><strong>阶段</strong>：活跃发展期</li>
-<li><strong>证据锚点</strong>：SportsMOT、TeamTrack、TranSPORTmer 与 SoccerNet-GSR形成跟踪—轨迹—全场状态链。</li>
-<li><strong>研究机会</strong>：遮挡下身份保持、跨镜头关联、轨迹—事件互证和不确定性传播。</li>
-</ul>
-<h4 id="规则化决策与解释">规则化决策与解释</h4>
-<ul>
-<li><strong>阶段</strong>：早期整合期</li>
-<li><strong>证据锚点</strong>：TacticAI、自动越位、X-VARS 与 RefereeBench把视觉状态接到战术或规则输出。</li>
-<li><strong>研究机会</strong>：完整规则状态、证据链、校准、拒答和人类复核。</li>
-</ul>
+<div class="maturity-grid" data-motion="reveal"><article class="maturity-card maturity-card--stable" aria-labelledby="时空表征与预训练"><div class="maturity-card-top"><span class="maturity-index" aria-hidden="true">01</span><span class="maturity-stage"><small>当前阶段</small><strong>成熟底座</strong></span></div><h4 id="时空表征与预训练" class="maturity-title">时空表征与预训练</h4><div class="maturity-evidence"><span>证据锚点</span><p>双流、I3D、TimeSformer、VideoMAE 和 TrackMAE形成外观、运动、注意力与轨迹感知预训练路线。</p></div><div class="maturity-opportunity"><span>研究机会</span><p>真实长视频中的自适应 token/帧预算和跨域适配。</p></div></article>
+<article class="maturity-card maturity-card--optimizing" aria-labelledby="动作定位与质量评估"><div class="maturity-card-top"><span class="maturity-index" aria-hidden="true">02</span><span class="maturity-stage"><small>当前阶段</small><strong>系统优化期</strong></span></div><h4 id="动作定位与质量评估" class="maturity-title">动作定位与质量评估</h4><div class="maturity-evidence"><span>证据锚点</span><p>FineGym、MultiSports、FineDiving、LOGO 与时间解析 Transformer覆盖阶段、多人动作和质量评分。</p></div><div class="maturity-opportunity"><span>研究机会</span><p>错误阶段定位、因果反馈、少样本专家标签和跨运动泛化。</p></div></article>
+<article class="maturity-card maturity-card--active" aria-labelledby="长视频记忆与视频语言推理"><div class="maturity-card-top"><span class="maturity-index" aria-hidden="true">03</span><span class="maturity-stage"><small>当前阶段</small><strong>活跃发展期</strong></span></div><h4 id="长视频记忆与视频语言推理" class="maturity-title">长视频记忆与视频语言推理</h4><div class="maturity-evidence"><span>证据锚点</span><p>MVBench、LVBench、SOK-Bench、ANetQA 与 STI-Bench把短片技能扩展到长程和精确时空问题。</p></div><div class="maturity-opportunity"><span>研究机会</span><p>证据检索、记忆更新、输入预算控制和字幕/语言先验审计。</p></div></article>
+<article class="maturity-card maturity-card--active" aria-labelledby="多主体轨迹与状态建模"><div class="maturity-card-top"><span class="maturity-index" aria-hidden="true">04</span><span class="maturity-stage"><small>当前阶段</small><strong>活跃发展期</strong></span></div><h4 id="多主体轨迹与状态建模" class="maturity-title">多主体轨迹与状态建模</h4><div class="maturity-evidence"><span>证据锚点</span><p>SportsMOT、TeamTrack、TranSPORTmer 与 SoccerNet-GSR形成跟踪—轨迹—全场状态链。</p></div><div class="maturity-opportunity"><span>研究机会</span><p>遮挡下身份保持、跨镜头关联、轨迹—事件互证和不确定性传播。</p></div></article>
+<article class="maturity-card maturity-card--exploratory" aria-labelledby="规则化决策与解释"><div class="maturity-card-top"><span class="maturity-index" aria-hidden="true">05</span><span class="maturity-stage"><small>当前阶段</small><strong>早期整合期</strong></span></div><h4 id="规则化决策与解释" class="maturity-title">规则化决策与解释</h4><div class="maturity-evidence"><span>证据锚点</span><p>TacticAI、自动越位、X-VARS 与 RefereeBench把视觉状态接到战术或规则输出。</p></div><div class="maturity-opportunity"><span>研究机会</span><p>完整规则状态、证据链、校准、拒答和人类复核。</p></div></article></div>
 <figure class="wiki-visual wiki-visual--map" data-visual-id="video-understanding-method-map" aria-labelledby="visual-video-understanding-method-map-title" aria-describedby="visual-video-understanding-method-map-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">不同研究路线如何从像素推进到可解释决策？</p><div class="wiki-visual-title" id="visual-video-understanding-method-map-title" role="heading" aria-level="3">视频理解的五层能力地图</div><p class="wiki-visual-explanation">表示层支持事件与实体，记忆层连接长时序，结构化状态层支持专业任务，证据评测贯穿所有层。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>时空表示</strong><small>学习外观、运动、姿态和轨迹特征</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>事件与实体</strong><small>定位动作、保持身份并识别人—人交互</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>长程记忆</strong><small>在有限帧预算下检索和聚合跨片段证据</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>结构化状态</strong><small>恢复轨迹、场地坐标、阶段和多主体关系</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">05</span><strong>规则与解释</strong><small>把状态接到专业规则、决策和自然语言说明</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">06</span><strong>可靠性层</strong><small>用证据定位、反事实、校准和人工复核验收</small></li></ol><figcaption><span>图示依据</span><a class="wikilink" href="../sources/2026-04-25-videomae.html">VideoMAE</a>、<a class="wikilink" href="../sources/2026-04-25-finegym.html">FineGym</a>、<a class="wikilink" href="../sources/2026-04-24-sportsmot.html">SportsMOT</a>、<a class="wikilink" href="../sources/2026-04-25-soccernet-game-state-reconstruction.html">SoccerNet-GSR</a>、<a class="wikilink" href="../sources/2026-05-05-x-vars-explainable-football-refereeing.html">X-VARS</a></figcaption><p class="sr-only" id="visual-video-understanding-method-map-alt">视频表示位于底层，其上是动作事件和实体跟踪，再上是长程记忆与多主体状态，顶层是规则决策与解释，证据和评测贯穿全栈。</p></figure>
 <h2 id="拥挤方向与研究机会">拥挤方向与研究机会</h2>
 <ul>
@@ -189,28 +165,10 @@
 <li>若方法只提高总体准确率却不提高证据命中或时间鲁棒性，应收窄为表征改进。</li>
 </ol>
 <h2 id="研究生可行的研究入口">研究生可行的研究入口</h2>
-<h3 id="候选课题-a-长视频的证据感知采样与记忆-最推荐">候选课题 A：长视频的证据感知采样与记忆（最推荐）</h3>
-<ul>
-<li><strong>精确研究问题</strong>：在固定帧/token 预算下，怎样先找到关键片段，再保留跨片段依赖？</li>
-<li><strong>最小实验</strong>：在 LVBench 或公开视频集上比较均匀、镜头、事件和查询感知采样，并加入证据片段命中率。</li>
-<li><strong>主要贡献</strong>：预算—准确率—证据覆盖曲线和轻量记忆策略。</li>
-<li><strong>止损条件</strong>：若数据没有可靠证据时间戳，先构造小型人工验证子集。</li>
-</ul>
-<h3 id="候选课题-b-轨迹-事件双向一致性-推荐">候选课题 B：轨迹—事件双向一致性（推荐）</h3>
-<ul>
-<li><strong>精确研究问题</strong>：事件预测能否约束轨迹补全，轨迹异常又能否发现错误事件标签？</li>
-<li><strong>最小实验</strong>：选一个公开体育 tracking/event 数据集，建立独立、串联和一致性训练三种基线。</li>
-<li><strong>主要贡献</strong>：结构化状态与语义互证，而不是只提高单任务分数。</li>
-<li><strong>止损条件</strong>：若跨任务时间对齐噪声过高，先做离线审计和标签修复。</li>
-</ul>
-<h3 id="候选课题-c-规则化视频决策的证据与拒答-条件推荐">候选课题 C：规则化视频决策的证据与拒答（条件推荐）</h3>
-<ul>
-<li><strong>精确研究问题</strong>：模型何时具备足够视觉与规则状态做决策，何时应拒答并交给人？</li>
-<li><strong>最小实验</strong>：围绕越位、犯规或动作步骤建立规则字段、证据片段和不确定性基线。</li>
-<li><strong>主要贡献</strong>：可审计决策链与人机复核协议。</li>
-<li><strong>止损条件</strong>：若真实规则/专家标注不可得，收窄到公开 benchmark 的证据定位。</li>
-</ul>
-<h3 id="推荐排序与止损条件">推荐排序与止损条件</h3>
+<div class="topic-candidate-grid"><section class="topic-candidate-card" aria-labelledby="候选课题-a-长视频的证据感知采样与记忆-最推荐"><h3 id="候选课题-a-长视频的证据感知采样与记忆-最推荐" class="candidate-title"><span>候选课题 A：长视频的证据感知采样与记忆</span><em class="candidate-badge">最推荐</em></h3><details class="candidate-details"><summary><span class="candidate-details-label candidate-details-label--open">展开研究设计</span><span class="candidate-details-label candidate-details-label--close">收起研究设计</span><svg class="ui-icon candidate-details-icon" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><div class="candidate-facts"><div class="candidate-fact"><strong>精确研究问题</strong><p>在固定帧/token 预算下，怎样先找到关键片段，再保留跨片段依赖？</p></div><div class="candidate-fact"><strong>最小实验</strong><p>在 LVBench 或公开视频集上比较均匀、镜头、事件和查询感知采样，并加入证据片段命中率。</p></div><div class="candidate-fact"><strong>主要贡献</strong><p>预算—准确率—证据覆盖曲线和轻量记忆策略。</p></div><div class="candidate-fact"><strong>止损条件</strong><p>若数据没有可靠证据时间戳，先构造小型人工验证子集。</p></div></div></details></section>
+<section class="topic-candidate-card" aria-labelledby="候选课题-b-轨迹-事件双向一致性-推荐"><h3 id="候选课题-b-轨迹-事件双向一致性-推荐" class="candidate-title"><span>候选课题 B：轨迹—事件双向一致性</span><em class="candidate-badge">推荐</em></h3><details class="candidate-details"><summary><span class="candidate-details-label candidate-details-label--open">展开研究设计</span><span class="candidate-details-label candidate-details-label--close">收起研究设计</span><svg class="ui-icon candidate-details-icon" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><div class="candidate-facts"><div class="candidate-fact"><strong>精确研究问题</strong><p>事件预测能否约束轨迹补全，轨迹异常又能否发现错误事件标签？</p></div><div class="candidate-fact"><strong>最小实验</strong><p>选一个公开体育 tracking/event 数据集，建立独立、串联和一致性训练三种基线。</p></div><div class="candidate-fact"><strong>主要贡献</strong><p>结构化状态与语义互证，而不是只提高单任务分数。</p></div><div class="candidate-fact"><strong>止损条件</strong><p>若跨任务时间对齐噪声过高，先做离线审计和标签修复。</p></div></div></details></section>
+<section class="topic-candidate-card" aria-labelledby="候选课题-c-规则化视频决策的证据与拒答-条件推荐"><h3 id="候选课题-c-规则化视频决策的证据与拒答-条件推荐" class="candidate-title"><span>候选课题 C：规则化视频决策的证据与拒答</span><em class="candidate-badge">条件推荐</em></h3><details class="candidate-details"><summary><span class="candidate-details-label candidate-details-label--open">展开研究设计</span><span class="candidate-details-label candidate-details-label--close">收起研究设计</span><svg class="ui-icon candidate-details-icon" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><div class="candidate-facts"><div class="candidate-fact"><strong>精确研究问题</strong><p>模型何时具备足够视觉与规则状态做决策，何时应拒答并交给人？</p></div><div class="candidate-fact"><strong>最小实验</strong><p>围绕越位、犯规或动作步骤建立规则字段、证据片段和不确定性基线。</p></div><div class="candidate-fact"><strong>主要贡献</strong><p>可审计决策链与人机复核协议。</p></div><div class="candidate-fact"><strong>止损条件</strong><p>若真实规则/专家标注不可得，收窄到公开 benchmark 的证据定位。</p></div></div></details></section>
+</div><h3 id="推荐排序与止损条件">推荐排序与止损条件</h3>
 <ul>
 <li>首选 A，通用性强且可用公开模型；喜欢结构化建模时选 B；有领域专家和数据合作时选 C。</li>
 <li>不建议只做更密集抽帧或只增加上下文长度。</li>
@@ -260,6 +218,9 @@
   &quot;status&quot;: &quot;active&quot;,
   &quot;created&quot;: &quot;2026-04-12&quot;,
   &quot;updated&quot;: &quot;2026-07-14&quot;,
+  &quot;research_stage&quot;: &quot;evidence_map&quot;,
+  &quot;evidence_window&quot;: &quot;2022-2026 + seminal&quot;,
+  &quot;last_evidence_review&quot;: &quot;2026-07-14&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;video-understanding&quot;,
