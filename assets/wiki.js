@@ -369,9 +369,15 @@ function initKnowledgeGraph(){
     highlight(id);
     renderDetail(nodeById.get(id));
   };
+  let suppressClickUntil=0;
+  const suppressGestureClick=()=>{ suppressClickUntil=Date.now()+450; };
+  const gestureClickSuppressed=()=>Date.now()<suppressClickUntil;
 
   nodeElements.forEach((element,id)=>{
-    element.addEventListener('click',event=>{ event.stopPropagation(); selectNode(id); });
+    element.addEventListener('click',event=>{
+      if(gestureClickSuppressed()){ event.preventDefault(); event.stopPropagation(); return; }
+      event.stopPropagation(); selectNode(id);
+    });
     element.addEventListener('dblclick',event=>{ event.stopPropagation(); window.location.href=nodeById.get(id).href; });
     element.addEventListener('keydown',event=>{
       if(event.key==='Enter'||event.key===' '){ event.preventDefault(); selectNode(id); }
@@ -429,52 +435,160 @@ function initKnowledgeGraph(){
   }));
   search?.addEventListener('input',()=>{ query=search.value.trim().toLowerCase(); applyFilter(); });
 
-  const defaultView={x:-130,y:-85,scale:1.2};
-  const view={...defaultView};
-  const syncView=()=>viewport.setAttribute('transform',`translate(${view.x} ${view.y}) scale(${view.scale})`);
+  const desktopDefaultView={x:-130,y:-85,scale:1.2};
+  const mobileDefaultView={x:-26,y:-17,scale:1.05};
+  const mobileGraph=window.matchMedia('(max-width: 860px)');
+  const view={x:0,y:0,scale:1};
+  const clampScale=value=>Math.max(.62,Math.min(3.2,value));
+  const syncView=()=>{
+    viewport.setAttribute('transform',`translate(${view.x} ${view.y}) scale(${view.scale})`);
+    svg.setAttribute('data-graph-scale',view.scale.toFixed(3));
+  };
+  const toSvgPoint=(clientX,clientY)=>{
+    const matrix=svg.getScreenCTM();
+    if(matrix){
+      const point=svg.createSVGPoint();
+      point.x=clientX; point.y=clientY;
+      const mapped=point.matrixTransform(matrix.inverse());
+      return {x:mapped.x,y:mapped.y};
+    }
+    const rect=svg.getBoundingClientRect();
+    return {x:(clientX-rect.left)*1040/rect.width,y:(clientY-rect.top)*680/rect.height};
+  };
+  const zoomAt=(next,point)=>{
+    const scale=clampScale(next);
+    const anchor={x:(point.x-view.x)/view.scale,y:(point.y-view.y)/view.scale};
+    view.x=point.x-anchor.x*scale;
+    view.y=point.y-anchor.y*scale;
+    view.scale=scale;
+    syncView();
+  };
+  const applyDefaultView=()=>{
+    const defaults=mobileGraph.matches ? mobileDefaultView : desktopDefaultView;
+    Object.assign(view,defaults);
+    svg.setAttribute('preserveAspectRatio',mobileGraph.matches ? 'xMidYMid slice' : 'xMidYMid meet');
+    svg.setAttribute('data-graph-mode',mobileGraph.matches ? 'mobile' : 'desktop');
+    syncView();
+  };
   const zoomBy=factor=>{
-    const next=Math.max(.62,Math.min(2.3,view.scale*factor));
-    const center={x:520,y:340};
-    view.x=center.x-(center.x-view.x)*(next/view.scale);
-    view.y=center.y-(center.y-view.y)*(next/view.scale);
-    view.scale=next; syncView();
+    const rect=svg.getBoundingClientRect();
+    zoomAt(view.scale*factor,toSvgPoint(rect.left+rect.width/2,rect.top+rect.height/2));
   };
   document.querySelectorAll('[data-graph-view]').forEach(button=>button.addEventListener('click',()=>{
     const action=button.dataset.graphView;
     if(action==='in') zoomBy(1.18);
     else if(action==='out') zoomBy(1/1.18);
-    else{ view.x=defaultView.x; view.y=defaultView.y; view.scale=defaultView.scale; syncView(); }
+    else applyDefaultView();
   }));
   svg.addEventListener('wheel',event=>{
     event.preventDefault();
-    const rect=svg.getBoundingClientRect();
-    const point={x:(event.clientX-rect.left)*1040/rect.width,y:(event.clientY-rect.top)*680/rect.height};
-    const next=Math.max(.62,Math.min(2.3,view.scale*Math.exp(-event.deltaY*.0012)));
-    view.x=point.x-(point.x-view.x)*(next/view.scale);
-    view.y=point.y-(point.y-view.y)*(next/view.scale);
-    view.scale=next; syncView();
+    zoomAt(view.scale*Math.exp(-event.deltaY*.0012),toSvgPoint(event.clientX,event.clientY));
   },{passive:false});
-  let pan=null;
+
+  const activePointers=new Map();
+  let gesture=null;
+  const pointerDistance=(a,b)=>Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);
+  const startSingleGesture=(pointer,type='pan')=>{
+    const point=toSvgPoint(pointer.clientX,pointer.clientY);
+    gesture={
+      type,pointerId:pointer.pointerId,startX:point.x,startY:point.y,
+      startClientX:pointer.clientX,startClientY:pointer.clientY,
+      originX:view.x,originY:view.y
+    };
+    if(type==='pan') svg.classList.add('is-panning');
+  };
+  const startPinch=()=>{
+    const pointers=[...activePointers.values()].slice(0,2);
+    if(pointers.length<2) return;
+    const midpoint={
+      x:(pointers[0].clientX+pointers[1].clientX)/2,
+      y:(pointers[0].clientY+pointers[1].clientY)/2
+    };
+    const point=toSvgPoint(midpoint.x,midpoint.y);
+    gesture={
+      type:'pinch',
+      startDistance:Math.max(pointerDistance(pointers[0],pointers[1]),1),
+      startScale:view.scale,
+      anchorX:(point.x-view.x)/view.scale,
+      anchorY:(point.y-view.y)/view.scale
+    };
+    activePointers.forEach((_,pointerId)=>{
+      try{ svg.setPointerCapture(pointerId); }catch(error){}
+    });
+    svg.classList.add('is-panning');
+    suppressGestureClick();
+  };
   svg.addEventListener('pointerdown',event=>{
-    if(event.target.closest('.graph-node')) return;
-    pan={x:event.clientX,y:event.clientY,originX:view.x,originY:view.y};
-    svg.classList.add('is-panning'); svg.setPointerCapture(event.pointerId);
+    if(event.pointerType==='mouse'&&event.button!==0) return;
+    const onNode=Boolean(event.target.closest('.graph-node'));
+    if(event.pointerType==='mouse'&&onNode) return;
+    const pointer={pointerId:event.pointerId,clientX:event.clientX,clientY:event.clientY,onNode};
+    activePointers.set(event.pointerId,pointer);
+    if(!onNode){ try{ svg.setPointerCapture(event.pointerId); }catch(error){} }
+    if(activePointers.size===1) startSingleGesture(pointer,onNode ? 'tap' : 'pan');
+    else if(activePointers.size===2) startPinch();
   });
   svg.addEventListener('pointermove',event=>{
-    if(!pan) return;
-    const rect=svg.getBoundingClientRect();
-    view.x=pan.originX+(event.clientX-pan.x)*1040/rect.width;
-    view.y=pan.originY+(event.clientY-pan.y)*680/rect.height;
+    const previous=activePointers.get(event.pointerId);
+    if(!previous) return;
+    const pointer={...previous,clientX:event.clientX,clientY:event.clientY};
+    activePointers.set(event.pointerId,pointer);
+    if(activePointers.size>=2){
+      if(gesture?.type!=='pinch') startPinch();
+      const pointers=[...activePointers.values()].slice(0,2);
+      const midpoint={
+        x:(pointers[0].clientX+pointers[1].clientX)/2,
+        y:(pointers[0].clientY+pointers[1].clientY)/2
+      };
+      const point=toSvgPoint(midpoint.x,midpoint.y);
+      const next=clampScale(gesture.startScale*pointerDistance(pointers[0],pointers[1])/gesture.startDistance);
+      view.x=point.x-gesture.anchorX*next;
+      view.y=point.y-gesture.anchorY*next;
+      view.scale=next;
+      suppressGestureClick();
+      syncView();
+      return;
+    }
+    if(!gesture||gesture.pointerId!==event.pointerId||!['tap','pan'].includes(gesture.type)) return;
+    const moved=Math.hypot(event.clientX-gesture.startClientX,event.clientY-gesture.startClientY);
+    if(gesture.type==='tap'&&moved<=5) return;
+    if(gesture.type==='tap'){
+      gesture.type='pan';
+      try{ svg.setPointerCapture(event.pointerId); }catch(error){}
+      svg.classList.add('is-panning');
+    }
+    if(moved>3) suppressGestureClick();
+    const point=toSvgPoint(event.clientX,event.clientY);
+    view.x=gesture.originX+(point.x-gesture.startX);
+    view.y=gesture.originY+(point.y-gesture.startY);
     syncView();
   });
-  const endPan=()=>{ pan=null; svg.classList.remove('is-panning'); };
-  svg.addEventListener('pointerup',endPan);
-  svg.addEventListener('pointercancel',endPan);
+  const endPointer=event=>{
+    if(!activePointers.has(event.pointerId)) return;
+    const wasPinch=gesture?.type==='pinch';
+    activePointers.delete(event.pointerId);
+    try{ svg.releasePointerCapture(event.pointerId); }catch(error){}
+    if(wasPinch) suppressGestureClick();
+    if(wasPinch&&activePointers.size===1){
+      startSingleGesture([...activePointers.values()][0]);
+      return;
+    }
+    if(!activePointers.size||gesture?.pointerId===event.pointerId){
+      gesture=null;
+      svg.classList.remove('is-panning');
+    }
+  };
+  svg.addEventListener('pointerup',endPointer);
+  svg.addEventListener('pointercancel',endPointer);
   svg.addEventListener('click',event=>{
+    if(gestureClickSuppressed()){ event.preventDefault(); event.stopPropagation(); return; }
     if(event.target.closest('.graph-node')) return;
     selectedId=''; highlight(''); renderEmptyDetail();
   });
-  syncView();
+  const resetResponsiveView=()=>applyDefaultView();
+  if(mobileGraph.addEventListener) mobileGraph.addEventListener('change',resetResponsiveView);
+  else mobileGraph.addListener(resetResponsiveView);
+  applyDefaultView();
   applyFilter();
 }
 

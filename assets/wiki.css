@@ -263,6 +263,7 @@ body.nav-open .menu-icon--close{ display: inline-block; }
   border-bottom: 2px solid transparent;
   color: var(--blue);
   font-size: 14px; font-weight: 560;
+  white-space: nowrap;
 }
 .page-tabs a > .ui-icon{ width: 14px; height: 14px; }
 .page-tabs a:hover{ text-decoration: none; background: var(--wash); }
@@ -1287,6 +1288,7 @@ body.motion-ready [data-motion="reveal"].is-visible{
   background-size: 24px 24px;
   cursor: grab;
   touch-action: none;
+  overscroll-behavior: contain;
   user-select: none;
 }
 .knowledge-graph-svg.is-panning{ cursor: grabbing; }
@@ -1563,7 +1565,7 @@ body.motion-ready [data-motion="reveal"].is-visible{
   .graph-filter{ flex: 0 0 auto; }
   .graph-search{ width: 100%; flex-basis: auto; }
   .graph-stage{ grid-template-columns: 1fr; }
-  .knowledge-graph-svg{ height: 490px; min-height: 0; }
+  .knowledge-graph-svg{ height: min(62vh, 460px); min-height: 420px; }
   .graph-detail{ min-height: 190px; }
   .graph-node-index ul{ grid-template-columns: 1fr; }
 }
