@@ -30,19 +30,30 @@ function initMobileNav(){
   const toggle=document.querySelector('.menu-toggle');
   const sidebar=document.getElementById('wiki-sidebar');
   if(!toggle||!sidebar) return;
+  const label=toggle.querySelector('.menu-toggle-label');
+  const sync=open=>{
+    const text=open ? toggle.dataset.closeLabel : toggle.dataset.menuLabel;
+    toggle.setAttribute('aria-expanded',String(open));
+    toggle.setAttribute('aria-label',text);
+    toggle.setAttribute('title',text);
+    if(label) label.textContent=text;
+  };
+  const close=()=>{
+    document.body.classList.remove('nav-open');
+    sync(false);
+  };
   toggle.addEventListener('click',()=>{
     const open=document.body.classList.toggle('nav-open');
-    toggle.setAttribute('aria-expanded', String(open));
+    sync(open);
   });
   // Close the drawer when navigating or tapping outside it.
-  sidebar.addEventListener('click',e=>{ if(e.target.closest('a')) document.body.classList.remove('nav-open'); });
+  sidebar.addEventListener('click',e=>{ if(e.target.closest('a')) close(); });
   document.addEventListener('click',e=>{
     if(!document.body.classList.contains('nav-open')) return;
-    if(!sidebar.contains(e.target) && !toggle.contains(e.target)){
-      document.body.classList.remove('nav-open');
-      toggle.setAttribute('aria-expanded','false');
-    }
+    if(!sidebar.contains(e.target) && !toggle.contains(e.target)) close();
   });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&document.body.classList.contains('nav-open')) close(); });
+  sync(false);
 }
 
 function initDesktopSidebar(){
@@ -52,7 +63,6 @@ function initDesktopSidebar(){
   if(!toggle||!panel) return;
   const desktop=window.matchMedia('(min-width: 861px)');
   const storageKey='llmwiki.sidebarCollapsed';
-  const icon=toggle.querySelector('[aria-hidden="true"]');
   const readStoredState=()=>{
     try{return localStorage.getItem(storageKey)==='true';}
     catch(error){return false;}
@@ -68,7 +78,6 @@ function initDesktopSidebar(){
     toggle.setAttribute('aria-expanded',String(!collapsed));
     toggle.setAttribute('aria-label',label);
     toggle.setAttribute('title',label);
-    if(icon) icon.textContent=collapsed ? '›' : '‹';
     panel.inert=collapsed;
     if(collapsed) panel.setAttribute('aria-hidden','true');
     else panel.removeAttribute('aria-hidden');
