@@ -7,10 +7,10 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>VLM2Vec：把视觉语言模型训练成通用多模态向量模型（Training Vision-Language Models for Massive Multimodal Embedding Tasks） · llmwiki</title>
   <script>try{if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')document.documentElement.classList.add('sidebar-collapsed')}catch(e){}</script>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260716-knowledge-map-touch-v11">
-  <script defer src="../assets/wiki.js?v=20260716-knowledge-map-touch-v11"></script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260717-restrained-microinteractions-v12">
+  <script defer src="../assets/wiki.js?v=20260717-restrained-microinteractions-v12"></script>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-07-14-vlm2vec-mmeb&quot;, &quot;title&quot;: &quot;VLM2Vec：把视觉语言模型训练成通用多模态向量模型（Training Vision-Language Models for Massive Multimodal Embedding Tasks）&quot;, &quot;title_en&quot;: &quot;VLM2Vec：把视觉语言模型训练成通用多模态向量模型（Training Vision-Language Models for Massive Multimodal Embedding Tasks）&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;multimodal&quot;, &quot;vision-language&quot;, &quot;representation-learning&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260716-knowledge-map-touch-v11">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-07-14-vlm2vec-mmeb&quot;, &quot;title&quot;: &quot;VLM2Vec：把视觉语言模型训练成通用多模态向量模型（Training Vision-Language Models for Massive Multimodal Embedding Tasks）&quot;, &quot;title_en&quot;: &quot;VLM2Vec：把视觉语言模型训练成通用多模态向量模型（Training Vision-Language Models for Massive Multimodal Embedding Tasks）&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;multimodal&quot;, &quot;vision-language&quot;, &quot;representation-learning&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260717-restrained-microinteractions-v12">
   <header class="mobile-topbar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar" aria-label="菜单" title="菜单" data-menu-label="菜单" data-close-label="关闭菜单"><svg class="ui-icon menu-icon menu-icon--open" data-icon="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="ui-icon menu-icon menu-icon--close" data-icon="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="menu-toggle-label">菜单</span></button>
@@ -93,16 +93,16 @@
       
       <header class="article-header" data-motion="reveal">
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>VLM2Vec：把视觉语言模型训练成通用多模态向量模型（Training Vision-Language Models for Massive Multimodal Embedding Tasks）</strong></nav>
-        <p class="eyebrow">来源笔记 · 更新于 2026-07-14</p>
+        <p class="eyebrow">来源笔记 · 更新于 2026-07-16</p>
         <h1><span class="title-main">VLM2Vec</span><span class="title-subtitle">把视觉语言模型训练成通用多模态向量模型（Training Vision-Language Models for Massive Multimodal Embedding Tasks）</span></h1>
         
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#multimodal">#multimodal</a><a class="tag" href="../tags.html#vision-language">#vision-language</a><a class="tag" href="../tags.html#representation-learning">#representation-learning</a><a class="tag" href="../tags.html#benchmarking">#benchmarking</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
       <div class="article-layout has-rail">
-        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>arXiv / Technical Report</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2024-10-07</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-07-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://arxiv.org/abs/2410.05160" title="https://arxiv.org/abs/2410.05160" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>arxiv.org · 2410.05160</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2410.05160" title="https://arxiv.org/pdf/2410.05160" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2410.05160</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>目录</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#关键发现">关键发现</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#证据边界">证据边界</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ICLR 2025</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2024-10-07</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-07-14</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://proceedings.iclr.cc/paper_files/paper/2025/hash/04261fce1705c4f02f062866717d592a-Abstract-Conference.html" title="https://proceedings.iclr.cc/paper_files/paper/2025/hash/04261fce1705c4f02f062866717d592a-Abstract-Conference.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>proceedings.iclr.cc · 04261fce1705c4f02f062866717d592…</strong></a><a class="source-link source-link-pdf" href="https://proceedings.iclr.cc/paper_files/paper/2025/file/04261fce1705c4f02f062866717d592a-Paper-Conference.pdf" title="https://proceedings.iclr.cc/paper_files/paper/2025/file/04261fce1705c4f02f062866717d592a-Paper-Conference.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>proceedings.iclr.cc · 04261fce1705c4f02f062866717d592…</strong></a><span class="source-link source-link-missing"><span>代码仓库</span><strong>代码仓库待补充</strong></span></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>目录</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#关键发现">关键发现</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#证据边界">证据边界</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
         <section class="article-content"><h1 id="vlm2vec-把视觉语言模型训练成通用多模态向量模型">VLM2Vec：把视觉语言模型训练成通用多模态向量模型</h1>
-<blockquote>来源：arXiv / Technical Report</blockquote>
-<blockquote>发表日期：2024-10-07</blockquote>
+<blockquote>来源：ICLR 2025（arXiv 首次公开于 2024-10-07）</blockquote>
+<blockquote>版本核验：2026-07-16 已核对 ICLR Proceedings 正式论文页与 PDF</blockquote>
 <blockquote>资料加入日期：2026-07-14</blockquote>
 <blockquote>原始材料：<a class="wikilink missing" href="#missing-raw/ingest/2026-07-14-vlm2vec-mmeb/paper-text">论文提取文本</a> 与 PDF</blockquote>
 <h2 id="一句话结论">一句话结论</h2>
@@ -123,7 +123,7 @@
 </ul>
 <h2 id="局限或疑问">局限或疑问</h2>
 <ul>
-<li>论文标注为 technical report，且大 VLM 的训练、显存与推理成本可能明显高于 CLIP 双塔。</li>
+<li>论文已有 ICLR 2025 正式版本；但大 VLM 的训练、显存与推理成本仍可能明显高于 CLIP 双塔。</li>
 <li>多模态 embedding 的统一平均分可能掩盖单任务退化，需要分别报告检索方向、语言、领域和输入形式。</li>
 <li>固定向量仍可能丢失复杂关系；是否需要多向量/late interaction 要与 ColPali、FILIP 对照。</li>
 </ul>
@@ -134,8 +134,9 @@
 </ul>
 <h2 id="原始链接">原始链接</h2>
 <ul>
+<li><a href="https://proceedings.iclr.cc/paper_files/paper/2025/hash/04261fce1705c4f02f062866717d592a-Abstract-Conference.html">ICLR 2025 官方论文页</a></li>
+<li><a href="https://proceedings.iclr.cc/paper_files/paper/2025/file/04261fce1705c4f02f062866717d592a-Paper-Conference.pdf">ICLR 2025 正式 PDF</a></li>
 <li><a href="https://arxiv.org/abs/2410.05160">arXiv 原文</a></li>
-<li><a href="https://arxiv.org/pdf/2410.05160">arXiv PDF</a></li>
 <li><a href="https://tiger-ai-lab.github.io/VLM2Vec/">VLM2Vec 项目</a></li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
@@ -148,15 +149,15 @@
       </div>
       
       <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a></li><li><a class="wikilink" href="../topics/vision-language.html">视觉语言</a></li></ul></div><div class="related-group related-entities"><h3>相关实体<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a></li></ul></div><div class="related-group related-claims"><h3>相关判断<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a></li><li><a class="wikilink" href="../claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a></li></ul></div><div class="related-group related-questions"><h3>相关问题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a></li></ul></div></div></section>
-      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">7</span></h2><ul><li><a href="../claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a><span>判断</span></li><li><a href="../entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a><span>实体</span></li><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../questions/question-image-text-retrieval-research-cut.html">图文检索哪个子方向最适合中等算力的研究生项目？</a><span>问题</span></li><li><a href="../questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a><span>问题</span></li><li><a href="../topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a><span>主题</span></li><li><a href="../topics/vision-language.html">视觉语言</a><span>主题</span></li></ul></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">8</span></h2><ul><li><a href="../claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a><span>判断</span></li><li><a href="../docs/research-matrices/image-text-retrieval-evidence-matrix.html">图文检索（Image-Text Retrieval）40 篇证据矩阵</a><span>证据矩阵</span></li><li><a href="../entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a><span>实体</span></li><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../questions/question-image-text-retrieval-research-cut.html">图文检索哪个子方向最适合中等算力的研究生项目？</a><span>问题</span></li><li><a href="../questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a><span>问题</span></li><li><a href="../topics/image-text-retrieval.html">图文检索（Image-Text Retrieval）</a><span>主题</span></li><li><a href="../topics/vision-language.html">视觉语言</a><span>主题</span></li></ul></section>
       <details class="metadata-box" id="metadata"><summary><span class="summary-label"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><pre>{
   &quot;id&quot;: &quot;2026-07-14-vlm2vec-mmeb&quot;,
   &quot;type&quot;: &quot;source&quot;,
   &quot;title&quot;: &quot;VLM2Vec：把视觉语言模型训练成通用多模态向量模型（Training Vision-Language Models for Massive Multimodal Embedding Tasks）&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-07-14&quot;,
-  &quot;updated&quot;: &quot;2026-07-14&quot;,
-  &quot;venue&quot;: &quot;arXiv / Technical Report&quot;,
+  &quot;updated&quot;: &quot;2026-07-16&quot;,
+  &quot;venue&quot;: &quot;ICLR 2025&quot;,
   &quot;ingested_at&quot;: &quot;2026-07-14&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
@@ -178,8 +179,9 @@
   ],
   &quot;published_at&quot;: &quot;2024-10-07&quot;,
   &quot;canonical_links&quot;: [
+    &quot;https://proceedings.iclr.cc/paper_files/paper/2025/hash/04261fce1705c4f02f062866717d592a-Abstract-Conference.html&quot;,
+    &quot;https://proceedings.iclr.cc/paper_files/paper/2025/file/04261fce1705c4f02f062866717d592a-Paper-Conference.pdf&quot;,
     &quot;https://arxiv.org/abs/2410.05160&quot;,
-    &quot;https://arxiv.org/pdf/2410.05160&quot;,
     &quot;https://tiger-ai-lab.github.io/VLM2Vec/&quot;
   ],
   &quot;raw_entry&quot;: &quot;raw/ingest/2026-07-14-vlm2vec-mmeb/&quot;,

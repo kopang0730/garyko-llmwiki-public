@@ -283,12 +283,21 @@ function initKnowledgeGraph(){
   let activeFilter='all';
   let query='';
   const visibleNodes=new Set(data.nodes.map(node=>node.id));
+  const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+  const replayGraphDetailMotion=()=>{
+    if(!detail) return;
+    detail.classList.remove('is-refreshing');
+    if(reducedMotion.matches) return;
+    void detail.offsetWidth;
+    detail.classList.add('is-refreshing');
+  };
 
   const renderEmptyDetail=()=>{
     if(!detail) return;
     detail.innerHTML=emptyDetailMarkup;
     detail.classList.add('graph-detail-empty');
     detail.classList.remove('graph-detail-selected');
+    replayGraphDetailMotion();
   };
 
   const renderDetail=node=>{
@@ -348,6 +357,7 @@ function initKnowledgeGraph(){
     const openLabel=document.createElement('strong'); openLabel.textContent=copy.open[node.group];
     const openArrow=document.createElement('span'); openArrow.className='graph-open-page-arrow'; openArrow.textContent='→'; openArrow.setAttribute('aria-hidden','true');
     openCopy.append(openHint,openLabel); open.append(openCopy,openArrow); detail.appendChild(open);
+    replayGraphDetailMotion();
   };
 
   const highlight=id=>{

@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Frozen scope, search strategy, screening rules, and progression gates for the image-editing review.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Image Editing Review Protocol · llmwiki</title>
+  <script>try{if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')document.documentElement.classList.add('sidebar-collapsed')}catch(e){}</script>
+  <link rel="stylesheet" href="../../../assets/wiki.css?v=20260717-restrained-microinteractions-v12">
+  <script defer src="../../../assets/wiki.js?v=20260717-restrained-microinteractions-v12"></script>
+</head>
+<body class="kind-review_protocol" data-page="{&quot;slug&quot;: &quot;docs/research-protocols/image-editing&quot;, &quot;title&quot;: &quot;图像编辑（Image Editing）检索与综合协议&quot;, &quot;title_en&quot;: &quot;Image Editing Review Protocol&quot;, &quot;kind&quot;: &quot;review_protocol&quot;, &quot;tags&quot;: [], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260717-restrained-microinteractions-v12">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar" aria-label="Menu" title="Menu" data-menu-label="Menu" data-close-label="Close menu"><svg class="ui-icon menu-icon menu-icon--open" data-icon="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="ui-icon menu-icon menu-icon--close" data-icon="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="menu-toggle-label">Menu</span></button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
+    <button class="sidebar-collapse-toggle" type="button" aria-expanded="true" aria-controls="sidebar-panel" aria-label="Collapse sidebar" title="Collapse sidebar" data-collapse-label="Collapse sidebar" data-expand-label="Expand sidebar"><svg class="ui-icon sidebar-icon sidebar-icon--collapse" data-icon="panel-left-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/></svg><svg class="ui-icon sidebar-icon sidebar-icon--expand" data-icon="panel-left-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/></svg></button>
+    <a class="brand" href="../../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <div class="sidebar-panel" id="sidebar-panel">
+      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">Search llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+      <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../../en/catalog.html">Full paper catalog</a></li>
+<li><a href="../../../en/index.html">Research map</a></li>
+<li><a href="../../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../../en/main.html">Reading portal</a></li>
+</ul>
+<h2>Foundations</h2><ul>
+<li><a href="../../../en/topics/computer-vision-overview.html">Computer Vision Overview</a></li>
+<li><a href="../../../en/topics/datasets-metrics-and-benchmark-reliability.html">Datasets &amp; Evaluation</a></li>
+<li><a href="../../../en/topics/diffusion-models.html">Diffusion Models</a></li>
+<li><a href="../../../en/topics/video-representation-and-temporal-modeling.html">Video Representation</a></li>
+<li><a href="../../../en/topics/vision-backbones.html">Vision Backbones</a></li>
+<li><a href="../../../en/topics/vision-language-foundations.html">Vision-Language Foundations</a></li>
+<li><a href="../../../en/topics/vision-task-foundations.html">Core Vision Tasks</a></li>
+<li><a href="../../../en/topics/visual-generation-foundations.html">Visual Generation Foundations</a></li>
+</ul>
+<h2>Research topics</h2><ul>
+<li><a href="../../../en/topics/diffusion-efficiency-engineering.html">Diffusion Efficiency</a></li>
+<li><a href="../../../en/topics/generative-model-evaluation.html">Generative Model Evaluation</a></li>
+<li><a href="../../../en/topics/image-editing.html">Image Editing</a></li>
+<li><a href="../../../en/topics/image-generation.html">Image Generation</a></li>
+<li><a href="../../../en/topics/image-text-retrieval.html">Image-Text Retrieval</a></li>
+<li><a href="../../../en/topics/sports-ai-video-understanding.html">Sports Video Understanding</a></li>
+<li><a href="../../../en/topics/video-editing.html">Video Editing</a></li>
+<li><a href="../../../en/topics/video-generation.html">Video Generation</a></li>
+<li><a href="../../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../../en/topics/vision-language.html">Vision-Language</a></li>
+</ul>
+<h2>Roadmaps</h2><ul>
+<li><a href="../../../en/topics/sports-ai-roadmap.html">Sports AI</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../../en/entities/clip.html">CLIP 系列模型（CLIP Family）</a></li>
+<li><a href="../../../en/entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a></li>
+<li><a href="../../../en/entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a></li>
+<li><a href="../../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../../en/entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a></li>
+<li><a href="../../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../../en/claims/claim-image-text-retrieval-baseline-and-specialization.html">双塔负责可扩展召回，细粒度模块负责精排与关系匹配</a></li>
+<li><a href="../../../en/claims/claim-image-text-retrieval-composed-query.html">组合式查询是图文检索中可落地且仍有缺口的研究切口</a></li>
+<li><a href="../../../en/claims/claim-image-text-retrieval-compositionality.html">标准图文检索分数不足以证明组合性理解</a></li>
+<li><a href="../../../en/claims/claim-image-text-retrieval-data-quality.html">图文检索的主要瓶颈仍包括数据质量、分布与概念覆盖</a></li>
+<li><a href="../../../en/claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a></li>
+<li><a href="../../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../../en/questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a></li>
+<li><a href="../../../en/questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a></li>
+<li><a href="../../../en/questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a></li>
+<li><a href="../../../en/questions/question-image-text-retrieval-research-cut.html">图文检索哪个子方向最适合中等算力的研究生项目？</a></li>
+<li><a href="../../../en/questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a></li>
+<li><a href="../../../en/questions/question-motion-defined-text-human-machine-gap.html">Motion-Defined Text Gap</a></li>
+<li><a href="../../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
+</ul>
+</nav>
+    </div>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="" href="../../../docs/research-protocols/image-editing.html">中文</a><a class="selected-lang" href="../../../en/docs/research-protocols/image-editing.html">English</a></nav><a class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>Article</span></a><a href="../../../en/index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>Research map</span></a><a href="../../../en/main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>Reading portal</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>Metadata</span></a></header>
+    <article class="article-shell">
+      
+      <header class="article-header" data-motion="reveal">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Review protocol</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Image Editing Review Protocol</strong></nav>
+        <p class="eyebrow">Review protocol · Updated 2026-07-15</p>
+        <h1><span class="title-main">Image Editing Review Protocol</span></h1>
+        <p class="article-summary">Frozen scope, search strategy, screening rules, and progression gates for the image-editing review.</p>
+        <div class="tag-row"></div>
+      </header>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#协议状态">协议状态</a></li><li><a href="#研究问题与边界">研究问题与边界</a><ol><li class="toc-sub"><a href="#主问题">主问题</a></li><li class="toc-sub"><a href="#子问题">子问题</a></li><li class="toc-sub"><a href="#纳入范围">纳入范围</a></li><li class="toc-sub"><a href="#排除范围">排除范围</a></li></ol></li><li><a href="#搜索策略-已冻结并启动">搜索策略（已冻结并启动）</a></li><li><a href="#纳入-排除与去重">纳入、排除与去重</a></li><li><a href="#当前-corpus-first-基线">当前 corpus-first 基线</a></li><li><a href="#筛选流">筛选流</a></li><li><a href="#证据矩阵与综合方法">证据矩阵与综合方法</a></li><li><a href="#阶段升级门">阶段升级门</a></li><li><a href="#已知盲区与更新条件">已知盲区与更新条件</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="协议状态">协议状态</h2>
+<ul>
+<li>Topic：<a class="wikilink" href="../../../en/topics/image-editing.html">topics/image-editing</a></li>
+<li>当前阶段：<code>scoped_review</code></li>
+<li>协议冻结日期：2026-07-15</li>
+<li>最后检索：2026-07-15 完成一次定向缺口扫描；详见 <a class="wikilink missing" href="#missing-docs/research-monitoring/daily/2026-07-15-image-editing">docs/research-monitoring/daily/2026-07-15-image-editing</a></li>
+<li>时间窗口：2022—2026，另纳入不可替代的奠基论文</li>
+<li>编译责任：自动任务可发现候选和生成草稿，Hermes 负责正式编译与阶段升级</li>
+</ul>
+<h2 id="研究问题与边界">研究问题与边界</h2>
+<h3 id="主问题">主问题</h3>
+<p>在真实图像的指令式编辑（instruction-based image editing）中，哪些方法和评测协议能够在可控计算成本下，同时提高“该改变内容”的命中率与“未编辑内容”的保持性？</p>
+<h3 id="子问题">子问题</h3>
+<ol>
+<li>反演（inversion）、直接编辑、主体/示例编辑和统一生成—编辑模型分别在哪些输入与预算下占优？</li>
+<li>现有指标能否把编辑命中、背景/身份保持、局部结构、文字与人评区分开？</li>
+<li>少步或一步编辑的端到端收益，在计入反演、引导、解码、训练和失败重试后是否仍成立？</li>
+<li>哪些问题适合中等算力、公开数据和两到三年研究周期，哪些方向已经过于拥挤或依赖不可得资源？</li>
+</ol>
+<h3 id="纳入范围">纳入范围</h3>
+<ul>
+<li>文本指令、参考图、主体、局部区域或结构条件驱动的 2D 图像编辑；</li>
+<li>真实图像反演、编辑保持性、编辑数据与 benchmark、统一生成—编辑、少步/一步编辑；</li>
+<li>会直接改变编辑结论的评测、数据污染、身份/版权与失败模式研究；</li>
+<li>2022—2026 正式论文与高相关预印本，以及少量 2022 年前奠基来源。</li>
+</ul>
+<h3 id="排除范围">排除范围</h3>
+<ul>
+<li>纯文本到图像生成、无源图保持要求的重生成；</li>
+<li>仅讨论视频时间一致性且没有可迁移图像编辑证据的工作；</li>
+<li>只提供产品演示、无法核验方法/数据/评测的页面；</li>
+<li>只在不同底座或不同数据上报告单点提升、无法支撑机制比较的工作；</li>
+<li>重复版本：同一论文优先保留正式会议/期刊版本，预印本作为补充链接。</li>
+</ul>
+<h2 id="搜索策略-已冻结并启动">搜索策略（已冻结并启动）</h2>
+<table><thead><tr><th>来源库</th><th>检索式</th><th>计划用途</th></tr></thead><tbody><tr><td>CVF Open Access</td><td><code>(&quot;image editing&quot; OR &quot;instruction-based image editing&quot; OR &quot;text-guided image editing&quot;) AND (evaluation OR benchmark OR inversion OR consistency)</code></td><td>CVPR / ICCV / WACV 正式论文</td></tr><tr><td>arXiv</td><td><code>all:(image editing) AND (instruction OR inversion OR benchmark OR evaluation OR consistency) AND submittedDate:[20220101 TO 20261231]</code></td><td>最新预印本与正式版本线索</td></tr><tr><td>OpenReview</td><td><code>image editing instruction inversion evaluation benchmark</code>，限定 ICLR / NeurIPS / TMLR</td><td>补充正式评审来源与版本核对</td></tr><tr><td>本地交叉年份目录</td><td><code>image-editing</code>、<code>image-generation</code>、<code>evaluation-benchmark</code> bucket</td><td>corpus-first 去重与缺口发现</td></tr><tr><td>引文追踪</td><td>从 InstructPix2Pix、Prompt-to-Prompt、Null-text Inversion、EditBench、AnyEdit 向前/向后追踪</td><td>奠基与关键反证补全</td></tr></tbody></table>
+<h2 id="纳入-排除与去重">纳入、排除与去重</h2>
+<ul>
+<li>纳入标准：直接回答至少一个子问题；有可核验原文；方法、数据或评测足以抽取；对当前方法族、反证或研究入口有增量。</li>
+<li>排除标准：主题外、重复、无原始证据、仅定性样例且无可核验设置、结论无法与图像编辑区分。</li>
+<li>去重键：DOI → arXiv ID → 规范化标题；正式版本与预印本合并为同一 source note。</li>
+<li>来源优先级：官方论文 PDF / CVF / OpenReview → arXiv → 项目页或官方代码；二级来源不能覆盖主文结论。</li>
+</ul>
+<h2 id="当前-corpus-first-基线">当前 corpus-first 基线</h2>
+<ul>
+<li>Topic 已链接 32 篇 paper source notes；32/32 有本地 PDF、可检索全文和 <code>analysis.md</code>。</li>
+<li>当前语料主要覆盖 2021—2025，其中 30 篇位于 2022—2025。</li>
+<li>逐篇分析深度中位数约 8 KB，明显高于仅有摘要级核验的条目。</li>
+<li>当前主要缺口不是“没有全文”，而是尚无可复现的检索日志、筛选流、排除理由和近 2026 缺口核验。</li>
+<li>图像生成与视频编辑存在少量交叉来源；正式综合时必须区分图像编辑直接证据与跨任务背景。</li>
+</ul>
+<h2 id="筛选流">筛选流</h2>
+<table><thead><tr><th>阶段</th><th>数量</th><th>说明</th></tr></thead><tbody><tr><td>本地候选基线</td><td>32</td><td>当前 Topic source list</td></tr><tr><td>外部初始发现</td><td>10 个优先候选 + 4 个后备</td><td>2026-07-15 定向缺口扫描；不是完整数据库导出，不作为 PRISMA 数量</td></tr><tr><td>去重后</td><td>10 个优先候选</td><td>已完成本地标题级去重；正式版/预印本合并仍待 Hermes 核验</td></tr><tr><td>标题/摘要初筛后</td><td>10</td><td>均直接对应方法、评测、成本或反证子问题</td></tr><tr><td>全文核验后</td><td>0（待编译）</td><td>本轮只做官方元数据、摘要和少量正文片段核验，不把候选冒充全文深读</td></tr><tr><td>核心语料</td><td>现有 32</td><td>新候选尚未进入核心语料；目标仍为 25–40 篇高价值来源，不以凑数为目标</td></tr></tbody></table>
+<h2 id="证据矩阵与综合方法">证据矩阵与综合方法</h2>
+<p>每篇核心论文抽取：任务接口、源图类型、方法家族、是否需要反演、训练数据、评测数据与划分、编辑/保持指标、端到端成本、消融、人评、失败模式、来源等级和对研究入口的影响。综合按“保持—改变、反演—直接编辑、专用—统一、质量—成本、自动指标—人评”五组张力组织。</p>
+<h2 id="阶段升级门">阶段升级门</h2>
+<ul>
+<li>升级到 <code>systematic_review</code>：外部检索与去重完成；所有最终来源通过版本、venue 和原文核验；筛选数与排除理由可复查。</li>
+<li>升级到 <code>decision_ready</code>：完成最强反驳、至少一个反证性 Claim、开放 Questions、A—D 研究入口和资源/止损审查；页面及 Viewer 通过完整质量门。</li>
+</ul>
+<h2 id="已知盲区与更新条件">已知盲区与更新条件</h2>
+<ul>
+<li>2026 年正式会议论文尚未全部进入本地语料；本轮已确认 Inter-Edit、Kontinuous Kontext、ReasonEdit、HP-Edit、IF-Edit 等缺口，必须先核验官方 PDF 再编译。</li>
+<li>2025—2026 新 benchmark 已把连续控制、复杂/隐式指令、多轮退化、人类偏好、指代表达和低负担空间交互带入评测；这些目前只是待验证候选维度。</li>
+<li>闭源商业编辑模型训练数据与成本不可得，只能作为受限背景，不能承担因果结论。</li>
+<li>中文、文字密集图和专业图像数据仍可能不足，应用驱动建议必须标注数据前提。</li>
+<li>下一次更新触发：CVPR / ICCV / ECCV / NeurIPS / ICLR 新论文、关键 benchmark、撤稿/勘误，或直接否定当前保持—改变判断的新证据。</li>
+</ul></section>
+      </div>
+      
+      
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">1</span></h2><ul><li><a href="../../../en/index.html">Index</a><span>Entry</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary><span class="summary-label"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>Metadata</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><pre>{
+  &quot;id&quot;: &quot;review-protocol-image-editing&quot;,
+  &quot;type&quot;: &quot;review_protocol&quot;,
+  &quot;title&quot;: &quot;图像编辑（Image Editing）检索与综合协议&quot;,
+  &quot;title_en&quot;: &quot;Image Editing Review Protocol&quot;,
+  &quot;summary&quot;: &quot;冻结图像编辑调研的问题边界、检索策略、筛选规则与升级条件。&quot;,
+  &quot;summary_en&quot;: &quot;Frozen scope, search strategy, screening rules, and progression gates for the image-editing review.&quot;,
+  &quot;updated&quot;: &quot;2026-07-15&quot;
+}</pre></details>
+    </article>
+  </main>
+</body>
+</html>
