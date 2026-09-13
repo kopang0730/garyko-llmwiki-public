@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Composer:Creative and Controllable Image Synthesis with Composable Conditions">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>Composer:Creative and Controllable Image Synthesis with Composable Conditions · llmwiki</title>
+  <script>try{if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')document.documentElement.classList.add('sidebar-collapsed')}catch(e){}</script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260717-restrained-microinteractions-v12">
+  <script defer src="../../assets/wiki.js?v=20260717-restrained-microinteractions-v12"></script>
+</head>
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-09-13-composer&quot;, &quot;title&quot;: &quot;Composer：可组合条件的统一图像合成&quot;, &quot;title_en&quot;: &quot;Composer: Creative and Controllable Image Synthesis with Composable Conditions&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;diffusion&quot;, &quot;control&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260717-restrained-microinteractions-v12">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar" aria-label="Menu" title="Menu" data-menu-label="Menu" data-close-label="Close menu"><svg class="ui-icon menu-icon menu-icon--open" data-icon="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="ui-icon menu-icon menu-icon--close" data-icon="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="menu-toggle-label">Menu</span></button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
+    <button class="sidebar-collapse-toggle" type="button" aria-expanded="true" aria-controls="sidebar-panel" aria-label="Collapse sidebar" title="Collapse sidebar" data-collapse-label="Collapse sidebar" data-expand-label="Expand sidebar"><svg class="ui-icon sidebar-icon sidebar-icon--collapse" data-icon="panel-left-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/></svg><svg class="ui-icon sidebar-icon sidebar-icon--expand" data-icon="panel-left-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/></svg></button>
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <div class="sidebar-panel" id="sidebar-panel">
+      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">Search llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+      <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/catalog.html">Full paper catalog</a></li>
+<li><a href="../../en/index.html">Research map</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Reading portal</a></li>
+</ul>
+<h2>Foundations</h2><ul>
+<li><a href="../../en/topics/computer-vision-overview.html">Computer Vision Overview</a></li>
+<li><a href="../../en/topics/datasets-metrics-and-benchmark-reliability.html">Datasets &amp; Evaluation</a></li>
+<li><a href="../../en/topics/diffusion-models.html">Diffusion Models</a></li>
+<li><a href="../../en/topics/video-representation-and-temporal-modeling.html">Video Representation</a></li>
+<li><a href="../../en/topics/vision-backbones.html">Vision Backbones</a></li>
+<li><a href="../../en/topics/vision-language-foundations.html">Vision-Language Foundations</a></li>
+<li><a href="../../en/topics/vision-task-foundations.html">Core Vision Tasks</a></li>
+<li><a href="../../en/topics/visual-generation-foundations.html">Visual Generation Foundations</a></li>
+</ul>
+<h2>Research topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">Diffusion Efficiency</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">Generative Model Evaluation</a></li>
+<li><a href="../../en/topics/image-editing.html">Image Editing</a></li>
+<li><a href="../../en/topics/image-generation.html">Image Generation</a></li>
+<li><a href="../../en/topics/image-text-retrieval.html">Image-Text Retrieval</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">Video Editing</a></li>
+<li><a href="../../en/topics/video-generation.html">Video Generation</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">Vision-Language</a></li>
+</ul>
+<h2>Roadmaps</h2><ul>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/clip.html">CLIP 系列模型（CLIP Family）</a></li>
+<li><a href="../../en/entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a></li>
+<li><a href="../../en/entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a></li>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-baseline-and-specialization.html">双塔负责可扩展召回，细粒度模块负责精排与关系匹配</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-composed-query.html">组合式查询是图文检索中可落地且仍有缺口的研究切口</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-compositionality.html">标准图文检索分数不足以证明组合性理解</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-data-quality.html">图文检索的主要瓶颈仍包括数据质量、分布与概念覆盖</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-research-cut.html">图文检索哪个子方向最适合中等算力的研究生项目？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a></li>
+<li><a href="../../en/questions/question-motion-defined-text-human-machine-gap.html">Motion-Defined Text Gap</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
+</ul>
+</nav>
+    </div>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="" href="../../sources/2026-09-13-composer.html">中文</a><a class="selected-lang" href="../../en/sources/2026-09-13-composer.html">English</a></nav><a class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>Article</span></a><a href="../../en/index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>Research map</span></a><a href="../../en/main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>Reading portal</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>Metadata</span></a></header>
+    <article class="article-shell">
+      
+      <header class="article-header" data-motion="reveal">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Composer:Creative and Controllable Image Synthesis with Composable Conditions</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-09-13</p>
+        <h1><span class="title-main">Composer</span><span class="title-subtitle">Creative and Controllable Image Synthesis with Composable Conditions</span></h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-generation">#image-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#control">#control</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICML 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2023-07-03</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-09-13</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://proceedings.mlr.press/v202/huang23b.html" title="https://proceedings.mlr.press/v202/huang23b.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>proceedings.mlr.press · huang23b.html</strong></a><a class="source-link source-link-pdf" href="https://proceedings.mlr.press/v202/huang23b/huang23b.pdf" title="https://proceedings.mlr.press/v202/huang23b/huang23b.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>proceedings.mlr.press · huang23b.pdf</strong></a><a class="source-link source-link-code" href="https://github.com/ali-vilab/composer" title="https://github.com/ali-vilab/composer" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · composer</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#核心实验与结果">核心实验与结果</a></li><li><a href="#数据-成本与公平比较">数据、成本与公平比较</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#对当前wiki判断的影响">对当前Wiki判断的影响</a></li><li><a href="#原始链接与材料">原始链接与材料</a></li><li><a href="#sources">Sources</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>Composer证明八类条件可以接入同一扩散系统、重写多种生成与编辑任务；但随机条件丢弃的总体偏好优势不等于每任务最优，也不足以证明严格训练外组合泛化。[2]</p>
+<h2 id="问题定义">问题定义</h2>
+<p>文本往往不能同时准确指定形状、布局、颜色与身份。Composer先把图像分解成可独立选择的条件，再用统一生成器重组；问题从“多一个控制器”变成条件暴露、条件冲突和任务取舍。[2]</p>
+<h2 id="方法概述">方法概述</h2>
+<ul>
+<li><strong>底座</strong>：GLIDE式U-Net在64×64像素空间生成，再用两级扩散超分至256和1024；不是DiT，也不是VAE潜空间Stable Diffusion。附录中另一个Latent-Composer工程计划不能当作此论文实现。[2][5]</li>
+<li><strong>八类条件</strong>：caption、CLIP图像嵌入、CIELab色彩直方图、sketch、实例分割、depth、灰度intensity、masked RGB+mask；依赖CLIP、YOLOv5和深度估计器等外部提取。[2]</li>
+<li><strong>注入</strong>：全局条件进入timestep embedding和cross-attention；局部条件卷积投影后求和，与噪声图拼接。两个条件集合之间的CFG差分调节强调方向；真实图重配置另用DDIM inversion。[2]</li>
+<li><strong>训练</strong>：逐条件dropout默认0.5，intensity为0.7，另设全丢/全保留概率各0.1。缺明确操作顺序；不能据这些数字推定完整训练组合分布。[2]</li>
+</ul>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<table><thead><tr><th>证据</th><th>正式全文结果</th><th>不能推出什么</th></tr></thead><tbody><tr><td>COCO文生图，§3.5</td><td>FID 9.2、CLIP 0.28；prior/base/首级超分100/50/20步</td><td>不能证明布局、颜色、身份或冲突遵循；split、样本量和CI未交代</td></tr><tr><td>Table2四策略偏好</td><td>Overall依次0.220/0.352/0.198/0.230，对应dropout0.3/0.5/0.7/人工设计</td><td>0.352是四选一偏好频率，不是准确率或两模型胜率</td></tr><tr><td>逐任务反例</td><td>文生图人工设计0.36高于0.5策略0.33；文本+空间0.7策略0.36高于0.5策略0.23</td><td>总体最佳并非所有任务最佳，缺CI不能宣称显著差异</td></tr><tr><td>组合外推消融</td><td>附录C人工策略仅用单/双条件训练，试图处理更多条件</td><td>未给严格held-out清单、组合阶数分组或来源独立评测</td></tr></tbody></table>
+<p>以上均来自正式PDF §3.5与附录C；人评每任务50样本、各模型相同seed，未写参与人数、盲法、agreement或置信区间。[2]</p>
+<p><img src="../../raw/ingest/2026-09-13-composer/page-previews/page-14.png" alt="Composer官方附录Table2与Fig9：总体最优不等于逐任务最优" loading="lazy"></p>
+<p>图为官方PDF第14页。Fig9权重中存在3.0和1.2，不能直接解读为归一化概率。正文确有单/双条件训练的外推尝试，因此批评应是“缺严格组合评测”，而不是“完全没有考虑组合外推”。[2]</p>
+<h2 id="数据-成本与公平比较">数据、成本与公平比较</h2>
+<p>约1B训练图来自ImageNet21K、WebVision与过滤LAION；base先1M steps预训练再在60M子集做200K联合微调。模型为2B base、1.1B/300M两级超分、1B可选prior。按论文名义参数和batch/steps计算，四模块合计4.4B参数、约63.488亿次训练样本呈现；不是63.488亿独立图像，也不是算力测量。[2]</p>
+<p>未报告GPU-hours、端到端延迟、峰值显存、提取器或人评成本。Table1给末级超分10步；编辑需额外inversion，不能只看base步数。作者过滤重复不等于证明COCO测试去重；CLIP输入与CLIP score同源，污染和评价耦合仍需审计。[2]</p>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ol>
+<li><strong>条件压制</strong>：文本常输给图像嵌入、sketch或depth；缺global embedding时图像偏暗。冲突并没有用户优先级保证。[2]</li>
+<li><strong>任务取舍</strong>：上色可能只改背景/光照，风格与语义纠缠，部分风格任务早停优于最终checkpoint，试穿仅moderate。[2]</li>
+<li><strong>证据不足</strong>：主要消融集中于dropout，缺同数据/预算专用模型、逐条件移除和提取器消融；精选多条件图不是严格泛化统计。[2]</li>
+<li><strong>局部保持不是数学保证</strong>：mask条件化样例不足以证明编辑区外像素完全不变，应检查区域误差或显式合成机制。[2]</li>
+<li><strong>可复现性</strong>：官方README快照仍把代码、权重、Gradio列TODO；5B宣传口径与论文分模块计数不同。旧项目URL返回404，已从官方仓库确认迁移后地址。不声称模型已复现。[5]</li>
+</ol>
+<h2 id="对当前wiki判断的影响">对当前Wiki判断的影响</h2>
+<p><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a>应把统一控制拆成“接口可组合、训练暴露、冲突仲裁、遵循评测、逐任务退化”，而不是按条件数量判断成熟度。<a class="wikilink" href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a>继续开放：需固定底座和数据，对照随机dropout、单/双条件训练和专用控制器，按seen/unseen组合阶数给出人评区间与成本。此为综合建议，未执行新模型实验。</p>
+<h2 id="原始链接与材料">原始链接与材料</h2>
+<ul>
+<li><a href="https://proceedings.mlr.press/v202/huang23b.html">正式论文页</a>；<a href="https://proceedings.mlr.press/v202/huang23b/huang23b.pdf">官方21页PDF（内含附录）</a>。[1][2]</li>
+<li><a href="https://github.com/ali-vilab/composer">官方仓库</a>；<a href="https://ali-vilab.github.io/composer-page/">迁移后项目页</a>。[5]</li>
+<li><a href="https://arxiv.org/abs/2302.09778">arXiv版本历史</a>：v1 2023-02-20，v2 2023-02-22；正式论文DOI未见于PMLR记录，不以arXiv DOI替代。[1][3]</li>
+<li>本地原始PDF、HTML、全文、README、独立analysis.md保存在raw_entry；正文结论以官方PDF为主。</li>
+</ul>
+<h2 id="sources">Sources</h2>
+<p>[1] https://proceedings.mlr.press/v202/huang23b.html</p>
+<p>[2] https://proceedings.mlr.press/v202/huang23b/huang23b.pdf</p>
+<p>[3] https://arxiv.org/abs/2302.09778</p>
+<p>[5] https://github.com/ali-vilab/composer</p></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-generation.html">Image Generation</a></li></ul></div><div class="related-group related-questions"><h3>Related questions<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">3</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a><span>Question</span></li><li><a href="../../en/topics/image-generation.html">Image Generation</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary><span class="summary-label"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>Metadata</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><pre>{
+  &quot;id&quot;: &quot;2026-09-13-composer&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;Composer：可组合条件的统一图像合成&quot;,
+  &quot;title_en&quot;: &quot;Composer: Creative and Controllable Image Synthesis with Composable Conditions&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-09-13&quot;,
+  &quot;updated&quot;: &quot;2026-09-13&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;venue&quot;: &quot;ICML 2023&quot;,
+  &quot;authors&quot;: [
+    &quot;Lianghua Huang&quot;,
+    &quot;Di Chen&quot;,
+    &quot;Yu Liu&quot;,
+    &quot;Yujun Shen&quot;,
+    &quot;Deli Zhao&quot;,
+    &quot;Jingren Zhou&quot;
+  ],
+  &quot;published_at&quot;: &quot;2023-07-03&quot;,
+  &quot;ingested_at&quot;: &quot;2026-09-13&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://proceedings.mlr.press/v202/huang23b.html&quot;,
+    &quot;https://proceedings.mlr.press/v202/huang23b/huang23b.pdf&quot;,
+    &quot;https://github.com/ali-vilab/composer&quot;,
+    &quot;https://ali-vilab.github.io/composer-page/&quot;,
+    &quot;https://arxiv.org/abs/2302.09778&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-09-13-composer/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-generation&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: [
+    &quot;questions/question-will-unified-image-models-sustain-their-advantage&quot;
+  ],
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-generation&quot;,
+    &quot;diffusion&quot;,
+    &quot;control&quot;,
+    &quot;primary-source&quot;
+  ]
+}</pre></details>
+    </article>
+  </main>
+</body>
+</html>
