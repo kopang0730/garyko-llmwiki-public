@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="LoL:Longer than Longer, Scaling Video Generation to Hour">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>LoL:Longer than Longer, Scaling Video Generation to Hour · llmwiki</title>
+  <script>try{if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')document.documentElement.classList.add('sidebar-collapsed')}catch(e){}</script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260717-restrained-microinteractions-v12">
+  <script defer src="../../assets/wiki.js?v=20260717-restrained-microinteractions-v12"></script>
+</head>
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-09-16-lol&quot;, &quot;title&quot;: &quot;LoL：缓解流式视频的汇聚帧回退，不等于解决长期记忆&quot;, &quot;title_en&quot;: &quot;LoL: Longer than Longer, Scaling Video Generation to Hour&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-generation&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260717-restrained-microinteractions-v12">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar" aria-label="Menu" title="Menu" data-menu-label="Menu" data-close-label="Close menu"><svg class="ui-icon menu-icon menu-icon--open" data-icon="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="ui-icon menu-icon menu-icon--close" data-icon="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="menu-toggle-label">Menu</span></button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
+    <button class="sidebar-collapse-toggle" type="button" aria-expanded="true" aria-controls="sidebar-panel" aria-label="Collapse sidebar" title="Collapse sidebar" data-collapse-label="Collapse sidebar" data-expand-label="Expand sidebar"><svg class="ui-icon sidebar-icon sidebar-icon--collapse" data-icon="panel-left-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/></svg><svg class="ui-icon sidebar-icon sidebar-icon--expand" data-icon="panel-left-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/></svg></button>
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <div class="sidebar-panel" id="sidebar-panel">
+      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">Search llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+      <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/catalog.html">Full paper catalog</a></li>
+<li><a href="../../en/index.html">Research map</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Reading portal</a></li>
+</ul>
+<h2>Foundations</h2><ul>
+<li><a href="../../en/topics/computer-vision-overview.html">Computer Vision Overview</a></li>
+<li><a href="../../en/topics/datasets-metrics-and-benchmark-reliability.html">Datasets &amp; Evaluation</a></li>
+<li><a href="../../en/topics/diffusion-models.html">Diffusion Models</a></li>
+<li><a href="../../en/topics/video-representation-and-temporal-modeling.html">Video Representation</a></li>
+<li><a href="../../en/topics/vision-backbones.html">Vision Backbones</a></li>
+<li><a href="../../en/topics/vision-language-foundations.html">Vision-Language Foundations</a></li>
+<li><a href="../../en/topics/vision-task-foundations.html">Core Vision Tasks</a></li>
+<li><a href="../../en/topics/visual-generation-foundations.html">Visual Generation Foundations</a></li>
+</ul>
+<h2>Research topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">Diffusion Efficiency</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">Generative Model Evaluation</a></li>
+<li><a href="../../en/topics/image-editing.html">Image Editing</a></li>
+<li><a href="../../en/topics/image-generation.html">Image Generation</a></li>
+<li><a href="../../en/topics/image-text-retrieval.html">Image-Text Retrieval</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">Video Editing</a></li>
+<li><a href="../../en/topics/video-generation.html">Video Generation</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">Vision-Language</a></li>
+</ul>
+<h2>Roadmaps</h2><ul>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/clip.html">CLIP 系列模型（CLIP Family）</a></li>
+<li><a href="../../en/entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a></li>
+<li><a href="../../en/entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a></li>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-baseline-and-specialization.html">双塔负责可扩展召回，细粒度模块负责精排与关系匹配</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-composed-query.html">组合式查询是图文检索中可落地且仍有缺口的研究切口</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-compositionality.html">标准图文检索分数不足以证明组合性理解</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-data-quality.html">图文检索的主要瓶颈仍包括数据质量、分布与概念覆盖</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-research-cut.html">图文检索哪个子方向最适合中等算力的研究生项目？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a></li>
+<li><a href="../../en/questions/question-motion-defined-text-human-machine-gap.html">Motion-Defined Text Gap</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
+</ul>
+</nav>
+    </div>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="" href="../../sources/2026-09-16-lol.html">中文</a><a class="selected-lang" href="../../en/sources/2026-09-16-lol.html">English</a></nav><a class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>Article</span></a><a href="../../en/index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>Research map</span></a><a href="../../en/main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>Reading portal</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>Metadata</span></a></header>
+    <article class="article-shell">
+      
+      <header class="article-header" data-motion="reveal">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>LoL:Longer than Longer, Scaling Video Generation to Hour</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-09-16</p>
+        <h1><span class="title-main">LoL</span><span class="title-subtitle">Longer than Longer, Scaling Video Generation to Hour</span></h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-generation">#video-generation</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2026</dd></div><div class="source-fact"><dt>Published</dt><dd>2026-06-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-09-16</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2026/html/Cui_LoL_Longer_than_Longer_Scaling_Video_Generation_to_Hour_CVPR_2026_paper.html" title="https://openaccess.thecvf.com/content/CVPR2026/html/Cui_LoL_Longer_than_Longer_Scaling_Video_Generation_to_Hour_CVPR_2026_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Cui_LoL_Longer_than_Longer_Scal…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2026/papers/Cui_LoL_Longer_than_Longer_Scaling_Video_Generation_to_Hour_CVPR_2026_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2026/papers/Cui_LoL_Longer_than_Longer_Scaling_Video_Generation_to_Hour_CVPR_2026_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Cui_LoL_Longer_than_Longer_Scal…</strong></a><a class="source-link source-link-code" href="https://github.com/justincui03/LoL" title="https://github.com/justincui03/LoL" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · LoL</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#关键发现">关键发现</a><ol><li class="toc-sub"><a href="#重复与动态必须联合验收">重复与动态必须联合验收</a></li><li class="toc-sub"><a href="#表间基线不能直接合并">表间基线不能直接合并</a></li><li class="toc-sub"><a href="#消融支持特定机制-但不是普遍定理">消融支持特定机制，但不是普遍定理</a></li></ol></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li><li><a href="#备注">备注</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>LoL用多头旋转位置编码扰动（multi-head RoPE jitter）降低指定流式视频模型对初始汇聚帧的突然回退，同时保留较高动态；75/100秒定量结果、12小时演示和长期语义记忆必须分别看待。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>LongLive和Self-Forcing++保留初始注意力汇聚帧（attention sink frames）的KV，提升局部自回归生成的稳定性，却会在特定latent位置重新生成初始内容。论文称之为汇聚帧塌缩（sink-collapse），与一般模糊、曝光漂移、身份遗忘或事件断裂不是同一个失效维度（§3.2，图2/3）。</p>
+<h2 id="方法概述">方法概述</h2>
+<ol>
+<li><strong>定位失效：</strong>对sink的归一化L2距离骤降，伴随多时间频率相位集中及多个attention heads同时关注sink；不同prompt在类似位置回退。</li>
+<li><strong>错开各头：</strong>算法1让每头的RoPE base围绕10000独立扰动，θ_h=θ_0(1+σε_h)，ε_h取均匀分布；σ=0.8为经验折中。不额外训练。</li>
+<li><strong>流式延伸：</strong>动态生成RoPE和噪声，保留局部注意力，因果VAE滑窗解码，绕开原实现1024 latent位置及整段解码限制（§3.4）。这是一种运行机制，不是无限质量保证。</li>
+</ol>
+<p>设置为1.3B底座、local window 12、sink 3，chunk 3；正文指latent帧，不能理解为只有三个空间token。算法未提供可运行缓存实现，扰动采样与KV一致性仍待代码复核。</p>
+<h2 id="关键发现">关键发现</h2>
+<h3 id="重复与动态必须联合验收">重复与动态必须联合验收</h3>
+<p>128条MovieGen提示、VBench式指标；表1为100秒，以下为论文原值。Sink-Collapse Max/Avg衡量L2距离下降，不是失败率百分比。</p>
+<table><thead><tr><th>方法</th><th>Collapse Max↓</th><th>Collapse Avg↓</th><th>Dynamic↑</th><th>Temporal</th><th>Text</th></tr></thead><tbody><tr><td>LongLive PE</td><td>73.06</td><td>30.54</td><td>34.62</td><td>88.56</td><td>28.09</td></tr><tr><td>LongLive LoL</td><td>16.67</td><td>3.93</td><td>35.27</td><td>88.69</td><td>27.80</td></tr><tr><td>LongLive PI</td><td>4.97</td><td>2.27</td><td>0.35</td><td>85.25</td><td>24.62</td></tr><tr><td>Self-Forcing++ PE</td><td>68.07</td><td>34.11</td><td>83.32</td><td>93.14</td><td>27.62</td></tr><tr><td>Self-Forcing++ LoL</td><td>22.70</td><td>6.12</td><td>81.20</td><td>92.91</td><td>27.38</td></tr><tr><td>Self-Forcing++ PI</td><td>17.07</td><td>2.62</td><td>1.95</td><td>84.66</td><td>26.51</td></tr></tbody></table>
+<p>PI虽有更低collapse代理值，但动态接近静止；LoL更值得关注的是取舍，而不是单指标最佳。Self-Forcing++的动态、文本及时间质量均有小幅数值下降，不能写全面无损；论文未给主表显著性。</p>
+<p><img src="../../raw/ingest/2026-09-16-lol/page-previews/page-06.png" alt="官方表1：100秒重复—动态取舍" loading="lazy"></p>
+<h3 id="表间基线不能直接合并">表间基线不能直接合并</h3>
+<p>表2在75/100秒对比多种自回归模型，但100秒Self-Forcing++的Dynamic为54.12，表1PE为83.32；Temporal分别90.87与93.14，Text分别26.04与27.62。LoL对应三项则一致为81.20、92.91、27.38。两种基线设置的差异未充分解释，不能把表2提升直接当作与表1同设置的纯jitter收益，也不能自行判为印刷错误。</p>
+<p>表2的Framewise Quality与表1Imaging Quality不是同一列。Self-Forcing++在100秒Framewise为60.66→60.25；LongLive为64.05→63.76，不支持所有质量均提高。</p>
+<p><img src="../../raw/ingest/2026-09-16-lol/page-previews/page-07.png" alt="官方表2：异构基线与口径边界" loading="lazy"></p>
+<h3 id="消融支持特定机制-但不是普遍定理">消融支持特定机制，但不是普遍定理</h3>
+<p>图5单频及邻近频率修正未消除回退；图6统一改base主要移动回退位置；图7扰动太小不足、太大损害运动/质量；图8扰动更多头更有效，并对头比例试验给三随机种子标准差。只有后者明确三种子，不应把其不确定性报告推广至全部实验。</p>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ul>
+<li><strong>时长不等于记忆：</strong>主表是75/100秒，尚未越过论文所述原实现约4分15秒的位置上限；图1和补充ZIP给12小时快放演示，不含小时级多提示多种子质量曲线或身份/事件记忆测试。§6明确长期记忆仍难。</li>
+<li><strong>指标不等于语义失败：</strong>sink-L2骤降不区分不合理复制与合理回访，缺完整可执行的归一化/下降窗口定义；不能换算崩溃概率。静态高一致性亦可掩盖低动态。</li>
+<li><strong>比较并非完全同预算：</strong>两种主要底座共享Wan系先验；表2异构模型不构成架构因果实验。位置插值基线L取首次回退前的index（例132），需公开并固定该选择。</li>
+<li><strong>统计单位：</strong>128提示而非所有帧独立；没有主表完整种子、聚类CI、独立人评协议或底座数据重叠审计。不能由已有VBench人类对齐推断本论文做了新盲评。</li>
+<li><strong>成本：</strong>单H100约20生成fps是实现段引用LongLive的吞吐，视频时长按16播放fps解释；没有LoL端到端P50/P95、峰值显存与VAE/写盘账本。训练免费不包含底座训练，固定窗口也不意味着输出总成本常数。</li>
+<li><strong>实现未交付：</strong>2026-09-16核验作者仓库commit <code>245c8440665f4b109d2c138839df8edfb68856f2</code>，完整tree只有README与GIF，无LoL推理/评测代码。官方ZIP是视频示例，无补充PDF或脚本；本轮只核验目录/CRC，未完整观看小时级内容。</li>
+</ul>
+<p>最有决策价值的下一步：固定原模型/PE/LoL设置，在100秒、超过1024 latent位置及小时级多长度上联合测首次回退、动态、身份重现、事件顺序与成本，按prompt聚类报告不确定性，并加入合法回访负对照。</p>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2026/html/Cui_LoL_Longer_than_Longer_Scaling_Video_Generation_to_Hour_CVPR_2026_paper.html">CVF正式论文页</a></li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2026/papers/Cui_LoL_Longer_than_Longer_Scaling_Video_Generation_to_Hour_CVPR_2026_paper.pdf">官方11页PDF</a></li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2026/supplemental/Cui_LoL_Longer_than_CVPR_2026_supplemental.zip">官方补充视频ZIP</a></li>
+<li><a href="https://github.com/justincui03/LoL">作者仓库</a> / <a href="https://github.com/justincui03/LoL/tree/245c8440665f4b109d2c138839df8edfb68856f2">核验固定版本</a></li>
+<li><a href="https://arxiv.org/abs/2601.16914">arXiv版本记录</a>：本轮显示v1；正式DOI官方页未列，不以arXiv DOI替代。</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/video-generation.html">topics/video-generation</a>：流式执行、无回退与长期记忆三层验收。</li>
+<li><a class="wikilink" href="../../en/sources/2026-04-12-streamingt2v.html">sources/2026-04-12-streamingt2v</a>：长短期记忆的邻近路线，不构成本论文同条件对照。</li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>完整独立审计和页码定位保存在raw条目analysis.md。源文件与提取文本均保留；本文解释不替代原始证据，未将预印本参考文献自动纳入正式语料。</p></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/topics/video-generation.html">Video Generation</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">2</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/video-generation.html">Video Generation</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary><span class="summary-label"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>Metadata</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><pre>{
+  &quot;id&quot;: &quot;2026-09-16-lol&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;LoL：缓解流式视频的汇聚帧回退，不等于解决长期记忆&quot;,
+  &quot;title_en&quot;: &quot;LoL: Longer than Longer, Scaling Video Generation to Hour&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-09-16&quot;,
+  &quot;updated&quot;: &quot;2026-09-16&quot;,
+  &quot;venue&quot;: &quot;CVPR 2026&quot;,
+  &quot;ingested_at&quot;: &quot;2026-09-16&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-generation&quot;,
+    &quot;diffusion&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Justin Cui&quot;,
+    &quot;Jie Wu&quot;,
+    &quot;Ming Li&quot;,
+    &quot;Tao Yang&quot;,
+    &quot;Xiaojie Li&quot;,
+    &quot;Rui Wang&quot;,
+    &quot;Andrew Bai&quot;,
+    &quot;Yuanhao Ban&quot;,
+    &quot;Cho-Jui Hsieh&quot;
+  ],
+  &quot;published_at&quot;: &quot;2026-06-01&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/CVPR2026/html/Cui_LoL_Longer_than_Longer_Scaling_Video_Generation_to_Hour_CVPR_2026_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2026/papers/Cui_LoL_Longer_than_Longer_Scaling_Video_Generation_to_Hour_CVPR_2026_paper.pdf&quot;,
+    &quot;https://github.com/justincui03/LoL&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-09-16-lol/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/video-generation&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></details>
+    </article>
+  </main>
+</body>
+</html>
