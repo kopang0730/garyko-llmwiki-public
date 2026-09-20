@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ELV-Halluc:Semantic Aggregation Hallucinations">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>ELV-Halluc:Semantic Aggregation Hallucinations · llmwiki</title>
+  <script>try{if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')document.documentElement.classList.add('sidebar-collapsed')}catch(e){}</script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260717-restrained-microinteractions-v12">
+  <script defer src="../../assets/wiki.js?v=20260717-restrained-microinteractions-v12"></script>
+</head>
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-09-20-elv-halluc&quot;, &quot;title&quot;: &quot;ELV-Halluc：跨事件语义绑定与幻觉诊断&quot;, &quot;title_en&quot;: &quot;ELV-Halluc: Semantic Aggregation Hallucinations&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260717-restrained-microinteractions-v12">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar" aria-label="Menu" title="Menu" data-menu-label="Menu" data-close-label="Close menu"><svg class="ui-icon menu-icon menu-icon--open" data-icon="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="ui-icon menu-icon menu-icon--close" data-icon="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="menu-toggle-label">Menu</span></button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
+    <button class="sidebar-collapse-toggle" type="button" aria-expanded="true" aria-controls="sidebar-panel" aria-label="Collapse sidebar" title="Collapse sidebar" data-collapse-label="Collapse sidebar" data-expand-label="Expand sidebar"><svg class="ui-icon sidebar-icon sidebar-icon--collapse" data-icon="panel-left-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/></svg><svg class="ui-icon sidebar-icon sidebar-icon--expand" data-icon="panel-left-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/></svg></button>
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <div class="sidebar-panel" id="sidebar-panel">
+      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">Search llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+      <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/catalog.html">Full paper catalog</a></li>
+<li><a href="../../en/index.html">Research map</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Reading portal</a></li>
+</ul>
+<h2>Foundations</h2><ul>
+<li><a href="../../en/topics/computer-vision-overview.html">Computer Vision Overview</a></li>
+<li><a href="../../en/topics/datasets-metrics-and-benchmark-reliability.html">Datasets &amp; Evaluation</a></li>
+<li><a href="../../en/topics/diffusion-models.html">Diffusion Models</a></li>
+<li><a href="../../en/topics/video-representation-and-temporal-modeling.html">Video Representation</a></li>
+<li><a href="../../en/topics/vision-backbones.html">Vision Backbones</a></li>
+<li><a href="../../en/topics/vision-language-foundations.html">Vision-Language Foundations</a></li>
+<li><a href="../../en/topics/vision-task-foundations.html">Core Vision Tasks</a></li>
+<li><a href="../../en/topics/visual-generation-foundations.html">Visual Generation Foundations</a></li>
+</ul>
+<h2>Research topics</h2><ul>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">Diffusion Efficiency</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">Generative Model Evaluation</a></li>
+<li><a href="../../en/topics/image-editing.html">Image Editing</a></li>
+<li><a href="../../en/topics/image-generation.html">Image Generation</a></li>
+<li><a href="../../en/topics/image-text-retrieval.html">Image-Text Retrieval</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">Video Editing</a></li>
+<li><a href="../../en/topics/video-generation.html">Video Generation</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">Vision-Language</a></li>
+</ul>
+<h2>Roadmaps</h2><ul>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/clip.html">CLIP 系列模型（CLIP Family）</a></li>
+<li><a href="../../en/entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a></li>
+<li><a href="../../en/entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a></li>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-baseline-and-specialization.html">双塔负责可扩展召回，细粒度模块负责精排与关系匹配</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-composed-query.html">组合式查询是图文检索中可落地且仍有缺口的研究切口</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-compositionality.html">标准图文检索分数不足以证明组合性理解</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-data-quality.html">图文检索的主要瓶颈仍包括数据质量、分布与概念覆盖</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-research-cut.html">图文检索哪个子方向最适合中等算力的研究生项目？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a></li>
+<li><a href="../../en/questions/question-motion-defined-text-human-machine-gap.html">Motion-Defined Text Gap</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
+</ul>
+</nav>
+    </div>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="" href="../../sources/2026-09-20-elv-halluc.html">中文</a><a class="selected-lang" href="../../en/sources/2026-09-20-elv-halluc.html">English</a></nav><a class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>Article</span></a><a href="../../en/index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>Research map</span></a><a href="../../en/main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>Reading portal</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>Metadata</span></a></header>
+    <article class="article-shell">
+      
+      <header class="article-header" data-motion="reveal">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>ELV-Halluc:Semantic Aggregation Hallucinations</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-09-20</p>
+        <h1><span class="title-main">ELV-Halluc</span><span class="title-subtitle">Semantic Aggregation Hallucinations</span></h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#benchmarking">#benchmarking</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2026</dd></div><div class="source-fact"><dt>Published</dt><dd>2026-06-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-09-20</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2026/html/Lu_ELV-Halluc_Benchmarking_Semantic_Aggregation_Hallucinations_in_Video_Understanding_CVPR_2026_paper.html" title="https://openaccess.thecvf.com/content/CVPR2026/html/Lu_ELV-Halluc_Benchmarking_Semantic_Aggregation_Hallucinations_in_Video_Understanding_CVPR_2026_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Lu_ELV-Halluc_Benchmarking_Sema…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2026/papers/Lu_ELV-Halluc_Benchmarking_Semantic_Aggregation_Hallucinations_in_Video_Understanding_CVPR_2026_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2026/papers/Lu_ELV-Halluc_Benchmarking_Semantic_Aggregation_Hallucinations_in_Video_Understanding_CVPR_2026_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Lu_ELV-Halluc_Benchmarking_Sema…</strong></a><a class="source-link source-link-code" href="https://github.com/hlsv02/ELV-Halluc/tree/40a193b876e337e651202c14191ac927734f04be" title="https://github.com/hlsv02/ELV-Halluc/tree/40a193b876e337e651202c14191ac927734f04be" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · 40a193b876e337e651202c14191ac92…</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义与方法概述">问题定义与方法概述</a></li><li><a href="#关键发现与核心实验">关键发现与核心实验</a></li><li><a href="#公开数据与实现审计">公开数据与实现审计</a></li><li><a href="#局限-成本与版本">局限、成本与版本</a></li><li><a href="#对当前wiki判断的影响">对当前Wiki判断的影响</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#sources">Sources</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>ELV-Halluc把“看见真实元素但绑定错事件”变成可测负例，但<strong>低SAH比率不等于可靠回答</strong>；in-video DPO的最佳SAH降幅和out-video DPO的最佳通用分数增益属于不同配置，混合8K并未降低SAH。[1]</p>
+<h2 id="问题定义与方法概述">问题定义与方法概述</h2>
+<p>语义聚合幻觉（Semantic Aggregation Hallucination，SAH）关注跨事件错误组合。基准为每个真实描述生成同视频其他事件的替换描述（in-video）和未见于caption集合的替换描述（out-video），覆盖细节、对象、动作与陈述内容。真/假问题都答对才算一个对抗对成功；不是自由文本幻觉率。（§3）[1]</p>
+<p>测试集含200视频、4800个二元问题、1600三元组及3200共享GT的对抗对，平均视频672.4秒；348个筛选视频中另外148个留作训练。Gemini起草caption、人类纠正，GPT-4o生成/复查负例；captioner使用音频和视觉，负例验证主要基于描述文本。（正文表1、补充图24–29）[1][2]</p>
+<h2 id="关键发现与核心实验">关键发现与核心实验</h2>
+<p>式1为<code>SAH=(OutAcc−InAcc)/(1−InAcc)</code>，In/Out用0–1准确率。它是差值代理，不能独立识别跨事件错误的因果占比。[1]</p>
+<table><thead><tr><th>表4配置</th><th>ELV Acc</th><th>SAH↓</th><th>VideoMME↑</th></tr></thead><tbody><tr><td>Qwen2.5-VL-7B基线</td><td>15.9</td><td>8.3</td><td>61.9</td></tr><tr><td>in-video 4K</td><td>16.2</td><td>6.0</td><td>62.3</td></tr><tr><td>out-video 4K</td><td>16.0</td><td>8.6</td><td>62.8</td></tr><tr><td>mixed 8K</td><td>16.4</td><td>8.4</td><td>62.4</td></tr></tbody></table>
+<p>in-video降低SAH相对27.7%，但VideoMME仅增0.4点；out-video增加VideoMME0.9点却恶化SAH；mixed的SAH高于基线。不能把摘要/结论最佳数值拼成同一模型收益。（正文p.8，计算已复核）[1]</p>
+<p><img src="../../raw/ingest/2026-09-20-elv-halluc/page-previews/page-08.png" alt="官方表4与配置收益边界" loading="lazy"></p>
+<p>增帧通常改善整体准确率却可能提高SAH比率；这不等于SAH绝对错误数必增。Video-RoPE的低SAH伴随很低的In/Out成功率；模型级相关和注意力热图不能替代机制因果对照。（§4–5）[1]</p>
+<h2 id="公开数据与实现审计">公开数据与实现审计</h2>
+<p>固定作者仓库<code>40a193b876e337e651202c14191ac927734f04be</code>，实际下载并解析测试/DPO文件，使用合成回答执行评测核心逻辑；保留原始代码，只在测试架构中替换输入路径、移除未使用的绘图库导入。[4]</p>
+<ul>
+<li>测试4800行/200视频与论文一致，三元组顺序和分组全部通过；<code>(video,question)</code>独特组合4201，不能把共享GT等重复直接当错误。</li>
+<li>公开DPO为8270行/139视频文件名，不自动等于论文的148视频实验manifest；与测试精确文件名交集为空，但不证明父节目、重复上传或预训练无重叠。</li>
+<li>README称添加<code>model_response</code>即可评测，但全部测试行没有代码要求的<code>ref_answer</code>；实测仅加response触发<code>KeyError</code>。</li>
+<li>补齐标签后，全No/全Yes均给In/Out=0、SAH=0；完美三元组则在SAH计算处除零。这是可复现退化边界，不是模型真实实验结果。</li>
+<li>子串解析把<code>No, yesterday was different</code>判yes、<code>unknown</code>判no。需严格答案解析、invalid统计和完整分母，不能据此臆测论文排名受影响的幅度。</li>
+</ul>
+<p>完整审计与输出见<a class="wikilink missing" href="#missing-raw/ingest/2026-09-20-elv-halluc/analysis">独立全文分析</a>及同目录<code>metric-audit.py</code>、<code>metric-audit-results.json</code>。</p>
+<h2 id="局限-成本与版本">局限、成本与版本</h2>
+<ul>
+<li>源视频是聚类单位，4800问题不是独立样本；四模型三次稳定性试验存在，但没有完整源视频聚类区间、DPO显著性及独立人类上界。人类修订不等于人类效度验证。[1][2]</li>
+<li>in/out负例难度、熟悉度和可见性未完全匹配；caption未写不等于像素不存在。Gemini参与生成且被测，表2明确警告公平性；GPT家族亦跨角色。[1][2]</li>
+<li>主表帧预算不等：Qwen最多256、InternVL3最多64、GPT-4o50。DPO评测64帧，训练H100/1epoch/batch16/lr1e-6/32768序列；GPU数、总GPU-hours、延迟、峰值显存、API与人工总成本未报。[2]</li>
+<li>正式题名不含Long，旧稿/README含Long；DOI尚未精确核验。表3引用VRoPE/VideoRoPE错配，补充相关性文字0.83/热图0.88及mixed收益叙述冲突保留，不静默修正。[1][2][3]</li>
+</ul>
+<h2 id="对当前wiki判断的影响">对当前Wiki判断的影响</h2>
+<p><a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a>应把证据覆盖和事件绑定分开验收：返回正确片段仍需排除跨事件错接，报告GT接受率、In/Out成对成功率、SAH及无效回答率。先修复manifest/解析/分母、按源视频给区间，再进行同预算干预；不把低比率当作无幻觉结论。与<a class="wikilink" href="../../en/topics/datasets-metrics-and-benchmark-reliability.html">topics/datasets-metrics-and-benchmark-reliability</a>的指标效度边界一致；不外推为视频剪辑叙事理解证据。</p>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2026/html/Lu_ELV-Halluc_Benchmarking_Semantic_Aggregation_Hallucinations_in_Video_Understanding_CVPR_2026_paper.html">CVF正式页</a></li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2026/papers/Lu_ELV-Halluc_Benchmarking_Semantic_Aggregation_Hallucinations_in_Video_Understanding_CVPR_2026_paper.pdf">正文PDF</a></li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2026/supplemental/Lu_ELV-Halluc_Benchmarking_Semantic_CVPR_2026_supplemental.pdf">补充PDF</a></li>
+<li><a href="https://github.com/hlsv02/ELV-Halluc/tree/40a193b876e337e651202c14191ac927734f04be">作者仓库固定版本</a></li>
+</ul>
+<h2 id="sources">Sources</h2>
+<p>[1] https://openaccess.thecvf.com/content/CVPR2026/papers/Lu_ELV-Halluc_Benchmarking_Semantic_Aggregation_Hallucinations_in_Video_Understanding_CVPR_2026_paper.pdf</p>
+<p>[2] https://openaccess.thecvf.com/content/CVPR2026/supplemental/Lu_ELV-Halluc_Benchmarking_Semantic_CVPR_2026_supplemental.pdf</p>
+<p>[3] https://openaccess.thecvf.com/content/CVPR2026/html/Lu_ELV-Halluc_Benchmarking_Semantic_Aggregation_Hallucinations_in_Video_Understanding_CVPR_2026_paper.html</p>
+<p>[4] https://github.com/hlsv02/ELV-Halluc/tree/40a193b876e337e651202c14191ac927734f04be</p></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/topics/video-understanding.html">Video Understanding</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">2</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/video-understanding.html">Video Understanding</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary><span class="summary-label"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>Metadata</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><pre>{
+  &quot;id&quot;: &quot;2026-09-20-elv-halluc&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;ELV-Halluc：跨事件语义绑定与幻觉诊断&quot;,
+  &quot;title_en&quot;: &quot;ELV-Halluc: Semantic Aggregation Hallucinations&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;venue&quot;: &quot;CVPR 2026&quot;,
+  &quot;authors&quot;: [
+    &quot;Hao Lu&quot;,
+    &quot;Jiahao Wang&quot;,
+    &quot;Yaolun Zhang&quot;,
+    &quot;Ruohui Wang&quot;,
+    &quot;Xuanyu Zheng&quot;,
+    &quot;Yepeng Tang&quot;,
+    &quot;Dahua Lin&quot;,
+    &quot;Lewei Lu&quot;
+  ],
+  &quot;published_at&quot;: &quot;2026-06-01&quot;,
+  &quot;ingested_at&quot;: &quot;2026-09-20&quot;,
+  &quot;created&quot;: &quot;2026-09-20&quot;,
+  &quot;updated&quot;: &quot;2026-09-20&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;video-understanding&quot;,
+    &quot;benchmarking&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/CVPR2026/html/Lu_ELV-Halluc_Benchmarking_Semantic_Aggregation_Hallucinations_in_Video_Understanding_CVPR_2026_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2026/papers/Lu_ELV-Halluc_Benchmarking_Semantic_Aggregation_Hallucinations_in_Video_Understanding_CVPR_2026_paper.pdf&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2026/supplemental/Lu_ELV-Halluc_Benchmarking_Semantic_CVPR_2026_supplemental.pdf&quot;,
+    &quot;https://github.com/hlsv02/ELV-Halluc/tree/40a193b876e337e651202c14191ac927734f04be&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-09-20-elv-halluc/&quot;,
+  &quot;analysis_note&quot;: &quot;raw/ingest/2026-09-20-elv-halluc/analysis.md&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/video-understanding&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></details>
+    </article>
+  </main>
+</body>
+</html>
