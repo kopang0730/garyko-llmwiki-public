@@ -28,6 +28,18 @@
     "search_text": "LLM Wiki LLM Wiki LLM Wiki Pattern LLM Wiki Pattern Karpathy 提出的 LLM Wiki 模式：用 LLM 持续维护一组互相链接的 Markdown 知识页。 Karpathy's pattern for maintaining a persistent, interlinked Markdown knowledge base with an LLM compiler. llm-wiki root near-cvpr-2025"
   },
   {
+    "slug": "docs/research-protocols/3d-gaussian-splatting",
+    "title": "三维高斯泼溅：用户百篇定向证据协议",
+    "title_en": "三维高斯泼溅：用户百篇定向证据协议",
+    "summary": "对指定百篇正式出版身份、版本、全文、成本与比较口径的定向筛选；系统全域检索另行完成。",
+    "summary_en": "",
+    "kind": "review_protocol",
+    "tags": [],
+    "url": "docs/research-protocols/3d-gaussian-splatting.html",
+    "url_en": "en/docs/research-protocols/3d-gaussian-splatting.html",
+    "search_text": "三维高斯泼溅：用户百篇定向证据协议 三维高斯泼溅：用户百篇定向证据协议 三维高斯泼溅：用户百篇定向证据协议 三维高斯泼溅：用户百篇定向证据协议 对指定百篇正式出版身份、版本、全文、成本与比较口径的定向筛选；系统全域检索另行完成。  docs/research-protocols/3d-gaussian-splatting review_protocol"
+  },
+  {
     "slug": "docs/research-protocols/image-editing",
     "title": "图像编辑（Image Editing）检索与综合协议",
     "title_en": "Image Editing Review Protocol",
@@ -52,6 +64,18 @@
     "search_text": "图文检索（Image-Text Retrieval）检索与综合协议 图文检索（Image-Text Retrieval）检索与综合协议 Image-Text Retrieval Review Protocol Image-Text Retrieval Review Protocol 冻结研究问题、来源库、检索式、纳入排除标准、筛选流与阶段升级门。 Frozen research questions, databases, search strings, eligibility criteria, screening flow, and review-stage gates. docs/research-protocols/image-text-retrieval review_protocol"
   },
   {
+    "slug": "docs/research-matrices/3d-gaussian-splatting-evidence-matrix",
+    "title": "3D Gaussian Splatting Evidence Matrix",
+    "title_en": "3D Gaussian Splatting Evidence Matrix",
+    "summary": "",
+    "summary_en": "",
+    "kind": "research-matrice",
+    "tags": [],
+    "url": "docs/research-matrices/3d-gaussian-splatting-evidence-matrix.html",
+    "url_en": "en/docs/research-matrices/3d-gaussian-splatting-evidence-matrix.html",
+    "search_text": "3D Gaussian Splatting Evidence Matrix 3D Gaussian Splatting Evidence Matrix 3D Gaussian Splatting Evidence Matrix 3D Gaussian Splatting Evidence Matrix   docs/research-matrices/3d-gaussian-splatting-evidence-matrix research-matrice"
+  },
+  {
     "slug": "docs/research-matrices/image-text-retrieval-evidence-matrix",
     "title": "图文检索（Image-Text Retrieval）40 篇证据矩阵",
     "title_en": "Image-Text Retrieval 40-Paper Evidence Matrix",
@@ -62,6 +86,23 @@
     "url": "docs/research-matrices/image-text-retrieval-evidence-matrix.html",
     "url_en": "en/docs/research-matrices/image-text-retrieval-evidence-matrix.html",
     "search_text": "图文检索（Image-Text Retrieval）40 篇证据矩阵 图文检索（Image-Text Retrieval）40 篇证据矩阵 Image-Text Retrieval 40-Paper Evidence Matrix Image-Text Retrieval 40-Paper Evidence Matrix 逐篇记录 40 篇核心论文的版本状态、任务、方法、评测、研究问题贡献与局限。 Paper-level evidence matrix covering version status, task, method, evaluation, research-question contribution, and limitations for 40 core papers. docs/research-matrices/image-text-retrieval-evidence-matrix evidence_matrix"
+  },
+  {
+    "slug": "topics/3d-gaussian-splatting",
+    "title": "三维高斯泼溅：表示、优化、几何与前馈重建",
+    "title_en": "3D Gaussian Splatting: Representation, Optimization, Geometry, and Feed-Forward Reconstruction",
+    "summary": "用六篇已核正式全文区分静态已标定场景的实时外观、跨尺度抗混叠、真实几何、点管理与少视图前馈重建，以及各自成本和失败边界。",
+    "summary_en": "",
+    "kind": "topic",
+    "tags": [
+      "near-cvpr-2025",
+      "3d-vision",
+      "gaussian-splatting",
+      "neural-rendering"
+    ],
+    "url": "topics/3d-gaussian-splatting.html",
+    "url_en": "en/topics/3d-gaussian-splatting.html",
+    "search_text": "三维高斯泼溅：表示、优化、几何与前馈重建 三维高斯泼溅：表示、优化、几何与前馈重建 3D Gaussian Splatting: Representation, Optimization, Geometry, and Feed-Forward Reconstruction 3D Gaussian Splatting: Representation, Optimization, Geometry, and Feed-Forward Reconstruction 用六篇已核正式全文区分静态已标定场景的实时外观、跨尺度抗混叠、真实几何、点管理与少视图前馈重建，以及各自成本和失败边界。  topics/3d-gaussian-splatting topic near-cvpr-2025 3d-vision gaussian-splatting neural-rendering"
   },
   {
     "slug": "topics/computer-vision-overview",
@@ -5293,6 +5334,108 @@
     "url": "sources/2026-09-24-gigagan.html",
     "url_en": "en/sources/2026-09-24-gigagan.html",
     "search_text": "GigaGAN：大规模前馈生成与质量—速度边界 GigaGAN：大规模前馈生成与质量—速度边界 GigaGAN: Scaling Up GANs for Text-to-Image Synthesis GigaGAN:Scaling Up GANs for Text-to-Image Synthesis   sources/2026-09-24-gigagan source near-cvpr-2025 image-generation evaluation primary-source"
+  },
+  {
+    "slug": "sources/2026-09-25-2d-gaussian-splatting",
+    "title": "2D Gaussian Splatting：用三维中的二维高斯圆盘重建表面",
+    "title_en": "2D Gaussian Splatting：用三维中的二维高斯圆盘重建表面",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "3d-vision",
+      "gaussian-splatting",
+      "primary-source"
+    ],
+    "url": "sources/2026-09-25-2d-gaussian-splatting.html",
+    "url_en": "en/sources/2026-09-25-2d-gaussian-splatting.html",
+    "search_text": "2D Gaussian Splatting：用三维中的二维高斯圆盘重建表面 2D Gaussian Splatting：用三维中的二维高斯圆盘重建表面 2D Gaussian Splatting：用三维中的二维高斯圆盘重建表面 2D Gaussian Splatting：用三维中的二维高斯圆盘重建表面   sources/2026-09-25-2d-gaussian-splatting source near-cvpr-2025 3d-vision gaussian-splatting primary-source"
+  },
+  {
+    "slug": "sources/2026-09-25-3d-gaussian-splatting",
+    "title": "3D Gaussian Splatting：从稀疏点到实时新视角渲染",
+    "title_en": "3D Gaussian Splatting：从稀疏点到实时新视角渲染",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "3d-vision",
+      "gaussian-splatting",
+      "primary-source"
+    ],
+    "url": "sources/2026-09-25-3d-gaussian-splatting.html",
+    "url_en": "en/sources/2026-09-25-3d-gaussian-splatting.html",
+    "search_text": "3D Gaussian Splatting：从稀疏点到实时新视角渲染 3D Gaussian Splatting：从稀疏点到实时新视角渲染 3D Gaussian Splatting：从稀疏点到实时新视角渲染 3D Gaussian Splatting：从稀疏点到实时新视角渲染   sources/2026-09-25-3d-gaussian-splatting source near-cvpr-2025 3d-vision gaussian-splatting primary-source"
+  },
+  {
+    "slug": "sources/2026-09-25-3dgs-as-mcmc",
+    "title": "3DGS as MCMC：用高斯重定位改写密度控制",
+    "title_en": "3DGS as MCMC：用高斯重定位改写密度控制",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "3d-vision",
+      "gaussian-splatting",
+      "primary-source"
+    ],
+    "url": "sources/2026-09-25-3dgs-as-mcmc.html",
+    "url_en": "en/sources/2026-09-25-3dgs-as-mcmc.html",
+    "search_text": "3DGS as MCMC：用高斯重定位改写密度控制 3DGS as MCMC：用高斯重定位改写密度控制 3DGS as MCMC：用高斯重定位改写密度控制 3DGS as MCMC：用高斯重定位改写密度控制   sources/2026-09-25-3dgs-as-mcmc source near-cvpr-2025 3d-vision gaussian-splatting primary-source"
+  },
+  {
+    "slug": "sources/2026-09-25-mip-splatting",
+    "title": "Mip-Splatting：跨尺度采样与三维高斯抗混叠",
+    "title_en": "Mip-Splatting：跨尺度采样与三维高斯抗混叠",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "3d-vision",
+      "gaussian-splatting",
+      "primary-source"
+    ],
+    "url": "sources/2026-09-25-mip-splatting.html",
+    "url_en": "en/sources/2026-09-25-mip-splatting.html",
+    "search_text": "Mip-Splatting：跨尺度采样与三维高斯抗混叠 Mip-Splatting：跨尺度采样与三维高斯抗混叠 Mip-Splatting：跨尺度采样与三维高斯抗混叠 Mip-Splatting：跨尺度采样与三维高斯抗混叠   sources/2026-09-25-mip-splatting source near-cvpr-2025 3d-vision gaussian-splatting primary-source"
+  },
+  {
+    "slug": "sources/2026-09-25-mvsplat",
+    "title": "MVSplat：匹配代价体驱动的前馈三维高斯",
+    "title_en": "MVSplat：匹配代价体驱动的前馈三维高斯",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "3d-vision",
+      "gaussian-splatting",
+      "primary-source"
+    ],
+    "url": "sources/2026-09-25-mvsplat.html",
+    "url_en": "en/sources/2026-09-25-mvsplat.html",
+    "search_text": "MVSplat：匹配代价体驱动的前馈三维高斯 MVSplat：匹配代价体驱动的前馈三维高斯 MVSplat：匹配代价体驱动的前馈三维高斯 MVSplat：匹配代价体驱动的前馈三维高斯   sources/2026-09-25-mvsplat source near-cvpr-2025 3d-vision gaussian-splatting primary-source"
+  },
+  {
+    "slug": "sources/2026-09-25-pixelsplat",
+    "title": "pixelSplat：从已标定图像对前馈预测三维高斯",
+    "title_en": "pixelSplat：从已标定图像对前馈预测三维高斯",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "3d-vision",
+      "gaussian-splatting",
+      "primary-source"
+    ],
+    "url": "sources/2026-09-25-pixelsplat.html",
+    "url_en": "en/sources/2026-09-25-pixelsplat.html",
+    "search_text": "pixelSplat：从已标定图像对前馈预测三维高斯 pixelSplat：从已标定图像对前馈预测三维高斯 pixelSplat：从已标定图像对前馈预测三维高斯 pixelSplat：从已标定图像对前馈预测三维高斯   sources/2026-09-25-pixelsplat source near-cvpr-2025 3d-vision gaussian-splatting primary-source"
   },
   {
     "slug": "entities/clip-retrieval-benchmarks",
