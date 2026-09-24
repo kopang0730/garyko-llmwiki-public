@@ -89,9 +89,9 @@
   },
   {
     "slug": "topics/3d-gaussian-splatting",
-    "title": "三维高斯泼溅：表示、优化、几何与前馈重建",
-    "title_en": "3D Gaussian Splatting: Representation, Optimization, Geometry, and Feed-Forward Reconstruction",
-    "summary": "用六篇已核正式全文区分静态已标定场景的实时外观、跨尺度抗混叠、真实几何、点管理与少视图前馈重建，以及各自成本和失败边界。",
+    "title": "三维高斯泼溅：表示、优化、几何、语言与物理",
+    "title_en": "3D Gaussian Splatting: Representation, Optimization, Geometry, Language, and Physics",
+    "summary": "用九篇正式全文比较已标定场景的渲染、采样、几何、增密、前馈、语义与指定物理运动，保留各自评测和成本边界。",
     "summary_en": "",
     "kind": "topic",
     "tags": [
@@ -102,7 +102,7 @@
     ],
     "url": "topics/3d-gaussian-splatting.html",
     "url_en": "en/topics/3d-gaussian-splatting.html",
-    "search_text": "三维高斯泼溅：表示、优化、几何与前馈重建 三维高斯泼溅：表示、优化、几何与前馈重建 3D Gaussian Splatting: Representation, Optimization, Geometry, and Feed-Forward Reconstruction 3D Gaussian Splatting: Representation, Optimization, Geometry, and Feed-Forward Reconstruction 用六篇已核正式全文区分静态已标定场景的实时外观、跨尺度抗混叠、真实几何、点管理与少视图前馈重建，以及各自成本和失败边界。  topics/3d-gaussian-splatting topic near-cvpr-2025 3d-vision gaussian-splatting neural-rendering"
+    "search_text": "三维高斯泼溅：表示、优化、几何、语言与物理 三维高斯泼溅：表示、优化、几何、语言与物理 3D Gaussian Splatting: Representation, Optimization, Geometry, Language, and Physics 3D Gaussian Splatting: Representation, Optimization, Geometry, Language, and Physics 用九篇正式全文比较已标定场景的渲染、采样、几何、增密、前馈、语义与指定物理运动，保留各自评测和成本边界。  topics/3d-gaussian-splatting topic near-cvpr-2025 3d-vision gaussian-splatting neural-rendering"
   },
   {
     "slug": "topics/computer-vision-overview",
@@ -5387,6 +5387,41 @@
     "search_text": "3DGS as MCMC：用高斯重定位改写密度控制 3DGS as MCMC：用高斯重定位改写密度控制 3DGS as MCMC：用高斯重定位改写密度控制 3DGS as MCMC：用高斯重定位改写密度控制   sources/2026-09-25-3dgs-as-mcmc source near-cvpr-2025 3d-vision gaussian-splatting primary-source"
   },
   {
+    "slug": "sources/2026-09-25-fastgs",
+    "title": "FastGS：多视误差驱动的增密、剪枝与训练加速",
+    "title_en": "FastGS：多视误差驱动的增密、剪枝与训练加速",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "3d-vision",
+      "gaussian-splatting",
+      "efficiency",
+      "primary-source"
+    ],
+    "url": "sources/2026-09-25-fastgs.html",
+    "url_en": "en/sources/2026-09-25-fastgs.html",
+    "search_text": "FastGS：多视误差驱动的增密、剪枝与训练加速 FastGS：多视误差驱动的增密、剪枝与训练加速 FastGS：多视误差驱动的增密、剪枝与训练加速 FastGS：多视误差驱动的增密、剪枝与训练加速   sources/2026-09-25-fastgs source near-cvpr-2025 3d-vision gaussian-splatting efficiency primary-source"
+  },
+  {
+    "slug": "sources/2026-09-25-langsplat",
+    "title": "LangSplat：高斯语言特征与三级语义查询",
+    "title_en": "LangSplat：高斯语言特征与三级语义查询",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "3d-vision",
+      "gaussian-splatting",
+      "primary-source"
+    ],
+    "url": "sources/2026-09-25-langsplat.html",
+    "url_en": "en/sources/2026-09-25-langsplat.html",
+    "search_text": "LangSplat：高斯语言特征与三级语义查询 LangSplat：高斯语言特征与三级语义查询 LangSplat：高斯语言特征与三级语义查询 LangSplat：高斯语言特征与三级语义查询   sources/2026-09-25-langsplat source near-cvpr-2025 3d-vision gaussian-splatting primary-source"
+  },
+  {
     "slug": "sources/2026-09-25-mip-splatting",
     "title": "Mip-Splatting：跨尺度采样与三维高斯抗混叠",
     "title_en": "Mip-Splatting：跨尺度采样与三维高斯抗混叠",
@@ -5419,6 +5454,23 @@
     "url": "sources/2026-09-25-mvsplat.html",
     "url_en": "en/sources/2026-09-25-mvsplat.html",
     "search_text": "MVSplat：匹配代价体驱动的前馈三维高斯 MVSplat：匹配代价体驱动的前馈三维高斯 MVSplat：匹配代价体驱动的前馈三维高斯 MVSplat：匹配代价体驱动的前馈三维高斯   sources/2026-09-25-mvsplat source near-cvpr-2025 3d-vision gaussian-splatting primary-source"
+  },
+  {
+    "slug": "sources/2026-09-25-physgaussian",
+    "title": "PhysGaussian：让高斯同时参与仿真与渲染",
+    "title_en": "PhysGaussian：让高斯同时参与仿真与渲染",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "3d-vision",
+      "gaussian-splatting",
+      "primary-source"
+    ],
+    "url": "sources/2026-09-25-physgaussian.html",
+    "url_en": "en/sources/2026-09-25-physgaussian.html",
+    "search_text": "PhysGaussian：让高斯同时参与仿真与渲染 PhysGaussian：让高斯同时参与仿真与渲染 PhysGaussian：让高斯同时参与仿真与渲染 PhysGaussian：让高斯同时参与仿真与渲染   sources/2026-09-25-physgaussian source near-cvpr-2025 3d-vision gaussian-splatting primary-source"
   },
   {
     "slug": "sources/2026-09-25-pixelsplat",

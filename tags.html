@@ -102,14 +102,17 @@
       <div class="article-layout">
         
         <section class="article-content"><h1>标签</h1>
-<section class="tag-section" id="3d-vision"><h2>#3d-vision<span class="related-count">7</span></h2><ul>
+<section class="tag-section" id="3d-vision"><h2>#3d-vision<span class="related-count">10</span></h2><ul>
 <li><a href="sources/2026-09-25-2d-gaussian-splatting.html">2D Gaussian Splatting：用三维中的二维高斯圆盘重建表面</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-3d-gaussian-splatting.html">3D Gaussian Splatting：从稀疏点到实时新视角渲染</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-3dgs-as-mcmc.html">3DGS as MCMC：用高斯重定位改写密度控制</a><span>来源笔记</span></li>
+<li><a href="sources/2026-09-25-fastgs.html">FastGS：多视误差驱动的增密、剪枝与训练加速</a><span>来源笔记</span></li>
+<li><a href="sources/2026-09-25-langsplat.html">LangSplat：高斯语言特征与三级语义查询</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-mvsplat.html">MVSplat：匹配代价体驱动的前馈三维高斯</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-mip-splatting.html">Mip-Splatting：跨尺度采样与三维高斯抗混叠</a><span>来源笔记</span></li>
+<li><a href="sources/2026-09-25-physgaussian.html">PhysGaussian：让高斯同时参与仿真与渲染</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-pixelsplat.html">pixelSplat：从已标定图像对前馈预测三维高斯</a><span>来源笔记</span></li>
-<li><a href="topics/3d-gaussian-splatting.html">三维高斯泼溅：表示、优化、几何与前馈重建</a><span>主题</span></li>
+<li><a href="topics/3d-gaussian-splatting.html">三维高斯泼溅：表示、优化、几何、语言与物理</a><span>主题</span></li>
 </ul></section>
 <section class="tag-section" id="autoregressive"><h2>#autoregressive<span class="related-count">2</span></h2><ul>
 <li><a href="sources/2026-04-14-maskint.html">MaskINT：关键帧扩散编辑与非自回归结构插帧的视频编辑</a><span>来源笔记</span></li>
@@ -371,7 +374,7 @@
 <li><a href="sources/2026-04-14-vive3d.html">VIVE3D：多帧个性化 EG3D 的视角无关人脸视频编辑</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-video-p2p.html">Video-P2P：用 shared-null inversion 与解耦 guidance 做 attention-control 视频编辑</a><span>来源笔记</span></li>
 </ul></section>
-<section class="tag-section" id="efficiency"><h2>#efficiency<span class="related-count">35</span></h2><ul>
+<section class="tag-section" id="efficiency"><h2>#efficiency<span class="related-count">36</span></h2><ul>
 <li><a href="sources/2026-04-15-act-diffusion.html">ACT-Diffusion：面向一步扩散模型的高效对抗一致性训练</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-15-accelerating-diffusion-sampling-optimized-time-steps.html">Accelerating Diffusion Sampling with Optimized Time Steps：用优化时间步改善少步扩散采样</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-16-accelerating-dit-gradient-cache.html">Accelerating Diffusion Transformer via Gradient-Optimized Cache：修正 DiT 缓存误差</a><span>来源笔记</span></li>
@@ -385,6 +388,7 @@
 <li><a href="sources/2026-04-16-distilling-parallel-gradients-ode-solvers.html">Distilling Parallel Gradients for Fast ODE Solvers of Diffusion Models：并行方向蒸馏扩散 ODE 求解器</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-e5v.html">E5-V：使用多模态大语言模型的通用 embedding（Universal Embeddings with Multimodal Large Language Models）</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-fairy-video-to-video.html">Fairy：用 anchor cross-frame attention 并行加速指令视频编辑</a><span>来源笔记</span></li>
+<li><a href="sources/2026-09-25-fastgs.html">FastGS：多视误差驱动的增密、剪枝与训练加速</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-15-freeu.html">FreeU：不重训的扩散 U-Net 特征重加权</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-lincir.html">LinCIR：仅用语言高效训练零样本组合式图像检索（Language-only Efficient Training of Zero-shot Composed Image Retrieval）</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-mobileclip.html">MobileCLIP：通过多模态强化训练得到快速图文模型（Fast Image-Text Models through Multi-Modal Reinforced Training）</a><span>来源笔记</span></li>
@@ -466,14 +470,17 @@
 <li><a href="entities/video-editing-understanding.html">视频编辑理解</a><span>实体</span></li>
 <li><a href="sources/2026-04-14-neuro-symbolic-eval-t2v.html">通过形式化验证评测文本到视频模型的神经符号方法</a><span>来源笔记</span></li>
 </ul></section>
-<section class="tag-section" id="gaussian-splatting"><h2>#gaussian-splatting<span class="related-count">7</span></h2><ul>
+<section class="tag-section" id="gaussian-splatting"><h2>#gaussian-splatting<span class="related-count">10</span></h2><ul>
 <li><a href="sources/2026-09-25-2d-gaussian-splatting.html">2D Gaussian Splatting：用三维中的二维高斯圆盘重建表面</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-3d-gaussian-splatting.html">3D Gaussian Splatting：从稀疏点到实时新视角渲染</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-3dgs-as-mcmc.html">3DGS as MCMC：用高斯重定位改写密度控制</a><span>来源笔记</span></li>
+<li><a href="sources/2026-09-25-fastgs.html">FastGS：多视误差驱动的增密、剪枝与训练加速</a><span>来源笔记</span></li>
+<li><a href="sources/2026-09-25-langsplat.html">LangSplat：高斯语言特征与三级语义查询</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-mvsplat.html">MVSplat：匹配代价体驱动的前馈三维高斯</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-mip-splatting.html">Mip-Splatting：跨尺度采样与三维高斯抗混叠</a><span>来源笔记</span></li>
+<li><a href="sources/2026-09-25-physgaussian.html">PhysGaussian：让高斯同时参与仿真与渲染</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-pixelsplat.html">pixelSplat：从已标定图像对前馈预测三维高斯</a><span>来源笔记</span></li>
-<li><a href="topics/3d-gaussian-splatting.html">三维高斯泼溅：表示、优化、几何与前馈重建</a><span>主题</span></li>
+<li><a href="topics/3d-gaussian-splatting.html">三维高斯泼溅：表示、优化、几何、语言与物理</a><span>主题</span></li>
 </ul></section>
 <section class="tag-section" id="image-editing"><h2>#image-editing<span class="related-count">35</span></h2><ul>
 <li><a href="sources/2026-04-14-effective-real-image-editing.html">AIDI：以加速定点迭代改进真实图像扩散反演</a><span>来源笔记</span></li>
@@ -646,7 +653,7 @@
 <li><a href="topics/vision-language.html">视觉语言</a><span>主题</span></li>
 <li><a href="questions/question-motion-defined-text-human-machine-gap.html">运动定义文字的人机感知差距能否成为可靠研究基准</a><span>问题</span></li>
 </ul></section>
-<section class="tag-section" id="near-cvpr-2025"><h2>#near-cvpr-2025<span class="related-count">334</span></h2><ul>
+<section class="tag-section" id="near-cvpr-2025"><h2>#near-cvpr-2025<span class="related-count">337</span></h2><ul>
 <li><a href="sources/2026-09-25-2d-gaussian-splatting.html">2D Gaussian Splatting：用三维中的二维高斯圆盘重建表面</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-3d-gaussian-splatting.html">3D Gaussian Splatting：从稀疏点到实时新视角渲染</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-3dgs-as-mcmc.html">3DGS as MCMC：用高斯重定位改写密度控制</a><span>来源笔记</span></li>
@@ -745,6 +752,7 @@
 <li><a href="sources/2026-07-14-filip.html">FILIP：细粒度交互式语言-图像预训练（Fine-grained Interactive Language-Image Pre-Training）</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-fairy-video-to-video.html">Fairy：用 anchor cross-frame attention 并行加速指令视频编辑</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-fashioniq.html">FashionIQ：用自然语言反馈检索图像（A New Dataset Towards Retrieving Images by Natural Language Feedback）</a><span>来源笔记</span></li>
+<li><a href="sources/2026-09-25-fastgs.html">FastGS：多视误差驱动的增密、剪枝与训练加速</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-faster-r-cnn.html">Faster R-CNN：共享特征的区域提议网络</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-fatezero.html">FateZero：融合注意力做零样本文本视频编辑</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-five-bench.html">FiVE-Bench：细粒度视频编辑评测基准</a><span>来源笔记</span></li>
@@ -787,6 +795,7 @@
 <li><a href="llm-wiki.html">LLM Wiki</a><span>入口</span></li>
 <li><a href="sources/2026-04-25-logo-group-action-quality.html">LOGO：多人长视频的群体动作质量评估</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-lvbench.html">LVBench：极长视频理解基准</a><span>来源笔记</span></li>
+<li><a href="sources/2026-09-25-langsplat.html">LangSplat：高斯语言特征与三级语义查询</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-latent-diffusion-models.html">Latent Diffusion Models：高分辨率图像合成的潜空间扩散框架</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-layoutdiffusion.html">LayoutDiffusion：以对象框控制像素 U-Net 的 layout-to-image 生成</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-16-layoutdiffusion-graphic-layout-generation.html">LayoutDiffusion：面向离散 graphic layout 的专用腐化与免重训条件生成</a><span>来源笔记</span></li>
@@ -827,6 +836,7 @@
 <li><a href="sources/2026-04-14-paint-by-example.html">Paint by Example：以单张参考图控制局部语义编辑</a><span>来源笔记</span></li>
 <li><a href="sources/2026-05-23-pathcrf-soccer-event-detection.html">PathCRF：从球员轨迹推断结构化控球路径与足球事件</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-pathways-image-manifold.html">Pathways on the Image Manifold：通过视频生成做图像编辑</a><span>来源笔记</span></li>
+<li><a href="sources/2026-09-25-physgaussian.html">PhysGaussian：让高斯同时参与仿真与渲染</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-pic2word.html">Pic2Word：把图片映射成词，用于零样本组合式图像检索（Mapping Pictures to Words for Zero-shot Composed Image Retrieval）</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-pinpoint.html">PinPoint：带显式负例、多图查询与改写测试的组合式图像检索评测</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-pix2video.html">Pix2Video：利用图像扩散进行视频编辑</a><span>来源笔记</span></li>
@@ -928,7 +938,7 @@
 <li><a href="sources/2026-05-05-x-vars-explainable-football-refereeing.html">X-VARS：可解释足球视频助理裁判系统</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-pixelsplat.html">pixelSplat：从已标定图像对前馈预测三维高斯</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-dci.html">一张图胜过 77 个文本 token：在密集描述上评估 CLIP 类模型（A Picture is Worth More Than 77 Text Tokens）</a><span>来源笔记</span></li>
-<li><a href="topics/3d-gaussian-splatting.html">三维高斯泼溅：表示、优化、几何与前馈重建</a><span>主题</span></li>
+<li><a href="topics/3d-gaussian-splatting.html">三维高斯泼溅：表示、优化、几何、语言与物理</a><span>主题</span></li>
 <li><a href="topics/sports-ai-roadmap.html">体育 AI 研究路线图</a><span>主题</span></li>
 <li><a href="topics/sports-ai-video-understanding.html">体育 AI 视频理解</a><span>主题</span></li>
 <li><a href="sources/2026-04-25-sports-ai-review-2025.html">体育姿态估计与跟踪综述：方法、数据、挑战与路线图</a><span>来源笔记</span></li>
@@ -988,7 +998,7 @@
 <li><a href="questions/question-motion-defined-text-human-machine-gap.html">运动定义文字的人机感知差距能否成为可靠研究基准</a><span>问题</span></li>
 </ul></section>
 <section class="tag-section" id="neural-rendering"><h2>#neural-rendering<span class="related-count">1</span></h2><ul>
-<li><a href="topics/3d-gaussian-splatting.html">三维高斯泼溅：表示、优化、几何与前馈重建</a><span>主题</span></li>
+<li><a href="topics/3d-gaussian-splatting.html">三维高斯泼溅：表示、优化、几何、语言与物理</a><span>主题</span></li>
 </ul></section>
 <section class="tag-section" id="object-detection"><h2>#object-detection<span class="related-count">3</span></h2><ul>
 <li><a href="sources/2026-07-14-faster-r-cnn.html">Faster R-CNN：共享特征的区域提议网络</a><span>来源笔记</span></li>
@@ -1005,7 +1015,7 @@
 <li><a href="claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a><span>判断</span></li>
 <li><a href="claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a><span>判断</span></li>
 </ul></section>
-<section class="tag-section" id="primary-source"><h2>#primary-source<span class="related-count">270</span></h2><ul>
+<section class="tag-section" id="primary-source"><h2>#primary-source<span class="related-count">273</span></h2><ul>
 <li><a href="sources/2026-09-25-2d-gaussian-splatting.html">2D Gaussian Splatting：用三维中的二维高斯圆盘重建表面</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-3d-gaussian-splatting.html">3D Gaussian Splatting：从稀疏点到实时新视角渲染</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-3dgs-as-mcmc.html">3DGS as MCMC：用高斯重定位改写密度控制</a><span>来源笔记</span></li>
@@ -1099,6 +1109,7 @@
 <li><a href="sources/2026-07-14-filip.html">FILIP：细粒度交互式语言-图像预训练（Fine-grained Interactive Language-Image Pre-Training）</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-fairy-video-to-video.html">Fairy：用 anchor cross-frame attention 并行加速指令视频编辑</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-fashioniq.html">FashionIQ：用自然语言反馈检索图像（A New Dataset Towards Retrieving Images by Natural Language Feedback）</a><span>来源笔记</span></li>
+<li><a href="sources/2026-09-25-fastgs.html">FastGS：多视误差驱动的增密、剪枝与训练加速</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-faster-r-cnn.html">Faster R-CNN：共享特征的区域提议网络</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-fatezero.html">FateZero：融合注意力做零样本文本视频编辑</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-five-bench.html">FiVE-Bench：细粒度视频编辑评测基准</a><span>来源笔记</span></li>
@@ -1137,6 +1148,7 @@
 <li><a href="sources/2026-07-14-laion-5b.html">LAION-5B：用于下一代图文模型的开放大规模数据集（An open large-scale dataset for training next generation image-text models）</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-25-logo-group-action-quality.html">LOGO：多人长视频的群体动作质量评估</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-lvbench.html">LVBench：极长视频理解基准</a><span>来源笔记</span></li>
+<li><a href="sources/2026-09-25-langsplat.html">LangSplat：高斯语言特征与三级语义查询</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-latent-diffusion-models.html">Latent Diffusion Models：高分辨率图像合成的潜空间扩散框架</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-layoutdiffusion.html">LayoutDiffusion：以对象框控制像素 U-Net 的 layout-to-image 生成</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-16-layoutdiffusion-graphic-layout-generation.html">LayoutDiffusion：面向离散 graphic layout 的专用腐化与免重训条件生成</a><span>来源笔记</span></li>
@@ -1170,6 +1182,7 @@
 <li><a href="sources/2026-04-14-paint-by-example.html">Paint by Example：以单张参考图控制局部语义编辑</a><span>来源笔记</span></li>
 <li><a href="sources/2026-05-23-pathcrf-soccer-event-detection.html">PathCRF：从球员轨迹推断结构化控球路径与足球事件</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-pathways-image-manifold.html">Pathways on the Image Manifold：通过视频生成做图像编辑</a><span>来源笔记</span></li>
+<li><a href="sources/2026-09-25-physgaussian.html">PhysGaussian：让高斯同时参与仿真与渲染</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-pic2word.html">Pic2Word：把图片映射成词，用于零样本组合式图像检索（Mapping Pictures to Words for Zero-shot Composed Image Retrieval）</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-pinpoint.html">PinPoint：带显式负例、多图查询与改写测试的组合式图像检索评测</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-pix2video.html">Pix2Video：利用图像扩散进行视频编辑</a><span>来源笔记</span></li>
