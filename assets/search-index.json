@@ -91,7 +91,7 @@
     "slug": "topics/3d-gaussian-splatting",
     "title": "三维高斯泼溅：表示、优化、几何与动态任务",
     "title_en": "3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes",
-    "summary": "用十八篇正式全文比较已标定静态/动态场景、无外参输入的渲染、几何、前馈、多视融合、优化与语言/物理任务，保留评测和成本边界。",
+    "summary": "用二十一篇正式全文比较相机假设、图元位置与预算、长上下文、多视融合、静动态渲染、几何和语言/物理任务，保留评测和成本边界。",
     "summary_en": "",
     "kind": "topic",
     "tags": [
@@ -102,7 +102,7 @@
     ],
     "url": "topics/3d-gaussian-splatting.html",
     "url_en": "en/topics/3d-gaussian-splatting.html",
-    "search_text": "三维高斯泼溅：表示、优化、几何与动态任务 三维高斯泼溅：表示、优化、几何与动态任务 3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes 3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes 用十八篇正式全文比较已标定静态/动态场景、无外参输入的渲染、几何、前馈、多视融合、优化与语言/物理任务，保留评测和成本边界。  topics/3d-gaussian-splatting topic near-cvpr-2025 3d-vision gaussian-splatting neural-rendering"
+    "search_text": "三维高斯泼溅：表示、优化、几何与动态任务 三维高斯泼溅：表示、优化、几何与动态任务 3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes 3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes 用二十一篇正式全文比较相机假设、图元位置与预算、长上下文、多视融合、静动态渲染、几何和语言/物理任务，保留评测和成本边界。  topics/3d-gaussian-splatting topic near-cvpr-2025 3d-vision gaussian-splatting neural-rendering"
   },
   {
     "slug": "topics/computer-vision-overview",
@@ -5406,6 +5406,24 @@
     "search_text": "Diff4Splat：视频扩散生成可变形高斯场 Diff4Splat：视频扩散生成可变形高斯场 Diff4Splat: Repurposing Video Diffusion Models for Dynamic Scene Generation Diff4Splat:Repurposing Video Diffusion Models for Dynamic Scene Generation  Single-image, camera-conditioned 4D Gaussian generation with 30 denoising steps and substantial pretrained compute. sources/2026-09-25-diff4splat source near-cvpr-2025 3d-vision gaussian-splatting video-generation diffusion primary-source"
   },
   {
+    "slug": "sources/2026-09-25-ecosplat",
+    "title": "EcoSplat：按目标图元数条件化前馈高斯",
+    "title_en": "EcoSplat：按目标图元数条件化前馈高斯",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "3d-vision",
+      "gaussian-splatting",
+      "efficiency",
+      "primary-source"
+    ],
+    "url": "sources/2026-09-25-ecosplat.html",
+    "url_en": "en/sources/2026-09-25-ecosplat.html",
+    "search_text": "EcoSplat：按目标图元数条件化前馈高斯 EcoSplat：按目标图元数条件化前馈高斯 EcoSplat：按目标图元数条件化前馈高斯 EcoSplat：按目标图元数条件化前馈高斯   sources/2026-09-25-ecosplat source near-cvpr-2025 3d-vision gaussian-splatting efficiency primary-source"
+  },
+  {
     "slug": "sources/2026-09-25-faster-gs",
     "title": "Faster-GS：训练实现拆账与数值稳定性",
     "title_en": "Faster-GS：训练实现拆账与数值稳定性",
@@ -5529,6 +5547,24 @@
     "search_text": "MVSplat：匹配代价体驱动的前馈三维高斯 MVSplat：匹配代价体驱动的前馈三维高斯 MVSplat：匹配代价体驱动的前馈三维高斯 MVSplat：匹配代价体驱动的前馈三维高斯   sources/2026-09-25-mvsplat source near-cvpr-2025 3d-vision gaussian-splatting primary-source"
   },
   {
+    "slug": "sources/2026-09-25-off-the-grid",
+    "title": "Off The Grid：按图像局部结构预测亚像素高斯",
+    "title_en": "Off The Grid：按图像局部结构预测亚像素高斯",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "3d-vision",
+      "gaussian-splatting",
+      "neural-rendering",
+      "primary-source"
+    ],
+    "url": "sources/2026-09-25-off-the-grid.html",
+    "url_en": "en/sources/2026-09-25-off-the-grid.html",
+    "search_text": "Off The Grid：按图像局部结构预测亚像素高斯 Off The Grid：按图像局部结构预测亚像素高斯 Off The Grid：按图像局部结构预测亚像素高斯 Off The Grid：按图像局部结构预测亚像素高斯   sources/2026-09-25-off-the-grid source near-cvpr-2025 3d-vision gaussian-splatting neural-rendering primary-source"
+  },
+  {
     "slug": "sources/2026-09-25-physgaussian",
     "title": "PhysGaussian：让高斯同时参与仿真与渲染",
     "title_en": "PhysGaussian：让高斯同时参与仿真与渲染",
@@ -5614,6 +5650,24 @@
     "url": "sources/2026-09-25-speede3dgs.html",
     "url_en": "en/sources/2026-09-25-speede3dgs.html",
     "search_text": "SpeeDe3DGS：动态高斯时间剪枝与运动分组 SpeeDe3DGS：动态高斯时间剪枝与运动分组 SpeeDe3DGS：动态高斯时间剪枝与运动分组 SpeeDe3DGS：动态高斯时间剪枝与运动分组   sources/2026-09-25-speede3dgs source near-cvpr-2025 3d-vision gaussian-splatting neural-rendering primary-source"
+  },
+  {
+    "slug": "sources/2026-09-25-tttlrm",
+    "title": "tttLRM：快权重记忆驱动长序列高斯重建",
+    "title_en": "tttLRM：快权重记忆驱动长序列高斯重建",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "3d-vision",
+      "gaussian-splatting",
+      "autoregressive",
+      "primary-source"
+    ],
+    "url": "sources/2026-09-25-tttlrm.html",
+    "url_en": "en/sources/2026-09-25-tttlrm.html",
+    "search_text": "tttLRM：快权重记忆驱动长序列高斯重建 tttLRM：快权重记忆驱动长序列高斯重建 tttLRM：快权重记忆驱动长序列高斯重建 tttLRM：快权重记忆驱动长序列高斯重建   sources/2026-09-25-tttlrm source near-cvpr-2025 3d-vision gaussian-splatting autoregressive primary-source"
   },
   {
     "slug": "sources/2026-09-25-turbo-gs",
