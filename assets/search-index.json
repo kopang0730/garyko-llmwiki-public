@@ -91,7 +91,7 @@
     "slug": "topics/3d-gaussian-splatting",
     "title": "三维高斯泼溅：表示、优化、几何与动态任务",
     "title_en": "3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes",
-    "summary": "用十五篇正式全文比较已标定静态/动态场景、无外参输入的渲染、几何、前馈、多视融合、优化与语言/物理任务，保留评测和成本边界。",
+    "summary": "用十八篇正式全文比较已标定静态/动态场景、无外参输入的渲染、几何、前馈、多视融合、优化与语言/物理任务，保留评测和成本边界。",
     "summary_en": "",
     "kind": "topic",
     "tags": [
@@ -102,7 +102,7 @@
     ],
     "url": "topics/3d-gaussian-splatting.html",
     "url_en": "en/topics/3d-gaussian-splatting.html",
-    "search_text": "三维高斯泼溅：表示、优化、几何与动态任务 三维高斯泼溅：表示、优化、几何与动态任务 3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes 3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes 用十五篇正式全文比较已标定静态/动态场景、无外参输入的渲染、几何、前馈、多视融合、优化与语言/物理任务，保留评测和成本边界。  topics/3d-gaussian-splatting topic near-cvpr-2025 3d-vision gaussian-splatting neural-rendering"
+    "search_text": "三维高斯泼溅：表示、优化、几何与动态任务 三维高斯泼溅：表示、优化、几何与动态任务 3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes 3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes 用十八篇正式全文比较已标定静态/动态场景、无外参输入的渲染、几何、前馈、多视融合、优化与语言/物理任务，保留评测和成本边界。  topics/3d-gaussian-splatting topic near-cvpr-2025 3d-vision gaussian-splatting neural-rendering"
   },
   {
     "slug": "topics/computer-vision-overview",
@@ -5387,6 +5387,25 @@
     "search_text": "3DGS as MCMC：用高斯重定位改写密度控制 3DGS as MCMC：用高斯重定位改写密度控制 3DGS as MCMC：用高斯重定位改写密度控制 3DGS as MCMC：用高斯重定位改写密度控制   sources/2026-09-25-3dgs-as-mcmc source near-cvpr-2025 3d-vision gaussian-splatting primary-source"
   },
   {
+    "slug": "sources/2026-09-25-diff4splat",
+    "title": "Diff4Splat：视频扩散生成可变形高斯场",
+    "title_en": "Diff4Splat:Repurposing Video Diffusion Models for Dynamic Scene Generation",
+    "summary": "",
+    "summary_en": "Single-image, camera-conditioned 4D Gaussian generation with 30 denoising steps and substantial pretrained compute.",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "3d-vision",
+      "gaussian-splatting",
+      "video-generation",
+      "diffusion",
+      "primary-source"
+    ],
+    "url": "sources/2026-09-25-diff4splat.html",
+    "url_en": "en/sources/2026-09-25-diff4splat.html",
+    "search_text": "Diff4Splat：视频扩散生成可变形高斯场 Diff4Splat：视频扩散生成可变形高斯场 Diff4Splat: Repurposing Video Diffusion Models for Dynamic Scene Generation Diff4Splat:Repurposing Video Diffusion Models for Dynamic Scene Generation  Single-image, camera-conditioned 4D Gaussian generation with 30 denoising steps and substantial pretrained compute. sources/2026-09-25-diff4splat source near-cvpr-2025 3d-vision gaussian-splatting video-generation diffusion primary-source"
+  },
+  {
     "slug": "sources/2026-09-25-faster-gs",
     "title": "Faster-GS：训练实现拆账与数值稳定性",
     "title_en": "Faster-GS：训练实现拆账与数值稳定性",
@@ -5527,6 +5546,23 @@
     "search_text": "PhysGaussian：让高斯同时参与仿真与渲染 PhysGaussian：让高斯同时参与仿真与渲染 PhysGaussian：让高斯同时参与仿真与渲染 PhysGaussian：让高斯同时参与仿真与渲染   sources/2026-09-25-physgaussian source near-cvpr-2025 3d-vision gaussian-splatting primary-source"
   },
   {
+    "slug": "sources/2026-09-25-physgm",
+    "title": "PhysGM：单图预测物性高斯并模拟4D动态",
+    "title_en": "PhysGM:Large Physical Gaussian Model for Feed-Forward 4D Synthesis",
+    "summary": "",
+    "summary_en": "Single-image Gaussian and material prediction with synthetic preference supervision; physical ground truth remains unverified.",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "3d-vision",
+      "gaussian-splatting",
+      "primary-source"
+    ],
+    "url": "sources/2026-09-25-physgm.html",
+    "url_en": "en/sources/2026-09-25-physgm.html",
+    "search_text": "PhysGM：单图预测物性高斯并模拟4D动态 PhysGM：单图预测物性高斯并模拟4D动态 PhysGM: Large Physical Gaussian Model for Feed-Forward 4D Synthesis PhysGM:Large Physical Gaussian Model for Feed-Forward 4D Synthesis  Single-image Gaussian and material prediction with synthetic preference supervision; physical ground truth remains unverified. sources/2026-09-25-physgm source near-cvpr-2025 3d-vision gaussian-splatting primary-source"
+  },
+  {
     "slug": "sources/2026-09-25-pixelsplat",
     "title": "pixelSplat：从已标定图像对前馈预测三维高斯",
     "title_en": "pixelSplat：从已标定图像对前馈预测三维高斯",
@@ -5542,6 +5578,24 @@
     "url": "sources/2026-09-25-pixelsplat.html",
     "url_en": "en/sources/2026-09-25-pixelsplat.html",
     "search_text": "pixelSplat：从已标定图像对前馈预测三维高斯 pixelSplat：从已标定图像对前馈预测三维高斯 pixelSplat：从已标定图像对前馈预测三维高斯 pixelSplat：从已标定图像对前馈预测三维高斯   sources/2026-09-25-pixelsplat source near-cvpr-2025 3d-vision gaussian-splatting primary-source"
+  },
+  {
+    "slug": "sources/2026-09-25-realm",
+    "title": "REALM：多视大模型推理定位与高斯实例编辑",
+    "title_en": "REALM:An MLLM-Agent Framework for Open World 3D Reasoning Segmentation and Editing on Gaussian Splatting",
+    "summary": "",
+    "summary_en": "Global-to-local MLLM grounding on prebuilt Gaussian scenes, with strong implicit-query scores and material preprocessing costs.",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "3d-vision",
+      "gaussian-splatting",
+      "vision-language",
+      "primary-source"
+    ],
+    "url": "sources/2026-09-25-realm.html",
+    "url_en": "en/sources/2026-09-25-realm.html",
+    "search_text": "REALM：多视大模型推理定位与高斯实例编辑 REALM：多视大模型推理定位与高斯实例编辑 REALM: An MLLM-Agent Framework for Open World 3D Reasoning Segmentation and Editing on Gaussian Splatting REALM:An MLLM-Agent Framework for Open World 3D Reasoning Segmentation and Editing on Gaussian Splatting  Global-to-local MLLM grounding on prebuilt Gaussian scenes, with strong implicit-query scores and material preprocessing costs. sources/2026-09-25-realm source near-cvpr-2025 3d-vision gaussian-splatting vision-language primary-source"
   },
   {
     "slug": "sources/2026-09-25-speede3dgs",
