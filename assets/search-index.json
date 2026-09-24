@@ -91,7 +91,7 @@
     "slug": "topics/3d-gaussian-splatting",
     "title": "三维高斯泼溅：表示、优化、几何与动态任务",
     "title_en": "3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes",
-    "summary": "用十二篇正式全文比较已标定静态/动态场景的渲染、几何、前馈、点管理、优化与语言/物理任务，逐项保留评测和成本边界。",
+    "summary": "用十五篇正式全文比较已标定静态/动态场景、无外参输入的渲染、几何、前馈、多视融合、优化与语言/物理任务，保留评测和成本边界。",
     "summary_en": "",
     "kind": "topic",
     "tags": [
@@ -102,7 +102,7 @@
     ],
     "url": "topics/3d-gaussian-splatting.html",
     "url_en": "en/topics/3d-gaussian-splatting.html",
-    "search_text": "三维高斯泼溅：表示、优化、几何与动态任务 三维高斯泼溅：表示、优化、几何与动态任务 3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes 3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes 用十二篇正式全文比较已标定静态/动态场景的渲染、几何、前馈、点管理、优化与语言/物理任务，逐项保留评测和成本边界。  topics/3d-gaussian-splatting topic near-cvpr-2025 3d-vision gaussian-splatting neural-rendering"
+    "search_text": "三维高斯泼溅：表示、优化、几何与动态任务 三维高斯泼溅：表示、优化、几何与动态任务 3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes 3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes 用十五篇正式全文比较已标定静态/动态场景、无外参输入的渲染、几何、前馈、多视融合、优化与语言/物理任务，保留评测和成本边界。  topics/3d-gaussian-splatting topic near-cvpr-2025 3d-vision gaussian-splatting neural-rendering"
   },
   {
     "slug": "topics/computer-vision-overview",
@@ -5423,6 +5423,24 @@
     "search_text": "FastGS：多视误差驱动的增密、剪枝与训练加速 FastGS：多视误差驱动的增密、剪枝与训练加速 FastGS：多视误差驱动的增密、剪枝与训练加速 FastGS：多视误差驱动的增密、剪枝与训练加速   sources/2026-09-25-fastgs source near-cvpr-2025 3d-vision gaussian-splatting efficiency primary-source"
   },
   {
+    "slug": "sources/2026-09-25-ilrm",
+    "title": "iLRM：多视紧凑视角token反复吸收高分辨率图像",
+    "title_en": "iLRM：多视紧凑视角token反复吸收高分辨率图像",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "3d-vision",
+      "gaussian-splatting",
+      "neural-rendering",
+      "primary-source"
+    ],
+    "url": "sources/2026-09-25-ilrm.html",
+    "url_en": "en/sources/2026-09-25-ilrm.html",
+    "search_text": "iLRM：多视紧凑视角token反复吸收高分辨率图像 iLRM：多视紧凑视角token反复吸收高分辨率图像 iLRM：多视紧凑视角token反复吸收高分辨率图像 iLRM：多视紧凑视角token反复吸收高分辨率图像   sources/2026-09-25-ilrm source near-cvpr-2025 3d-vision gaussian-splatting neural-rendering primary-source"
+  },
+  {
     "slug": "sources/2026-09-25-langsplat",
     "title": "LangSplat：高斯语言特征与三级语义查询",
     "title_en": "LangSplat：高斯语言特征与三级语义查询",
@@ -5455,6 +5473,24 @@
     "url": "sources/2026-09-25-mip-splatting.html",
     "url_en": "en/sources/2026-09-25-mip-splatting.html",
     "search_text": "Mip-Splatting：跨尺度采样与三维高斯抗混叠 Mip-Splatting：跨尺度采样与三维高斯抗混叠 Mip-Splatting：跨尺度采样与三维高斯抗混叠 Mip-Splatting：跨尺度采样与三维高斯抗混叠   sources/2026-09-25-mip-splatting source near-cvpr-2025 3d-vision gaussian-splatting primary-source"
+  },
+  {
+    "slug": "sources/2026-09-25-movies",
+    "title": "MoVieS：有位姿单目视频的前馈动态高斯与运动建模",
+    "title_en": "MoVieS：有位姿单目视频的前馈动态高斯与运动建模",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "3d-vision",
+      "gaussian-splatting",
+      "neural-rendering",
+      "primary-source"
+    ],
+    "url": "sources/2026-09-25-movies.html",
+    "url_en": "en/sources/2026-09-25-movies.html",
+    "search_text": "MoVieS：有位姿单目视频的前馈动态高斯与运动建模 MoVieS：有位姿单目视频的前馈动态高斯与运动建模 MoVieS：有位姿单目视频的前馈动态高斯与运动建模 MoVieS：有位姿单目视频的前馈动态高斯与运动建模   sources/2026-09-25-movies source near-cvpr-2025 3d-vision gaussian-splatting neural-rendering primary-source"
   },
   {
     "slug": "sources/2026-09-25-mvsplat",
@@ -5542,6 +5578,24 @@
     "url": "sources/2026-09-25-turbo-gs.html",
     "url_en": "en/sources/2026-09-25-turbo-gs.html",
     "search_text": "Turbo-GS：稀疏像素渲染与高斯预算控制 Turbo-GS：稀疏像素渲染与高斯预算控制 Turbo-GS：稀疏像素渲染与高斯预算控制 Turbo-GS：稀疏像素渲染与高斯预算控制   sources/2026-09-25-turbo-gs source near-cvpr-2025 3d-vision gaussian-splatting efficiency primary-source"
+  },
+  {
+    "slug": "sources/2026-09-25-uni3r",
+    "title": "Uni3R：无外参多视图的几何与语言语义联合高斯",
+    "title_en": "Uni3R：无外参多视图的几何与语言语义联合高斯",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "3d-vision",
+      "gaussian-splatting",
+      "neural-rendering",
+      "primary-source"
+    ],
+    "url": "sources/2026-09-25-uni3r.html",
+    "url_en": "en/sources/2026-09-25-uni3r.html",
+    "search_text": "Uni3R：无外参多视图的几何与语言语义联合高斯 Uni3R：无外参多视图的几何与语言语义联合高斯 Uni3R：无外参多视图的几何与语言语义联合高斯 Uni3R：无外参多视图的几何与语言语义联合高斯   sources/2026-09-25-uni3r source near-cvpr-2025 3d-vision gaussian-splatting neural-rendering primary-source"
   },
   {
     "slug": "entities/clip-retrieval-benchmarks",
