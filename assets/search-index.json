@@ -91,7 +91,7 @@
     "slug": "topics/3d-gaussian-splatting",
     "title": "三维高斯泼溅：表示、优化、几何与动态任务",
     "title_en": "3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes",
-    "summary": "用二十一篇正式全文比较相机假设、图元位置与预算、长上下文、多视融合、静动态渲染、几何和语言/物理任务，保留评测和成本边界。",
+    "summary": "用二十四篇正式全文比较相机假设、图元预算、多视融合、CAD几何、动态占据与语言/物理任务，保留评测和成本边界。",
     "summary_en": "",
     "kind": "topic",
     "tags": [
@@ -102,7 +102,7 @@
     ],
     "url": "topics/3d-gaussian-splatting.html",
     "url_en": "en/topics/3d-gaussian-splatting.html",
-    "search_text": "三维高斯泼溅：表示、优化、几何与动态任务 三维高斯泼溅：表示、优化、几何与动态任务 3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes 3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes 用二十一篇正式全文比较相机假设、图元位置与预算、长上下文、多视融合、静动态渲染、几何和语言/物理任务，保留评测和成本边界。  topics/3d-gaussian-splatting topic near-cvpr-2025 3d-vision gaussian-splatting neural-rendering"
+    "search_text": "三维高斯泼溅：表示、优化、几何与动态任务 三维高斯泼溅：表示、优化、几何与动态任务 3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes 3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes 用二十四篇正式全文比较相机假设、图元预算、多视融合、CAD几何、动态占据与语言/物理任务，保留评测和成本边界。  topics/3d-gaussian-splatting topic near-cvpr-2025 3d-vision gaussian-splatting neural-rendering"
   },
   {
     "slug": "topics/computer-vision-overview",
@@ -5387,6 +5387,23 @@
     "search_text": "3DGS as MCMC：用高斯重定位改写密度控制 3DGS as MCMC：用高斯重定位改写密度控制 3DGS as MCMC：用高斯重定位改写密度控制 3DGS as MCMC：用高斯重定位改写密度控制   sources/2026-09-25-3dgs-as-mcmc source near-cvpr-2025 3d-vision gaussian-splatting primary-source"
   },
   {
+    "slug": "sources/2026-09-25-brepgaussian",
+    "title": "BrepGaussian：从多视图2DGS到参数化CAD边界",
+    "title_en": "BrepGaussian：从多视图2DGS到参数化CAD边界",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "3d-vision",
+      "gaussian-splatting",
+      "primary-source"
+    ],
+    "url": "sources/2026-09-25-brepgaussian.html",
+    "url_en": "en/sources/2026-09-25-brepgaussian.html",
+    "search_text": "BrepGaussian：从多视图2DGS到参数化CAD边界 BrepGaussian：从多视图2DGS到参数化CAD边界 BrepGaussian：从多视图2DGS到参数化CAD边界 BrepGaussian：从多视图2DGS到参数化CAD边界   sources/2026-09-25-brepgaussian source near-cvpr-2025 3d-vision gaussian-splatting primary-source"
+  },
+  {
     "slug": "sources/2026-09-25-diff4splat",
     "title": "Diff4Splat：视频扩散生成可变形高斯场",
     "title_en": "Diff4Splat:Repurposing Video Diffusion Models for Dynamic Scene Generation",
@@ -5458,6 +5475,24 @@
     "url": "sources/2026-09-25-fastgs.html",
     "url_en": "en/sources/2026-09-25-fastgs.html",
     "search_text": "FastGS：多视误差驱动的增密、剪枝与训练加速 FastGS：多视误差驱动的增密、剪枝与训练加速 FastGS：多视误差驱动的增密、剪枝与训练加速 FastGS：多视误差驱动的增密、剪枝与训练加速   sources/2026-09-25-fastgs source near-cvpr-2025 3d-vision gaussian-splatting efficiency primary-source"
+  },
+  {
+    "slug": "sources/2026-09-25-gaussiandwm",
+    "title": "GaussianDWM：驾驶语言高斯连接理解与生成",
+    "title_en": "GaussianDWM：驾驶语言高斯连接理解与生成",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "3d-vision",
+      "vision-language",
+      "gaussian-splatting",
+      "primary-source"
+    ],
+    "url": "sources/2026-09-25-gaussiandwm.html",
+    "url_en": "en/sources/2026-09-25-gaussiandwm.html",
+    "search_text": "GaussianDWM：驾驶语言高斯连接理解与生成 GaussianDWM：驾驶语言高斯连接理解与生成 GaussianDWM：驾驶语言高斯连接理解与生成 GaussianDWM：驾驶语言高斯连接理解与生成   sources/2026-09-25-gaussiandwm source near-cvpr-2025 3d-vision vision-language gaussian-splatting primary-source"
   },
   {
     "slug": "sources/2026-09-25-ilrm",
@@ -5650,6 +5685,24 @@
     "url": "sources/2026-09-25-speede3dgs.html",
     "url_en": "en/sources/2026-09-25-speede3dgs.html",
     "search_text": "SpeeDe3DGS：动态高斯时间剪枝与运动分组 SpeeDe3DGS：动态高斯时间剪枝与运动分组 SpeeDe3DGS：动态高斯时间剪枝与运动分组 SpeeDe3DGS：动态高斯时间剪枝与运动分组   sources/2026-09-25-speede3dgs source near-cvpr-2025 3d-vision gaussian-splatting neural-rendering primary-source"
+  },
+  {
+    "slug": "sources/2026-09-25-tt-occ",
+    "title": "TT-Occ：测试时高斯构造与语义占据",
+    "title_en": "TT-Occ：测试时高斯构造与语义占据",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "3d-vision",
+      "gaussian-splatting",
+      "segmentation",
+      "primary-source"
+    ],
+    "url": "sources/2026-09-25-tt-occ.html",
+    "url_en": "en/sources/2026-09-25-tt-occ.html",
+    "search_text": "TT-Occ：测试时高斯构造与语义占据 TT-Occ：测试时高斯构造与语义占据 TT-Occ：测试时高斯构造与语义占据 TT-Occ：测试时高斯构造与语义占据   sources/2026-09-25-tt-occ source near-cvpr-2025 3d-vision gaussian-splatting segmentation primary-source"
   },
   {
     "slug": "sources/2026-09-25-tttlrm",
