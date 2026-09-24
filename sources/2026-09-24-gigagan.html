@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GigaGAN：大规模前馈生成与质量—速度边界">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>GigaGAN：大规模前馈生成与质量—速度边界 · llmwiki</title>
+  <script>try{if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')document.documentElement.classList.add('sidebar-collapsed')}catch(e){}</script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260717-restrained-microinteractions-v12">
+  <script defer src="../assets/wiki.js?v=20260717-restrained-microinteractions-v12"></script>
+</head>
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-09-24-gigagan&quot;, &quot;title&quot;: &quot;GigaGAN：大规模前馈生成与质量—速度边界&quot;, &quot;title_en&quot;: &quot;GigaGAN: Scaling Up GANs for Text-to-Image Synthesis&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;evaluation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260717-restrained-microinteractions-v12">
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar" aria-label="菜单" title="菜单" data-menu-label="菜单" data-close-label="关闭菜单"><svg class="ui-icon menu-icon menu-icon--open" data-icon="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="ui-icon menu-icon menu-icon--close" data-icon="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="menu-toggle-label">菜单</span></button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
+    <button class="sidebar-collapse-toggle" type="button" aria-expanded="true" aria-controls="sidebar-panel" aria-label="折叠左侧导航" title="折叠左侧导航" data-collapse-label="折叠左侧导航" data-expand-label="展开左侧导航"><svg class="ui-icon sidebar-icon sidebar-icon--collapse" data-icon="panel-left-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/></svg><svg class="ui-icon sidebar-icon sidebar-icon--expand" data-icon="panel-left-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/></svg></button>
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
+    <div class="sidebar-panel" id="sidebar-panel">
+      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">搜索 llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
+      <nav class="sidebar-nav">
+<h2>入口</h2><ul>
+<li><a href="../catalog.html">完整论文目录</a></li>
+<li><a href="../index.html">研究地图</a></li>
+<li><a href="../llm-wiki.html">LLM Wiki</a></li>
+<li><a href="../main.html">阅读入口</a></li>
+</ul>
+<h2>基础概念</h2><ul>
+<li><a href="../topics/computer-vision-overview.html"><span class="nav-title-primary">计算机视觉概览</span><span class="nav-title-translation" lang="en">（Computer Vision Overview）</span></a></li>
+<li><a href="../topics/datasets-metrics-and-benchmark-reliability.html"><span class="nav-title-primary">数据与评测基础</span><span class="nav-title-translation" lang="en">（Datasets &amp; Evaluation）</span></a></li>
+<li><a href="../topics/diffusion-models.html"><span class="nav-title-primary">扩散模型</span><span class="nav-title-translation" lang="en">（Diffusion Models）</span></a></li>
+<li><a href="../topics/video-representation-and-temporal-modeling.html"><span class="nav-title-primary">视频表示基础</span><span class="nav-title-translation" lang="en">（Video Representation）</span></a></li>
+<li><a href="../topics/vision-backbones.html"><span class="nav-title-primary">视觉主干</span><span class="nav-title-translation" lang="en">（Vision Backbones）</span></a></li>
+<li><a href="../topics/vision-language-foundations.html"><span class="nav-title-primary">视觉语言基础</span><span class="nav-title-translation" lang="en">（Vision-Language Foundations）</span></a></li>
+<li><a href="../topics/vision-task-foundations.html"><span class="nav-title-primary">核心视觉任务</span><span class="nav-title-translation" lang="en">（Core Vision Tasks）</span></a></li>
+<li><a href="../topics/visual-generation-foundations.html"><span class="nav-title-primary">视觉生成基础</span><span class="nav-title-translation" lang="en">（Visual Generation Foundations）</span></a></li>
+</ul>
+<h2>研究专题</h2><ul>
+<li><a href="../topics/diffusion-efficiency-engineering.html"><span class="nav-title-primary">扩散效率工程</span><span class="nav-title-translation" lang="en">（Diffusion Efficiency）</span></a></li>
+<li><a href="../topics/generative-model-evaluation.html"><span class="nav-title-primary">生成模型评测</span><span class="nav-title-translation" lang="en">（Generative Model Evaluation）</span></a></li>
+<li><a href="../topics/image-editing.html"><span class="nav-title-primary">图像编辑</span><span class="nav-title-translation" lang="en">（Image Editing）</span></a></li>
+<li><a href="../topics/image-generation.html"><span class="nav-title-primary">图像生成</span><span class="nav-title-translation" lang="en">（Image Generation）</span></a></li>
+<li><a href="../topics/image-text-retrieval.html"><span class="nav-title-primary">图文检索</span><span class="nav-title-translation" lang="en">（Image-Text Retrieval）</span></a></li>
+<li><a href="../topics/sports-ai-video-understanding.html"><span class="nav-title-primary">体育视频理解</span><span class="nav-title-translation" lang="en">（Sports Video Understanding）</span></a></li>
+<li><a href="../topics/video-editing.html"><span class="nav-title-primary">视频编辑</span><span class="nav-title-translation" lang="en">（Video Editing）</span></a></li>
+<li><a href="../topics/video-generation.html"><span class="nav-title-primary">视频生成</span><span class="nav-title-translation" lang="en">（Video Generation）</span></a></li>
+<li><a href="../topics/video-understanding.html"><span class="nav-title-primary">视频理解</span><span class="nav-title-translation" lang="en">（Video Understanding）</span></a></li>
+<li><a href="../topics/vision-language.html"><span class="nav-title-primary">视觉语言</span><span class="nav-title-translation" lang="en">（Vision-Language）</span></a></li>
+</ul>
+<h2>应用路线</h2><ul>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI</a></li>
+</ul>
+<h2>实体</h2><ul>
+<li><a href="../entities/clip.html">CLIP 系列模型（CLIP Family）</a></li>
+<li><a href="../entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a></li>
+<li><a href="../entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a></li>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>判断</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-image-text-retrieval-baseline-and-specialization.html">双塔负责可扩展召回，细粒度模块负责精排与关系匹配</a></li>
+<li><a href="../claims/claim-image-text-retrieval-composed-query.html">组合式查询是图文检索中可落地且仍有缺口的研究切口</a></li>
+<li><a href="../claims/claim-image-text-retrieval-compositionality.html">标准图文检索分数不足以证明组合性理解</a></li>
+<li><a href="../claims/claim-image-text-retrieval-data-quality.html">图文检索的主要瓶颈仍包括数据质量、分布与概念覆盖</a></li>
+<li><a href="../claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
+</ul>
+<h2>问题</h2><ul>
+<li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a></li>
+<li><a href="../questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a></li>
+<li><a href="../questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a></li>
+<li><a href="../questions/question-image-text-retrieval-research-cut.html">图文检索哪个子方向最适合中等算力的研究生项目？</a></li>
+<li><a href="../questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a></li>
+<li><a href="../questions/question-motion-defined-text-human-machine-gap.html">运动定义文字的人机差距</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
+</ul>
+</nav>
+    </div>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="selected-lang" href="../sources/2026-09-24-gigagan.html">中文</a><a class="" href="../en/sources/2026-09-24-gigagan.html">English</a></nav><a class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>正文</span></a><a href="../index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>研究地图</span></a><a href="../main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>阅读入口</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></a></header>
+    <article class="article-shell">
+      
+      <header class="article-header" data-motion="reveal">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>GigaGAN：大规模前馈生成与质量—速度边界</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-09-24</p>
+        <h1><span class="title-main">GigaGAN</span><span class="title-subtitle">大规模前馈生成与质量—速度边界</span></h1>
+        
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#evaluation">#evaluation</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2023</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2023-06-01</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-09-24</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2023/html/Kang_Scaling_Up_GANs_for_Text-to-Image_Synthesis_CVPR_2023_paper.html" title="https://openaccess.thecvf.com/content/CVPR2023/html/Kang_Scaling_Up_GANs_for_Text-to-Image_Synthesis_CVPR_2023_paper.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>openaccess.thecvf.com · Kang_Scaling_Up_GANs_for_Text-t…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2023/papers/Kang_Scaling_Up_GANs_for_Text-to-Image_Synthesis_CVPR_2023_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2023/papers/Kang_Scaling_Up_GANs_for_Text-to-Image_Synthesis_CVPR_2023_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Kang_Scaling_Up_GANs_for_Text-t…</strong></a><a class="source-link source-link-code" href="https://github.com/mingukkang/GigaGAN/tree/b2d371642f3745744c09efc1539654bd797f28e7/evaluation" title="https://github.com/mingukkang/GigaGAN/tree/b2d371642f3745744c09efc1539654bd797f28e7/evaluation" target="_blank" rel="noopener noreferrer"><span>代码仓库</span><strong>github.com · evaluation</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>目录</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#关键发现">关键发现</a><ol><li class="toc-sub"><a href="#正式主表-低延迟不等于全面质量领先">正式主表：低延迟不等于全面质量领先</a></li><li class="toc-sub"><a href="#作者扩展版-消融存在指标取舍">作者扩展版：消融存在指标取舍</a></li></ol></li><li><a href="#数据-成本与评测边界">数据、成本与评测边界</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li><li><a href="#备注">备注</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>GigaGAN证明动态卷积、注意力与多尺度监督可把生成对抗网络（GAN）扩展为低延迟文生图系统，但较低FID并未消除结构和组合失败，不能据此宣布GAN全面优于扩散或自回归模型。</p>
+<h2 id="问题定义">问题定义</h2>
+<p>直接增宽StyleGAN在复杂互联网文生图上失稳；需要解释GAN如何扩大条件表示能力，同时保留前馈速度与潜空间控制。本文是对“只有迭代式生成才能扩展”的反例，不是统一生成—编辑或扩散蒸馏方法。（正式pp.1、3）</p>
+<h2 id="方法概述">方法概述</h2>
+<ul>
+<li><strong>条件入口</strong>：冻结CLIP词表示经可训练Transformer形成局部/全局描述；全局与随机z映射为w，局部参与cross-attention。</li>
+<li><strong>容量扩展</strong>：w以softmax混合滤波器库（filter bank），随后执行StyleGAN式权重调制；L2 self-attention、cross-attention与卷积交替，并配合初始化、残差缩放与权重衰减稳定训练。</li>
+<li><strong>监督</strong>：64px图像金字塔进入多尺度输入/输出判别器，real/fake错配监督、CLIP对比损失与视觉辅助判别器共同训练。</li>
+<li><strong>上采样</strong>：独立非对称U-Net把64提升至512，另有128→1024上采样模型；LPIPS与噪声增强连接低分辨率到高分辨率。所谓“单步”指各模块前馈，不是完整系统只有一次网络调用。（正式pp.4–6，Fig2/3）</li>
+</ul>
+<h2 id="关键发现">关键发现</h2>
+<h3 id="正式主表-低延迟不等于全面质量领先">正式主表：低延迟不等于全面质量领先</h3>
+<ul>
+<li><strong>文生图</strong>：约1.0B生成参数（652.5M基础+359.1M超分），COCO FID-30k <strong>9.09</strong>，512px生成 <strong>0.13s</strong>；SD-v1.5为9.62/2.9s。但Imagen7.27、Parti-20B7.23更低，作者也明确承认真实感与组合能力不及DALL·E2。没有系统人评或置信区间。（正式pp.7–8，Table1/Fig6）</li>
+<li><strong>超分辨率</strong>：128→1024模型为693M，FID1.54、patch-FID8.90、CLIP0.322、LPIPS0.274、0.13s。它快于表中的SD upscaler7.75s，<strong>慢于Real-ESRGAN0.06s</strong>；二者文本条件权限也不同。（正式p.8，Table2）</li>
+<li><strong>4K边界</strong>：3.66s/16Mpixel来自上采样演示，不是固定512模型上完整的4K文生图质量评测。潜空间插值和风格混合不等于对真实输入图的指令编辑。（正式pp.2、7–8）</li>
+</ul>
+<p><img src="../raw/ingest/2026-09-24-gigagan/page-previews/official-page-8.png" alt="正式论文第8页：主表与作者明确的失败边界" loading="lazy"></p>
+<h3 id="作者扩展版-消融存在指标取舍">作者扩展版：消融存在指标取舍</h3>
+<p>扩展v2 p.12 Table1显示：多尺度训练使FID <strong>14.88→14.92</strong>、CLIP <strong>0.280→0.300</strong>；加Vision-Aided使FID <strong>14.92→13.67</strong>，CLIP却 <strong>0.300→0.287</strong>。只对判别器施加matching-aware时FID也变差。不能把“逐步加模块”写成各指标单调改善；最后scale-up同时增加容量、训练步数和batch，不能孤立为架构因果。</p>
+<p>扩展Table5中ImageNet超分FID1.2较好，但PSNR24.3/SSIM0.71弱于U-Net回归27.9/0.80与SR3 26.4/0.76。它补充的是感知与重建的取舍，不是文生图人评胜出。扩展附录FigA7还将提示式风格变换限制为单个简单物体；更强截断（truncation）提高CLIP而降低多样性。（扩展pp.12、22–33）</p>
+<p><img src="../raw/ingest/2026-09-24-gigagan/page-previews/extended-page-12.png" alt="作者扩展版第12页：消融与不同任务的表，不能混用分母" loading="lazy"></p>
+<h2 id="数据-成本与评测边界">数据、成本与评测边界</h2>
+<ul>
+<li>扩展版说明LAION2B-en+COYO-700M经过分辨率、CLIP、美学和水印过滤；128→1024模型另用Adobe内部Stock。未披露过滤后独立图像总数与COCO近重复审计，表中0.98B是训练曝光而非唯一图片数。污染未知，不指控已泄漏。（扩展pp.9、18）</li>
+<li>COCO2014真实40504、生成30000；蒸馏对照另用COCO2017/5k/512px，不能把两表FID并成同曲线。统计应按源图片/提示词聚类，不能以重复seed假增独立样本。（扩展pp.12、18）</li>
+<li>正式Table1报告 <strong>4783 A100 GPU-days</strong>；工具换算为114792名义GPU-hours，不是本轮实测。扩展配置使用96–128 A100训练base、64 A100训练512上采样器；推理batch、计时分项与峰值显存未充分报告，TF32训练配置不能推定为推理精度。低推理延迟不是低训练门槛。</li>
+<li>基线数据、训练曝光、encoder、输出分辨率与质量点不齐；CLIP又参与数据筛选、训练损失和评测。缺异构人评，不据单一FID/CLIP宣称语义或人类偏好领先。</li>
+</ul>
+<h2 id="局限或疑问">局限或疑问</h2>
+<ol>
+<li><strong>正式版与扩展版要分开</strong>：CVF正式表1误将初代DALL·E写为Diff，扩展表2改为AR；扩展消融/蒸馏表不是CVF表。正式主文五尺度预测文字与总数公式还有计数口径疑点，无实现不能擅改。</li>
+<li><strong>主张的最强反证来自作者自身</strong>：较低FID同时伴随床腿、花瓶、条纹、脸部与复杂关系失败；没有人评证明总体视觉质量更好。</li>
+<li><strong>开放评测不等于开放模型</strong>：固定SHA仓库提供网页、评测脚本和预生成图片链接；本轮未见生成器训练实现/权重，未运行GPU或重算正式指标。</li>
+<li><strong>代码需先验收输入完整性</strong>：原始loader自然排序PNG后按位置与caption进行zip，无长度/ID检查。四项离线审计通过：额外图像静默被截、缺中间图像导致错配、完整控制正常、FID不使用<code>how_many</code>而CLIP使用。仅合成文件与AST检查，<strong>不是实际发布图片包损坏或原榜单错误的证据</strong>。</li>
+<li><strong>评测版本需冻结</strong>：COCO脚本默认ViT-B/32，而扩展正文通常写ViT-G/14；代码支持另一分支但内部为<code>ViT-g-14</code>。README的9.06/3.53是作者重算，不覆盖正式9.09/3.45。复现应锁定encoder/checkpoint、resize与图像manifest。</li>
+</ol>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2023/html/Kang_Scaling_Up_GANs_for_Text-to-Image_Synthesis_CVPR_2023_paper.html">CVPR正式记录</a></li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2023/papers/Kang_Scaling_Up_GANs_for_Text-to-Image_Synthesis_CVPR_2023_paper.pdf">CVF正式PDF</a></li>
+<li><a href="https://doi.org/10.1109/cvpr52729.2023.00976">IEEE DOI</a></li>
+<li><a href="https://arxiv.org/pdf/2303.05511v2">作者扩展版v2</a></li>
+<li><a href="https://www.gigagan.com/">官方项目</a></li>
+<li><a href="https://github.com/mingukkang/GigaGAN/tree/b2d371642f3745744c09efc1539654bd797f28e7/evaluation">固定SHA评测代码</a></li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a>：同质量点的范式比较与前馈反例。</li>
+<li><a class="wikilink" href="../topics/generative-model-evaluation.html">topics/generative-model-evaluation</a>：统计指标、视觉质量与真实条件遵循应分开。</li>
+<li><a class="wikilink" href="../sources/2026-09-11-guidance-matters.html">sources/2026-09-11-guidance-matters</a>：强度校准与预算公平，GAN截断同样需要扫描。</li>
+</ul>
+<h2 id="备注">备注</h2>
+<p>原始证据、独立analysis、固定代码与合成审计结果保存在raw目录；正式11页全文已核验，补充版实验/附录按版本标注。未升级研究阶段、未声称系统文献覆盖、未运行完整模型或人评复现。</p></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">2</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../topics/image-generation.html">图像生成</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary><span class="summary-label"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><pre>{
+  &quot;id&quot;: &quot;2026-09-24-gigagan&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;GigaGAN：大规模前馈生成与质量—速度边界&quot;,
+  &quot;title_en&quot;: &quot;GigaGAN: Scaling Up GANs for Text-to-Image Synthesis&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;created&quot;: &quot;2026-09-24&quot;,
+  &quot;updated&quot;: &quot;2026-09-24&quot;,
+  &quot;venue&quot;: &quot;CVPR 2023&quot;,
+  &quot;published_at&quot;: &quot;2023-06-01&quot;,
+  &quot;ingested_at&quot;: &quot;2026-09-24&quot;,
+  &quot;authors&quot;: [
+    &quot;Minguk Kang&quot;,
+    &quot;Jun-Yan Zhu&quot;,
+    &quot;Richard Zhang&quot;,
+    &quot;Jaesik Park&quot;,
+    &quot;Eli Shechtman&quot;,
+    &quot;Sylvain Paris&quot;,
+    &quot;Taesung Park&quot;
+  ],
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-generation&quot;,
+    &quot;evaluation&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/CVPR2023/html/Kang_Scaling_Up_GANs_for_Text-to-Image_Synthesis_CVPR_2023_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2023/papers/Kang_Scaling_Up_GANs_for_Text-to-Image_Synthesis_CVPR_2023_paper.pdf&quot;,
+    &quot;https://doi.org/10.1109/cvpr52729.2023.00976&quot;,
+    &quot;https://arxiv.org/pdf/2303.05511v2&quot;,
+    &quot;https://www.gigagan.com/&quot;,
+    &quot;https://github.com/mingukkang/GigaGAN/tree/b2d371642f3745744c09efc1539654bd797f28e7/evaluation&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-09-24-gigagan/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-generation&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: []
+}</pre></details>
+    </article>
+  </main>
+</body>
+</html>
