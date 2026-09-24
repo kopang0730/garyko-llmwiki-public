@@ -911,6 +911,8 @@ body.motion-ready [data-motion="reveal"].is-visible{
 }
 .method-map{ padding: 16px; }
 .method-map-heading, .panel-heading{ display: flex; justify-content: space-between; align-items: flex-start; gap: 18px; }
+.method-map-heading{ flex-wrap: wrap; }
+.method-map-heading > span{ flex-shrink: 0; }
 .method-map-heading h2, .panel-heading h2{ margin: 0; font-family: var(--serif); font-size: 24px; font-weight: 620; line-height: 1.2; }
 .method-map-heading > span, .panel-count{ color: var(--subtle); font-family: var(--mono); font-size: 11px; white-space: nowrap; }
 .method-map-track{ display: flex; align-items: stretch; gap: 8px; margin-top: 16px; }
