@@ -89,9 +89,9 @@
   },
   {
     "slug": "topics/3d-gaussian-splatting",
-    "title": "三维高斯泼溅：表示、优化、几何、语言与物理",
-    "title_en": "3D Gaussian Splatting: Representation, Optimization, Geometry, Language, and Physics",
-    "summary": "用九篇正式全文比较已标定场景的渲染、采样、几何、增密、前馈、语义与指定物理运动，保留各自评测和成本边界。",
+    "title": "三维高斯泼溅：表示、优化、几何与动态任务",
+    "title_en": "3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes",
+    "summary": "用十二篇正式全文比较已标定静态/动态场景的渲染、几何、前馈、点管理、优化与语言/物理任务，逐项保留评测和成本边界。",
     "summary_en": "",
     "kind": "topic",
     "tags": [
@@ -102,7 +102,7 @@
     ],
     "url": "topics/3d-gaussian-splatting.html",
     "url_en": "en/topics/3d-gaussian-splatting.html",
-    "search_text": "三维高斯泼溅：表示、优化、几何、语言与物理 三维高斯泼溅：表示、优化、几何、语言与物理 3D Gaussian Splatting: Representation, Optimization, Geometry, Language, and Physics 3D Gaussian Splatting: Representation, Optimization, Geometry, Language, and Physics 用九篇正式全文比较已标定场景的渲染、采样、几何、增密、前馈、语义与指定物理运动，保留各自评测和成本边界。  topics/3d-gaussian-splatting topic near-cvpr-2025 3d-vision gaussian-splatting neural-rendering"
+    "search_text": "三维高斯泼溅：表示、优化、几何与动态任务 三维高斯泼溅：表示、优化、几何与动态任务 3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes 3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes 用十二篇正式全文比较已标定静态/动态场景的渲染、几何、前馈、点管理、优化与语言/物理任务，逐项保留评测和成本边界。  topics/3d-gaussian-splatting topic near-cvpr-2025 3d-vision gaussian-splatting neural-rendering"
   },
   {
     "slug": "topics/computer-vision-overview",
@@ -5387,6 +5387,24 @@
     "search_text": "3DGS as MCMC：用高斯重定位改写密度控制 3DGS as MCMC：用高斯重定位改写密度控制 3DGS as MCMC：用高斯重定位改写密度控制 3DGS as MCMC：用高斯重定位改写密度控制   sources/2026-09-25-3dgs-as-mcmc source near-cvpr-2025 3d-vision gaussian-splatting primary-source"
   },
   {
+    "slug": "sources/2026-09-25-faster-gs",
+    "title": "Faster-GS：训练实现拆账与数值稳定性",
+    "title_en": "Faster-GS：训练实现拆账与数值稳定性",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "3d-vision",
+      "gaussian-splatting",
+      "efficiency",
+      "primary-source"
+    ],
+    "url": "sources/2026-09-25-faster-gs.html",
+    "url_en": "en/sources/2026-09-25-faster-gs.html",
+    "search_text": "Faster-GS：训练实现拆账与数值稳定性 Faster-GS：训练实现拆账与数值稳定性 Faster-GS：训练实现拆账与数值稳定性 Faster-GS：训练实现拆账与数值稳定性   sources/2026-09-25-faster-gs source near-cvpr-2025 3d-vision gaussian-splatting efficiency primary-source"
+  },
+  {
     "slug": "sources/2026-09-25-fastgs",
     "title": "FastGS：多视误差驱动的增密、剪枝与训练加速",
     "title_en": "FastGS：多视误差驱动的增密、剪枝与训练加速",
@@ -5488,6 +5506,42 @@
     "url": "sources/2026-09-25-pixelsplat.html",
     "url_en": "en/sources/2026-09-25-pixelsplat.html",
     "search_text": "pixelSplat：从已标定图像对前馈预测三维高斯 pixelSplat：从已标定图像对前馈预测三维高斯 pixelSplat：从已标定图像对前馈预测三维高斯 pixelSplat：从已标定图像对前馈预测三维高斯   sources/2026-09-25-pixelsplat source near-cvpr-2025 3d-vision gaussian-splatting primary-source"
+  },
+  {
+    "slug": "sources/2026-09-25-speede3dgs",
+    "title": "SpeeDe3DGS：动态高斯时间剪枝与运动分组",
+    "title_en": "SpeeDe3DGS：动态高斯时间剪枝与运动分组",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "3d-vision",
+      "gaussian-splatting",
+      "neural-rendering",
+      "primary-source"
+    ],
+    "url": "sources/2026-09-25-speede3dgs.html",
+    "url_en": "en/sources/2026-09-25-speede3dgs.html",
+    "search_text": "SpeeDe3DGS：动态高斯时间剪枝与运动分组 SpeeDe3DGS：动态高斯时间剪枝与运动分组 SpeeDe3DGS：动态高斯时间剪枝与运动分组 SpeeDe3DGS：动态高斯时间剪枝与运动分组   sources/2026-09-25-speede3dgs source near-cvpr-2025 3d-vision gaussian-splatting neural-rendering primary-source"
+  },
+  {
+    "slug": "sources/2026-09-25-turbo-gs",
+    "title": "Turbo-GS：稀疏像素渲染与高斯预算控制",
+    "title_en": "Turbo-GS：稀疏像素渲染与高斯预算控制",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "3d-vision",
+      "gaussian-splatting",
+      "efficiency",
+      "primary-source"
+    ],
+    "url": "sources/2026-09-25-turbo-gs.html",
+    "url_en": "en/sources/2026-09-25-turbo-gs.html",
+    "search_text": "Turbo-GS：稀疏像素渲染与高斯预算控制 Turbo-GS：稀疏像素渲染与高斯预算控制 Turbo-GS：稀疏像素渲染与高斯预算控制 Turbo-GS：稀疏像素渲染与高斯预算控制   sources/2026-09-25-turbo-gs source near-cvpr-2025 3d-vision gaussian-splatting efficiency primary-source"
   },
   {
     "slug": "entities/clip-retrieval-benchmarks",
