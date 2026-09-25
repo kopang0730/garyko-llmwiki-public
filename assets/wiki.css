@@ -615,6 +615,7 @@ code{
   border-radius: 4px;
   padding: 1px 4px;
 }
+.article-content code:not(pre code){ overflow-wrap: anywhere; }
 pre{
   overflow: auto;
   background: oklch(95% 0.01 255);
