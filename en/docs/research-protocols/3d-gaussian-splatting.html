@@ -141,6 +141,7 @@
 <p>| 35 | <code>&quot;No Pose, No Problem: Surprisingly Simple 3D Gaussian Splats from Sparse Unposed Images&quot; ICLR 2025 proceedings Botao Ye</code> | ICLR Proceedings 2025 Conference正式记录与首页七作者一致；25页正式PDF含附录，官方视频ZIP。项目页的Oral声明待官方类别核验；无输入外参但需内参，训练/评价仍用相机。检索和hash见同ID <code>retrieval-audit.json</code>。 |</p>
 <p>| 36 | <code>&quot;AnySplat&quot; 10.1145/3763326 ACM TOG</code> | Crossref元数据证实ACM TOG 44(6)，2025-12-04在线；出版社PDF请求HTTP 403，首页/正式版本全文身份尚待权限解阻，未计正式完整证据。原阻塞审计见<code>verification/2026-09-25-036-evidence-blocker/screening.json</code>。 |</p>
 <p>| 37 | <code>&quot;SplatFormer: Point Transformer for Robust 3D Gaussian Splatting&quot; ICLR 2025 proceedings Yutong Chen</code> | ICLR Proceedings Conference精确题名六作者与正式27页PDF首页吻合（主文10页、参考4页、内附录13页）；官方ZIP两视频已核CRC并完整解码。原文PDF Table1/E.1/F.2/H.1/H.2原页抽查；附录两组输入角度的排印冲突与30k基线/10k方法输入差异按原样保留。<code>raw/ingest/2026-09-25-splatformer/retrieval-audit.json</code>记检索与SHA。 |</p>
+<p>| 38 | <code>&quot;FreeSplatter: Pose-free Gaussian Splatting for Sparse-view 3D Reconstruction&quot; ICCV 2025 Xu</code> | CVF正式pp.25442–25452、首页三作者；11页主文+15页官方补充，主文p.5/7/8与补充p.3/9/12的关键表格已按原页视觉对照。provided GitHub仅作为代码入口；核验和哈希见<code>raw/ingest/2026-09-25-freesplatter/retrieval-audit.json</code>。共享焦距/PnP、训练真值/掩码与跨域反向对照须保留。 |</p>
 <h2 id="纳排与去重">纳排与去重</h2>
 <ul>
 <li>纳入：主会CVPR/ICCV/ECCV/NeurIPS/ICLR/ICML、SIGGRAPH正式Conference Papers、ACM TOG或正式同行评审期刊（相关SLAM venue另标角色）；精确出版记录+作者/标题/venue/year/track对应首页，完整可读主文，能抽任务、输入、数据、结果/成本和局限。</li>
@@ -148,7 +149,7 @@
 <li>数据与实验单位：跨场景方法按scene/源视频拆分，动态按时间相机单位；主表两论文数字只在相同实验设置内直接比较。记录摄影机/SfM、预训练骨干、数据许可、分辨率、真实训练卡时、推断显存/编码与渲染分项；未知写未报告。</li>
 </ul>
 <h2 id="筛选流和升级门">筛选流和升级门</h2>
-<p>截至2026-09-25本批：原始输入100，逐条重复性尚待总核；已定向核验45，其中44篇具正式首页匹配及完整主文/独立分析，#36有正式出版元数据但PDF HTTP 403与首页待核；55未筛，不能计作合格。初批三篇内部暂存、次批达到六篇Topic门槛；#11–#19及#25的CVF主文/补充、#20–#24的Springer正式章节身份与分版本作者全文、#26–#28的CVF主文/补充均纳入四十四篇专题；#34正式主文及补充、#35/#37 ICLR正式PDF与内附录亦纳入。原始100篇并非全领域数据库检索分母。当前正式身份和全文双核44篇；55条未知、1条权限阻塞。支持/反证和逐篇证据：<a class="wikilink" href="../../../en/docs/research-matrices/3d-gaussian-splatting-evidence-matrix.html">docs/research-matrices/3d-gaussian-splatting-evidence-matrix</a>。</p>
+<p>截至2026-09-25本批：原始输入100，逐条重复性尚待总核；已定向核验46，其中45篇具正式首页匹配及完整主文/独立分析，#36有正式出版元数据但PDF HTTP 403与首页待核；54未筛，不能计作合格。初批三篇内部暂存、次批达到六篇Topic门槛；#11–#19及#25的CVF主文/补充、#20–#24的Springer正式章节身份与分版本作者全文、#26–#28的CVF主文/补充均纳入四十五篇专题；#34/#38正式主文及补充、#35/#37 ICLR正式PDF与内附录亦纳入。原始100篇并非全领域数据库检索分母。当前正式身份和全文双核45篇；54条未知、1条权限阻塞。支持/反证和逐篇证据：<a class="wikilink" href="../../../en/docs/research-matrices/3d-gaussian-splatting-evidence-matrix.html">docs/research-matrices/3d-gaussian-splatting-evidence-matrix</a>。</p>
 <p>阶段维持<code>evidence_map</code>：全域CVF/ECVA/ACM/NeurIPS及IEEE/PMLR的完整布尔检索、去重导出、排除分布、引文反证追踪尚未完成。下一升级前保存数据库实际返回快照/查询日期和去重键，完整筛选100条的正式资格与全文后再审计覆盖；近期直接问题若已有文献解决，降级研究机会。</p></section>
       </div>
       

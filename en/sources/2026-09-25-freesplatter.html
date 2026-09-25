@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="FreeSplatter:Sparse-View Gaussians and Camera Recovery without Input Calibration">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <title>FreeSplatter:Sparse-View Gaussians and Camera Recovery without Input Calibration · llmwiki</title>
+  <script>try{if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')document.documentElement.classList.add('sidebar-collapsed')}catch(e){}</script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260925-inline-code-wrap-v14">
+  <script defer src="../../assets/wiki.js?v=20260925-inline-code-wrap-v14"></script>
+</head>
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-09-25-freesplatter&quot;, &quot;title&quot;: &quot;FreeSplatter：无输入相机参数的稀疏视图高斯与位姿恢复&quot;, &quot;title_en&quot;: &quot;FreeSplatter: Sparse-View Gaussians and Camera Recovery without Input Calibration&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;3d-vision&quot;, &quot;gaussian-splatting&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260925-inline-code-wrap-v14">
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar" aria-label="Menu" title="Menu" data-menu-label="Menu" data-close-label="Close menu"><svg class="ui-icon menu-icon menu-icon--open" data-icon="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="ui-icon menu-icon menu-icon--close" data-icon="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="menu-toggle-label">Menu</span></button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
+    <button class="sidebar-collapse-toggle" type="button" aria-expanded="true" aria-controls="sidebar-panel" aria-label="Collapse sidebar" title="Collapse sidebar" data-collapse-label="Collapse sidebar" data-expand-label="Expand sidebar"><svg class="ui-icon sidebar-icon sidebar-icon--collapse" data-icon="panel-left-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/></svg><svg class="ui-icon sidebar-icon sidebar-icon--expand" data-icon="panel-left-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/></svg></button>
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <div class="sidebar-panel" id="sidebar-panel">
+      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">Search llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+      <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/catalog.html">Full paper catalog</a></li>
+<li><a href="../../en/index.html">Research map</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Reading portal</a></li>
+</ul>
+<h2>Foundations</h2><ul>
+<li><a href="../../en/topics/computer-vision-overview.html">Computer Vision Overview</a></li>
+<li><a href="../../en/topics/datasets-metrics-and-benchmark-reliability.html">Datasets &amp; Evaluation</a></li>
+<li><a href="../../en/topics/diffusion-models.html">Diffusion Models</a></li>
+<li><a href="../../en/topics/video-representation-and-temporal-modeling.html">Video Representation</a></li>
+<li><a href="../../en/topics/vision-backbones.html">Vision Backbones</a></li>
+<li><a href="../../en/topics/vision-language-foundations.html">Vision-Language Foundations</a></li>
+<li><a href="../../en/topics/vision-task-foundations.html">Core Vision Tasks</a></li>
+<li><a href="../../en/topics/visual-generation-foundations.html">Visual Generation Foundations</a></li>
+</ul>
+<h2>Research topics</h2><ul>
+<li><a href="../../en/topics/3d-gaussian-splatting.html">3D Gaussian Splatting</a></li>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">Diffusion Efficiency</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">Generative Model Evaluation</a></li>
+<li><a href="../../en/topics/image-editing.html">Image Editing</a></li>
+<li><a href="../../en/topics/image-generation.html">Image Generation</a></li>
+<li><a href="../../en/topics/image-text-retrieval.html">Image-Text Retrieval</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">Video Editing</a></li>
+<li><a href="../../en/topics/video-generation.html">Video Generation</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">Vision-Language</a></li>
+</ul>
+<h2>Roadmaps</h2><ul>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/clip.html">CLIP 系列模型（CLIP Family）</a></li>
+<li><a href="../../en/entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a></li>
+<li><a href="../../en/entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a></li>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-baseline-and-specialization.html">双塔负责可扩展召回，细粒度模块负责精排与关系匹配</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-composed-query.html">组合式查询是图文检索中可落地且仍有缺口的研究切口</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-compositionality.html">标准图文检索分数不足以证明组合性理解</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-data-quality.html">图文检索的主要瓶颈仍包括数据质量、分布与概念覆盖</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-research-cut.html">图文检索哪个子方向最适合中等算力的研究生项目？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a></li>
+<li><a href="../../en/questions/question-motion-defined-text-human-machine-gap.html">Motion-Defined Text Gap</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
+</ul>
+</nav>
+    </div>
+  </aside>
+  <main class="wiki-page">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="" href="../../sources/2026-09-25-freesplatter.html">中文</a><a class="selected-lang" href="../../en/sources/2026-09-25-freesplatter.html">English</a></nav><a class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>Article</span></a><a href="../../en/index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>Research map</span></a><a href="../../en/main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>Reading portal</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>Metadata</span></a></header>
+    <article class="article-shell">
+      
+      <header class="article-header" data-motion="reveal">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>FreeSplatter:Sparse-View Gaussians and Camera Recovery without Input Calibration</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-09-25</p>
+        <h1><span class="title-main">FreeSplatter</span><span class="title-subtitle">Sparse-View Gaussians and Camera Recovery without Input Calibration</span></h1>
+        
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#3d-vision">#3d-vision</a><a class="tag" href="../../en/tags.html#gaussian-splatting">#gaussian-splatting</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-10-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-09-25</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/ICCV2025/html/Xu_FreeSplatter_Pose-free_Gaussian_Splatting_for_Sparse-view_3D_Reconstruction_ICCV_2025_paper.html" title="https://openaccess.thecvf.com/content/ICCV2025/html/Xu_FreeSplatter_Pose-free_Gaussian_Splatting_for_Sparse-view_3D_Reconstruction_ICCV_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Xu_FreeSplatter_Pose-free_Gauss…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/ICCV2025/papers/Xu_FreeSplatter_Pose-free_Gaussian_Splatting_for_Sparse-view_3D_Reconstruction_ICCV_2025_paper.pdf" title="https://openaccess.thecvf.com/content/ICCV2025/papers/Xu_FreeSplatter_Pose-free_Gaussian_Splatting_for_Sparse-view_3D_Reconstruction_ICCV_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Xu_FreeSplatter_Pose-free_Gauss…</strong></a><a class="source-link source-link-code" href="https://github.com/TencentARC/FreeSplatter" title="https://github.com/TencentARC/FreeSplatter" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · FreeSplatter</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题-表示与输入边界">问题、表示与输入边界</a></li><li><a href="#数据-结果与可比较性">数据、结果与可比较性</a></li><li><a href="#消融-成本与失败模式">消融、成本与失败模式</a></li><li><a href="#证据关联与实验边界">证据关联与实验边界</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>FreeSplatter从稀疏RGB预测首视相机坐标系的逐像素高斯，再以预测点图估焦距并用PnP-RANSAC求其余视图位姿。无输入内外参是推断接口的条件；训练仍有深度/真值相机监督，测试仍依赖相机模型假设、位姿求解与部分对象掩码。作者主表GSO新视角30.443 PSNR，但另一GSO对照中PF-LRM 25.08高于本法23.54，结论须按数据/渲染协议分开（ICCV正式主文pp.3–5 Fig.2/Eqs.1–6，p.5 Table1，p.7 Table3；官方补充p.1）。</p>
+<h2 id="问题-表示与输入边界">问题、表示与输入边界</h2>
+<ul>
+<li>物体版FreeSplatter-O和场景版FreeSplatter-S分别训练。输入N张稀疏RGB，不给网络内参/外参；8×8 patch、24层宽1024 Transformer处理reference/source视图嵌入，每个token还原64个像素位置对应的高斯。网络直接回归首视相机坐标系中心、旋转、尺度、透明度及颜色，并通过预测的3D中心与2D像素建立相机求解对应；非已知相机深度反投影（主文pp.3–4 Fig.2、Eqs.1–3；补充p.1）。</li>
+<li>测试先以Weiszfeld法拟合逐视焦距并取共享焦距，再用PnP-RANSAC求相对位姿。假定主点在图像中心、方形像素、各视图共享一个焦距；未验证各种镜头畸变和焦距随视图变化的设置。O版PnP需rembg前景掩码及白背景，S版用预测opacity阈值作掩码；场景绝对尺度有歧义，训练与渲染前分别归一化/对齐。新视角指标的目标相机位姿对齐属于评测条件（主文pp.3–4、7；补充pp.1–2）。</li>
+<li>训练先用真值深度反投影点图的位置损失Lpos前100k步稳住中心，另用预测像素射线的Lalign及真值目标相机下渲染MSE+LPIPS监督；O仅对前景加ray约束、S对有效点加约束。测试从无输入相机参数并不表示训练无位姿/深度，生成应用另借Zero123++/Hunyuan3D多视生成器（主文pp.4–5 Eqs.4–6；补充pp.4–8）。</li>
+</ul>
+<h2 id="数据-结果与可比较性">数据、结果与可比较性</h2>
+<ul>
+<li>O在Objaverse白底渲染图/深度上训练，测试GSO、OmniObject3D；OmniObject3D选30类300物件，每物件24视、其中4幅结构化输入。S在BlendedMVS、ScanNet++、CO3Dv2混合训练，测试ScanNet++/CO3Dv2及域外Re10K；主文测试图像512×512。对象/场景为重要独立单位，相机对和多目标视角具相关性；未见全面逐物件置信区间、失败率和重复训练方差（主文pp.5–7 §§4.1–4.2、Table3）。</li>
+<li>主文p.7 Table3：GSO O版30.443/.945/.055，GT位姿输入的InstantMesh* 25.421/.891/.095；OmniObject3D 31.929/.973/.027，对LGM* 24.852/.942/.060；ScanNet++ S版25.807/.887/.140，对已知相机pixelSplat* 24.974/.889/.180（PSNR/SSIM/LPIPS）。该ScanNet++ SSIM反例是.887低于.889；CO3Dv2 20.405/.781/.162，对Splatt3R 18.074/.740/.197。星号方法拥有GT输入相机，其中pixelSplat/MVSplat先在Re10K预训后于ScanNet++微调，CO3Dv2缺它们的本表实测；跨范式排名应同时标相机许可、训练域和对齐。</li>
+<li>同主文p.7 Table4：GSO RRE 3.902、RRA@15° .961、TE .040，对MASt3R 59.633/.269/.353；场景RRE在ScanNet++ .776高于MASt3R .724，CO3Dv2 3.048高于2.917，Re10K 3.513高于2.341（误差越低越好），虽然这些场景其他pose指标可占优。主文p.5 Tables1–2在PF-LRM自己的GSO渲染协议中，本法真值新视PSNR23.54低于PF-LRM25.08、预测输入视25.50低于27.10，RRE8.96高于3.99；OmniObject3D方向相反。PF-LRM代码未取得，GSO光照/划分与主文Table3有别，必须保持两个对照表的各自分母。</li>
+<li>官方补充p.3 Table1把深度经TSDF提网格并采16k点：GSO本法CD .028/F-score@.2 .960，GT位姿输入InstantMesh* .024/.970；OmniObject3D本法.043/.896，对InstantMesh* .044/.882。这是限定网格提取、尺度及阈值的几何证据。补充p.9 Table4直接对#35 <a class="wikilink" href="../../en/sources/2026-09-25-noposplat.html">NoPoSplat</a>：Re10K PSNR本法20.513低于NoPoSplat23.867，ScanNet++本法25.807高于21.477；Re10K RRE本法3.513高于NoPoSplat3.467。NoPoSplat输入已知内参，训练集与模型预算不同；这些是不同协议下的域差示例，不能归因于单一网络模块。</li>
+</ul>
+<h2 id="消融-成本与失败模式">消融、成本与失败模式</h2>
+<ul>
+<li>主文p.8 Table5固定其余配置比较16层/16patch 25.417/.896/.088与24层/8patch 30.443/.945/.055；Table6去Lalign使GSO PSNR30.443→26.684、ScanNet++25.807→21.330。补充p.12 Table5去Lpos留Lalign的GSO PSNR11.218；正文说会发散而表里仍有有限分数，记录为严重退化与表文张力。补充p.14 Fig.13的1–6视只给一个样本，不能概括统计趋势。</li>
+<li>官方补充p.1：每个O/S网络约306M参数，先256² 500k步再512² 100k步，16×H800。未统一报告每个模型GPU小时、总墙钟与预处理。补充p.3 Table2单A100高斯预测加位姿求解，2/4/6输入视分别1.268/3.669/7.495秒、3611/4225/4837MB；未明计时重复及是否峰显存，不含rembg、生成多视、TSDF或所有评测对齐。高亮白底物体可能产生半透明图元（补充p.2），跨域图多为作者选例（补充pp.9–11）。</li>
+<li>作者GitHub提供O/S及O-2dgs权重和推理入口，本轮仅审阅README/LICENSE当日快照，未下载权重或执行CUDA。README称Apache 2.0附Tencent限制，许可证含欧盟使用提示；外部生成和抠图模型另有许可条件，使用前逐项核原文。仓库观测HEAD与未锁定main文件快照不可视为同一不可变提交（原件与审计见raw目录）。</li>
+</ul>
+<h2 id="证据关联与实验边界">证据关联与实验边界</h2>
+<p>与<a class="wikilink" href="../../en/sources/2026-09-25-pixelsplat.html">pixelSplat</a>/<a class="wikilink" href="../../en/sources/2026-09-25-mvsplat.html">MVSplat</a>的已标定前馈、<a class="wikilink" href="../../en/sources/2026-09-25-noposplat.html">NoPoSplat</a>的已知内参无外参、<a class="wikilink" href="../../en/sources/2026-09-25-uni3r.html">Uni3R</a>的语义教师无外参路径比较，先冻结相机内参许可及误差、训练域/教师、目标相机对齐、场景划分、位姿求解耗时与GT几何。优先复核共享焦距失配、白底掩码、Re10K跨域反例与PF-LRM GSO协议；这属于<a class="wikilink" href="../../en/topics/3d-gaussian-splatting.html">3DGS研究专题</a>的条件性实验设计，现无GPU复现或新统计实验。正式11页PDF、官方补充15页、逐页账与独立分析见<code>raw/ingest/2026-09-25-freesplatter/</code>。</p></section>
+      </div>
+      
+      
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">2</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/3d-gaussian-splatting.html">3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary><span class="summary-label"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>Metadata</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><pre>{
+  &quot;id&quot;: &quot;2026-09-25-freesplatter&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;FreeSplatter：无输入相机参数的稀疏视图高斯与位姿恢复&quot;,
+  &quot;title_en&quot;: &quot;FreeSplatter: Sparse-View Gaussians and Camera Recovery without Input Calibration&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-09-25&quot;,
+  &quot;updated&quot;: &quot;2026-09-25&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;venue&quot;: &quot;ICCV 2025&quot;,
+  &quot;authors&quot;: &quot;[Jiale Xu, Shenghua Gao, Ying Shan]&quot;,
+  &quot;published_at&quot;: &quot;2025-10-01&quot;,
+  &quot;ingested_at&quot;: &quot;2026-09-25&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/ICCV2025/html/Xu_FreeSplatter_Pose-free_Gaussian_Splatting_for_Sparse-view_3D_Reconstruction_ICCV_2025_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/ICCV2025/papers/Xu_FreeSplatter_Pose-free_Gaussian_Splatting_for_Sparse-view_3D_Reconstruction_ICCV_2025_paper.pdf&quot;,
+    &quot;https://openaccess.thecvf.com/content/ICCV2025/supplemental/Xu_FreeSplatter_Pose-free_Gaussian_ICCV_2025_supplemental.pdf&quot;,
+    &quot;https://github.com/TencentARC/FreeSplatter&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-09-25-freesplatter/&quot;,
+  &quot;topics&quot;: &quot;[topics/3d-gaussian-splatting]&quot;,
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: [],
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;3d-vision&quot;,
+    &quot;gaussian-splatting&quot;,
+    &quot;primary-source&quot;
+  ]
+}</pre></details>
+    </article>
+  </main>
+</body>
+</html>
