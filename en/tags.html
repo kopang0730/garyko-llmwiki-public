@@ -102,17 +102,19 @@
       <div class="article-layout">
         
         <section class="article-content"><h1>Tags</h1>
-<section class="tag-section" id="3d-vision"><h2>#3d-vision<span class="related-count">31</span></h2><ul>
+<section class="tag-section" id="3d-vision"><h2>#3d-vision<span class="related-count">34</span></h2><ul>
 <li><a href="../en/sources/2026-09-25-2d-gaussian-splatting.html">2D Gaussian Splatting：用三维中的二维高斯圆盘重建表面</a><span>Source note</span></li>
 <li><a href="../en/topics/3d-gaussian-splatting.html">3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes</a><span>Topic</span></li>
 <li><a href="../en/sources/2026-09-25-3d-gaussian-splatting.html">3D Gaussian Splatting：从稀疏点到实时新视角渲染</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-3dgs-as-mcmc.html">3DGS as MCMC：用高斯重定位改写密度控制</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-brepgaussian.html">BrepGaussian：从多视图2DGS到参数化CAD边界</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-changes-in-real-time.html">Changes in Real Time：在线多视场景变化检测与高斯更新</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-09-25-come.html">CoMe：用置信度和方差约束从高斯提取网格</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-diff4splat.html">Diff4Splat:Repurposing Video Diffusion Models for Dynamic Scene Generation</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-ecosplat.html">EcoSplat：按目标图元数条件化前馈高斯</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-fastgs.html">FastGS：多视误差驱动的增密、剪枝与训练加速</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-faster-gs.html">Faster-GS：训练实现拆账与数值稳定性</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-09-25-gains.html">GAINS：稀疏视图的几何—材质—光照逆渲染</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-gaussiandwm.html">GaussianDWM：驾驶语言高斯连接理解与生成</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-globalsplat.html">GlobalSplat：全局场景token预测紧凑高斯</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-hypergaussians.html">HyperGaussians：高维条件高斯驱动的面部头像</a><span>Source note</span></li>
@@ -120,6 +122,7 @@
 <li><a href="../en/sources/2026-09-25-let-it-snow.html">Let it Snow!：物理引导的动态天气高斯编辑</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-mvsplat.html">MVSplat：匹配代价体驱动的前馈三维高斯</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-matryoshka-gaussian-splatting.html">Matryoshka Gaussian Splatting：按前缀长度选择高斯预算</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-09-25-metrogs.html">MetroGS：多卡分布式二维高斯的大场景几何重建</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-mip-splatting.html">Mip-Splatting：跨尺度采样与三维高斯抗混叠</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-movies.html">MoVieS：有位姿单目视频的前馈动态高斯与运动建模</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-off-the-grid.html">Off The Grid：按图像局部结构预测亚像素高斯</a><span>Source note</span></li>
@@ -497,17 +500,19 @@
 <li><a href="../en/entities/video-editing-understanding.html">视频编辑理解</a><span>Entity</span></li>
 <li><a href="../en/sources/2026-04-14-neuro-symbolic-eval-t2v.html">通过形式化验证评测文本到视频模型的神经符号方法</a><span>Source note</span></li>
 </ul></section>
-<section class="tag-section" id="gaussian-splatting"><h2>#gaussian-splatting<span class="related-count">31</span></h2><ul>
+<section class="tag-section" id="gaussian-splatting"><h2>#gaussian-splatting<span class="related-count">34</span></h2><ul>
 <li><a href="../en/sources/2026-09-25-2d-gaussian-splatting.html">2D Gaussian Splatting：用三维中的二维高斯圆盘重建表面</a><span>Source note</span></li>
 <li><a href="../en/topics/3d-gaussian-splatting.html">3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes</a><span>Topic</span></li>
 <li><a href="../en/sources/2026-09-25-3d-gaussian-splatting.html">3D Gaussian Splatting：从稀疏点到实时新视角渲染</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-3dgs-as-mcmc.html">3DGS as MCMC：用高斯重定位改写密度控制</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-brepgaussian.html">BrepGaussian：从多视图2DGS到参数化CAD边界</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-changes-in-real-time.html">Changes in Real Time：在线多视场景变化检测与高斯更新</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-09-25-come.html">CoMe：用置信度和方差约束从高斯提取网格</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-diff4splat.html">Diff4Splat:Repurposing Video Diffusion Models for Dynamic Scene Generation</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-ecosplat.html">EcoSplat：按目标图元数条件化前馈高斯</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-fastgs.html">FastGS：多视误差驱动的增密、剪枝与训练加速</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-faster-gs.html">Faster-GS：训练实现拆账与数值稳定性</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-09-25-gains.html">GAINS：稀疏视图的几何—材质—光照逆渲染</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-gaussiandwm.html">GaussianDWM：驾驶语言高斯连接理解与生成</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-globalsplat.html">GlobalSplat：全局场景token预测紧凑高斯</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-hypergaussians.html">HyperGaussians：高维条件高斯驱动的面部头像</a><span>Source note</span></li>
@@ -515,6 +520,7 @@
 <li><a href="../en/sources/2026-09-25-let-it-snow.html">Let it Snow!：物理引导的动态天气高斯编辑</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-mvsplat.html">MVSplat：匹配代价体驱动的前馈三维高斯</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-matryoshka-gaussian-splatting.html">Matryoshka Gaussian Splatting：按前缀长度选择高斯预算</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-09-25-metrogs.html">MetroGS：多卡分布式二维高斯的大场景几何重建</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-mip-splatting.html">Mip-Splatting：跨尺度采样与三维高斯抗混叠</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-movies.html">MoVieS：有位姿单目视频的前馈动态高斯与运动建模</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-off-the-grid.html">Off The Grid：按图像局部结构预测亚像素高斯</a><span>Source note</span></li>
@@ -701,7 +707,7 @@
 <li><a href="../en/questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a><span>Question</span></li>
 <li><a href="../en/claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a><span>Claim</span></li>
 </ul></section>
-<section class="tag-section" id="near-cvpr-2025"><h2>#near-cvpr-2025<span class="related-count">358</span></h2><ul>
+<section class="tag-section" id="near-cvpr-2025"><h2>#near-cvpr-2025<span class="related-count">361</span></h2><ul>
 <li><a href="../en/sources/2026-09-25-2d-gaussian-splatting.html">2D Gaussian Splatting：用三维中的二维高斯圆盘重建表面</a><span>Source note</span></li>
 <li><a href="../en/topics/3d-gaussian-splatting.html">3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes</a><span>Topic</span></li>
 <li><a href="../en/sources/2026-09-25-3d-gaussian-splatting.html">3D Gaussian Splatting：从稀疏点到实时新视角渲染</a><span>Source note</span></li>
@@ -758,6 +764,7 @@
 <li><a href="../en/sources/2026-07-14-coca.html">CoCa：对比式图像描述器作为图文基础模型（Contrastive Captioners are Image-Text Foundation Models）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-codi.html">CoDi：条件扩散蒸馏实现 1–4 步图像条件生成</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-07-14-collm.html">CoLLM：用于组合式图像检索的大语言模型</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-09-25-come.html">CoMe：用置信度和方差约束从高斯提取网格</a><span>Source note</span></li>
 <li><a href="../en/entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a><span>Entity</span></li>
 <li><a href="../en/sources/2026-07-14-colpali.html">ColPali：用视觉语言模型做高效文档检索（Efficient Document Retrieval with Vision Language Models）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-16-come-closer-diffuse-faster.html">Come-Closer-Diffuse-Faster：用好初始化缩短条件扩散逆问题路径</a><span>Source note</span></li>
@@ -828,6 +835,7 @@
 <li><a href="../en/sources/2026-04-14-framepainter.html">FramePainter：用视频扩散先验增强交互式图像编辑</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-15-freeu.html">FreeU：不重训的扩散 U-Net 特征重加权</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-07-14-fcn.html">Fully Convolutional Networks for Semantic Segmentation：全卷积语义分割</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-09-25-gains.html">GAINS：稀疏视图的几何—材质—光照逆渲染</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-07-14-fid.html">GANs Trained by a Two Time-Scale Update Rule：FID 的来源与边界</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-gligen.html">GLIGEN：以冻结基础模型和门控适配器实现开放集合 grounded 生成</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-gaussiandwm.html">GaussianDWM：驾驶语言高斯连接理解与生成</a><span>Source note</span></li>
@@ -886,6 +894,7 @@
 <li><a href="../en/sources/2026-04-14-maskint.html">MaskINT：关键帧扩散编辑与非自回归结构插帧的视频编辑</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-matryoshka-gaussian-splatting.html">Matryoshka Gaussian Splatting：按前缀长度选择高斯预算</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-25-mediapipe-pose.html">MediaPipe Pose：MediaPipe Pose / BlazePose 提供移动端友好的 3D landmarks 姿态估计。</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-09-25-metrogs.html">MetroGS：多卡分布式二维高斯的大场景几何重建</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-mip-splatting.html">Mip-Splatting：跨尺度采样与三维高斯抗混叠</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-movies.html">MoVieS：有位姿单目视频的前馈动态高斯与运动建模</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-07-14-mobileclip.html">MobileCLIP：通过多模态强化训练得到快速图文模型（Fast Image-Text Models through Multi-Modal Reinforced Training）</a><span>Source note</span></li>
@@ -1090,7 +1099,7 @@
 <li><a href="../en/claims/claim-image-text-retrieval-composed-query.html">组合式查询是图文检索中可落地且仍有缺口的研究切口</a><span>Claim</span></li>
 <li><a href="../en/claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a><span>Claim</span></li>
 </ul></section>
-<section class="tag-section" id="primary-source"><h2>#primary-source<span class="related-count">294</span></h2><ul>
+<section class="tag-section" id="primary-source"><h2>#primary-source<span class="related-count">297</span></h2><ul>
 <li><a href="../en/sources/2026-09-25-2d-gaussian-splatting.html">2D Gaussian Splatting：用三维中的二维高斯圆盘重建表面</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-3d-gaussian-splatting.html">3D Gaussian Splatting：从稀疏点到实时新视角渲染</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-3dgs-as-mcmc.html">3DGS as MCMC：用高斯重定位改写密度控制</a><span>Source note</span></li>
@@ -1143,6 +1152,7 @@
 <li><a href="../en/sources/2026-07-14-coca.html">CoCa：对比式图像描述器作为图文基础模型（Contrastive Captioners are Image-Text Foundation Models）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-codi.html">CoDi：条件扩散蒸馏实现 1–4 步图像条件生成</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-07-14-collm.html">CoLLM：用于组合式图像检索的大语言模型</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-09-25-come.html">CoMe：用置信度和方差约束从高斯提取网格</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-07-14-colpali.html">ColPali：用视觉语言模型做高效文档检索（Efficient Document Retrieval with Vision Language Models）</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-16-come-closer-diffuse-faster.html">Come-Closer-Diffuse-Faster：用好初始化缩短条件扩散逆问题路径</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-commoncanvas.html">CommonCanvas：Creative Commons 数据上的开放 T2I 扩散训练</a><span>Source note</span></li>
@@ -1203,6 +1213,7 @@
 <li><a href="../en/sources/2026-04-14-framepainter.html">FramePainter：用视频扩散先验增强交互式图像编辑</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-15-freeu.html">FreeU：不重训的扩散 U-Net 特征重加权</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-07-14-fcn.html">Fully Convolutional Networks for Semantic Segmentation：全卷积语义分割</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-09-25-gains.html">GAINS：稀疏视图的几何—材质—光照逆渲染</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-07-14-fid.html">GANs Trained by a Two Time-Scale Update Rule：FID 的来源与边界</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-gligen.html">GLIGEN：以冻结基础模型和门控适配器实现开放集合 grounded 生成</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-gaussiandwm.html">GaussianDWM：驾驶语言高斯连接理解与生成</a><span>Source note</span></li>
@@ -1248,6 +1259,7 @@
 <li><a href="../en/sources/2026-07-14-mask-r-cnn.html">Mask R-CNN：实例分割与 RoIAlign</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-04-14-maskint.html">MaskINT：关键帧扩散编辑与非自回归结构插帧的视频编辑</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-matryoshka-gaussian-splatting.html">Matryoshka Gaussian Splatting：按前缀长度选择高斯预算</a><span>Source note</span></li>
+<li><a href="../en/sources/2026-09-25-metrogs.html">MetroGS：多卡分布式二维高斯的大场景几何重建</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-mip-splatting.html">Mip-Splatting：跨尺度采样与三维高斯抗混叠</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-09-25-movies.html">MoVieS：有位姿单目视频的前馈动态高斯与运动建模</a><span>Source note</span></li>
 <li><a href="../en/sources/2026-07-14-mobileclip.html">MobileCLIP：通过多模态强化训练得到快速图文模型（Fast Image-Text Models through Multi-Modal Reinforced Training）</a><span>Source note</span></li>
