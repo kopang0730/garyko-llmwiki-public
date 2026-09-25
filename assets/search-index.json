@@ -91,7 +91,7 @@
     "slug": "topics/3d-gaussian-splatting",
     "title": "三维高斯泼溅：表示、优化、几何与动态任务",
     "title_en": "3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes",
-    "summary": "用三十六篇正式全文比较相机与传感器、语义分割、动态航拍和几何/材质的评测与成本边界。",
+    "summary": "用三十九篇正式全文比较图元剪枝、潜空间新视角合成、畸变相机与动态场景的质量—成本边界。",
     "summary_en": "",
     "kind": "topic",
     "tags": [
@@ -102,7 +102,7 @@
     ],
     "url": "topics/3d-gaussian-splatting.html",
     "url_en": "en/topics/3d-gaussian-splatting.html",
-    "search_text": "三维高斯泼溅：表示、优化、几何与动态任务 三维高斯泼溅：表示、优化、几何与动态任务 3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes 3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes 用三十六篇正式全文比较相机与传感器、语义分割、动态航拍和几何/材质的评测与成本边界。  topics/3d-gaussian-splatting topic near-cvpr-2025 3d-vision gaussian-splatting neural-rendering"
+    "search_text": "三维高斯泼溅：表示、优化、几何与动态任务 三维高斯泼溅：表示、优化、几何与动态任务 3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes 3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes 用三十九篇正式全文比较图元剪枝、潜空间新视角合成、畸变相机与动态场景的质量—成本边界。  topics/3d-gaussian-splatting topic near-cvpr-2025 3d-vision gaussian-splatting neural-rendering"
   },
   {
     "slug": "topics/computer-vision-overview",
@@ -5387,6 +5387,24 @@
     "search_text": "3DGS as MCMC：用高斯重定位改写密度控制 3DGS as MCMC：用高斯重定位改写密度控制 3DGS as MCMC：用高斯重定位改写密度控制 3DGS as MCMC：用高斯重定位改写密度控制   sources/2026-09-25-3dgs-as-mcmc source near-cvpr-2025 3d-vision gaussian-splatting primary-source"
   },
   {
+    "slug": "sources/2026-09-25-3dgut",
+    "title": "3DGUT：畸变相机高斯无迹投影与混合次级光线",
+    "title_en": "3DGUT：畸变相机高斯无迹投影与混合次级光线",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "3d-vision",
+      "gaussian-splatting",
+      "neural-rendering",
+      "primary-source"
+    ],
+    "url": "sources/2026-09-25-3dgut.html",
+    "url_en": "en/sources/2026-09-25-3dgut.html",
+    "search_text": "3DGUT：畸变相机高斯无迹投影与混合次级光线 3DGUT：畸变相机高斯无迹投影与混合次级光线 3DGUT：畸变相机高斯无迹投影与混合次级光线 3DGUT：畸变相机高斯无迹投影与混合次级光线   sources/2026-09-25-3dgut source near-cvpr-2025 3d-vision gaussian-splatting neural-rendering primary-source"
+  },
+  {
     "slug": "sources/2026-09-25-aerodgs",
     "title": "AeroDGS：单目航拍动态高斯的地面与轨迹约束",
     "title_en": "AeroDGS：单目航拍动态高斯的地面与轨迹约束",
@@ -5841,6 +5859,24 @@
     "search_text": "pixelSplat：从已标定图像对前馈预测三维高斯 pixelSplat：从已标定图像对前馈预测三维高斯 pixelSplat：从已标定图像对前馈预测三维高斯 pixelSplat：从已标定图像对前馈预测三维高斯   sources/2026-09-25-pixelsplat source near-cvpr-2025 3d-vision gaussian-splatting primary-source"
   },
   {
+    "slug": "sources/2026-09-25-rap",
+    "title": "RAP：高斯属性驱动的跨场景图元重要性估计",
+    "title_en": "RAP：高斯属性驱动的跨场景图元重要性估计",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "3d-vision",
+      "gaussian-splatting",
+      "efficiency",
+      "primary-source"
+    ],
+    "url": "sources/2026-09-25-rap.html",
+    "url_en": "en/sources/2026-09-25-rap.html",
+    "search_text": "RAP：高斯属性驱动的跨场景图元重要性估计 RAP：高斯属性驱动的跨场景图元重要性估计 RAP：高斯属性驱动的跨场景图元重要性估计 RAP：高斯属性驱动的跨场景图元重要性估计   sources/2026-09-25-rap source near-cvpr-2025 3d-vision gaussian-splatting efficiency primary-source"
+  },
+  {
     "slug": "sources/2026-09-25-realm",
     "title": "REALM：多视大模型推理定位与高斯实例编辑",
     "title_en": "REALM:An MLLM-Agent Framework for Open World 3D Reasoning Segmentation and Editing on Gaussian Splatting",
@@ -5875,6 +5911,24 @@
     "url": "sources/2026-09-25-speede3dgs.html",
     "url_en": "en/sources/2026-09-25-speede3dgs.html",
     "search_text": "SpeeDe3DGS：动态高斯时间剪枝与运动分组 SpeeDe3DGS：动态高斯时间剪枝与运动分组 SpeeDe3DGS：动态高斯时间剪枝与运动分组 SpeeDe3DGS：动态高斯时间剪枝与运动分组   sources/2026-09-25-speede3dgs source near-cvpr-2025 3d-vision gaussian-splatting neural-rendering primary-source"
+  },
+  {
+    "slug": "sources/2026-09-25-splatent",
+    "title": "Splatent：潜空间高斯的新视角参考视图补细节",
+    "title_en": "Splatent：潜空间高斯的新视角参考视图补细节",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "3d-vision",
+      "gaussian-splatting",
+      "diffusion",
+      "primary-source"
+    ],
+    "url": "sources/2026-09-25-splatent.html",
+    "url_en": "en/sources/2026-09-25-splatent.html",
+    "search_text": "Splatent：潜空间高斯的新视角参考视图补细节 Splatent：潜空间高斯的新视角参考视图补细节 Splatent：潜空间高斯的新视角参考视图补细节 Splatent：潜空间高斯的新视角参考视图补细节   sources/2026-09-25-splatent source near-cvpr-2025 3d-vision gaussian-splatting diffusion primary-source"
   },
   {
     "slug": "sources/2026-09-25-tt-occ",
