@@ -91,7 +91,7 @@
     "slug": "topics/3d-gaussian-splatting",
     "title": "三维高斯泼溅：表示、优化、几何与动态任务",
     "title_en": "3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes",
-    "summary": "用三十三篇正式全文比较相机假设、网格/材质/城市场景几何、图元预算、外观控制与动态更新，保留评测和成本边界。",
+    "summary": "用三十六篇正式全文比较相机与传感器、语义分割、动态航拍和几何/材质的评测与成本边界。",
     "summary_en": "",
     "kind": "topic",
     "tags": [
@@ -102,7 +102,7 @@
     ],
     "url": "topics/3d-gaussian-splatting.html",
     "url_en": "en/topics/3d-gaussian-splatting.html",
-    "search_text": "三维高斯泼溅：表示、优化、几何与动态任务 三维高斯泼溅：表示、优化、几何与动态任务 3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes 3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes 用三十三篇正式全文比较相机假设、网格/材质/城市场景几何、图元预算、外观控制与动态更新，保留评测和成本边界。  topics/3d-gaussian-splatting topic near-cvpr-2025 3d-vision gaussian-splatting neural-rendering"
+    "search_text": "三维高斯泼溅：表示、优化、几何与动态任务 三维高斯泼溅：表示、优化、几何与动态任务 3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes 3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes 用三十六篇正式全文比较相机与传感器、语义分割、动态航拍和几何/材质的评测与成本边界。  topics/3d-gaussian-splatting topic near-cvpr-2025 3d-vision gaussian-splatting neural-rendering"
   },
   {
     "slug": "topics/computer-vision-overview",
@@ -5387,6 +5387,40 @@
     "search_text": "3DGS as MCMC：用高斯重定位改写密度控制 3DGS as MCMC：用高斯重定位改写密度控制 3DGS as MCMC：用高斯重定位改写密度控制 3DGS as MCMC：用高斯重定位改写密度控制   sources/2026-09-25-3dgs-as-mcmc source near-cvpr-2025 3d-vision gaussian-splatting primary-source"
   },
   {
+    "slug": "sources/2026-09-25-aerodgs",
+    "title": "AeroDGS：单目航拍动态高斯的地面与轨迹约束",
+    "title_en": "AeroDGS：单目航拍动态高斯的地面与轨迹约束",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "3d-vision",
+      "gaussian-splatting",
+      "primary-source"
+    ],
+    "url": "sources/2026-09-25-aerodgs.html",
+    "url_en": "en/sources/2026-09-25-aerodgs.html",
+    "search_text": "AeroDGS：单目航拍动态高斯的地面与轨迹约束 AeroDGS：单目航拍动态高斯的地面与轨迹约束 AeroDGS：单目航拍动态高斯的地面与轨迹约束 AeroDGS：单目航拍动态高斯的地面与轨迹约束   sources/2026-09-25-aerodgs source near-cvpr-2025 3d-vision gaussian-splatting primary-source"
+  },
+  {
+    "slug": "sources/2026-09-25-b3-seg",
+    "title": "B³-Seg：已有高斯资产的主动视角二值分割",
+    "title_en": "B³-Seg：已有高斯资产的主动视角二值分割",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "segmentation",
+      "gaussian-splatting",
+      "primary-source"
+    ],
+    "url": "sources/2026-09-25-b3-seg.html",
+    "url_en": "en/sources/2026-09-25-b3-seg.html",
+    "search_text": "B³-Seg：已有高斯资产的主动视角二值分割 B³-Seg：已有高斯资产的主动视角二值分割 B³-Seg：已有高斯资产的主动视角二值分割 B³-Seg：已有高斯资产的主动视角二值分割   sources/2026-09-25-b3-seg source near-cvpr-2025 segmentation gaussian-splatting primary-source"
+  },
+  {
     "slug": "sources/2026-09-25-brepgaussian",
     "title": "BrepGaussian：从多视图2DGS到参数化CAD边界",
     "title_en": "BrepGaussian：从多视图2DGS到参数化CAD边界",
@@ -5562,6 +5596,23 @@
     "url": "sources/2026-09-25-globalsplat.html",
     "url_en": "en/sources/2026-09-25-globalsplat.html",
     "search_text": "GlobalSplat：全局场景token预测紧凑高斯 GlobalSplat：全局场景token预测紧凑高斯 GlobalSplat：全局场景token预测紧凑高斯 GlobalSplat：全局场景token预测紧凑高斯   sources/2026-09-25-globalsplat source near-cvpr-2025 3d-vision gaussian-splatting primary-source"
+  },
+  {
+    "slug": "sources/2026-09-25-gpert",
+    "title": "GPERT：事件相机的逐事件几何与单快照光度高斯追踪",
+    "title_en": "GPERT：事件相机的逐事件几何与单快照光度高斯追踪",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "3d-vision",
+      "gaussian-splatting",
+      "primary-source"
+    ],
+    "url": "sources/2026-09-25-gpert.html",
+    "url_en": "en/sources/2026-09-25-gpert.html",
+    "search_text": "GPERT：事件相机的逐事件几何与单快照光度高斯追踪 GPERT：事件相机的逐事件几何与单快照光度高斯追踪 GPERT：事件相机的逐事件几何与单快照光度高斯追踪 GPERT：事件相机的逐事件几何与单快照光度高斯追踪   sources/2026-09-25-gpert source near-cvpr-2025 3d-vision gaussian-splatting primary-source"
   },
   {
     "slug": "sources/2026-09-25-hypergaussians",
