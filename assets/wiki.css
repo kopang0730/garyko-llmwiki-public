@@ -93,8 +93,10 @@
   --topbar-h: 61px;
 }
 
+/* Dark tokens apply when the system is dark and the reader has not chosen light,
+   or when the reader chose dark. Keep both copies identical (test_site_polish.ThemeSwitchTests). */
 @media (prefers-color-scheme: dark){
-  :root{
+  :root:not([data-theme="light"]){
     --ink: oklch(92% 0.012 85);
     --muted: oklch(78% 0.015 80);
     --subtle: oklch(70% 0.015 80);
@@ -122,6 +124,37 @@
     --shadow-md: 0 14px 40px color-mix(in oklch, var(--shadow-color), transparent 62%);
   }
 }
+:root[data-theme="dark"]{
+    --ink: oklch(92% 0.012 85);
+    --muted: oklch(78% 0.015 80);
+    --subtle: oklch(70% 0.015 80);
+    --paper: oklch(19% 0.01 70);
+    --surface: oklch(23% 0.012 70);
+    --sidebar: oklch(21% 0.012 70);
+    --wash: oklch(27% 0.014 70);
+    --line: oklch(33% 0.014 75);
+    --line-strong: oklch(42% 0.018 75);
+    --line-control: oklch(58% 0.02 80);
+    --blue: oklch(78% 0.1 250);
+    --blue-deep: oklch(86% 0.08 250);
+    --blue-wash: oklch(29% 0.045 255);
+    --accent: oklch(74% 0.13 158);
+    --accent-strong: oklch(82% 0.12 158);
+    --accent-wash: oklch(30% 0.05 158);
+    --accent-ink: oklch(88% 0.08 158);
+    --on-accent: oklch(17% 0.03 158);
+    --red: oklch(72% 0.15 28);
+    --gold: oklch(82% 0.11 85);
+    --violet: oklch(76% 0.12 305);
+    --orange: oklch(78% 0.12 55);
+    --shadow-color: oklch(5% 0 0);
+    --shadow-sm: 0 4px 12px color-mix(in oklch, var(--shadow-color), transparent 70%);
+    --shadow-md: 0 14px 40px color-mix(in oklch, var(--shadow-color), transparent 62%);
+}
+:root[data-theme="light"]{
+  color-scheme: light;
+}
+:root[data-theme="dark"]{ color-scheme: dark; }
 
 /* --------------------------------------------------------------------------
    Base
@@ -2038,3 +2071,33 @@ details[open] > :not(summary){ animation: disclosure-in var(--motion-base) var(-
 
 /* Home: the one-line description is a sentence, not a poster title */
 .knowledge-map-copy h1{ max-width: 20ch; font-size: clamp(2.125rem, 3.4vw, 3.25rem); line-height: 1.12; }
+
+/* Appearance switch: follow system / light / dark, grouped with the language switch */
+.language-switch{ margin-right: 0; }
+.theme-switch{
+  display: flex; align-items: center; gap: 2px;
+  align-self: center; margin: 0 auto 0 var(--space-3);
+  padding: 2px;
+  border: 1px solid var(--line-control); border-radius: var(--radius-pill);
+  background: var(--surface);
+}
+.theme-switch[hidden]{ display: none; }
+.theme-switch button{
+  display: grid; place-items: center;
+  width: 1.875rem; height: 1.875rem; padding: 0;
+  border: 0; border-radius: var(--radius-pill);
+  background: transparent; color: var(--muted);
+  cursor: pointer;
+  transition: background-color var(--motion-fast) ease, color var(--motion-fast) ease, transform var(--motion-fast) var(--ease-spring);
+}
+.theme-switch .ui-icon{ width: 15px; height: 15px; }
+.theme-switch button[aria-pressed="true"]{ background: var(--accent-wash); color: var(--accent-ink); }
+.theme-switch button:active{ transform: scale(.92); }
+@media (hover: hover) and (pointer: fine){
+  .theme-switch button:hover{ color: var(--ink); background: var(--wash); }
+  .theme-switch button[aria-pressed="true"]:hover{ background: var(--accent-wash); color: var(--accent-ink); }
+}
+@media (max-width: 860px){
+  .theme-switch{ flex: 0 0 auto; margin: 0 var(--space-2); }
+  .theme-switch button{ width: var(--tap); height: var(--tap); }
+}

@@ -131,6 +131,46 @@ function initMobileNav(){
   sync();
 }
 
+// Appearance: follow system (default), or a saved light/dark choice. The <head> script applies the
+// saved choice before first paint; this wires the buttons, browser chrome colour and other open tabs.
+const THEME_KEY='llmwiki.theme';
+function initThemeSwitch(){
+  const switcher=document.querySelector('.theme-switch');
+  if(!switcher) return;
+  const root=document.documentElement;
+  const metas=[...document.querySelectorAll('meta[name="theme-color"]')];
+  const systemMedia=metas.map(meta=>meta.getAttribute('media'));
+  const read=()=>{
+    try{ const value=localStorage.getItem(THEME_KEY); return value==='light'||value==='dark' ? value : 'system'; }
+    catch(error){ return 'system'; }
+  };
+  const apply=choice=>{
+    if(choice==='system') delete root.dataset.theme;
+    else root.dataset.theme=choice;
+    metas.forEach((meta,index)=>{
+      if(choice==='system'){ meta.setAttribute('media',systemMedia[index]); return; }
+      const matches=(systemMedia[index]||'').includes(choice);
+      meta.setAttribute('media',matches ? 'all' : 'not all');
+    });
+    switcher.querySelectorAll('[data-theme-choice]').forEach(button=>{
+      button.setAttribute('aria-pressed',String(button.dataset.themeChoice===choice));
+    });
+  };
+  switcher.addEventListener('click',event=>{
+    const button=event.target.closest('[data-theme-choice]');
+    if(!button) return;
+    const choice=button.dataset.themeChoice;
+    try{
+      if(choice==='system') localStorage.removeItem(THEME_KEY);
+      else localStorage.setItem(THEME_KEY,choice);
+    }catch(error){ /* private mode: the choice still applies to this page */ }
+    apply(choice);
+  });
+  window.addEventListener('storage',event=>{ if(event.key===THEME_KEY) apply(read()); });
+  apply(read());
+  switcher.hidden=false;
+}
+
 // A failed page-preview thumbnail is hidden rather than shown as the browser's broken-image icon.
 function initImageFallbacks(){
   document.querySelectorAll('.preview-strip img').forEach(img=>{
@@ -755,6 +795,7 @@ function initKnowledgeGraph(){
   setRovingNode(orderedVisibleIds()[0]||'');
 }
 
+initThemeSwitch();
 initSearch();
 initDesktopSidebar();
 initMobileNav();
