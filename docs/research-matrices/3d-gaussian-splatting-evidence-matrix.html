@@ -7,10 +7,10 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>3D Gaussian Splatting Evidence Matrix · llmwiki</title>
   <script>try{if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')document.documentElement.classList.add('sidebar-collapsed')}catch(e){}</script>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260925-inline-code-wrap-v14">
-  <script defer src="../../assets/wiki.js?v=20260925-inline-code-wrap-v14"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260927-readable-tables-v15">
+  <script defer src="../../assets/wiki.js?v=20260927-readable-tables-v15"></script>
 </head>
-<body class="kind-research-matrice" data-page="{&quot;slug&quot;: &quot;docs/research-matrices/3d-gaussian-splatting-evidence-matrix&quot;, &quot;title&quot;: &quot;3D Gaussian Splatting Evidence Matrix&quot;, &quot;title_en&quot;: &quot;3D Gaussian Splatting Evidence Matrix&quot;, &quot;kind&quot;: &quot;research-matrice&quot;, &quot;tags&quot;: [], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260925-inline-code-wrap-v14">
+<body class="kind-research-matrice" data-page="{&quot;slug&quot;: &quot;docs/research-matrices/3d-gaussian-splatting-evidence-matrix&quot;, &quot;title&quot;: &quot;3D Gaussian Splatting Evidence Matrix&quot;, &quot;title_en&quot;: &quot;3D Gaussian Splatting Evidence Matrix&quot;, &quot;kind&quot;: &quot;research-matrice&quot;, &quot;tags&quot;: [], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260927-readable-tables-v15">
   <header class="mobile-topbar">
     <a class="brand" href="../../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar" aria-label="菜单" title="菜单" data-menu-label="菜单" data-close-label="关闭菜单"><svg class="ui-icon menu-icon menu-icon--open" data-icon="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="ui-icon menu-icon menu-icon--close" data-icon="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="menu-toggle-label">菜单</span></button>
@@ -155,14 +155,10 @@
 <li>CAD表面与可编辑拓扑是两个验证终点。#14继承#79定向盘，将SAM修补边/面片和RANSAC拟合/封闭拓扑加进pipeline；用同一ABC物件/相机/掩码下的面曲线CD、拓扑封闭率、人工分钟和从输入到CAD总时长判断增益。#14同标签Point2CAD曲线CD更好而表面CD更弱；GT点基线输入另列（#14 pp.26108–26111 Tables1–6、补充Tables1–2）。</li>
 <li>语义、生成与占据在驾驶数据上共享相机/3D先验，却各有不可交换的输出。#15在LiDAR建场及SAM/CLIP/LLM的语言高斯上测问答/生成，规划Acc和±4m FVD有反证；#16逐帧依赖预训练VFM、相机和可选LiDAR测语义体素，Camera提升mIoU但FPS低于SelfOcc。#15对照#94的语言场预算、#16固定OpenSeeD时Camera13.4 vs SelfOcc10.5；先按scene分组、传感器/教师匹配、语言/占据/生成指标分账，再评估3DGS单独增益（#15主文Tables1–4/补充Table3；#16主文Tables1–5/Figs1/5–6）。</li>
 <li>#17将#98给定材料MPM扩展到天气生成，但作者雪背景又借ClimateNeRF初始化；其Video-SDS自动分数并非轨迹真值，完整成本需含预建图、教师与天气效应1h优化（#17主文Tables1–2、补充§8/Table11）。#18改变3D高斯条件表示而#79改变图元几何维度；前者在人脸跟踪/逐人优化下的局部细节收益需要同参数、同表情跟踪和未见人脸验证（#18主文Table1、补充Tables2–3）。#19的在线变化检测与#16的在线语义occupancy终点不同；#19须拆离线参考地图、每帧89.6ms检测和巡检后42秒更新，更新LPIPS反证仍在（#19主文Tables1–5、补充§7）。</li>
-</ol>
-<ol>
 <li>#20全局token的固定图元预算、#21逐场训练后连续前缀预算与#22按参考外观的无位姿前馈分属三条轴。只在同RE10K视数/已知相机/高斯预算下比较#20与#6/#12；#21额外核逐场排序+双渲染总成本和自定义AUC裁剪；#22在相同Phototourism场、半幅参考、对齐后的目标位姿比较，需消融无GT参考与跨光照/长视泛化。三篇作者稿与Springer正式排版分离，版本误差和主表冲突见各自analysis，跨文不组成统一PSNR榜。</li>
 <li>#23 CoMe的中等密集多图单卡网格，与#25 MetroGS的SfM/pointmap/多卡城市2DGS+TSDF网格，输入规模、是否先验、GT范围、体素尺度及优化/后处理时长不同；先以统一原图划分及GT mesh/点云阈值重跑SOF与CityGSV2，再分别测试置信度和渐进深度组件。#24 GAINS重建材质/环境光而非只测网格或图像，分割与IID/扩散的依赖、albedo尺度配准及真实光照GT须独立控制；TensorIR albedo负结果保留。三者主文和官方补充/作者扩展页号分别定位于各自analysis。</li>
 <li>GPERT有位姿静态事件流中的稀疏逐事件射线，AeroDGS在视频帧上利用深度/跟踪/BA恢复动态位姿和高斯；“时间分辨率”和“动态真实轨迹”是两个评测目标。前者在彩色合成输EventSplat且对闪烁敏感，后者真实Aero4D只有三场量化、长低重叠航线和行人未覆盖；逐序列分账，固定相机求解及教师成本（#26主文Tables1–3/补充Fig.10；#28主文Tables1–3/补充Tables4–6）。</li>
 <li>B³-Seg的已建高斯/单初视角/预训练2D教师设置，与LangSplat的逐场训练及REALM的实例场+MLLM设置分别测；同预算公平子表为B³-Seg对FlashSplat抽样策略。20轮的12.1秒中mask教师占9.761秒，理论1−1/e只针对其EIG代理与假设，需以场景级目标误报/中心偏差重测mask IoU（#27主文Tables1–6、补充§§B–F）。</li>
-</ol>
-<ol>
 <li>#29–#31分属已有图元评分、潜视图高频修复和非线性相机投影。RAP的跨场训练图像与KNN、Splatent的预训练VAE/三参考/扩散微调、3DGUT的标定/RS/LiDAR与次级3DGRT需各自完整分账；不同场景与输入许可的PSNR/FPS无法并入一个排序（#29主文Tables1–3；#30主文Tables1–4/补充Table6；#31主文Tables1–3/补充Table5）。</li>
 <li>#32与#33分别控制tile交集/图元数量与软件底座：Speedy-Splat累计渲染加速伴随Mip-NeRF360 LPIPS明显升高；gsplat库内增密策略改变画质、图元及显存。A5000十三场与A100七场须各自报告；未来固定库版本、划分、相机、图元预算及同质量点，分开训练/forward/SfM账（#32主文Tables1–4；#33主文Tables1–2）。</li>
 <li>#34 DepthSplat借预训练Depth Anything V2和已知相机把单目特征引入MVSplat类匹配；渲染预训练仅免该阶段GT深度，后续任务仍需GT微调。RE10K同表画质较好、DL3DV双视速度较慢；与#91/#6比较需固定相机、骨干/数据、视数与图元，分开微调Table7和零样本Table8。未来用相同scene与标定误差检查PSNR、GT深度和高视数显存（#34主文Tables4–8、补充§B.4）。</li>

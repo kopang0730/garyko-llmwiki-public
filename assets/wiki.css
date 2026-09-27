@@ -1663,6 +1663,8 @@ body.motion-ready .wiki-visual.is-visible .wiki-visual-item:nth-child(n+6){ anim
   .article-shell{ padding: 22px 18px 70px; }
   .kind-graph .article-shell{ padding-top: 18px; }
   .article-content table{ display: block; overflow-x: auto; max-width: 100%; }
+  /* LAYOUT-05: scroll wide tables instead of squeezing Chinese cells to 2–3 characters per line. */
+  .article-content th, .article-content td{ min-width: 7em; }
   .breadcrumb strong{ max-width: 24ch; }
   .toc[open] > ol{ columns: 1; }
   .portal-grid{ grid-template-columns: 1fr; }

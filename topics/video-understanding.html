@@ -7,10 +7,10 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
   <title>视频理解 · llmwiki</title>
   <script>try{if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')document.documentElement.classList.add('sidebar-collapsed')}catch(e){}</script>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260925-inline-code-wrap-v14">
-  <script defer src="../assets/wiki.js?v=20260925-inline-code-wrap-v14"></script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260927-readable-tables-v15">
+  <script defer src="../assets/wiki.js?v=20260927-readable-tables-v15"></script>
 </head>
-<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/video-understanding&quot;, &quot;title&quot;: &quot;视频理解&quot;, &quot;title_en&quot;: &quot;Video Understanding&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;reasoning&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260925-inline-code-wrap-v14">
+<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/video-understanding&quot;, &quot;title&quot;: &quot;视频理解&quot;, &quot;title_en&quot;: &quot;Video Understanding&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;reasoning&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260927-readable-tables-v15">
   <header class="mobile-topbar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar" aria-label="菜单" title="菜单" data-menu-label="菜单" data-close-label="关闭菜单"><svg class="ui-icon menu-icon menu-icon--open" data-icon="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="ui-icon menu-icon menu-icon--close" data-icon="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="menu-toggle-label">菜单</span></button>
@@ -166,8 +166,6 @@
 <li>在输入帧预算相同的条件下比较采样与记忆方法；</li>
 <li>按视频长度、事件时长、遮挡、镜头切换和域外赛事分层；</li>
 <li>若方法只提高总体准确率却不提高证据命中或时间鲁棒性，应收窄为表征改进。</li>
-</ol>
-<ol>
 <li>跨事件负例必须匹配语言难度、实体熟悉度和模态可见性，并按源视频聚类，而不是把共享GT的问对当独立样本。<a class="wikilink" href="../sources/2026-09-20-elv-halluc.html">ELV-Halluc</a>的in-video DPO降低SAH、out-video DPO提高通用分数却恶化SAH；混合8K没有保留SAH降幅，不能拼接不同配置最佳值。其公开实现还需补ref_answer、严格yes/no解析及完美预测除零保护；本地合成审计不能替代真实模型排名复现。</li>
 </ol>
 <h2 id="研究生可行的研究入口">研究生可行的研究入口</h2>
