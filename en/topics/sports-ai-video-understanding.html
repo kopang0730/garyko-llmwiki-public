@@ -4,13 +4,35 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Research on player and tiny-object tracking, game-state reconstruction, action quality, rule-grounded decisions, and auditable human-in-the-loop sports video systems.">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <link rel="canonical" href="https://wiki.garyko.com/en/topics/sports-ai-video-understanding">
+  <link rel="alternate" hreflang="zh-CN" href="https://wiki.garyko.com/topics/sports-ai-video-understanding">
+  <link rel="alternate" hreflang="en" href="https://wiki.garyko.com/en/topics/sports-ai-video-understanding">
+  <link rel="icon" href="../../favicon.ico" sizes="any">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#f7f4ec" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1b1814" media="(prefers-color-scheme: dark)">
+  <meta property="og:site_name" content="llmwiki">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="Sports AI Video Understanding · llmwiki">
+  <meta property="og:description" content="Research on player and tiny-object tracking, game-state reconstruction, action quality, rule-grounded decisions, and auditable human-in-the-loop sports video systems.">
+  <meta property="og:url" content="https://wiki.garyko.com/en/topics/sports-ai-video-understanding">
+  <meta property="og:image" content="https://wiki.garyko.com/assets/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sports AI Video Understanding · llmwiki">
+  <meta name="twitter:description" content="Research on player and tiny-object tracking, game-state reconstruction, action quality, rule-grounded decisions, and auditable human-in-the-loop sports video systems.">
+  <meta name="twitter:image" content="https://wiki.garyko.com/assets/og-card.png">
   <title>Sports AI Video Understanding · llmwiki</title>
   <script>try{if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')document.documentElement.classList.add('sidebar-collapsed')}catch(e){}</script>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260927-readable-tables-v15">
-  <script defer src="../../assets/wiki.js?v=20260927-readable-tables-v15"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260927-design-system-v16">
+  <script defer src="../../assets/wiki.js?v=20260927-design-system-v16"></script>
+  <noscript><style>.wiki-sidebar{position:static;transform:none;visibility:visible;width:auto;height:auto}.menu-toggle{display:none}</style></noscript>
 </head>
-<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/sports-ai-video-understanding&quot;, &quot;title&quot;: &quot;体育 AI 视频理解&quot;, &quot;title_en&quot;: &quot;Sports AI Video Understanding&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;tracking&quot;, &quot;reasoning&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260927-readable-tables-v15">
+<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/sports-ai-video-understanding&quot;, &quot;title&quot;: &quot;体育 AI 视频理解&quot;, &quot;title_en&quot;: &quot;Sports AI Video Understanding&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;video-understanding&quot;, &quot;tracking&quot;, &quot;reasoning&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260927-design-system-v16">
+  <a class="skip-link" href="#content">Skip to content</a>
   <header class="mobile-topbar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar" aria-label="Menu" title="Menu" data-menu-label="Menu" data-close-label="Close menu"><svg class="ui-icon menu-icon menu-icon--open" data-icon="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="ui-icon menu-icon menu-icon--close" data-icon="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="menu-toggle-label">Menu</span></button>
@@ -19,13 +41,14 @@
     <button class="sidebar-collapse-toggle" type="button" aria-expanded="true" aria-controls="sidebar-panel" aria-label="Collapse sidebar" title="Collapse sidebar" data-collapse-label="Collapse sidebar" data-expand-label="Expand sidebar"><svg class="ui-icon sidebar-icon sidebar-icon--collapse" data-icon="panel-left-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/></svg><svg class="ui-icon sidebar-icon sidebar-icon--expand" data-icon="panel-left-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/></svg></button>
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <div class="sidebar-panel" id="sidebar-panel">
-      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">Search llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">Search llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results" class="search-results"></div><p id="search-status" class="visually-hidden" role="status" aria-live="polite"></p></form>
       <nav class="sidebar-nav">
 <h2>Entry</h2><ul>
 <li><a href="../../en/catalog.html">Full paper catalog</a></li>
 <li><a href="../../en/index.html">Research map</a></li>
 <li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
 <li><a href="../../en/main.html">Reading portal</a></li>
+<li><a href="../../en/tags.html">Tags</a></li>
 </ul>
 <h2>Foundations</h2><ul>
 <li><a href="../../en/topics/computer-vision-overview.html">Computer Vision Overview</a></li>
@@ -44,7 +67,7 @@
 <li><a href="../../en/topics/image-editing.html">Image Editing</a></li>
 <li><a href="../../en/topics/image-generation.html">Image Generation</a></li>
 <li><a href="../../en/topics/image-text-retrieval.html">Image-Text Retrieval</a></li>
-<li><a class="active" href="../../en/topics/sports-ai-video-understanding.html">Sports Video Understanding</a></li>
+<li><a class="active" aria-current="page" href="../../en/topics/sports-ai-video-understanding.html">Sports Video Understanding</a></li>
 <li><a href="../../en/topics/video-editing.html">Video Editing</a></li>
 <li><a href="../../en/topics/video-generation.html">Video Generation</a></li>
 <li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
@@ -88,8 +111,9 @@
 </nav>
     </div>
   </aside>
-  <main class="wiki-page">
-    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="" href="../../topics/sports-ai-video-understanding.html">中文</a><a class="selected-lang" href="../../en/topics/sports-ai-video-understanding.html">English</a></nav><a class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>Article</span></a><a href="../../en/index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>Research map</span></a><a href="../../en/main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>Reading portal</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>Metadata</span></a></header>
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+  <main class="wiki-page" id="content" tabindex="-1">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="" href="../../topics/sports-ai-video-understanding.html">中文</a><a class="selected-lang" href="../../en/topics/sports-ai-video-understanding.html">English</a></nav><span class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>Article</span></span><a href="../../en/index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>Research map</span></a><a href="../../en/main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>Reading portal</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>Metadata</span></a></header>
     <article class="article-shell">
       
       <header class="article-header" data-motion="reveal">
@@ -97,11 +121,12 @@
         <p class="eyebrow">Topic · Updated 2026-09-19</p>
         <h1><span class="title-main">Sports AI Video Understanding</span></h1>
         <p class="article-summary">Research on player and tiny-object tracking, game-state reconstruction, action quality, rule-grounded decisions, and auditable human-in-the-loop sports video systems.</p>
+        <p class="article-actions"><a class="btn btn-primary" href="#先看结论">Choose a research entry<span aria-hidden="true"> →</span></a></p>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#video-understanding">#video-understanding</a><a class="tag" href="../../en/tags.html#tracking">#tracking</a><a class="tag" href="../../en/tags.html#reasoning">#reasoning</a></div>
       </header>
       <div class="article-layout has-rail">
         <aside class="article-rail"><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#三分钟摘要">三分钟摘要</a><ol><li class="toc-sub"><a href="#先懂这几个词">先懂这几个词</a></li><li class="toc-sub"><a href="#指标怎么读">指标怎么读</a></li></ol></li><li><a href="#任务或系统流程">任务或系统流程</a></li><li><a href="#当前综合判断">当前综合判断</a><ol><li class="toc-sub"><a href="#1-跟踪是结构化体育理解的第一道瓶颈">1. 跟踪是结构化体育理解的第一道瓶颈</a></li><li class="toc-sub"><a href="#2-全场坐标与轨迹把像素升级为比赛状态">2. 全场坐标与轨迹把像素升级为比赛状态</a></li><li class="toc-sub"><a href="#3-轨迹与事件应相互验证">3. 轨迹与事件应相互验证</a></li><li class="toc-sub"><a href="#4-动作质量与比赛理解是两条不同路线">4. 动作质量与比赛理解是两条不同路线</a></li><li class="toc-sub"><a href="#5-规则化判罚必须保留完整状态和拒答">5. 规则化判罚必须保留完整状态和拒答</a></li><li class="toc-sub"><a href="#6-羽毛球是可控但不简单的研究测试床">6. 羽毛球是可控但不简单的研究测试床</a></li></ol></li><li><a href="#近五年演化-2022-2026">近五年演化（2022—2026）</a></li><li><a href="#方法家族与成熟阶段">方法家族与成熟阶段</a><ol><li class="toc-sub"><a href="#方法家族的成熟度">方法家族的成熟度</a></li></ol></li><li><a href="#拥挤方向与研究机会">拥挤方向与研究机会</a><ol><li class="toc-sub"><a href="#先看结论">先看结论</a></li><li class="toc-sub"><a href="#三个研究入口怎么选">三个研究入口怎么选</a></li><li class="toc-sub"><a href="#对-能否作为研究生方向-的修订结论">对“能否作为研究生方向”的修订结论</a></li></ol></li><li><a href="#反方证据-局限与可证伪条件">反方证据、局限与可证伪条件</a></li><li><a href="#研究生可行的研究入口">研究生可行的研究入口</a><ol><li class="toc-sub"><a href="#推荐排序与止损条件">推荐排序与止损条件</a></li></ol></li><li><a href="#证据基础">证据基础</a></li><li><a href="#开放问题">开放问题</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
-        <section class="article-content">
+        <section class="article-content" lang="zh-CN"><p class="translation-notice" role="note">English translation pending — this page shows the Chinese original.</p>
 <section class="topic-hero-grid" data-motion="reveal">
   <section class="judgment-panel topic-judgment">
     <p class="section-kicker">Current view</p>
@@ -230,7 +255,7 @@
 <li>轨迹—事件—规则三层不确定性应怎样向最终决策传播？</li>
 <li>动作纠正如何区分个体风格与真正风险，而不是强迫统一模板？</li>
 <li>人类修改中间状态后，系统如何记录并利用反馈而不引入新偏差？</li>
-<li>在相同人工时间与定位器调用预算下，自适应请求何时优于固定纠偏？响应集合、缺失分母及源视频重叠冻结后，交互分数改善能否兑现为用户时间收益（<a class="wikilink" href="../../en/sources/2026-09-19-interacttrack.html">sources/2026-09-19-interacttrack</a>）？</li>
+<li>在相同人工时间与定位器调用预算下，自适应请求何时优于固定纠偏？响应集合、缺失分母及源视频重叠冻结后，交互分数改善能否兑现为用户时间收益（<a class="wikilink" href="../../en/sources/2026-09-19-interacttrack.html">InteractTrack:Interactive Tracking and Measurement Boundaries</a>）？</li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>

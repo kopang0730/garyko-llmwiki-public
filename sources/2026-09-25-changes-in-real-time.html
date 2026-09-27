@@ -4,13 +4,35 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Changes in Real Time：在线多视场景变化检测与高斯更新">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <link rel="canonical" href="https://wiki.garyko.com/sources/2026-09-25-changes-in-real-time">
+  <link rel="alternate" hreflang="zh-CN" href="https://wiki.garyko.com/sources/2026-09-25-changes-in-real-time">
+  <link rel="alternate" hreflang="en" href="https://wiki.garyko.com/en/sources/2026-09-25-changes-in-real-time">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#f7f4ec" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1b1814" media="(prefers-color-scheme: dark)">
+  <meta property="og:site_name" content="llmwiki">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:title" content="Changes in Real Time：在线多视场景变化检测与高斯更新 · llmwiki">
+  <meta property="og:description" content="Changes in Real Time：在线多视场景变化检测与高斯更新">
+  <meta property="og:url" content="https://wiki.garyko.com/sources/2026-09-25-changes-in-real-time">
+  <meta property="og:image" content="https://wiki.garyko.com/assets/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Changes in Real Time：在线多视场景变化检测与高斯更新 · llmwiki">
+  <meta name="twitter:description" content="Changes in Real Time：在线多视场景变化检测与高斯更新">
+  <meta name="twitter:image" content="https://wiki.garyko.com/assets/og-card.png">
   <title>Changes in Real Time：在线多视场景变化检测与高斯更新 · llmwiki</title>
   <script>try{if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')document.documentElement.classList.add('sidebar-collapsed')}catch(e){}</script>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260927-readable-tables-v15">
-  <script defer src="../assets/wiki.js?v=20260927-readable-tables-v15"></script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260927-design-system-v16">
+  <script defer src="../assets/wiki.js?v=20260927-design-system-v16"></script>
+  <noscript><style>.wiki-sidebar{position:static;transform:none;visibility:visible;width:auto;height:auto}.menu-toggle{display:none}</style></noscript>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-09-25-changes-in-real-time&quot;, &quot;title&quot;: &quot;Changes in Real Time：在线多视场景变化检测与高斯更新&quot;, &quot;title_en&quot;: &quot;Changes in Real Time：在线多视场景变化检测与高斯更新&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;3d-vision&quot;, &quot;gaussian-splatting&quot;, &quot;segmentation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260927-readable-tables-v15">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-09-25-changes-in-real-time&quot;, &quot;title&quot;: &quot;Changes in Real Time：在线多视场景变化检测与高斯更新&quot;, &quot;title_en&quot;: &quot;Changes in Real Time：在线多视场景变化检测与高斯更新&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;3d-vision&quot;, &quot;gaussian-splatting&quot;, &quot;segmentation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260927-design-system-v16">
+  <a class="skip-link" href="#content">跳到正文</a>
   <header class="mobile-topbar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar" aria-label="菜单" title="菜单" data-menu-label="菜单" data-close-label="关闭菜单"><svg class="ui-icon menu-icon menu-icon--open" data-icon="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="ui-icon menu-icon menu-icon--close" data-icon="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="menu-toggle-label">菜单</span></button>
@@ -19,13 +41,14 @@
     <button class="sidebar-collapse-toggle" type="button" aria-expanded="true" aria-controls="sidebar-panel" aria-label="折叠左侧导航" title="折叠左侧导航" data-collapse-label="折叠左侧导航" data-expand-label="展开左侧导航"><svg class="ui-icon sidebar-icon sidebar-icon--collapse" data-icon="panel-left-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/></svg><svg class="ui-icon sidebar-icon sidebar-icon--expand" data-icon="panel-left-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/></svg></button>
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <div class="sidebar-panel" id="sidebar-panel">
-      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">搜索 llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
+      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">搜索 llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results" class="search-results"></div><p id="search-status" class="visually-hidden" role="status" aria-live="polite"></p></form>
       <nav class="sidebar-nav">
 <h2>入口</h2><ul>
 <li><a href="../catalog.html">完整论文目录</a></li>
 <li><a href="../index.html">研究地图</a></li>
 <li><a href="../llm-wiki.html">LLM Wiki</a></li>
 <li><a href="../main.html">阅读入口</a></li>
+<li><a href="../tags.html">标签</a></li>
 </ul>
 <h2>基础概念</h2><ul>
 <li><a href="../topics/computer-vision-overview.html"><span class="nav-title-primary">计算机视觉概览</span><span class="nav-title-translation" lang="en">（Computer Vision Overview）</span></a></li>
@@ -88,8 +111,9 @@
 </nav>
     </div>
   </aside>
-  <main class="wiki-page">
-    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="selected-lang" href="../sources/2026-09-25-changes-in-real-time.html">中文</a><a class="" href="../en/sources/2026-09-25-changes-in-real-time.html">English</a></nav><a class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>正文</span></a><a href="../index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>研究地图</span></a><a href="../main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>阅读入口</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></a></header>
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+  <main class="wiki-page" id="content" tabindex="-1">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="selected-lang" href="../sources/2026-09-25-changes-in-real-time.html">中文</a><a class="" href="../en/sources/2026-09-25-changes-in-real-time.html">English</a></nav><span class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>正文</span></span><a href="../index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>研究地图</span></a><a href="../main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>阅读入口</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></a></header>
     <article class="article-shell">
       
       <header class="article-header" data-motion="reveal">
@@ -97,6 +121,7 @@
         <p class="eyebrow">来源笔记 · 更新于 2026-09-25</p>
         <h1><span class="title-main">Changes in Real Time</span><span class="title-subtitle">在线多视场景变化检测与高斯更新</span></h1>
         
+        <p class="article-actions"><a class="btn btn-primary" href="https://openaccess.thecvf.com/content/CVPR2026/html/Galappaththige_Changes_in_Real_Time_Online_Scene_Change_Detection_with_Multi-View_CVPR_2026_paper.html" target="_blank" rel="noopener noreferrer">阅读原论文<span aria-hidden="true"> ↗</span></a></p>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#3d-vision">#3d-vision</a><a class="tag" href="../tags.html#gaussian-splatting">#gaussian-splatting</a><a class="tag" href="../tags.html#segmentation">#segmentation</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
       <div class="article-layout has-rail">
@@ -107,7 +132,7 @@
 <p>参考期SfM相机和Speedy-Splat建静态场；新巡视仅输入RGB、未知外参但需与参考视角和XFeat特征匹配，PnP/RANSAC+GPU miniBA估姿态。沿新姿态渲染参考图，计算L1+D-SSIM与SAM2-Tiny特征差，持久变化表示Rchange借自监督损失在已见多视角持续优化；巡视后仅对变化掩码重建图元并限制增密，再全局调色/修边（主文pp.32248–32250 Fig.3/Eqs.1–3）。假设参考图覆盖足够、巡视时场景近静止且相机可重新定位。与<a class="wikilink" href="../sources/2026-09-25-tt-occ.html">TT-Occ</a>的语义体素输出不同，这里终点是相关变化区域二值掩码及后续可渲染的地图。</p>
 <p>PASLCD 10场×两光照共20实例。主文p.32251 Table1在线ours mIoU .486/F1 .638/11.2FPS，同在线CS+CYWS2D .243/.360/8.2FPS；离线ours .552/.694/156秒、MV3DCD .478/.628/479秒。在线与离线可访问帧集合不同，离线静态pairwise基线有对齐便利，实验为作者设定内比较。p.32251 Table2 单帧89.60ms中多视融合58.17ms占64.9%；环境为RTX4090，1008×560，参考图构建没有纳入FPS。p.32253 Table4 PASLCD更新ours PSNR23.70/SSIM.7868/LPIPS.2491/42秒，重新训练3DGS 22.21/.7558/.2426/550秒；CL-Splats五小场ours 30.54/.9356/.1256/39秒 vs3DGS30.31/.9319/.1178/364秒。LPIPS两个集均稍差，保留画质反证。</p>
 <h2 id="消融-边界与复核">消融、边界与复核</h2>
-<p>主文p.32252 Table3去L1 mIoU .320、完整 .486，改回阈值交集 .350；只留单一线索或去面积正则使优化坍塌。p.32253 Table5只做选择性重建28秒但PSNR19.89，合并全局步骤36秒/23.70，该消融与Table4 42秒按独立口径记录。补充p.1 Table6定位以COLMAP估计值作伪真值，约30ms/帧，未有测量GT；补充p.2 §7的XFeat强平面内旋转、低于VGA的输入密度和极大场景渲染是失败边界，地图无显式历史恢复。仓库GitHub API license=null、根目录无LICENSE，授权待核；论文未给参考建图端到端和峰显存。需按scene聚类验证F1、LPIPS、强光照/旋转鲁棒性及在线p95。未做GPU复现。审计见<code>raw/ingest/2026-09-25-changes-in-real-time/analysis.md</code>及<a class="wikilink" href="../topics/3d-gaussian-splatting.html">topics/3d-gaussian-splatting</a>。</p></section>
+<p>主文p.32252 Table3去L1 mIoU .320、完整 .486，改回阈值交集 .350；只留单一线索或去面积正则使优化坍塌。p.32253 Table5只做选择性重建28秒但PSNR19.89，合并全局步骤36秒/23.70，该消融与Table4 42秒按独立口径记录。补充p.1 Table6定位以COLMAP估计值作伪真值，约30ms/帧，未有测量GT；补充p.2 §7的XFeat强平面内旋转、低于VGA的输入密度和极大场景渲染是失败边界，地图无显式历史恢复。仓库GitHub API license=null、根目录无LICENSE，授权待核；论文未给参考建图端到端和峰显存。需按scene聚类验证F1、LPIPS、强光照/旋转鲁棒性及在线p95。未做GPU复现。审计见<code>raw/ingest/2026-09-25-changes-in-real-time/analysis.md</code>及<a class="wikilink" href="../topics/3d-gaussian-splatting.html">三维高斯泼溅：表示、优化、几何与动态任务</a>。</p></section>
       </div>
       
       

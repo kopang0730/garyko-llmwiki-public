@@ -4,13 +4,35 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Guidance Matters：引导强度如何扭曲图像生成评测">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <link rel="canonical" href="https://wiki.garyko.com/sources/2026-09-11-guidance-matters">
+  <link rel="alternate" hreflang="zh-CN" href="https://wiki.garyko.com/sources/2026-09-11-guidance-matters">
+  <link rel="alternate" hreflang="en" href="https://wiki.garyko.com/en/sources/2026-09-11-guidance-matters">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#f7f4ec" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1b1814" media="(prefers-color-scheme: dark)">
+  <meta property="og:site_name" content="llmwiki">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:title" content="Guidance Matters：引导强度如何扭曲图像生成评测 · llmwiki">
+  <meta property="og:description" content="Guidance Matters：引导强度如何扭曲图像生成评测">
+  <meta property="og:url" content="https://wiki.garyko.com/sources/2026-09-11-guidance-matters">
+  <meta property="og:image" content="https://wiki.garyko.com/assets/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Guidance Matters：引导强度如何扭曲图像生成评测 · llmwiki">
+  <meta name="twitter:description" content="Guidance Matters：引导强度如何扭曲图像生成评测">
+  <meta name="twitter:image" content="https://wiki.garyko.com/assets/og-card.png">
   <title>Guidance Matters：引导强度如何扭曲图像生成评测 · llmwiki</title>
   <script>try{if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')document.documentElement.classList.add('sidebar-collapsed')}catch(e){}</script>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260927-readable-tables-v15">
-  <script defer src="../assets/wiki.js?v=20260927-readable-tables-v15"></script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260927-design-system-v16">
+  <script defer src="../assets/wiki.js?v=20260927-design-system-v16"></script>
+  <noscript><style>.wiki-sidebar{position:static;transform:none;visibility:visible;width:auto;height:auto}.menu-toggle{display:none}</style></noscript>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-09-11-guidance-matters&quot;, &quot;title&quot;: &quot;Guidance Matters：引导强度如何扭曲图像生成评测&quot;, &quot;title_en&quot;: &quot;Guidance Matters: Rethinking the Evaluation Pitfall for Text-to-Image Generation&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;evaluation&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260927-readable-tables-v15">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-09-11-guidance-matters&quot;, &quot;title&quot;: &quot;Guidance Matters：引导强度如何扭曲图像生成评测&quot;, &quot;title_en&quot;: &quot;Guidance Matters: Rethinking the Evaluation Pitfall for Text-to-Image Generation&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-generation&quot;, &quot;evaluation&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260927-design-system-v16">
+  <a class="skip-link" href="#content">跳到正文</a>
   <header class="mobile-topbar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar" aria-label="菜单" title="菜单" data-menu-label="菜单" data-close-label="关闭菜单"><svg class="ui-icon menu-icon menu-icon--open" data-icon="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="ui-icon menu-icon menu-icon--close" data-icon="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="menu-toggle-label">菜单</span></button>
@@ -19,13 +41,14 @@
     <button class="sidebar-collapse-toggle" type="button" aria-expanded="true" aria-controls="sidebar-panel" aria-label="折叠左侧导航" title="折叠左侧导航" data-collapse-label="折叠左侧导航" data-expand-label="展开左侧导航"><svg class="ui-icon sidebar-icon sidebar-icon--collapse" data-icon="panel-left-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/></svg><svg class="ui-icon sidebar-icon sidebar-icon--expand" data-icon="panel-left-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/></svg></button>
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <div class="sidebar-panel" id="sidebar-panel">
-      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">搜索 llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
+      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">搜索 llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results" class="search-results"></div><p id="search-status" class="visually-hidden" role="status" aria-live="polite"></p></form>
       <nav class="sidebar-nav">
 <h2>入口</h2><ul>
 <li><a href="../catalog.html">完整论文目录</a></li>
 <li><a href="../index.html">研究地图</a></li>
 <li><a href="../llm-wiki.html">LLM Wiki</a></li>
 <li><a href="../main.html">阅读入口</a></li>
+<li><a href="../tags.html">标签</a></li>
 </ul>
 <h2>基础概念</h2><ul>
 <li><a href="../topics/computer-vision-overview.html"><span class="nav-title-primary">计算机视觉概览</span><span class="nav-title-translation" lang="en">（Computer Vision Overview）</span></a></li>
@@ -88,8 +111,9 @@
 </nav>
     </div>
   </aside>
-  <main class="wiki-page">
-    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="selected-lang" href="../sources/2026-09-11-guidance-matters.html">中文</a><a class="" href="../en/sources/2026-09-11-guidance-matters.html">English</a></nav><a class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>正文</span></a><a href="../index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>研究地图</span></a><a href="../main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>阅读入口</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></a></header>
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+  <main class="wiki-page" id="content" tabindex="-1">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="selected-lang" href="../sources/2026-09-11-guidance-matters.html">中文</a><a class="" href="../en/sources/2026-09-11-guidance-matters.html">English</a></nav><span class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>正文</span></span><a href="../index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>研究地图</span></a><a href="../main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>阅读入口</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></a></header>
     <article class="article-shell">
       
       <header class="article-header" data-motion="reveal">
@@ -97,6 +121,7 @@
         <p class="eyebrow">来源笔记 · 更新于 2026-09-11</p>
         <h1><span class="title-main">Guidance Matters</span><span class="title-subtitle">引导强度如何扭曲图像生成评测</span></h1>
         
+        <p class="article-actions"><a class="btn btn-primary" href="https://proceedings.iclr.cc/paper_files/paper/2026/hash/559a0998fab1d19b80e7e43a5852401c-Abstract-Conference.html" target="_blank" rel="noopener noreferrer">阅读原论文<span aria-hidden="true"> ↗</span></a></p>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#evaluation">#evaluation</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
       <div class="article-layout has-rail">
@@ -107,7 +132,7 @@
 <p>HPSv2、ImageReward等代理可能奖励更强文本对齐与过饱和，而不惩罚相应视觉退化。若候选方法实际增强了CFG，却只对比原始固定CFG，就可能将强度变化误认为新机制收益。图3同时显示AES与PickScore在该曲线中的例外，偏置不是所有指标、所有配置的统一规律。[2]</p>
 <h2 id="方法概述">方法概述</h2>
 <p>引导感知评测（guidance-aware evaluation, GA-Eval）将每步候选更新投影到条件—无条件噪声差方向，估算有效引导强度，沿时间平均后重跑有效CFG（e-CFG），比较各代理指标的成对胜率。TDG通过随机遮掉一半prompt token增加弱条件分支，以HPSv2选参数，用作“优化指标未必改进质量”的构造反例。[2]</p>
-<p><strong>复现时不能只看公式</strong>：官方补充脚本还按方法的<code>nfe_ratio</code>延长e-CFG步数，现行仓库也明确说明NFE匹配。因此应把“强度匹配”和“强度＋计算预算匹配”分开报告；不能把所有差异都归因于一个CFG标量。详见<a class="wikilink missing" href="#missing-raw/ingest/2026-09-11-guidance-matters/analysis">独立全文审计</a>。[3]</p>
+<p><strong>复现时不能只看公式</strong>：官方补充脚本还按方法的<code>nfe_ratio</code>延长e-CFG步数，现行仓库也明确说明NFE匹配。因此应把“强度匹配”和“强度＋计算预算匹配”分开报告；不能把所有差异都归因于一个CFG标量。详见<span class="wikilink unavailable" data-target="raw/ingest/2026-09-11-guidance-matters/analysis">独立全文审计</span>。[3]</p>
 <h2 id="关键发现">关键发现</h2>
 <table><thead><tr><th>官方定位</th><th>论文报告结果</th><th>结论边界</th></tr></thead><tbody><tr><td>表1，SDXL/HPD</td><td>TDG平均胜率56%→48%；Z-Sampling70%→62%</td><td>五种自动指标平均，不是人类票数；Z-Sampling仍有剩余优势</td></tr><tr><td>表2，GenEval</td><td>TDG58.29% vs e-CFG57.23%；FreeU54.22% vs58.47%</td><td>校准后有胜有负，不支持“全部方法无效”</td></tr><tr><td>表3，SD3.5/Pick-a-Pic</td><td>Z-Sampling平均42%→47%</td><td>反驳把摘要“all methods”理解为所有配置均下降</td></tr><tr><td>表8，COCO-30K</td><td>CFG FID13.56、Z-Sampling17.32、对应e-CFG14.21</td><td>偏好代理与分布距离有不同取舍</td></tr><tr><td>表12，OneIG-Bench</td><td>引导5.5→10，Alignment .5638→.5936，Diversity .4399→.4043</td><td>提升条件对齐不能代表全面质量提升</td></tr></tbody></table>
 <p>上述均为官方论文表格结果，本轮没有复现实验。[2]</p>
@@ -129,8 +154,8 @@
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../topics/generative-model-evaluation.html">topics/generative-model-evaluation</a>：将基线强度校准加入指标可靠性门。</li>
-<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a>：把强度、NFE、多样性与真实人评分开验收。</li>
+<li><a class="wikilink" href="../topics/generative-model-evaluation.html">生成模型评测</a>：将基线强度校准加入指标可靠性门。</li>
+<li><a class="wikilink" href="../topics/image-generation.html">图像生成</a>：把强度、NFE、多样性与真实人评分开验收。</li>
 </ul>
 <h2 id="备注">备注</h2>
 <p>全文与官方补充包已保存；保留表5重复、代理人评边界及公式/代码差异。研究阶段不升级，未新建普适失败Claim；现有Topic足以承载条件性判断。</p>
@@ -140,7 +165,7 @@
 <p>[3] https://github.com/Maxwells-Demons/Guidance-Matters</p>
 <p>[4] https://arxiv.org/abs/2602.22570</p></section>
       </div>
-      <section class="preview-gallery" id="page-previews"><h2>页面预览<span class="related-count">1</span></h2><div class="preview-strip"><a href="../raw/ingest/2026-09-11-guidance-matters/page-previews/page-21.png" target="_blank" rel="noopener"><img src="../raw/ingest/2026-09-11-guidance-matters/page-previews/page-21.png" alt="page-21" loading="lazy"></a></div></section>
+      <section class="preview-gallery" id="page-previews"><h2>页面预览<span class="related-count">1</span></h2><div class="preview-strip"><a href="../raw/ingest/2026-09-11-guidance-matters/page-previews/page-21.png" target="_blank" rel="noopener"><img src="../raw/ingest/2026-09-11-guidance-matters/page-previews/page-21.png" alt="page-21" loading="lazy" width="1546" height="2000"></a></div></section>
       <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../topics/generative-model-evaluation.html">生成模型评测</a></li><li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li></ul></div></div></section>
       <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">5</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-09-23-dgm-eval.html">DGM-Eval：生成评测的表征偏差、人评边界与记忆混杂</a><span>来源笔记</span></li><li><a href="../sources/2026-09-24-gigagan.html">GigaGAN：大规模前馈生成与质量—速度边界</a><span>来源笔记</span></li><li><a href="../topics/generative-model-evaluation.html">生成模型评测</a><span>主题</span></li><li><a href="../topics/image-generation.html">图像生成</a><span>主题</span></li></ul></section>
       <details class="metadata-box" id="metadata"><summary><span class="summary-label"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><pre>{

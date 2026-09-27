@@ -4,13 +4,35 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="3DGS 入门与研究地图：它是什么、46 篇正式论文分别在改进什么、新手可以从哪里开始做研究。">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <link rel="canonical" href="https://wiki.garyko.com/topics/3d-gaussian-splatting">
+  <link rel="alternate" hreflang="zh-CN" href="https://wiki.garyko.com/topics/3d-gaussian-splatting">
+  <link rel="alternate" hreflang="en" href="https://wiki.garyko.com/en/topics/3d-gaussian-splatting">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#f7f4ec" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1b1814" media="(prefers-color-scheme: dark)">
+  <meta property="og:site_name" content="llmwiki">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:title" content="三维高斯泼溅：表示、优化、几何与动态任务 · llmwiki">
+  <meta property="og:description" content="3DGS 入门与研究地图：它是什么、46 篇正式论文分别在改进什么、新手可以从哪里开始做研究。">
+  <meta property="og:url" content="https://wiki.garyko.com/topics/3d-gaussian-splatting">
+  <meta property="og:image" content="https://wiki.garyko.com/assets/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="三维高斯泼溅：表示、优化、几何与动态任务 · llmwiki">
+  <meta name="twitter:description" content="3DGS 入门与研究地图：它是什么、46 篇正式论文分别在改进什么、新手可以从哪里开始做研究。">
+  <meta name="twitter:image" content="https://wiki.garyko.com/assets/og-card.png">
   <title>三维高斯泼溅：表示、优化、几何与动态任务 · llmwiki</title>
   <script>try{if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')document.documentElement.classList.add('sidebar-collapsed')}catch(e){}</script>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260927-readable-tables-v15">
-  <script defer src="../assets/wiki.js?v=20260927-readable-tables-v15"></script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260927-design-system-v16">
+  <script defer src="../assets/wiki.js?v=20260927-design-system-v16"></script>
+  <noscript><style>.wiki-sidebar{position:static;transform:none;visibility:visible;width:auto;height:auto}.menu-toggle{display:none}</style></noscript>
 </head>
-<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/3d-gaussian-splatting&quot;, &quot;title&quot;: &quot;三维高斯泼溅：表示、优化、几何与动态任务&quot;, &quot;title_en&quot;: &quot;3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;3d-vision&quot;, &quot;gaussian-splatting&quot;, &quot;neural-rendering&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260927-readable-tables-v15">
+<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/3d-gaussian-splatting&quot;, &quot;title&quot;: &quot;三维高斯泼溅：表示、优化、几何与动态任务&quot;, &quot;title_en&quot;: &quot;3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;3d-vision&quot;, &quot;gaussian-splatting&quot;, &quot;neural-rendering&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260927-design-system-v16">
+  <a class="skip-link" href="#content">跳到正文</a>
   <header class="mobile-topbar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar" aria-label="菜单" title="菜单" data-menu-label="菜单" data-close-label="关闭菜单"><svg class="ui-icon menu-icon menu-icon--open" data-icon="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="ui-icon menu-icon menu-icon--close" data-icon="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="menu-toggle-label">菜单</span></button>
@@ -19,13 +41,14 @@
     <button class="sidebar-collapse-toggle" type="button" aria-expanded="true" aria-controls="sidebar-panel" aria-label="折叠左侧导航" title="折叠左侧导航" data-collapse-label="折叠左侧导航" data-expand-label="展开左侧导航"><svg class="ui-icon sidebar-icon sidebar-icon--collapse" data-icon="panel-left-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/></svg><svg class="ui-icon sidebar-icon sidebar-icon--expand" data-icon="panel-left-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/></svg></button>
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <div class="sidebar-panel" id="sidebar-panel">
-      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">搜索 llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
+      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">搜索 llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results" class="search-results"></div><p id="search-status" class="visually-hidden" role="status" aria-live="polite"></p></form>
       <nav class="sidebar-nav">
 <h2>入口</h2><ul>
 <li><a href="../catalog.html">完整论文目录</a></li>
 <li><a href="../index.html">研究地图</a></li>
 <li><a href="../llm-wiki.html">LLM Wiki</a></li>
 <li><a href="../main.html">阅读入口</a></li>
+<li><a href="../tags.html">标签</a></li>
 </ul>
 <h2>基础概念</h2><ul>
 <li><a href="../topics/computer-vision-overview.html"><span class="nav-title-primary">计算机视觉概览</span><span class="nav-title-translation" lang="en">（Computer Vision Overview）</span></a></li>
@@ -38,7 +61,7 @@
 <li><a href="../topics/visual-generation-foundations.html"><span class="nav-title-primary">视觉生成基础</span><span class="nav-title-translation" lang="en">（Visual Generation Foundations）</span></a></li>
 </ul>
 <h2>研究专题</h2><ul>
-<li><a class="active" href="../topics/3d-gaussian-splatting.html"><span class="nav-title-primary">三维高斯泼溅</span><span class="nav-title-translation" lang="en">（3D Gaussian Splatting）</span></a></li>
+<li><a class="active" aria-current="page" href="../topics/3d-gaussian-splatting.html"><span class="nav-title-primary">三维高斯泼溅</span><span class="nav-title-translation" lang="en">（3D Gaussian Splatting）</span></a></li>
 <li><a href="../topics/diffusion-efficiency-engineering.html"><span class="nav-title-primary">扩散效率工程</span><span class="nav-title-translation" lang="en">（Diffusion Efficiency）</span></a></li>
 <li><a href="../topics/generative-model-evaluation.html"><span class="nav-title-primary">生成模型评测</span><span class="nav-title-translation" lang="en">（Generative Model Evaluation）</span></a></li>
 <li><a href="../topics/image-editing.html"><span class="nav-title-primary">图像编辑</span><span class="nav-title-translation" lang="en">（Image Editing）</span></a></li>
@@ -88,8 +111,9 @@
 </nav>
     </div>
   </aside>
-  <main class="wiki-page">
-    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="selected-lang" href="../topics/3d-gaussian-splatting.html">中文</a><a class="" href="../en/topics/3d-gaussian-splatting.html">English</a></nav><a class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>正文</span></a><a href="../index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>研究地图</span></a><a href="../main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>阅读入口</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></a></header>
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+  <main class="wiki-page" id="content" tabindex="-1">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="selected-lang" href="../topics/3d-gaussian-splatting.html">中文</a><a class="" href="../en/topics/3d-gaussian-splatting.html">English</a></nav><span class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>正文</span></span><a href="../index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>研究地图</span></a><a href="../main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>阅读入口</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></a></header>
     <article class="article-shell">
       
       <header class="article-header" data-motion="reveal">
@@ -97,6 +121,7 @@
         <p class="eyebrow">主题 · 更新于 2026-09-27</p>
         <h1><span class="title-main">三维高斯泼溅：表示、优化、几何与动态任务</span></h1>
         <p class="article-summary">3DGS 入门与研究地图：它是什么、46 篇正式论文分别在改进什么、新手可以从哪里开始做研究。</p>
+        <p class="article-actions"><a class="btn btn-primary" href="#先看结论">看研究入口怎么选<span aria-hidden="true"> →</span></a></p>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#3d-vision">#3d-vision</a><a class="tag" href="../tags.html#gaussian-splatting">#gaussian-splatting</a><a class="tag" href="../tags.html#neural-rendering">#neural-rendering</a></div>
       </header>
       <div class="article-layout has-rail">
@@ -132,12 +157,12 @@
 <table><thead><tr><th>指标</th><th>含义</th><th>方向</th><th>大致量级</th></tr></thead><tbody><tr><td>PSNR</td><td>渲染图和真实照片的像素相似度</td><td>↑ 越高越好</td><td>真实场景常见 20–30</td></tr><tr><td>SSIM</td><td>结构相似度</td><td>↑ 越高越好</td><td>0–1</td></tr><tr><td>LPIPS</td><td>人眼感知差异，越低越像真的</td><td>↓ 越低越好</td><td>0.1–0.4 常见</td></tr><tr><td>FPS</td><td>每秒渲染帧数</td><td>↑ 越高越好</td><td>30 以上可视为实时</td></tr><tr><td>Chamfer 距离</td><td>重建表面和真实表面的平均距离</td><td>↓ 越低越好</td><td>与数据集尺度有关</td></tr><tr><td>F1（几何）</td><td>表面点在误差阈值内的准确率与完整度的综合</td><td>↑ 越高越好</td><td>0–1</td></tr><tr><td>mIoU</td><td>语义分割的平均重叠率</td><td>↑ 越高越好</td><td>0–100%</td></tr><tr><td>ATE</td><td>相机轨迹误差</td><td>↓ 越低越好</td><td>厘米级</td></tr></tbody></table>
 <h2 id="任务或系统流程">任务或系统流程</h2>
 <figure class="wiki-visual wiki-visual--flow" data-visual-id="3dgs-static-rendering-loop" aria-labelledby="visual-3dgs-static-rendering-loop-title" aria-describedby="visual-3dgs-static-rendering-loop-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">两种获得高斯的方式在哪里分开？</p><div class="wiki-visual-title" id="visual-3dgs-static-rendering-loop-title" role="heading" aria-level="3">从照片到新视角：3DGS 的基本流程</div><p class="wiki-visual-explanation">逐场景优化每个场景单独训练；前馈重建先在大量场景上训练网络，遇到新场景时直接预测。两者之后的渲染步骤相同。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>输入</strong><small>多张照片 + 相机内外参；常用 SfM 同时得到一批稀疏三维点作为起点</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>得到高斯</strong><small>逐场景迭代优化并增密/剪枝，或用预训练网络一次预测</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>渲染</strong><small>把高斯投影到屏幕，按深度排序、按透明度叠加出图片</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>评测画质</strong><small>和真实照片比 PSNR / SSIM / LPIPS，并记录速度</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">05</span><strong>可选：提取表面</strong><small>需要网格时另外提取，并用真实表面测 Chamfer / F1</small></li></ol><figcaption><span>图示依据</span><a class="wikilink" href="../sources/2026-09-25-3d-gaussian-splatting.html">3DGS</a>、<a class="wikilink" href="../sources/2026-09-25-pixelsplat.html">pixelSplat</a>、<a class="wikilink" href="../sources/2026-09-25-mvsplat.html">MVSplat</a>、<a class="wikilink" href="../sources/2026-09-25-2d-gaussian-splatting.html">2DGS</a></figcaption><p class="sr-only" id="visual-3dgs-static-rendering-loop-alt">输入照片和相机参数，经 SfM 得到初始点；逐场景分支迭代优化高斯，前馈分支用预训练网络一次预测高斯；随后排序并混合渲染新视角图片；需要表面时再提取网格。</p></figure>
-<p>一句话理解渲染：每个高斯投到屏幕上是一个椭圆，从近到远叠加，前面的越不透明，后面的就越看不见。训练就是反复“渲染 → 和照片比 → 调整高斯”。详细数学见 <a class="wikilink" href="../sources/2026-09-25-3d-gaussian-splatting.html">sources/2026-09-25-3d-gaussian-splatting</a>。</p>
+<p>一句话理解渲染：每个高斯投到屏幕上是一个椭圆，从近到远叠加，前面的越不透明，后面的就越看不见。训练就是反复“渲染 → 和照片比 → 调整高斯”。详细数学见 <a class="wikilink" href="../sources/2026-09-25-3d-gaussian-splatting.html">3D Gaussian Splatting：从稀疏点到实时新视角渲染</a>。</p>
 <h2 id="当前综合判断">当前综合判断</h2>
 <h3 id="1-实时-只指训练完成后的渲染-训练和准备仍然要时间">1. “实时”只指训练完成后的渲染，训练和准备仍然要时间</h3>
 <p><strong>为什么重要</strong>：新手容易以为 3DGS 什么都快。实际上它渲染快，但每个场景仍要训练几十分钟，模型文件也不小。</p>
 <table><thead><tr><th>方法</th><th>PSNR ↑</th><th>SSIM ↑</th><th>LPIPS ↓</th><th>渲染速度 ↑</th><th>模型大小</th><th>训练时间</th></tr></thead><tbody><tr><td>原始 3DGS</td><td>27.21</td><td>0.815</td><td>0.214</td><td>134 FPS</td><td>734 MB</td><td>41 分 33 秒</td></tr><tr><td>Mip-NeRF 360（NeRF 类对照）</td><td>27.69</td><td>0.792</td><td>0.237</td><td>0.06 FPS</td><td>—</td><td>—</td></tr></tbody></table>
-<p>条件：Mip-NeRF 360 数据集，原始 3DGS 论文同一张表。<strong>怎么读</strong>：3DGS 的 PSNR 略低，SSIM 和 LPIPS 更好，渲染速度快两千多倍。来源：<a class="wikilink" href="../sources/2026-09-25-3d-gaussian-splatting.html">sources/2026-09-25-3d-gaussian-splatting</a>。</p>
+<p>条件：Mip-NeRF 360 数据集，原始 3DGS 论文同一张表。<strong>怎么读</strong>：3DGS 的 PSNR 略低，SSIM 和 LPIPS 更好，渲染速度快两千多倍。来源：<a class="wikilink" href="../sources/2026-09-25-3d-gaussian-splatting.html">3D Gaussian Splatting：从稀疏点到实时新视角渲染</a>。</p>
 <h3 id="2-画面好看不等于几何准确">2. 画面好看不等于几何准确</h3>
 <p><strong>为什么重要</strong>：PSNR 高只说明照片像，表面可能是歪的。要做测量、CAD、机器人等需要真实形状的任务，必须另测几何。</p>
 <table><thead><tr><th>方法</th><th>解决什么</th><th>结果</th><th>代价</th></tr></thead><tbody><tr><td><a class="wikilink" href="../sources/2026-09-25-mip-splatting.html">Mip-Splatting</a></td><td>放大缩小时出现锯齿、发虚</td><td>跨尺度测试 PSNR 从 17.69 提到 28.67</td><td>同尺度下 LPIPS 没有优势</td></tr><tr><td><a class="wikilink" href="../sources/2026-09-25-2d-gaussian-splatting.html">2DGS</a></td><td>用扁平圆盘代替椭球，表面更准</td><td>DTU 表面误差（Chamfer ↓）0.80，原 3DGS 为 1.96</td><td>画质 PSNR 34.52，低于原 3DGS 的 35.76</td></tr><tr><td><a class="wikilink" href="../sources/2026-09-25-come.html">CoMe</a></td><td>从高斯提取更干净的网格</td><td>Tanks and Temples 几何 F1 0.521，对照 SOF 0.474</td><td>仍低于用单目深度先验的 GeoSVR</td></tr><tr><td><a class="wikilink" href="../sources/2026-09-25-metrogs.html">MetroGS</a></td><td>城市级大场景，多卡训练</td><td>F1 0.585，对照 CityGSV2 0.544</td><td>需要 4 张卡和更多预处理</td></tr></tbody></table>
@@ -247,7 +272,7 @@
 </ol>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li>先读基础：<a class="wikilink" href="../topics/vision-task-foundations.html">topics/vision-task-foundations</a>（相机与几何）、<a class="wikilink" href="../topics/datasets-metrics-and-benchmark-reliability.html">topics/datasets-metrics-and-benchmark-reliability</a>（指标可靠性）。</li>
+<li>先读基础：<a class="wikilink" href="../topics/vision-task-foundations.html">分类、检测、分割、姿态与跟踪</a>（相机与几何）、<a class="wikilink" href="../topics/datasets-metrics-and-benchmark-reliability.html">数据集、评测指标与基准可靠性</a>（指标可靠性）。</li>
 <li>推荐阅读顺序：原始 3DGS → Mip-Splatting → 2DGS → MCMC → pixelSplat → MVSplat，之后按兴趣选大类。</li>
 <li>完整审计：<a class="wikilink" href="../docs/research-protocols/3d-gaussian-splatting.html">检索协议</a>、<a class="wikilink" href="../docs/research-matrices/3d-gaussian-splatting-evidence-matrix.html">逐篇证据矩阵</a>。</li>
 </ul></section>

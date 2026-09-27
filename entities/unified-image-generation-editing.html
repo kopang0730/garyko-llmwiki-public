@@ -4,13 +4,35 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="图像生成与编辑统一建模">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <link rel="canonical" href="https://wiki.garyko.com/entities/unified-image-generation-editing">
+  <link rel="alternate" hreflang="zh-CN" href="https://wiki.garyko.com/entities/unified-image-generation-editing">
+  <link rel="alternate" hreflang="en" href="https://wiki.garyko.com/en/entities/unified-image-generation-editing">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#f7f4ec" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1b1814" media="(prefers-color-scheme: dark)">
+  <meta property="og:site_name" content="llmwiki">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:title" content="图像生成与编辑统一建模 · llmwiki">
+  <meta property="og:description" content="图像生成与编辑统一建模">
+  <meta property="og:url" content="https://wiki.garyko.com/entities/unified-image-generation-editing">
+  <meta property="og:image" content="https://wiki.garyko.com/assets/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="图像生成与编辑统一建模 · llmwiki">
+  <meta name="twitter:description" content="图像生成与编辑统一建模">
+  <meta name="twitter:image" content="https://wiki.garyko.com/assets/og-card.png">
   <title>图像生成与编辑统一建模 · llmwiki</title>
   <script>try{if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')document.documentElement.classList.add('sidebar-collapsed')}catch(e){}</script>
-  <link rel="stylesheet" href="../assets/wiki.css?v=20260927-readable-tables-v15">
-  <script defer src="../assets/wiki.js?v=20260927-readable-tables-v15"></script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260927-design-system-v16">
+  <script defer src="../assets/wiki.js?v=20260927-design-system-v16"></script>
+  <noscript><style>.wiki-sidebar{position:static;transform:none;visibility:visible;width:auto;height:auto}.menu-toggle{display:none}</style></noscript>
 </head>
-<body class="kind-entity" data-page="{&quot;slug&quot;: &quot;entities/unified-image-generation-editing&quot;, &quot;title&quot;: &quot;图像生成与编辑统一建模&quot;, &quot;title_en&quot;: &quot;图像生成与编辑统一建模&quot;, &quot;kind&quot;: &quot;entity&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;method&quot;, &quot;image-generation&quot;, &quot;image-editing&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260927-readable-tables-v15">
+<body class="kind-entity" data-page="{&quot;slug&quot;: &quot;entities/unified-image-generation-editing&quot;, &quot;title&quot;: &quot;图像生成与编辑统一建模&quot;, &quot;title_en&quot;: &quot;图像生成与编辑统一建模&quot;, &quot;kind&quot;: &quot;entity&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;method&quot;, &quot;image-generation&quot;, &quot;image-editing&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260927-design-system-v16">
+  <a class="skip-link" href="#content">跳到正文</a>
   <header class="mobile-topbar">
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar" aria-label="菜单" title="菜单" data-menu-label="菜单" data-close-label="关闭菜单"><svg class="ui-icon menu-icon menu-icon--open" data-icon="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="ui-icon menu-icon menu-icon--close" data-icon="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="menu-toggle-label">菜单</span></button>
@@ -19,13 +41,14 @@
     <button class="sidebar-collapse-toggle" type="button" aria-expanded="true" aria-controls="sidebar-panel" aria-label="折叠左侧导航" title="折叠左侧导航" data-collapse-label="折叠左侧导航" data-expand-label="展开左侧导航"><svg class="ui-icon sidebar-icon sidebar-icon--collapse" data-icon="panel-left-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/></svg><svg class="ui-icon sidebar-icon sidebar-icon--expand" data-icon="panel-left-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/></svg></button>
     <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <div class="sidebar-panel" id="sidebar-panel">
-      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">搜索 llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
+      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">搜索 llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results" class="search-results"></div><p id="search-status" class="visually-hidden" role="status" aria-live="polite"></p></form>
       <nav class="sidebar-nav">
 <h2>入口</h2><ul>
 <li><a href="../catalog.html">完整论文目录</a></li>
 <li><a href="../index.html">研究地图</a></li>
 <li><a href="../llm-wiki.html">LLM Wiki</a></li>
 <li><a href="../main.html">阅读入口</a></li>
+<li><a href="../tags.html">标签</a></li>
 </ul>
 <h2>基础概念</h2><ul>
 <li><a href="../topics/computer-vision-overview.html"><span class="nav-title-primary">计算机视觉概览</span><span class="nav-title-translation" lang="en">（Computer Vision Overview）</span></a></li>
@@ -60,7 +83,7 @@
 <li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
 <li><a href="../entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a></li>
 <li><a href="../entities/sportsmot.html">SportsMOT</a></li>
-<li><a class="active" href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a class="active" aria-current="page" href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
 <li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
 </ul>
 <h2>判断</h2><ul>
@@ -88,8 +111,9 @@
 </nav>
     </div>
   </aside>
-  <main class="wiki-page">
-    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="selected-lang" href="../entities/unified-image-generation-editing.html">中文</a><a class="" href="../en/entities/unified-image-generation-editing.html">English</a></nav><a class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>正文</span></a><a href="../index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>研究地图</span></a><a href="../main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>阅读入口</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></a></header>
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+  <main class="wiki-page" id="content" tabindex="-1">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="selected-lang" href="../entities/unified-image-generation-editing.html">中文</a><a class="" href="../en/entities/unified-image-generation-editing.html">English</a></nav><span class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>正文</span></span><a href="../index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>研究地图</span></a><a href="../main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>阅读入口</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></a></header>
     <article class="article-shell">
       
       <header class="article-header" data-motion="reveal">
@@ -97,6 +121,7 @@
         <p class="eyebrow">实体 · 更新于 2026-07-10</p>
         <h1><span class="title-main">图像生成与编辑统一建模</span></h1>
         
+        <p class="article-actions"><a class="btn btn-primary" href="../topics/image-generation.html">回到专题：图像生成<span aria-hidden="true"> →</span></a></p>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#method">#method</a><a class="tag" href="../tags.html#image-generation">#image-generation</a><a class="tag" href="../tags.html#image-editing">#image-editing</a></div>
       </header>
       <div class="article-layout has-rail">
@@ -112,20 +137,20 @@
 <h2 id="当前观察到的主要分支">当前观察到的主要分支</h2>
 <h3 id="统一接口派">统一接口派</h3>
 <ul>
-<li><a class="wikilink" href="../sources/2026-04-12-omnigen.html">sources/2026-04-12-omnigen</a> 代表“统一接口 + 工作流简化”路线，把多任务收进更接近 LLM 的单一图像系统入口。</li>
+<li><a class="wikilink" href="../sources/2026-04-12-omnigen.html">OmniGen：统一图像生成</a> 代表“统一接口 + 工作流简化”路线，把多任务收进更接近 LLM 的单一图像系统入口。</li>
 </ul>
 <h3 id="联合训练派">联合训练派</h3>
 <ul>
-<li><a class="wikilink" href="../sources/2026-04-12-dreamomni.html">sources/2026-04-12-dreamomni</a> 代表“联合训练 + synthetic data pipeline”路线，强调生成与编辑共享训练、共享扩展能力。</li>
+<li><a class="wikilink" href="../sources/2026-04-12-dreamomni.html">DreamOmni：统一图像生成与编辑</a> 代表“联合训练 + synthetic data pipeline”路线，强调生成与编辑共享训练、共享扩展能力。</li>
 </ul>
 <h3 id="数据工厂派">数据工厂派</h3>
 <ul>
-<li><a class="wikilink" href="../sources/2026-04-12-anyedit.html">sources/2026-04-12-anyedit</a> 补入了“统一编辑系统工程”这一支，说明统一路线也可以首先建立在高质量编辑数据和任务组织上。</li>
+<li><a class="wikilink" href="../sources/2026-04-12-anyedit.html">AnyEdit：面向任意创意的统一高质量图像编辑</a> 补入了“统一编辑系统工程”这一支，说明统一路线也可以首先建立在高质量编辑数据和任务组织上。</li>
 </ul>
 <h3 id="世界动态派与模块化任务重写">世界动态派与模块化任务重写</h3>
 <ul>
-<li><a class="wikilink" href="../sources/2026-04-12-unireal.html">sources/2026-04-12-unireal</a> 把统一建模推进到 discontinuous frame generation 与 world dynamics 学习层面。</li>
-<li><a class="wikilink" href="../sources/2026-04-14-pathways-image-manifold.html">sources/2026-04-14-pathways-image-manifold</a> 使用 VLM、I2V 与 frame selection 组成专用编辑流水线，证明跨任务借模和模块化任务重写同样具有竞争力。它属于中性压力测试。</li>
+<li><a class="wikilink" href="../sources/2026-04-12-unireal.html">UniReal：通过学习真实世界动态实现通用图像生成与编辑</a> 把统一建模推进到 discontinuous frame generation 与 world dynamics 学习层面。</li>
+<li><a class="wikilink" href="../sources/2026-04-14-pathways-image-manifold.html">Pathways on the Image Manifold：通过视频生成做图像编辑</a> 使用 VLM、I2V 与 frame selection 组成专用编辑流水线，证明跨任务借模和模块化任务重写同样具有竞争力。它属于中性压力测试。</li>
 </ul>
 <h2 id="这条实体的演化脉络">这条实体的演化脉络</h2>
 <p>从当前证据看，这条实体已经经历了一个很清楚的演化：</p>
@@ -137,29 +162,29 @@
 <p>也正因为如此，这个实体的意义已经不只是功能整合，而是平台形态重构。</p>
 <h2 id="当前关系网络">当前关系网络</h2>
 <ul>
-<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a> 把这条路线放进生成主线，看它是否会成为图像系统默认平台。</li>
-<li><a class="wikilink" href="../topics/image-editing.html">topics/image-editing</a> 则更关注统一路线是否真的能压过专用编辑器。</li>
-<li><a class="wikilink" href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">claims/claim-unified-models-may-outcompete-specialized-image-pipelines</a> 负责持续判断它是否会在长期竞争里胜出。</li>
-<li><a class="wikilink" href="../questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a> 则专门跟踪统一路线、专用路线与模块组合路线的长期分工边界。</li>
+<li><a class="wikilink" href="../topics/image-generation.html">图像生成</a> 把这条路线放进生成主线，看它是否会成为图像系统默认平台。</li>
+<li><a class="wikilink" href="../topics/image-editing.html">图像编辑</a> 则更关注统一路线是否真的能压过专用编辑器。</li>
+<li><a class="wikilink" href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a> 负责持续判断它是否会在长期竞争里胜出。</li>
+<li><a class="wikilink" href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a> 则专门跟踪统一路线、专用路线与模块组合路线的长期分工边界。</li>
 </ul>
 <h2 id="证据">证据</h2>
 <ul>
-<li><a class="wikilink" href="../sources/2026-04-12-anyedit.html">sources/2026-04-12-anyedit</a></li>
-<li><a class="wikilink" href="../sources/2026-04-12-dreamomni.html">sources/2026-04-12-dreamomni</a></li>
-<li><a class="wikilink" href="../sources/2026-04-12-omnigen.html">sources/2026-04-12-omnigen</a></li>
-<li><a class="wikilink" href="../sources/2026-04-12-unireal.html">sources/2026-04-12-unireal</a></li>
-<li><a class="wikilink" href="../sources/2026-04-14-pathways-image-manifold.html">sources/2026-04-14-pathways-image-manifold</a></li>
+<li><a class="wikilink" href="../sources/2026-04-12-anyedit.html">AnyEdit：面向任意创意的统一高质量图像编辑</a></li>
+<li><a class="wikilink" href="../sources/2026-04-12-dreamomni.html">DreamOmni：统一图像生成与编辑</a></li>
+<li><a class="wikilink" href="../sources/2026-04-12-omnigen.html">OmniGen：统一图像生成</a></li>
+<li><a class="wikilink" href="../sources/2026-04-12-unireal.html">UniReal：通过学习真实世界动态实现通用图像生成与编辑</a></li>
+<li><a class="wikilink" href="../sources/2026-04-14-pathways-image-manifold.html">Pathways on the Image Manifold：通过视频生成做图像编辑</a></li>
 </ul>
 <h2 id="当前判断">当前判断</h2>
 <p>现有证据已经证明统一建模的可行性、任务覆盖和工作流价值。DreamOmni、OmniGen 与 UniReal 在部分 benchmark 或指标上具有竞争力，同时呈现数据规模、模型规模和保真指标之间的权衡。</p>
 <p>当前最稳妥的定位是：<strong>统一图像生成与编辑建模已经成为有竞争力的平台候选；整体性能优势仍等待受控系统比较。</strong></p>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../topics/image-editing.html">topics/image-editing</a></li>
-<li><a class="wikilink" href="../topics/vision-language.html">topics/vision-language</a></li>
-<li><a class="wikilink" href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">claims/claim-unified-models-may-outcompete-specialized-image-pipelines</a></li>
-<li><a class="wikilink" href="../questions/question-will-unified-image-models-sustain-their-advantage.html">questions/question-will-unified-image-models-sustain-their-advantage</a></li>
+<li><a class="wikilink" href="../topics/image-generation.html">图像生成</a></li>
+<li><a class="wikilink" href="../topics/image-editing.html">图像编辑</a></li>
+<li><a class="wikilink" href="../topics/vision-language.html">视觉语言</a></li>
+<li><a class="wikilink" href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
+<li><a class="wikilink" href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
 </ul></section>
       </div>
       

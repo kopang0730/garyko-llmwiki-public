@@ -4,13 +4,35 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="对指定百篇正式出版身份、版本、全文、成本与比较口径的定向筛选；系统全域检索另行完成。">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <link rel="canonical" href="https://wiki.garyko.com/docs/research-protocols/3d-gaussian-splatting">
+  <link rel="alternate" hreflang="zh-CN" href="https://wiki.garyko.com/docs/research-protocols/3d-gaussian-splatting">
+  <link rel="alternate" hreflang="en" href="https://wiki.garyko.com/en/docs/research-protocols/3d-gaussian-splatting">
+  <link rel="icon" href="../../favicon.ico" sizes="any">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#f7f4ec" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1b1814" media="(prefers-color-scheme: dark)">
+  <meta property="og:site_name" content="llmwiki">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:title" content="三维高斯泼溅：用户百篇定向证据协议 · llmwiki">
+  <meta property="og:description" content="对指定百篇正式出版身份、版本、全文、成本与比较口径的定向筛选；系统全域检索另行完成。">
+  <meta property="og:url" content="https://wiki.garyko.com/docs/research-protocols/3d-gaussian-splatting">
+  <meta property="og:image" content="https://wiki.garyko.com/assets/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="三维高斯泼溅：用户百篇定向证据协议 · llmwiki">
+  <meta name="twitter:description" content="对指定百篇正式出版身份、版本、全文、成本与比较口径的定向筛选；系统全域检索另行完成。">
+  <meta name="twitter:image" content="https://wiki.garyko.com/assets/og-card.png">
   <title>三维高斯泼溅：用户百篇定向证据协议 · llmwiki</title>
   <script>try{if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')document.documentElement.classList.add('sidebar-collapsed')}catch(e){}</script>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260927-readable-tables-v15">
-  <script defer src="../../assets/wiki.js?v=20260927-readable-tables-v15"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260927-design-system-v16">
+  <script defer src="../../assets/wiki.js?v=20260927-design-system-v16"></script>
+  <noscript><style>.wiki-sidebar{position:static;transform:none;visibility:visible;width:auto;height:auto}.menu-toggle{display:none}</style></noscript>
 </head>
-<body class="kind-review_protocol" data-page="{&quot;slug&quot;: &quot;docs/research-protocols/3d-gaussian-splatting&quot;, &quot;title&quot;: &quot;三维高斯泼溅：用户百篇定向证据协议&quot;, &quot;title_en&quot;: &quot;三维高斯泼溅：用户百篇定向证据协议&quot;, &quot;kind&quot;: &quot;review_protocol&quot;, &quot;tags&quot;: [], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260927-readable-tables-v15">
+<body class="kind-review_protocol" data-page="{&quot;slug&quot;: &quot;docs/research-protocols/3d-gaussian-splatting&quot;, &quot;title&quot;: &quot;三维高斯泼溅：用户百篇定向证据协议&quot;, &quot;title_en&quot;: &quot;三维高斯泼溅：用户百篇定向证据协议&quot;, &quot;kind&quot;: &quot;review_protocol&quot;, &quot;tags&quot;: [], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260927-design-system-v16">
+  <a class="skip-link" href="#content">跳到正文</a>
   <header class="mobile-topbar">
     <a class="brand" href="../../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar" aria-label="菜单" title="菜单" data-menu-label="菜单" data-close-label="关闭菜单"><svg class="ui-icon menu-icon menu-icon--open" data-icon="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="ui-icon menu-icon menu-icon--close" data-icon="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="menu-toggle-label">菜单</span></button>
@@ -19,13 +41,14 @@
     <button class="sidebar-collapse-toggle" type="button" aria-expanded="true" aria-controls="sidebar-panel" aria-label="折叠左侧导航" title="折叠左侧导航" data-collapse-label="折叠左侧导航" data-expand-label="展开左侧导航"><svg class="ui-icon sidebar-icon sidebar-icon--collapse" data-icon="panel-left-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/></svg><svg class="ui-icon sidebar-icon sidebar-icon--expand" data-icon="panel-left-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/></svg></button>
     <a class="brand" href="../../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
     <div class="sidebar-panel" id="sidebar-panel">
-      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">搜索 llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results"></div></form>
+      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">搜索 llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results" class="search-results"></div><p id="search-status" class="visually-hidden" role="status" aria-live="polite"></p></form>
       <nav class="sidebar-nav">
 <h2>入口</h2><ul>
 <li><a href="../../catalog.html">完整论文目录</a></li>
 <li><a href="../../index.html">研究地图</a></li>
 <li><a href="../../llm-wiki.html">LLM Wiki</a></li>
 <li><a href="../../main.html">阅读入口</a></li>
+<li><a href="../../tags.html">标签</a></li>
 </ul>
 <h2>基础概念</h2><ul>
 <li><a href="../../topics/computer-vision-overview.html"><span class="nav-title-primary">计算机视觉概览</span><span class="nav-title-translation" lang="en">（Computer Vision Overview）</span></a></li>
@@ -88,8 +111,9 @@
 </nav>
     </div>
   </aside>
-  <main class="wiki-page">
-    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="selected-lang" href="../../docs/research-protocols/3d-gaussian-splatting.html">中文</a><a class="" href="../../en/docs/research-protocols/3d-gaussian-splatting.html">English</a></nav><a class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>正文</span></a><a href="../../index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>研究地图</span></a><a href="../../main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>阅读入口</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></a></header>
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+  <main class="wiki-page" id="content" tabindex="-1">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="selected-lang" href="../../docs/research-protocols/3d-gaussian-splatting.html">中文</a><a class="" href="../../en/docs/research-protocols/3d-gaussian-splatting.html">English</a></nav><span class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>正文</span></span><a href="../../index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>研究地图</span></a><a href="../../main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>阅读入口</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></a></header>
     <article class="article-shell">
       
       <header class="article-header" data-motion="reveal">
@@ -97,14 +121,15 @@
         <p class="eyebrow">检索协议 · 更新于 2026-09-25</p>
         <h1><span class="title-main">三维高斯泼溅：用户百篇定向证据协议</span></h1>
         <p class="article-summary">对指定百篇正式出版身份、版本、全文、成本与比较口径的定向筛选；系统全域检索另行完成。</p>
+        
         <div class="tag-row"></div>
       </header>
       <div class="article-layout has-rail">
         <aside class="article-rail"><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>目录</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#当前阶段与问题">当前阶段与问题</a></li><li><a href="#数据库-可复查实际检索">数据库、可复查实际检索</a></li><li><a href="#纳排与去重">纳排与去重</a></li><li><a href="#筛选流和升级门">筛选流和升级门</a></li></ol></details></aside>
         <section class="article-content"><h2 id="当前阶段与问题">当前阶段与问题</h2>
 <ul>
-<li>Topic：<a class="wikilink" href="../../topics/3d-gaussian-splatting.html">topics/3d-gaussian-splatting</a>；状态：<code>evidence_map</code>。本协议限定用户提供的100个条目，搜到其他论文仅作反方/邻近线索，须通过单独纳入流程后才能成为核心证据。不是全领域系统检索或PRISMA。</li>
-<li>冻结输入：<a class="wikilink missing" href="#missing-docs/research-monitoring/3dgs-bootstrap/task">任务</a>、<code>docs/research-monitoring/3dgs-bootstrap/manifest.json</code>；原始provided字段不改，截止2026-09-24，当前筛选2026-09-25 HKT。主窗口2023-09-24—2026-09-24，原始3DGS 2023论文列奠基例外。</li>
+<li>Topic：<a class="wikilink" href="../../topics/3d-gaussian-splatting.html">三维高斯泼溅：表示、优化、几何与动态任务</a>；状态：<code>evidence_map</code>。本协议限定用户提供的100个条目，搜到其他论文仅作反方/邻近线索，须通过单独纳入流程后才能成为核心证据。不是全领域系统检索或PRISMA。</li>
+<li>冻结输入：<span class="wikilink unavailable" data-target="docs/research-monitoring/3dgs-bootstrap/task">任务</span>、<code>docs/research-monitoring/3dgs-bootstrap/manifest.json</code>；原始provided字段不改，截止2026-09-24，当前筛选2026-09-25 HKT。主窗口2023-09-24—2026-09-24，原始3DGS 2023论文列奠基例外。</li>
 <li>主问题：在有相机参数与可获得的资源情景中，3DGS的表示、密度/优化、几何与前馈重建各改善什么任务，哪些结果有相同数据/划分/成本的直接比较？子问题：抗混叠与几何准确性的不同指标；随机初始化与SfM依赖；前馈与逐场优化的训练/推断成本；域外场景及非朗伯材质失败。</li>
 <li>方法、数据、结果、训练与推断成本、预处理、消融、反方结论均要带原文页/表定位；图像PSNR不代替几何GT、速度不代替端到端训练预算。缺资源信息时给单A100/单24GB/无本地GPU的条件性情景；不宣称用户已有GPU。</li>
 <li>追加的语言查询与物理仿真分支保持相机/静态建图前置、SAM/CLIP区域监督和人工材料/力输入；语言IoU与变形PSNR分别按其任务评审。FastGS、Turbo-GS、Faster-GS分别控制误差点管理、训练像素与实现内核，依底座/显存/分辨率分账。SpeeDe3DGS动态任务按时间一致性及未见时刻验证，跨GPU训练计时只作观察。MoVieS训练后动态推断须计位姿、五天多卡训练与运动真值；iLRM视图数、GPU/图元和相机扰动单列；Uni3R的无外参限定于带内参且教师预训练的输入。</li>
@@ -150,7 +175,7 @@
 <li>数据与实验单位：跨场景方法按scene/源视频拆分，动态按时间相机单位；主表两论文数字只在相同实验设置内直接比较。记录摄影机/SfM、预训练骨干、数据许可、分辨率、真实训练卡时、推断显存/编码与渲染分项；未知写未报告。</li>
 </ul>
 <h2 id="筛选流和升级门">筛选流和升级门</h2>
-<p>截至2026-09-25本批：原始输入100，逐条重复性尚待总核；已定向核验47，其中46篇具正式首页匹配及完整主文/独立分析，#36有正式出版元数据但PDF HTTP 403与首页待核；53未筛，不能计作合格。初批三篇内部暂存、次批达到六篇Topic门槛；#11–#19及#25的CVF主文/补充、#20–#24的Springer正式章节身份与分版本作者全文、#26–#28的CVF主文/补充均纳入四十六篇专题；#34/#38/#39正式主文及补充、#35/#37 ICLR正式PDF与内附录亦纳入。原始100篇并非全领域数据库检索分母。当前正式身份和全文双核46篇；53条未知、1条权限阻塞。支持/反证和逐篇证据：<a class="wikilink" href="../../docs/research-matrices/3d-gaussian-splatting-evidence-matrix.html">docs/research-matrices/3d-gaussian-splatting-evidence-matrix</a>。</p>
+<p>截至2026-09-25本批：原始输入100，逐条重复性尚待总核；已定向核验47，其中46篇具正式首页匹配及完整主文/独立分析，#36有正式出版元数据但PDF HTTP 403与首页待核；53未筛，不能计作合格。初批三篇内部暂存、次批达到六篇Topic门槛；#11–#19及#25的CVF主文/补充、#20–#24的Springer正式章节身份与分版本作者全文、#26–#28的CVF主文/补充均纳入四十六篇专题；#34/#38/#39正式主文及补充、#35/#37 ICLR正式PDF与内附录亦纳入。原始100篇并非全领域数据库检索分母。当前正式身份和全文双核46篇；53条未知、1条权限阻塞。支持/反证和逐篇证据：<a class="wikilink" href="../../docs/research-matrices/3d-gaussian-splatting-evidence-matrix.html">3D Gaussian Splatting Evidence Matrix</a>。</p>
 <p>阶段维持<code>evidence_map</code>：全域CVF/ECVA/ACM/NeurIPS及IEEE/PMLR的完整布尔检索、去重导出、排除分布、引文反证追踪尚未完成。下一升级前保存数据库实际返回快照/查询日期和去重键，完整筛选100条的正式资格与全文后再审计覆盖；近期直接问题若已有文献解决，降级研究机会。</p></section>
       </div>
       

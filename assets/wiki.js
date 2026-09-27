@@ -1,59 +1,156 @@
-/* llmwiki client behavior: local search + mobile navigation toggle. */
+/* llmwiki client behavior: search, navigation drawer, metadata anchor and the research map. */
 
-async function initSearch(){
+const SEARCH_COPY={
+  zh:{loading:'正在加载搜索索引…',error:'搜索暂时不可用，请刷新页面重试。',emptyTitle:'没有找到页面',emptyHint:'换个关键词试试：主题、标签、论文名或英文标题。',count:n=>`找到 ${n} 个页面`,
+    kinds:{topic:'专题',source:'论文笔记',entity:'方法实体',claim:'证据判断',question:'开放问题',portal:'入口',graph:'地图'},other:'文档'},
+  en:{loading:'Loading search index…',error:'Search is unavailable right now. Please reload the page.',emptyTitle:'No pages found',emptyHint:'Try another keyword: a topic, tag, paper name or Chinese title.',count:n=>`${n} page${n===1?'':'s'} found`,
+    kinds:{topic:'Topic',source:'Paper note',entity:'Entity',claim:'Claim',question:'Question',portal:'Portal',graph:'Map'},other:'Document'}
+};
+// Readers usually want the synthesized page first; internal documents rank last.
+const SEARCH_KIND_WEIGHT={topic:40,entity:24,claim:20,question:20,source:12,portal:8,graph:8};
+const SEARCH_LIMIT=12;
+
+function rankSearch(pages,query,lang){
+  const tokens=query.toLowerCase().split(/\s+/).filter(Boolean);
+  const phrase=tokens.join(' ');
+  return pages.map(page=>{
+    const haystack=(page.search_text||`${page.title} ${page.title_en||''} ${page.slug}`).toLowerCase();
+    if(!tokens.every(token=>haystack.includes(token))) return null;
+    const title=(lang==='en' ? (page.title_en||page.title) : page.title).toLowerCase();
+    const other=(lang==='en' ? page.title : (page.title_en||'')).toLowerCase();
+    let score=SEARCH_KIND_WEIGHT[page.kind]||0;
+    if(title.startsWith(phrase)) score+=60;
+    else if(title.includes(phrase)||other.includes(phrase)) score+=40;
+    score+=tokens.filter(token=>title.includes(token)).length*10;
+    return {page,score};
+  }).filter(Boolean).sort((a,b)=>b.score-a.score||a.page.title.localeCompare(b.page.title)).slice(0,SEARCH_LIMIT).map(hit=>hit.page);
+}
+
+function initSearch(){
+  const form=document.querySelector('.search-box');
   const input=document.getElementById('site-search');
   const box=document.getElementById('search-results');
-  if(!input||!box) return;
+  const status=document.getElementById('search-status');
+  if(!form||!input||!box) return;
   const lang=document.documentElement.lang==='en' ? 'en' : 'zh';
+  const copy=SEARCH_COPY[lang];
   const href=document.querySelector('link[rel="stylesheet"]').getAttribute('href');
   const prefix=href.replace(/assets\/wiki\.css(?:\?v=[^#]+)?$/,'');
   const version=document.body.dataset.assetVersion || '';
-  const res=await fetch(prefix+'assets/search-index.json'+(version ? '?v='+encodeURIComponent(version) : ''), {cache:'no-cache'});
-  const pages=await res.json();
-  input.addEventListener('input',()=>{
-    const q=input.value.trim().toLowerCase();
-    if(!q){box.style.display='none';box.innerHTML='';return;}
-    const hits=pages.filter(p => (p.search_text || (p.title+' '+(p.title_en||'')+' '+p.slug+' '+(p.tags||[]).join(' '))).toLowerCase().includes(q)).slice(0,12);
-    const emptyTitle=lang==='en' ? 'No pages found' : '没有找到页面';
-    const emptyHint=lang==='en' ? 'Try a topic, tag, paper slug, or Chinese title.' : '可以试试主题、标签、论文 slug 或英文标题。';
-    box.innerHTML=hits.map(p=>{
-      const title=lang==='en' ? (p.title_en || p.title) : p.title;
-      const url=lang==='en' ? (p.url_en || p.url) : p.url;
-      return `<a href="${prefix}${url}">${title}<small>${p.kind} · ${p.slug}</small></a>`;
-    }).join('') || `<a>${emptyTitle}<small>${emptyHint}</small></a>`;
-    box.style.display='block';
+  let pages=null;
+  let failed=false;
+  let dismissed=false;  // Escape closed the list; don't reopen when focus returns to the input
+  const announce=text=>{ if(status) status.textContent=text; };
+  const open=()=>{ box.classList.add('is-open'); input.setAttribute('aria-expanded','true'); };
+  const close=()=>{ box.classList.remove('is-open'); input.setAttribute('aria-expanded','false'); };
+  const message=(title,hint,kind)=>{
+    const node=document.createElement('p'); node.className=`search-state search-state--${kind}`;
+    node.textContent=title;
+    if(hint){ const small=document.createElement('small'); small.textContent=hint; node.appendChild(small); }
+    box.replaceChildren(node); open(); announce(hint ? `${title}。${hint}` : title);
+  };
+  const results=()=>[...box.querySelectorAll('a.search-hit')];
+  const render=()=>{
+    const query=input.value.trim();
+    if(!query){ box.replaceChildren(); close(); announce(''); return; }
+    if(failed){ message(copy.error,'','error'); return; }
+    if(!pages){ message(copy.loading,'','loading'); return; }
+    const hits=rankSearch(pages,query,lang);
+    if(!hits.length){ message(copy.emptyTitle,copy.emptyHint,'empty'); return; }
+    box.replaceChildren(...hits.map(page=>{
+      const link=document.createElement('a'); link.className='search-hit';
+      link.href=prefix+(lang==='en' ? (page.url_en||page.url) : page.url);
+      link.textContent=lang==='en' ? (page.title_en||page.title) : page.title;
+      const meta=document.createElement('small'); meta.textContent=copy.kinds[page.kind]||copy.other;
+      link.appendChild(meta);
+      return link;
+    }));
+    open(); announce(copy.count(hits.length));
+  };
+  input.setAttribute('aria-controls','search-results');
+  input.setAttribute('aria-expanded','false');
+  input.addEventListener('input',()=>{ dismissed=false; render(); });
+  input.addEventListener('focus',()=>{ if(input.value.trim()&&!dismissed) render(); });
+  form.addEventListener('submit',event=>{
+    event.preventDefault();
+    const first=results()[0];
+    if(first) window.location.href=first.href;
+    else render();
   });
-  document.addEventListener('click',e=>{ if(!box.contains(e.target)&&e.target!==input) box.style.display='none'; });
+  form.addEventListener('keydown',event=>{
+    const items=results();
+    const index=items.indexOf(document.activeElement);
+    if(event.key==='Escape'){ dismissed=true; close(); input.focus(); return; }
+    if(event.key==='ArrowDown'&&items.length){ event.preventDefault(); items[Math.min(index+1,items.length-1)].focus(); }
+    if(event.key==='ArrowUp'&&index>=0){ event.preventDefault(); (index===0 ? input : items[index-1]).focus(); }
+  });
+  form.addEventListener('focusout',()=>{ setTimeout(()=>{ if(!form.contains(document.activeElement)) close(); },0); });
+  document.addEventListener('click',event=>{ if(!form.contains(event.target)) close(); });
+  fetch(prefix+'assets/search-index.json'+(version ? '?v='+encodeURIComponent(version) : ''), {cache:'no-cache'})
+    .then(response=>{ if(!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); })
+    .then(data=>{ pages=Array.isArray(data) ? data : []; })
+    .catch(error=>{ failed=true; console.error('llmwiki search index failed to load',error); })
+    .finally(()=>{ if(input.value.trim()) render(); });
 }
 
 function initMobileNav(){
   const toggle=document.querySelector('.menu-toggle');
   const sidebar=document.getElementById('wiki-sidebar');
   if(!toggle||!sidebar) return;
+  const main=document.getElementById('content');
+  const backdrop=document.querySelector('[data-nav-backdrop]');
+  const mobile=window.matchMedia('(max-width: 860px)');
   const label=toggle.querySelector('.menu-toggle-label');
-  const sync=open=>{
+  const isOpen=()=>document.body.classList.contains('nav-open');
+  const sync=()=>{
+    const open=isOpen();
     const text=open ? toggle.dataset.closeLabel : toggle.dataset.menuLabel;
     toggle.setAttribute('aria-expanded',String(open));
     toggle.setAttribute('aria-label',text);
     toggle.setAttribute('title',text);
     if(label) label.textContent=text;
+    // Off-canvas drawer is unreachable while closed; the page behind it is unreachable while open.
+    sidebar.inert=mobile.matches&&!open;
+    if(main) main.inert=mobile.matches&&open;
+    if(backdrop) backdrop.hidden=!(mobile.matches&&open);
+  };
+  const openNav=()=>{
+    document.body.classList.add('nav-open'); sync();
+    (document.getElementById('site-search')||sidebar.querySelector('a'))?.focus({preventScroll:true});
   };
   const close=()=>{
-    document.body.classList.remove('nav-open');
-    sync(false);
+    const hadFocus=sidebar.contains(document.activeElement);
+    document.body.classList.remove('nav-open'); sync();
+    if(hadFocus) toggle.focus();
   };
-  toggle.addEventListener('click',()=>{
-    const open=document.body.classList.toggle('nav-open');
-    sync(open);
+  toggle.addEventListener('click',()=>{ isOpen() ? close() : openNav(); });
+  sidebar.addEventListener('click',event=>{ if(event.target.closest('a')) close(); });
+  backdrop?.addEventListener('click',close);
+  document.addEventListener('keydown',event=>{ if(event.key==='Escape'&&isOpen()) close(); });
+  if(mobile.addEventListener) mobile.addEventListener('change',()=>{ if(!mobile.matches) document.body.classList.remove('nav-open'); sync(); });
+  sync();
+}
+
+// A failed page-preview thumbnail is hidden rather than shown as the browser's broken-image icon.
+function initImageFallbacks(){
+  document.querySelectorAll('.preview-strip img').forEach(img=>{
+    const hide=()=>img.closest('a')?.classList.add('is-broken');
+    if(img.complete&&img.naturalWidth===0&&img.currentSrc) hide();
+    img.addEventListener('error',hide,{once:true});
   });
-  // Close the drawer when navigating or tapping outside it.
-  sidebar.addEventListener('click',e=>{ if(e.target.closest('a')) close(); });
-  document.addEventListener('click',e=>{
-    if(!document.body.classList.contains('nav-open')) return;
-    if(!sidebar.contains(e.target) && !toggle.contains(e.target)) close();
-  });
-  document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&document.body.classList.contains('nav-open')) close(); });
-  sync(false);
+}
+
+// Anchors that point at a closed <details> (metadata box, map node list) should open it on arrival.
+function initDetailsAnchors(){
+  const reveal=()=>{
+    const target=location.hash ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null;
+    if(!(target instanceof HTMLDetailsElement)) return;
+    target.open=true;
+    target.scrollIntoView({block:'start'});
+    target.querySelector('summary')?.focus({preventScroll:true});
+  };
+  window.addEventListener('hashchange',reveal);
+  reveal();
 }
 
 function initDesktopSidebar(){
@@ -128,10 +225,19 @@ function initKnowledgeGraph(){
   const svg=document.getElementById('knowledge-graph-svg');
   if(!root||!dataNode||!svg) return;
 
+  const showGraphError=error=>{
+    console.error('llmwiki research map data failed to load',error);
+    const panel=document.getElementById('graph-detail');
+    const message=document.createElement('p'); message.className='graph-error'; message.setAttribute('role','alert');
+    message.textContent=document.documentElement.lang==='en'
+      ? 'The research map could not be loaded. Use the node list below or the catalog instead.'
+      : '研究地图加载失败。可以改用下方的节点目录或完整目录。';
+    if(panel) panel.replaceChildren(message); else svg.replaceWith(message);
+  };
   let data;
   try{ data=JSON.parse(dataNode.textContent); }
-  catch(error){ return; }
-  if(!Array.isArray(data.nodes)||!Array.isArray(data.edges)) return;
+  catch(error){ showGraphError(error); return; }
+  if(!Array.isArray(data.nodes)||!Array.isArray(data.edges)){ showGraphError(new Error('graph data has no nodes/edges arrays')); return; }
 
   const lang=document.documentElement.lang==='en' ? 'en' : 'zh';
   const copy=lang==='en' ? {
@@ -264,7 +370,7 @@ function initKnowledgeGraph(){
     const radius=Math.min(17,6.5+Math.sqrt(Math.max(node.evidence_count,0))*1.05+Math.min(node.connection_count,12)*.22);
     const group=svgNode('g',{
       class:`graph-node graph-node--${node.group}`,
-      transform:`translate(${p.x} ${p.y})`, tabindex:'0', role:'button',
+      transform:`translate(${p.x} ${p.y})`, tabindex:'-1', role:'button',
       'aria-label':`${node.title}，${copy.groups[node.group]}，${node.connection_count} ${copy.relations}`,
       'data-node-id':node.id
     });
@@ -373,11 +479,22 @@ function initKnowledgeGraph(){
       element.classList.toggle('is-dimmed',Boolean(id)&&!active);
     });
   };
+  // One tab stop for the whole node layer; arrow keys move between visible nodes.
+  const setRovingNode=id=>{
+    nodeElements.forEach((element,nodeId)=>element.setAttribute('tabindex',nodeId===id ? '0' : '-1'));
+  };
+  const orderedVisibleIds=()=>data.nodes.map(node=>node.id).filter(id=>visibleNodes.has(id));
   const selectNode=id=>{
     if(!nodeById.has(id)||!visibleNodes.has(id)) return;
     selectedId=id;
     highlight(id);
+    setRovingNode(id);
     renderDetail(nodeById.get(id));
+  };
+  const clearSelection=()=>{
+    const previous=selectedId;
+    selectedId=''; highlight(''); renderEmptyDetail();
+    if(previous&&nodeElements.has(previous)) nodeElements.get(previous).focus();
   };
   let suppressClickUntil=0;
   const suppressGestureClick=()=>{ suppressClickUntil=Date.now()+450; };
@@ -390,8 +507,21 @@ function initKnowledgeGraph(){
     });
     element.addEventListener('dblclick',event=>{ event.stopPropagation(); window.location.href=nodeById.get(id).href; });
     element.addEventListener('keydown',event=>{
-      if(event.key==='Enter'||event.key===' '){ event.preventDefault(); selectNode(id); }
+      if(event.key==='Enter'||event.key===' '){ event.preventDefault(); selectNode(id); return; }
+      if(event.key==='Escape'&&selectedId){ event.preventDefault(); clearSelection(); return; }
+      const ids=orderedVisibleIds();
+      const index=ids.indexOf(id);
+      const moves={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1};
+      let next='';
+      if(event.key in moves) next=ids[(index+moves[event.key]+ids.length)%ids.length];
+      else if(event.key==='Home') next=ids[0];
+      else if(event.key==='End') next=ids[ids.length-1];
+      if(!next) return;
+      event.preventDefault();
+      setRovingNode(next);
+      nodeElements.get(next).focus();
     });
+    element.addEventListener('focus',()=>revealNode(id));
     element.addEventListener('mouseenter',()=>{ if(!selectedId) highlight(id); });
     element.addEventListener('mouseleave',()=>{ if(!selectedId) highlight(''); });
   });
@@ -409,7 +539,11 @@ function initKnowledgeGraph(){
       applyFilter();
     }
     selectNode(button.dataset.graphNeighbor);
+    // renderDetail replaced the clicked card; keep keyboard focus in the panel instead of dropping to <body>.
+    const heading=detail.querySelector('h2');
+    if(heading){ heading.tabIndex=-1; heading.focus({preventScroll:true}); }
   });
+  detail?.addEventListener('keydown',event=>{ if(event.key==='Escape'&&selectedId){ event.preventDefault(); clearSelection(); } });
 
   const applyFilter=()=>{
     visibleNodes.clear();
@@ -430,6 +564,8 @@ function initKnowledgeGraph(){
       item.hidden=!((activeFilter==='all'||item.dataset.graphListGroup===activeFilter)&&(!query||text.includes(query)));
     });
     if(selectedId&&!visibleNodes.has(selectedId)){ selectedId=''; highlight(''); renderEmptyDetail(); }
+    const rovingId=[...nodeElements].find(([,element])=>element.getAttribute('tabindex')==='0')?.[0];
+    if(!rovingId||!visibleNodes.has(rovingId)) setRovingNode(selectedId||orderedVisibleIds()[0]||'');
     if(status){
       status.textContent=visibleNodes.size ? `${visibleNodes.size} ${copy.visible} · ${visibleEdgeCount} ${copy.edges}` : copy.empty;
     }
@@ -449,11 +585,27 @@ function initKnowledgeGraph(){
   const mobileDefaultView={x:-26,y:-17,scale:1.05};
   const mobileGraph=window.matchMedia('(max-width: 860px)');
   const view={x:0,y:0,scale:1};
-  const clampScale=value=>Math.max(.62,Math.min(3.2,value));
+  const MIN_SCALE=.62, MAX_SCALE=3.2;
+  const clampScale=value=>Math.max(MIN_SCALE,Math.min(MAX_SCALE,value));
+  const zoomButtons={in:document.querySelector('[data-graph-view="in"]'),out:document.querySelector('[data-graph-view="out"]')};
   const syncView=()=>{
     viewport.setAttribute('transform',`translate(${view.x} ${view.y}) scale(${view.scale})`);
     svg.setAttribute('data-graph-scale',view.scale.toFixed(3));
+    if(zoomButtons.in) zoomButtons.in.disabled=view.scale>=MAX_SCALE-.001;
+    if(zoomButtons.out) zoomButtons.out.disabled=view.scale<=MIN_SCALE+.001;
   };
+  // Keyboard focus can land on a node outside the visible (sliced) canvas; pan it into view.
+  function revealNode(id){
+    const element=nodeElements.get(id);
+    if(!element) return;
+    const box=element.getBoundingClientRect(), frame=svg.getBoundingClientRect();
+    const inside=box.left>=frame.left&&box.right<=frame.right&&box.top>=frame.top&&box.bottom<=frame.bottom;
+    if(inside) return;
+    const target=toSvgPoint(box.left+box.width/2,box.top+box.height/2);
+    const centre=toSvgPoint(frame.left+frame.width/2,frame.top+frame.height/2);
+    view.x+=centre.x-target.x; view.y+=centre.y-target.y;
+    syncView();
+  }
   const toSvgPoint=(clientX,clientY)=>{
     const matrix=svg.getScreenCTM();
     if(matrix){
@@ -600,11 +752,14 @@ function initKnowledgeGraph(){
   else mobileGraph.addListener(resetResponsiveView);
   applyDefaultView();
   applyFilter();
+  setRovingNode(orderedVisibleIds()[0]||'');
 }
 
 initSearch();
 initDesktopSidebar();
 initMobileNav();
+initDetailsAnchors();
+initImageFallbacks();
 initResponsiveToc();
 initMotion();
 initKnowledgeGraph();

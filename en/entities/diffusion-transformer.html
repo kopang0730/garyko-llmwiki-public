@@ -4,13 +4,35 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="扩散 Transformer">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <link rel="canonical" href="https://wiki.garyko.com/en/entities/diffusion-transformer">
+  <link rel="alternate" hreflang="zh-CN" href="https://wiki.garyko.com/entities/diffusion-transformer">
+  <link rel="alternate" hreflang="en" href="https://wiki.garyko.com/en/entities/diffusion-transformer">
+  <link rel="icon" href="../../favicon.ico" sizes="any">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#f7f4ec" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1b1814" media="(prefers-color-scheme: dark)">
+  <meta property="og:site_name" content="llmwiki">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="扩散 Transformer · llmwiki">
+  <meta property="og:description" content="扩散 Transformer">
+  <meta property="og:url" content="https://wiki.garyko.com/en/entities/diffusion-transformer">
+  <meta property="og:image" content="https://wiki.garyko.com/assets/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="扩散 Transformer · llmwiki">
+  <meta name="twitter:description" content="扩散 Transformer">
+  <meta name="twitter:image" content="https://wiki.garyko.com/assets/og-card.png">
   <title>扩散 Transformer · llmwiki</title>
   <script>try{if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')document.documentElement.classList.add('sidebar-collapsed')}catch(e){}</script>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260927-readable-tables-v15">
-  <script defer src="../../assets/wiki.js?v=20260927-readable-tables-v15"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260927-design-system-v16">
+  <script defer src="../../assets/wiki.js?v=20260927-design-system-v16"></script>
+  <noscript><style>.wiki-sidebar{position:static;transform:none;visibility:visible;width:auto;height:auto}.menu-toggle{display:none}</style></noscript>
 </head>
-<body class="kind-entity" data-page="{&quot;slug&quot;: &quot;entities/diffusion-transformer&quot;, &quot;title&quot;: &quot;扩散 Transformer&quot;, &quot;title_en&quot;: &quot;扩散 Transformer&quot;, &quot;kind&quot;: &quot;entity&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;method&quot;, &quot;diffusion&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260927-readable-tables-v15">
+<body class="kind-entity" data-page="{&quot;slug&quot;: &quot;entities/diffusion-transformer&quot;, &quot;title&quot;: &quot;扩散 Transformer&quot;, &quot;title_en&quot;: &quot;扩散 Transformer&quot;, &quot;kind&quot;: &quot;entity&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;method&quot;, &quot;diffusion&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260927-design-system-v16">
+  <a class="skip-link" href="#content">Skip to content</a>
   <header class="mobile-topbar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar" aria-label="Menu" title="Menu" data-menu-label="Menu" data-close-label="Close menu"><svg class="ui-icon menu-icon menu-icon--open" data-icon="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="ui-icon menu-icon menu-icon--close" data-icon="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="menu-toggle-label">Menu</span></button>
@@ -19,13 +41,14 @@
     <button class="sidebar-collapse-toggle" type="button" aria-expanded="true" aria-controls="sidebar-panel" aria-label="Collapse sidebar" title="Collapse sidebar" data-collapse-label="Collapse sidebar" data-expand-label="Expand sidebar"><svg class="ui-icon sidebar-icon sidebar-icon--collapse" data-icon="panel-left-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/></svg><svg class="ui-icon sidebar-icon sidebar-icon--expand" data-icon="panel-left-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/></svg></button>
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <div class="sidebar-panel" id="sidebar-panel">
-      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">Search llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">Search llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results" class="search-results"></div><p id="search-status" class="visually-hidden" role="status" aria-live="polite"></p></form>
       <nav class="sidebar-nav">
 <h2>Entry</h2><ul>
 <li><a href="../../en/catalog.html">Full paper catalog</a></li>
 <li><a href="../../en/index.html">Research map</a></li>
 <li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
 <li><a href="../../en/main.html">Reading portal</a></li>
+<li><a href="../../en/tags.html">Tags</a></li>
 </ul>
 <h2>Foundations</h2><ul>
 <li><a href="../../en/topics/computer-vision-overview.html">Computer Vision Overview</a></li>
@@ -57,7 +80,7 @@
 <li><a href="../../en/entities/clip.html">CLIP 系列模型（CLIP Family）</a></li>
 <li><a href="../../en/entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a></li>
 <li><a href="../../en/entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a></li>
-<li><a class="active" href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a class="active" aria-current="page" href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
 <li><a href="../../en/entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a></li>
 <li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
 <li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
@@ -88,8 +111,9 @@
 </nav>
     </div>
   </aside>
-  <main class="wiki-page">
-    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="" href="../../entities/diffusion-transformer.html">中文</a><a class="selected-lang" href="../../en/entities/diffusion-transformer.html">English</a></nav><a class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>Article</span></a><a href="../../en/index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>Research map</span></a><a href="../../en/main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>Reading portal</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>Metadata</span></a></header>
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+  <main class="wiki-page" id="content" tabindex="-1">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="" href="../../entities/diffusion-transformer.html">中文</a><a class="selected-lang" href="../../en/entities/diffusion-transformer.html">English</a></nav><span class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>Article</span></span><a href="../../en/index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>Research map</span></a><a href="../../en/main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>Reading portal</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>Metadata</span></a></header>
     <article class="article-shell">
       
       <header class="article-header" data-motion="reveal">
@@ -97,11 +121,12 @@
         <p class="eyebrow">Entity · Updated 2026-07-12</p>
         <h1><span class="title-main">扩散 Transformer</span></h1>
         
+        <p class="article-actions"><a class="btn btn-primary" href="../../en/topics/image-generation.html">Back to topic: Image Generation<span aria-hidden="true"> →</span></a></p>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#method">#method</a><a class="tag" href="../../en/tags.html#diffusion">#diffusion</a></div>
       </header>
       <div class="article-layout has-rail">
         <aside class="article-rail"><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#概述">概述</a></li><li><a href="#这个实体为什么重要">这个实体为什么重要</a></li><li><a href="#当前观察到的演化方向">当前观察到的演化方向</a><ol><li class="toc-sub"><a href="#从-vit-可行到-dit-scaling-成立">从 ViT 可行到 DiT scaling 成立</a></li><li class="toc-sub"><a href="#图像侧-内部表示与算力分配优化">图像侧：内部表示与算力分配优化</a></li><li class="toc-sub"><a href="#视频侧-控制与长时程扩展">视频侧：控制与长时程扩展</a></li><li class="toc-sub"><a href="#工程生态的证据边界">工程生态的证据边界</a></li><li class="toc-sub"><a href="#替代路线">替代路线</a></li></ol></li><li><a href="#全文核验后的量化锚点">全文核验后的量化锚点</a></li><li><a href="#这条实体现在意味着什么">这条实体现在意味着什么</a></li><li><a href="#当前关系网络">当前关系网络</a></li><li><a href="#证据">证据</a></li><li><a href="#当前判断">当前判断</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
-        <section class="article-content"><h2 id="概述">概述</h2>
+        <section class="article-content" lang="zh-CN"><p class="translation-notice" role="note">English translation pending — this page shows the Chinese original.</p><h2 id="概述">概述</h2>
 <p>这一页对应 DiT（Diffusion Transformer）及其相近的 Transformer 风格扩散主干。当前证据把它定位为横跨图像与视频生成的主要可扩展架构之一：U-ViT 与 DiT 提供可行性和 scaling 依据，D²iT 与 Tora 展示直接改造，LinGen 和 DiffuSSM 则揭示 attention 复杂度与替代主干的边界。</p>
 <h2 id="这个实体为什么重要">这个实体为什么重要</h2>
 <ul>
@@ -112,23 +137,23 @@
 <h2 id="当前观察到的演化方向">当前观察到的演化方向</h2>
 <h3 id="从-vit-可行到-dit-scaling-成立">从 ViT 可行到 DiT scaling 成立</h3>
 <ul>
-<li><a class="wikilink" href="../../en/sources/2026-04-15-all-are-worth-words.html">sources/2026-04-15-all-are-worth-words</a> 代表把 ViT 直接变成扩散模型主干的早期基础节点。</li>
-<li><a class="wikilink" href="../../en/sources/2026-04-15-scalable-diffusion-models-with-transformers.html">sources/2026-04-15-scalable-diffusion-models-with-transformers</a> 代表 DiT 作为 canonical 架构被正式提出，并把 scaling 证据直接摆上台面。</li>
+<li><a class="wikilink" href="../../en/sources/2026-04-15-all-are-worth-words.html">All Are Worth Words：把 ViT 直接变成扩散模型主干</a> 代表把 ViT 直接变成扩散模型主干的早期基础节点。</li>
+<li><a class="wikilink" href="../../en/sources/2026-04-15-scalable-diffusion-models-with-transformers.html">Scalable Diffusion Models with Transformers：DiT 把 Transformer 真正坐实为可扩展扩散主干</a> 代表 DiT 作为 canonical 架构被正式提出，并把 scaling 证据直接摆上台面。</li>
 </ul>
 <h3 id="图像侧-内部表示与算力分配优化">图像侧：内部表示与算力分配优化</h3>
 <ul>
-<li><a class="wikilink" href="../../en/sources/2026-04-12-d2it.html">sources/2026-04-12-d2it</a> 代表在图像侧通过动态区域压缩改造 DiT 内部表示与算力分配。</li>
+<li><a class="wikilink" href="../../en/sources/2026-04-12-d2it.html">D²iT：用于高精度图像生成的动态扩散 Transformer</a> 代表在图像侧通过动态区域压缩改造 DiT 内部表示与算力分配。</li>
 </ul>
 <h3 id="视频侧-控制与长时程扩展">视频侧：控制与长时程扩展</h3>
 <ul>
-<li><a class="wikilink" href="../../en/sources/2026-04-12-tora.html">sources/2026-04-12-tora</a> 代表把轨迹条件和动作控制更深地注入 DiT 风格的视频生成框架。</li>
-<li><a class="wikilink" href="../../en/sources/2026-04-12-lingen.html">sources/2026-04-12-lingen</a> 代表为长视频建模重构注意力机制，使 DiT 路线能覆盖更长时序。</li>
+<li><a class="wikilink" href="../../en/sources/2026-04-12-tora.html">Tora：面向视频生成的轨迹导向扩散 Transformer</a> 代表把轨迹条件和动作控制更深地注入 DiT 风格的视频生成框架。</li>
+<li><a class="wikilink" href="../../en/sources/2026-04-12-lingen.html">LinGen：面向高分辨率分钟级文本到视频生成的线性复杂度框架</a> 代表为长视频建模重构注意力机制，使 DiT 路线能覆盖更长时序。</li>
 </ul>
 <h3 id="工程生态的证据边界">工程生态的证据边界</h3>
 <p>Guidance 蒸馏、PTQ、plug-and-play guidance 与 self-guidance 说明 diffusion 范式拥有成熟工程生态。对应论文使用 U-Net、ADM、Stable Diffusion 或 GLIDE；它们适合作为 diffusion 工程背景，DiT 专属生态仍需在 DiT / MM-DiT / ST-DiT 主干上直接验证。</p>
 <h3 id="替代路线">替代路线</h3>
 <ul>
-<li><a class="wikilink" href="../../en/sources/2026-04-15-diffusion-models-without-attention.html">sources/2026-04-15-diffusion-models-without-attention</a> 用 state-space backbone 替代 attention，并直接比较 DiT 的计算扩展性，构成重要架构边界。</li>
+<li><a class="wikilink" href="../../en/sources/2026-04-15-diffusion-models-without-attention.html">Diffusion Models Without Attention：不用注意力也能做高分辨率扩散</a> 用 state-space backbone 替代 attention，并直接比较 DiT 的计算扩展性，构成重要架构边界。</li>
 </ul>
 <h2 id="全文核验后的量化锚点">全文核验后的量化锚点</h2>
 <ul>
@@ -149,27 +174,27 @@
 <p>“整个生成领域的默认主干”仍需要采用率统计与 DiT 专属工程证据。</p>
 <h2 id="当前关系网络">当前关系网络</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a> 负责把它放进更大的扩散方法史里。</li>
-<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a> 与 <a class="wikilink" href="../../en/topics/video-generation.html">topics/video-generation</a> 分别展示它在图像与视频两侧的适配。</li>
-<li><a class="wikilink" href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">claims/claim-dit-is-becoming-the-default-scalable-generation-backbone</a> 负责持续跟踪 DiT 作为“主要可扩展主干之一”的证据强度与采用率边界。</li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">Diffusion Models</a> 负责把它放进更大的扩散方法史里。</li>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">Image Generation</a> 与 <a class="wikilink" href="../../en/topics/video-generation.html">Video Generation</a> 分别展示它在图像与视频两侧的适配。</li>
+<li><a class="wikilink" href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a> 负责持续跟踪 DiT 作为“主要可扩展主干之一”的证据强度与采用率边界。</li>
 </ul>
 <h2 id="证据">证据</h2>
 <ul>
-<li><a class="wikilink" href="../../en/sources/2026-04-15-all-are-worth-words.html">sources/2026-04-15-all-are-worth-words</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-15-scalable-diffusion-models-with-transformers.html">sources/2026-04-15-scalable-diffusion-models-with-transformers</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-12-d2it.html">sources/2026-04-12-d2it</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-12-lingen.html">sources/2026-04-12-lingen</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-12-tora.html">sources/2026-04-12-tora</a></li>
-<li><a class="wikilink" href="../../en/sources/2026-04-15-diffusion-models-without-attention.html">sources/2026-04-15-diffusion-models-without-attention</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-15-all-are-worth-words.html">All Are Worth Words：把 ViT 直接变成扩散模型主干</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-15-scalable-diffusion-models-with-transformers.html">Scalable Diffusion Models with Transformers：DiT 把 Transformer 真正坐实为可扩展扩散主干</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-12-d2it.html">D²iT：用于高精度图像生成的动态扩散 Transformer</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-12-lingen.html">LinGen：面向高分辨率分钟级文本到视频生成的线性复杂度框架</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-12-tora.html">Tora：面向视频生成的轨迹导向扩散 Transformer</a></li>
+<li><a class="wikilink" href="../../en/sources/2026-04-15-diffusion-models-without-attention.html">Diffusion Models Without Attention：不用注意力也能做高分辨率扩散</a></li>
 </ul>
 <h2 id="当前判断">当前判断</h2>
 <p>当前最稳妥的定位是：<strong>DiT / Transformer 风格去噪器已经成为前沿图像与视频生成中的主要可扩展主干之一，并持续作为新架构的参照平台。</strong></p>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a></li>
-<li><a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a></li>
-<li><a class="wikilink" href="../../en/topics/video-generation.html">topics/video-generation</a></li>
-<li><a class="wikilink" href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">claims/claim-dit-is-becoming-the-default-scalable-generation-backbone</a></li>
+<li><a class="wikilink" href="../../en/topics/diffusion-models.html">Diffusion Models</a></li>
+<li><a class="wikilink" href="../../en/topics/image-generation.html">Image Generation</a></li>
+<li><a class="wikilink" href="../../en/topics/video-generation.html">Video Generation</a></li>
+<li><a class="wikilink" href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
 </ul></section>
       </div>
       

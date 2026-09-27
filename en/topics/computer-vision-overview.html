@@ -4,13 +4,35 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="从输入、表示、任务输出和证据四层理解现代计算机视觉，并沿奠基论文进入主干、检测分割、视频、多模态与生成研究。">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <link rel="canonical" href="https://wiki.garyko.com/en/topics/computer-vision-overview">
+  <link rel="alternate" hreflang="zh-CN" href="https://wiki.garyko.com/topics/computer-vision-overview">
+  <link rel="alternate" hreflang="en" href="https://wiki.garyko.com/en/topics/computer-vision-overview">
+  <link rel="icon" href="../../favicon.ico" sizes="any">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#f7f4ec" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1b1814" media="(prefers-color-scheme: dark)">
+  <meta property="og:site_name" content="llmwiki">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="Computer Vision Overview · llmwiki">
+  <meta property="og:description" content="从输入、表示、任务输出和证据四层理解现代计算机视觉，并沿奠基论文进入主干、检测分割、视频、多模态与生成研究。">
+  <meta property="og:url" content="https://wiki.garyko.com/en/topics/computer-vision-overview">
+  <meta property="og:image" content="https://wiki.garyko.com/assets/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Computer Vision Overview · llmwiki">
+  <meta name="twitter:description" content="从输入、表示、任务输出和证据四层理解现代计算机视觉，并沿奠基论文进入主干、检测分割、视频、多模态与生成研究。">
+  <meta name="twitter:image" content="https://wiki.garyko.com/assets/og-card.png">
   <title>Computer Vision Overview · llmwiki</title>
   <script>try{if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')document.documentElement.classList.add('sidebar-collapsed')}catch(e){}</script>
-  <link rel="stylesheet" href="../../assets/wiki.css?v=20260927-readable-tables-v15">
-  <script defer src="../../assets/wiki.js?v=20260927-readable-tables-v15"></script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260927-design-system-v16">
+  <script defer src="../../assets/wiki.js?v=20260927-design-system-v16"></script>
+  <noscript><style>.wiki-sidebar{position:static;transform:none;visibility:visible;width:auto;height:auto}.menu-toggle{display:none}</style></noscript>
 </head>
-<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/computer-vision-overview&quot;, &quot;title&quot;: &quot;计算机视觉概览与发展脉络&quot;, &quot;title_en&quot;: &quot;Computer Vision Overview&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;vision-foundations&quot;, &quot;representation-learning&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260927-readable-tables-v15">
+<body class="kind-topic" data-page="{&quot;slug&quot;: &quot;topics/computer-vision-overview&quot;, &quot;title&quot;: &quot;计算机视觉概览与发展脉络&quot;, &quot;title_en&quot;: &quot;Computer Vision Overview&quot;, &quot;kind&quot;: &quot;topic&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;vision-foundations&quot;, &quot;representation-learning&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260927-design-system-v16">
+  <a class="skip-link" href="#content">Skip to content</a>
   <header class="mobile-topbar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar" aria-label="Menu" title="Menu" data-menu-label="Menu" data-close-label="Close menu"><svg class="ui-icon menu-icon menu-icon--open" data-icon="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="ui-icon menu-icon menu-icon--close" data-icon="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="menu-toggle-label">Menu</span></button>
@@ -19,16 +41,17 @@
     <button class="sidebar-collapse-toggle" type="button" aria-expanded="true" aria-controls="sidebar-panel" aria-label="Collapse sidebar" title="Collapse sidebar" data-collapse-label="Collapse sidebar" data-expand-label="Expand sidebar"><svg class="ui-icon sidebar-icon sidebar-icon--collapse" data-icon="panel-left-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/></svg><svg class="ui-icon sidebar-icon sidebar-icon--expand" data-icon="panel-left-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/></svg></button>
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <div class="sidebar-panel" id="sidebar-panel">
-      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">Search llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">Search llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results" class="search-results"></div><p id="search-status" class="visually-hidden" role="status" aria-live="polite"></p></form>
       <nav class="sidebar-nav">
 <h2>Entry</h2><ul>
 <li><a href="../../en/catalog.html">Full paper catalog</a></li>
 <li><a href="../../en/index.html">Research map</a></li>
 <li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
 <li><a href="../../en/main.html">Reading portal</a></li>
+<li><a href="../../en/tags.html">Tags</a></li>
 </ul>
 <h2>Foundations</h2><ul>
-<li><a class="active" href="../../en/topics/computer-vision-overview.html">Computer Vision Overview</a></li>
+<li><a class="active" aria-current="page" href="../../en/topics/computer-vision-overview.html">Computer Vision Overview</a></li>
 <li><a href="../../en/topics/datasets-metrics-and-benchmark-reliability.html">Datasets &amp; Evaluation</a></li>
 <li><a href="../../en/topics/diffusion-models.html">Diffusion Models</a></li>
 <li><a href="../../en/topics/video-representation-and-temporal-modeling.html">Video Representation</a></li>
@@ -88,8 +111,9 @@
 </nav>
     </div>
   </aside>
-  <main class="wiki-page">
-    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="" href="../../topics/computer-vision-overview.html">中文</a><a class="selected-lang" href="../../en/topics/computer-vision-overview.html">English</a></nav><a class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>Article</span></a><a href="../../en/index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>Research map</span></a><a href="../../en/main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>Reading portal</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>Metadata</span></a></header>
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+  <main class="wiki-page" id="content" tabindex="-1">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="" href="../../topics/computer-vision-overview.html">中文</a><a class="selected-lang" href="../../en/topics/computer-vision-overview.html">English</a></nav><span class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>Article</span></span><a href="../../en/index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>Research map</span></a><a href="../../en/main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>Reading portal</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>Metadata</span></a></header>
     <article class="article-shell">
       
       <header class="article-header" data-motion="reveal">
@@ -97,11 +121,12 @@
         <p class="eyebrow">Topic · Updated 2026-07-14</p>
         <h1><span class="title-main">Computer Vision Overview</span></h1>
         <p class="article-summary">从输入、表示、任务输出和证据四层理解现代计算机视觉，并沿奠基论文进入主干、检测分割、视频、多模态与生成研究。</p>
+        <p class="article-actions"><a class="btn btn-primary" href="#推荐阅读顺序">Follow the reading order<span aria-hidden="true"> →</span></a></p>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#vision-foundations">#vision-foundations</a><a class="tag" href="../../en/tags.html#representation-learning">#representation-learning</a></div>
       </header>
       <div class="article-layout has-rail">
         <aside class="article-rail"><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话定义">一句话定义</a></li><li><a href="#一张图看懂原理">一张图看懂原理</a></li><li><a href="#前置概念与术语">前置概念与术语</a></li><li><a href="#历史演化">历史演化</a></li><li><a href="#核心机制">核心机制</a></li><li><a href="#主要方法分支">主要方法分支</a></li><li><a href="#奠基论文导读">奠基论文导读</a></li><li><a href="#常见误区与局限">常见误区与局限</a></li><li><a href="#与研究专题的关系">与研究专题的关系</a></li><li><a href="#推荐阅读顺序">推荐阅读顺序</a></li><li><a href="#证据基础">证据基础</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
-        <section class="article-content">
+        <section class="article-content" lang="zh-CN"><p class="translation-notice" role="note">English translation pending — this page shows the Chinese original.</p>
 <section class="topic-hero-grid" data-motion="reveal">
   <section class="judgment-panel topic-judgment">
     <p class="section-kicker">Foundation</p>
@@ -152,12 +177,12 @@
 <h2 id="主要方法分支">主要方法分支</h2>
 <figure class="wiki-visual wiki-visual--map" data-visual-id="cv-task-outputs" aria-labelledby="visual-cv-task-outputs-title" aria-describedby="visual-cv-task-outputs-alt" data-motion="reveal"><header class="wiki-visual-header"><p class="wiki-visual-question">分类、检测、分割、姿态、跟踪、多模态和生成的边界在哪里？</p><div class="wiki-visual-title" id="visual-cv-task-outputs-title" role="heading" aria-level="3">不同视觉任务实际输出什么</div><p class="wiki-visual-explanation">任务可以共享主干，但输出结构和验证方式不同。把一个任务的高分外推为另一个任务的能力，是视觉研究中最常见的错误之一。</p></header><ol class="wiki-visual-items"><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">01</span><strong>分类</strong><small>为整图或片段给一个或多个类别，重点是语义判别</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">02</span><strong>检测与分割</strong><small>输出物体位置、像素类别或实例掩码，重点是空间对应</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">03</span><strong>姿态与跟踪</strong><small>输出关键点和跨帧身份，重点是结构与时间一致</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">04</span><strong>视频理解</strong><small>从片段、事件和长时间上下文中判断动作、状态与因果</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">05</span><strong>视觉语言</strong><small>把视觉与文本对齐、融合或生成，重点是跨模态语义与组合</small></li><li class="wiki-visual-item"><span class="wiki-visual-index" aria-hidden="true">06</span><strong>视觉生成</strong><small>从噪声、token 或条件产生图像/视频，重点是分布、控制与可靠评测</small></li></ol><figcaption><span>Diagram evidence</span><a class="wikilink" href="../../en/sources/2026-07-14-faster-r-cnn.html">Faster R-CNN</a>、<a class="wikilink" href="../../en/sources/2026-07-14-fcn.html">FCN</a>、<a class="wikilink" href="../../en/sources/2026-06-29-detr.html">DETR</a>、<a class="wikilink" href="../../en/sources/2026-06-29-clip.html">CLIP</a></figcaption><p class="sr-only" id="visual-cv-task-outputs-alt">方法地图从整图标签扩展到物体框、像素掩码、关键点、跨帧轨迹、图文表示与生成内容。</p></figure>
 <ul>
-<li><strong>图像表示与主干</strong>：见 <a class="wikilink" href="../../en/topics/vision-backbones.html">topics/vision-backbones</a>。</li>
-<li><strong>分类、检测、分割、姿态与跟踪</strong>：见 <a class="wikilink" href="../../en/topics/vision-task-foundations.html">topics/vision-task-foundations</a>。</li>
-<li><strong>视频与时序表示</strong>：见 <a class="wikilink" href="../../en/topics/video-representation-and-temporal-modeling.html">topics/video-representation-and-temporal-modeling</a>。</li>
-<li><strong>图文对齐与视觉语言</strong>：见 <a class="wikilink" href="../../en/topics/vision-language-foundations.html">topics/vision-language-foundations</a>。</li>
-<li><strong>生成模型家族</strong>：见 <a class="wikilink" href="../../en/topics/visual-generation-foundations.html">topics/visual-generation-foundations</a> 与 <a class="wikilink" href="../../en/topics/diffusion-models.html">topics/diffusion-models</a>。</li>
-<li><strong>数据与评测</strong>：见 <a class="wikilink" href="../../en/topics/datasets-metrics-and-benchmark-reliability.html">topics/datasets-metrics-and-benchmark-reliability</a>。</li>
+<li><strong>图像表示与主干</strong>：见 <a class="wikilink" href="../../en/topics/vision-backbones.html">Visual Representations and Backbones</a>。</li>
+<li><strong>分类、检测、分割、姿态与跟踪</strong>：见 <a class="wikilink" href="../../en/topics/vision-task-foundations.html">Foundations of Core Vision Tasks</a>。</li>
+<li><strong>视频与时序表示</strong>：见 <a class="wikilink" href="../../en/topics/video-representation-and-temporal-modeling.html">Video Representation and Temporal Modeling</a>。</li>
+<li><strong>图文对齐与视觉语言</strong>：见 <a class="wikilink" href="../../en/topics/vision-language-foundations.html">Vision-Language and Multimodal Representation Foundations</a>。</li>
+<li><strong>生成模型家族</strong>：见 <a class="wikilink" href="../../en/topics/visual-generation-foundations.html">Foundations of Visual Generative Models</a> 与 <a class="wikilink" href="../../en/topics/diffusion-models.html">Diffusion Models</a>。</li>
+<li><strong>数据与评测</strong>：见 <a class="wikilink" href="../../en/topics/datasets-metrics-and-benchmark-reliability.html">Datasets, Metrics, and Benchmark Reliability</a>。</li>
 </ul>
 <h2 id="奠基论文导读">奠基论文导读</h2>
 <ol>
@@ -180,7 +205,7 @@
 <li><strong>局限：基础模型仍受数据覆盖约束。</strong> 罕见对象、专业图像、非英语文本、细粒度关系和时序证据都需要专门验证。</li>
 </ul>
 <h2 id="与研究专题的关系">与研究专题的关系</h2>
-<p>基础概念页解释稳定框架；Research Topic 则回答近五年哪些路线成熟、哪里仍值得研究。建议从本页按需要进入 <a class="wikilink" href="../../en/topics/image-generation.html">topics/image-generation</a>、<a class="wikilink" href="../../en/topics/image-text-retrieval.html">topics/image-text-retrieval</a>、<a class="wikilink" href="../../en/topics/video-understanding.html">topics/video-understanding</a>、<a class="wikilink" href="../../en/topics/generative-model-evaluation.html">topics/generative-model-evaluation</a> 或 <a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">topics/sports-ai-roadmap</a>，并在每个判断处回到 source note。</p>
+<p>基础概念页解释稳定框架；Research Topic 则回答近五年哪些路线成熟、哪里仍值得研究。建议从本页按需要进入 <a class="wikilink" href="../../en/topics/image-generation.html">Image Generation</a>、<a class="wikilink" href="../../en/topics/image-text-retrieval.html">Image-Text Retrieval</a>、<a class="wikilink" href="../../en/topics/video-understanding.html">Video Understanding</a>、<a class="wikilink" href="../../en/topics/generative-model-evaluation.html">Generative Model Evaluation</a> 或 <a class="wikilink" href="../../en/topics/sports-ai-roadmap.html">Sports AI Research Roadmap</a>，并在每个判断处回到 source note。</p>
 <h2 id="推荐阅读顺序">推荐阅读顺序</h2>
 <ol>
 <li>先用“任务输出图”说清分类、检测、分割、姿态、跟踪、检索和生成的差别。</li>
@@ -191,10 +216,10 @@
 </ol>
 <h2 id="证据基础">证据基础</h2>
 <ul>
-<li><a class="wikilink" href="../../en/sources/2026-07-14-alexnet.html">sources/2026-07-14-alexnet</a>、<a class="wikilink" href="../../en/sources/2026-07-14-resnet.html">sources/2026-07-14-resnet</a>：深度视觉表示与优化转折。</li>
-<li><a class="wikilink" href="../../en/sources/2026-07-14-faster-r-cnn.html">sources/2026-07-14-faster-r-cnn</a>、<a class="wikilink" href="../../en/sources/2026-07-14-fcn.html">sources/2026-07-14-fcn</a>：检测与密集预测基础。</li>
-<li><a class="wikilink" href="../../en/sources/2026-06-29-vision-transformer.html">sources/2026-06-29-vision-transformer</a>、<a class="wikilink" href="../../en/sources/2026-06-29-detr.html">sources/2026-06-29-detr</a>：视觉 token 与集合预测。</li>
-<li><a class="wikilink" href="../../en/sources/2026-06-29-clip.html">sources/2026-06-29-clip</a>、<a class="wikilink" href="../../en/sources/2026-06-29-segment-anything.html">sources/2026-06-29-segment-anything</a>：多模态监督与提示式视觉接口。</li>
+<li><a class="wikilink" href="../../en/sources/2026-07-14-alexnet.html">ImageNet Classification with Deep Convolutional Neural Networks：AlexNet 与深度视觉转折</a>、<a class="wikilink" href="../../en/sources/2026-07-14-resnet.html">Deep Residual Learning for Image Recognition：ResNet 与残差学习</a>：深度视觉表示与优化转折。</li>
+<li><a class="wikilink" href="../../en/sources/2026-07-14-faster-r-cnn.html">Faster R-CNN：共享特征的区域提议网络</a>、<a class="wikilink" href="../../en/sources/2026-07-14-fcn.html">Fully Convolutional Networks for Semantic Segmentation：全卷积语义分割</a>：检测与密集预测基础。</li>
+<li><a class="wikilink" href="../../en/sources/2026-06-29-vision-transformer.html">Vision Transformer：把图像切成 token 的通用视觉主干</a>、<a class="wikilink" href="../../en/sources/2026-06-29-detr.html">DETR：把目标检测改写成 Transformer set prediction</a>：视觉 token 与集合预测。</li>
+<li><a class="wikilink" href="../../en/sources/2026-06-29-clip.html">CLIP：用自然语言监督学习可迁移视觉表示</a>、<a class="wikilink" href="../../en/sources/2026-06-29-segment-anything.html">Segment Anything：把分割做成可提示的视觉基础模型</a>：多模态监督与提示式视觉接口。</li>
 </ul>
 <h2 id="相关页面">相关页面</h2>
 <ul>

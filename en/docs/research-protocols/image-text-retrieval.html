@@ -4,13 +4,35 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Frozen research questions, databases, search strings, eligibility criteria, screening flow, and review-stage gates.">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4f0e6'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%231e170e' stroke-width='2'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='serif' font-size='28' fill='%231e170e'%3EL%3C/text%3E%3C/svg%3E">
+  <link rel="canonical" href="https://wiki.garyko.com/en/docs/research-protocols/image-text-retrieval">
+  <link rel="alternate" hreflang="zh-CN" href="https://wiki.garyko.com/docs/research-protocols/image-text-retrieval">
+  <link rel="alternate" hreflang="en" href="https://wiki.garyko.com/en/docs/research-protocols/image-text-retrieval">
+  <link rel="icon" href="../../../favicon.ico" sizes="any">
+  <link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../../assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#f7f4ec" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1b1814" media="(prefers-color-scheme: dark)">
+  <meta property="og:site_name" content="llmwiki">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="Image-Text Retrieval Review Protocol · llmwiki">
+  <meta property="og:description" content="Frozen research questions, databases, search strings, eligibility criteria, screening flow, and review-stage gates.">
+  <meta property="og:url" content="https://wiki.garyko.com/en/docs/research-protocols/image-text-retrieval">
+  <meta property="og:image" content="https://wiki.garyko.com/assets/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Image-Text Retrieval Review Protocol · llmwiki">
+  <meta name="twitter:description" content="Frozen research questions, databases, search strings, eligibility criteria, screening flow, and review-stage gates.">
+  <meta name="twitter:image" content="https://wiki.garyko.com/assets/og-card.png">
   <title>Image-Text Retrieval Review Protocol · llmwiki</title>
   <script>try{if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')document.documentElement.classList.add('sidebar-collapsed')}catch(e){}</script>
-  <link rel="stylesheet" href="../../../assets/wiki.css?v=20260927-readable-tables-v15">
-  <script defer src="../../../assets/wiki.js?v=20260927-readable-tables-v15"></script>
+  <link rel="stylesheet" href="../../../assets/wiki.css?v=20260927-design-system-v16">
+  <script defer src="../../../assets/wiki.js?v=20260927-design-system-v16"></script>
+  <noscript><style>.wiki-sidebar{position:static;transform:none;visibility:visible;width:auto;height:auto}.menu-toggle{display:none}</style></noscript>
 </head>
-<body class="kind-review_protocol" data-page="{&quot;slug&quot;: &quot;docs/research-protocols/image-text-retrieval&quot;, &quot;title&quot;: &quot;图文检索（Image-Text Retrieval）检索与综合协议&quot;, &quot;title_en&quot;: &quot;Image-Text Retrieval Review Protocol&quot;, &quot;kind&quot;: &quot;review_protocol&quot;, &quot;tags&quot;: [], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260927-readable-tables-v15">
+<body class="kind-review_protocol" data-page="{&quot;slug&quot;: &quot;docs/research-protocols/image-text-retrieval&quot;, &quot;title&quot;: &quot;图文检索（Image-Text Retrieval）检索与综合协议&quot;, &quot;title_en&quot;: &quot;Image-Text Retrieval Review Protocol&quot;, &quot;kind&quot;: &quot;review_protocol&quot;, &quot;tags&quot;: [], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260927-design-system-v16">
+  <a class="skip-link" href="#content">Skip to content</a>
   <header class="mobile-topbar">
     <a class="brand" href="../../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar" aria-label="Menu" title="Menu" data-menu-label="Menu" data-close-label="Close menu"><svg class="ui-icon menu-icon menu-icon--open" data-icon="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="ui-icon menu-icon menu-icon--close" data-icon="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="menu-toggle-label">Menu</span></button>
@@ -19,13 +41,14 @@
     <button class="sidebar-collapse-toggle" type="button" aria-expanded="true" aria-controls="sidebar-panel" aria-label="Collapse sidebar" title="Collapse sidebar" data-collapse-label="Collapse sidebar" data-expand-label="Expand sidebar"><svg class="ui-icon sidebar-icon sidebar-icon--collapse" data-icon="panel-left-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/></svg><svg class="ui-icon sidebar-icon sidebar-icon--expand" data-icon="panel-left-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/></svg></button>
     <a class="brand" href="../../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
     <div class="sidebar-panel" id="sidebar-panel">
-      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">Search llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results"></div></form>
+      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">Search llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results" class="search-results"></div><p id="search-status" class="visually-hidden" role="status" aria-live="polite"></p></form>
       <nav class="sidebar-nav">
 <h2>Entry</h2><ul>
 <li><a href="../../../en/catalog.html">Full paper catalog</a></li>
 <li><a href="../../../en/index.html">Research map</a></li>
 <li><a href="../../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
 <li><a href="../../../en/main.html">Reading portal</a></li>
+<li><a href="../../../en/tags.html">Tags</a></li>
 </ul>
 <h2>Foundations</h2><ul>
 <li><a href="../../../en/topics/computer-vision-overview.html">Computer Vision Overview</a></li>
@@ -88,8 +111,9 @@
 </nav>
     </div>
   </aside>
-  <main class="wiki-page">
-    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="" href="../../../docs/research-protocols/image-text-retrieval.html">中文</a><a class="selected-lang" href="../../../en/docs/research-protocols/image-text-retrieval.html">English</a></nav><a class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>Article</span></a><a href="../../../en/index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>Research map</span></a><a href="../../../en/main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>Reading portal</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>Metadata</span></a></header>
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+  <main class="wiki-page" id="content" tabindex="-1">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="" href="../../../docs/research-protocols/image-text-retrieval.html">中文</a><a class="selected-lang" href="../../../en/docs/research-protocols/image-text-retrieval.html">English</a></nav><span class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>Article</span></span><a href="../../../en/index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>Research map</span></a><a href="../../../en/main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>Reading portal</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>Metadata</span></a></header>
     <article class="article-shell">
       
       <header class="article-header" data-motion="reveal">
@@ -97,20 +121,21 @@
         <p class="eyebrow">Review protocol · Updated 2026-07-16</p>
         <h1><span class="title-main">Image-Text Retrieval Review Protocol</span></h1>
         <p class="article-summary">Frozen research questions, databases, search strings, eligibility criteria, screening flow, and review-stage gates.</p>
+        
         <div class="tag-row"></div>
       </header>
       <div class="article-layout has-rail">
         <aside class="article-rail"><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#协议状态">协议状态</a></li><li><a href="#研究问题与边界">研究问题与边界</a><ol><li class="toc-sub"><a href="#主问题">主问题</a></li><li class="toc-sub"><a href="#子问题">子问题</a></li><li class="toc-sub"><a href="#分析框架">分析框架</a></li><li class="toc-sub"><a href="#纳入范围">纳入范围</a></li><li class="toc-sub"><a href="#排除范围">排除范围</a></li></ol></li><li><a href="#搜索策略">搜索策略</a><ol><li class="toc-sub"><a href="#中英文关键词">中英文关键词</a></li><li class="toc-sub"><a href="#冻结检索式">冻结检索式</a></li></ol></li><li><a href="#纳入-排除与去重">纳入、排除与去重</a><ol><li class="toc-sub"><a href="#纳入标准">纳入标准</a></li><li class="toc-sub"><a href="#排除原因码">排除原因码</a></li><li class="toc-sub"><a href="#去重与版本规则">去重与版本规则</a></li></ol></li><li><a href="#筛选与记录流程">筛选与记录流程</a></li><li><a href="#当前筛选流">当前筛选流</a><ol><li class="toc-sub"><a href="#历史-corpus-first-基线">历史 corpus-first 基线</a></li><li class="toc-sub"><a href="#冻结协议的前瞻检索">冻结协议的前瞻检索</a></li></ol></li><li><a href="#证据矩阵与综合方法">证据矩阵与综合方法</a></li><li><a href="#阶段升级门">阶段升级门</a></li><li><a href="#已知盲区与更新条件">已知盲区与更新条件</a></li></ol></details></aside>
-        <section class="article-content"><h2 id="协议状态">协议状态</h2>
+        <section class="article-content" lang="zh-CN"><p class="translation-notice" role="note">English translation pending — this page shows the Chinese original.</p><h2 id="协议状态">协议状态</h2>
 <ul>
-<li>Topic：<a class="wikilink" href="../../../en/topics/image-text-retrieval.html">topics/image-text-retrieval</a></li>
+<li>Topic：<a class="wikilink" href="../../../en/topics/image-text-retrieval.html">Image-Text Retrieval</a></li>
 <li>当前阶段：<code>scoped_review</code></li>
 <li>协议版本：v1.0</li>
 <li>协议冻结日期：2026-07-16</li>
 <li>历史语料最后核验：2026-07-16</li>
 <li>冻结检索式首次完整执行：待执行</li>
 <li>时间窗口：2022-01-01 至协议冻结日 2026-07-16；允许纳入 2022 年前不可替代的奠基论文</li>
-<li>证据矩阵：<a class="wikilink" href="../../../en/docs/research-matrices/image-text-retrieval-evidence-matrix.html">docs/research-matrices/image-text-retrieval-evidence-matrix</a></li>
+<li>证据矩阵：<a class="wikilink" href="../../../en/docs/research-matrices/image-text-retrieval-evidence-matrix.html">Image-Text Retrieval 40-Paper Evidence Matrix</a></li>
 <li>编译责任：每日自动任务只生成候选报告；Hermes 负责正式 ingest、全文核验、综合与阶段升级</li>
 </ul>
 <p><code>scoped_review</code> 在这里表示研究问题、范围、来源库、检索式和筛选规则已经冻结，不表示数据库检索已经穷尽。现有 40 篇是 2026-07-14 编译形成的 corpus-first 基线；当时没有保存完整候选导出与逐条排除日志，因此不能把 40 篇反向包装成 PRISMA 式系统检索结果。</p>
@@ -201,7 +226,7 @@
 <table><thead><tr><th>阶段</th><th>数量</th><th>说明</th></tr></thead><tbody><tr><td>初始发现</td><td>待执行</td><td>尚未生成可复查的数据库导出</td></tr><tr><td>去重后</td><td>待执行</td><td>按 DOI → arXiv ID → 标题处理</td></tr><tr><td>标题/摘要初筛后</td><td>待执行</td><td>必须累计 E1—E7 排除原因</td></tr><tr><td>全文核验后</td><td>待执行</td><td>只有原文核验项可进入候选编译队列</td></tr><tr><td>新增核心语料</td><td>0</td><td>协议冻结本身不自动纳入新论文</td></tr></tbody></table>
 <p>现有 40 篇中，正式主会/期刊占 90%（36/40），workshop 占 2.5%（1/40），预印本占 7.5%（3/40），二级来源占 0%。2026-07-16 已通过 ECCV、ICLR、NeurIPS 与 CVF 官方页面修正 5 条过期 venue。历史排除理由分布不可重建；从首次前瞻检索起按 E1—E7 报告数量与比例。</p>
 <h2 id="证据矩阵与综合方法">证据矩阵与综合方法</h2>
-<p>逐篇矩阵见 <a class="wikilink" href="../../../en/docs/research-matrices/image-text-retrieval-evidence-matrix.html">docs/research-matrices/image-text-retrieval-evidence-matrix</a>。每篇记录版本状态、任务/方法家族、关键数据或评测、对研究问题的贡献、最重要的局限和本地证据状态。</p>
+<p>逐篇矩阵见 <a class="wikilink" href="../../../en/docs/research-matrices/image-text-retrieval-evidence-matrix.html">Image-Text Retrieval 40-Paper Evidence Matrix</a>。每篇记录版本状态、任务/方法家族、关键数据或评测、对研究问题的贡献、最重要的局限和本地证据状态。</p>
 <p>综合不按论文顺序复述，而按以下张力组织：</p>
 <ol>
 <li>可扩展召回—细粒度交互；</li>
