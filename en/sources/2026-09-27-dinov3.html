@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="DINOv3">
+  <link rel="canonical" href="https://wiki.garyko.com/en/sources/2026-09-27-dinov3">
+  <link rel="alternate" hreflang="zh-CN" href="https://wiki.garyko.com/sources/2026-09-27-dinov3">
+  <link rel="alternate" hreflang="en" href="https://wiki.garyko.com/en/sources/2026-09-27-dinov3">
+  <link rel="icon" href="../../favicon.ico" sizes="any">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#f7f4ec" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1b1814" media="(prefers-color-scheme: dark)">
+  <meta property="og:site_name" content="llmwiki">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="DINOv3 · llmwiki">
+  <meta property="og:description" content="DINOv3">
+  <meta property="og:url" content="https://wiki.garyko.com/en/sources/2026-09-27-dinov3">
+  <meta property="og:image" content="https://wiki.garyko.com/assets/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DINOv3 · llmwiki">
+  <meta name="twitter:description" content="DINOv3">
+  <meta name="twitter:image" content="https://wiki.garyko.com/assets/og-card.png">
+  <title>DINOv3 · llmwiki</title>
+  <script>try{var r=document.documentElement,t=localStorage.getItem('llmwiki.theme');if(t==='light'||t==='dark')r.dataset.theme=t;if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')r.classList.add('sidebar-collapsed')}catch(e){}</script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260927-theme-switch-v17">
+  <script defer src="../../assets/wiki.js?v=20260927-theme-switch-v17"></script>
+  <noscript><style>.wiki-sidebar{position:static;transform:none;visibility:visible;width:auto;height:auto}.menu-toggle{display:none}</style></noscript>
+</head>
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-09-27-dinov3&quot;, &quot;title&quot;: &quot;DINOv3：稳定密集特征的视觉基础模型&quot;, &quot;title_en&quot;: &quot;DINOv3&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;vision-foundations&quot;, &quot;representation-learning&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260927-theme-switch-v17">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar" aria-label="Menu" title="Menu" data-menu-label="Menu" data-close-label="Close menu"><svg class="ui-icon menu-icon menu-icon--open" data-icon="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="ui-icon menu-icon menu-icon--close" data-icon="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="menu-toggle-label">Menu</span></button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
+    <button class="sidebar-collapse-toggle" type="button" aria-expanded="true" aria-controls="sidebar-panel" aria-label="Collapse sidebar" title="Collapse sidebar" data-collapse-label="Collapse sidebar" data-expand-label="Expand sidebar"><svg class="ui-icon sidebar-icon sidebar-icon--collapse" data-icon="panel-left-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/></svg><svg class="ui-icon sidebar-icon sidebar-icon--expand" data-icon="panel-left-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/></svg></button>
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <div class="sidebar-panel" id="sidebar-panel">
+      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">Search llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results" class="search-results"></div><p id="search-status" class="visually-hidden" role="status" aria-live="polite"></p></form>
+      <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/catalog.html">Full paper catalog</a></li>
+<li><a href="../../en/index.html">Research map</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Reading portal</a></li>
+<li><a href="../../en/tags.html">Tags</a></li>
+</ul>
+<h2>Foundations</h2><ul>
+<li><a href="../../en/topics/computer-vision-overview.html">Computer Vision Overview</a></li>
+<li><a href="../../en/topics/datasets-metrics-and-benchmark-reliability.html">Datasets &amp; Evaluation</a></li>
+<li><a href="../../en/topics/diffusion-models.html">Diffusion Models</a></li>
+<li><a href="../../en/topics/video-representation-and-temporal-modeling.html">Video Representation</a></li>
+<li><a href="../../en/topics/vision-backbones.html">Vision Backbones</a></li>
+<li><a href="../../en/topics/vision-language-foundations.html">Vision-Language Foundations</a></li>
+<li><a href="../../en/topics/vision-task-foundations.html">Core Vision Tasks</a></li>
+<li><a href="../../en/topics/visual-generation-foundations.html">Visual Generation Foundations</a></li>
+</ul>
+<h2>Research topics</h2><ul>
+<li><a href="../../en/topics/3d-gaussian-splatting.html">3D Gaussian Splatting</a></li>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">Diffusion Efficiency</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">Generative Model Evaluation</a></li>
+<li><a href="../../en/topics/image-editing.html">Image Editing</a></li>
+<li><a href="../../en/topics/image-generation.html">Image Generation</a></li>
+<li><a href="../../en/topics/image-text-retrieval.html">Image-Text Retrieval</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">Video Editing</a></li>
+<li><a href="../../en/topics/video-generation.html">Video Generation</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">Vision-Language</a></li>
+</ul>
+<h2>Roadmaps</h2><ul>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/clip.html">CLIP 系列模型（CLIP Family）</a></li>
+<li><a href="../../en/entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a></li>
+<li><a href="../../en/entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a></li>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/dino-family.html">DINO 家族：自监督视觉表示与预训练骨干</a></li>
+<li><a href="../../en/entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-baseline-and-specialization.html">双塔负责可扩展召回，细粒度模块负责精排与关系匹配</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-composed-query.html">组合式查询是图文检索中可落地且仍有缺口的研究切口</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-compositionality.html">标准图文检索分数不足以证明组合性理解</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-data-quality.html">图文检索的主要瓶颈仍包括数据质量、分布与概念覆盖</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-dino-features-for-3dgs-semantics.html">DINO 密集特征如何迁移到三维高斯语义分割？</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-research-cut.html">图文检索哪个子方向最适合中等算力的研究生项目？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a></li>
+<li><a href="../../en/questions/question-motion-defined-text-human-machine-gap.html">Motion-Defined Text Gap</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
+</ul>
+</nav>
+    </div>
+  </aside>
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+  <main class="wiki-page" id="content" tabindex="-1">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="" href="../../sources/2026-09-27-dinov3.html">中文</a><a class="selected-lang" href="../../en/sources/2026-09-27-dinov3.html">English</a></nav><div class="theme-switch" role="group" aria-label="Appearance" hidden><button type="button" data-theme-choice="system" aria-pressed="false" aria-label="Follow system" title="Follow system"><svg class="ui-icon" data-icon="monitor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg></button><button type="button" data-theme-choice="light" aria-pressed="false" aria-label="Light" title="Light"><svg class="ui-icon" data-icon="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></button><button type="button" data-theme-choice="dark" aria-pressed="false" aria-label="Dark" title="Dark"><svg class="ui-icon" data-icon="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button></div><span class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>Article</span></span><a href="../../en/index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>Research map</span></a><a href="../../en/main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>Reading portal</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>Metadata</span></a></header>
+    <article class="article-shell">
+      
+      <header class="article-header" data-motion="reveal">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>DINOv3</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-09-27</p>
+        <h1><span class="title-main">DINOv3</span></h1>
+        
+        <p class="article-actions"><a class="btn btn-primary" href="https://openreview.net/forum?id=2NlGyqNjns" target="_blank" rel="noopener noreferrer">Read the paper<span aria-hidden="true"> ↗</span></a></p>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#vision-foundations">#vision-foundations</a><a class="tag" href="../../en/tags.html#representation-learning">#representation-learning</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>TMLR 2026</dd></div><div class="source-fact"><dt>Published</dt><dd>2026-05</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-09-27</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openreview.net/forum?id=2NlGyqNjns" title="https://openreview.net/forum?id=2NlGyqNjns" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openreview.net · forum?id=2NlGyqNjns</strong></a><a class="source-link source-link-pdf" href="https://openreview.net/pdf?id=2NlGyqNjns" title="https://openreview.net/pdf?id=2NlGyqNjns" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openreview.net · pdf?id=2NlGyqNjns</strong></a><a class="source-link source-link-code" href="https://github.com/facebookresearch/dinov3" title="https://github.com/facebookresearch/dinov3" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · dinov3</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#正式发表状态与全文边界">正式发表状态与全文边界</a></li><li><a href="#论文定位与问题定义">论文定位与问题定义</a></li><li><a href="#方法概述">方法概述</a><ol><li class="toc-sub"><a href="#数据与规模">数据与规模</a></li><li class="toc-sub"><a href="#自监督目标与密集退化">自监督目标与密集退化</a></li><li class="toc-sub"><a href="#gram-anchoring-的具体含义">Gram anchoring 的具体含义</a></li><li class="toc-sub"><a href="#后处理与部署">后处理与部署</a></li></ol></li><li><a href="#核心实验与结果-作者稿口径">核心实验与结果：作者稿口径</a></li><li><a href="#关键图示">关键图示</a></li><li><a href="#局限-反证与复现边界">局限、反证与复现边界</a></li><li><a href="#对当前-wiki-判断的影响">对当前 wiki 判断的影响</a></li><li><a href="#原始链接与本地证据">原始链接与本地证据</a></li></ol></details></aside>
+        <section class="article-content" lang="zh-CN"><p class="translation-notice" role="note">English translation pending — this page shows the Chinese original.</p><h2 id="一句话结论">一句话结论</h2>
+<p>DINOv3 关注大规模自监督学习中的密集特征退化，通过 Gram anchoring 保存局部关系结构，并结合数据/模型扩展、分辨率适配与蒸馏形成视觉编码器家族。</p>
+<h2 id="正式发表状态与全文边界">正式发表状态与全文边界</h2>
+<p>截至本轮核验，TMLR 官方论文目录把 DINOv3 列为 <strong>2026 年 5 月正式期刊论文</strong>，官方 BibTeX 年份为 2026，并给出 Featured Certification。这个正式出版记录使其满足期刊纳入条件。</p>
+<p><strong>全文版本限制</strong>：OpenReview 的正式 PDF 受到验证页/限流阻塞；当前深读的是完整 67 页作者技术报告 arXiv:2508.10104v1（2025-08-13）。下面所有细节和表号归属该作者稿。来源页维持 <code>draft</code>，正式期刊版本的方法、数值与附录对齐仍待复核；综合页只把已核验的出版身份与明确标注的版本解读分开使用。</p>
+<h2 id="论文定位与问题定义">论文定位与问题定义</h2>
+<p>论文方向是<strong>自监督视觉表示、视觉基础模型、密集预测特征学习</strong>。其可交付产物是预训练视觉 backbone 及不同规模的蒸馏模型。输入图像经过编码器得到 CLS/global 与 patch/dense 特征；分类、语义分割、深度、匹配等任务使用各自的读出模块。</p>
+<p>关键问题是：延长大模型训练可以改善全局分类，同时让 patch 特征变得更噪、更偏全局语义，导致密集任务退化。作者因此把训练过程拆成全局/局部联合学习、密集特征修复和后处理阶段（§3–5）。</p>
+<h2 id="方法概述">方法概述</h2>
+<h3 id="数据与规模">数据与规模</h3>
+<p>作者报告从大规模图像池构建分层聚类采样、相似图像检索和既有数据集混合。LVD-1689M 是其中大规模 curated 组成，完整训练还包含其他数据部分。短 schedule 的数据消融显示混合配方在其测量任务上更均衡（Table 1）。教师采用 ViT-7B/16，约 6.7B 参数，使用 RoPE 和 register tokens；教师结构比较列在 Table 2。</p>
+<h3 id="自监督目标与密集退化">自监督目标与密集退化</h3>
+<p>基础训练继承 DINO 全局目标、iBOT 局部目标及特征分布正则。全局类别可分性与局部几何边界质量可能沿不同方向变化；只监控 ImageNet 线性分数可能错过 dense features 的退化（§3.2、§4.1）。</p>
+<h3 id="gram-anchoring-的具体含义">Gram anchoring 的具体含义</h3>
+<p>把归一化 patch 特征排成矩阵 <code>F</code>，<code>F Fᵀ</code> 描述 patch 两两之间的相似关系。锚定损失约束学生关系矩阵接近具有更好密集特征的参考教师：<code>L_Gram ∝ ||F_s F_sᵀ − F_ref F_refᵀ||²</code>。这个目标直接约束空间关系，给长训练提供局部结构参照（§4.2）。</p>
+<p>高分辨率参考教师提供更细特征，下采样到学生网格后形成更稳定的 Gram 目标（§4.3）。Gram 是特征关系矩阵；三维高斯表示则是由位置、协方差和渲染属性定义的场景基元，两者承担不同功能。</p>
+<h3 id="后处理与部署">后处理与部署</h3>
+<p>分辨率适配让特征适应更广输入尺度；蒸馏把大教师能力迁移到较小模型；文本对齐作为后续模块为语言接口提供额外条件（§5）。基础自监督权重的 dense features 与文本对齐版本要在使用记录中分别命名。</p>
+<h2 id="核心实验与结果-作者稿口径">核心实验与结果：作者稿口径</h2>
+<p>下表数字仅对应已保存作者稿；期刊版本差异待核。</p>
+<table><thead><tr><th>任务和定位</th><th>同表 DINOv2 g/14</th><th>DINOv3 7B/16</th><th>能支持的判断</th></tr></thead><tbody><tr><td>Table 3 / p.19，ADE20k，冻结特征线性头 mIoU ↑</td><td>49.5</td><td>55.9</td><td>更强的局部特征可被简单头读出</td></tr><tr><td>同表，Cityscapes mIoU ↑</td><td>75.6</td><td>81.1</td><td>密集提升覆盖另一个分割场景</td></tr><tr><td>同表，NYUv2 RMSE ↓</td><td>0.372</td><td>0.309</td><td>表征也支持深度读出</td></tr><tr><td>Table 4 / p.20，NAVI 几何对应 recall ↑</td><td>60.1%</td><td>64.4%</td><td>同实例跨视图对应有直接评测</td></tr><tr><td>同表，SPair 语义对应 recall ↑</td><td>56.1%</td><td>58.7%</td><td>不同实例的语义部位匹配有独立测量</td></tr><tr><td>Table 5 / p.22，DAVIS-L J&amp;F ↑</td><td>76.6</td><td>83.3</td><td>首帧条件掩码传播受益于更强 dense features</td></tr></tbody></table>
+<p>Table 3 的分割比较固定为 1024 patch tokens；patch size 不同对应不同像素分辨率。不同模型的预训练数据、参数量和训练预算仍有差别，这些结果属于系统比较。DINOv2 原论文里的 49.0 与此处 49.5 来源于不同版本/协议，应按各表内部读数分析。</p>
+<p>Figure 8（p.13）展示 Gram refinement 后 VOC/ADE20k 曲线提升而全局 ObjectNet 变化较小，支持对局部结构进行专门修复的动机。Table 4 使用 Probe3D 对应评测；附录 D.3 明确匹配设置。这里提供了三维相关表示证据，完整三维高斯场景的语义分割仍需要单独系统实验。</p>
+<p>作者稿 Table 3 的 Cityscapes 单元格为 DINOv3 81.1、AM-RADIOv2.5 78.4；相邻正文写了“2.5 points”。表格与文字的差值口径存在冲突，本页保留原始单元格，不采用该正文差值。</p>
+<h2 id="关键图示">关键图示</h2>
+<p><img src="../../raw/ingest/2026-09-27-dinov3/page-previews/page-13.png" alt="DINOv3 Gram anchoring 的任务曲线，作者稿第13页" loading="lazy"></p>
+<p><img src="../../raw/ingest/2026-09-27-dinov3/page-previews/page-19.png" alt="DINOv3 密集线性探测，作者稿第19页" loading="lazy"></p>
+<p><img src="../../raw/ingest/2026-09-27-dinov3/page-previews/page-20.png" alt="DINOv3 对应关系评估，作者稿第20页" loading="lazy"></p>
+<h2 id="局限-反证与复现边界">局限、反证与复现边界</h2>
+<ul>
+<li><strong>模型规模混杂</strong>：教师结构和训练数据同时改变，v2/v3 主表比较包含多因素增益。Gram 消融对局部修复的归因更直接。</li>
+<li><strong>局部语义的可视化</strong>：PCA 展示可以选择分量符号与颜色组合；漂亮颜色图需要定量分割、对应和跨视图测试共同解释。</li>
+<li><strong>时间建模</strong>：作者稿视频分类仍需时空 attentive probe；SSv2 等运动敏感任务中，专门视频模型提供重要对照。</li>
+<li><strong>任务标注许可</strong>：线性分割头和深度头需要标注训练；视频传播有首帧 mask。自监督 backbone 与完整任务系统应分账。</li>
+<li><strong>版本与运行</strong>：当前正式身份已核验，期刊 PDF 全文对齐阻塞；未做 GPU 运行、数据集复现或训练成本实测。</li>
+</ul>
+<h2 id="对当前-wiki-判断的影响">对当前 wiki 判断的影响</h2>
+<p>阅读路径为 <a class="wikilink" href="../../en/sources/2026-09-27-dino.html">DINO</a> → <a class="wikilink" href="../../en/sources/2026-09-27-dinov2.html">DINOv2</a> → 本页，概念定位汇入 <a class="wikilink" href="../../en/topics/vision-backbones.html">Visual Representations and Backbones</a> 和 <a class="wikilink" href="../../en/entities/dino-family.html">DINO 家族：自监督视觉表示与预训练骨干</a>。</p>
+<p>用户的三维高斯语义分割兴趣记录为 <a class="wikilink" href="../../en/questions/question-dino-features-for-3dgs-semantics.html">DINO 密集特征如何迁移到三维高斯语义分割？</a>。作者稿的 NAVI/SPair 测试提供可探索的表示动机，三维高斯特征蒸馏、类别命名和遮挡边界仍是明确待验证的系统假设。</p>
+<h2 id="原始链接与本地证据">原始链接与本地证据</h2>
+<ul>
+<li><a href="https://openreview.net/forum?id=2NlGyqNjns">正式出版记录</a></li>
+<li><a href="https://openreview.net/pdf?id=2NlGyqNjns">正式出版 PDF</a></li>
+<li><a href="https://jmlr.org/tmlr/papers/">TMLR 正式论文目录</a></li>
+<li><a href="https://github.com/facebookresearch/dinov3">官方代码仓库</a></li>
+<li><a href="https://arxiv.org/abs/2508.10104v1">本轮读取的作者存档稿</a></li>
+<li><a href="https://arxiv.org/pdf/2508.10104v1">作者存档稿 PDF</a></li>
+</ul>
+<ul>
+<li>本地全文：<code>raw/ingest/2026-09-27-dinov3/author-paper.pdf</code>；完整文本、逐页阅读范围与 SHA-256 见同目录 <code>read-manifest.json</code>。</li>
+<li>家族关系：<a class="wikilink" href="../../en/entities/dino-family.html">DINO 家族：自监督视觉表示与预训练骨干</a>；正式版本核验边界见本文开头。</li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/topics/vision-backbones.html">Visual Representations and Backbones</a></li></ul></div><div class="related-group related-entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/dino-family.html">DINO 家族：自监督视觉表示与预训练骨干</a></li></ul></div><div class="related-group related-questions"><h3>Related questions<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-dino-features-for-3dgs-semantics.html">DINO 密集特征如何迁移到三维高斯语义分割？</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">5</span></h2><ul><li><a href="../../en/entities/dino-family.html">DINO 家族：自监督视觉表示与预训练骨干</a><span>Entity</span></li><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/questions/question-dino-features-for-3dgs-semantics.html">DINO 密集特征如何迁移到三维高斯语义分割？</a><span>Question</span></li><li><a href="../../en/sources/2026-09-27-dino.html">Emerging Properties in Self-Supervised Vision Transformers</a><span>Source note</span></li><li><a href="../../en/topics/vision-backbones.html">Visual Representations and Backbones</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary><span class="summary-label"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>Metadata</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><pre>{
+  &quot;id&quot;: &quot;2026-09-27-dinov3&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;DINOv3：稳定密集特征的视觉基础模型&quot;,
+  &quot;title_en&quot;: &quot;DINOv3&quot;,
+  &quot;status&quot;: &quot;draft&quot;,
+  &quot;created&quot;: &quot;2026-09-27&quot;,
+  &quot;updated&quot;: &quot;2026-09-27&quot;,
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;vision-foundations&quot;,
+    &quot;representation-learning&quot;,
+    &quot;primary-source&quot;
+  ],
+  &quot;note_status&quot;: &quot;draft&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;venue&quot;: &quot;TMLR 2026&quot;,
+  &quot;authors&quot;: [
+    &quot;Oriane Sim{\\&#x27;e}oni&quot;,
+    &quot;Huy V. Vo&quot;,
+    &quot;Maximilian Seitzer&quot;,
+    &quot;Federico Baldassarre&quot;,
+    &quot;Maxime Oquab&quot;,
+    &quot;Cijo Jose&quot;,
+    &quot;Vasil Khalidov&quot;,
+    &quot;Marc Szafraniec&quot;,
+    &quot;Seung Eun Yi&quot;,
+    &quot;Michael Ramamonjisoa&quot;,
+    &quot;Francisco Massa&quot;,
+    &quot;Daniel HAZIZA&quot;,
+    &quot;Luca Wehrstedt&quot;,
+    &quot;Jianyuan Wang&quot;,
+    &quot;Timoth{\\&#x27;e}e Darcet&quot;,
+    &quot;Th{\\&#x27;e}o Moutakanni&quot;,
+    &quot;Leonel Sentana&quot;,
+    &quot;Claire Roberts&quot;,
+    &quot;Andrea Vedaldi&quot;,
+    &quot;Jamie Tolan&quot;,
+    &quot;John Brandt&quot;,
+    &quot;Camille Couprie&quot;,
+    &quot;Julien Mairal&quot;,
+    &quot;Herve Jegou&quot;,
+    &quot;Patrick Labatut&quot;,
+    &quot;Piotr Bojanowski&quot;
+  ],
+  &quot;published_at&quot;: &quot;2026-05&quot;,
+  &quot;publication_date_precision&quot;: &quot;month&quot;,
+  &quot;ingested_at&quot;: &quot;2026-09-27&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://openreview.net/forum?id=2NlGyqNjns&quot;,
+    &quot;https://openreview.net/pdf?id=2NlGyqNjns&quot;,
+    &quot;https://jmlr.org/tmlr/papers/&quot;,
+    &quot;https://github.com/facebookresearch/dinov3&quot;,
+    &quot;https://arxiv.org/abs/2508.10104v1&quot;,
+    &quot;https://arxiv.org/pdf/2508.10104v1&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-09-27-dinov3/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/vision-backbones&quot;
+  ],
+  &quot;entities&quot;: [
+    &quot;entities/dino-family&quot;
+  ],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: [
+    &quot;questions/question-dino-features-for-3dgs-semantics&quot;
+  ]
+}</pre></details>
+    </article>
+  </main>
+</body>
+</html>
