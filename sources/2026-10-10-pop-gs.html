@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="POp-GS：用不确定性选择下一张照片">
+  <link rel="canonical" href="https://wiki.garyko.com/sources/2026-10-10-pop-gs">
+  <link rel="alternate" hreflang="zh-CN" href="https://wiki.garyko.com/sources/2026-10-10-pop-gs">
+  <link rel="alternate" hreflang="en" href="https://wiki.garyko.com/en/sources/2026-10-10-pop-gs">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#f7f4ec" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1b1814" media="(prefers-color-scheme: dark)">
+  <meta property="og:site_name" content="llmwiki">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:title" content="POp-GS：用不确定性选择下一张照片 · llmwiki">
+  <meta property="og:description" content="POp-GS：用不确定性选择下一张照片">
+  <meta property="og:url" content="https://wiki.garyko.com/sources/2026-10-10-pop-gs">
+  <meta property="og:image" content="https://wiki.garyko.com/assets/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="POp-GS：用不确定性选择下一张照片 · llmwiki">
+  <meta name="twitter:description" content="POp-GS：用不确定性选择下一张照片">
+  <meta name="twitter:image" content="https://wiki.garyko.com/assets/og-card.png">
+  <title>POp-GS：用不确定性选择下一张照片 · llmwiki</title>
+  <script>try{var r=document.documentElement,t=localStorage.getItem('llmwiki.theme');if(t==='light'||t==='dark')r.dataset.theme=t;if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')r.classList.add('sidebar-collapsed')}catch(e){}</script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260927-theme-switch-v17">
+  <script defer src="../assets/wiki.js?v=20260927-theme-switch-v17"></script>
+  <noscript><style>.wiki-sidebar{position:static;transform:none;visibility:visible;width:auto;height:auto}.menu-toggle{display:none}</style></noscript>
+</head>
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-10-10-pop-gs&quot;, &quot;title&quot;: &quot;POp-GS：用不确定性选择下一张照片&quot;, &quot;title_en&quot;: &quot;POp-GS: Next Best View in 3D-Gaussian Splatting with P-Optimality&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;3d-vision&quot;, &quot;gaussian-splatting&quot;, &quot;evaluation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260927-theme-switch-v17">
+  <a class="skip-link" href="#content">跳到正文</a>
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar" aria-label="菜单" title="菜单" data-menu-label="菜单" data-close-label="关闭菜单"><svg class="ui-icon menu-icon menu-icon--open" data-icon="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="ui-icon menu-icon menu-icon--close" data-icon="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="menu-toggle-label">菜单</span></button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
+    <button class="sidebar-collapse-toggle" type="button" aria-expanded="true" aria-controls="sidebar-panel" aria-label="折叠左侧导航" title="折叠左侧导航" data-collapse-label="折叠左侧导航" data-expand-label="展开左侧导航"><svg class="ui-icon sidebar-icon sidebar-icon--collapse" data-icon="panel-left-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/></svg><svg class="ui-icon sidebar-icon sidebar-icon--expand" data-icon="panel-left-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/></svg></button>
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
+    <div class="sidebar-panel" id="sidebar-panel">
+      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">搜索 llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results" class="search-results"></div><p id="search-status" class="visually-hidden" role="status" aria-live="polite"></p></form>
+      <nav class="sidebar-nav">
+<h2>入口</h2><ul>
+<li><a href="../catalog.html">完整论文目录</a></li>
+<li><a href="../index.html">研究地图</a></li>
+<li><a href="../llm-wiki.html">LLM Wiki</a></li>
+<li><a href="../main.html">阅读入口</a></li>
+<li><a href="../tags.html">标签</a></li>
+</ul>
+<h2>基础概念</h2><ul>
+<li><a href="../topics/computer-vision-overview.html"><span class="nav-title-primary">计算机视觉概览</span><span class="nav-title-translation" lang="en">（Computer Vision Overview）</span></a></li>
+<li><a href="../topics/datasets-metrics-and-benchmark-reliability.html"><span class="nav-title-primary">数据与评测基础</span><span class="nav-title-translation" lang="en">（Datasets &amp; Evaluation）</span></a></li>
+<li><a href="../topics/diffusion-models.html"><span class="nav-title-primary">扩散模型</span><span class="nav-title-translation" lang="en">（Diffusion Models）</span></a></li>
+<li><a href="../topics/video-representation-and-temporal-modeling.html"><span class="nav-title-primary">视频表示基础</span><span class="nav-title-translation" lang="en">（Video Representation）</span></a></li>
+<li><a href="../topics/vision-backbones.html"><span class="nav-title-primary">视觉主干</span><span class="nav-title-translation" lang="en">（Vision Backbones）</span></a></li>
+<li><a href="../topics/vision-language-foundations.html"><span class="nav-title-primary">视觉语言基础</span><span class="nav-title-translation" lang="en">（Vision-Language Foundations）</span></a></li>
+<li><a href="../topics/vision-task-foundations.html"><span class="nav-title-primary">核心视觉任务</span><span class="nav-title-translation" lang="en">（Core Vision Tasks）</span></a></li>
+<li><a href="../topics/visual-generation-foundations.html"><span class="nav-title-primary">视觉生成基础</span><span class="nav-title-translation" lang="en">（Visual Generation Foundations）</span></a></li>
+</ul>
+<h2>研究专题</h2><ul>
+<li><a href="../topics/3d-gaussian-splatting.html"><span class="nav-title-primary">三维高斯泼溅</span><span class="nav-title-translation" lang="en">（3D Gaussian Splatting）</span></a></li>
+<li><a href="../topics/diffusion-efficiency-engineering.html"><span class="nav-title-primary">扩散效率工程</span><span class="nav-title-translation" lang="en">（Diffusion Efficiency）</span></a></li>
+<li><a href="../topics/generative-model-evaluation.html"><span class="nav-title-primary">生成模型评测</span><span class="nav-title-translation" lang="en">（Generative Model Evaluation）</span></a></li>
+<li><a href="../topics/image-editing.html"><span class="nav-title-primary">图像编辑</span><span class="nav-title-translation" lang="en">（Image Editing）</span></a></li>
+<li><a href="../topics/image-generation.html"><span class="nav-title-primary">图像生成</span><span class="nav-title-translation" lang="en">（Image Generation）</span></a></li>
+<li><a href="../topics/image-text-retrieval.html"><span class="nav-title-primary">图文检索</span><span class="nav-title-translation" lang="en">（Image-Text Retrieval）</span></a></li>
+<li><a href="../topics/sports-ai-video-understanding.html"><span class="nav-title-primary">体育视频理解</span><span class="nav-title-translation" lang="en">（Sports Video Understanding）</span></a></li>
+<li><a href="../topics/video-editing.html"><span class="nav-title-primary">视频编辑</span><span class="nav-title-translation" lang="en">（Video Editing）</span></a></li>
+<li><a href="../topics/video-generation.html"><span class="nav-title-primary">视频生成</span><span class="nav-title-translation" lang="en">（Video Generation）</span></a></li>
+<li><a href="../topics/video-understanding.html"><span class="nav-title-primary">视频理解</span><span class="nav-title-translation" lang="en">（Video Understanding）</span></a></li>
+<li><a href="../topics/vision-language.html"><span class="nav-title-primary">视觉语言</span><span class="nav-title-translation" lang="en">（Vision-Language）</span></a></li>
+</ul>
+<h2>应用路线</h2><ul>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI</a></li>
+</ul>
+<h2>实体</h2><ul>
+<li><a href="../entities/clip.html">CLIP 系列模型（CLIP Family）</a></li>
+<li><a href="../entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a></li>
+<li><a href="../entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a></li>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/dino-family.html">DINO 家族：自监督视觉表示与预训练骨干</a></li>
+<li><a href="../entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>判断</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-image-text-retrieval-baseline-and-specialization.html">双塔负责可扩展召回，细粒度模块负责精排与关系匹配</a></li>
+<li><a href="../claims/claim-image-text-retrieval-composed-query.html">组合式查询是图文检索中可落地且仍有缺口的研究切口</a></li>
+<li><a href="../claims/claim-image-text-retrieval-compositionality.html">标准图文检索分数不足以证明组合性理解</a></li>
+<li><a href="../claims/claim-image-text-retrieval-data-quality.html">图文检索的主要瓶颈仍包括数据质量、分布与概念覆盖</a></li>
+<li><a href="../claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
+</ul>
+<h2>问题</h2><ul>
+<li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-dino-features-for-3dgs-semantics.html">DINO 密集特征如何迁移到三维高斯语义分割？</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a></li>
+<li><a href="../questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a></li>
+<li><a href="../questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a></li>
+<li><a href="../questions/question-image-text-retrieval-research-cut.html">图文检索哪个子方向最适合中等算力的研究生项目？</a></li>
+<li><a href="../questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a></li>
+<li><a href="../questions/question-motion-defined-text-human-machine-gap.html">运动定义文字的人机差距</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
+</ul>
+</nav>
+    </div>
+  </aside>
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+  <main class="wiki-page" id="content" tabindex="-1">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="selected-lang" href="../sources/2026-10-10-pop-gs.html">中文</a><a class="" href="../en/sources/2026-10-10-pop-gs.html">English</a></nav><div class="theme-switch" role="group" aria-label="外观" hidden><button type="button" data-theme-choice="system" aria-pressed="false" aria-label="跟随系统" title="跟随系统"><svg class="ui-icon" data-icon="monitor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg></button><button type="button" data-theme-choice="light" aria-pressed="false" aria-label="浅色" title="浅色"><svg class="ui-icon" data-icon="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></button><button type="button" data-theme-choice="dark" aria-pressed="false" aria-label="深色" title="深色"><svg class="ui-icon" data-icon="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button></div><span class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>正文</span></span><a href="../index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>研究地图</span></a><a href="../main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>阅读入口</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></a></header>
+    <article class="article-shell">
+      
+      <header class="article-header" data-motion="reveal">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>POp-GS：用不确定性选择下一张照片</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-10-10</p>
+        <h1><span class="title-main">POp-GS</span><span class="title-subtitle">用不确定性选择下一张照片</span></h1>
+        
+        <p class="article-actions"><a class="btn btn-primary" href="https://openaccess.thecvf.com/content/CVPR2025/html/Wilson_POp-GS_Next_Best_View_in_3D-Gaussian_Splatting_with_P-Optimality_CVPR_2025_paper.html" target="_blank" rel="noopener noreferrer">阅读原论文<span aria-hidden="true"> ↗</span></a></p>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#3d-vision">#3d-vision</a><a class="tag" href="../tags.html#gaussian-splatting">#gaussian-splatting</a><a class="tag" href="../tags.html#evaluation">#evaluation</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2025</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2025-06-10</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-10-10</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2025/html/Wilson_POp-GS_Next_Best_View_in_3D-Gaussian_Splatting_with_P-Optimality_CVPR_2025_paper.html" title="https://openaccess.thecvf.com/content/CVPR2025/html/Wilson_POp-GS_Next_Best_View_in_3D-Gaussian_Splatting_with_P-Optimality_CVPR_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>openaccess.thecvf.com · Wilson_POp-GS_Next_Best_View_in…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2025/papers/Wilson_POp-GS_Next_Best_View_in_3D-Gaussian_Splatting_with_P-Optimality_CVPR_2025_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2025/papers/Wilson_POp-GS_Next_Best_View_in_3D-Gaussian_Splatting_with_P-Optimality_CVPR_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Wilson_POp-GS_Next_Best_View_in…</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>目录</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义与输入">问题定义与输入</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#评测协议">评测协议</a></li><li><a href="#主结果-同样照片数的画质取舍">主结果：同样照片数的画质取舍</a></li><li><a href="#不确定性验证与消融">不确定性验证与消融</a></li><li><a href="#信息计算成本与实现边界">信息计算成本与实现边界</a></li><li><a href="#局限-综合判断与下一步">局限、综合判断与下一步</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>POp-GS用已有高斯地图估计候选相机的信息价值，在固定照片预算下改善部分重建画质；更完整的估计需要更多内存和时间，而且并非每项指标都更好。</p>
+<h2 id="问题定义与输入">问题定义与输入</h2>
+<p>任务是下一最佳视角（next best view）：已有拟合高斯地图和<strong>已知候选相机位姿</strong>，从中决定接下来获取或用于训练的照片。评分不需要候选照片RGB，但选中后仍需实际照片训练；实验在离线有位姿照片池中模拟采集，不是未知位姿前馈重建，也没有完整机器人路径规划验证（主pp.1–5）。从已训练地图挑关键帧是另一种权限，不能与从少量照片开始采集混合。</p>
+<h2 id="方法概述">方法概述</h2>
+<p>在当前参数附近线性化渲染，用图像对参数的导数J构造信息矩阵H=JᵀJ，再用Σ≈H⁻¹近似参数估计的不确定性。加入候选视角的导数后H_i=H+J_iᵀJ_i；选择降低不确定性最多的视角。推导依赖局部线性化、零均值独立同分布高斯像素误差及估计假设，不等于实际几何误差或碰撞风险（主pp.3–4 Eq.5–10）。Σ也不是单个高斯自身的空间形状协方差。</p>
+<p>P-最优性把Σ的特征值用不同平均方式汇总。T关注平均方差，D关注不确定性体积，A和E强调其他谱特征。论文测试T/D较好，不能推出任何数据上都最优（主pp.4–5）。简化版本只存对角；块对角版本保留单个高斯内部参数联系、仍忽略不同高斯之间的相关性，并按RGB通道处理以避免奇异。批量贪心逐次选视角并更新H，评分批次内部不重新训练地图，因而不是全局最优组合或完整路径规划。</p>
+<h2 id="评测协议">评测协议</h2>
+<p>Mip-NeRF360为9个真实场景（5室外、4室内），Blender为8个合成对象。论文报告图像尺寸1060×1600；这里只比较原论文同表平均，不跨数据集排榜（主pp.5–6）。未充分提供独立种子重复、方差和完整划分ID。</p>
+<table><thead><tr><th>协议</th><th>初始照片</th><th>最终照片</th><th>优化预算 / 权限</th></tr></thead><tbody><tr><td>单张逐次采集</td><td>2</td><td>10</td><td>每次训练100v步，v为当前视图数；最终累计10,000步</td></tr><tr><td>单张逐次采集</td><td>4</td><td>20</td><td>每次100v步；最终累计21,000步</td></tr><tr><td>每轮选4张</td><td>4</td><td>20</td><td>轮间150v步；最终累计10,000步，批内评分不重训</td></tr><tr><td>关键帧选择</td><td>已拟合地图</td><td>10</td><td>从同一预训练地图选帧后重新训练新地图；预训练覆盖和成本必须另计</td></tr></tbody></table>
+<h2 id="主结果-同样照片数的画质取舍">主结果：同样照片数的画质取舍</h2>
+<p>主p.6 Table2、p.7 Tables3–5、p.8 Table6及补p.1 Tables8–10。统一采样（Uniform）、FisherRF、T、简化D和块对角D为原表方法名；表中PSNR单位dB。</p>
+<table><thead><tr><th>数据 / 协议</th><th>方法</th><th>PSNR ↑</th><th>SSIM ↑</th><th>LPIPS ↓</th></tr></thead><tbody><tr><td>Mip360，10张单选</td><td>Uniform</td><td>17.29</td><td>.508</td><td>.432</td></tr><tr><td>同上</td><td>FisherRF</td><td>16.81</td><td>.493</td><td>.445</td></tr><tr><td>同上</td><td>T</td><td>17.91</td><td>.520</td><td>.420</td></tr><tr><td>同上</td><td>D简化</td><td>17.95</td><td>.535</td><td>.411</td></tr><tr><td>同上</td><td>D块对角</td><td>18.15</td><td>.548</td><td>.401</td></tr><tr><td>Blender，10张单选</td><td>Uniform</td><td>23.32</td><td>.885</td><td>.101</td></tr><tr><td>同上</td><td>FisherRF</td><td>24.59</td><td>.897</td><td>.091</td></tr><tr><td>同上</td><td>T</td><td>25.40</td><td>.908</td><td>.080</td></tr><tr><td>同上</td><td>D简化</td><td>25.52</td><td>.909</td><td>.078</td></tr><tr><td>同上</td><td>D块对角</td><td>25.41</td><td>.908</td><td>.078</td></tr><tr><td>Mip360，20张单选</td><td>Uniform</td><td>20.86</td><td>.616</td><td>.408</td></tr><tr><td>同上</td><td>FisherRF</td><td>20.89</td><td>.608</td><td>.416</td></tr><tr><td>同上</td><td>T</td><td>21.07</td><td>.615</td><td>.409</td></tr><tr><td>同上</td><td>D简化</td><td>21.09</td><td>.624</td><td>.406</td></tr><tr><td>同上</td><td>D块对角</td><td>21.32</td><td>.636</td><td>.397</td></tr><tr><td>Mip360，20张批选</td><td>Uniform</td><td>20.42</td><td>.613</td><td>.389</td></tr><tr><td>同上</td><td>FisherRF</td><td>20.50</td><td>.603</td><td>.399</td></tr><tr><td>同上</td><td>T</td><td>20.73</td><td>.611</td><td>.391</td></tr><tr><td>同上</td><td>D简化</td><td>20.86</td><td>.624</td><td>.383</td></tr><tr><td>同上</td><td>D块对角</td><td>20.79</td><td>.631</td><td>.378</td></tr><tr><td>Blender，10关键帧</td><td>Uniform</td><td>23.47</td><td>.888</td><td>.109</td></tr><tr><td>同上</td><td>FisherRF</td><td>18.37</td><td>.829</td><td>.184</td></tr><tr><td>同上</td><td>T</td><td>24.90</td><td>.903</td><td>.096</td></tr><tr><td>同上</td><td>D简化</td><td>24.26</td><td>.899</td><td>.101</td></tr><tr><td>同上</td><td>D块对角</td><td>24.53</td><td>.902</td><td>.099</td></tr><tr><td>Blender，20张单选</td><td>Uniform</td><td>26.15</td><td>.918</td><td>.084</td></tr><tr><td>同上</td><td>FisherRF</td><td>27.12</td><td>.925</td><td>.079</td></tr><tr><td>同上</td><td>T</td><td>27.29</td><td>.929</td><td>.076</td></tr><tr><td>同上</td><td>D简化</td><td>27.25</td><td>.930</td><td>.075</td></tr><tr><td>同上</td><td>D块对角</td><td>27.28</td><td>.930</td><td>.075</td></tr><tr><td>Blender，20张批选</td><td>Uniform</td><td>26.64</td><td>.925</td><td>.074</td></tr><tr><td>同上</td><td>FisherRF</td><td>27.64</td><td>.932</td><td>.069</td></tr><tr><td>同上</td><td>T</td><td>27.89</td><td>.936</td><td>.065</td></tr><tr><td>同上</td><td>D简化</td><td>27.87</td><td>.937</td><td>.064</td></tr><tr><td>同上</td><td>D块对角</td><td>27.80</td><td>.935</td><td>.065</td></tr><tr><td>Mip360，10关键帧</td><td>Uniform</td><td>18.30</td><td>.560</td><td>.435</td></tr><tr><td>同上</td><td>FisherRF</td><td>15.66</td><td>.471</td><td>.515</td></tr><tr><td>同上</td><td>T</td><td>18.66</td><td>.560</td><td>.425</td></tr><tr><td>同上</td><td>D简化</td><td>18.57</td><td>.559</td><td>.426</td></tr><tr><td>同上</td><td>D块对角</td><td>18.73</td><td>.571</td><td>.417</td></tr></tbody></table>
+<p><strong>怎么读</strong>：Mip360十张单选的块对角D比统一采样提高0.86dB，比FisherRF提高1.34dB（按原表相减）。但Blender十张单选的简化D更好，Blender批选时块对角D三项都弱于简化D，Blender关键帧由T领先。T在Mip360二十张两种协议的SSIM/LPIPS也弱于Uniform。更复杂的信息估计不能当作无条件领先。</p>
+<p>A/E的完整原表见内部逐页分析：如Mip360十张A为15.55/.452/.480、E为15.33/.436/.488，均弱于Uniform。原文称Mip360二十张Uniform略优于FisherRF，但PSNR实际20.86低于20.89，仅结构/感知指标支持该说法。作者对FisherRF随机策略实现的质疑未独立代码核验；省略Random/ActiveNeRF源于既有比较，不能当完整最强基线审计。</p>
+<h2 id="不确定性验证与消融">不确定性验证与消融</h2>
+<p>主p.8 Fig5及补p.2 Fig6覆盖Blender八对象：用10个随机视角训练2,000步，按候选信息排序，观察逐十分位累计平均PSNR。知道真实PSNR的Oracle只作参照，部署时不可获得；所有曲线在100%汇合因为用了同一照片池，不证明概率校准或新增采集后的收益。没有覆盖率、校准误差或真实几何误差验证。</p>
+<p>主p.8 Table7，块对角D的Blender十张实验；表内表示<strong>移除</strong>的参数，而非保留参数。</p>
+<table><thead><tr><th>移除参数</th><th>PSNR ↑</th><th>SSIM ↑</th><th>LPIPS ↓</th></tr></thead><tbody><tr><td>球谐外观SH</td><td>25.52</td><td>.9089</td><td>.0784</td></tr><tr><td>不透明度</td><td>25.56</td><td>.9087</td><td>.0778</td></tr><tr><td>位置 / 旋转 / 尺度</td><td>25.36</td><td>.9074</td><td>.0793</td></tr><tr><td>无</td><td>25.41</td><td>.9084</td><td>.0776</td></tr></tbody></table>
+<p>去掉外观或不透明度仍保留相近画质，部分指标反而提高；没有误差条，不能声称几何项统计显著最重要。</p>
+<h2 id="信息计算成本与实现边界">信息计算成本与实现边界</h2>
+<p>主p.8在Ship对象报告如下；原文称latency但单位是Hz，按频率记录，<strong>不是渲染FPS或系统速度</strong>。</p>
+<table><thead><tr><th>信息估计版本</th><th>内存 ↓</th><th>信息评估频率 ↑</th></tr></thead><tbody><tr><td>完整块对角</td><td>2.62 GB</td><td>0.15 Hz</td></tr><tr><td>块对角，去SH</td><td>75.3 MB</td><td>1.71 Hz</td></tr><tr><td>简化对角</td><td>44.4 MB</td><td>12.16 Hz</td></tr></tbody></table>
+<p>未给硬件、高斯数量、计时边界及全候选打分/训练/移动/拍摄总耗时；相同步数不保证相同墙钟成本。没有轨迹、碰撞、行程、带宽或传感器预算实验。当前只确认官方PDF/ZIP及元数据；未核实官方代码或项目链接，也未执行模型或下载训练数据。原文的简化正则化记号与推导层次不同，缺实现核验，不能擅自确定加在H还是Σ。</p>
+<p>CVF补充ZIP含两页PDF和95.12秒1280×720视频。视频完整播放至结束，并查看材料、鼓、船和榕树等四窗对比；仅作为定性图像说明，不新增几何或速度证据。论文原件及全文抽取保留内部，CVF版权不视为开放代码许可。</p>
+<h2 id="局限-综合判断与下一步">局限、综合判断与下一步</h2>
+<p>信息近似依赖当前地图：遮挡排序、增密剪枝和参数变化会使局部导数及旧信息失准。不同高斯相关性仍被丢弃；尚未表示的区域可能没有足够导数反馈，这一点是从方法结构作出的推断。实际优化含L1/DSSIM，也不完全等同推导的高斯平方误差模型。</p>
+<p>先配平初始地图、可用位姿、照片数及完整时间/内存，再比较简化D、去SH块对角、完整块对角和统一采样。除画质外增加真实几何、地图缺失区域、位姿误差及实际移动成本；分别测试逐次采集与预训练关键帧。已有结果支持局部信息指导照片选择，不能直接证明机器人安全或完整在线系统更高效。</p>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2025/html/Wilson_POp-GS_Next_Best_View_in_3D-Gaussian_Splatting_with_P-Optimality_CVPR_2025_paper.html">CVF正式论文页</a></li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2025/papers/Wilson_POp-GS_Next_Best_View_in_3D-Gaussian_Splatting_with_P-Optimality_CVPR_2025_paper.pdf">CVF主文PDF</a></li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2025/supplemental/Wilson_POp-GS_Next_Best_CVPR_2025_supplemental.zip">CVF官方补充ZIP</a></li>
+<li><a href="https://doi.org/10.1109/CVPR52734.2025.00345">正式出版DOI</a></li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/3d-gaussian-splatting.html">三维高斯泼溅：表示、优化、几何与动态任务</a>：主动选视角属于采集权限，画质与完整成本分别验收。</li>
+<li><a class="wikilink" href="../sources/2026-09-25-wildgs-slam.html">WildGS-SLAM</a>：真实在线定位建图的完整任务，不能用离线选图结果替代。</li>
+<li><a class="wikilink" href="../sources/2026-09-25-spfsplat.html">SPFSplat</a>：未知相机输入与本文已知候选位姿不同。</li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../topics/3d-gaussian-splatting.html">三维高斯泼溅：表示、优化、几何与动态任务</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">3</span></h2><ul><li><a href="../docs/research-protocols/3d-gaussian-splatting.html">三维高斯泼溅：用户百篇定向证据协议</a><span>检索协议</span></li><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../topics/3d-gaussian-splatting.html">三维高斯泼溅：表示、优化、几何与动态任务</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary><span class="summary-label"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><pre>{
+  &quot;id&quot;: &quot;2026-10-10-pop-gs&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;POp-GS：用不确定性选择下一张照片&quot;,
+  &quot;title_en&quot;: &quot;POp-GS: Next Best View in 3D-Gaussian Splatting with P-Optimality&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-10-10&quot;,
+  &quot;updated&quot;: &quot;2026-10-10&quot;,
+  &quot;venue&quot;: &quot;CVPR 2025&quot;,
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Joey Wilson&quot;,
+    &quot;Marcelino Almeida&quot;,
+    &quot;Sachit Mahajan&quot;,
+    &quot;Martin Labrie&quot;,
+    &quot;Maani Ghaffari&quot;,
+    &quot;Omid Ghasemalizadeh&quot;,
+    &quot;Min Sun&quot;,
+    &quot;Cheng-Hao Kuo&quot;,
+    &quot;Arnab Sen&quot;
+  ],
+  &quot;published_at&quot;: &quot;2025-06-10&quot;,
+  &quot;ingested_at&quot;: &quot;2026-10-10&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/CVPR2025/html/Wilson_POp-GS_Next_Best_View_in_3D-Gaussian_Splatting_with_P-Optimality_CVPR_2025_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2025/papers/Wilson_POp-GS_Next_Best_View_in_3D-Gaussian_Splatting_with_P-Optimality_CVPR_2025_paper.pdf&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2025/supplemental/Wilson_POp-GS_Next_Best_CVPR_2025_supplemental.zip&quot;,
+    &quot;https://doi.org/10.1109/CVPR52734.2025.00345&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-10-10-pop-gs/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/3d-gaussian-splatting&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: [],
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;3d-vision&quot;,
+    &quot;gaussian-splatting&quot;,
+    &quot;evaluation&quot;,
+    &quot;primary-source&quot;
+  ]
+}</pre></details>
+    </article>
+  </main>
+</body>
+</html>
