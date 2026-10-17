@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="LOD-GS：用三角形组织可缩减的高斯场景">
+  <link rel="canonical" href="https://wiki.garyko.com/sources/2026-10-18-lod-gs">
+  <link rel="alternate" hreflang="zh-CN" href="https://wiki.garyko.com/sources/2026-10-18-lod-gs">
+  <link rel="alternate" hreflang="en" href="https://wiki.garyko.com/en/sources/2026-10-18-lod-gs">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#f7f4ec" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1b1814" media="(prefers-color-scheme: dark)">
+  <meta property="og:site_name" content="llmwiki">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:title" content="LOD-GS：用三角形组织可缩减的高斯场景 · llmwiki">
+  <meta property="og:description" content="LOD-GS：用三角形组织可缩减的高斯场景">
+  <meta property="og:url" content="https://wiki.garyko.com/sources/2026-10-18-lod-gs">
+  <meta property="og:image" content="https://wiki.garyko.com/assets/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="LOD-GS：用三角形组织可缩减的高斯场景 · llmwiki">
+  <meta name="twitter:description" content="LOD-GS：用三角形组织可缩减的高斯场景">
+  <meta name="twitter:image" content="https://wiki.garyko.com/assets/og-card.png">
+  <title>LOD-GS：用三角形组织可缩减的高斯场景 · llmwiki</title>
+  <script>try{var r=document.documentElement,t=localStorage.getItem('llmwiki.theme');if(t==='light'||t==='dark')r.dataset.theme=t;if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')r.classList.add('sidebar-collapsed')}catch(e){}</script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260927-theme-switch-v17">
+  <script defer src="../assets/wiki.js?v=20260927-theme-switch-v17"></script>
+  <noscript><style>.wiki-sidebar{position:static;transform:none;visibility:visible;width:auto;height:auto}.menu-toggle{display:none}</style></noscript>
+</head>
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-10-18-lod-gs&quot;, &quot;title&quot;: &quot;LOD-GS：用三角形组织可缩减的高斯场景&quot;, &quot;title_en&quot;: &quot;LOD-GS: Achieving Levels of Detail using Scalable Gaussian Soup&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;3d-vision&quot;, &quot;gaussian-splatting&quot;, &quot;evaluation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260927-theme-switch-v17">
+  <a class="skip-link" href="#content">跳到正文</a>
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar" aria-label="菜单" title="菜单" data-menu-label="菜单" data-close-label="关闭菜单"><svg class="ui-icon menu-icon menu-icon--open" data-icon="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="ui-icon menu-icon menu-icon--close" data-icon="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="menu-toggle-label">菜单</span></button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
+    <button class="sidebar-collapse-toggle" type="button" aria-expanded="true" aria-controls="sidebar-panel" aria-label="折叠左侧导航" title="折叠左侧导航" data-collapse-label="折叠左侧导航" data-expand-label="展开左侧导航"><svg class="ui-icon sidebar-icon sidebar-icon--collapse" data-icon="panel-left-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/></svg><svg class="ui-icon sidebar-icon sidebar-icon--expand" data-icon="panel-left-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/></svg></button>
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
+    <div class="sidebar-panel" id="sidebar-panel">
+      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">搜索 llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results" class="search-results"></div><p id="search-status" class="visually-hidden" role="status" aria-live="polite"></p></form>
+      <nav class="sidebar-nav">
+<h2>入口</h2><ul>
+<li><a href="../catalog.html">完整论文目录</a></li>
+<li><a href="../index.html">研究地图</a></li>
+<li><a href="../llm-wiki.html">LLM Wiki</a></li>
+<li><a href="../main.html">阅读入口</a></li>
+<li><a href="../tags.html">标签</a></li>
+</ul>
+<h2>基础概念</h2><ul>
+<li><a href="../topics/computer-vision-overview.html"><span class="nav-title-primary">计算机视觉概览</span><span class="nav-title-translation" lang="en">（Computer Vision Overview）</span></a></li>
+<li><a href="../topics/datasets-metrics-and-benchmark-reliability.html"><span class="nav-title-primary">数据与评测基础</span><span class="nav-title-translation" lang="en">（Datasets &amp; Evaluation）</span></a></li>
+<li><a href="../topics/diffusion-models.html"><span class="nav-title-primary">扩散模型</span><span class="nav-title-translation" lang="en">（Diffusion Models）</span></a></li>
+<li><a href="../topics/video-representation-and-temporal-modeling.html"><span class="nav-title-primary">视频表示基础</span><span class="nav-title-translation" lang="en">（Video Representation）</span></a></li>
+<li><a href="../topics/vision-backbones.html"><span class="nav-title-primary">视觉主干</span><span class="nav-title-translation" lang="en">（Vision Backbones）</span></a></li>
+<li><a href="../topics/vision-language-foundations.html"><span class="nav-title-primary">视觉语言基础</span><span class="nav-title-translation" lang="en">（Vision-Language Foundations）</span></a></li>
+<li><a href="../topics/vision-task-foundations.html"><span class="nav-title-primary">核心视觉任务</span><span class="nav-title-translation" lang="en">（Core Vision Tasks）</span></a></li>
+<li><a href="../topics/visual-generation-foundations.html"><span class="nav-title-primary">视觉生成基础</span><span class="nav-title-translation" lang="en">（Visual Generation Foundations）</span></a></li>
+</ul>
+<h2>研究专题</h2><ul>
+<li><a href="../topics/3d-gaussian-splatting.html"><span class="nav-title-primary">三维高斯泼溅</span><span class="nav-title-translation" lang="en">（3D Gaussian Splatting）</span></a></li>
+<li><a href="../topics/diffusion-efficiency-engineering.html"><span class="nav-title-primary">扩散效率工程</span><span class="nav-title-translation" lang="en">（Diffusion Efficiency）</span></a></li>
+<li><a href="../topics/generative-model-evaluation.html"><span class="nav-title-primary">生成模型评测</span><span class="nav-title-translation" lang="en">（Generative Model Evaluation）</span></a></li>
+<li><a href="../topics/image-editing.html"><span class="nav-title-primary">图像编辑</span><span class="nav-title-translation" lang="en">（Image Editing）</span></a></li>
+<li><a href="../topics/image-generation.html"><span class="nav-title-primary">图像生成</span><span class="nav-title-translation" lang="en">（Image Generation）</span></a></li>
+<li><a href="../topics/image-text-retrieval.html"><span class="nav-title-primary">图文检索</span><span class="nav-title-translation" lang="en">（Image-Text Retrieval）</span></a></li>
+<li><a href="../topics/sports-ai-video-understanding.html"><span class="nav-title-primary">体育视频理解</span><span class="nav-title-translation" lang="en">（Sports Video Understanding）</span></a></li>
+<li><a href="../topics/video-editing.html"><span class="nav-title-primary">视频编辑</span><span class="nav-title-translation" lang="en">（Video Editing）</span></a></li>
+<li><a href="../topics/video-generation.html"><span class="nav-title-primary">视频生成</span><span class="nav-title-translation" lang="en">（Video Generation）</span></a></li>
+<li><a href="../topics/video-understanding.html"><span class="nav-title-primary">视频理解</span><span class="nav-title-translation" lang="en">（Video Understanding）</span></a></li>
+<li><a href="../topics/vision-language.html"><span class="nav-title-primary">视觉语言</span><span class="nav-title-translation" lang="en">（Vision-Language）</span></a></li>
+</ul>
+<h2>应用路线</h2><ul>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI</a></li>
+</ul>
+<h2>实体</h2><ul>
+<li><a href="../entities/clip.html">CLIP 系列模型（CLIP Family）</a></li>
+<li><a href="../entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a></li>
+<li><a href="../entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a></li>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/dino-family.html">DINO 家族：自监督视觉表示与预训练骨干</a></li>
+<li><a href="../entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>判断</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-image-text-retrieval-baseline-and-specialization.html">双塔负责可扩展召回，细粒度模块负责精排与关系匹配</a></li>
+<li><a href="../claims/claim-image-text-retrieval-composed-query.html">组合式查询是图文检索中可落地且仍有缺口的研究切口</a></li>
+<li><a href="../claims/claim-image-text-retrieval-compositionality.html">标准图文检索分数不足以证明组合性理解</a></li>
+<li><a href="../claims/claim-image-text-retrieval-data-quality.html">图文检索的主要瓶颈仍包括数据质量、分布与概念覆盖</a></li>
+<li><a href="../claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
+</ul>
+<h2>问题</h2><ul>
+<li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-dino-features-for-3dgs-semantics.html">DINO 密集特征如何迁移到三维高斯语义分割？</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a></li>
+<li><a href="../questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a></li>
+<li><a href="../questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a></li>
+<li><a href="../questions/question-image-text-retrieval-research-cut.html">图文检索哪个子方向最适合中等算力的研究生项目？</a></li>
+<li><a href="../questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a></li>
+<li><a href="../questions/question-motion-defined-text-human-machine-gap.html">运动定义文字的人机差距</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
+</ul>
+</nav>
+    </div>
+  </aside>
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+  <main class="wiki-page" id="content" tabindex="-1">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="selected-lang" href="../sources/2026-10-18-lod-gs.html">中文</a><a class="" href="../en/sources/2026-10-18-lod-gs.html">English</a></nav><div class="theme-switch" role="group" aria-label="外观" hidden><button type="button" data-theme-choice="system" aria-pressed="false" aria-label="跟随系统" title="跟随系统"><svg class="ui-icon" data-icon="monitor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg></button><button type="button" data-theme-choice="light" aria-pressed="false" aria-label="浅色" title="浅色"><svg class="ui-icon" data-icon="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></button><button type="button" data-theme-choice="dark" aria-pressed="false" aria-label="深色" title="深色"><svg class="ui-icon" data-icon="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button></div><span class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>正文</span></span><a href="../index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>研究地图</span></a><a href="../main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>阅读入口</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></a></header>
+    <article class="article-shell">
+      
+      <header class="article-header" data-motion="reveal">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>LOD-GS：用三角形组织可缩减的高斯场景</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-10-18</p>
+        <h1><span class="title-main">LOD-GS</span><span class="title-subtitle">用三角形组织可缩减的高斯场景</span></h1>
+        
+        <p class="article-actions"><a class="btn btn-primary" href="https://openaccess.thecvf.com/content/CVPR2025/html/Shen_LOD-GS_Achieving_Levels_of_Detail_using_Scalable_Gaussian_Soup_CVPR_2025_paper.html" target="_blank" rel="noopener noreferrer">阅读原论文<span aria-hidden="true"> ↗</span></a></p>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#3d-vision">#3d-vision</a><a class="tag" href="../tags.html#gaussian-splatting">#gaussian-splatting</a><a class="tag" href="../tags.html#evaluation">#evaluation</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2025</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2025-06-10</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-10-18</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2025/html/Shen_LOD-GS_Achieving_Levels_of_Detail_using_Scalable_Gaussian_Soup_CVPR_2025_paper.html" title="https://openaccess.thecvf.com/content/CVPR2025/html/Shen_LOD-GS_Achieving_Levels_of_Detail_using_Scalable_Gaussian_Soup_CVPR_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>openaccess.thecvf.com · Shen_LOD-GS_Achieving_Levels_of…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2025/papers/Shen_LOD-GS_Achieving_Levels_of_Detail_using_Scalable_Gaussian_Soup_CVPR_2025_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2025/papers/Shen_LOD-GS_Achieving_Levels_of_Detail_using_Scalable_Gaussian_Soup_CVPR_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Shen_LOD-GS_Achieving_Levels_of…</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>目录</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#先理解它要解决什么">先理解它要解决什么</a></li><li><a href="#方法-先确定支撑-再学习局部细节">方法：先确定支撑，再学习局部细节</a></li><li><a href="#主结果-存储下降-满容量画质仍有取舍">主结果：存储下降，满容量画质仍有取舍</a></li><li><a href="#消融-默认插值数有效-但感知指标不一致">消融：默认插值数有效，但感知指标不一致</a></li><li><a href="#成本与实现边界">成本与实现边界</a></li><li><a href="#跨论文判断与可证伪下一步">跨论文判断与可证伪下一步</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>LOD-GS把高斯放在可独立伸缩的三角形支撑上，再用小网络预测属性。它在本文评测场景中用更小的存储保住较多细节，但满容量画质略降，也没有证明峰值显存或真实设备运行时间更低。</p>
+<h2 id="先理解它要解决什么">先理解它要解决什么</h2>
+<p>细节层级（Level of Detail，LOD）是同一场景按预算保留不同程度的细节。这里调的是模型存储与高斯采样量，并非相机距离分辨率抗混叠。输入为已知相机的静态多视角RGB；COLMAP稀疏点或均匀点可作初始化，不能据此称为无相机输入或前馈重建（主p.4 §4.2、p.6 §5.1）。</p>
+<p>三角汤（triangle soup）是彼此不必连成网格的三角形集合。每个三角形内部用重心坐标定位高斯，顶点特征插值得到局部特征，小型多层感知机（MLP）结合观察方向预测颜色、透明度、尺度和旋转。高斯另有位置偏移，因此不是严格贴在三角平面上的几何表面（主pp.4–5 Eq3–8）。</p>
+<h2 id="方法-先确定支撑-再学习局部细节">方法：先确定支撑，再学习局部细节</h2>
+<ol>
+<li>阶段1优化三角顶点及其高斯属性，内部位置/透明度插值；按透明度、尺度和位置梯度增删三角，使支撑覆盖物体区域。损失为图像L1、结构相似性与尺度正则（主pp.4–5 §4.2）。</li>
+<li>阶段2固定三角支撑，学习顶点特征、视角依赖triangle-MLP及局部偏移，继续增删内部高斯并加体积mask（主p.5 §4.3）。</li>
+<li>用不同抽样间隔保留内部高斯形成各LOD；间隔为2的幂，密度估计用于高/低密度区域的75%/25%采样配比（主p.6 §4.4、Fig6）。</li>
+</ol>
+<p>三角支撑减少需要保存的特征和显式球谐外观参数。它与<a class="wikilink" href="../sources/2026-09-25-matryoshka-gaussian-splatting.html">Matryoshka</a>的有序前缀训练机制不同，也不能代替<a class="wikilink" href="../sources/2026-09-25-mip-splatting.html">Mip-Splatting</a>对采样频率的约束。</p>
+<h2 id="主结果-存储下降-满容量画质仍有取舍">主结果：存储下降，满容量画质仍有取舍</h2>
+<p>主p.7/proceedings677 Table1；同一数据集、同一表内部比较。LOD编号代表抽样间隔，不代表各方法用了相同存储。</p>
+<table><thead><tr><th>数据集 / 方法</th><th>LOD0 PSNR ↑</th><th>LOD0 SSIM ↑</th><th>LOD0 存储 ↓</th><th>LOD3 PSNR ↑</th><th>LOD3 SSIM ↑</th><th>LOD3 存储 ↓</th></tr></thead><tbody><tr><td>NeRF-Synthetic / 3DGS</td><td>33.88</td><td>0.970</td><td>71.6 MB</td><td>32.00</td><td>0.957</td><td>8.6 MB</td></tr><tr><td>NeRF-Synthetic / Scaffold-GS</td><td>33.36</td><td>0.965</td><td>18.2 MB</td><td>29.91</td><td>0.941</td><td>1.9 MB</td></tr><tr><td>NeRF-Synthetic / LOD-GS</td><td>33.24</td><td>0.966</td><td>5.31 MB</td><td>31.08</td><td>0.950</td><td>1.4 MB</td></tr><tr><td>NSVF / 3DGS</td><td>33.12</td><td>0.967</td><td>43.7 MB</td><td>31.94</td><td>0.958</td><td>5.4 MB</td></tr><tr><td>NSVF / Scaffold-GS</td><td>33.20</td><td>0.967</td><td>10.8 MB</td><td>30.86</td><td>0.947</td><td>1.6 MB</td></tr><tr><td>NSVF / LOD-GS</td><td>33.02</td><td>0.966</td><td>4.31 MB</td><td>31.61</td><td>0.953</td><td>1.5 MB</td></tr></tbody></table>
+<p>NeRF-Synthetic有八场景、NSVF选四场景（主p.6 §5.1）。<strong>怎么读</strong>：满容量LOD-GS比Scaffold小很多，PSNR略低；缩到LOD3后，LOD-GS又能用较少存储获得更高PSNR。原始3DGS同LOD的PSNR仍高，但存储也更大。不能将这一表写成所有画质指标全面领先。</p>
+<p>作者另报Efficiency=PSNR/存储，反映其质量—存储取舍，不是FPS、峰值显存或码率。Fig7/8横轴是log10存储MB；Table1没有逐LOD LPIPS数值，不能从曲线杜撰精确数字。Drums和Spaceship的Fig9只作定性例子，不证明真实几何准确或所有场景无伪影。</p>
+<h2 id="消融-默认插值数有效-但感知指标不一致">消融：默认插值数有效，但感知指标不一致</h2>
+<p>主p.8/proceedings678 Table2；N是重心坐标采样频率，插值数为每三角内部高斯数。</p>
+<table><thead><tr><th>N</th><th>插值数</th><th>PSNR ↑</th><th>SSIM ↑</th><th>LPIPS ↓</th><th>存储 ↓（沿用原表数值）</th><th>作者Efficiency ↑</th></tr></thead><tbody><tr><td>5</td><td>21</td><td>33.21</td><td>0.965</td><td>0.0358</td><td>7.02</td><td>4.72</td></tr><tr><td>10</td><td>66</td><td>33.24</td><td>0.965</td><td>0.0364</td><td>5.37</td><td>6.18</td></tr><tr><td>15</td><td>136</td><td>33.08</td><td>0.964</td><td>0.0372</td><td>5.79</td><td>5.70</td></tr></tbody></table>
+<p>N10的存储效率最好，但N5的LPIPS更好。该表默认项的存储5.37、SSIM0.965与Table1的5.31、0.966不同，按原表分别记录；没有误差条，不把微小差异说成显著提升。这里没有覆盖三角支撑、MLP、偏移和采样策略的完整因子消融。</p>
+<h2 id="成本与实现边界">成本与实现边界</h2>
+<p>主p.6 §5.1：本法训练包含4000步支撑优化和30000步细节优化；基线先30000步，抽稀后各LOD再5000步。本法各LOD额外精修和共享资产成本未交代同样清楚，不能声称同训练预算或零额外训练的即时切换。网络为两隐藏层64维，部分复杂场景128维。</p>
+<p>主文未报告硬件、完整墙钟、FPS、峰值训练/渲染显存或真实VR部署；模型存储小不等于整个运行过程省显存。基线仅3DGS和Scaffold-GS，作者排除了HAC等压缩方法，不能据此证明强压缩基线已被超越。</p>
+<p>官方页本次仅列主文PDF，没有补充或代码链接；作者主页同样未提供可核验的独立代码包。补充细节、完整split/分辨率及开源许可仍待核。未下载训练数据或进行GPU实验。</p>
+<h2 id="跨论文判断与可证伪下一步">跨论文判断与可证伪下一步</h2>
+<p>与<a class="wikilink" href="../sources/2026-10-09-uvgs.html">UVGS</a>一样，应把资产存储、画质和学习成本分开；三角支撑进一步提供了可抽稀结构，但不等于有真实表面拓扑。与<a class="wikilink" href="../sources/2026-09-25-matryoshka-gaussian-splatting.html">Matryoshka</a>比较前，要统一输入、底座、总训练/精修预算及存储定义，再看相同字节下的PSNR、SSIM、LPIPS曲线。</p>
+<p>若代码可得，先测整套分级资产的总字节、加载加MLP加渲染的总延迟和峰值显存。若等预算优势消失，或小存储依赖高额精修，就应缩小“适合资源受限设备”的结论。当前只支持本文数据范围内的质量—存储取舍，不直接支持几何、语义、移动部署或新颖性判断。</p>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2025/html/Shen_LOD-GS_Achieving_Levels_of_Detail_using_Scalable_Gaussian_Soup_CVPR_2025_paper.html">CVF正式论文页</a></li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2025/papers/Shen_LOD-GS_Achieving_Levels_of_Detail_using_Scalable_Gaussian_Soup_CVPR_2025_paper.pdf">CVF完整主文PDF</a></li>
+<li><a href="https://doi.org/10.1109/CVPR52734.2025.00071">正式出版DOI</a></li>
+<li><a href="https://poetrywanderer.github.io/">第一作者主页</a></li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/3d-gaussian-splatting.html">三维高斯泼溅：表示、优化、几何与动态任务</a>：存储、显存、画质和完整运行成本分开验收。</li>
+<li><a class="wikilink" href="../sources/2026-09-25-3d-gaussian-splatting.html">原始3DGS</a>：逐场景高斯优化与光栅化底座。</li>
+<li><a class="wikilink" href="../sources/2026-09-25-matryoshka-gaussian-splatting.html">Matryoshka</a>：另一种按预算缩减的训练机制。</li>
+</ul></section>
+      </div>
+      <section class="preview-gallery" id="page-previews"><h2>页面预览<span class="related-count">2</span></h2><div class="preview-strip"><a href="../raw/ingest/2026-10-18-lod-gs/page-previews/page-07.png" target="_blank" rel="noopener"><img src="../raw/ingest/2026-10-18-lod-gs/page-previews/page-07.png" alt="page-07" loading="lazy" width="1623" height="2100"></a><a href="../raw/ingest/2026-10-18-lod-gs/page-previews/page-08.png" target="_blank" rel="noopener"><img src="../raw/ingest/2026-10-18-lod-gs/page-previews/page-08.png" alt="page-08" loading="lazy" width="1391" height="1800"></a></div></section>
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../topics/3d-gaussian-splatting.html">三维高斯泼溅：表示、优化、几何与动态任务</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">3</span></h2><ul><li><a href="../docs/research-protocols/3d-gaussian-splatting.html">三维高斯泼溅：用户百篇定向证据协议</a><span>检索协议</span></li><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../topics/3d-gaussian-splatting.html">三维高斯泼溅：表示、优化、几何与动态任务</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary><span class="summary-label"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><pre>{
+  &quot;id&quot;: &quot;2026-10-18-lod-gs&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;LOD-GS：用三角形组织可缩减的高斯场景&quot;,
+  &quot;title_en&quot;: &quot;LOD-GS: Achieving Levels of Detail using Scalable Gaussian Soup&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-10-18&quot;,
+  &quot;updated&quot;: &quot;2026-10-18&quot;,
+  &quot;venue&quot;: &quot;CVPR 2025&quot;,
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Jianxiong Shen&quot;,
+    &quot;Yue Qian&quot;,
+    &quot;Xiaohang Zhan&quot;
+  ],
+  &quot;published_at&quot;: &quot;2025-06-10&quot;,
+  &quot;ingested_at&quot;: &quot;2026-10-18&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/CVPR2025/html/Shen_LOD-GS_Achieving_Levels_of_Detail_using_Scalable_Gaussian_Soup_CVPR_2025_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2025/papers/Shen_LOD-GS_Achieving_Levels_of_Detail_using_Scalable_Gaussian_Soup_CVPR_2025_paper.pdf&quot;,
+    &quot;https://doi.org/10.1109/CVPR52734.2025.00071&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-10-18-lod-gs/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/3d-gaussian-splatting&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: [],
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;3d-vision&quot;,
+    &quot;gaussian-splatting&quot;,
+    &quot;evaluation&quot;,
+    &quot;primary-source&quot;
+  ]
+}</pre></details>
+    </article>
+  </main>
+</body>
+</html>
