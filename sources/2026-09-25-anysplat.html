@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="AnySplat：从未标定照片直接预测高斯与相机">
+  <link rel="canonical" href="https://wiki.garyko.com/sources/2026-09-25-anysplat">
+  <link rel="alternate" hreflang="zh-CN" href="https://wiki.garyko.com/sources/2026-09-25-anysplat">
+  <link rel="alternate" hreflang="en" href="https://wiki.garyko.com/en/sources/2026-09-25-anysplat">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#f7f4ec" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1b1814" media="(prefers-color-scheme: dark)">
+  <meta property="og:site_name" content="llmwiki">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:title" content="AnySplat：从未标定照片直接预测高斯与相机 · llmwiki">
+  <meta property="og:description" content="AnySplat：从未标定照片直接预测高斯与相机">
+  <meta property="og:url" content="https://wiki.garyko.com/sources/2026-09-25-anysplat">
+  <meta property="og:image" content="https://wiki.garyko.com/assets/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AnySplat：从未标定照片直接预测高斯与相机 · llmwiki">
+  <meta name="twitter:description" content="AnySplat：从未标定照片直接预测高斯与相机">
+  <meta name="twitter:image" content="https://wiki.garyko.com/assets/og-card.png">
+  <title>AnySplat：从未标定照片直接预测高斯与相机 · llmwiki</title>
+  <script>try{var r=document.documentElement,t=localStorage.getItem('llmwiki.theme');if(t==='light'||t==='dark')r.dataset.theme=t;if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')r.classList.add('sidebar-collapsed')}catch(e){}</script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260927-theme-switch-v17">
+  <script defer src="../assets/wiki.js?v=20260927-theme-switch-v17"></script>
+  <noscript><style>.wiki-sidebar{position:static;transform:none;visibility:visible;width:auto;height:auto}.menu-toggle{display:none}</style></noscript>
+</head>
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-09-25-anysplat&quot;, &quot;title&quot;: &quot;AnySplat：从未标定照片直接预测高斯与相机&quot;, &quot;title_en&quot;: &quot;AnySplat: Feed-forward 3D Gaussian Splatting from Unconstrained Views&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;3d-vision&quot;, &quot;gaussian-splatting&quot;, &quot;evaluation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260927-theme-switch-v17">
+  <a class="skip-link" href="#content">跳到正文</a>
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar" aria-label="菜单" title="菜单" data-menu-label="菜单" data-close-label="关闭菜单"><svg class="ui-icon menu-icon menu-icon--open" data-icon="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="ui-icon menu-icon menu-icon--close" data-icon="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="menu-toggle-label">菜单</span></button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
+    <button class="sidebar-collapse-toggle" type="button" aria-expanded="true" aria-controls="sidebar-panel" aria-label="折叠左侧导航" title="折叠左侧导航" data-collapse-label="折叠左侧导航" data-expand-label="展开左侧导航"><svg class="ui-icon sidebar-icon sidebar-icon--collapse" data-icon="panel-left-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/></svg><svg class="ui-icon sidebar-icon sidebar-icon--expand" data-icon="panel-left-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/></svg></button>
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
+    <div class="sidebar-panel" id="sidebar-panel">
+      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">搜索 llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results" class="search-results"></div><p id="search-status" class="visually-hidden" role="status" aria-live="polite"></p></form>
+      <nav class="sidebar-nav">
+<h2>入口</h2><ul>
+<li><a href="../catalog.html">完整论文目录</a></li>
+<li><a href="../index.html">研究地图</a></li>
+<li><a href="../llm-wiki.html">LLM Wiki</a></li>
+<li><a href="../main.html">阅读入口</a></li>
+<li><a href="../tags.html">标签</a></li>
+</ul>
+<h2>基础概念</h2><ul>
+<li><a href="../topics/computer-vision-overview.html"><span class="nav-title-primary">计算机视觉概览</span><span class="nav-title-translation" lang="en">（Computer Vision Overview）</span></a></li>
+<li><a href="../topics/datasets-metrics-and-benchmark-reliability.html"><span class="nav-title-primary">数据与评测基础</span><span class="nav-title-translation" lang="en">（Datasets &amp; Evaluation）</span></a></li>
+<li><a href="../topics/diffusion-models.html"><span class="nav-title-primary">扩散模型</span><span class="nav-title-translation" lang="en">（Diffusion Models）</span></a></li>
+<li><a href="../topics/video-representation-and-temporal-modeling.html"><span class="nav-title-primary">视频表示基础</span><span class="nav-title-translation" lang="en">（Video Representation）</span></a></li>
+<li><a href="../topics/vision-backbones.html"><span class="nav-title-primary">视觉主干</span><span class="nav-title-translation" lang="en">（Vision Backbones）</span></a></li>
+<li><a href="../topics/vision-language-foundations.html"><span class="nav-title-primary">视觉语言基础</span><span class="nav-title-translation" lang="en">（Vision-Language Foundations）</span></a></li>
+<li><a href="../topics/vision-task-foundations.html"><span class="nav-title-primary">核心视觉任务</span><span class="nav-title-translation" lang="en">（Core Vision Tasks）</span></a></li>
+<li><a href="../topics/visual-generation-foundations.html"><span class="nav-title-primary">视觉生成基础</span><span class="nav-title-translation" lang="en">（Visual Generation Foundations）</span></a></li>
+</ul>
+<h2>研究专题</h2><ul>
+<li><a href="../topics/3d-gaussian-splatting.html"><span class="nav-title-primary">三维高斯泼溅</span><span class="nav-title-translation" lang="en">（3D Gaussian Splatting）</span></a></li>
+<li><a href="../topics/diffusion-efficiency-engineering.html"><span class="nav-title-primary">扩散效率工程</span><span class="nav-title-translation" lang="en">（Diffusion Efficiency）</span></a></li>
+<li><a href="../topics/generative-model-evaluation.html"><span class="nav-title-primary">生成模型评测</span><span class="nav-title-translation" lang="en">（Generative Model Evaluation）</span></a></li>
+<li><a href="../topics/image-editing.html"><span class="nav-title-primary">图像编辑</span><span class="nav-title-translation" lang="en">（Image Editing）</span></a></li>
+<li><a href="../topics/image-generation.html"><span class="nav-title-primary">图像生成</span><span class="nav-title-translation" lang="en">（Image Generation）</span></a></li>
+<li><a href="../topics/image-text-retrieval.html"><span class="nav-title-primary">图文检索</span><span class="nav-title-translation" lang="en">（Image-Text Retrieval）</span></a></li>
+<li><a href="../topics/sports-ai-video-understanding.html"><span class="nav-title-primary">体育视频理解</span><span class="nav-title-translation" lang="en">（Sports Video Understanding）</span></a></li>
+<li><a href="../topics/video-editing.html"><span class="nav-title-primary">视频编辑</span><span class="nav-title-translation" lang="en">（Video Editing）</span></a></li>
+<li><a href="../topics/video-generation.html"><span class="nav-title-primary">视频生成</span><span class="nav-title-translation" lang="en">（Video Generation）</span></a></li>
+<li><a href="../topics/video-understanding.html"><span class="nav-title-primary">视频理解</span><span class="nav-title-translation" lang="en">（Video Understanding）</span></a></li>
+<li><a href="../topics/vision-language.html"><span class="nav-title-primary">视觉语言</span><span class="nav-title-translation" lang="en">（Vision-Language）</span></a></li>
+</ul>
+<h2>应用路线</h2><ul>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI</a></li>
+</ul>
+<h2>实体</h2><ul>
+<li><a href="../entities/clip.html">CLIP 系列模型（CLIP Family）</a></li>
+<li><a href="../entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a></li>
+<li><a href="../entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a></li>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/dino-family.html">DINO 家族：自监督视觉表示与预训练骨干</a></li>
+<li><a href="../entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>判断</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-image-text-retrieval-baseline-and-specialization.html">双塔负责可扩展召回，细粒度模块负责精排与关系匹配</a></li>
+<li><a href="../claims/claim-image-text-retrieval-composed-query.html">组合式查询是图文检索中可落地且仍有缺口的研究切口</a></li>
+<li><a href="../claims/claim-image-text-retrieval-compositionality.html">标准图文检索分数不足以证明组合性理解</a></li>
+<li><a href="../claims/claim-image-text-retrieval-data-quality.html">图文检索的主要瓶颈仍包括数据质量、分布与概念覆盖</a></li>
+<li><a href="../claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
+</ul>
+<h2>问题</h2><ul>
+<li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-dino-features-for-3dgs-semantics.html">DINO 密集特征如何迁移到三维高斯语义分割？</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a></li>
+<li><a href="../questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a></li>
+<li><a href="../questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a></li>
+<li><a href="../questions/question-image-text-retrieval-research-cut.html">图文检索哪个子方向最适合中等算力的研究生项目？</a></li>
+<li><a href="../questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a></li>
+<li><a href="../questions/question-motion-defined-text-human-machine-gap.html">运动定义文字的人机差距</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
+</ul>
+</nav>
+    </div>
+  </aside>
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+  <main class="wiki-page" id="content" tabindex="-1">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="selected-lang" href="../sources/2026-09-25-anysplat.html">中文</a><a class="" href="../en/sources/2026-09-25-anysplat.html">English</a></nav><div class="theme-switch" role="group" aria-label="外观" hidden><button type="button" data-theme-choice="system" aria-pressed="false" aria-label="跟随系统" title="跟随系统"><svg class="ui-icon" data-icon="monitor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg></button><button type="button" data-theme-choice="light" aria-pressed="false" aria-label="浅色" title="浅色"><svg class="ui-icon" data-icon="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></button><button type="button" data-theme-choice="dark" aria-pressed="false" aria-label="深色" title="深色"><svg class="ui-icon" data-icon="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button></div><span class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>正文</span></span><a href="../index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>研究地图</span></a><a href="../main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>阅读入口</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></a></header>
+    <article class="article-shell">
+      
+      <header class="article-header" data-motion="reveal">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>AnySplat：从未标定照片直接预测高斯与相机</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-10-18</p>
+        <h1><span class="title-main">AnySplat</span><span class="title-subtitle">从未标定照片直接预测高斯与相机</span></h1>
+        
+        <p class="article-actions"><a class="btn btn-primary" href="https://doi.org/10.1145/3763326" target="_blank" rel="noopener noreferrer">阅读原论文<span aria-hidden="true"> ↗</span></a></p>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#3d-vision">#3d-vision</a><a class="tag" href="../tags.html#gaussian-splatting">#gaussian-splatting</a><a class="tag" href="../tags.html#evaluation">#evaluation</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ACM TOG 44(6), 2025</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2025-12-04</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-10-18</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://doi.org/10.1145/3763326" title="https://doi.org/10.1145/3763326" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>doi.org · 3763326</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2505.23716v2" title="https://arxiv.org/pdf/2505.23716v2" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2505.23716v2</strong></a><a class="source-link source-link-code" href="https://github.com/InternRobotics/AnySplat/tree/5f5e208a7dd57d52e43ea0d553a95eab526e8775" title="https://github.com/InternRobotics/AnySplat/tree/5f5e208a7dd57d52e43ea0d553a95eab526e8775" target="_blank" rel="noopener noreferrer"><span>代码仓库</span><strong>github.com · 5f5e208a7dd57d52e43ea0d553a95ea…</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>目录</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#输入-输出与方法">输入、输出与方法</a></li><li><a href="#评测权限先说明">评测权限先说明</a></li><li><a href="#主结果-快速重建有用-但不是每项都领先">主结果：快速重建有用，但不是每项都领先</a></li><li><a href="#后优化必须单独计时">后优化必须单独计时</a></li><li><a href="#消融和几何结论的限度">消融和几何结论的限度</a></li><li><a href="#数据-训练成本与版本疑点">数据、训练成本与版本疑点</a></li><li><a href="#实现与许可">实现与许可</a></li><li><a href="#失败与下一步">失败与下一步</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>AnySplat用预训练几何模型同时预测场景高斯和每张照片的相机内外参，减少部署时的标定与逐场景拟合。它能处理稀疏到密集照片，但优势依赖预训练、评测相机对齐和是否后优化；主表与固定测试控制都存在不领先的条件。</p>
+<h2 id="输入-输出与方法">输入、输出与方法</h2>
+<p>输入同一静态场景的RGB照片集合，不要求用户提供内外参；输出高斯、相机参数、深度与置信度。第一张相机固定为单位坐标系，不代表已获得世界坐标和绝对尺度真值（作者稿p.3 §3.1）。它主要是新视角合成与相机估计模型，不能直接当作在线SLAM、语义系统或高精度表面重建。</p>
+<p>流程为：照片经DINOv2/VGGT几何Transformer，分别由深度、相机和高斯头解码；深度用预测相机反投影为像素高斯中心，外观头预测其他属性；体素内按置信度softmax加权聚合，减少重叠图元（pp.4–5 Fig2、Eq4–7）。体素尺寸是模型坐标单位，不应解释成物理米。</p>
+<p>训练在context图像上施加渲染损失，并把VGGT相机和深度作为伪监督，再对齐网络深度与高斯渲染深度；最高置信度区域用于稳定一致性约束（p.5 Eq8–11）。因此“不用真实3D标注”仍有几何教师和预训练知识，不等于从RGB零先验学习。</p>
+<h2 id="评测权限先说明">评测权限先说明</h2>
+<p>为计算新视角指标，论文会把context和target图像一起用于估计target相机并做尺度对齐；重建高斯本身的入口只用context图像（p.5 camera alignment、代码<code>src/eval_nvs.py</code>）。这比一个只收context并立即渲染任意已知目标相机的计时入口多了计算与目标图像权限，不能混称纯context端到端延迟，也不能仅据此指控target参与高斯训练。</p>
+<p>密集基线3DGS和Mip-Splatting由VGGT标定及初始化，之后逐场优化；不同于给真值相机的标准榜单。主表不同输入视数会改变测试图集合，跨列不能直接证明“照片越多越好”；附录另做固定测试图控制（pp.6、14）。</p>
+<h2 id="主结果-快速重建有用-但不是每项都领先">主结果：快速重建有用，但不是每项都领先</h2>
+<p>作者稿p.6 Table1，同表内部比较；时间为场景重建而非每秒渲染帧数。</p>
+<table><thead><tr><th>Mip-NeRF360 / 方法</th><th>输入视数</th><th>PSNR ↑</th><th>SSIM ↑</th><th>LPIPS ↓</th><th>重建时间 ↓</th></tr></thead><tbody><tr><td>NoPoSplat</td><td>3</td><td>16.36</td><td>0.430</td><td>0.453</td><td>0.119 秒</td></tr><tr><td>AnySplat</td><td>3</td><td>16.20</td><td>0.550</td><td>0.349</td><td>0.171 秒</td></tr><tr><td>NoPoSplat</td><td>16</td><td>15.47</td><td>0.361</td><td>0.606</td><td>1.198 秒</td></tr><tr><td>AnySplat</td><td>16</td><td>21.85</td><td>0.670</td><td>0.250</td><td>0.767 秒</td></tr><tr><td>3DGS（VGGT初始化）</td><td>32</td><td>22.19</td><td>0.640</td><td>0.248</td><td>10 分钟</td></tr><tr><td>AnySplat</td><td>32</td><td>22.31</td><td>0.688</td><td>0.247</td><td>1.4 秒</td></tr><tr><td>Mip-Splatting（VGGT初始化）</td><td>64</td><td>21.78</td><td>0.638</td><td>0.299</td><td>11 分钟</td></tr><tr><td>AnySplat</td><td>64</td><td>21.15</td><td>0.589</td><td>0.272</td><td>4.1 秒</td></tr></tbody></table>
+<p><strong>怎么读</strong>：更多context下，AnySplat比稀疏前馈基线更稳，重建比逐场拟合快；但三视PSNR略差且更慢，密集64视也会牺牲PSNR和SSIM。VR-NeRF的48视PSNR同样低于3DGS；其他指标更好不能改写成全面领先。</p>
+<p>作者稿p.14 Table7固定八个测试图后，比较更清楚：</p>
+<table><thead><tr><th>同一固定测试集 / 方法</th><th>32视 PSNR ↑</th><th>48视 PSNR ↑</th><th>64视 PSNR ↑</th></tr></thead><tbody><tr><td>3DGS</td><td>17.25</td><td>18.62</td><td>19.05</td></tr><tr><td>Mip-Splatting</td><td>16.95</td><td>18.39</td><td>18.94</td></tr><tr><td>AnySplat</td><td>16.59</td><td>18.72</td><td>19.57</td></tr></tbody></table>
+<p>AnySplat随视数增加改善，但32视仍低于两个对照。不要将该表画质与主表计时拼接成同预算结果。</p>
+<h2 id="后优化必须单独计时">后优化必须单独计时</h2>
+<p>作者稿p.8 Tables2–3：</p>
+<table><thead><tr><th>任务 / 版本</th><th>PSNR ↑</th><th>SSIM ↑</th><th>LPIPS ↓</th><th>表中时间 ↓</th></tr></thead><tbody><tr><td>Matrixcity 200视 / 直接前馈</td><td>19.46</td><td>0.574</td><td>0.446</td><td>33 秒</td></tr><tr><td>同上 / 后优化1K步</td><td>20.81</td><td>0.635</td><td>0.519</td><td>2 分钟</td></tr><tr><td>同上 / 后优化3K步</td><td>21.64</td><td>0.671</td><td>0.421</td><td>7 分钟</td></tr><tr><td>Mip360 16视 / 直接前馈</td><td>21.85</td><td>0.670</td><td>0.250</td><td>0.767 秒</td></tr><tr><td>同上 / 后优化1K步</td><td>25.51</td><td>0.813</td><td>0.115</td><td>2 分钟</td></tr><tr><td>同上 / InstantSplat-VGGT</td><td>23.38</td><td>0.677</td><td>0.268</td><td>3 分钟</td></tr></tbody></table>
+<p>后优化会显著增加时间。Matrixcity的1K步版本虽提高PSNR，LPIPS反而退化；最快前馈时间不能配上后优化最高画质。公开计时辅助只用Python墙钟与CUDA峰值统计，未统一固定预热、同步及峰值重置；图像准备、目标相机估计和导出成本不能自动纳入该表。</p>
+<h2 id="消融和几何结论的限度">消融和几何结论的限度</h2>
+<p>作者稿p.8 Table5，Hypersim；原表δ1/AbsRel显示值的比例单位未明确，避免直接解释为真实表面误差。</p>
+<table><thead><tr><th>版本</th><th>PSNR ↑</th><th>LPIPS ↓</th><th>δ1 ↑（原表值）</th><th>AbsRel ↓（原表值）</th><th>高斯数 ↓</th></tr></thead><tbody><tr><td>无蒸馏</td><td>7.28</td><td>0.832</td><td>75.5</td><td>14.7</td><td>4.80 M</td></tr><tr><td>无几何一致性</td><td>18.20</td><td>0.285</td><td>94.7</td><td>7.6</td><td>3.52 M</td></tr><tr><td>无可微体素</td><td>17.77</td><td>0.303</td><td>95.8</td><td>5.7</td><td>4.82 M</td></tr><tr><td>冻结AA层</td><td>17.90</td><td>0.306</td><td>96.5</td><td>5.3</td><td>3.51 M</td></tr><tr><td>完整</td><td>18.25</td><td>0.279</td><td>96.3</td><td>5.9</td><td>3.45 M</td></tr></tbody></table>
+<p>蒸馏影响很大；体素聚合减少图元且改善图质，但AbsRel不是最优，冻结AA版本还有更好的深度指标。因此不能将图质收益直接等同真实几何全面改善。部分一致性评测比较的是自身预测深度与渲染深度（pp.8、13 Fig8），需要外部真实几何另验。</p>
+<p>相机估计用十帧，RE10K未见集AUC@5从VGGT56.9至57.9，CO3Dv2从31.2至39.2；两方法都使用过CO3D训练，两个结果的泛化含义不同（p.8 Table4）。</p>
+<h2 id="数据-训练成本与版本疑点">数据、训练成本与版本疑点</h2>
+<p>详细设置为九库混合训练、约886M参数、15K步、16张A800约两天，VGGT初始化并冻结图像patch embedding；输入长边最高448（p.6 §4.1）。引言称8–16卡“一日内”，与此不一致，按详细设置保留边界。不把“零样本”推理解释为没有预训练成本。</p>
+<p>附录列Mip360四个室内场景与VR-NeRF四场，却称合计七场；没有据此扩写成标准九场Mip360结论。主表与附录测试集合也不同。数据实际manifest、图像/标注包未下载，场景计数冲突未擅自修正。</p>
+<p>Fig5 p.9的显存曲线针对渲染阶段，不能代表Transformer前馈、相机重估或后优化的全链峰值。主文未充分说明计时GPU及全部边界；没有独立GPU复现、误差条或显著性验证。</p>
+<h2 id="实现与许可">实现与许可</h2>
+<p>官方实现审计固定提交<code>5f5e208a7dd57d52e43ea0d553a95eab526e8775</code>。公开推理入口仅收图像、模型预测相机；评测入口另有target相机分支和对齐；后优化是独立可选流程。此处只做静态源码与配置审阅，未运行模型、下载权重或训练数据。</p>
+<p>当前示例配置并非论文配方的逐项复现：训练步数为30K而论文写15K，两示例深度蒸馏权重也不同；teacher mask取大于0.3分位，通常保留约70%，与论文top30%不同，数据valid_mask还可覆盖该mask。体素实现先round/int/unique硬归桶，再连续加权聚合，可微性有此边界。</p>
+<p>仓库和AnySplat权重标MIT，VGGT上游权重卡另标CC-BY-NC-4.0；不能将整个依赖链概括为MIT。作者arXiv元数据与PDF版权页分别保留，未据此扩大到所有数据或最终出版文件的再分发权。</p>
+<h2 id="失败与下一步">失败与下一步</h2>
+<p>作者稿pp.14–15 Fig10记录光照变化、瞬态遮挡、反光、动态公交和自行车细杆伪影。静态前馈高斯没有显式建模这些因素，也没有证明语义分割、动态跟踪或真实表面精度。</p>
+<p>与<a class="wikilink" href="../sources/2026-09-25-spfsplat.html">SPFSplat</a>比较前要先配平内参、预训练与目标相机权限；与<a class="wikilink" href="../sources/2026-09-25-freesplatter.html">FreeSplatter</a>比较要统一场景数据和后优化预算。固定测试图后，再分开测纯context预测、目标相机估计、渲染及精修的耗时和显存。若等权限优势消失，就收窄泛化和部署结论。</p>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li><a href="https://doi.org/10.1145/3763326">正式DOI</a></li>
+<li><a href="https://arxiv.org/pdf/2505.23716v2">作者v2完整PDF</a></li>
+<li><a href="https://arxiv.org/abs/2505.23716">作者版本历史</a></li>
+<li><a href="https://city-super.github.io/anysplat/">官方项目</a></li>
+<li><a href="https://sa2025.conference-schedule.org/presentation/?id=papers_1712&amp;amp;sess=sess142">SIGGRAPH Asia官方排期</a></li>
+<li><a href="https://github.com/InternRobotics/AnySplat/tree/5f5e208a7dd57d52e43ea0d553a95eab526e8775">固定实现提交</a></li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../topics/3d-gaussian-splatting.html">三维高斯泼溅：表示、优化、几何与动态任务</a>：无标定输入、训练先验、目标相机权限与完整成本分开。</li>
+<li><a class="wikilink" href="../sources/2026-09-25-spfsplat.html">SPFSplat：训练与推理均不输入真值外参的稀疏高斯重建</a>：不给真值外参与默认内参/预训练不同。</li>
+<li><a class="wikilink" href="../sources/2026-09-25-noposplat.html">NoPoSplat：稀疏无外参图像的统一参考系高斯重建</a>：同篇主表中的稀疏前馈对照。</li>
+</ul></section>
+      </div>
+      <section class="preview-gallery" id="page-previews"><h2>页面预览<span class="related-count">3</span></h2><div class="preview-strip"><a href="../raw/ingest/2026-09-25-anysplat/page-previews/page-06.png" target="_blank" rel="noopener"><img src="../raw/ingest/2026-09-25-anysplat/page-previews/page-06.png" alt="page-06" loading="lazy" width="1623" height="2100"></a><a href="../raw/ingest/2026-09-25-anysplat/page-previews/page-08.png" target="_blank" rel="noopener"><img src="../raw/ingest/2026-09-25-anysplat/page-previews/page-08.png" alt="page-08" loading="lazy" width="1623" height="2100"></a><a href="../raw/ingest/2026-09-25-anysplat/page-previews/page-14.png" target="_blank" rel="noopener"><img src="../raw/ingest/2026-09-25-anysplat/page-previews/page-14.png" alt="page-14" loading="lazy" width="1623" height="2100"></a></div></section>
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../topics/3d-gaussian-splatting.html">三维高斯泼溅：表示、优化、几何与动态任务</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">3</span></h2><ul><li><a href="../docs/research-protocols/3d-gaussian-splatting.html">三维高斯泼溅：用户百篇定向证据协议</a><span>检索协议</span></li><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../topics/3d-gaussian-splatting.html">三维高斯泼溅：表示、优化、几何与动态任务</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary><span class="summary-label"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><pre>{
+  &quot;id&quot;: &quot;2026-09-25-anysplat&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;AnySplat：从未标定照片直接预测高斯与相机&quot;,
+  &quot;title_en&quot;: &quot;AnySplat: Feed-forward 3D Gaussian Splatting from Unconstrained Views&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-10-18&quot;,
+  &quot;updated&quot;: &quot;2026-10-18&quot;,
+  &quot;venue&quot;: &quot;ACM TOG 44(6), 2025&quot;,
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Lihan Jiang&quot;,
+    &quot;Yucheng Mao&quot;,
+    &quot;Linning Xu&quot;,
+    &quot;Tao Lu&quot;,
+    &quot;Kerui Ren&quot;,
+    &quot;Yichen Jin&quot;,
+    &quot;Xudong Xu&quot;,
+    &quot;Mulin Yu&quot;,
+    &quot;Jiangmiao Pang&quot;,
+    &quot;Feng Zhao&quot;,
+    &quot;Dahua Lin&quot;,
+    &quot;Bo Dai&quot;
+  ],
+  &quot;published_at&quot;: &quot;2025-12-04&quot;,
+  &quot;ingested_at&quot;: &quot;2026-10-18&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://doi.org/10.1145/3763326&quot;,
+    &quot;https://arxiv.org/pdf/2505.23716v2&quot;,
+    &quot;https://sa2025.conference-schedule.org/presentation/?id=papers_1712&amp;sess=sess142&quot;,
+    &quot;https://city-super.github.io/anysplat/&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-09-25-anysplat/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/3d-gaussian-splatting&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: [],
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;3d-vision&quot;,
+    &quot;gaussian-splatting&quot;,
+    &quot;evaluation&quot;,
+    &quot;primary-source&quot;
+  ]
+}</pre></details>
+    </article>
+  </main>
+</body>
+</html>
