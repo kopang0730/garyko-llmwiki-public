@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MeGA:Hybrid Mesh-Gaussian Head Avatar for High-Fidelity Rendering and Head Editing">
+  <link rel="canonical" href="https://wiki.garyko.com/en/sources/2026-10-19-mega-head-avatar">
+  <link rel="alternate" hreflang="zh-CN" href="https://wiki.garyko.com/sources/2026-10-19-mega-head-avatar">
+  <link rel="alternate" hreflang="en" href="https://wiki.garyko.com/en/sources/2026-10-19-mega-head-avatar">
+  <link rel="icon" href="../../favicon.ico" sizes="any">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#f7f4ec" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1b1814" media="(prefers-color-scheme: dark)">
+  <meta property="og:site_name" content="llmwiki">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="MeGA:Hybrid Mesh-Gaussian Head Avatar for High-Fidelity Rendering and Head Editing · llmwiki">
+  <meta property="og:description" content="MeGA:Hybrid Mesh-Gaussian Head Avatar for High-Fidelity Rendering and Head Editing">
+  <meta property="og:url" content="https://wiki.garyko.com/en/sources/2026-10-19-mega-head-avatar">
+  <meta property="og:image" content="https://wiki.garyko.com/assets/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MeGA:Hybrid Mesh-Gaussian Head Avatar for High-Fidelity Rendering and Head Editing · llmwiki">
+  <meta name="twitter:description" content="MeGA:Hybrid Mesh-Gaussian Head Avatar for High-Fidelity Rendering and Head Editing">
+  <meta name="twitter:image" content="https://wiki.garyko.com/assets/og-card.png">
+  <title>MeGA:Hybrid Mesh-Gaussian Head Avatar for High-Fidelity Rendering and Head Editing · llmwiki</title>
+  <script>try{var r=document.documentElement,t=localStorage.getItem('llmwiki.theme');if(t==='light'||t==='dark')r.dataset.theme=t;if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')r.classList.add('sidebar-collapsed')}catch(e){}</script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260927-theme-switch-v17">
+  <script defer src="../../assets/wiki.js?v=20260927-theme-switch-v17"></script>
+  <noscript><style>.wiki-sidebar{position:static;transform:none;visibility:visible;width:auto;height:auto}.menu-toggle{display:none}</style></noscript>
+</head>
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-10-19-mega-head-avatar&quot;, &quot;title&quot;: &quot;MeGA：让人脸网格与高斯头发各做擅长的事&quot;, &quot;title_en&quot;: &quot;MeGA: Hybrid Mesh-Gaussian Head Avatar for High-Fidelity Rendering and Head Editing&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;3d-vision&quot;, &quot;gaussian-splatting&quot;, &quot;evaluation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260927-theme-switch-v17">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar" aria-label="Menu" title="Menu" data-menu-label="Menu" data-close-label="Close menu"><svg class="ui-icon menu-icon menu-icon--open" data-icon="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="ui-icon menu-icon menu-icon--close" data-icon="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="menu-toggle-label">Menu</span></button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
+    <button class="sidebar-collapse-toggle" type="button" aria-expanded="true" aria-controls="sidebar-panel" aria-label="Collapse sidebar" title="Collapse sidebar" data-collapse-label="Collapse sidebar" data-expand-label="Expand sidebar"><svg class="ui-icon sidebar-icon sidebar-icon--collapse" data-icon="panel-left-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/></svg><svg class="ui-icon sidebar-icon sidebar-icon--expand" data-icon="panel-left-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/></svg></button>
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <div class="sidebar-panel" id="sidebar-panel">
+      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">Search llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results" class="search-results"></div><p id="search-status" class="visually-hidden" role="status" aria-live="polite"></p></form>
+      <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/catalog.html">Full paper catalog</a></li>
+<li><a href="../../en/index.html">Research map</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Reading portal</a></li>
+<li><a href="../../en/tags.html">Tags</a></li>
+</ul>
+<h2>Foundations</h2><ul>
+<li><a href="../../en/topics/computer-vision-overview.html">Computer Vision Overview</a></li>
+<li><a href="../../en/topics/datasets-metrics-and-benchmark-reliability.html">Datasets &amp; Evaluation</a></li>
+<li><a href="../../en/topics/diffusion-models.html">Diffusion Models</a></li>
+<li><a href="../../en/topics/video-representation-and-temporal-modeling.html">Video Representation</a></li>
+<li><a href="../../en/topics/vision-backbones.html">Vision Backbones</a></li>
+<li><a href="../../en/topics/vision-language-foundations.html">Vision-Language Foundations</a></li>
+<li><a href="../../en/topics/vision-task-foundations.html">Core Vision Tasks</a></li>
+<li><a href="../../en/topics/visual-generation-foundations.html">Visual Generation Foundations</a></li>
+</ul>
+<h2>Research topics</h2><ul>
+<li><a href="../../en/topics/3d-gaussian-splatting.html">3D Gaussian Splatting</a></li>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">Diffusion Efficiency</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">Generative Model Evaluation</a></li>
+<li><a href="../../en/topics/image-editing.html">Image Editing</a></li>
+<li><a href="../../en/topics/image-generation.html">Image Generation</a></li>
+<li><a href="../../en/topics/image-text-retrieval.html">Image-Text Retrieval</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">Video Editing</a></li>
+<li><a href="../../en/topics/video-generation.html">Video Generation</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">Vision-Language</a></li>
+</ul>
+<h2>Roadmaps</h2><ul>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/clip.html">CLIP 系列模型（CLIP Family）</a></li>
+<li><a href="../../en/entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a></li>
+<li><a href="../../en/entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a></li>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/dino-family.html">DINO 家族：自监督视觉表示与预训练骨干</a></li>
+<li><a href="../../en/entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-baseline-and-specialization.html">双塔负责可扩展召回，细粒度模块负责精排与关系匹配</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-composed-query.html">组合式查询是图文检索中可落地且仍有缺口的研究切口</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-compositionality.html">标准图文检索分数不足以证明组合性理解</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-data-quality.html">图文检索的主要瓶颈仍包括数据质量、分布与概念覆盖</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-dino-features-for-3dgs-semantics.html">DINO 密集特征如何迁移到三维高斯语义分割？</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-research-cut.html">图文检索哪个子方向最适合中等算力的研究生项目？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a></li>
+<li><a href="../../en/questions/question-motion-defined-text-human-machine-gap.html">Motion-Defined Text Gap</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
+</ul>
+</nav>
+    </div>
+  </aside>
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+  <main class="wiki-page" id="content" tabindex="-1">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="" href="../../sources/2026-10-19-mega-head-avatar.html">中文</a><a class="selected-lang" href="../../en/sources/2026-10-19-mega-head-avatar.html">English</a></nav><div class="theme-switch" role="group" aria-label="Appearance" hidden><button type="button" data-theme-choice="system" aria-pressed="false" aria-label="Follow system" title="Follow system"><svg class="ui-icon" data-icon="monitor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg></button><button type="button" data-theme-choice="light" aria-pressed="false" aria-label="Light" title="Light"><svg class="ui-icon" data-icon="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></button><button type="button" data-theme-choice="dark" aria-pressed="false" aria-label="Dark" title="Dark"><svg class="ui-icon" data-icon="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button></div><span class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>Article</span></span><a href="../../en/index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>Research map</span></a><a href="../../en/main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>Reading portal</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>Metadata</span></a></header>
+    <article class="article-shell">
+      
+      <header class="article-header" data-motion="reveal">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>MeGA:Hybrid Mesh-Gaussian Head Avatar for High-Fidelity Rendering and Head Editing</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-10-19</p>
+        <h1><span class="title-main">MeGA</span><span class="title-subtitle">Hybrid Mesh-Gaussian Head Avatar for High-Fidelity Rendering and Head Editing</span></h1>
+        
+        <p class="article-actions"><a class="btn btn-primary" href="https://openaccess.thecvf.com/content/CVPR2025/html/Wang_MeGA_Hybrid_Mesh-Gaussian_Head_Avatar_for_High-Fidelity_Rendering_and_Head_CVPR_2025_paper.html" target="_blank" rel="noopener noreferrer">Read the paper<span aria-hidden="true"> ↗</span></a></p>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#3d-vision">#3d-vision</a><a class="tag" href="../../en/tags.html#gaussian-splatting">#gaussian-splatting</a><a class="tag" href="../../en/tags.html#evaluation">#evaluation</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-06-10</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-10-19</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2025/html/Wang_MeGA_Hybrid_Mesh-Gaussian_Head_Avatar_for_High-Fidelity_Rendering_and_Head_CVPR_2025_paper.html" title="https://openaccess.thecvf.com/content/CVPR2025/html/Wang_MeGA_Hybrid_Mesh-Gaussian_Head_Avatar_for_High-Fidelity_Rendering_and_Head_CVPR_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Wang_MeGA_Hybrid_Mesh-Gaussian_…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_MeGA_Hybrid_Mesh-Gaussian_Head_Avatar_for_High-Fidelity_Rendering_and_Head_CVPR_2025_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_MeGA_Hybrid_Mesh-Gaussian_Head_Avatar_for_High-Fidelity_Rendering_and_Head_CVPR_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Wang_MeGA_Hybrid_Mesh-Gaussian_…</strong></a><a class="source-link source-link-code" href="https://github.com/conallwang/MeGA" title="https://github.com/conallwang/MeGA" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · MeGA</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义与输入">问题定义与输入</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#数据-划分与评测单位">数据、划分与评测单位</a></li><li><a href="#平均画质-提升随任务而不同">平均画质：提升随任务而不同</a></li><li><a href="#最强反例-并非每个人-每个指标都领先">最强反例：并非每个人、每个指标都领先</a></li><li><a href="#消融-画质-深度拟合和遮挡有不同目标">消融：画质、深度拟合和遮挡有不同目标</a></li><li><a href="#编辑功能与成本">编辑功能与成本</a></li><li><a href="#版本-实现及迁移边界">版本、实现及迁移边界</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content" lang="zh-CN"><p class="translation-notice" role="note">English translation pending — this page shows the Chinese original.</p><h2 id="一句话结论">一句话结论</h2>
+<p>MeGA把人脸交给带神经纹理的网格、头发交给高斯，在多机位个体建模中提高平均画质并支持定性编辑，但比GaussianAvatars推理更慢，不能当成少照片、跨身份或物理头发系统。</p>
+<h2 id="问题定义与输入">问题定义与输入</h2>
+<p>输入是同一人的<strong>已标定多视视频</strong>、逐帧FLAME跟踪参数、前景及人脸／头发分割掩码，以及Metashape多视重建深度。FLAME是可用形状、表情和姿态参数控制的头部模型，其参数沿用GaussianAvatars处理结果；本法不是自行从一张照片估计所有相机与身份的前馈模型（主pp.2、4–6，补p.1）。输出是逐人优化的可驱动混合头部资产，测试仍需驱动参数和目标视角。</p>
+<h2 id="方法概述">方法概述</h2>
+<p><strong>人脸分支</strong>：细分FLAME网格并补牙齿面片，用卷积网络预测随表情／姿态变化的UV位移，再将漫反射、视角相关和表情相关神经纹理相加。UV坐标编码和纹理特征经轻量逐像素多层感知机（MLP）解码成RGB。307个参数仅指末端像素解码器，不包括纹理图、卷积网络或整个头像（主p.3，补p.1）。外观分支能表现皱纹，不等于每一条皱纹都有独立真实几何。</p>
+<p><strong>头发分支</strong>：选一个训练时刻的全部机位，在跟踪头皮附近初始化高斯，依头发掩码优化规范头发。再用头皮点的迭代最近点配准（ICP）作刚性对齐，用表情驱动MLP预测高斯参数的小形变（主pp.3–4）。这保留发丝体积外观，却不提供可编辑的物理发丝或风力仿真；补充限制也称当前头发为rigid。</p>
+<p><strong>遮挡融合</strong>：用深度排序后第一个不透明度大于0.05的高斯定义near-z，和人脸网格深度比较，避免累计高斯深度抖动反复改变遮挡。渲染遇到隔得太远的下一高斯时提前停止累积，再平滑遮挡边缘并结合透明度混合。0.05是文中设置，停止的具体距离阈值未充分报告，不能当通用最优值（主pp.4–5）。</p>
+<p>优化分三阶段：先训练人脸网格和纹理，再拟合规范头发，最后跨帧联合优化头发形变和纹理。末阶段正文列出的可优化项主要是形变MLP和三类纹理；不能笼统认为每阶段都重新训练全部几何。深度／法线、人脸正则、头皮收缩、发区轮廓／实心和近似等距正则各有作用（主pp.5–6）。</p>
+<h2 id="数据-划分与评测单位">数据、划分与评测单位</h2>
+<table><thead><tr><th>项目</th><th>论文协议</th></tr></thead><tbody><tr><td>数据与人员</td><td>NeRSemble；074、104、218、253、264、302、304、306、460，共9人，各自优化</td></tr><tr><td>相机与图像</td><td>16个已标定相机；预处理图像802×550，前景掩码沿用基线处理</td></tr><tr><td>训练与测试</td><td>每人10个表情序列中的9个、16相机中的15个训练；其余相机和表情序列留出</td></tr><tr><td>图像指标</td><td>共同光栅化掩码内PSNR ↑、SSIM ↑、LPIPS ↓；新视角和新表情分别汇总</td></tr><tr><td>几何指标</td><td>面部渲染深度对Metashape重建深度的平均绝对误差（MAE ↓），单位mm</td></tr></tbody></table>
+<p>主pp.6–7、补pp.1–4。九人不是九个跨身份零样本测试；像素／视频帧也不是独立身份样本。没有独立扫描真值的完整头发几何、编辑成功率、用户盲评或多次随机训练方差。训练已用同类MVS深度监督，深度MAE不能直接推广为真实表面精度。</p>
+<h2 id="平均画质-提升随任务而不同">平均画质：提升随任务而不同</h2>
+<p>主p.7 Table1；补p.4 Tables5–6提供逐人结果。Gaussian Head Avatar（GHA）的新表情平均值主附不一致，因此单独列两行，不能静默合并。</p>
+<table><thead><tr><th>方法</th><th>新视角PSNR ↑ dB</th><th>SSIM ↑</th><th>LPIPS ↓</th><th>新表情PSNR ↑ dB</th><th>SSIM ↑</th><th>LPIPS ↓</th></tr></thead><tbody><tr><td>DELTA</td><td>24.62</td><td>0.871</td><td>0.138</td><td>22.60</td><td>0.858</td><td>0.158</td></tr><tr><td>PointAvatar</td><td>27.08</td><td>0.918</td><td>0.091</td><td>25.79</td><td>0.916</td><td>0.103</td></tr><tr><td>GHA，主表</td><td>29.48</td><td>0.894</td><td>0.084</td><td>22.02</td><td>0.847</td><td>0.156</td></tr><tr><td>GHA，补充平均</td><td>29.48</td><td>0.894</td><td>0.084</td><td>22.51</td><td>0.853</td><td>0.144</td></tr><tr><td>GaussianAvatars</td><td>33.54</td><td>0.951</td><td>0.055</td><td>31.45</td><td>0.947</td><td>0.060</td></tr><tr><td>MeGA</td><td>34.11</td><td>0.954</td><td>0.052</td><td>32.59</td><td>0.949</td><td>0.057</td></tr></tbody></table>
+<p>MeGA相对GaussianAvatars的PSNR增益按表相减为新视角0.57dB、新表情1.14dB。主表及补Table5标题的“高约1dB”不能作为新视角精确数值。GHA补表的九人新表情PSNR算术平均约22.51，与主表22.02不同；论文未解释版本或口径差异。</p>
+<h2 id="最强反例-并非每个人-每个指标都领先">最强反例：并非每个人、每个指标都领先</h2>
+<p>以下只比较同一行、同一任务的MeGA与GaussianAvatars，来自补p.4 Tables5–6。</p>
+<table><thead><tr><th>人员／任务</th><th>方法</th><th>PSNR ↑ dB</th><th>SSIM ↑</th><th>LPIPS ↓</th></tr></thead><tbody><tr><td>304／新视角</td><td>MeGA</td><td>30.19</td><td>0.901</td><td>0.065</td></tr><tr><td>同上</td><td>GaussianAvatars</td><td>30.70</td><td>0.906</td><td>0.065</td></tr><tr><td>218／新视角</td><td>MeGA</td><td>32.79</td><td>0.971</td><td>0.052</td></tr><tr><td>同上</td><td>GaussianAvatars</td><td>31.79</td><td>0.964</td><td>0.046</td></tr><tr><td>074／新表情</td><td>MeGA</td><td>29.32</td><td>0.917</td><td>0.096</td></tr><tr><td>同上</td><td>GaussianAvatars</td><td>28.90</td><td>0.919</td><td>0.094</td></tr><tr><td>104／新表情</td><td>MeGA</td><td>27.80</td><td>0.921</td><td>0.098</td></tr><tr><td>同上</td><td>GaussianAvatars</td><td>27.60</td><td>0.937</td><td>0.094</td></tr></tbody></table>
+<p>304的新视角PSNR和SSIM退化；218的新视角LPIPS退化；074／104的新表情结构与感知指标也较差。平均收益支持特定协议下的取舍，不能写成所有身份均优。</p>
+<h2 id="消融-画质-深度拟合和遮挡有不同目标">消融：画质、深度拟合和遮挡有不同目标</h2>
+<p>主p.8 Table2及补p.2 Table4，均为Subject306的新表情设置，不能与该人的新视角结果混用。</p>
+<table><thead><tr><th>设置</th><th>PSNR ↑ dB</th><th>SSIM ↑</th><th>LPIPS ↓</th><th>深度MAE ↓ mm</th></tr></thead><tbody><tr><td>MeGA完整</td><td>33.57</td><td>0.963</td><td>0.040</td><td>2.25</td></tr><tr><td>去视角纹理</td><td>31.68</td><td>0.958</td><td>0.053</td><td>2.87</td></tr><tr><td>去动态纹理</td><td>32.81</td><td>0.959</td><td>0.050</td><td>2.91</td></tr><tr><td>不细分网格</td><td>32.81</td><td>0.962</td><td>0.046</td><td>3.38</td></tr><tr><td>去UV位移</td><td>32.99</td><td>0.959</td><td>0.054</td><td>7.48</td></tr><tr><td>累计深度替代near-z</td><td>27.94</td><td>0.950</td><td>0.068</td><td>2.25</td></tr><tr><td>关闭提前停止</td><td>31.42</td><td>0.957</td><td>0.048</td><td>2.25</td></tr><tr><td>去漫反射图像损失</td><td>33.10</td><td>0.961</td><td>0.046</td><td>3.24</td></tr><tr><td>去头皮收缩</td><td>33.11</td><td>0.959</td><td>0.047</td><td>2.17</td></tr><tr><td>去人脸几何正则</td><td>32.51</td><td>0.959</td><td>0.051</td><td>15.74</td></tr><tr><td>去头发实心损失</td><td>33.04</td><td>0.959</td><td>0.046</td><td>2.25</td></tr><tr><td>去等距正则</td><td>33.06</td><td>0.961</td><td>0.048</td><td>2.25</td></tr></tbody></table>
+<p>去头皮收缩的面部深度MAE反而更低，但画质更差，说明面部深度拟合不足以验收头发遮挡。不同融合方式的MAE相同、画质明显改变，也说明几何与图像指标需分开。补p.3对去实心损失的正文写33.06dB，表4为33.04；按原表记录并保留差异。“任一损失移除都退化”仅适用于其画质结果，不能覆盖每项几何指标。</p>
+<h2 id="编辑功能与成本">编辑功能与成本</h2>
+<p>发型迁移加载另一位<strong>已经训练好的</strong>MeGA头发及形变场，再带尺度ICP对齐；这不是从文字或单张照片生成新发型。纹理编辑将手绘掩码映射到UV空间，优化对应漫反射潜码，同时微调像素解码器；其他机位的非编辑区域还用原照片约束。没有报告编辑耗时、定量一致性或身份保持评测，主p.6 Fig3和p.7 §6.2只支持定性演示。</p>
+<p>补p.2 Table3在NVIDIA V100上报告平均推理时间：</p>
+<table><thead><tr><th>方法</th><th>推理时间 ↓</th></tr></thead><tbody><tr><td>DELTA</td><td>214 ms</td></tr><tr><td>PointAvatar</td><td>293 ms</td></tr><tr><td>GHA</td><td>59 ms</td></tr><tr><td>GaussianAvatars</td><td>10 ms</td></tr><tr><td>MeGA</td><td>37 ms</td></tr></tbody></table>
+<p>MeGA为GaussianAvatars的3.7倍耗时（按表相除）；37ms倒数约27FPS只是算术换算，不能当包含相机标定、跟踪、深度重建、分割和编辑的完整系统帧率。论文没有完整拆分计时、MeGA自身训练墙钟／GPU小时、峰显存和全部资产存储。补p.1的约六万个规范头发高斯也不等于全头像参数规模。</p>
+<p>基线重新训练但预算并不一致：GaussianAvatars为600,000迭代；GHA为200 epochs；PointAvatar为63 epochs且因V100 32GB将点数限制为240,000；DELTA改为多视加载、拟合SMPL-X、50 epochs，仍未得到可比发型迁移结果。作者明确承认本实验比原GHA使用更少训练数据，放大其新表情弱点；因此表1不能替代各方法原始条件下的完整排名（补pp.1–2）。</p>
+<h2 id="版本-实现及迁移边界">版本、实现及迁移边界</h2>
+<p>正式CVF／Crossref作者写Heyi Sun、Shenhan Qian、Zixuan Wang；早期arXiv记录用He-Yi、Shen-Han、Zi-Xuan，采用正式拼写。官方仓库标题标CVPR2025，BibTeX仍写2024预印本，不能据此误标正式年份。本轮未取作者稿替代正式PDF。</p>
+<p>正文神经纹理及图1使用四通道，补p.1部分网络输出写三通道；图中UV位移通道也与补充描述不同。完整实现未逐文件审计，不擅自修正架构维度。官方代码链接可核，但不等于代码、数据或FLAME资产许可均已核实，亦不等于复现成功；本轮没有模型安装、权重／训练数据下载或GPU实验。补充提供项目视频入口，本轮未验证视频，仅核对全文和静态原表。</p>
+<p>补p.3承认大幅新表情依赖足够数据、密集标定视角和MVS深度，单目迁移仍是未来方向；其“大于16视角”泛称与实际15机位训练条件应分开。当前更适合作为“已知相机、已跟踪个体、静态发型外观”的混合表示研究入口，而非自由头发物理或自动通用头像。</p>
+<p>后续先固定相机／身份划分、输入深度和跟踪权限，在相同训练及推理预算下比较人脸／发区／边界分项；另测真实扫描几何、动态发丝、逐人反例和编辑盲评。如果简单的遮挡处理或更多训练数据就能消除收益，应缩小混合表示本身的贡献。</p>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2025/html/Wang_MeGA_Hybrid_Mesh-Gaussian_Head_Avatar_for_High-Fidelity_Rendering_and_Head_CVPR_2025_paper.html">CVF正式论文页</a></li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_MeGA_Hybrid_Mesh-Gaussian_Head_Avatar_for_High-Fidelity_Rendering_and_Head_CVPR_2025_paper.pdf">CVF主文PDF</a></li>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2025/supplemental/Wang_MeGA_Hybrid_Mesh-Gaussian_CVPR_2025_supplemental.pdf">官方补充PDF</a></li>
+<li><a href="https://doi.org/10.1109/CVPR52734.2025.02447">正式出版DOI</a></li>
+<li><a href="https://github.com/conallwang/MeGA">官方代码</a></li>
+<li><a href="https://conallwang.github.io/MeGA_Pages/">补充注明的作者项目</a></li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<ul>
+<li><a class="wikilink" href="../../en/topics/3d-gaussian-splatting.html">3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes</a>：按输入权限与任务验收混合表示，分开画质、真实几何和完整成本。</li>
+<li><a class="wikilink" href="../../en/sources/2026-09-25-physgaussian.html">PhysGaussian</a>：物理模拟另需材料与动力学验证，外观头发不自动满足。</li>
+<li><a class="wikilink" href="../../en/sources/2026-09-25-speede3dgs.html">SpeeDe3DGS</a>：逐人受控头像与动态场景重建的输入和成本不同。</li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/topics/3d-gaussian-splatting.html">3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">3</span></h2><ul><li><a href="../../en/docs/research-protocols/3d-gaussian-splatting.html">三维高斯泼溅：用户百篇定向证据协议</a><span>Review protocol</span></li><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/3d-gaussian-splatting.html">3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary><span class="summary-label"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>Metadata</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><pre>{
+  &quot;id&quot;: &quot;2026-10-19-mega-head-avatar&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;MeGA：让人脸网格与高斯头发各做擅长的事&quot;,
+  &quot;title_en&quot;: &quot;MeGA: Hybrid Mesh-Gaussian Head Avatar for High-Fidelity Rendering and Head Editing&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-10-19&quot;,
+  &quot;updated&quot;: &quot;2026-10-19&quot;,
+  &quot;venue&quot;: &quot;CVPR 2025&quot;,
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Cong Wang&quot;,
+    &quot;Di Kang&quot;,
+    &quot;Heyi Sun&quot;,
+    &quot;Shenhan Qian&quot;,
+    &quot;Zixuan Wang&quot;,
+    &quot;Linchao Bao&quot;,
+    &quot;Song-Hai Zhang&quot;
+  ],
+  &quot;published_at&quot;: &quot;2025-06-10&quot;,
+  &quot;ingested_at&quot;: &quot;2026-10-19&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/CVPR2025/html/Wang_MeGA_Hybrid_Mesh-Gaussian_Head_Avatar_for_High-Fidelity_Rendering_and_Head_CVPR_2025_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_MeGA_Hybrid_Mesh-Gaussian_Head_Avatar_for_High-Fidelity_Rendering_and_Head_CVPR_2025_paper.pdf&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2025/supplemental/Wang_MeGA_Hybrid_Mesh-Gaussian_CVPR_2025_supplemental.pdf&quot;,
+    &quot;https://doi.org/10.1109/CVPR52734.2025.02447&quot;,
+    &quot;https://github.com/conallwang/MeGA&quot;,
+    &quot;https://conallwang.github.io/MeGA_Pages/&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-10-19-mega-head-avatar/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/3d-gaussian-splatting&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: [],
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;3d-vision&quot;,
+    &quot;gaussian-splatting&quot;,
+    &quot;evaluation&quot;,
+    &quot;primary-source&quot;
+  ]
+}</pre></details>
+    </article>
+  </main>
+</body>
+</html>
