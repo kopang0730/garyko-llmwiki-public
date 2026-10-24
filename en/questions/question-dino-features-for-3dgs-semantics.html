@@ -120,18 +120,18 @@
       
       <header class="article-header" data-motion="reveal">
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Question</span><span class="crumb-sep" aria-hidden="true">›</span><strong>DINO 密集特征如何迁移到三维高斯语义分割？</strong></nav>
-        <p class="eyebrow">Question · Updated 2026-09-27</p>
+        <p class="eyebrow">Question · Updated 2026-10-24</p>
         <h1 lang="zh-CN"><span class="title-main">DINO 密集特征如何迁移到三维高斯语义分割？</span></h1>
         
         <p class="article-actions"><a class="btn btn-primary" href="../../en/topics/vision-backbones.html">Back to topic: Visual Representations and Backbones<span aria-hidden="true"> →</span></a></p>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#survey-needed">#survey-needed</a><a class="tag" href="../../en/tags.html#segmentation">#segmentation</a><a class="tag" href="../../en/tags.html#gaussian-splatting">#gaussian-splatting</a><a class="tag" href="../../en/tags.html#representation-learning">#representation-learning</a></div>
       </header>
       <div class="article-layout has-rail">
-        <aside class="article-rail"><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#问题">问题</a></li><li><a href="#当前证据与尚待解决的环节">当前证据与尚待解决的环节</a></li><li><a href="#优先验证的问题">优先验证的问题</a></li><li><a href="#最小可证伪实验">最小可证伪实验</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <aside class="article-rail"><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#问题">问题</a></li><li><a href="#当前证据与尚待解决的环节">当前证据与尚待解决的环节</a></li><li><a href="#新增评测边界">新增评测边界</a></li><li><a href="#优先验证的问题">优先验证的问题</a></li><li><a href="#最小可证伪实验">最小可证伪实验</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
         <section class="article-content" lang="zh-CN"><p class="translation-notice" role="note">English translation pending — this page shows the Chinese original.</p>
 <section class="question-hero" data-motion="reveal">
   <div class="question-hero-copy"><p class="section-kicker">Open question</p><h2>DINO 密集特征如何迁移到三维高斯语义分割？</h2><p>This question remains open and needs new primary evidence.</p></div>
-  <div class="open-question-panel"><p class="section-kicker">Next evidence need</p><div class="question-metrics"><strong>3</strong><span>Candidate sources</span><strong>2</strong><span>Related topics</span></div><a class="text-action" href="#related">View evidence paths →</a></div>
+  <div class="open-question-panel"><p class="section-kicker">Next evidence need</p><div class="question-metrics"><strong>5</strong><span>Candidate sources</span><strong>2</strong><span>Related topics</span></div><a class="text-action" href="#related">View evidence paths →</a></div>
 </section>
 <h2 id="问题">问题</h2>
 <p><strong>前瞻研究假设</strong>：冻结 DINO 系列提取多视图二维密集特征，结合相机与可见性，将特征投影/蒸馏到三维高斯，再连接有监督语义头或聚类与类别映射。该流程是用户的后续研究兴趣；当前 DINO 家族证据仅支撑二维特征及部分对应能力，完整高斯语义分割效果需要新增实验。</p>
@@ -142,6 +142,9 @@
 <li><a class="wikilink" href="../../en/sources/2026-09-27-dinov2.html">DINOv2:Learning Robust Visual Features without Supervision</a> 提供冻结 dense features 的分割读出与目标消融，适合先建立可控迁移基线。</li>
 <li><a class="wikilink" href="../../en/sources/2026-09-27-dinov3.html">DINOv3</a> 作者稿包含 NAVI/SPair 对应评测，正式身份为 TMLR 2026；正式全文版本核对待补。多视图对应评估与三维高斯场景语义分割分别验证。</li>
 </ul>
+<h2 id="新增评测边界">新增评测边界</h2>
+<p><a class="wikilink" href="../../en/sources/2026-10-24-scenesplat-plus-plus.html">SceneSplat++</a>说明直接三维前景分割与二维渲染掩码需要分别测量，跨域和相同教师对照仍可出现排名反转。<a class="wikilink" href="../../en/sources/2026-10-24-male-gs-pt-ovs.html">MALE-GS／PT-OVS</a>补充野外光照与临时遮挡下的特征学习，但主测试仍是二维掩码，不能验证本问题的三维语义迁移。</p>
+<p>在后续实验中固定教师、场景划分、忽略类、投票邻域和提示词；前端、建场、特征训练与查询时间分别记录。图像／三维语义／目标选择／编辑结果分别验收。本问题继续为待实验假设。</p>
 <h2 id="优先验证的问题">优先验证的问题</h2>
 <ol>
 <li><strong>多视图一致性</strong>：同一个可见表面在不同相机中是否得到相近向量？相机误差、视角变化、重复纹理和光照分别影响多少？训练视角之外的新视角能否保持一致？</li>
@@ -160,15 +163,15 @@
 </ul></section>
       </div>
       
-      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-related_topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/vision-backbones.html">Visual Representations and Backbones</a></li><li><a class="wikilink" href="../../en/topics/3d-gaussian-splatting.html">3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes</a></li></ul></div><div class="related-group related-related_entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/dino-family.html">DINO 家族：自监督视觉表示与预训练骨干</a></li></ul></div><div class="related-group related-candidate_sources"><h3>Candidate sources<span class="related-count">3</span></h3><ul><li><a class="wikilink" href="../../en/sources/2026-09-27-dino.html">Emerging Properties in Self-Supervised Vision Transformers</a></li><li><a class="wikilink" href="../../en/sources/2026-09-27-dinov2.html">DINOv2:Learning Robust Visual Features without Supervision</a></li><li><a class="wikilink" href="../../en/sources/2026-09-27-dinov3.html">DINOv3</a></li></ul></div></div></section>
-      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">7</span></h2><ul><li><a href="../../en/entities/dino-family.html">DINO 家族：自监督视觉表示与预训练骨干</a><span>Entity</span></li><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-09-27-dino.html">Emerging Properties in Self-Supervised Vision Transformers</a><span>Source note</span></li><li><a href="../../en/sources/2026-09-27-dinov2.html">DINOv2:Learning Robust Visual Features without Supervision</a><span>Source note</span></li><li><a href="../../en/sources/2026-09-27-dinov3.html">DINOv3</a><span>Source note</span></li><li><a href="../../en/topics/3d-gaussian-splatting.html">3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes</a><span>Topic</span></li><li><a href="../../en/topics/vision-backbones.html">Visual Representations and Backbones</a><span>Topic</span></li></ul></section>
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-related_topics"><h3>Related topics<span class="related-count">2</span></h3><ul><li><a class="wikilink" href="../../en/topics/vision-backbones.html">Visual Representations and Backbones</a></li><li><a class="wikilink" href="../../en/topics/3d-gaussian-splatting.html">3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes</a></li></ul></div><div class="related-group related-related_entities"><h3>Related entities<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/entities/dino-family.html">DINO 家族：自监督视觉表示与预训练骨干</a></li></ul></div><div class="related-group related-candidate_sources"><h3>Candidate sources<span class="related-count">5</span></h3><ul><li><a class="wikilink" href="../../en/sources/2026-10-24-scenesplat-plus-plus.html">&#x27;SceneSplat++:A Large Dataset and Comprehensive Benchmark for Language</a></li><li><a class="wikilink" href="../../en/sources/2026-10-24-male-gs-pt-ovs.html">Taking Language Embedded 3D Gaussian Splatting into the Wild</a></li><li><a class="wikilink" href="../../en/sources/2026-09-27-dino.html">Emerging Properties in Self-Supervised Vision Transformers</a></li><li><a class="wikilink" href="../../en/sources/2026-09-27-dinov2.html">DINOv2:Learning Robust Visual Features without Supervision</a></li><li><a class="wikilink" href="../../en/sources/2026-09-27-dinov3.html">DINOv3</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">9</span></h2><ul><li><a href="../../en/entities/dino-family.html">DINO 家族：自监督视觉表示与预训练骨干</a><span>Entity</span></li><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/sources/2026-09-27-dino.html">Emerging Properties in Self-Supervised Vision Transformers</a><span>Source note</span></li><li><a href="../../en/sources/2026-09-27-dinov2.html">DINOv2:Learning Robust Visual Features without Supervision</a><span>Source note</span></li><li><a href="../../en/sources/2026-09-27-dinov3.html">DINOv3</a><span>Source note</span></li><li><a href="../../en/sources/2026-10-24-male-gs-pt-ovs.html">Taking Language Embedded 3D Gaussian Splatting into the Wild</a><span>Source note</span></li><li><a href="../../en/sources/2026-10-24-scenesplat-plus-plus.html">&#x27;SceneSplat++:A Large Dataset and Comprehensive Benchmark for Language</a><span>Source note</span></li><li><a href="../../en/topics/3d-gaussian-splatting.html">3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes</a><span>Topic</span></li><li><a href="../../en/topics/vision-backbones.html">Visual Representations and Backbones</a><span>Topic</span></li></ul></section>
       <details class="metadata-box" id="metadata"><summary><span class="summary-label"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>Metadata</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><pre>{
   &quot;id&quot;: &quot;question-dino-features-for-3dgs-semantics&quot;,
   &quot;type&quot;: &quot;question&quot;,
   &quot;title&quot;: &quot;DINO 密集特征如何迁移到三维高斯语义分割？&quot;,
   &quot;status&quot;: &quot;open&quot;,
   &quot;created&quot;: &quot;2026-09-27&quot;,
-  &quot;updated&quot;: &quot;2026-09-27&quot;,
+  &quot;updated&quot;: &quot;2026-10-24&quot;,
   &quot;tags&quot;: [
     &quot;near-cvpr-2025&quot;,
     &quot;survey-needed&quot;,
@@ -186,6 +189,8 @@
     &quot;entities/dino-family&quot;
   ],
   &quot;candidate_sources&quot;: [
+    &quot;sources/2026-10-24-scenesplat-plus-plus&quot;,
+    &quot;sources/2026-10-24-male-gs-pt-ovs&quot;,
     &quot;sources/2026-09-27-dino&quot;,
     &quot;sources/2026-09-27-dinov2&quot;,
     &quot;sources/2026-09-27-dinov3&quot;
