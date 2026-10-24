@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MEGA:Memory-Efficient 4D Gaussian Splatting for Dynamic Scenes">
+  <link rel="canonical" href="https://wiki.garyko.com/en/sources/2026-10-24-mega-dynamic-compression">
+  <link rel="alternate" hreflang="zh-CN" href="https://wiki.garyko.com/sources/2026-10-24-mega-dynamic-compression">
+  <link rel="alternate" hreflang="en" href="https://wiki.garyko.com/en/sources/2026-10-24-mega-dynamic-compression">
+  <link rel="icon" href="../../favicon.ico" sizes="any">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#f7f4ec" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1b1814" media="(prefers-color-scheme: dark)">
+  <meta property="og:site_name" content="llmwiki">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="MEGA:Memory-Efficient 4D Gaussian Splatting for Dynamic Scenes · llmwiki">
+  <meta property="og:description" content="MEGA:Memory-Efficient 4D Gaussian Splatting for Dynamic Scenes">
+  <meta property="og:url" content="https://wiki.garyko.com/en/sources/2026-10-24-mega-dynamic-compression">
+  <meta property="og:image" content="https://wiki.garyko.com/assets/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MEGA:Memory-Efficient 4D Gaussian Splatting for Dynamic Scenes · llmwiki">
+  <meta name="twitter:description" content="MEGA:Memory-Efficient 4D Gaussian Splatting for Dynamic Scenes">
+  <meta name="twitter:image" content="https://wiki.garyko.com/assets/og-card.png">
+  <title>MEGA:Memory-Efficient 4D Gaussian Splatting for Dynamic Scenes · llmwiki</title>
+  <script>try{var r=document.documentElement,t=localStorage.getItem('llmwiki.theme');if(t==='light'||t==='dark')r.dataset.theme=t;if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')r.classList.add('sidebar-collapsed')}catch(e){}</script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260927-theme-switch-v17">
+  <script defer src="../../assets/wiki.js?v=20260927-theme-switch-v17"></script>
+  <noscript><style>.wiki-sidebar{position:static;transform:none;visibility:visible;width:auto;height:auto}.menu-toggle{display:none}</style></noscript>
+</head>
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-10-24-mega-dynamic-compression&quot;, &quot;title&quot;: &quot;MEGA：压缩动态高斯时分开看存储、画质与速度&quot;, &quot;title_en&quot;: &quot;MEGA: Memory-Efficient 4D Gaussian Splatting for Dynamic Scenes&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;3d-vision&quot;, &quot;gaussian-splatting&quot;, &quot;evaluation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260927-theme-switch-v17">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar" aria-label="Menu" title="Menu" data-menu-label="Menu" data-close-label="Close menu"><svg class="ui-icon menu-icon menu-icon--open" data-icon="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="ui-icon menu-icon menu-icon--close" data-icon="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="menu-toggle-label">Menu</span></button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
+    <button class="sidebar-collapse-toggle" type="button" aria-expanded="true" aria-controls="sidebar-panel" aria-label="Collapse sidebar" title="Collapse sidebar" data-collapse-label="Collapse sidebar" data-expand-label="Expand sidebar"><svg class="ui-icon sidebar-icon sidebar-icon--collapse" data-icon="panel-left-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/></svg><svg class="ui-icon sidebar-icon sidebar-icon--expand" data-icon="panel-left-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/></svg></button>
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <div class="sidebar-panel" id="sidebar-panel">
+      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">Search llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results" class="search-results"></div><p id="search-status" class="visually-hidden" role="status" aria-live="polite"></p></form>
+      <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/catalog.html">Full paper catalog</a></li>
+<li><a href="../../en/index.html">Research map</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Reading portal</a></li>
+<li><a href="../../en/tags.html">Tags</a></li>
+</ul>
+<h2>Foundations</h2><ul>
+<li><a href="../../en/topics/computer-vision-overview.html">Computer Vision Overview</a></li>
+<li><a href="../../en/topics/datasets-metrics-and-benchmark-reliability.html">Datasets &amp; Evaluation</a></li>
+<li><a href="../../en/topics/diffusion-models.html">Diffusion Models</a></li>
+<li><a href="../../en/topics/video-representation-and-temporal-modeling.html">Video Representation</a></li>
+<li><a href="../../en/topics/vision-backbones.html">Vision Backbones</a></li>
+<li><a href="../../en/topics/vision-language-foundations.html">Vision-Language Foundations</a></li>
+<li><a href="../../en/topics/vision-task-foundations.html">Core Vision Tasks</a></li>
+<li><a href="../../en/topics/visual-generation-foundations.html">Visual Generation Foundations</a></li>
+</ul>
+<h2>Research topics</h2><ul>
+<li><a href="../../en/topics/3d-gaussian-splatting.html">3D Gaussian Splatting</a></li>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">Diffusion Efficiency</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">Generative Model Evaluation</a></li>
+<li><a href="../../en/topics/image-editing.html">Image Editing</a></li>
+<li><a href="../../en/topics/image-generation.html">Image Generation</a></li>
+<li><a href="../../en/topics/image-text-retrieval.html">Image-Text Retrieval</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">Video Editing</a></li>
+<li><a href="../../en/topics/video-generation.html">Video Generation</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">Vision-Language</a></li>
+</ul>
+<h2>Roadmaps</h2><ul>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/clip.html">CLIP 系列模型（CLIP Family）</a></li>
+<li><a href="../../en/entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a></li>
+<li><a href="../../en/entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a></li>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/dino-family.html">DINO 家族：自监督视觉表示与预训练骨干</a></li>
+<li><a href="../../en/entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-baseline-and-specialization.html">双塔负责可扩展召回，细粒度模块负责精排与关系匹配</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-composed-query.html">组合式查询是图文检索中可落地且仍有缺口的研究切口</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-compositionality.html">标准图文检索分数不足以证明组合性理解</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-data-quality.html">图文检索的主要瓶颈仍包括数据质量、分布与概念覆盖</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-dino-features-for-3dgs-semantics.html">DINO 密集特征如何迁移到三维高斯语义分割？</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-research-cut.html">图文检索哪个子方向最适合中等算力的研究生项目？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a></li>
+<li><a href="../../en/questions/question-motion-defined-text-human-machine-gap.html">Motion-Defined Text Gap</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
+</ul>
+</nav>
+    </div>
+  </aside>
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+  <main class="wiki-page" id="content" tabindex="-1">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="" href="../../sources/2026-10-24-mega-dynamic-compression.html">中文</a><a class="selected-lang" href="../../en/sources/2026-10-24-mega-dynamic-compression.html">English</a></nav><div class="theme-switch" role="group" aria-label="Appearance" hidden><button type="button" data-theme-choice="system" aria-pressed="false" aria-label="Follow system" title="Follow system"><svg class="ui-icon" data-icon="monitor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg></button><button type="button" data-theme-choice="light" aria-pressed="false" aria-label="Light" title="Light"><svg class="ui-icon" data-icon="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></button><button type="button" data-theme-choice="dark" aria-pressed="false" aria-label="Dark" title="Dark"><svg class="ui-icon" data-icon="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button></div><span class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>Article</span></span><a href="../../en/index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>Research map</span></a><a href="../../en/main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>Reading portal</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>Metadata</span></a></header>
+    <article class="article-shell">
+      
+      <header class="article-header" data-motion="reveal">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>MEGA:Memory-Efficient 4D Gaussian Splatting for Dynamic Scenes</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-10-24</p>
+        <h1><span class="title-main">MEGA</span><span class="title-subtitle">Memory-Efficient 4D Gaussian Splatting for Dynamic Scenes</span></h1>
+        
+        <p class="article-actions"><a class="btn btn-primary" href="https://www.openaccess.thecvf.com/content/ICCV2025/html/Zhang_MEGA_Memory-Efficient_4D_Gaussian_Splatting_for_Dynamic_Scenes_ICCV_2025_paper.html" target="_blank" rel="noopener noreferrer">Read the paper<span aria-hidden="true"> ↗</span></a></p>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#3d-vision">#3d-vision</a><a class="tag" href="../../en/tags.html#gaussian-splatting">#gaussian-splatting</a><a class="tag" href="../../en/tags.html#evaluation">#evaluation</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-10-19</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-10-24</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://www.openaccess.thecvf.com/content/ICCV2025/html/Zhang_MEGA_Memory-Efficient_4D_Gaussian_Splatting_for_Dynamic_Scenes_ICCV_2025_paper.html" title="https://www.openaccess.thecvf.com/content/ICCV2025/html/Zhang_MEGA_Memory-Efficient_4D_Gaussian_Splatting_for_Dynamic_Scenes_ICCV_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Zhang_MEGA_Memory-Efficient_4D_…</strong></a><a class="source-link source-link-pdf" href="https://www.openaccess.thecvf.com/content/ICCV2025/papers/Zhang_MEGA_Memory-Efficient_4D_Gaussian_Splatting_for_Dynamic_Scenes_ICCV_2025_paper.pdf" title="https://www.openaccess.thecvf.com/content/ICCV2025/papers/Zhang_MEGA_Memory-Efficient_4D_Gaussian_Splatting_for_Dynamic_Scenes_ICCV_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Zhang_MEGA_Memory-Efficient_4D_…</strong></a><a class="source-link source-link-code" href="https://github.com/Xinjie-Q/MEGA" title="https://github.com/Xinjie-Q/MEGA" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · MEGA</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话主张">一句话主张</a></li><li><a href="#正式身份与读取范围">正式身份与读取范围</a></li><li><a href="#输入-输出与比较对象">输入、输出与比较对象</a></li><li><a href="#方法怎样连起来">方法怎样连起来</a></li><li><a href="#数据和指标先固定">数据和指标先固定</a></li><li><a href="#主结果-小文件不保证更快">主结果：小文件不保证更快</a></li><li><a href="#强反证-逐场结果和模块交互">强反证：逐场结果和模块交互</a></li><li><a href="#实现-成本与版本疑点">实现、成本与版本疑点</a></li><li><a href="#研究判断与下一步">研究判断与下一步</a></li><li><a href="#原始链接与相关页面">原始链接与相关页面</a></li></ol></details></aside>
+        <section class="article-content" lang="zh-CN"><p class="translation-notice" role="note">English translation pending — this page shows the Chinese original.</p><h2 id="一句话主张">一句话主张</h2>
+<p>MEGA把逐高斯的大量颜色系数换成共享颜色网络，并联合形变与不透明度稀疏化，用更少的四维高斯表示多机位动态场景；存储显著下降，但部分场景画质和渲染速度会下降，不能据文件大小推断运行显存或真实运动准确。</p>
+<h2 id="正式身份与读取范围">正式身份与读取范围</h2>
+<p>正式ICCV 2025主会，pp.27828–27838，十位作者与CVF首页、Crossref一致，正式出版日2025-10-19，DOI为10.1109/ICCV51701.2025.02583。不是2024预印本年份，也不是MeGA网格人脸／高斯头发论文。个别学校索引写2026，采用正式会议与Crossref日期。</p>
+<p>本轮完整核读CVF接受稿主文11页（正文8页、参考3页）和官方补充4页；主6／7／8页及补2／3／4页原图核对。未比较IEEE最终文件字节；未下载权重、数据、视频或运行GPU，未逐文件审计代码与许可。主文明确给出官方代码入口，链接存在不等于复现成功。</p>
+<h2 id="输入-输出与比较对象">输入、输出与比较对象</h2>
+<p>输入是同步、多机位、已知相机的动态视频，逐场景优化后按时间与目标相机渲染；不是无位姿、单目即时建图或跨场景前馈。相机中心参与视线计算，原文沿用4DGS初始化及超参；相机标定和初始化点准备未列入完整成本（主pp.4–7）。</p>
+<p>底座是Yang等ICLR 2024的显式四维高斯：位置含时间、两个四元数表示四维旋转，时间切片后再按三维高斯光栅化。它不同于Wu等通过形变驱动三维高斯的方法。主表把一类基线写成Deformable 3DGS并引[44]，参考[44]实际为Wu等的4DGS；不要只凭这个行名合并方法身份（主pp.7、10）。</p>
+<h2 id="方法怎样连起来">方法怎样连起来</h2>
+<ol>
+<li><strong>颜色分工</strong>：每个高斯只存三维的基础颜色DC，共享AC多层感知机（MLP）按位置、方向、时间与DC预测变化，再经sigmoid生成颜色。原底座每高斯161个参数中144个是颜色球谐系数；约八倍是同点数下的属性压缩，不是整个实验的最终压缩率（主pp.2、5，式3）。</li>
+<li><strong>查询相关形变</strong>：另一个共享MLP依据四维中心、目标方向与时间，预测位置／尺度／两旋转的乘性调整，再切片、投影和光栅化。式5写乘法，不擅自改成加性位移。位置和视线输入有stop-gradient，不能解释成无相机或联合求解相机（主pp.4–5，式1–5）。</li>
+<li><strong>稀疏化与运动灵活度一起学</strong>：只增加形变会让高斯继续增多；加入空间不透明度的单边项<code>-o log(o)</code>并周期剪掉低不透明度点，才压缩点数。这个式子不是含<code>-(1-o)log(1-o)</code>的完整伯努利熵，不能替作者改写目标（主pp.5–6，式6–7）。</li>
+<li><strong>最后存储</strong>：论文称优化采用半精度，模型保存FP16后再用“zip delta compression”，后者约再省10%，只这一后处理称无损；整套学习表示与剪枝不是无损压缩。具体编码器、解包时间及加载峰值未给完整可核配方（主p.6）。</li>
+</ol>
+<p>共享网络和神经参数也是资产的一部分。减少球谐系数会增加查询相关的网络计算，点数减少不保证每个场景都更快。</p>
+<h2 id="数据和指标先固定">数据和指标先固定</h2>
+<table><thead><tr><th>数据／单位</th><th>原文设置</th><th>比较边界</th></tr></thead><tbody><tr><td>Technicolor五场</td><td>同步4×4机位，留第二行第二列，2048×1088；每模型50帧</td><td>存储为完整50帧模型，不是每帧文件</td></tr><tr><td>Neural 3D Video六场</td><td>18–21机位，原2704×2028，半分辨率评估300帧</td><td>部分基线分六个50帧模型；不能把单个模型存储对完整300帧</td></tr><tr><td>图质</td><td>PSNR ↑、DSSIM1／2 ↓、LPIPS-Alex ↓</td><td>DSSIM1 data range=1，DSSIM2=2，不能混列</td></tr><tr><td>成本</td><td>FPS ↑、Storage MB ↓、参数量／高斯数 ↓</td><td>无训练峰值显存、全链耗时或真实几何／轨迹真值指标</td></tr></tbody></table>
+<p>主pp.6–7、Tables1–2，补pp.2–3、Tables4–5。Neural 3D Video具体留出机位ID未逐项展开，需在复现时固定。论文明确在单A800重跑四类高斯基线，其余方法多取原论文数字；不是全部方法同预算重跑。没有多随机种子置信区间。</p>
+<h2 id="主结果-小文件不保证更快">主结果：小文件不保证更快</h2>
+<table><thead><tr><th>同篇数据／方法</th><th>PSNR ↑ dB</th><th>DSSIM1 ↓</th><th>DSSIM2 ↓</th><th>LPIPS-Alex ↓</th><th>FPS ↑</th><th>存储 ↓ MB</th></tr></thead><tbody><tr><td>Technicolor／4DGS</td><td>32.07</td><td>0.0535</td><td>0.0263</td><td>0.1189</td><td>55.26</td><td>6107.07</td></tr><tr><td>Technicolor／MEGA</td><td>33.57</td><td>0.0442</td><td>0.0204</td><td>0.1014</td><td>83.14</td><td>32.45</td></tr><tr><td>Technicolor／STG</td><td>33.35</td><td>0.0404</td><td>0.0187</td><td>0.0846</td><td>141.73</td><td>51.35</td></tr><tr><td>Neural 3D Video／4DGS</td><td>31.57</td><td>0.0290</td><td>0.0164</td><td>0.0573</td><td>96.69</td><td>3128.00</td></tr><tr><td>Neural 3D Video／MEGA</td><td>31.49</td><td>0.0290</td><td>0.0165</td><td>0.0568</td><td>77.42</td><td>25.05</td></tr><tr><td>Neural 3D Video／STG</td><td>32.04</td><td>0.0261</td><td>0.0145</td><td>0.0440</td><td>273.47</td><td>175.35</td></tr><tr><td>Neural 3D Video／E-D3DGS</td><td>31.20</td><td>0.0259</td><td>0.0151</td><td>0.0304</td><td>69.70</td><td>40.20</td></tr></tbody></table>
+<p>主p.6 Table1、p.7 Table2；补Tables4–5平均行一致。按表相除，Technicolor存储缩约188.2倍、PSNR加1.50dB、FPS加约50.5%；正文主p.7写PSNR提升1.2dB，与表差不符。Neural 3D Video约124.9倍压缩，但FPS约低19.9%、PSNR略低；不能把“保持相近速度”改写成全数据集加速。</p>
+<p>Technicolor对STG虽PSNR稍高，但DSSIM与LPIPS更差、FPS更低；Neural 3D Video的E-D3DGS感知指标也明显更好。各行比较应同时看画质类型、帧覆盖与存储，不按单一PSNR排总榜。</p>
+<h2 id="强反证-逐场结果和模块交互">强反证：逐场结果和模块交互</h2>
+<table><thead><tr><th>场景／同篇对照</th><th>MEGA</th><th>4DGS</th><th>含义／原表</th></tr></thead><tbody><tr><td>Trains FPS ↑</td><td>28.25</td><td>40.36</td><td>存储更少仍更慢；补p.2 Table4</td></tr><tr><td>Fabien LPIPS ↓</td><td>0.1760</td><td>0.1555</td><td>PSNR提高但感知指标退化；补p.2 Table4</td></tr><tr><td>Flame Steak PSNR ↑</td><td>32.27</td><td>33.19</td><td>压缩有画质代价；补p.3 Table5</td></tr><tr><td>Flame Steak LPIPS ↓</td><td>0.0538</td><td>0.0389</td><td>感知质量也更差；补p.3 Table5</td></tr><tr><td>Flame Salmon PSNR ↑</td><td>28.48</td><td>28.86</td><td>非所有场景改善；补p.3 Table5</td></tr></tbody></table>
+<table><thead><tr><th>Birthday消融</th><th>PSNR ↑</th><th>高斯数 ↓ M</th><th>参数量 ↓ M</th></tr></thead><tbody><tr><td>4DGS</td><td>31.00</td><td>13.00</td><td>2093.56</td></tr><tr><td>仅DC-AC</td><td>31.60</td><td>15.43</td><td>308.65</td></tr><tr><td>DC-AC＋形变</td><td>31.35</td><td>15.75</td><td>315.36</td></tr><tr><td>DC-AC＋不透明度项</td><td>31.46</td><td>9.15</td><td>183.23</td></tr><tr><td>完整联合</td><td>32.02</td><td>0.91</td><td>18.48</td></tr></tbody></table>
+<p>主p.8 Table3。联合机制才把点数降下来，不能把所有压缩归给颜色MLP或单独形变。Flame Steak完整联合PSNR仍低于单DC-AC的33.34，故“联合更好”只对部分目标成立。</p>
+<p>补p.4 Table6把同一不透明度项直接加给4DGS后，Fabien PSNR由33.57降为23.23、高斯从5.43M增为8.41M；加给STG与E-D3DGS也退化。作者推测与各自动作先验冲突，这属于机制解释，非普遍因果证明。大颜色MLP的Fabien PSNR为33.59，低于默认34.89；更大模型不是必然更好。</p>
+<p>补p.4 Table7去掉方向输入，Birthday PSNR由32.02降至27.35，点数由0.91M变1.54M。方向确实有助于这个渲染任务，但几何本身也随目标方向改变；因此高画质不证明同一时刻存在相机无关的真实轨迹或表面。</p>
+<h2 id="实现-成本与版本疑点">实现、成本与版本疑点</h2>
+<p>主p.7设置逐场30k步、batch=1、中点停止增密；时间不透明度≤0.05不参与渲染，形变权重正则1e-6，形变学习率8e-4→1.6e-6，颜色学习率0.01并warm-up100步、随后分段衰减。损失权重λ=0.2、κ=0.0005。没有完整训练墙钟／GPU小时、相机与点云准备成本、解压加载时间或峰值显存。Storage字段是模型资产大小，不是测得的GPU VRAM。</p>
+<p>补p.2 Fig8颜色分支图标输入<code>t, μ4D, dv, cdc</code>与Linear(11,64)，末层却标Linear(64,64)；主式3用μ3D并输出RGB三维。该图的输入／输出标注与正文维度未完全一致，需代码版本核对，本轮不擅自修正。补Table5中E-D3DGS个别场景存储写32.244／32.426MB，保留原数字，不将排印小数异常改成已验证新口径。</p>
+<p>补p.4限制包括运动模糊、颜色不一致、超快运动，以及超出训练视角边界的外推伪影。原文未给真实几何、运动轨迹、时序一致性或移动设备部署验收；不能把大存储压缩直接推广到低显存可部署或物理正确。</p>
+<h2 id="研究判断与下一步">研究判断与下一步</h2>
+<p>适合把它当作“颜色属性、点数与共享网络怎样共同分配预算”的研究入口。先固定Yang显式4DGS底座、相机／帧划分、FP16和压缩格式，再比较等存储、等画质或等FPS的完整曲线；保留Trains速度和Flame Steak画质反例。另测方向无关几何／跨视角一致性、训练与解压峰值，以及超快运动。若共享网络查询或额外预处理吞掉收益，应缩小部署主张。</p>
+<h2 id="原始链接与相关页面">原始链接与相关页面</h2>
+<ul>
+<li><a href="https://www.openaccess.thecvf.com/content/ICCV2025/html/Zhang_MEGA_Memory-Efficient_4D_Gaussian_Splatting_for_Dynamic_Scenes_ICCV_2025_paper.html">CVF正式记录</a></li>
+<li><a href="https://www.openaccess.thecvf.com/content/ICCV2025/papers/Zhang_MEGA_Memory-Efficient_4D_Gaussian_Splatting_for_Dynamic_Scenes_ICCV_2025_paper.pdf">正式主文PDF</a></li>
+<li><a href="https://www.openaccess.thecvf.com/content/ICCV2025/supplemental/Zhang_MEGA_Memory-Efficient_4D_ICCV_2025_supplemental.pdf">官方补充PDF</a></li>
+<li><a href="https://doi.org/10.1109/ICCV51701.2025.02583">出版DOI</a></li>
+<li><a href="https://github.com/Xinjie-Q/MEGA">论文注明的官方实现</a>：本轮未逐文件核验代码或许可。</li>
+<li><a class="wikilink" href="../../en/topics/3d-gaussian-splatting.html">3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes</a>：存储、速度、画质和输入权限分账。</li>
+<li><a class="wikilink" href="../../en/sources/2026-10-05-7dgs.html">7DGS</a>：同属联合时空方向渲染，但先固定底座和精修条件。</li>
+<li><a class="wikilink" href="../../en/sources/2026-10-19-mega-head-avatar.html">MeGA头部头像</a>：同名不同论文，不合并证据或代码。</li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/topics/3d-gaussian-splatting.html">3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">3</span></h2><ul><li><a href="../../en/docs/research-protocols/3d-gaussian-splatting.html">三维高斯泼溅：用户百篇定向证据协议</a><span>Review protocol</span></li><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/topics/3d-gaussian-splatting.html">3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary><span class="summary-label"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>Metadata</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><pre>{
+  &quot;id&quot;: &quot;2026-10-24-mega-dynamic-compression&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;MEGA：压缩动态高斯时分开看存储、画质与速度&quot;,
+  &quot;title_en&quot;: &quot;MEGA: Memory-Efficient 4D Gaussian Splatting for Dynamic Scenes&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-10-24&quot;,
+  &quot;updated&quot;: &quot;2026-10-24&quot;,
+  &quot;venue&quot;: &quot;ICCV 2025&quot;,
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Xinjie Zhang&quot;,
+    &quot;Zhening Liu&quot;,
+    &quot;Yifan Zhang&quot;,
+    &quot;Xingtong Ge&quot;,
+    &quot;Dailan He&quot;,
+    &quot;Tongda Xu&quot;,
+    &quot;Yan Wang&quot;,
+    &quot;Zehong Lin&quot;,
+    &quot;Shuicheng Yan&quot;,
+    &quot;Jun Zhang&quot;
+  ],
+  &quot;published_at&quot;: &quot;2025-10-19&quot;,
+  &quot;ingested_at&quot;: &quot;2026-10-24&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://www.openaccess.thecvf.com/content/ICCV2025/html/Zhang_MEGA_Memory-Efficient_4D_Gaussian_Splatting_for_Dynamic_Scenes_ICCV_2025_paper.html&quot;,
+    &quot;https://www.openaccess.thecvf.com/content/ICCV2025/papers/Zhang_MEGA_Memory-Efficient_4D_Gaussian_Splatting_for_Dynamic_Scenes_ICCV_2025_paper.pdf&quot;,
+    &quot;https://www.openaccess.thecvf.com/content/ICCV2025/supplemental/Zhang_MEGA_Memory-Efficient_4D_ICCV_2025_supplemental.pdf&quot;,
+    &quot;https://doi.org/10.1109/iccv51701.2025.02583&quot;,
+    &quot;https://github.com/Xinjie-Q/MEGA&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-10-24-mega-dynamic-compression/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/3d-gaussian-splatting&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: [],
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;3d-vision&quot;,
+    &quot;gaussian-splatting&quot;,
+    &quot;evaluation&quot;,
+    &quot;primary-source&quot;
+  ]
+}</pre></details>
+    </article>
+  </main>
+</body>
+</html>
