@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="&#x27;SceneSplat++:A Large Dataset and Comprehensive Benchmark for Language">
+  <meta name="description" content="SceneSplat++:A Large Dataset and Comprehensive Benchmark for Language Gaussian Splatting">
   <link rel="canonical" href="https://wiki.garyko.com/en/sources/2026-10-24-scenesplat-plus-plus">
   <link rel="alternate" hreflang="zh-CN" href="https://wiki.garyko.com/sources/2026-10-24-scenesplat-plus-plus">
   <link rel="alternate" hreflang="en" href="https://wiki.garyko.com/en/sources/2026-10-24-scenesplat-plus-plus">
@@ -15,23 +15,23 @@
   <meta property="og:site_name" content="llmwiki">
   <meta property="og:type" content="article">
   <meta property="og:locale" content="en_US">
-  <meta property="og:title" content="&#x27;SceneSplat++:A Large Dataset and Comprehensive Benchmark for Language · llmwiki">
-  <meta property="og:description" content="&#x27;SceneSplat++:A Large Dataset and Comprehensive Benchmark for Language">
+  <meta property="og:title" content="SceneSplat++:A Large Dataset and Comprehensive Benchmark for Language Gaussian Splatting · llmwiki">
+  <meta property="og:description" content="SceneSplat++:A Large Dataset and Comprehensive Benchmark for Language Gaussian Splatting">
   <meta property="og:url" content="https://wiki.garyko.com/en/sources/2026-10-24-scenesplat-plus-plus">
   <meta property="og:image" content="https://wiki.garyko.com/assets/og-card.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="&#x27;SceneSplat++:A Large Dataset and Comprehensive Benchmark for Language · llmwiki">
-  <meta name="twitter:description" content="&#x27;SceneSplat++:A Large Dataset and Comprehensive Benchmark for Language">
+  <meta name="twitter:title" content="SceneSplat++:A Large Dataset and Comprehensive Benchmark for Language Gaussian Splatting · llmwiki">
+  <meta name="twitter:description" content="SceneSplat++:A Large Dataset and Comprehensive Benchmark for Language Gaussian Splatting">
   <meta name="twitter:image" content="https://wiki.garyko.com/assets/og-card.png">
-  <title>&#x27;SceneSplat++:A Large Dataset and Comprehensive Benchmark for Language · llmwiki</title>
+  <title>SceneSplat++:A Large Dataset and Comprehensive Benchmark for Language Gaussian Splatting · llmwiki</title>
   <script>try{var r=document.documentElement,t=localStorage.getItem('llmwiki.theme');if(t==='light'||t==='dark')r.dataset.theme=t;if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')r.classList.add('sidebar-collapsed')}catch(e){}</script>
   <link rel="stylesheet" href="../../assets/wiki.css?v=20260927-theme-switch-v17">
   <script defer src="../../assets/wiki.js?v=20260927-theme-switch-v17"></script>
   <noscript><style>.wiki-sidebar{position:static;transform:none;visibility:visible;width:auto;height:auto}.menu-toggle{display:none}</style></noscript>
 </head>
-<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-10-24-scenesplat-plus-plus&quot;, &quot;title&quot;: &quot;SceneSplat++：直接三维语言评测与高斯场景数据&quot;, &quot;title_en&quot;: &quot;&#x27;SceneSplat++: A Large Dataset and Comprehensive Benchmark for Language&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;3d-vision&quot;, &quot;gaussian-splatting&quot;, &quot;vision-language&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260927-theme-switch-v17">
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-10-24-scenesplat-plus-plus&quot;, &quot;title&quot;: &quot;SceneSplat++：直接三维语言评测与高斯场景数据&quot;, &quot;title_en&quot;: &quot;SceneSplat++: A Large Dataset and Comprehensive Benchmark for Language Gaussian Splatting&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;3d-vision&quot;, &quot;gaussian-splatting&quot;, &quot;vision-language&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260927-theme-switch-v17">
   <a class="skip-link" href="#content">Skip to content</a>
   <header class="mobile-topbar">
     <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
@@ -119,9 +119,9 @@
     <article class="article-shell">
       
       <header class="article-header" data-motion="reveal">
-        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>&#x27;SceneSplat++:A Large Dataset and Comprehensive Benchmark for Language</strong></nav>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>SceneSplat++:A Large Dataset and Comprehensive Benchmark for Language Gaussian Splatting</strong></nav>
         <p class="eyebrow">Source note · Updated 2026-10-24</p>
-        <h1><span class="title-main">&#x27;SceneSplat++</span><span class="title-subtitle">A Large Dataset and Comprehensive Benchmark for Language</span></h1>
+        <h1><span class="title-main">SceneSplat++</span><span class="title-subtitle">A Large Dataset and Comprehensive Benchmark for Language Gaussian Splatting</span></h1>
         
         <p class="article-actions"><a class="btn btn-primary" href="https://papers.neurips.cc/paper_files/paper/2025/hash/6b9628a5da76f5f1d6ec025f4b493686-Abstract-Datasets_and_Benchmarks_Track.html" target="_blank" rel="noopener noreferrer">Read the paper<span aria-hidden="true"> ↗</span></a></p>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#3d-vision">#3d-vision</a><a class="tag" href="../../en/tags.html#gaussian-splatting">#gaussian-splatting</a><a class="tag" href="../../en/tags.html#vision-language">#vision-language</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
@@ -173,7 +173,7 @@
   &quot;id&quot;: &quot;2026-10-24-scenesplat-plus-plus&quot;,
   &quot;type&quot;: &quot;source&quot;,
   &quot;title&quot;: &quot;SceneSplat++：直接三维语言评测与高斯场景数据&quot;,
-  &quot;title_en&quot;: &quot;&#x27;SceneSplat++: A Large Dataset and Comprehensive Benchmark for Language&quot;,
+  &quot;title_en&quot;: &quot;SceneSplat++: A Large Dataset and Comprehensive Benchmark for Language Gaussian Splatting&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-10-24&quot;,
