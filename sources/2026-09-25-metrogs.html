@@ -63,6 +63,7 @@
 <h2>研究专题</h2><ul>
 <li><a href="../topics/3d-gaussian-splatting.html"><span class="nav-title-primary">三维高斯泼溅</span><span class="nav-title-translation" lang="en">（3D Gaussian Splatting）</span></a></li>
 <li><a href="../topics/diffusion-efficiency-engineering.html"><span class="nav-title-primary">扩散效率工程</span><span class="nav-title-translation" lang="en">（Diffusion Efficiency）</span></a></li>
+<li><a href="../topics/gaussian-image-representation.html"><span class="nav-title-primary">二维图像高斯表征</span><span class="nav-title-translation" lang="en">（Gaussian Image Representations）</span></a></li>
 <li><a href="../topics/generative-model-evaluation.html"><span class="nav-title-primary">生成模型评测</span><span class="nav-title-translation" lang="en">（Generative Model Evaluation）</span></a></li>
 <li><a href="../topics/image-editing.html"><span class="nav-title-primary">图像编辑</span><span class="nav-title-translation" lang="en">（Image Editing）</span></a></li>
 <li><a href="../topics/image-generation.html"><span class="nav-title-primary">图像生成</span><span class="nav-title-translation" lang="en">（Image Generation）</span></a></li>
@@ -102,6 +103,7 @@
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-dino-features-for-3dgs-semantics.html">DINO 密集特征如何迁移到三维高斯语义分割？</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-gaussian-image-representation-research-cut.html">二维图像高斯表征应优先解决哪种信息与成本瓶颈？</a></li>
 <li><a href="../questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a></li>
 <li><a href="../questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a></li>
 <li><a href="../questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a></li>
@@ -133,11 +135,11 @@
 <h2 id="机制与数据">机制与数据</h2>
 <p>输入城市已知相机图像、SfM点/匹配及预训练pointmap/单目深度；高斯按设备重分配，弱纹理大覆盖区域定向分裂，后期多尺度PatchMatch深度按重投影过滤并以局部拟合的单目深度回填；Tri-Mip 3D空间特征与每图appearance embedding改善光照差异（主文pp.3–6 Fig.2/Eqs.3–13）。通过中位深度加TSDF导出网格；GauU-Scene、MatrixCity的像素和TSDF voxel/截断按场景变化（主文p.7及补充p.1）。CVF正式CVPR2026主文11页、补充4页，页码按PDF；正式页pp.395–405。</p>
 <h2 id="结果-消融与成本">结果、消融与成本</h2>
-<p>GauU-Scene Russian Building PSNR24.94/F1.585 vs CityGSV2 24.12/.544；Residence24.51/.494 vs23.57/.467；Modern Building27.07/.524 vs25.84/.492（主文p.6 Table1）。Russian Building p.8 Table3从Base .523/134min 到Base+Para .532/68min再到Full .585/106min；去几何F1 .564、去外观.562、去pointmap初始化.577，故完整模型106min不能称68min。补充p.1 Table1在同4卡配置本法106min vs CityGSV2 363min；MatrixCity街景CityGS-X OOM，内存预算影响比较（主文p.6 Table2）。补充p.3 §D指出显存瓶颈和2DGS渲染上限；SfM、pointmap、TSDF的完整链耗时/峰显存未统一报，许可待核。<code>published_at</code>用2026-06-01作为CVPR出版月份占位，CVF页面未标日级日期。本轮未复现GPU，逐页审计<code>raw/ingest/2026-09-25-metrogs/analysis.md</code>。与<a class="wikilink" href="../sources/2026-09-25-come.html">CoMe</a>的单卡无界网格优化和<a class="wikilink" href="../sources/2026-09-25-2d-gaussian-splatting.html">2DGS</a>的物体尺度基线分账；总览<a class="wikilink" href="../topics/3d-gaussian-splatting.html">三维高斯泼溅：表示、优化、几何与动态任务</a>。</p></section>
+<p>GauU-Scene Russian Building PSNR24.94/F1.585 vs CityGSV2 24.12/.544；Residence24.51/.494 vs23.57/.467；Modern Building27.07/.524 vs25.84/.492（主文p.6 Table1）。Russian Building p.8 Table3从Base .523/134min 到Base+Para .532/68min再到Full .585/106min；去几何F1 .564、去外观.562、去pointmap初始化.577，故完整模型106min不能称68min。补充p.1 Table1在同4卡配置本法106min vs CityGSV2 363min；MatrixCity街景CityGS-X OOM，内存预算影响比较（主文p.6 Table2）。补充p.3 §D指出显存瓶颈和2DGS渲染上限；SfM、pointmap、TSDF的完整链耗时/峰显存未统一报，许可待核。<code>published_at</code>用2026-06-01作为CVPR出版月份占位，CVF页面未标日级日期。本轮未复现GPU，逐页审计<code>raw/ingest/2026-09-25-metrogs/analysis.md</code>。与<a class="wikilink" href="../sources/2026-09-25-come.html">CoMe</a>的单卡无界网格优化和<a class="wikilink" href="../sources/2026-09-25-2d-gaussian-splatting.html">2DGS</a>的物体尺度基线分账；总览<a class="wikilink" href="../topics/3d-gaussian-splatting.html">高斯科研地图：表征、语义、建图与二维图像</a>。</p></section>
       </div>
       
       
-      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">4</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-09-25-aerodgs.html">AeroDGS：单目航拍动态高斯的地面与轨迹约束</a><span>来源笔记</span></li><li><a href="../sources/2026-09-25-come.html">CoMe：用置信度和方差约束从高斯提取网格</a><span>来源笔记</span></li><li><a href="../topics/3d-gaussian-splatting.html">三维高斯泼溅：表示、优化、几何与动态任务</a><span>主题</span></li></ul></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">4</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-09-25-aerodgs.html">AeroDGS：单目航拍动态高斯的地面与轨迹约束</a><span>来源笔记</span></li><li><a href="../sources/2026-09-25-come.html">CoMe：用置信度和方差约束从高斯提取网格</a><span>来源笔记</span></li><li><a href="../topics/3d-gaussian-splatting.html">高斯科研地图：表征、语义、建图与二维图像</a><span>主题</span></li></ul></section>
       <details class="metadata-box" id="metadata"><summary><span class="summary-label"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><pre>{
   &quot;id&quot;: &quot;2026-09-25-metrogs&quot;,
   &quot;type&quot;: &quot;source&quot;,

@@ -63,6 +63,7 @@
 <h2>研究专题</h2><ul>
 <li><a href="topics/3d-gaussian-splatting.html"><span class="nav-title-primary">三维高斯泼溅</span><span class="nav-title-translation" lang="en">（3D Gaussian Splatting）</span></a></li>
 <li><a href="topics/diffusion-efficiency-engineering.html"><span class="nav-title-primary">扩散效率工程</span><span class="nav-title-translation" lang="en">（Diffusion Efficiency）</span></a></li>
+<li><a href="topics/gaussian-image-representation.html"><span class="nav-title-primary">二维图像高斯表征</span><span class="nav-title-translation" lang="en">（Gaussian Image Representations）</span></a></li>
 <li><a href="topics/generative-model-evaluation.html"><span class="nav-title-primary">生成模型评测</span><span class="nav-title-translation" lang="en">（Generative Model Evaluation）</span></a></li>
 <li><a href="topics/image-editing.html"><span class="nav-title-primary">图像编辑</span><span class="nav-title-translation" lang="en">（Image Editing）</span></a></li>
 <li><a href="topics/image-generation.html"><span class="nav-title-primary">图像生成</span><span class="nav-title-translation" lang="en">（Image Generation）</span></a></li>
@@ -102,6 +103,7 @@
 <li><a href="questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="questions/question-dino-features-for-3dgs-semantics.html">DINO 密集特征如何迁移到三维高斯语义分割？</a></li>
 <li><a href="questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="questions/question-gaussian-image-representation-research-cut.html">二维图像高斯表征应优先解决哪种信息与成本瓶颈？</a></li>
 <li><a href="questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a></li>
 <li><a href="questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a></li>
 <li><a href="questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a></li>
@@ -128,7 +130,7 @@
       </header>
       <div class="article-layout">
         
-        <section class="article-content"><nav class="tag-index" aria-label="标签"><a class="tag" href="#3d-vision">#3d-vision <span class="tag-count">66</span></a><a class="tag" href="#autoregressive">#autoregressive <span class="tag-count">3</span></a><a class="tag" href="#benchmark">#benchmark <span class="tag-count">1</span></a><a class="tag" href="#benchmarking">#benchmarking <span class="tag-count">76</span></a><a class="tag" href="#classification">#classification <span class="tag-count">1</span></a><a class="tag" href="#conditioning">#conditioning <span class="tag-count">30</span></a><a class="tag" href="#control">#control <span class="tag-count">25</span></a><a class="tag" href="#dataset">#dataset <span class="tag-count">1</span></a><a class="tag" href="#diffusion">#diffusion <span class="tag-count">101</span></a><a class="tag" href="#editing">#editing <span class="tag-count">8</span></a><a class="tag" href="#efficiency">#efficiency <span class="tag-count">43</span></a><a class="tag" href="#evaluation">#evaluation <span class="tag-count">66</span></a><a class="tag" href="#gaussian-splatting">#gaussian-splatting <span class="tag-count">68</span></a><a class="tag" href="#image-editing">#image-editing <span class="tag-count">35</span></a><a class="tag" href="#image-generation">#image-generation <span class="tag-count">83</span></a><a class="tag" href="#method">#method <span class="tag-count">3</span></a><a class="tag" href="#model">#model <span class="tag-count">1</span></a><a class="tag" href="#multimodal">#multimodal <span class="tag-count">40</span></a><a class="tag" href="#near-cvpr-2025">#near-cvpr-2025 <span class="tag-count">399</span></a><a class="tag" href="#needs-verification">#needs-verification <span class="tag-count">3</span></a><a class="tag" href="#neural-rendering">#neural-rendering <span class="tag-count">12</span></a><a class="tag" href="#object-detection">#object-detection <span class="tag-count">3</span></a><a class="tag" href="#open-claim">#open-claim <span class="tag-count">8</span></a><a class="tag" href="#primary-source">#primary-source <span class="tag-count">333</span></a><a class="tag" href="#reasoning">#reasoning <span class="tag-count">23</span></a><a class="tag" href="#representation-learning">#representation-learning <span class="tag-count">70</span></a><a class="tag" href="#secondary-source">#secondary-source <span class="tag-count">16</span></a><a class="tag" href="#segmentation">#segmentation <span class="tag-count">7</span></a><a class="tag" href="#survey-needed">#survey-needed <span class="tag-count">11</span></a><a class="tag" href="#tracking">#tracking <span class="tag-count">28</span></a><a class="tag" href="#video-editing">#video-editing <span class="tag-count">34</span></a><a class="tag" href="#video-generation">#video-generation <span class="tag-count">24</span></a><a class="tag" href="#video-representation">#video-representation <span class="tag-count">3</span></a><a class="tag" href="#video-understanding">#video-understanding <span class="tag-count">82</span></a><a class="tag" href="#vision">#vision <span class="tag-count">4</span></a><a class="tag" href="#vision-foundations">#vision-foundations <span class="tag-count">9</span></a><a class="tag" href="#vision-language">#vision-language <span class="tag-count">73</span></a></nav>
+        <section class="article-content"><nav class="tag-index" aria-label="标签"><a class="tag" href="#3d-vision">#3d-vision <span class="tag-count">66</span></a><a class="tag" href="#autoregressive">#autoregressive <span class="tag-count">3</span></a><a class="tag" href="#benchmark">#benchmark <span class="tag-count">1</span></a><a class="tag" href="#benchmarking">#benchmarking <span class="tag-count">76</span></a><a class="tag" href="#classification">#classification <span class="tag-count">1</span></a><a class="tag" href="#conditioning">#conditioning <span class="tag-count">30</span></a><a class="tag" href="#control">#control <span class="tag-count">25</span></a><a class="tag" href="#dataset">#dataset <span class="tag-count">1</span></a><a class="tag" href="#diffusion">#diffusion <span class="tag-count">101</span></a><a class="tag" href="#editing">#editing <span class="tag-count">8</span></a><a class="tag" href="#efficiency">#efficiency <span class="tag-count">43</span></a><a class="tag" href="#evaluation">#evaluation <span class="tag-count">66</span></a><a class="tag" href="#gaussian-splatting">#gaussian-splatting <span class="tag-count">78</span></a><a class="tag" href="#image-editing">#image-editing <span class="tag-count">35</span></a><a class="tag" href="#image-generation">#image-generation <span class="tag-count">83</span></a><a class="tag" href="#method">#method <span class="tag-count">3</span></a><a class="tag" href="#model">#model <span class="tag-count">1</span></a><a class="tag" href="#multimodal">#multimodal <span class="tag-count">40</span></a><a class="tag" href="#near-cvpr-2025">#near-cvpr-2025 <span class="tag-count">409</span></a><a class="tag" href="#needs-verification">#needs-verification <span class="tag-count">3</span></a><a class="tag" href="#neural-rendering">#neural-rendering <span class="tag-count">12</span></a><a class="tag" href="#object-detection">#object-detection <span class="tag-count">3</span></a><a class="tag" href="#open-claim">#open-claim <span class="tag-count">8</span></a><a class="tag" href="#primary-source">#primary-source <span class="tag-count">341</span></a><a class="tag" href="#reasoning">#reasoning <span class="tag-count">23</span></a><a class="tag" href="#representation-learning">#representation-learning <span class="tag-count">79</span></a><a class="tag" href="#secondary-source">#secondary-source <span class="tag-count">16</span></a><a class="tag" href="#segmentation">#segmentation <span class="tag-count">7</span></a><a class="tag" href="#survey-needed">#survey-needed <span class="tag-count">12</span></a><a class="tag" href="#tracking">#tracking <span class="tag-count">28</span></a><a class="tag" href="#video-editing">#video-editing <span class="tag-count">34</span></a><a class="tag" href="#video-generation">#video-generation <span class="tag-count">24</span></a><a class="tag" href="#video-representation">#video-representation <span class="tag-count">3</span></a><a class="tag" href="#video-understanding">#video-understanding <span class="tag-count">82</span></a><a class="tag" href="#vision">#vision <span class="tag-count">4</span></a><a class="tag" href="#vision-foundations">#vision-foundations <span class="tag-count">9</span></a><a class="tag" href="#vision-language">#vision-language <span class="tag-count">73</span></a></nav>
 <section class="tag-section" id="3d-vision"><h2>#3d-vision<span class="related-count">66</span></h2><ul>
 <li><a href="sources/2026-09-25-2d-gaussian-splatting.html">2D Gaussian Splatting：用三维中的二维高斯圆盘重建表面</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-3d-gaussian-splatting.html">3D Gaussian Splatting：从稀疏点到实时新视角渲染</a><span>来源笔记</span></li>
@@ -195,7 +197,7 @@
 <li><a href="sources/2026-09-25-ilrm.html">iLRM：多视紧凑视角token反复吸收高分辨率图像</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-pixelsplat.html">pixelSplat：从已标定图像对前馈预测三维高斯</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-tttlrm.html">tttLRM：快权重记忆驱动长序列高斯重建</a><span>来源笔记</span></li>
-<li><a href="topics/3d-gaussian-splatting.html">三维高斯泼溅：表示、优化、几何与动态任务</a><span>主题</span></li>
+<li><a href="topics/3d-gaussian-splatting.html">高斯科研地图：表征、语义、建图与二维图像</a><span>主题</span></li>
 </ul></section>
 <section class="tag-section" id="autoregressive"><h2>#autoregressive<span class="related-count">3</span></h2><ul>
 <li><a href="sources/2026-04-14-maskint.html">MaskINT：关键帧扩散编辑与非自回归结构插帧的视频编辑</a><span>来源笔记</span></li>
@@ -574,7 +576,7 @@
 <li><a href="entities/video-editing-understanding.html">视频编辑理解</a><span>实体</span></li>
 <li><a href="sources/2026-04-14-neuro-symbolic-eval-t2v.html">通过形式化验证评测文本到视频模型的神经符号方法</a><span>来源笔记</span></li>
 </ul></section>
-<section class="tag-section" id="gaussian-splatting"><h2>#gaussian-splatting<span class="related-count">68</span></h2><ul>
+<section class="tag-section" id="gaussian-splatting"><h2>#gaussian-splatting<span class="related-count">78</span></h2><ul>
 <li><a href="sources/2026-09-25-2d-gaussian-splatting.html">2D Gaussian Splatting：用三维中的二维高斯圆盘重建表面</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-3d-gaussian-splatting.html">3D Gaussian Splatting：从稀疏点到实时新视角渲染</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-3dgs-as-mcmc.html">3DGS as MCMC：用高斯重定位改写密度控制</a><span>来源笔记</span></li>
@@ -589,6 +591,7 @@
 <li><a href="sources/2026-09-25-changes-in-real-time.html">Changes in Real Time：在线多视场景变化检测与高斯更新</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-come.html">CoMe：用置信度和方差约束从高斯提取网格</a><span>来源笔记</span></li>
 <li><a href="sources/2026-10-27-comogaussian.html">CoMoGaussian：曝光轨迹改善去模糊，真实运动仍须另验</a><span>来源笔记</span></li>
+<li><a href="sources/2026-10-27-continuous-sr.html">ContinuousSR：一次高斯场构建支持多倍率图像超分</a><span>来源笔记</span></li>
 <li><a href="questions/question-dino-features-for-3dgs-semantics.html">DINO 密集特征如何迁移到三维高斯语义分割？</a><span>问题</span></li>
 <li><a href="sources/2026-10-18-dof-gs.html">DOF-GS：从失焦照片重建可调景深的高斯场景</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-depthsplat.html">DepthSplat：单目先验与多视匹配互促深度及高斯重建</a><span>来源笔记</span></li>
@@ -601,10 +604,16 @@
 <li><a href="sources/2026-09-25-gains.html">GAINS：稀疏视图的几何—材质—光照逆渲染</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-gpert.html">GPERT：事件相机的逐事件几何与单快照光度高斯追踪</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-gaussiandwm.html">GaussianDWM：驾驶语言高斯连接理解与生成</a><span>来源笔记</span></li>
+<li><a href="sources/2026-10-27-gaussianimage-plus-plus.html">GaussianImage++：用图元分配、滤波和量化改进图像表示</a><span>来源笔记</span></li>
+<li><a href="sources/2026-10-27-gaussianimage.html">GaussianImage：用精简的二维高斯表示和压缩图像</a><span>来源笔记</span></li>
+<li><a href="sources/2026-10-27-gaussianvision.html">GaussianVision：直接从二维高斯学习视觉语言对齐</a><span>来源笔记</span></li>
 <li><a href="sources/2026-10-02-generative-gaussian-splatting.html">Generative Gaussian Splatting：视频先验与三维一致性的取舍</a><span>来源笔记</span></li>
 <li><a href="sources/2026-10-08-generative-sparse-view-gaussian-splatting.html">Generative Sparse-View Gaussian Splatting：生成先验辅助少视角重建</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-globalsplat.html">GlobalSplat：全局场景token预测紧凑高斯</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-hypergaussians.html">HyperGaussians：高维条件高斯驱动的面部头像</a><span>来源笔记</span></li>
+<li><a href="sources/2026-10-27-image-gs.html">Image-GS：内容自适应图元分配与快速随机访问</a><span>来源笔记</span></li>
+<li><a href="sources/2026-10-27-instant-gaussianimage.html">Instant GaussianImage：用可泛化初始化缩短逐图拟合</a><span>来源笔记</span></li>
+<li><a href="sources/2026-10-27-lig.html">LIG：用分层二维高斯拟合高分辨率图像</a><span>来源笔记</span></li>
 <li><a href="sources/2026-10-18-lod-gs.html">LOD-GS：用三角形组织可缩减的高斯场景</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-langsplat.html">LangSplat：高斯语言特征与三级语义查询</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-let-it-snow.html">Let it Snow!：物理引导的动态天气高斯编辑</a><span>来源笔记</span></li>
@@ -624,6 +633,7 @@
 <li><a href="sources/2026-09-25-physgaussian.html">PhysGaussian：让高斯同时参与仿真与渲染</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-rap.html">RAP：高斯属性驱动的跨场景图元重要性估计</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-realm.html">REALM：多视大模型推理定位与高斯实例编辑</a><span>来源笔记</span></li>
+<li><a href="sources/2026-10-27-sgi.html">SGI：用种子结构和熵编码压缩大图高斯</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-spfsplat.html">SPFSplat：训练与推理均不输入真值外参的稀疏高斯重建</a><span>来源笔记</span></li>
 <li><a href="sources/2026-10-24-scenesplat-plus-plus.html">SceneSplat++：直接三维语言评测与高斯场景数据</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-speede3dgs.html">SpeeDe3DGS：动态高斯时间剪枝与运动分组</a><span>来源笔记</span></li>
@@ -642,7 +652,9 @@
 <li><a href="sources/2026-09-25-ilrm.html">iLRM：多视紧凑视角token反复吸收高分辨率图像</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-pixelsplat.html">pixelSplat：从已标定图像对前馈预测三维高斯</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-tttlrm.html">tttLRM：快权重记忆驱动长序列高斯重建</a><span>来源笔记</span></li>
-<li><a href="topics/3d-gaussian-splatting.html">三维高斯泼溅：表示、优化、几何与动态任务</a><span>主题</span></li>
+<li><a href="questions/question-gaussian-image-representation-research-cut.html">二维图像高斯表征应优先解决哪种信息与成本瓶颈？</a><span>问题</span></li>
+<li><a href="topics/gaussian-image-representation.html">二维图像高斯表征：从参数精简到压缩与视觉任务</a><span>主题</span></li>
+<li><a href="topics/3d-gaussian-splatting.html">高斯科研地图：表征、语义、建图与二维图像</a><span>主题</span></li>
 </ul></section>
 <section class="tag-section" id="image-editing"><h2>#image-editing<span class="related-count">35</span></h2><ul>
 <li><a href="sources/2026-04-14-effective-real-image-editing.html">AIDI：以加速定点迭代改进真实图像扩散反演</a><span>来源笔记</span></li>
@@ -816,7 +828,7 @@
 <li><a href="topics/vision-language.html">视觉语言</a><span>主题</span></li>
 <li><a href="questions/question-motion-defined-text-human-machine-gap.html">运动定义文字的人机感知差距能否成为可靠研究基准</a><span>问题</span></li>
 </ul></section>
-<section class="tag-section" id="near-cvpr-2025"><h2>#near-cvpr-2025<span class="related-count">399</span></h2><ul>
+<section class="tag-section" id="near-cvpr-2025"><h2>#near-cvpr-2025<span class="related-count">409</span></h2><ul>
 <li><a href="sources/2026-09-25-2d-gaussian-splatting.html">2D Gaussian Splatting：用三维中的二维高斯圆盘重建表面</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-3d-gaussian-splatting.html">3D Gaussian Splatting：从稀疏点到实时新视角渲染</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-3dgs-as-mcmc.html">3DGS as MCMC：用高斯重定位改写密度控制</a><span>来源笔记</span></li>
@@ -888,6 +900,7 @@
 <li><a href="sources/2026-04-14-concon-chi.html">ConCon-Chi：个性化视觉语言的新含义与组合性基准</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-concept-weaver.html">Concept Weaver：模板引导的多概念个性化融合</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-condition-aware-neural-network.html">Condition-Aware Neural Network：以动态权重控制扩散 Transformer</a><span>来源笔记</span></li>
+<li><a href="sources/2026-10-27-continuous-sr.html">ContinuousSR：一次高斯场构建支持多倍率图像超分</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-contrastive-denoising-score.html">Contrastive Denoising Score：用自注意力对比正则保持编辑结构</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-cosmicman.html">CosmicMan：面向人物的文本到图像基础模型</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-multi-concept-customization.html">Custom Diffusion：高效单概念学习与多概念组合</a><span>来源笔记</span></li>
@@ -958,6 +971,9 @@
 <li><a href="sources/2026-04-14-gligen.html">GLIGEN：以冻结基础模型和门控适配器实现开放集合 grounded 生成</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-gpert.html">GPERT：事件相机的逐事件几何与单快照光度高斯追踪</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-gaussiandwm.html">GaussianDWM：驾驶语言高斯连接理解与生成</a><span>来源笔记</span></li>
+<li><a href="sources/2026-10-27-gaussianimage-plus-plus.html">GaussianImage++：用图元分配、滤波和量化改进图像表示</a><span>来源笔记</span></li>
+<li><a href="sources/2026-10-27-gaussianimage.html">GaussianImage：用精简的二维高斯表示和压缩图像</a><span>来源笔记</span></li>
+<li><a href="sources/2026-10-27-gaussianvision.html">GaussianVision：直接从二维高斯学习视觉语言对齐</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-gan.html">Generative Adversarial Nets：生成对抗网络</a><span>来源笔记</span></li>
 <li><a href="sources/2026-10-02-generative-gaussian-splatting.html">Generative Gaussian Splatting：视频先验与三维一致性的取舍</a><span>来源笔记</span></li>
 <li><a href="sources/2026-10-08-generative-sparse-view-gaussian-splatting.html">Generative Sparse-View Gaussian Splatting：生成先验辅助少视角重建</a><span>来源笔记</span></li>
@@ -973,6 +989,7 @@
 <li><a href="sources/2026-05-05-human-in-loop-team-sports-retrieval.html">Human-in-the-loop Adaptation：团队运动示例检索的人机适配</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-hypergaussians.html">HyperGaussians：高维条件高斯驱动的面部头像</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-15-ivebench.html">IVEBench：指令式视频编辑的多轴评测与复现边界</a><span>来源笔记</span></li>
+<li><a href="sources/2026-10-27-image-gs.html">Image-GS：内容自适应图元分配与快速随机访问</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-image-specific-prompt-learning.html">Image-specific Prompt Learning：零目标图像的生成器域适配</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-alexnet.html">ImageNet Classification with Deep Convolutional Neural Networks：AlexNet 与深度视觉转折</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-imagen-editor-editbench.html">Imagen Editor 与 EditBench：推进并评测文本引导图像修补</a><span>来源笔记</span></li>
@@ -980,11 +997,13 @@
 <li><a href="sources/2026-07-14-inception-score.html">Improved Techniques for Training GANs：Inception Score 的来源与边界</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-insvie-1m.html">InsViE-1M：通过精细数据构造实现 instruction-based 视频编辑</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-12-insightedit.html">InsightEdit：迈向更强指令跟随的图像编辑</a><span>来源笔记</span></li>
+<li><a href="sources/2026-10-27-instant-gaussianimage.html">Instant GaussianImage：用可泛化初始化缩短逐图拟合</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-instructpix2pix.html">InstructPix2Pix：用合成监督建立自然语言图像编辑接口</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-19-interacttrack.html">InteractTrack：动态目标跟踪与人机交互的测量边界</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-keds.html">KEDs：知识增强的双流零样本组合式图像检索（Knowledge-Enhanced Dual-stream Zero-shot Composed Image Retrieval）</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-25-kinexon-player-tracking.html">KINEXON Player Tracking：KINEXON player tracking 页面展示 UWB/GPS/LPS 球员追踪系统。</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-laion-5b.html">LAION-5B：用于下一代图文模型的开放大规模数据集（An open large-scale dataset for training next generation image-text models）</a><span>来源笔记</span></li>
+<li><a href="sources/2026-10-27-lig.html">LIG：用分层二维高斯拟合高分辨率图像</a><span>来源笔记</span></li>
 <li><a href="llm-wiki.html">LLM Wiki</a><span>入口</span></li>
 <li><a href="sources/2026-10-18-lod-gs.html">LOD-GS：用三角形组织可缩减的高斯场景</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-25-logo-group-action-quality.html">LOGO：多人长视频的群体动作质量评估</a><span>来源笔记</span></li>
@@ -1066,6 +1085,7 @@
 <li><a href="sources/2026-04-16-rethinking-spatial-inconsistency-cfg.html">Rethinking the Spatial Inconsistency in Classifier-Free Diffusion Guidance：语义区域自适应 CFG</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-16-sana-sprint.html">SANA-Sprint：连续时间一致性与对抗蒸馏的一步线性 DiT</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-searle-circo.html">SEARLE：用文本反演做零样本组合式图像检索（Zero-Shot Composed Image Retrieval with Textual Inversion）</a><span>来源笔记</span></li>
+<li><a href="sources/2026-10-27-sgi.html">SGI：用种子结构和熵编码压缩大图高斯</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-16-self-correcting-llm-controlled-diffusion-models.html">SLD：LLM 驱动的闭环扩散生成纠错</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-sok-bench.html">SOK-Bench：结合开放世界知识的情境视频推理基准</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-spfsplat.html">SPFSplat：训练与推理均不输入真值外参的稀疏高斯重建</a><span>来源笔记</span></li>
@@ -1163,7 +1183,8 @@
 <li><a href="sources/2026-09-25-pixelsplat.html">pixelSplat：从已标定图像对前馈预测三维高斯</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-tttlrm.html">tttLRM：快权重记忆驱动长序列高斯重建</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-dci.html">一张图胜过 77 个文本 token：在密集描述上评估 CLIP 类模型（A Picture is Worth More Than 77 Text Tokens）</a><span>来源笔记</span></li>
-<li><a href="topics/3d-gaussian-splatting.html">三维高斯泼溅：表示、优化、几何与动态任务</a><span>主题</span></li>
+<li><a href="questions/question-gaussian-image-representation-research-cut.html">二维图像高斯表征应优先解决哪种信息与成本瓶颈？</a><span>问题</span></li>
+<li><a href="topics/gaussian-image-representation.html">二维图像高斯表征：从参数精简到压缩与视觉任务</a><span>主题</span></li>
 <li><a href="topics/sports-ai-roadmap.html">体育 AI 研究路线图</a><span>主题</span></li>
 <li><a href="topics/sports-ai-video-understanding.html">体育 AI 视频理解</a><span>主题</span></li>
 <li><a href="sources/2026-04-25-sports-ai-review-2025.html">体育姿态估计与跟踪综述：方法、数据、挑战与路线图</a><span>来源笔记</span></li>
@@ -1216,6 +1237,7 @@
 <li><a href="claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a><span>判断</span></li>
 <li><a href="sources/2026-04-14-language-driven-video-inpainting.html">通过多模态大模型实现语言驱动视频修补</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-neuro-symbolic-eval-t2v.html">通过形式化验证评测文本到视频模型的神经符号方法</a><span>来源笔记</span></li>
+<li><a href="topics/3d-gaussian-splatting.html">高斯科研地图：表征、语义、建图与二维图像</a><span>主题</span></li>
 </ul></section>
 <section class="tag-section" id="needs-verification"><h2>#needs-verification<span class="related-count">3</span></h2><ul>
 <li><a href="claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a><span>判断</span></li>
@@ -1234,7 +1256,7 @@
 <li><a href="sources/2026-09-25-speede3dgs.html">SpeeDe3DGS：动态高斯时间剪枝与运动分组</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-uni3r.html">Uni3R：无外参多视图的几何与语言语义联合高斯</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-ilrm.html">iLRM：多视紧凑视角token反复吸收高分辨率图像</a><span>来源笔记</span></li>
-<li><a href="topics/3d-gaussian-splatting.html">三维高斯泼溅：表示、优化、几何与动态任务</a><span>主题</span></li>
+<li><a href="topics/3d-gaussian-splatting.html">高斯科研地图：表征、语义、建图与二维图像</a><span>主题</span></li>
 </ul></section>
 <section class="tag-section" id="object-detection"><h2>#object-detection<span class="related-count">3</span></h2><ul>
 <li><a href="sources/2026-07-14-faster-r-cnn.html">Faster R-CNN：共享特征的区域提议网络</a><span>来源笔记</span></li>
@@ -1251,7 +1273,7 @@
 <li><a href="claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a><span>判断</span></li>
 <li><a href="claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a><span>判断</span></li>
 </ul></section>
-<section class="tag-section" id="primary-source"><h2>#primary-source<span class="related-count">333</span></h2><ul>
+<section class="tag-section" id="primary-source"><h2>#primary-source<span class="related-count">341</span></h2><ul>
 <li><a href="sources/2026-09-25-2d-gaussian-splatting.html">2D Gaussian Splatting：用三维中的二维高斯圆盘重建表面</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-3d-gaussian-splatting.html">3D Gaussian Splatting：从稀疏点到实时新视角渲染</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-3dgs-as-mcmc.html">3DGS as MCMC：用高斯重定位改写密度控制</a><span>来源笔记</span></li>
@@ -1320,6 +1342,7 @@
 <li><a href="sources/2026-04-14-concon-chi.html">ConCon-Chi：个性化视觉语言的新含义与组合性基准</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-concept-weaver.html">Concept Weaver：模板引导的多概念个性化融合</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-condition-aware-neural-network.html">Condition-Aware Neural Network：以动态权重控制扩散 Transformer</a><span>来源笔记</span></li>
+<li><a href="sources/2026-10-27-continuous-sr.html">ContinuousSR：一次高斯场构建支持多倍率图像超分</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-contrastive-denoising-score.html">Contrastive Denoising Score：用自注意力对比正则保持编辑结构</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-cosmicman.html">CosmicMan：面向人物的文本到图像基础模型</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-multi-concept-customization.html">Custom Diffusion：高效单概念学习与多概念组合</a><span>来源笔记</span></li>
@@ -1385,6 +1408,9 @@
 <li><a href="sources/2026-04-14-gligen.html">GLIGEN：以冻结基础模型和门控适配器实现开放集合 grounded 生成</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-gpert.html">GPERT：事件相机的逐事件几何与单快照光度高斯追踪</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-gaussiandwm.html">GaussianDWM：驾驶语言高斯连接理解与生成</a><span>来源笔记</span></li>
+<li><a href="sources/2026-10-27-gaussianimage-plus-plus.html">GaussianImage++：用图元分配、滤波和量化改进图像表示</a><span>来源笔记</span></li>
+<li><a href="sources/2026-10-27-gaussianimage.html">GaussianImage：用精简的二维高斯表示和压缩图像</a><span>来源笔记</span></li>
+<li><a href="sources/2026-10-27-gaussianvision.html">GaussianVision：直接从二维高斯学习视觉语言对齐</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-gan.html">Generative Adversarial Nets：生成对抗网络</a><span>来源笔记</span></li>
 <li><a href="sources/2026-10-02-generative-gaussian-splatting.html">Generative Gaussian Splatting：视频先验与三维一致性的取舍</a><span>来源笔记</span></li>
 <li><a href="sources/2026-10-08-generative-sparse-view-gaussian-splatting.html">Generative Sparse-View Gaussian Splatting：生成先验辅助少视角重建</a><span>来源笔记</span></li>
@@ -1399,6 +1425,7 @@
 <li><a href="sources/2026-05-05-human-in-loop-team-sports-retrieval.html">Human-in-the-loop Adaptation：团队运动示例检索的人机适配</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-hypergaussians.html">HyperGaussians：高维条件高斯驱动的面部头像</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-15-ivebench.html">IVEBench：指令式视频编辑的多轴评测与复现边界</a><span>来源笔记</span></li>
+<li><a href="sources/2026-10-27-image-gs.html">Image-GS：内容自适应图元分配与快速随机访问</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-image-specific-prompt-learning.html">Image-specific Prompt Learning：零目标图像的生成器域适配</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-alexnet.html">ImageNet Classification with Deep Convolutional Neural Networks：AlexNet 与深度视觉转折</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-imagen-editor-editbench.html">Imagen Editor 与 EditBench：推进并评测文本引导图像修补</a><span>来源笔记</span></li>
@@ -1406,10 +1433,12 @@
 <li><a href="sources/2026-07-14-inception-score.html">Improved Techniques for Training GANs：Inception Score 的来源与边界</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-insvie-1m.html">InsViE-1M：通过精细数据构造实现 instruction-based 视频编辑</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-12-insightedit.html">InsightEdit：迈向更强指令跟随的图像编辑</a><span>来源笔记</span></li>
+<li><a href="sources/2026-10-27-instant-gaussianimage.html">Instant GaussianImage：用可泛化初始化缩短逐图拟合</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-instructpix2pix.html">InstructPix2Pix：用合成监督建立自然语言图像编辑接口</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-19-interacttrack.html">InteractTrack：动态目标跟踪与人机交互的测量边界</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-keds.html">KEDs：知识增强的双流零样本组合式图像检索（Knowledge-Enhanced Dual-stream Zero-shot Composed Image Retrieval）</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-laion-5b.html">LAION-5B：用于下一代图文模型的开放大规模数据集（An open large-scale dataset for training next generation image-text models）</a><span>来源笔记</span></li>
+<li><a href="sources/2026-10-27-lig.html">LIG：用分层二维高斯拟合高分辨率图像</a><span>来源笔记</span></li>
 <li><a href="sources/2026-10-18-lod-gs.html">LOD-GS：用三角形组织可缩减的高斯场景</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-25-logo-group-action-quality.html">LOGO：多人长视频的群体动作质量评估</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-lvbench.html">LVBench：极长视频理解基准</a><span>来源笔记</span></li>
@@ -1482,6 +1511,7 @@
 <li><a href="sources/2026-04-16-rethinking-spatial-inconsistency-cfg.html">Rethinking the Spatial Inconsistency in Classifier-Free Diffusion Guidance：语义区域自适应 CFG</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-16-sana-sprint.html">SANA-Sprint：连续时间一致性与对抗蒸馏的一步线性 DiT</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-searle-circo.html">SEARLE：用文本反演做零样本组合式图像检索（Zero-Shot Composed Image Retrieval with Textual Inversion）</a><span>来源笔记</span></li>
+<li><a href="sources/2026-10-27-sgi.html">SGI：用种子结构和熵编码压缩大图高斯</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-16-self-correcting-llm-controlled-diffusion-models.html">SLD：LLM 驱动的闭环扩散生成纠错</a><span>来源笔记</span></li>
 <li><a href="sources/2026-04-14-sok-bench.html">SOK-Bench：结合开放世界知识的情境视频推理基准</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-25-spfsplat.html">SPFSplat：训练与推理均不输入真值外参的稀疏高斯重建</a><span>来源笔记</span></li>
@@ -1611,7 +1641,7 @@
 <li><a href="topics/sports-ai-video-understanding.html">体育 AI 视频理解</a><span>主题</span></li>
 <li><a href="topics/video-understanding.html">视频理解</a><span>主题</span></li>
 </ul></section>
-<section class="tag-section" id="representation-learning"><h2>#representation-learning<span class="related-count">70</span></h2><ul>
+<section class="tag-section" id="representation-learning"><h2>#representation-learning<span class="related-count">79</span></h2><ul>
 <li><a href="sources/2026-07-14-convnext.html">A ConvNet for the 2020s：ConvNeXt 与现代卷积主干</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-albef.html">ALBEF：先对齐再融合（Align before Fuse）</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-align.html">ALIGN：用噪声文本监督扩展视觉与视觉语言表示学习（Scaling Up Visual and Vision-Language Representation Learning With Noisy Text Supervision）</a><span>来源笔记</span></li>
@@ -1625,6 +1655,7 @@
 <li><a href="sources/2026-07-14-coca.html">CoCa：对比式图像描述器作为图文基础模型（Contrastive Captioners are Image-Text Foundation Models）</a><span>来源笔记</span></li>
 <li><a href="entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a><span>实体</span></li>
 <li><a href="sources/2026-07-14-colpali.html">ColPali：用视觉语言模型做高效文档检索（Efficient Document Retrieval with Vision Language Models）</a><span>来源笔记</span></li>
+<li><a href="sources/2026-10-27-continuous-sr.html">ContinuousSR：一次高斯场构建支持多倍率图像超分</a><span>来源笔记</span></li>
 <li><a href="sources/2026-06-29-detr.html">DETR：把目标检测改写成 Transformer set prediction</a><span>来源笔记</span></li>
 <li><a href="entities/dino-family.html">DINO 家族：自监督视觉表示与预训练骨干</a><span>实体</span></li>
 <li><a href="questions/question-dino-features-for-3dgs-semantics.html">DINO 密集特征如何迁移到三维高斯语义分割？</a><span>问题</span></li>
@@ -1639,9 +1670,15 @@
 <li><a href="sources/2026-07-14-filip.html">FILIP：细粒度交互式语言-图像预训练（Fine-grained Interactive Language-Image Pre-Training）</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-faster-r-cnn.html">Faster R-CNN：共享特征的区域提议网络</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-fcn.html">Fully Convolutional Networks for Semantic Segmentation：全卷积语义分割</a><span>来源笔记</span></li>
+<li><a href="sources/2026-10-27-gaussianimage-plus-plus.html">GaussianImage++：用图元分配、滤波和量化改进图像表示</a><span>来源笔记</span></li>
+<li><a href="sources/2026-10-27-gaussianimage.html">GaussianImage：用精简的二维高斯表示和压缩图像</a><span>来源笔记</span></li>
+<li><a href="sources/2026-10-27-gaussianvision.html">GaussianVision：直接从二维高斯学习视觉语言对齐</a><span>来源笔记</span></li>
+<li><a href="sources/2026-10-27-image-gs.html">Image-GS：内容自适应图元分配与快速随机访问</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-alexnet.html">ImageNet Classification with Deep Convolutional Neural Networks：AlexNet 与深度视觉转折</a><span>来源笔记</span></li>
+<li><a href="sources/2026-10-27-instant-gaussianimage.html">Instant GaussianImage：用可泛化初始化缩短逐图拟合</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-keds.html">KEDs：知识增强的双流零样本组合式图像检索（Knowledge-Enhanced Dual-stream Zero-shot Composed Image Retrieval）</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-laion-5b.html">LAION-5B：用于下一代图文模型的开放大规模数据集（An open large-scale dataset for training next generation image-text models）</a><span>来源笔记</span></li>
+<li><a href="sources/2026-10-27-lig.html">LIG：用分层二维高斯拟合高分辨率图像</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-mobileclip.html">MobileCLIP：通过多模态强化训练得到快速图文模型（Fast Image-Text Models through Multi-Modal Reinforced Training）</a><span>来源笔记</span></li>
 <li><a href="sources/2026-09-08-muco.html">MuCo：共享视觉上下文的多轮对比学习</a><span>来源笔记</span></li>
 <li><a href="sources/2026-05-17-multisensebadminton-biomechanical-dataset.html">MultiSenseBadminton：面向羽毛球表现评估的多传感器生物力学数据集</a><span>来源笔记</span></li>
@@ -1649,6 +1686,7 @@
 <li><a href="sources/2026-05-16-protogcn-skeleton-action-recognition.html">ProtoGCN：用运动原型重构放大相似骨架动作的局部差异</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-i3d.html">Quo Vadis, Action Recognition?：I3D、Kinetics 与 3D 视频预训练</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-searle-circo.html">SEARLE：用文本反演做零样本组合式图像检索（Zero-Shot Composed Image Retrieval with Textual Inversion）</a><span>来源笔记</span></li>
+<li><a href="sources/2026-10-27-sgi.html">SGI：用种子结构和熵编码压缩大图高斯</a><span>来源笔记</span></li>
 <li><a href="sources/2026-06-29-segment-anything.html">Segment Anything：把分割做成可提示的视觉基础模型</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-siglip2.html">SigLIP 2：具有更强语义理解、定位与 dense features 的多语言视觉语言编码器</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-siglip.html">SigLIP：语言-图像预训练的 Sigmoid 损失（Sigmoid Loss for Language Image Pre-Training）</a><span>来源笔记</span></li>
@@ -1665,6 +1703,7 @@
 <li><a href="sources/2026-04-25-videomae.html">VideoMAE：数据高效的视频掩码自编码预训练</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-visrag.html">VisRAG：面向多模态文档的视觉检索增强生成（Vision-based Retrieval-augmented Generation on Multi-modality Documents）</a><span>来源笔记</span></li>
 <li><a href="sources/2026-06-29-vision-transformer.html">Vision Transformer：把图像切成 token 的通用视觉主干</a><span>来源笔记</span></li>
+<li><a href="topics/gaussian-image-representation.html">二维图像高斯表征：从参数精简到压缩与视觉任务</a><span>主题</span></li>
 <li><a href="sources/2026-07-14-fusemix.html">单 GPU 上的数据高效多模态融合（Data-Efficient Multimodal Fusion on a Single GPU）</a><span>来源笔记</span></li>
 <li><a href="claims/claim-image-text-retrieval-baseline-and-specialization.html">双塔负责可扩展召回，细粒度模块负责精排与关系匹配</a><span>判断</span></li>
 <li><a href="topics/vision-backbones.html">图像表示与视觉主干网络</a><span>主题</span></li>
@@ -1710,8 +1749,9 @@
 <li><a href="sources/2026-09-25-tt-occ.html">TT-Occ：测试时高斯构造与语义占据</a><span>来源笔记</span></li>
 <li><a href="sources/2026-07-14-u-net.html">U-Net：编码器—解码器与跳跃连接的医学图像分割</a><span>来源笔记</span></li>
 </ul></section>
-<section class="tag-section" id="survey-needed"><h2>#survey-needed<span class="related-count">11</span></h2><ul>
+<section class="tag-section" id="survey-needed"><h2>#survey-needed<span class="related-count">12</span></h2><ul>
 <li><a href="questions/question-dino-features-for-3dgs-semantics.html">DINO 密集特征如何迁移到三维高斯语义分割？</a><span>问题</span></li>
+<li><a href="questions/question-gaussian-image-representation-research-cut.html">二维图像高斯表征应优先解决哪种信息与成本瓶颈？</a><span>问题</span></li>
 <li><a href="questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a><span>问题</span></li>
 <li><a href="questions/question-image-text-retrieval-research-cut.html">图文检索哪个子方向最适合中等算力的研究生项目？</a><span>问题</span></li>
 <li><a href="questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a><span>问题</span></li>

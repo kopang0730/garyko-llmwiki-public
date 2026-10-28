@@ -63,6 +63,7 @@
 <h2>研究专题</h2><ul>
 <li><a href="../topics/3d-gaussian-splatting.html"><span class="nav-title-primary">三维高斯泼溅</span><span class="nav-title-translation" lang="en">（3D Gaussian Splatting）</span></a></li>
 <li><a href="../topics/diffusion-efficiency-engineering.html"><span class="nav-title-primary">扩散效率工程</span><span class="nav-title-translation" lang="en">（Diffusion Efficiency）</span></a></li>
+<li><a href="../topics/gaussian-image-representation.html"><span class="nav-title-primary">二维图像高斯表征</span><span class="nav-title-translation" lang="en">（Gaussian Image Representations）</span></a></li>
 <li><a href="../topics/generative-model-evaluation.html"><span class="nav-title-primary">生成模型评测</span><span class="nav-title-translation" lang="en">（Generative Model Evaluation）</span></a></li>
 <li><a href="../topics/image-editing.html"><span class="nav-title-primary">图像编辑</span><span class="nav-title-translation" lang="en">（Image Editing）</span></a></li>
 <li><a href="../topics/image-generation.html"><span class="nav-title-primary">图像生成</span><span class="nav-title-translation" lang="en">（Image Generation）</span></a></li>
@@ -102,6 +103,7 @@
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-dino-features-for-3dgs-semantics.html">DINO 密集特征如何迁移到三维高斯语义分割？</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-gaussian-image-representation-research-cut.html">二维图像高斯表征应优先解决哪种信息与成本瓶颈？</a></li>
 <li><a href="../questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a></li>
 <li><a href="../questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a></li>
 <li><a href="../questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a></li>
@@ -134,11 +136,11 @@
 <p>输入是单人带相机的视频与FLAME/BFM表情/头姿跟踪；输出是指定表情/视角的渲染RGB。条件分布用潜码调节图元位置、旋转和尺度，inverse covariance trick把高维协方差求逆变为反转小的属性块Λaa，条件均值送原3DGS rasterizer；FlashAvatar和GaussianHeadAvatar只替换原属性偏移预测的表示环节，并沿用其余训练管线（主文pp.25239–25241 Eqs.2–6、Fig.2；补充p.1 §2.2）。这属于逐人优化与面部条件表示，不能用来声称无需表情拟合/预训练即可生成通用3D资产。</p>
 <p>五单目集19人（2000训练/最后500测试帧、512²）及NeRSemble多视10人（16相机、FREE序列留作测试、2048²），共29人六集。主文p.25241 Table1：FlashAvatar PSNR29.43、SSIM×10^-1 9.466、LPIPS×10^-2 5.107，8维HGS 29.99/9.510/4.978；GaussianHeadAvatar 24.10/8.819/20.273，接HGS 24.38/8.819/19.768，其中多视SSIM无改善。补充p.4 Table2同GHA的NDGS 24.22/8.820/20.235，为条件表达容量对照。图示关注牙齿、镜框和眼部高光（主文Figs.4–6），面部身份与几何GT未独立量化。</p>
 <h2 id="反证-成本与下一步">反证、成本与下一步</h2>
-<p>补充p.5 Table3 RTX2080Ti、512²：vanilla FA 375K参数、347FPS；8维HGS 2.6M/300FPS；同2.6M深MLP只有158FPS/PSNR28.10/LPIPS×10^-2 5.720。1维可得29.73PSNR/291FPS；32维虽LPIPS4.976，PSNR29.89/281FPS，潜维越多不保证全面更好。主文p.25243 Fig.3 8维局部条件算子内存42→22MB不是模型总峰值。RTX4090每人单目30k步15–20min；多视600k步&gt;2天，接HGS约增加30min（主文pp.25241、25243），MICA/RVM/BiSeNet/标定等前处理另计。仓库MIT，数据肖像许可另审；作者补充p.5 §5提示深伪误用风险。按受试者而非相邻帧聚类，并统一表情跟踪和GPU后对比HGS、NDGS与等参数MLP。独立分析见<code>raw/ingest/2026-09-25-hypergaussians/analysis.md</code>；<a class="wikilink" href="../topics/3d-gaussian-splatting.html">三维高斯泼溅：表示、优化、几何与动态任务</a>。</p></section>
+<p>补充p.5 Table3 RTX2080Ti、512²：vanilla FA 375K参数、347FPS；8维HGS 2.6M/300FPS；同2.6M深MLP只有158FPS/PSNR28.10/LPIPS×10^-2 5.720。1维可得29.73PSNR/291FPS；32维虽LPIPS4.976，PSNR29.89/281FPS，潜维越多不保证全面更好。主文p.25243 Fig.3 8维局部条件算子内存42→22MB不是模型总峰值。RTX4090每人单目30k步15–20min；多视600k步&gt;2天，接HGS约增加30min（主文pp.25241、25243），MICA/RVM/BiSeNet/标定等前处理另计。仓库MIT，数据肖像许可另审；作者补充p.5 §5提示深伪误用风险。按受试者而非相邻帧聚类，并统一表情跟踪和GPU后对比HGS、NDGS与等参数MLP。独立分析见<code>raw/ingest/2026-09-25-hypergaussians/analysis.md</code>；<a class="wikilink" href="../topics/3d-gaussian-splatting.html">高斯科研地图：表征、语义、建图与二维图像</a>。</p></section>
       </div>
       
       
-      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">2</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../topics/3d-gaussian-splatting.html">三维高斯泼溅：表示、优化、几何与动态任务</a><span>主题</span></li></ul></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">2</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../topics/3d-gaussian-splatting.html">高斯科研地图：表征、语义、建图与二维图像</a><span>主题</span></li></ul></section>
       <details class="metadata-box" id="metadata"><summary><span class="summary-label"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><pre>{
   &quot;id&quot;: &quot;2026-09-25-hypergaussians&quot;,
   &quot;type&quot;: &quot;source&quot;,

@@ -63,6 +63,7 @@
 <h2>研究专题</h2><ul>
 <li><a href="../topics/3d-gaussian-splatting.html"><span class="nav-title-primary">三维高斯泼溅</span><span class="nav-title-translation" lang="en">（3D Gaussian Splatting）</span></a></li>
 <li><a href="../topics/diffusion-efficiency-engineering.html"><span class="nav-title-primary">扩散效率工程</span><span class="nav-title-translation" lang="en">（Diffusion Efficiency）</span></a></li>
+<li><a href="../topics/gaussian-image-representation.html"><span class="nav-title-primary">二维图像高斯表征</span><span class="nav-title-translation" lang="en">（Gaussian Image Representations）</span></a></li>
 <li><a href="../topics/generative-model-evaluation.html"><span class="nav-title-primary">生成模型评测</span><span class="nav-title-translation" lang="en">（Generative Model Evaluation）</span></a></li>
 <li><a href="../topics/image-editing.html"><span class="nav-title-primary">图像编辑</span><span class="nav-title-translation" lang="en">（Image Editing）</span></a></li>
 <li><a href="../topics/image-generation.html"><span class="nav-title-primary">图像生成</span><span class="nav-title-translation" lang="en">（Image Generation）</span></a></li>
@@ -102,6 +103,7 @@
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-dino-features-for-3dgs-semantics.html">DINO 密集特征如何迁移到三维高斯语义分割？</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-gaussian-image-representation-research-cut.html">二维图像高斯表征应优先解决哪种信息与成本瓶颈？</a></li>
 <li><a href="../questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a></li>
 <li><a href="../questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a></li>
 <li><a href="../questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a></li>
@@ -135,11 +137,11 @@
 <h2 id="结果-反证与比较条件">结果、反证与比较条件</h2>
 <p>同24视RE10K，作者版p.10 Table1 16K版PSNR28.53/SSIM.883/LPIPS.140，对Zpressor6 28.51/.911/.097、393K高斯；32K版PSNR29.48/.901/.122，LPIPS仍较差。ACID p.11 Table2 24视16K为28.03/.813/.208，Zpressor为28.53/.860/.138。A100同24视p.11 Table3前馈77.88ms/峰1.79GB/模型3.8MB，对Zpressor194.20ms/3.70GB/134MB；这些数字属于作者设定的场景编码比较。p.13 Table4在32K相近预算4096×8为29.54 PSNR、2048×16仅28.58；p.14 Table5去一致性28.15、单分支28.02、直接全容量27.69，对完整28.57。官方补充p.3 Tables2–3指出512²输入原生重训出现分布外下降（原始输入26.16），其强项不自动扩展高分辨率、极稀视和动态场景。</p>
 <h2 id="成本-许可与复核">成本、许可与复核</h2>
-<p>部分比较借用C3G数字，Zpressor6的六anchor与本法24视不一致；应固定场景/相机/视数/图元数及PSNR+LPIPS目标，再分账前向、渲染、相机估计和训练。代码仓库为PolyForm Noncommercial 1.0.0，商业使用须单独确认。未做GPU复现。逐页审计、版本冲突及补充见<code>raw/ingest/2026-09-25-globalsplat/analysis.md</code>；机制对照<a class="wikilink" href="../sources/2026-09-25-ilrm.html">iLRM</a>和<a class="wikilink" href="../sources/2026-09-25-ecosplat.html">EcoSplat</a>，综合见<a class="wikilink" href="../topics/3d-gaussian-splatting.html">三维高斯泼溅：表示、优化、几何与动态任务</a>。</p></section>
+<p>部分比较借用C3G数字，Zpressor6的六anchor与本法24视不一致；应固定场景/相机/视数/图元数及PSNR+LPIPS目标，再分账前向、渲染、相机估计和训练。代码仓库为PolyForm Noncommercial 1.0.0，商业使用须单独确认。未做GPU复现。逐页审计、版本冲突及补充见<code>raw/ingest/2026-09-25-globalsplat/analysis.md</code>；机制对照<a class="wikilink" href="../sources/2026-09-25-ilrm.html">iLRM</a>和<a class="wikilink" href="../sources/2026-09-25-ecosplat.html">EcoSplat</a>，综合见<a class="wikilink" href="../topics/3d-gaussian-splatting.html">高斯科研地图：表征、语义、建图与二维图像</a>。</p></section>
       </div>
       
       
-      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">4</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-09-25-matryoshka-gaussian-splatting.html">Matryoshka Gaussian Splatting：按前缀长度选择高斯预算</a><span>来源笔记</span></li><li><a href="../sources/2026-09-25-wildsplat.html">WildSplat：无位姿野外照片的外观条件高斯</a><span>来源笔记</span></li><li><a href="../topics/3d-gaussian-splatting.html">三维高斯泼溅：表示、优化、几何与动态任务</a><span>主题</span></li></ul></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">4</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-09-25-matryoshka-gaussian-splatting.html">Matryoshka Gaussian Splatting：按前缀长度选择高斯预算</a><span>来源笔记</span></li><li><a href="../sources/2026-09-25-wildsplat.html">WildSplat：无位姿野外照片的外观条件高斯</a><span>来源笔记</span></li><li><a href="../topics/3d-gaussian-splatting.html">高斯科研地图：表征、语义、建图与二维图像</a><span>主题</span></li></ul></section>
       <details class="metadata-box" id="metadata"><summary><span class="summary-label"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><pre>{
   &quot;id&quot;: &quot;2026-09-25-globalsplat&quot;,
   &quot;type&quot;: &quot;source&quot;,

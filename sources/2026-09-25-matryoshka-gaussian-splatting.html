@@ -63,6 +63,7 @@
 <h2>研究专题</h2><ul>
 <li><a href="../topics/3d-gaussian-splatting.html"><span class="nav-title-primary">三维高斯泼溅</span><span class="nav-title-translation" lang="en">（3D Gaussian Splatting）</span></a></li>
 <li><a href="../topics/diffusion-efficiency-engineering.html"><span class="nav-title-primary">扩散效率工程</span><span class="nav-title-translation" lang="en">（Diffusion Efficiency）</span></a></li>
+<li><a href="../topics/gaussian-image-representation.html"><span class="nav-title-primary">二维图像高斯表征</span><span class="nav-title-translation" lang="en">（Gaussian Image Representations）</span></a></li>
 <li><a href="../topics/generative-model-evaluation.html"><span class="nav-title-primary">生成模型评测</span><span class="nav-title-translation" lang="en">（Generative Model Evaluation）</span></a></li>
 <li><a href="../topics/image-editing.html"><span class="nav-title-primary">图像编辑</span><span class="nav-title-translation" lang="en">（Image Editing）</span></a></li>
 <li><a href="../topics/image-generation.html"><span class="nav-title-primary">图像生成</span><span class="nav-title-translation" lang="en">（Image Generation）</span></a></li>
@@ -102,6 +103,7 @@
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-dino-features-for-3dgs-semantics.html">DINO 密集特征如何迁移到三维高斯语义分割？</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-gaussian-image-representation-research-cut.html">二维图像高斯表征应优先解决哪种信息与成本瓶颈？</a></li>
 <li><a href="../questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a></li>
 <li><a href="../questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a></li>
 <li><a href="../questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a></li>
@@ -135,11 +137,11 @@
 <h2 id="主表-冲突与消融">主表、冲突与消融</h2>
 <p>作者v2 p.8 Table1 m360九场：本法最高预算28.20 PSNR/.841 SSIM/.130 LPIPS，AUCfps64.81/AUCsplats77.79；3DGS-MCMC全量28.40/.843/.133，CLoD-3DGS为27.44/.814/.215及AUCfps46.38。T&amp;T本法24.56&lt;Octree-GS24.59，Deep Blending28.41&lt;Octree-GS30.35，BungeeNeRF27.13&lt;Octree-GS28.23；整体面积增益不能代替满容量画质。AUC在PSNR[14,32]、SSIM[.35,.92]、LPIPS[.06,.60]等人为区间归一化，定义见p.7 Eqs.9。p.9文字声称m360 CLoD与本法AUCfps为28.94/54.46，与Table1的46.38/64.81冲突，保留待版本核。p.13 Table2 bicycle单场消融：仅前缀24.97 PSNR/.253 LPIPS/AUCfps56.58；前缀+全量25.43/.175/66.87；升序24.91/30.53，对降序25.47/68.62，不能据单场推全场。</p>
 <h2 id="成本与边界">成本与边界</h2>
-<p>50k步的排序、两次渲染、SfM初始化、训练总时长与峰显存应计入部署前成本；训练好资产才具备按前缀运行的能力，FPS/图元预算跨硬件须重测。仓库GitHub API标识Apache-2.0源码许可，数据另核。未进行GPU复现。对照<a class="wikilink" href="../sources/2026-09-25-3dgs-as-mcmc.html">MCMC</a>的逐场底座、<a class="wikilink" href="../sources/2026-09-25-ecosplat.html">EcoSplat</a>的前馈指定预算和<a class="wikilink" href="../sources/2026-09-25-globalsplat.html">GlobalSplat</a>的固定容量前馈预测。独立证据审计见<code>raw/ingest/2026-09-25-matryoshka-gaussian-splatting/analysis.md</code>，跨文判断见<a class="wikilink" href="../topics/3d-gaussian-splatting.html">三维高斯泼溅：表示、优化、几何与动态任务</a>。</p></section>
+<p>50k步的排序、两次渲染、SfM初始化、训练总时长与峰显存应计入部署前成本；训练好资产才具备按前缀运行的能力，FPS/图元预算跨硬件须重测。仓库GitHub API标识Apache-2.0源码许可，数据另核。未进行GPU复现。对照<a class="wikilink" href="../sources/2026-09-25-3dgs-as-mcmc.html">MCMC</a>的逐场底座、<a class="wikilink" href="../sources/2026-09-25-ecosplat.html">EcoSplat</a>的前馈指定预算和<a class="wikilink" href="../sources/2026-09-25-globalsplat.html">GlobalSplat</a>的固定容量前馈预测。独立证据审计见<code>raw/ingest/2026-09-25-matryoshka-gaussian-splatting/analysis.md</code>，跨文判断见<a class="wikilink" href="../topics/3d-gaussian-splatting.html">高斯科研地图：表征、语义、建图与二维图像</a>。</p></section>
       </div>
       
       
-      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">5</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-09-25-rap.html">RAP：高斯属性驱动的跨场景图元重要性估计</a><span>来源笔记</span></li><li><a href="../sources/2026-09-25-wildsplat.html">WildSplat：无位姿野外照片的外观条件高斯</a><span>来源笔记</span></li><li><a href="../sources/2026-10-18-lod-gs.html">LOD-GS：用三角形组织可缩减的高斯场景</a><span>来源笔记</span></li><li><a href="../topics/3d-gaussian-splatting.html">三维高斯泼溅：表示、优化、几何与动态任务</a><span>主题</span></li></ul></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">5</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-09-25-rap.html">RAP：高斯属性驱动的跨场景图元重要性估计</a><span>来源笔记</span></li><li><a href="../sources/2026-09-25-wildsplat.html">WildSplat：无位姿野外照片的外观条件高斯</a><span>来源笔记</span></li><li><a href="../sources/2026-10-18-lod-gs.html">LOD-GS：用三角形组织可缩减的高斯场景</a><span>来源笔记</span></li><li><a href="../topics/3d-gaussian-splatting.html">高斯科研地图：表征、语义、建图与二维图像</a><span>主题</span></li></ul></section>
       <details class="metadata-box" id="metadata"><summary><span class="summary-label"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><pre>{
   &quot;id&quot;: &quot;2026-09-25-matryoshka-gaussian-splatting&quot;,
   &quot;type&quot;: &quot;source&quot;,

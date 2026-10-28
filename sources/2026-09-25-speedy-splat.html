@@ -63,6 +63,7 @@
 <h2>研究专题</h2><ul>
 <li><a href="../topics/3d-gaussian-splatting.html"><span class="nav-title-primary">三维高斯泼溅</span><span class="nav-title-translation" lang="en">（3D Gaussian Splatting）</span></a></li>
 <li><a href="../topics/diffusion-efficiency-engineering.html"><span class="nav-title-primary">扩散效率工程</span><span class="nav-title-translation" lang="en">（Diffusion Efficiency）</span></a></li>
+<li><a href="../topics/gaussian-image-representation.html"><span class="nav-title-primary">二维图像高斯表征</span><span class="nav-title-translation" lang="en">（Gaussian Image Representations）</span></a></li>
 <li><a href="../topics/generative-model-evaluation.html"><span class="nav-title-primary">生成模型评测</span><span class="nav-title-translation" lang="en">（Generative Model Evaluation）</span></a></li>
 <li><a href="../topics/image-editing.html"><span class="nav-title-primary">图像编辑</span><span class="nav-title-translation" lang="en">（Image Editing）</span></a></li>
 <li><a href="../topics/image-generation.html"><span class="nav-title-primary">图像生成</span><span class="nav-title-translation" lang="en">（Image Generation）</span></a></li>
@@ -102,6 +103,7 @@
 <li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
 <li><a href="../questions/question-dino-features-for-3dgs-semantics.html">DINO 密集特征如何迁移到三维高斯语义分割？</a></li>
 <li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-gaussian-image-representation-research-cut.html">二维图像高斯表征应优先解决哪种信息与成本瓶颈？</a></li>
 <li><a href="../questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a></li>
 <li><a href="../questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a></li>
 <li><a href="../questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a></li>
@@ -136,11 +138,11 @@
 <h2 id="结果-反证和成本">结果、反证和成本</h2>
 <p>13个真实场景：Mip-NeRF360九、T&amp;T两、Deep Blending两；A5000、每场三次运行，CUDA events测forward。累计消融每帧7.478→4.102→3.748→2.381→1.114ms；仅tile方法平均约1.99×、最终6.71×，压缩比10.6×以图元数量计（p.3 Table1、p.7 Table2）。九场Mip-NeRF360最终PSNR27.55→26.94、SSIM .814→.782、LPIPS .222→.296；同表Mini-Splat PSNR27.34/LPIPS .217/FPS3.20×，需要在共同环境重跑才能判定真实Pareto边界（p.8 Table3）。同一PUP后裁剪管线固定88.44%删率，本法分数PSNR26.8658高于PUP26.2136，但LPIPS .2840差于.2731且FPS345.52低于378.57（p.8 Table4）。补充p.2 Fig.7给裁剪率扫参，pp.3–4 Tables7–11给tile对照及逐场退化。</p>
 <h2 id="边界与相关页面">边界与相关页面</h2>
-<p>训练分钟与forward FPS分开；COLMAP/载入/模型传输与整体显存未列完整成本。评分36×节省仅指暂存，不等于总体显存；代码仓库顶层为继承Gaussian-Splatting的专用许可证，复用需审查权利。未做GPU复现，日期按CVPR2025六月月首占位。固定图元预算、相机、GPU和目标LPIPS，比较<a class="wikilink" href="../sources/2026-09-25-fastgs.html">FastGS</a>误差点管理、<a class="wikilink" href="../sources/2026-09-25-rap.html">RAP</a>跨场评分、<a class="wikilink" href="../sources/2026-09-25-faster-gs.html">Faster-GS</a>底层实现、<a class="wikilink" href="../sources/2026-09-25-gsplat.html">gsplat</a>库实现；专题见<a class="wikilink" href="../topics/3d-gaussian-splatting.html">三维高斯泼溅：表示、优化、几何与动态任务</a>。原文、官方补充、逐页全文与独立分析留在<code>raw/ingest/2026-09-25-speedy-splat/</code>。</p></section>
+<p>训练分钟与forward FPS分开；COLMAP/载入/模型传输与整体显存未列完整成本。评分36×节省仅指暂存，不等于总体显存；代码仓库顶层为继承Gaussian-Splatting的专用许可证，复用需审查权利。未做GPU复现，日期按CVPR2025六月月首占位。固定图元预算、相机、GPU和目标LPIPS，比较<a class="wikilink" href="../sources/2026-09-25-fastgs.html">FastGS</a>误差点管理、<a class="wikilink" href="../sources/2026-09-25-rap.html">RAP</a>跨场评分、<a class="wikilink" href="../sources/2026-09-25-faster-gs.html">Faster-GS</a>底层实现、<a class="wikilink" href="../sources/2026-09-25-gsplat.html">gsplat</a>库实现；专题见<a class="wikilink" href="../topics/3d-gaussian-splatting.html">高斯科研地图：表征、语义、建图与二维图像</a>。原文、官方补充、逐页全文与独立分析留在<code>raw/ingest/2026-09-25-speedy-splat/</code>。</p></section>
       </div>
       
       
-      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">4</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-09-25-gsplat.html">gsplat：高斯泼溅实验的可微渲染库与工程基线</a><span>来源笔记</span></li><li><a href="../sources/2026-10-03-stochasticsplats.html">StochasticSplats：用随机透明采样换掉高斯排序</a><span>来源笔记</span></li><li><a href="../topics/3d-gaussian-splatting.html">三维高斯泼溅：表示、优化、几何与动态任务</a><span>主题</span></li></ul></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">4</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../sources/2026-09-25-gsplat.html">gsplat：高斯泼溅实验的可微渲染库与工程基线</a><span>来源笔记</span></li><li><a href="../sources/2026-10-03-stochasticsplats.html">StochasticSplats：用随机透明采样换掉高斯排序</a><span>来源笔记</span></li><li><a href="../topics/3d-gaussian-splatting.html">高斯科研地图：表征、语义、建图与二维图像</a><span>主题</span></li></ul></section>
       <details class="metadata-box" id="metadata"><summary><span class="summary-label"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><pre>{
   &quot;id&quot;: &quot;2026-09-25-speedy-splat&quot;,
   &quot;type&quot;: &quot;source&quot;,

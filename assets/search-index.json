@@ -40,6 +40,18 @@
     "search_text": "三维高斯泼溅：用户百篇定向证据协议 三维高斯泼溅：用户百篇定向证据协议 三维高斯泼溅：用户百篇定向证据协议 三维高斯泼溅：用户百篇定向证据协议 对指定百篇正式出版身份、版本、全文、成本与比较口径的定向筛选；系统全域检索另行完成。  docs/research-protocols/3d-gaussian-splatting review_protocol"
   },
   {
+    "slug": "docs/research-protocols/gaussian-image-representation",
+    "title": "Gaussian Image Representation",
+    "title_en": "Gaussian Image Representation",
+    "summary": "",
+    "summary_en": "",
+    "kind": "research-protocol",
+    "tags": [],
+    "url": "docs/research-protocols/gaussian-image-representation.html",
+    "url_en": "en/docs/research-protocols/gaussian-image-representation.html",
+    "search_text": "Gaussian Image Representation Gaussian Image Representation Gaussian Image Representation Gaussian Image Representation   docs/research-protocols/gaussian-image-representation research-protocol"
+  },
+  {
     "slug": "docs/research-protocols/image-editing",
     "title": "图像编辑（Image Editing）检索与综合协议",
     "title_en": "Image Editing Review Protocol",
@@ -76,6 +88,18 @@
     "search_text": "3D Gaussian Splatting Evidence Matrix 3D Gaussian Splatting Evidence Matrix 3D Gaussian Splatting Evidence Matrix 3D Gaussian Splatting Evidence Matrix   docs/research-matrices/3d-gaussian-splatting-evidence-matrix research-matrice"
   },
   {
+    "slug": "docs/research-matrices/gaussian-image-representation-evidence-matrix",
+    "title": "Gaussian Image Representation Evidence Matrix",
+    "title_en": "Gaussian Image Representation Evidence Matrix",
+    "summary": "",
+    "summary_en": "",
+    "kind": "research-matrice",
+    "tags": [],
+    "url": "docs/research-matrices/gaussian-image-representation-evidence-matrix.html",
+    "url_en": "en/docs/research-matrices/gaussian-image-representation-evidence-matrix.html",
+    "search_text": "Gaussian Image Representation Evidence Matrix Gaussian Image Representation Evidence Matrix Gaussian Image Representation Evidence Matrix Gaussian Image Representation Evidence Matrix   docs/research-matrices/gaussian-image-representation-evidence-matrix research-matrice"
+  },
+  {
     "slug": "docs/research-matrices/image-text-retrieval-evidence-matrix",
     "title": "图文检索（Image-Text Retrieval）40 篇证据矩阵",
     "title_en": "Image-Text Retrieval 40-Paper Evidence Matrix",
@@ -89,9 +113,9 @@
   },
   {
     "slug": "topics/3d-gaussian-splatting",
-    "title": "三维高斯泼溅：表示、优化、几何与动态任务",
-    "title_en": "3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes",
-    "summary": "3DGS 入门与研究地图：它是什么、66 篇正式论文分别在改进什么、新手可以从哪里开始做研究。",
+    "title": "高斯科研地图：表征、语义、建图与二维图像",
+    "title_en": "Gaussian Research Map: Representation, Semantics, Mapping, and 2D Images",
+    "summary": "按高斯表征、语义理解、几何建图、二维图像四个板块阅读；三维方向66篇证据保持独立，二维专题重点核查参数冗余、压缩与任务迁移。",
     "summary_en": "",
     "kind": "topic",
     "tags": [
@@ -102,7 +126,7 @@
     ],
     "url": "topics/3d-gaussian-splatting.html",
     "url_en": "en/topics/3d-gaussian-splatting.html",
-    "search_text": "三维高斯泼溅：表示、优化、几何与动态任务 三维高斯泼溅：表示、优化、几何与动态任务 3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes 3D Gaussian Splatting: Representation, Optimization, Geometry, and Dynamic Scenes 3DGS 入门与研究地图：它是什么、66 篇正式论文分别在改进什么、新手可以从哪里开始做研究。  topics/3d-gaussian-splatting topic near-cvpr-2025 3d-vision gaussian-splatting neural-rendering"
+    "search_text": "高斯科研地图：表征、语义、建图与二维图像 高斯科研地图：表征、语义、建图与二维图像 Gaussian Research Map: Representation, Semantics, Mapping, and 2D Images Gaussian Research Map: Representation, Semantics, Mapping, and 2D Images 按高斯表征、语义理解、几何建图、二维图像四个板块阅读；三维方向66篇证据保持独立，二维专题重点核查参数冗余、压缩与任务迁移。  topics/3d-gaussian-splatting topic near-cvpr-2025 3d-vision gaussian-splatting neural-rendering"
   },
   {
     "slug": "topics/computer-vision-overview",
@@ -168,6 +192,22 @@
     "url": "topics/diffusion-models.html",
     "url_en": "en/topics/diffusion-models.html",
     "search_text": "扩散模型 扩散模型 Diffusion Models Diffusion Models 从“逐步破坏数据，再学习逆过程”理解扩散模型，以及噪声过程、预测目标、去噪主干、条件接口和求解器之间的分层关系。  topics/diffusion-models topic near-cvpr-2025 image-generation diffusion"
+  },
+  {
+    "slug": "topics/gaussian-image-representation",
+    "title": "二维图像高斯表征：从参数精简到压缩与视觉任务",
+    "title_en": "2D Gaussian Image Representations: Parameters, Compression, and Vision",
+    "summary": "围绕GaussianImage及近三年正式论文，区分参数冗余、图元分配、真实压缩和下游任务，比较收益与代价并整理可证伪的研究入口。",
+    "summary_en": "Evidence on compact Gaussian image representations, compression, adaptive allocation, and downstream vision.",
+    "kind": "topic",
+    "tags": [
+      "near-cvpr-2025",
+      "gaussian-splatting",
+      "representation-learning"
+    ],
+    "url": "topics/gaussian-image-representation.html",
+    "url_en": "en/topics/gaussian-image-representation.html",
+    "search_text": "二维图像高斯表征：从参数精简到压缩与视觉任务 二维图像高斯表征：从参数精简到压缩与视觉任务 2D Gaussian Image Representations: Parameters, Compression, and Vision 2D Gaussian Image Representations: Parameters, Compression, and Vision 围绕GaussianImage及近三年正式论文，区分参数冗余、图元分配、真实压缩和下游任务，比较收益与代价并整理可证伪的研究入口。 Evidence on compact Gaussian image representations, compression, adaptive allocation, and downstream vision. topics/gaussian-image-representation topic near-cvpr-2025 gaussian-splatting representation-learning"
   },
   {
     "slug": "topics/generative-model-evaluation",
@@ -6531,6 +6571,142 @@
     "search_text": "CoMoGaussian：曝光轨迹改善去模糊，真实运动仍须另验 CoMoGaussian：曝光轨迹改善去模糊，真实运动仍须另验 CoMoGaussian: Continuous Motion-Aware Gaussian Splatting from Motion-Blurred Images CoMoGaussian:Continuous Motion-Aware Gaussian Splatting from Motion-Blurred Images   sources/2026-10-27-comogaussian source near-cvpr-2025 3d-vision gaussian-splatting evaluation primary-source"
   },
   {
+    "slug": "sources/2026-10-27-continuous-sr",
+    "title": "ContinuousSR：一次高斯场构建支持多倍率图像超分",
+    "title_en": "ContinuousSR：一次高斯场构建支持多倍率图像超分",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "gaussian-splatting",
+      "representation-learning",
+      "primary-source"
+    ],
+    "url": "sources/2026-10-27-continuous-sr.html",
+    "url_en": "en/sources/2026-10-27-continuous-sr.html",
+    "search_text": "ContinuousSR：一次高斯场构建支持多倍率图像超分 ContinuousSR：一次高斯场构建支持多倍率图像超分 ContinuousSR：一次高斯场构建支持多倍率图像超分 ContinuousSR：一次高斯场构建支持多倍率图像超分   sources/2026-10-27-continuous-sr source near-cvpr-2025 gaussian-splatting representation-learning primary-source"
+  },
+  {
+    "slug": "sources/2026-10-27-gaussianimage-plus-plus",
+    "title": "GaussianImage++：用图元分配、滤波和量化改进图像表示",
+    "title_en": "GaussianImage++：用图元分配、滤波和量化改进图像表示",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "gaussian-splatting",
+      "representation-learning",
+      "primary-source"
+    ],
+    "url": "sources/2026-10-27-gaussianimage-plus-plus.html",
+    "url_en": "en/sources/2026-10-27-gaussianimage-plus-plus.html",
+    "search_text": "GaussianImage++：用图元分配、滤波和量化改进图像表示 GaussianImage++：用图元分配、滤波和量化改进图像表示 GaussianImage++：用图元分配、滤波和量化改进图像表示 GaussianImage++：用图元分配、滤波和量化改进图像表示   sources/2026-10-27-gaussianimage-plus-plus source near-cvpr-2025 gaussian-splatting representation-learning primary-source"
+  },
+  {
+    "slug": "sources/2026-10-27-gaussianimage",
+    "title": "GaussianImage：用精简的二维高斯表示和压缩图像",
+    "title_en": "GaussianImage：用精简的二维高斯表示和压缩图像",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "gaussian-splatting",
+      "representation-learning",
+      "primary-source"
+    ],
+    "url": "sources/2026-10-27-gaussianimage.html",
+    "url_en": "en/sources/2026-10-27-gaussianimage.html",
+    "search_text": "GaussianImage：用精简的二维高斯表示和压缩图像 GaussianImage：用精简的二维高斯表示和压缩图像 GaussianImage：用精简的二维高斯表示和压缩图像 GaussianImage：用精简的二维高斯表示和压缩图像   sources/2026-10-27-gaussianimage source near-cvpr-2025 gaussian-splatting representation-learning primary-source"
+  },
+  {
+    "slug": "sources/2026-10-27-gaussianvision",
+    "title": "GaussianVision：直接从二维高斯学习视觉语言对齐",
+    "title_en": "GaussianVision：直接从二维高斯学习视觉语言对齐",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "gaussian-splatting",
+      "representation-learning",
+      "primary-source"
+    ],
+    "url": "sources/2026-10-27-gaussianvision.html",
+    "url_en": "en/sources/2026-10-27-gaussianvision.html",
+    "search_text": "GaussianVision：直接从二维高斯学习视觉语言对齐 GaussianVision：直接从二维高斯学习视觉语言对齐 GaussianVision：直接从二维高斯学习视觉语言对齐 GaussianVision：直接从二维高斯学习视觉语言对齐   sources/2026-10-27-gaussianvision source near-cvpr-2025 gaussian-splatting representation-learning primary-source"
+  },
+  {
+    "slug": "sources/2026-10-27-image-gs",
+    "title": "Image-GS：内容自适应图元分配与快速随机访问",
+    "title_en": "Image-GS：内容自适应图元分配与快速随机访问",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "gaussian-splatting",
+      "representation-learning",
+      "primary-source"
+    ],
+    "url": "sources/2026-10-27-image-gs.html",
+    "url_en": "en/sources/2026-10-27-image-gs.html",
+    "search_text": "Image-GS：内容自适应图元分配与快速随机访问 Image-GS：内容自适应图元分配与快速随机访问 Image-GS：内容自适应图元分配与快速随机访问 Image-GS：内容自适应图元分配与快速随机访问   sources/2026-10-27-image-gs source near-cvpr-2025 gaussian-splatting representation-learning primary-source"
+  },
+  {
+    "slug": "sources/2026-10-27-instant-gaussianimage",
+    "title": "Instant GaussianImage：用可泛化初始化缩短逐图拟合",
+    "title_en": "Instant GaussianImage：用可泛化初始化缩短逐图拟合",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "gaussian-splatting",
+      "representation-learning",
+      "primary-source"
+    ],
+    "url": "sources/2026-10-27-instant-gaussianimage.html",
+    "url_en": "en/sources/2026-10-27-instant-gaussianimage.html",
+    "search_text": "Instant GaussianImage：用可泛化初始化缩短逐图拟合 Instant GaussianImage：用可泛化初始化缩短逐图拟合 Instant GaussianImage：用可泛化初始化缩短逐图拟合 Instant GaussianImage：用可泛化初始化缩短逐图拟合   sources/2026-10-27-instant-gaussianimage source near-cvpr-2025 gaussian-splatting representation-learning primary-source"
+  },
+  {
+    "slug": "sources/2026-10-27-lig",
+    "title": "LIG：用分层二维高斯拟合高分辨率图像",
+    "title_en": "LIG：用分层二维高斯拟合高分辨率图像",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "gaussian-splatting",
+      "representation-learning",
+      "primary-source"
+    ],
+    "url": "sources/2026-10-27-lig.html",
+    "url_en": "en/sources/2026-10-27-lig.html",
+    "search_text": "LIG：用分层二维高斯拟合高分辨率图像 LIG：用分层二维高斯拟合高分辨率图像 LIG：用分层二维高斯拟合高分辨率图像 LIG：用分层二维高斯拟合高分辨率图像   sources/2026-10-27-lig source near-cvpr-2025 gaussian-splatting representation-learning primary-source"
+  },
+  {
+    "slug": "sources/2026-10-27-sgi",
+    "title": "SGI：用种子结构和熵编码压缩大图高斯",
+    "title_en": "SGI：用种子结构和熵编码压缩大图高斯",
+    "summary": "",
+    "summary_en": "",
+    "kind": "source",
+    "tags": [
+      "near-cvpr-2025",
+      "gaussian-splatting",
+      "representation-learning",
+      "primary-source"
+    ],
+    "url": "sources/2026-10-27-sgi.html",
+    "url_en": "en/sources/2026-10-27-sgi.html",
+    "search_text": "SGI：用种子结构和熵编码压缩大图高斯 SGI：用种子结构和熵编码压缩大图高斯 SGI：用种子结构和熵编码压缩大图高斯 SGI：用种子结构和熵编码压缩大图高斯   sources/2026-10-27-sgi source near-cvpr-2025 gaussian-splatting representation-learning primary-source"
+  },
+  {
     "slug": "sources/2026-10-28-splattalk",
     "title": "SplatTalk：高斯语义改善部分问答，跨任务微调仍会退化",
     "title_en": "SplatTalk:3D VQA with Gaussian Splatting",
@@ -6911,6 +7087,22 @@
     "url": "questions/question-do-benchmarks-track-real-video-editing-understanding.html",
     "url_en": "en/questions/question-do-benchmarks-track-real-video-editing-understanding.html",
     "search_text": "现有评测是否真的刻画了视频编辑理解能力 现有评测是否真的刻画了视频编辑理解能力 现有评测是否真的刻画了视频编辑理解能力 现有评测是否真的刻画了视频编辑理解能力   questions/question-do-benchmarks-track-real-video-editing-understanding question near-cvpr-2025 video-editing benchmarking survey-needed"
+  },
+  {
+    "slug": "questions/question-gaussian-image-representation-research-cut",
+    "title": "二维图像高斯表征应优先解决哪种信息与成本瓶颈？",
+    "title_en": "二维图像高斯表征应优先解决哪种信息与成本瓶颈？",
+    "summary": "",
+    "summary_en": "",
+    "kind": "question",
+    "tags": [
+      "near-cvpr-2025",
+      "survey-needed",
+      "gaussian-splatting"
+    ],
+    "url": "questions/question-gaussian-image-representation-research-cut.html",
+    "url_en": "en/questions/question-gaussian-image-representation-research-cut.html",
+    "search_text": "二维图像高斯表征应优先解决哪种信息与成本瓶颈？ 二维图像高斯表征应优先解决哪种信息与成本瓶颈？ 二维图像高斯表征应优先解决哪种信息与成本瓶颈？ 二维图像高斯表征应优先解决哪种信息与成本瓶颈？   questions/question-gaussian-image-representation-research-cut question near-cvpr-2025 survey-needed gaussian-splatting"
   },
   {
     "slug": "questions/question-image-text-retrieval-data-contamination",
