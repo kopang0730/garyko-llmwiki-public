@@ -122,26 +122,30 @@
       
       <header class="article-header" data-motion="reveal">
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>7DGS:Unified Spatial-Temporal-Angular Gaussian Splatting</strong></nav>
-        <p class="eyebrow">Source note · Updated 2026-10-05</p>
+        <p class="eyebrow">Source note · Updated 2026-10-28</p>
         <h1><span class="title-main">7DGS</span><span class="title-subtitle">Unified Spatial-Temporal-Angular Gaussian Splatting</span></h1>
         
         <p class="article-actions"><a class="btn btn-primary" href="https://api.crossref.org/works/10.1109/ICCV51701.2025.02442" target="_blank" rel="noopener noreferrer">Read the paper<span aria-hidden="true"> ↗</span></a></p>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#3d-vision">#3d-vision</a><a class="tag" href="../../en/tags.html#gaussian-splatting">#gaussian-splatting</a><a class="tag" href="../../en/tags.html#neural-rendering">#neural-rendering</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
       <div class="article-layout has-rail">
-        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-10-19</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-10-05</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://api.crossref.org/works/10.1109/ICCV51701.2025.02442" title="https://api.crossref.org/works/10.1109/ICCV51701.2025.02442" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>api.crossref.org · ICCV51701.2025.02442</strong></a><a class="source-link source-link-pdf" href="https://media.eventhosts.cc/Conferences/ICCV2025/iccv25_main_program.pdf" title="https://media.eventhosts.cc/Conferences/ICCV2025/iccv25_main_program.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>media.eventhosts.cc · iccv25_main_program.pdf</strong></a><a class="source-link source-link-code" href="https://github.com/Gaozhongpai/7dgs" title="https://github.com/Gaozhongpai/7dgs" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · 7dgs</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#正式身份与阅读版本">正式身份与阅读版本</a></li><li><a href="#问题-输入与方法">问题、输入与方法</a></li><li><a href="#数据-训练和成本">数据、训练和成本</a></li><li><a href="#主要结果-按版本分账">主要结果：按版本分账</a></li><li><a href="#反例-消融与比较口径">反例、消融与比较口径</a></li><li><a href="#代码与复现边界">代码与复现边界</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-10-19</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-10-05</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://api.crossref.org/works/10.1109/ICCV51701.2025.02442" title="https://api.crossref.org/works/10.1109/ICCV51701.2025.02442" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>api.crossref.org · ICCV51701.2025.02442</strong></a><a class="source-link source-link-pdf" href="https://media.eventhosts.cc/Conferences/ICCV2025/iccv25_main_program.pdf" title="https://media.eventhosts.cc/Conferences/ICCV2025/iccv25_main_program.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>media.eventhosts.cc · iccv25_main_program.pdf</strong></a><a class="source-link source-link-code" href="https://github.com/Gaozhongpai/7dgs" title="https://github.com/Gaozhongpai/7dgs" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · 7dgs</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#先懂本页指标">先懂本页指标</a></li><li><a href="#正式身份与阅读版本">正式身份与阅读版本</a></li><li><a href="#问题-输入与方法">问题、输入与方法</a></li><li><a href="#数据-训练和成本">数据、训练和成本</a></li><li><a href="#主要结果-按版本分账">主要结果：按版本分账</a></li><li><a href="#反例-消融与比较口径">反例、消融与比较口径</a></li><li><a href="#代码与复现边界">代码与复现边界</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
         <section class="article-content" lang="zh-CN"><p class="translation-notice" role="note">English translation pending — this page shows the Chinese original.</p><h2 id="一句话结论">一句话结论</h2>
 <p>把空间、时间和观察方向放入同一个高维高斯，再切成可渲染的三维高斯，能提升部分动态画质；完整版本和轻量版本的速度与质量必须分开。</p>
+<h2 id="先懂本页指标">先懂本页指标</h2>
+<table><thead><tr><th>指标</th><th>看什么</th><th>方向</th></tr></thead><tbody><tr><td>PSNR</td><td>像素重建质量；越高表示像素误差越小</td><td>↑</td></tr><tr><td>SSIM</td><td>重建图与原图的结构相似性</td><td>↑</td></tr><tr><td>LPIPS</td><td>重建图与参考图的感知特征差异</td><td>↓</td></tr><tr><td>FPS</td><td>每秒输出帧数，仅指所测阶段</td><td>↑</td></tr></tbody></table>
 <h2 id="正式身份与阅读版本">正式身份与阅读版本</h2>
-<p>Crossref登记为IEEE/CVF ICCV2025主会proceedings-article，DOI <code>10.1109/iccv51701.2025.02442</code>、页26316–26325、六作者与已保存官方main program PDF第63页poster154一致。本文reviewed范围为作者本人提交、CC BY4.0的 <code>arXiv:2503.07946v1</code>（2025-03-11）完整10页，8页正文和2页参考文献，无作者附录。<strong>出版最终稿及官方补充未取得，差异未核实</strong>；provided星号不当作正式奖项。</p>
+<p>Crossref登记为IEEE/CVF ICCV2025主会proceedings-article，DOI <code>10.1109/iccv51701.2025.02442</code>、页26316–26325、六作者与已保存官方main program PDF第63页poster154一致。</p>
+<p>本文reviewed范围为作者本人提交、CC BY4.0的 <code>arXiv:2503.07946v1</code>（2025-03-11）完整10页，8页正文和2页参考文献，无作者附录。</p>
+<p><strong>出版最终稿及官方补充未取得，差异未核实</strong>；provided星号不当作正式奖项。</p>
 <p>官方CVF入口首次403已保留且未重试；身份书目、作者全文、公开项目分别来自自身允许访问的独立来源，不声称获取或读过被拒绝页面。作者项目链接到公开数据入口，但本次未下载或核验数据包内容、许可。独立分析、原表图像和逐页台账保存在内部raw层。</p>
 <h2 id="问题-输入与方法">问题、输入与方法</h2>
 <p>目标是有时间和相机标定的动态视频新视角渲染，逐场优化，不是单图前馈、场景生成或语义定位。每个图元以三维位置、一维时间、三维方向向量组成七维均值和协方差；方向向量不等于三个独立角自由度。原3DGS已用球谐颜色处理视角相关外观，7DGS额外让几何/透明度受时间—方向联合条件影响（pp.1–4）。</p>
 <p>协方差用Cholesky表示，在给定时间和方向时，通过高斯条件公式求三维均值与Schur complement协方差。透明度再乘各自时间门和方向门，复用原3DGS投影、深度排序及混合。因此没有取消排序，也不是精确光传输或真实物理模拟。条件位置随观察方向变化，不能单凭RGB好看推断真实几何（pp.4–6，Eqs.10–17）。</p>
-<p>固定协方差的基础切片难表达随时间改变的形状。自适应高斯精修（Adaptive Gaussian Refinement，AGR）用小型MLP预测均值/协方差残差，随时间更新后再切片；时空相关增密和剪枝也共同影响结果。AGR以当前时间编码和图元基础属性为输入，当前观察方向通过后续切片引入。CUDA切片是作者提出的进一步加速方向，未作为已实现结果报告（pp.5–6 Algorithm1，p.8）。</p>
+<p>固定协方差的基础切片难表达随时间改变的形状。自适应高斯精修（Adaptive Gaussian Refinement，AGR）用小型MLP（多层小型神经网络）预测均值/协方差残差，随时间更新后再切片；时空相关增密和剪枝也共同影响结果。AGR以当前时间编码和图元基础属性为输入，当前观察方向通过后续切片引入。CUDA切片是作者提出的进一步加速方向，未作为已实现结果报告（pp.5–6 Algorithm1，p.8）。</p>
 <h2 id="数据-训练和成本">数据、训练和成本</h2>
 <p>作者同卡Tesla V100 16GB实验，三套数据：D-NeRF八个合成场，Technicolor五个同步多视视频场，自建7DGS-PBR六个物理渲染场。PBR心脏来自真实CT体数据，但训练/真值是渲染帧，不能写成直接临床视频重建或已验证医学用途。PBR按时间内视角9:1分割，未证明未见时间泛化；心脏用marching cubes点初始化，Technicolor用COLMAP，其他场随机点（p.6 §5.1）。</p>
-<p>默认下采样和batch4，Technicolor全分辨率且本法batch1，对照batch是否同改未明确。网络和调制参数分阶段启用；总步数、精确warmup计时、峰显存和完整软件环境未充分报告。V100容量不等于实测峰内存。训练分钟不含CT/合成数据渲染、分割、SfM和采集成本；模型点数也不等于存储或运行内存（pp.6–7）。</p>
+<p>默认下采样和batch4，Technicolor全分辨率且本法batch1，对照batch是否同改未明确。网络和调制参数分阶段启用；总步数、精确warmup计时、峰显存和完整软件环境未充分报告。V100容量不等于实测峰内存。训练分钟不含CT/合成数据渲染、分割、SfM（从多张照片估计相机和稀疏三维点）和采集成本；模型点数也不等于存储或运行内存（pp.6–7）。</p>
 <h2 id="主要结果-按版本分账">主要结果：按版本分账</h2>
 <table><thead><tr><th>同论文内部数据集平均</th><th>4DGS PSNR ↑</th><th>完整7DGS PSNR ↑</th><th>无AGR PSNR ↑</th><th>4DGS FPS ↑</th><th>完整FPS ↑</th><th>无AGR FPS ↑</th><th>原文定位</th></tr></thead><tbody><tr><td>PBR六场</td><td>27.79</td><td>32.50</td><td>31.77</td><td>192.6</td><td>174.7</td><td>376.0</td><td>p.7 Table1</td></tr><tr><td>D-NeRF八场</td><td>33.21</td><td>34.34</td><td>33.26</td><td>296.4</td><td>194.2</td><td>377.8</td><td>同表</td></tr><tr><td>Technicolor五场</td><td>33.25</td><td>33.58</td><td>33.30</td><td>84.2</td><td>79.2</td><td>278.0</td><td>同表</td></tr></tbody></table>
 <p>完整模型三个数据集平均都更慢；无AGR的后两个数据集只提升0.05 dB。作者正文“all metrics”全优比表格支持范围更强，不能沿用。三个平均值对应不同数据和分辨率，只看各行内部结果，不做跨集FPS总榜。</p>
@@ -151,13 +155,16 @@
 <p>更少点不代表相同比例的内存节省，七维图元和网络有额外参数。无AGR列未给训练时间，不能把其FPS当作同质量训练成本证明。</p>
 <h2 id="反例-消融与比较口径">反例、消融与比较口径</h2>
 <p>完整法在D-NeRF h.warrior的PSNR从34.10降至32.96、hook从32.93降至31.57；Technicolor fabien与theater也有PSNR下降。完整suzanne仅62.5 FPS，对照141.8；Technicolor train仅18.6 FPS，对照58.3。不是所有场景实时，也不是所有单场更清楚（p.7 Table1）。</p>
-<p>主对照4DGS是Zeyu Yang等ICLR2024的联合时空高斯；Wu等CVPR2024形变法在另一表叫4DGaussians，不能混名。Technicolor另一表使用LPIPS-Alex，本法0.101弱于STG的0.085和Ex4DGS的0.094；SSIM0.912弱于Ex4DGS0.917。主表LPIPS0.198是另一设置，不能混成同一数值。只带星号的4DGS/Ex4DGS报告为官方代码重跑，其他结果并非统一预算复测（p.8 Table2，refs.35/38）。</p>
-<p>AGR开关是主要量化消融；跨协方差、opacity门、时空增密和点/参数/内存预算未完整拆分。缺多种子和置信区间、几何/运动真值、未见时间、强外推和长期一致性验收。此处好看的体积外观不证明可重光照、真实生物力学或可靠SLAM。</p>
+<p>主对照4DGS是Zeyu Yang等ICLR2024的联合时空高斯；Wu等CVPR2024形变法在另一表叫4DGaussians，不能混名。</p>
+<p>Technicolor另一表使用LPIPS-Alex，本法0.101弱于STG的0.085和Ex4DGS的0.094；SSIM0.912弱于Ex4DGS0.917。</p>
+<p>主表LPIPS0.198是另一设置，不能混成同一数值。</p>
+<p>只带星号的4DGS/Ex4DGS报告为官方代码重跑，其他结果并非统一预算复测（p.8 Table2，refs.35/38）。</p>
+<p>AGR开关是主要量化消融；跨协方差、透明度门、时空增密和点/参数/内存预算未完整拆分。缺多种子和置信区间、几何/运动真值、未见时间、强外推和长期一致性验收。此处好看的体积外观不证明可重光照、真实生物力学或可靠SLAM。</p>
 <h2 id="代码与复现边界">代码与复现边界</h2>
 <p>项目仓库固定提交 <code>43d70f99b11b0326402fe92bc7554514c6beb84c</code> 的完整目录树/README是网页模板、图像及视频，未发现Python/CUDA/C++训练实现。项目有Data链接，但数据包可访问性、内容和许可未核；网页CC BY-SA4.0不能推成算法软件或数据许可证。本次未执行代码、GPU复现或下载训练数据，不承诺现有公开材料足以复现。</p>
 <h2 id="相关页面">相关页面</h2>
 <ul>
-<li><a class="wikilink" href="../../en/topics/3d-gaussian-splatting.html">Gaussian Research Map: Representation, Semantics, Mapping, and 2D Images</a>：动态判断加入高维外观和质量—速度版本分账。</li>
+<li><a class="wikilink" href="../../en/topics/3d-gaussian-splatting.html">Gaussian Research Map: Representation, Semantics, Mapping, and 2D Images</a>：动态判断加入高维外观和质量—速度版本分别说明。</li>
 <li><a class="wikilink" href="../../en/sources/2026-09-25-3d-gaussian-splatting.html">3D Gaussian Splatting：从稀疏点到实时新视角渲染</a>：静态球谐颜色与透明混合底座。</li>
 <li><a class="wikilink" href="../../en/sources/2026-09-25-speede3dgs.html">SpeeDe3DGS：动态高斯时间剪枝与运动分组</a>：通过时空剪枝和共享运动提速，机制不同。</li>
 <li><a class="wikilink" href="../../en/sources/2026-09-25-movies.html">MoVieS：有位姿单目视频的前馈动态高斯与运动建模</a>：动态前馈需要大规模预训练，预算不同。</li>
@@ -174,7 +181,7 @@
   &quot;title_en&quot;: &quot;7DGS: Unified Spatial-Temporal-Angular Gaussian Splatting&quot;,
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-10-05&quot;,
-  &quot;updated&quot;: &quot;2026-10-05&quot;,
+  &quot;updated&quot;: &quot;2026-10-28&quot;,
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;venue&quot;: &quot;ICCV 2025&quot;,

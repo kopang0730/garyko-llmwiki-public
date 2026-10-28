@@ -122,7 +122,7 @@
       
       <header class="article-header" data-motion="reveal">
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Let it Snow!：物理引导的动态天气高斯编辑</strong></nav>
-        <p class="eyebrow">来源笔记 · 更新于 2026-09-25</p>
+        <p class="eyebrow">来源笔记 · 更新于 2026-10-28</p>
         <h1><span class="title-main">Let it Snow!</span><span class="title-subtitle">物理引导的动态天气高斯编辑</span></h1>
         
         <p class="article-actions"><a class="btn btn-primary" href="https://openaccess.thecvf.com/content/CVPR2026/html/Fiebelman_Let_it_Snow_Animating_3D_Gaussian_Scenes_with_Dynamic_Weather_CVPR_2026_paper.html" target="_blank" rel="noopener noreferrer">阅读原论文<span aria-hidden="true"> ↗</span></a></p>
@@ -131,12 +131,23 @@
       <div class="article-layout has-rail">
         <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2026</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2026-06-01</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-09-25</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2026/html/Fiebelman_Let_it_Snow_Animating_3D_Gaussian_Scenes_with_Dynamic_Weather_CVPR_2026_paper.html" title="https://openaccess.thecvf.com/content/CVPR2026/html/Fiebelman_Let_it_Snow_Animating_3D_Gaussian_Scenes_with_Dynamic_Weather_CVPR_2026_paper.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>openaccess.thecvf.com · Fiebelman_Let_it_Snow_Animating…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2026/papers/Fiebelman_Let_it_Snow_Animating_3D_Gaussian_Scenes_with_Dynamic_Weather_CVPR_2026_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2026/papers/Fiebelman_Let_it_Snow_Animating_3D_Gaussian_Scenes_with_Dynamic_Weather_CVPR_2026_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Fiebelman_Let_it_Snow_Animating…</strong></a><a class="source-link source-link-code" href="https://github.com/galfiebelman/let-it-snow" title="https://github.com/galfiebelman/let-it-snow" target="_blank" rel="noopener noreferrer"><span>代码仓库</span><strong>github.com · let-it-snow</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>目录</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#方法-条件与结果">方法、条件与结果</a></li><li><a href="#限制-成本及关联">限制、成本及关联</a></li></ol></details></aside>
         <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>在已标定的静态3DGS场景上，把MPM天气粒子轨迹当可修正先验，用预训练视频扩散的SDS联合改进运动和外观；五个场景的作者自动指标支持天气编辑质量，约一小时/场景效应与预建图/预训练依赖需同时计算（主文pp.37322–37329，补充p.6 Table11）。</p>
+<p>Let It Snow给已有高斯场景添加雪、雨、雾和沙等天气效果。它用物理模拟提供运动参考，再用视频生成先验调整运动和外观；每个场景效果约需一小时，还不含预先建图和模型训练。</p>
 <h2 id="方法-条件与结果">方法、条件与结果</h2>
-<p>输入为多视图静态建图、场景网格、天气文字提示和发射/物性参数；MPM提供雪/雨/雾/沙的参考运动，高斯在活动/碰撞状态下由递归MLP预测速度、旋转及外观变化。损失包含Video-SDS、轨迹位置/速度/旋转正则与外观正则，权重随视频SDS损失动态调整（主文pp.37324–37326 Fig.2/Eqs.3–8）。雪背景还以预训练ClimateNeRF生成图微调静态高斯1000步，不能把所有提升归因于单项运动损失（补充p.6 §8.2）。</p>
-<p>Mip-NeRF360三个与Tanks and Temples两个场景，每景四天气；视频指标沿15条由训练相机插值的路径，图像指标在训练视图。主文p.37328 Table1同雪+雾分母：ours CLIPSim .29、ViCLIP-T .20、VE-Bench .45；ClimateNeRF .23/.15/.28，GaussCtrl .25/.16/.24。全四天气ours .28/.19/.41、GaussCtrl .24/.15/.21。静态方法以移动相机做视频对照，自动文字/画质指标不等于真实天气物理真值；Instruct-4DGS从静态零形变适配，任务输入有变。p.37329 Table2去碰撞VE-Bench .34、去外观 .37、完整 .41；去运动或固定模拟的视频效果有视觉失效（Fig.6）。</p>
+<p>输入为多视图静态建图、场景网格、天气文字提示和发射/物性参数；MPM提供雪/雨/雾/沙的参考运动，高斯在活动/碰撞状态下由递归MLP（多层小型神经网络）预测速度、旋转及外观变化。</p>
+<p>损失包含Video-SDS（利用生成模型指导优化）、轨迹位置/速度/旋转正则与外观正则，权重随视频SDS损失动态调整（主文pp.37324–37326 Fig.2/Eqs.3–8）。</p>
+<p>雪背景还以预训练ClimateNeRF生成图微调静态高斯1000步，不能把所有提升归因于单项运动损失（补充p.6 §8.2）。</p>
+<p>评测覆盖Mip-NeRF360三个场景和Tanks and Temples两个场景，每场四种天气。视频沿十五条插值相机路径评测，图像指标则使用训练视图。</p>
+<table><thead><tr><th>相同天气范围的比较</th><th>方法</th><th>CLIPSim ↑</th><th>ViCLIP-T ↑</th><th>VE-Bench ↑</th></tr></thead><tbody><tr><td>雪＋雾</td><td>Let It Snow</td><td>0.29</td><td>0.20</td><td>0.45</td></tr><tr><td>雪＋雾</td><td>ClimateNeRF</td><td>0.23</td><td>0.15</td><td>0.28</td></tr><tr><td>雪＋雾</td><td>GaussCtrl</td><td>0.25</td><td>0.16</td><td>0.24</td></tr><tr><td>四种天气</td><td>Let It Snow</td><td>0.28</td><td>0.19</td><td>0.41</td></tr><tr><td>四种天气</td><td>GaussCtrl</td><td>0.24</td><td>0.15</td><td>0.21</td></tr></tbody></table>
+<p><strong>怎么读</strong>：自动文字和视频质量指标更高，仍不能证明真实天气运动符合物理。静态方法通过移动相机生成视频作对照；Instruct-4DGS也被改成从静态零形变开始，输入条件并不完全相同。依据：主文p.37328 Table1。</p>
+<table><thead><tr><th>模块消融</th><th>VE-Bench ↑</th></tr></thead><tbody><tr><td>去碰撞处理</td><td>0.34</td></tr><tr><td>去外观处理</td><td>0.37</td></tr><tr><td>完整方法</td><td>0.41</td></tr></tbody></table>
+<p>去掉运动或固定模拟的失败主要通过图像展示，没有统一真实运动真值。依据：主文p.37329 Table2及Fig.6。</p>
 <h2 id="限制-成本及关联">限制、成本及关联</h2>
-<p>补充p.6 Table11单A100 40GB报告本法约60min/场景效应，GaussCtrl约30min，ClimateNeRF约180min；需另算静态SfM/3DGS训练、网格、CogVideoX-2B权重、LLM初始化及背景ClimateNeRF。补充p.5的Blender人工10h对自动1h仅Garden雪单个作者新手例。主文p.37329 §4.4：既有场景几何无反向受力，静态高斯无全局阴影更新，轨迹偏离模拟器后先验可能误导。官方仓库MIT，原始模型/数据许可另核；没有GPU复现。与<a class="wikilink" href="../sources/2026-09-25-physgaussian.html">PhysGaussian</a>共同使用MPM，却以文字控制的新天气外观/视频为主要终点。完整方法、数字和反证见<code>raw/ingest/2026-09-25-let-it-snow/analysis.md</code>及<a class="wikilink" href="../topics/3d-gaussian-splatting.html">高斯科研地图：表征、语义、建图与二维图像</a>。</p></section>
+<p>补充p.6 Table11单A100 40GB报告本法约60min/场景效应，GaussCtrl约30min，ClimateNeRF约180min；需另算静态SfM（从多张照片估计相机和稀疏三维点）/3DGS训练、网格、CogVideoX-2B权重、LLM初始化及背景ClimateNeRF。</p>
+<p>补充p.5的Blender人工10h对自动1h仅Garden雪单个作者新手例。</p>
+<p>主文p.37329 §4.4：既有场景几何无反向受力，静态高斯无全局阴影更新，轨迹偏离模拟器后先验可能误导。</p>
+<p>官方仓库MIT，原始模型/数据许可另核；没有GPU复现。</p>
+<p>与<a class="wikilink" href="../sources/2026-09-25-physgaussian.html">PhysGaussian</a>共同使用MPM，却以文字控制的新天气外观/视频为主要终点。</p>
+<p>完整方法、数字和反证见<code>raw/ingest/2026-09-25-let-it-snow/analysis.md</code>及<a class="wikilink" href="../topics/3d-gaussian-splatting.html">高斯科研地图：表征、语义、建图与二维图像</a>。</p></section>
       </div>
       
       
@@ -148,7 +159,7 @@
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-09-25&quot;,
-  &quot;updated&quot;: &quot;2026-09-25&quot;,
+  &quot;updated&quot;: &quot;2026-10-28&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;venue&quot;: &quot;CVPR 2026&quot;,
   &quot;authors&quot;: &quot;[Gal Fiebelman, Hadar Averbuch-Elor, Sagie Benaim]&quot;,

@@ -122,18 +122,22 @@
       
       <header class="article-header" data-motion="reveal">
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>StochasticSplats:Replacing Gaussian Sorting with Stochastic Transparency</strong></nav>
-        <p class="eyebrow">Source note · Updated 2026-10-03</p>
+        <p class="eyebrow">Source note · Updated 2026-10-28</p>
         <h1><span class="title-main">StochasticSplats</span><span class="title-subtitle">Replacing Gaussian Sorting with Stochastic Transparency</span></h1>
         
         <p class="article-actions"><a class="btn btn-primary" href="https://api.crossref.org/works/10.1109/ICCV51701.2025.02443" target="_blank" rel="noopener noreferrer">Read the paper<span aria-hidden="true"> ↗</span></a></p>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#3d-vision">#3d-vision</a><a class="tag" href="../../en/tags.html#gaussian-splatting">#gaussian-splatting</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
       <div class="article-layout has-rail">
-        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-10-19</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-10-03</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://api.crossref.org/works/10.1109/ICCV51701.2025.02443" title="https://api.crossref.org/works/10.1109/ICCV51701.2025.02443" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>api.crossref.org · ICCV51701.2025.02443</strong></a><a class="source-link source-link-pdf" href="https://media.eventhosts.cc/Conferences/ICCV2025/iccv25_main_program.pdf" title="https://media.eventhosts.cc/Conferences/ICCV2025/iccv25_main_program.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>media.eventhosts.cc · iccv25_main_program.pdf</strong></a><a class="source-link source-link-code" href="https://github.com/ubc-vision/stochasticsplats" title="https://github.com/ubc-vision/stochasticsplats" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · stochasticsplats</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#身份与证据范围">身份与证据范围</a></li><li><a href="#问题定义与输入输出">问题定义与输入输出</a></li><li><a href="#方法与机制">方法与机制</a></li><li><a href="#主结果与比较条件">主结果与比较条件</a></li><li><a href="#语义任务-消融与反证">语义任务、消融与反证</a></li><li><a href="#成本与复现边界">成本与复现边界</a></li><li><a href="#相关页面与状态">相关页面与状态</a></li></ol></details></aside>
+        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-10-19</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-10-03</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://api.crossref.org/works/10.1109/ICCV51701.2025.02443" title="https://api.crossref.org/works/10.1109/ICCV51701.2025.02443" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>api.crossref.org · ICCV51701.2025.02443</strong></a><a class="source-link source-link-pdf" href="https://media.eventhosts.cc/Conferences/ICCV2025/iccv25_main_program.pdf" title="https://media.eventhosts.cc/Conferences/ICCV2025/iccv25_main_program.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>media.eventhosts.cc · iccv25_main_program.pdf</strong></a><a class="source-link source-link-code" href="https://github.com/ubc-vision/stochasticsplats" title="https://github.com/ubc-vision/stochasticsplats" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · stochasticsplats</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#先懂本页指标">先懂本页指标</a></li><li><a href="#身份与证据范围">身份与证据范围</a></li><li><a href="#问题定义与输入输出">问题定义与输入输出</a></li><li><a href="#方法与机制">方法与机制</a></li><li><a href="#主结果与比较条件">主结果与比较条件</a></li><li><a href="#语义任务-消融与反证">语义任务、消融与反证</a></li><li><a href="#成本与复现边界">成本与复现边界</a></li><li><a href="#相关页面与状态">相关页面与状态</a></li></ol></details></aside>
         <section class="article-content" lang="zh-CN"><p class="translation-notice" role="note">English translation pending — this page shows the Chinese original.</p><h2 id="一句话结论">一句话结论</h2>
 <p>已有高斯场景可用随机透明采样和硬件深度缓冲取消全局排序，低采样渲染更快；代价是噪声、部分语义定位退化和高采样反向传播成本，不能概括为同画质或端到端训练加速。</p>
+<h2 id="先懂本页指标">先懂本页指标</h2>
+<table><thead><tr><th>指标</th><th>看什么</th><th>方向</th></tr></thead><tbody><tr><td>PSNR</td><td>像素重建质量；越高表示像素误差越小</td><td>↑</td></tr><tr><td>SSIM</td><td>重建图与原图的结构相似性</td><td>↑</td></tr><tr><td>LPIPS</td><td>重建图与参考图的感知特征差异</td><td>↓</td></tr><tr><td>FPS</td><td>每秒输出帧数，仅指所测阶段</td><td>↑</td></tr></tbody></table>
 <h2 id="身份与证据范围">身份与证据范围</h2>
-<p>正式题名为 *StochasticSplats: Stochastic Rasterization for Sorting-Free 3D Gaussian Splatting*。Crossref的IEEE正式DOI <code>10.1109/ICCV51701.2025.02443</code>列ICCV2025 proceedings、七作者、pp.26326–26335；官方main program PDF p.63 poster155题名/作者对应。出版日期取Crossref记录。</p>
+<p>正式题名为 *StochasticSplats: Stochastic Rasterization for Sorting-Free 3D Gaussian Splatting*。</p>
+<p>Crossref的IEEE正式DOI <code>10.1109/ICCV51701.2025.02443</code>列ICCV2025 proceedings、七作者、pp.26326–26335；官方main program PDF p.63 poster155题名/作者对应。</p>
+<p>出版日期取Crossref记录。</p>
 <p>全文使用作者公开arXiv:2503.24366v1（2025-03-31），13页，其中11页正文/参考文献、2页作者补充。以下页码指这个版本，<strong>与出版最终版的差异尚未核对</strong>。首次CVF入口403保留且未重试，独立正式身份核验后才读取作者全文；不将作者稿内补充声称为另取得的官方补充，也不根据项目声称奖项。</p>
 <h2 id="问题定义与输入输出">问题定义与输入输出</h2>
 <p>输入是已有高斯资产及指定相机，精修另需带位姿训练图像；输出RGB或语义特征渲染。它继承逐场建图与相机许可，改变渲染计算，不是从稀疏RGB直接重建或无位姿模型。每像素采样数（samples per pixel，SPP）提供可调的噪声—速度接口（pp.2–3）。</p>
@@ -150,18 +154,20 @@
 <table><thead><tr><th>RTX3090 CUDA单次反向</th><th>时间 ↓</th><th>原文定位</th></tr></thead><tbody><tr><td>3DGS</td><td>23.06毫秒</td><td>p.7 Table3</td></tr><tr><td>本法1SPP</td><td>18.10毫秒</td><td>同表</td></tr><tr><td>本法8SPP</td><td>33.19毫秒</td><td>同表</td></tr><tr><td>本法128SPP（精修配置）</td><td>478.93毫秒</td><td>同表</td></tr></tbody></table>
 <p>渲染加速不等于训练加速；这里不含完整优化循环、原始训练或数据准备，也不能将OpenGL前向和CUDA反向混成未报告的端到端FPS。</p>
 <h2 id="语义任务-消融与反证">语义任务、消融与反证</h2>
-<p>用LangSplat既有语义资产改renderer，LERF四场1SPP平均定位准确率从84.3降到82.0；Waldo-Kitchen从95.5降到86.4，其他三场持平。正文“does not harm”比表格支持范围更强。噪声在部分任务仍可用，不表示完全无损，也不证明建场与语言查询全链提速（p.8 Table4、Fig.10）。</p>
-<p>采样量有同表量化，分辨率/tile曲线说明该实现简单降分辨率未必持续提速，但不是所有实现的普遍定律。TAA（temporal anti-aliasing，时域抗锯齿）累计历史帧并用三维位置检查遮挡，展示70帧后的选例；体积区域平均位置不可靠、遮挡时会重置，未报告长期ghosting分布或精确TAA增量（p.8 Figs.8–9；补充p.12）。完整组件消融、多种子、显著性、动态遮挡和真实GT几何未充分提供。</p>
+<p>用LangSplat既有语义资产改渲染器，LERF四场1SPP平均定位准确率从84.3降到82.0；Waldo-Kitchen从95.5降到86.4，其他三场持平。正文“does not harm”比表格支持范围更强。噪声在部分任务仍可用，不表示完全无损，也不证明建场与语言查询全链提速（p.8 Table4、Fig.10）。</p>
+<p>采样量有同表量化，分辨率/tile（屏幕小块）曲线说明该实现简单降分辨率未必持续提速，但不是所有实现的普遍定律。TAA（temporal anti-aliasing，时域抗锯齿）累计历史帧并用三维位置检查遮挡，展示70帧后的选例；体积区域平均位置不可靠、遮挡时会重置，未报告长期ghosting分布或精确TAA增量（p.8 Figs.8–9；补充p.12）。完整组件消融、多种子、显著性、动态遮挡和真实真值几何未充分提供。</p>
 <h2 id="成本与复现边界">成本与复现边界</h2>
-<p>已有场景CUDA128SPP精修1000步平均约14分钟/RTX3090，无增密或剪枝；不包括原始SfM、建场和LangSplat教师特征准备。完整预算、峰显存及实际移动/VR延迟仍缺（p.6）。</p>
-<p>作者代码固定提交 <code>b218f025c93363ce851541d8a5c3d2b3020ece7c</code> 的README给出基于Splatapult的OpenGL viewer：AB/ST/ST-popfree模式，后者需本法训练/精修资产；默认1SPP开启TAA，多采样时自动关闭。仅核README/许可，未审计shader或运行程序，不能由此确认完整CUDA训练管线已公开。MIT与arXiv稿CC BY4.0不替代第三方数据/资产许可。</p>
+<p>已有场景CUDA128SPP精修1000步平均约14分钟/RTX3090，无增密或剪枝；不包括原始SfM（从多张照片估计相机和稀疏三维点）、建场和LangSplat教师特征准备。完整预算、峰显存及实际移动/VR延迟仍缺（p.6）。</p>
+<p>作者代码固定提交 <code>b218f025c93363ce851541d8a5c3d2b3020ece7c</code> 的README给出基于Splatapult的OpenGL viewer：AB/ST/ST-popfree模式，后者需本法训练/精修资产；默认1SPP开启TAA，多采样时自动关闭。</p>
+<p>仅核README/许可，未审计shader或运行程序，不能由此确认完整CUDA训练管线已公开。</p>
+<p>MIT与arXiv稿CC BY4.0不替代第三方数据/资产许可。</p>
 <h2 id="相关页面与状态">相关页面与状态</h2>
 <ul>
 <li><a class="wikilink" href="../../en/topics/3d-gaussian-splatting.html">Gaussian Research Map: Representation, Semantics, Mapping, and 2D Images</a>：效率和语义判断新增采样、画质、反向及定位边界。</li>
 <li><a class="wikilink" href="../../en/sources/2026-09-25-3d-gaussian-splatting.html">3D Gaussian Splatting：从稀疏点到实时新视角渲染</a>：传统排序alpha混合路径。</li>
 <li><a class="wikilink" href="../../en/sources/2026-09-25-speedy-splat.html">Speedy-Splat：精确tile覆盖与训练期裁剪的双层加速</a>：通过裁剪及覆盖计算提速，机制与采样不同。</li>
 <li><a class="wikilink" href="../../en/sources/2026-09-25-gsplat.html">gsplat：高斯泼溅实验的可微渲染库与工程基线</a>：底座版本是公平对照变量。</li>
-<li><a class="wikilink" href="../../en/sources/2026-09-25-langsplat.html">LangSplat：高斯语言特征与三级语义查询</a>：离线语义资产和在线定位分账。</li>
+<li><a class="wikilink" href="../../en/sources/2026-09-25-langsplat.html">LangSplat：高斯语言特征与三级语义查询</a>：离线语义资产和在线定位分别说明。</li>
 <li><a class="wikilink" href="../../en/docs/research-matrices/3d-gaussian-splatting-evidence-matrix.html">3D Gaussian Splatting Evidence Matrix</a>：原表、成本和版本追踪。</li>
 </ul>
 <p>作者v1完整核验与独立分析完成，来源状态reviewed；出版最终版本差异仍待查。原件、13页台账与审计保留内部raw层，公开状态另由实际发布收据记录。</p></section>
@@ -177,7 +183,7 @@
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-10-03&quot;,
-  &quot;updated&quot;: &quot;2026-10-03&quot;,
+  &quot;updated&quot;: &quot;2026-10-28&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;venue&quot;: &quot;ICCV 2025&quot;,
   &quot;authors&quot;: [

@@ -122,16 +122,18 @@
       
       <header class="article-header" data-motion="reveal">
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>ContinuousSR：一次高斯场构建支持多倍率图像超分</strong></nav>
-        <p class="eyebrow">Source note · Updated 2026-10-27</p>
+        <p class="eyebrow">Source note · Updated 2026-10-28</p>
         <h1 lang="zh-CN"><span class="title-main">ContinuousSR</span><span class="title-subtitle">一次高斯场构建支持多倍率图像超分</span></h1>
         
         <p class="article-actions"><a class="btn btn-primary" href="https://proceedings.iclr.cc/paper_files/paper/2026/hash/94ccfdb2ca14f33a86a0b9b7d0c1bfb1-Abstract-Conference.html" target="_blank" rel="noopener noreferrer">Read the paper<span aria-hidden="true"> ↗</span></a></p>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#gaussian-splatting">#gaussian-splatting</a><a class="tag" href="../../en/tags.html#representation-learning">#representation-learning</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
       <div class="article-layout has-rail">
-        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICLR 2026</dd></div><div class="source-fact"><dt>Published</dt><dd>2026</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-10-27</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://proceedings.iclr.cc/paper_files/paper/2026/hash/94ccfdb2ca14f33a86a0b9b7d0c1bfb1-Abstract-Conference.html" title="https://proceedings.iclr.cc/paper_files/paper/2026/hash/94ccfdb2ca14f33a86a0b9b7d0c1bfb1-Abstract-Conference.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>proceedings.iclr.cc · 94ccfdb2ca14f33a86a0b9b7d0c1bfb…</strong></a><a class="source-link source-link-pdf" href="https://proceedings.iclr.cc/paper_files/paper/2026/file/94ccfdb2ca14f33a86a0b9b7d0c1bfb1-Paper-Conference.pdf" title="https://proceedings.iclr.cc/paper_files/paper/2026/file/94ccfdb2ca14f33a86a0b9b7d0c1bfb1-Paper-Conference.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>proceedings.iclr.cc · 94ccfdb2ca14f33a86a0b9b7d0c1bfb…</strong></a><a class="source-link source-link-code" href="https://github.com/peylnog/ContinuousSR" title="https://github.com/peylnog/ContinuousSR" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · ContinuousSR</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义与方法">问题定义与方法</a></li><li><a href="#关键发现与匹配比较">关键发现与匹配比较</a></li><li><a href="#把1毫秒和完整时延分开">把1毫秒和完整时延分开</a></li><li><a href="#强反证与成本">强反证与成本</a></li><li><a href="#局限与待解决问题">局限与待解决问题</a></li><li><a href="#所读版本与核验范围">所读版本与核验范围</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICLR 2026</dd></div><div class="source-fact"><dt>Published</dt><dd>2026</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-10-27</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://proceedings.iclr.cc/paper_files/paper/2026/hash/94ccfdb2ca14f33a86a0b9b7d0c1bfb1-Abstract-Conference.html" title="https://proceedings.iclr.cc/paper_files/paper/2026/hash/94ccfdb2ca14f33a86a0b9b7d0c1bfb1-Abstract-Conference.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>proceedings.iclr.cc · 94ccfdb2ca14f33a86a0b9b7d0c1bfb…</strong></a><a class="source-link source-link-pdf" href="https://proceedings.iclr.cc/paper_files/paper/2026/file/94ccfdb2ca14f33a86a0b9b7d0c1bfb1-Paper-Conference.pdf" title="https://proceedings.iclr.cc/paper_files/paper/2026/file/94ccfdb2ca14f33a86a0b9b7d0c1bfb1-Paper-Conference.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>proceedings.iclr.cc · 94ccfdb2ca14f33a86a0b9b7d0c1bfb…</strong></a><a class="source-link source-link-code" href="https://github.com/peylnog/ContinuousSR" title="https://github.com/peylnog/ContinuousSR" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · ContinuousSR</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#先懂本页指标">先懂本页指标</a></li><li><a href="#问题定义与方法">问题定义与方法</a></li><li><a href="#关键发现与匹配比较">关键发现与匹配比较</a></li><li><a href="#把1毫秒和完整时延分开">把1毫秒和完整时延分开</a></li><li><a href="#强反证与成本">强反证与成本</a></li><li><a href="#局限与待解决问题">局限与待解决问题</a></li><li><a href="#所读版本与核验范围">所读版本与核验范围</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
         <section class="article-content" lang="zh-CN"><p class="translation-notice" role="note">English translation pending — this page shows the Chinese original.</p><h2 id="一句话结论">一句话结论</h2>
 <p>ContinuousSR把低分辨率图像一次预测成可反复渲染的二维高斯场，主要优势是多倍率超分时复用计算；它没有证明图像压缩优势，也不意味着从原图到结果只需1毫秒。</p>
+<h2 id="先懂本页指标">先懂本页指标</h2>
+<table><thead><tr><th>指标</th><th>看什么</th><th>方向</th></tr></thead><tbody><tr><td>PSNR</td><td>像素重建质量；越高表示像素误差越小</td><td>↑</td></tr><tr><td>FID</td><td>生成图像分布与参考图像分布的差异</td><td>↓</td></tr></tbody></table>
 <h2 id="问题定义与方法">问题定义与方法</h2>
 <p>任务是任意倍率超分辨率（Arbitrary-Scale Super-Resolution）：输入低分辨率RGB，预测连续高斯场，再按输出倍率渲染高分辨率图像。它在监督训练后前馈预测，不需要测试图逐张长时间优化。每核仍含二维位置、对称协方差与RGB，共8个标量（主文p.5 Eqs.4–5），改进并非继续删除参数。</p>
 <p>深度高斯先验（DGP）先逐图优化大量训练图块并统计协方差；协方差字典权重、受限位置偏移和颜色预测分别处理核的形状、位置和颜色。作者实际采用每个低分辨率像素4个核。DGP先验离线固定，网络和字典成本应与图元成本分列（pp.5–7；附录pp.23–26）。</p>
@@ -140,7 +142,7 @@
 <table><thead><tr><th>输出倍率</th><th>方法</th><th>PSNR ↑</th><th>计算量 ↓</th><th>单尺度时间 ↓</th></tr></thead><tbody><tr><td>×4</td><td>GSASR</td><td>32.02 dB</td><td>395.86 GFLOPs</td><td>410毫秒</td></tr><tr><td>×4</td><td>ContinuousSR</td><td>32.19 dB</td><td>280.99 GFLOPs</td><td>136毫秒</td></tr><tr><td>×6</td><td>GSASR</td><td>28.10 dB</td><td>142.51 GFLOPs</td><td>156毫秒</td></tr><tr><td>×6</td><td>ContinuousSR</td><td>28.25 dB</td><td>125.63 GFLOPs</td><td>112毫秒</td></tr><tr><td>×8</td><td>GSASR</td><td>25.69 dB</td><td>142.51 GFLOPs</td><td>156毫秒</td></tr><tr><td>×8</td><td>ContinuousSR</td><td>25.80 dB</td><td>79.21 GFLOPs</td><td>99毫秒</td></tr></tbody></table>
 <p>同表质量提高但幅度较小；效率受目标尺寸、补边策略和输出次数影响，不能从此推出所有图像均有同样收益。主表不同基线骨干并不完全一致，Ours+还同时改变骨干、训练数据和损失，不能将全部提升归因于高斯表示。</p>
 <h2 id="把1毫秒和完整时延分开">把1毫秒和完整时延分开</h2>
-<table><thead><tr><th>原文速度口径</th><th>结果</th><th>可支持的判断</th></tr></thead><tbody><tr><td>首次构建高斯场</td><td>229毫秒</td><td>一次前端成本，不等同于纯编码器或完整压缩编码</td></tr><tr><td>已有场后的新增尺度</td><td>约1毫秒/尺度</td><td>可复用表征的增量渲染成本</td></tr><tr><td>连续输出40个尺度</td><td>本法270毫秒，对照5275毫秒</td><td>约19.54倍是多输出示例，不能用于单次请求</td></tr><tr><td>独立单尺度请求</td><td>见上表：136／112／99毫秒</td><td>显著大于1毫秒</td></tr></tbody></table>
+<table><thead><tr><th>原文速度口径</th><th>结果</th><th>可支持的判断</th></tr></thead><tbody><tr><td>首次构建高斯场</td><td>229毫秒</td><td>一次前端成本，不等同于纯编码器或完整压缩编码</td></tr><tr><td>已有场后的新增尺度</td><td>约1毫秒/尺度</td><td>可复用表征的增量渲染成本</td></tr><tr><td>连续输出40个尺度</td><td>本法270毫秒，对照5275毫秒</td><td>约19.54倍是多输出示例，不能用于单次请求</td></tr><tr><td>独立单尺度请求</td><td>×4为136毫秒；×6为112毫秒；×8为99毫秒</td><td>显著大于1毫秒</td></tr></tbody></table>
 <p>位置：正式p.1 Fig.1、p.22 Table8、p.23 A.4。Fig.1图例对照为CiaoSR，图注却写GSASR，保留这一内部冲突，不自行指定19.54倍的精确比较对象。主表AT是多个尺度总时间的平均，不能当作任意大图第一次输出的延迟。</p>
 <h2 id="强反证与成本">强反证与成本</h2>
 <p>正式p.8 Table2的Urban100极大倍率结果，感知指标越低越好：</p>
@@ -148,11 +150,18 @@
 <p>极大倍率下并非所有感知指标均改善，作者“所有指标/基准”的概括过强。PSNR与结构相似度提升不能替代感知或细节真实性验证。</p>
 <p>训练需另算：DGP统计准备约40000张图像/图块、超过700 GPU小时；网络训练1000 epochs，8张H20。作者没有给出完整训练GPU小时。训练主要使用bicubic退化，不能把一个真实光学缩放数据集上的验证推广为任意真实退化。</p>
 <h2 id="局限与待解决问题">局限与待解决问题</h2>
-<p>作者承认固定按像素分配核在低频区域有冗余，自适应核数已是其提出的未来方向（附录pp.26–27）；不是本轮发现的独占空白。每像素核数的消融也非越多越好：Urban100的1／4／9核对应PSNR28.01／28.22／28.18 dB（p.25 Table14）。</p>
+<p>作者指出，固定给每个输入像素分配相同数量的高斯，会在平滑区域浪费图元。自适应数量分配已经是论文提出的未来方向，本轮没有证明这是新的研究空白。</p>
+<table><thead><tr><th>Urban100每个输入像素的高斯数</th><th>PSNR ↑</th></tr></thead><tbody><tr><td>1个</td><td>28.01 dB</td></tr><tr><td>4个</td><td>28.22 dB</td></tr><tr><td>9个</td><td>28.18 dB</td></tr></tbody></table>
+<p><strong>怎么读</strong>：增加图元不是越多越好，最多图元的设置反而略差。依据：正式p.25 Table14；限制讨论见附录pp.26–27。</p>
 <p>更具体的待验问题是：固定真实端到端时延或核预算，纹理自适应分配是否仍优于简单核数控制；多倍率复用能否同时保证极大倍率的感知质量；跨倍率输出的一致性是否有独立指标。先对齐骨干、输入尺寸、补边、离线先验和首次输出成本，才能判断表征改进的独立贡献。</p>
 <p>主文称颜色模块5层，附录最终采用6层；核混合公式到单核协方差的实现映射未查代码。完整分析还保留GSASR开放状态、表间配方等叙述冲突。GaussianImage在附录的低分辨率拟合后放大对照没有监督超分先验，不是对其原图表示或压缩任务的否定。</p>
 <h2 id="所读版本与核验范围">所读版本与核验范围</h2>
-<p>正式ICLR 2026 Conference记录与官方28页PDF已核，主文1–10页、参考文献11–20页、附录21–28页均有完整阅读台账；原图抽查覆盖首页和主要表。官方记录仅给出版年，未给精确日或DOI。作者顺序采用官方记录；PDF与记录对Xinjie Zhang、Xueyuan Dai顺序不同，元数据保留差异。OpenReview受拒记录保留，未重试受拒入口。 原始PDF、可搜索全文、分析及下载记录保存在同ID原始证据目录。未运行模型或复现论文数字。</p>
+<p>正式ICLR 2026 Conference记录与官方28页PDF已核，主文1–10页、参考文献11–20页、附录21–28页均有完整阅读台账；原图抽查覆盖首页和主要表。</p>
+<p>官方记录仅给出版年，未给精确日或DOI。</p>
+<p>作者顺序采用官方记录；PDF与记录对Xinjie Zhang、Xueyuan Dai顺序不同，元数据保留差异。</p>
+<p>OpenReview受拒记录保留，未重试受拒入口。</p>
+<p> 原始PDF、可搜索全文、分析及下载记录保存在同ID原始证据目录。</p>
+<p>未运行模型或复现论文数字。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
 <li><a href="https://proceedings.iclr.cc/paper_files/paper/2026/hash/94ccfdb2ca14f33a86a0b9b7d0c1bfb1-Abstract-Conference.html">正式论文记录</a></li>
@@ -173,7 +182,7 @@
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-10-27&quot;,
-  &quot;updated&quot;: &quot;2026-10-27&quot;,
+  &quot;updated&quot;: &quot;2026-10-28&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;venue&quot;: &quot;ICLR 2026&quot;,
   &quot;authors&quot;: [

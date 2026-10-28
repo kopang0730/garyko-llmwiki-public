@@ -122,24 +122,29 @@
       
       <header class="article-header" data-motion="reveal">
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>4D Gaussian Splatting SLAM:RGB-D Tracking and Dynamic Mapping</strong></nav>
-        <p class="eyebrow">Source note · Updated 2026-10-06</p>
+        <p class="eyebrow">Source note · Updated 2026-10-28</p>
         <h1><span class="title-main">4D Gaussian Splatting SLAM</span><span class="title-subtitle">RGB-D Tracking and Dynamic Mapping</span></h1>
         
         <p class="article-actions"><a class="btn btn-primary" href="https://api.crossref.org/works/10.1109/ICCV51701.2025.02320" target="_blank" rel="noopener noreferrer">Read the paper<span aria-hidden="true"> ↗</span></a></p>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#3d-vision">#3d-vision</a><a class="tag" href="../../en/tags.html#gaussian-splatting">#gaussian-splatting</a><a class="tag" href="../../en/tags.html#neural-rendering">#neural-rendering</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
       <div class="article-layout has-rail">
-        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-10-19</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-10-06</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://api.crossref.org/works/10.1109/ICCV51701.2025.02320" title="https://api.crossref.org/works/10.1109/ICCV51701.2025.02320" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>api.crossref.org · ICCV51701.2025.02320</strong></a><a class="source-link source-link-pdf" href="https://media.eventhosts.cc/Conferences/ICCV2025/iccv25_main_program.pdf" title="https://media.eventhosts.cc/Conferences/ICCV2025/iccv25_main_program.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>media.eventhosts.cc · iccv25_main_program.pdf</strong></a><a class="source-link source-link-code" href="https://github.com/yanyan-li/4DGS-SLAM" title="https://github.com/yanyan-li/4DGS-SLAM" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · 4DGS-SLAM</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#正式身份与阅读版本">正式身份与阅读版本</a></li><li><a href="#问题-输入与方法">问题、输入与方法</a></li><li><a href="#数据-对照与完整成本">数据、对照与完整成本</a></li><li><a href="#跟踪结果与反例">跟踪结果与反例</a></li><li><a href="#动态建图质量与指标分歧">动态建图质量与指标分歧</a></li><li><a href="#消融-光流的收益依赖静动态分离">消融：光流的收益依赖静动态分离</a></li><li><a href="#代码与复现边界">代码与复现边界</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-10-19</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-10-06</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://api.crossref.org/works/10.1109/ICCV51701.2025.02320" title="https://api.crossref.org/works/10.1109/ICCV51701.2025.02320" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>api.crossref.org · ICCV51701.2025.02320</strong></a><a class="source-link source-link-pdf" href="https://media.eventhosts.cc/Conferences/ICCV2025/iccv25_main_program.pdf" title="https://media.eventhosts.cc/Conferences/ICCV2025/iccv25_main_program.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>media.eventhosts.cc · iccv25_main_program.pdf</strong></a><a class="source-link source-link-code" href="https://github.com/yanyan-li/4DGS-SLAM" title="https://github.com/yanyan-li/4DGS-SLAM" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · 4DGS-SLAM</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#先懂本页指标">先懂本页指标</a></li><li><a href="#正式身份与阅读版本">正式身份与阅读版本</a></li><li><a href="#问题-输入与方法">问题、输入与方法</a></li><li><a href="#数据-对照与完整成本">数据、对照与完整成本</a></li><li><a href="#跟踪结果与反例">跟踪结果与反例</a></li><li><a href="#动态建图质量与指标分歧">动态建图质量与指标分歧</a></li><li><a href="#消融-光流的收益依赖静动态分离">消融：光流的收益依赖静动态分离</a></li><li><a href="#代码与复现边界">代码与复现边界</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
         <section class="article-content" lang="zh-CN"><p class="translation-notice" role="note">English translation pending — this page shows the Chinese original.</p><h2 id="一句话结论">一句话结论</h2>
 <p>从RGB-D视频同时估计相机轨迹并保留动态物体地图，平均跟踪与部分画质更好；跟踪仍排除动态区域，完整速度和后来新对象处理尚未证明。</p>
+<h2 id="先懂本页指标">先懂本页指标</h2>
+<table><thead><tr><th>指标</th><th>看什么</th><th>方向</th></tr></thead><tbody><tr><td>PSNR</td><td>像素重建质量；越高表示像素误差越小</td><td>↑</td></tr><tr><td>SSIM</td><td>重建图与原图的结构相似性</td><td>↑</td></tr><tr><td>LPIPS</td><td>重建图与参考图的感知特征差异</td><td>↓</td></tr><tr><td>ATE</td><td>对齐后相机轨迹偏离参考轨迹的误差</td><td>↓</td></tr><tr><td>FPS</td><td>每秒输出帧数，仅指所测阶段</td><td>↑</td></tr></tbody></table>
 <h2 id="正式身份与阅读版本">正式身份与阅读版本</h2>
-<p>Crossref登记IEEE/CVF ICCV2025主会、DOI <code>10.1109/ICCV51701.2025.02320</code>、pp.25019–25028、2025-10-19；题名六作者与保存的官方program PDF p.61/poster28一致。完整读取作者自行提交的CC BY4.0 <code>arXiv:2503.16710v1</code>（2025-03-20）11页，正文与参考文献均已读，无独立附录。<strong>出版最终稿和独立supplement未获取，差异未核</strong>，方法和数字仅对应作者v1。正式资格不以纯预印本作依据，筛选/纳入/深读均1，无其他新摄入。</p>
+<p>Crossref登记IEEE/CVF ICCV2025主会、DOI <code>10.1109/ICCV51701.2025.02320</code>、pp.25019–25028、2025-10-19；题名六作者与保存的官方program PDF p.61/poster28一致。</p>
+<p>完整读取作者自行提交的CC BY4.0 <code>arXiv:2503.16710v1</code>（2025-03-20）11页，正文与参考文献均已读，无独立附录。</p>
+<p><strong>出版最终稿和独立supplement未获取，差异未核</strong>，方法和数字仅对应作者v1。</p>
+<p>正式资格不以纯预印本作依据，筛选/纳入/深读均1，无其他新摄入。</p>
 <h2 id="问题-输入与方法">问题、输入与方法</h2>
-<p>输入有内参的RGB-D序列，预训练YOLO/光流掩码分静动态。首帧动态区域建立稀疏控制点，MLP预测各时刻6自由度变换，KNN/RBF权重和线性混合蒙皮（LBS）插值动态图元运动；静态高斯另存。相机跟踪仅渲染静态图元并遮蔽动态像素，优化位姿和曝光，因此“保留动态”是地图端的目标（pp.1–4）。</p>
+<p>输入有内参的RGB-D序列，预训练YOLO/光流掩码分静动态。首帧动态区域建立稀疏控制点，MLP（多层小型神经网络）预测各时刻6自由度变换，KNN（近邻查询）/RBF权重和线性混合蒙皮（LBS）插值动态图元运动；静态高斯另存。相机跟踪仅渲染静态图元并遮蔽动态像素，优化位姿和曝光，因此“保留动态”是地图端的目标（pp.1–4）。</p>
 <p>相邻动态图元投影差经透明混合生成双向光流，以RAFT估计光流作监督，加RGB、深度、局部刚性（ARAP）与尺度正则。RAFT估计不是运动真值。两阶段先优化位姿/曝光/变形、再联合图元；最后1500次全局精修，每次10随机关键帧。图像指标不能自动代表在线即时图质（pp.4–6 Eqs.5–10）。</p>
 <p>关键帧新增静态高斯，<strong>不新增动态高斯</strong>；BONN中途进入物体预指定动态初始化帧。不是已验证任意新对象自动处理、长期无人干预SLAM（p.4、p.6）。</p>
 <h2 id="数据-对照与完整成本">数据、对照与完整成本</h2>
-<p>TUM六个、BONN九个室内RGB-D手持序列，有相机轨迹真值；作者Xeon Silver4210R/RTX3090Ti、PyTorch/CUDA。ATE为全帧绝对轨迹误差RMSE；PSNR/SSIM/LPIPS也是全帧渲染平均，未给独立留出新视角/未见时间协议。SC-GS每五帧训练，获真值轨迹和本法3D模型，不能把它作同输入权限SLAM基线（pp.6–7）。</p>
+<p>TUM六个、BONN九个室内RGB-D手持序列，有相机轨迹真值；作者Xeon Silver4210R/RTX3090Ti、PyTorch/CUDA。ATE为全帧绝对轨迹误差RMSE；PSNR/SSIM/LPIPS也是全帧渲染平均，未给独立留出新视角/未见时间协议。SC-GS每五帧训练，获真值轨迹和本法3D模型，不能把它作同可用输入SLAM基线（pp.6–7）。</p>
 <p>论文未报告全链FPS、墙钟、峰显存、分割/RAFT/跟踪/建图/精修分项或多seed置信区间，显卡型号不证明实时。YOLO/RAFT权重、传感器深度、预指定初始化和最终精修应计入成本；无GPU复现实验。</p>
 <h2 id="跟踪结果与反例">跟踪结果与反例</h2>
 <table><thead><tr><th>同论文数据集均值</th><th>本法ATE cm ↓</th><th>MonoGS ↓</th><th>RoDyn-SLAM ↓</th><th>原文定位</th></tr></thead><tbody><tr><td>BONN九序列</td><td>3.6</td><td>33.1</td><td>7.9</td><td>p.5 Table1</td></tr><tr><td>TUM六序列</td><td>1.8</td><td>15.8</td><td>5.1</td><td>p.6 Table4</td></tr></tbody></table>
@@ -152,7 +157,11 @@
 <table><thead><tr><th>光流</th><th>静动态分离</th><th>syn PSNR ↑</th><th>syn2 PSNR ↑</th><th>原文定位</th></tr></thead><tbody><tr><td>关</td><td>关</td><td>18.37</td><td>22.11</td><td>p.8 Table5</td></tr><tr><td>关</td><td>开</td><td>22.87</td><td>24.84</td><td>同表</td></tr><tr><td>开</td><td>关</td><td>17.40</td><td>21.03</td><td>同表</td></tr><tr><td>开</td><td>开</td><td>23.25</td><td>25.42</td><td>同表</td></tr></tbody></table>
 <p>未分离时光流使画质下降，分离后才有较小额外增益；不能把整体收益全归光流。仅两序列，映射策略多为定性图；检测/初始化/最终精修/长期回环缺完整独立消融与成本验收。</p>
 <h2 id="代码与复现边界">代码与复现边界</h2>
-<p>仓库固定提交 <code>d2c725605a49aa63ef843237b6bfb03911214c7a</code> 的完整树/README和实际配置已保存，存在SLAM及流处理实现。README示例fr3_sitting.yaml在树中缺失，GET404保留、不重试；实际分rpy/static/xyz。配置含Kplanes参数，当前代码和论文稀疏控制点的对应未逐行验证。未見顶层LICENSE，子目录依赖许可不能推为全程序许可；网页许可也不等于代码/数据许可。未下载权重/数据、安装依赖或跑代码，不承诺即装即复现。</p>
+<p>仓库固定提交 <code>d2c725605a49aa63ef843237b6bfb03911214c7a</code> 的完整树/README和实际配置已保存，存在SLAM及流处理实现。</p>
+<p>README示例fr3_sitting.yaml在树中缺失，GET404保留、不重试；实际分rpy/static/xyz。</p>
+<p>配置含Kplanes参数，当前代码和论文稀疏控制点的对应未逐行验证。</p>
+<p>未見顶层LICENSE，子目录依赖许可不能推为全程序许可；网页许可也不等于代码/数据许可。</p>
+<p>未下载权重/数据、安装依赖或跑代码，不承诺即装即复现。</p>
 <h2 id="相关页面">相关页面</h2>
 <ul>
 <li><a class="wikilink" href="../../en/topics/3d-gaussian-splatting.html">Gaussian Research Map: Representation, Semantics, Mapping, and 2D Images</a>：动态地图、相机跟踪和完整耗时分别验收。</li>
@@ -171,7 +180,7 @@
   &quot;title_en&quot;: &quot;4D Gaussian Splatting SLAM: RGB-D Tracking and Dynamic Mapping&quot;,
   &quot;status&quot;: &quot;curated&quot;,
   &quot;created&quot;: &quot;2026-10-06&quot;,
-  &quot;updated&quot;: &quot;2026-10-06&quot;,
+  &quot;updated&quot;: &quot;2026-10-28&quot;,
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;venue&quot;: &quot;ICCV 2025&quot;,

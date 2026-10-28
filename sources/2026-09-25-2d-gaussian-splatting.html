@@ -122,31 +122,40 @@
       
       <header class="article-header" data-motion="reveal">
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>2D Gaussian Splatting：用三维中的二维高斯圆盘重建表面</strong></nav>
-        <p class="eyebrow">来源笔记 · 更新于 2026-09-25</p>
+        <p class="eyebrow">来源笔记 · 更新于 2026-10-28</p>
         <h1><span class="title-main">2D Gaussian Splatting</span><span class="title-subtitle">用三维中的二维高斯圆盘重建表面</span></h1>
         
         <p class="article-actions"><a class="btn btn-primary" href="https://dl.acm.org/doi/10.1145/3641519.3657428" target="_blank" rel="noopener noreferrer">阅读原论文<span aria-hidden="true"> ↗</span></a></p>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#3d-vision">#3d-vision</a><a class="tag" href="../tags.html#gaussian-splatting">#gaussian-splatting</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
       <div class="article-layout has-rail">
-        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>SIGGRAPH 2024 Conference Papers</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2024-07-13</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-09-25</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://dl.acm.org/doi/10.1145/3641519.3657428" title="https://dl.acm.org/doi/10.1145/3641519.3657428" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>dl.acm.org · 3641519.3657428</strong></a><a class="source-link source-link-pdf" href="https://www.cvlibs.net/publications/Huang2024SIGGRAPH.pdf" title="https://www.cvlibs.net/publications/Huang2024SIGGRAPH.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>cvlibs.net · Huang2024SIGGRAPH.pdf</strong></a><a class="source-link source-link-code" href="https://github.com/hbb1/2d-gaussian-splatting" title="https://github.com/hbb1/2d-gaussian-splatting" target="_blank" rel="noopener noreferrer"><span>代码仓库</span><strong>github.com · 2d-gaussian-splatting</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>目录</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义和接口">问题定义和接口</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#主要结果与反证">主要结果与反证</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#版本与相关页面">版本与相关页面</a></li><li><a href="#证据关联">证据关联</a></li></ol></details></aside>
+        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>SIGGRAPH 2024 Conference Papers</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2024-07-13</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-09-25</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://dl.acm.org/doi/10.1145/3641519.3657428" title="https://dl.acm.org/doi/10.1145/3641519.3657428" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>dl.acm.org · 3641519.3657428</strong></a><a class="source-link source-link-pdf" href="https://www.cvlibs.net/publications/Huang2024SIGGRAPH.pdf" title="https://www.cvlibs.net/publications/Huang2024SIGGRAPH.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>cvlibs.net · Huang2024SIGGRAPH.pdf</strong></a><a class="source-link source-link-code" href="https://github.com/hbb1/2d-gaussian-splatting" title="https://github.com/hbb1/2d-gaussian-splatting" target="_blank" rel="noopener noreferrer"><span>代码仓库</span><strong>github.com · 2d-gaussian-splatting</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>目录</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#先懂本页指标">先懂本页指标</a></li><li><a href="#问题定义和接口">问题定义和接口</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#主要结果与反证">主要结果与反证</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#版本与相关页面">版本与相关页面</a></li><li><a href="#证据关联">证据关联</a></li></ol></details></aside>
         <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>把原3DGS体积图元替换为三维坐标中的定向二维圆盘，并加透视校正相交渲染与深度/法线约束，在有GT几何的DTU中提升Chamfer；图像PSNR与原3DGS存在取舍（作者ACM imprint v2 pp.2–8 Tables1–5）。</p>
+<p>2DGS用放在三维空间中的小平面贴合物体表面，改善了几何重建。但表面更准不一定让新视角图片更好看；它与直接表示二维图片的GaussianImage是不同任务。</p>
+<h2 id="先懂本页指标">先懂本页指标</h2>
+<table><thead><tr><th>指标</th><th>看什么</th><th>方向</th></tr></thead><tbody><tr><td>PSNR</td><td>像素重建质量；越高表示像素误差越小</td><td>↑</td></tr><tr><td>SSIM</td><td>重建图与原图的结构相似性</td><td>↑</td></tr><tr><td>LPIPS</td><td>重建图与参考图的感知特征差异</td><td>↓</td></tr><tr><td>Chamfer距离</td><td>重建表面点与参考表面点之间的距离</td><td>↓</td></tr><tr><td>F1／F-score</td><td>同时考虑匹配是否正确和是否完整</td><td>↑</td></tr></tbody></table>
 <h2 id="问题定义和接口">问题定义和接口</h2>
 <p>输入多视角静态照片、已知内外参与COLMAP点；训练时无需深度真值。输出渲染图、深度/法线与由训练视图深度图融合的mesh。2D指图元自由度而不是图片任务，不能从新视角PSNR推几何准确性（pp.2、4–6）。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>每片存中心、切平面正交基与两个尺度，交点在局部uv平面评估Gaussian，tile排序作α合成。对斜视退化图元加屏幕足迹下界；纹理监督之外，沿ray深度畸变和盘法线—中位深度法线一致性项约束表面。最后TSDF融合，训练/网格成本须分开记录（pp.4–5 Eq.4–16，p.6 §6.1）。附录p.9的实际深度畸变推导改为NDC平方差，主文公式不能直接当唯一实现。</p>
+<p>这里的2DGS把小平面放在三维空间中，用来贴合物体表面；不是直接表示单张图片的GaussianImage。每片平面保存中心、方向和两个尺度，渲染时计算相机射线与平面的交点，再叠加颜色。</p>
+<p>除了匹配照片，方法还约束同一射线上的深度不要过于分散，并要求相邻表面方向一致。最后通过TSDF融合提取网格，即把多视角深度合成表面。训练和网格提取应分别计时。</p>
+<p>定位：主文pp.4–5 Eqs.4–16、p.6 §6.1。斜视时另有屏幕足迹下界；附录p.9把深度畸变实现写成NDC平方差，与主文表达需区分。</p>
 <h2 id="主要结果与反证">主要结果与反证</h2>
-<ul>
-<li>DTU 15场，30K平均Chamfer 2DGS .80、3DGS1.96、SuGaR1.33、NeuS .84，训练10.9m对3DGS11.2m和NeuS&gt;12h；同条件Table3的PSNR 2DGS34.52 &lt; 3DGS35.76，模型52MB vs113MB（p.6 Tables1/3）。训练时长不包含已核定的COLMAP与TSDF总账。</li>
-<li>TnT六场F1 2DGS .32，高于3DGS .09与SuGaR .19，仍低于NeuS .38、Neuralangelo .50；该组作者时间15.5m vs3DGS14.3m（p.6 Table2）。</li>
-<li>Mip-NeRF360室外RGB PSNR 24.34 &lt; 3DGS24.64、室内30.40 &lt;30.41；SSIM/LPIPS亦略退，且该数据集无GT mesh（p.7 Table4/§6.2）。</li>
-<li>DTU 15K full Chamfer .83；去法线一致性1.24、去深度畸变.88、用期望深度.94、用SPSR1.07（p.7 Table5）。这些消融说明约束与提取器的贡献，不是2D图元纯因果隔离。</li>
-</ul>
+<table><thead><tr><th>DTU方法</th><th>表面距离 ↓（Chamfer，原表尺度）</th><th>训练时间 ↓</th></tr></thead><tbody><tr><td>2DGS</td><td>0.80</td><td>10.9分钟</td></tr><tr><td>3DGS</td><td>1.96</td><td>11.2分钟</td></tr><tr><td>SuGaR</td><td>1.33</td><td>—</td></tr><tr><td>NeuS</td><td>0.84</td><td>超过12小时</td></tr></tbody></table>
+<p>条件：DTU十五场，训练30000步；主文p.6 Tables1/3。<strong>怎么读</strong>：2DGS表面距离较小，训练时间接近3DGS，但新视角画质仍有代价。</p>
+<table><thead><tr><th>同条件方法</th><th>PSNR ↑</th><th>模型大小 ↓</th></tr></thead><tbody><tr><td>2DGS</td><td>34.52</td><td>52 MB</td></tr><tr><td>3DGS</td><td>35.76</td><td>113 MB</td></tr></tbody></table>
+<p>表中的训练时间不包含COLMAP相机求解和完整TSDF网格提取时间。</p>
+<table><thead><tr><th>Tanks and Temples方法</th><th>表面F1 ↑</th></tr></thead><tbody><tr><td>2DGS</td><td>0.32</td></tr><tr><td>3DGS</td><td>0.09</td></tr><tr><td>SuGaR</td><td>0.19</td></tr><tr><td>NeuS</td><td>0.38</td></tr><tr><td>Neuralangelo</td><td>0.50</td></tr></tbody></table>
+<p>六场结果表明，2DGS改善了高斯表面重建，但仍落后部分专门几何方法。该组2DGS训练15.5分钟，对照3DGS为14.3分钟。依据：主文p.6 Table2。</p>
+<table><thead><tr><th>Mip-NeRF360场景</th><th>2DGS PSNR ↑</th><th>3DGS PSNR ↑</th></tr></thead><tbody><tr><td>室外</td><td>24.34</td><td>24.64</td></tr><tr><td>室内</td><td>30.40</td><td>30.41</td></tr></tbody></table>
+<p>SSIM和LPIPS也略退步。该数据集没有真实网格，因此这些图像指标不能证明表面几何更准。依据：主文p.7 Table4及§6.2。</p>
+<table><thead><tr><th>DTU消融，15000步</th><th>Chamfer距离 ↓</th></tr></thead><tbody><tr><td>完整方法</td><td>0.83</td></tr><tr><td>去法线一致性</td><td>1.24</td></tr><tr><td>去深度畸变约束</td><td>0.88</td></tr><tr><td>改用期望深度</td><td>0.94</td></tr><tr><td>改用SPSR表面提取</td><td>1.07</td></tr></tbody></table>
+<p>这些差别同时涉及约束和表面提取器，不能全归因于平面图元。依据：主文p.7 Table5。</p>
 <h2 id="局限或疑问">局限或疑问</h2>
-<p>全不透明表面假设在玻璃失效，高亮区域有孔洞，纹理导向增密牺牲细几何，正则可能磨平细节（p.8 §7/Fig.12）。GPU描述为单RTX3090，缺公开峰值显存、全面渲染延迟与端到端SfM+TSDF分项；未在此轮复现。作者仓库可见而GitHub API license NOASSERTION，具体文件条款待核。</p>
+<p>全不透明表面假设在玻璃失效，高亮区域有孔洞，纹理导向增密牺牲细几何，正则可能磨平细节（p.8 §7/Fig.12）。GPU描述为单RTX3090，缺公开峰值显存、全面渲染延迟与端到端SfM（从多张照片估计相机和稀疏三维点）+TSDF分项；未在此轮复现。作者仓库可见而GitHub API license NOASSERTION，具体文件条款待核。</p>
 <h2 id="版本与相关页面">版本与相关页面</h2>
-<p>正式SIGGRAPH Conference Papers DOI与作者题名已核，PDF是作者托管带arXiv v2页眉的ACM imprint，非ACM下载件；详细全文分析<code>raw/ingest/2026-09-25-2d-gaussian-splatting/analysis.md</code>。原始3DGS以外观/速度为中心，Mip-Splatting以尺度伪影为中心，<a class="wikilink" href="../topics/3d-gaussian-splatting.html">研究专题</a>以任务和指标分类综合。</p>
+<p>正式SIGGRAPH Conference Papers DOI与作者题名已核，PDF是作者托管带arXiv v2页眉的ACM imprint，非ACM下载件；详细全文分析<code>raw/ingest/2026-09-25-2d-gaussian-splatting/analysis.md</code>。</p>
+<p>原始3DGS以外观/速度为中心，Mip-Splatting以尺度伪影为中心，<a class="wikilink" href="../topics/3d-gaussian-splatting.html">研究专题</a>以任务和指标分类综合。</p>
 <h2 id="证据关联">证据关联</h2>
 <p><a class="wikilink" href="../topics/3d-gaussian-splatting.html">3DGS研究专题</a>；<a class="wikilink" href="../sources/2026-09-25-3d-gaussian-splatting.html">3D Gaussian Splatting：从稀疏点到实时新视角渲染</a>、<a class="wikilink" href="../sources/2026-09-25-mip-splatting.html">Mip-Splatting：跨尺度采样与三维高斯抗混叠</a>。逐页审计见<code>raw/ingest/2026-09-25-2d-gaussian-splatting/analysis.md</code>。</p></section>
       </div>
@@ -160,7 +169,7 @@
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-09-25&quot;,
-  &quot;updated&quot;: &quot;2026-09-25&quot;,
+  &quot;updated&quot;: &quot;2026-10-28&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;venue&quot;: &quot;SIGGRAPH 2024 Conference Papers&quot;,
   &quot;authors&quot;: &quot;[Binbin Huang, Zehao Yu, Anpei Chen, Andreas Geiger, Shenghua Gao]&quot;,

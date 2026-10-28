@@ -133,7 +133,10 @@
         <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
 <p>GaussianImage++仍使用8参数图元，改进的是有限预算下的分配、滤波和量化；PSNR提高不等于感知质量、拟合速度和解码速度同时提高。</p>
 <h2 id="问题定义与方法">问题定义与方法</h2>
-<p>从最大图元预算的一半开始，以L1残差驱动增密；给不同阶段图元不同覆盖范围，最终把滤波协方差合入存储参数。位置、协方差和颜色分别用可学习标量量化与量化感知训练。主文pp.3–5。默认位宽12/10/6对应2/3/3分量，纯属性72 bit/图元，尚需量化器元数据。</p>
+<p>先只放入允许数量一半的高斯，再根据重建误差增加图元：哪里与原图差别大，就优先补斑点。不同阶段加入的图元使用不同覆盖范围，以免细节被大斑点抹平；最终把滤波影响合并进保存的形状参数。</p>
+<p>压缩时，位置、形状和颜色分别用更少的比特保存，并在训练中考虑量化造成的误差。主文pp.3–5所用默认配置如下。</p>
+<table><thead><tr><th>属性</th><th>标量数量</th><th>每标量位数</th><th>每图元占用</th></tr></thead><tbody><tr><td>位置</td><td>2</td><td>12 bit</td><td>24 bit</td></tr><tr><td>协方差／形状</td><td>3</td><td>10 bit</td><td>30 bit</td></tr><tr><td>颜色</td><td>3</td><td>6 bit</td><td>18 bit</td></tr><tr><td>合计</td><td>8</td><td>—</td><td>72 bit</td></tr></tbody></table>
+<p>这是属性本身的位数，文件还需要保存量化器等辅助信息，不能只凭这张表计算最终文件大小。</p>
 <h2 id="关键发现">关键发现</h2>
 <p>正式p.7（刊页6448）Table1，A30，表示阶段50000步，同最大图元预算；实际剩余点数可能不同：</p>
 <table><thead><tr><th>数据与预算</th><th>方法</th><th>PSNR ↑</th><th>MS-SSIM ↑</th><th>拟合时间 ↓</th><th>渲染速度 ↑</th></tr></thead><tbody><tr><td>Kodak／5000点</td><td>GaussianImage</td><td>29.85 dB</td><td>0.962</td><td>93.49秒</td><td>2305 FPS</td></tr><tr><td>Kodak／5000点</td><td>GaussianImage++</td><td>31.83 dB</td><td>0.960</td><td>116.05秒</td><td>2365 FPS</td></tr><tr><td>DIV2K／50000点</td><td>GaussianImage</td><td>31.45 dB</td><td>0.977</td><td>192.61秒</td><td>662 FPS</td></tr><tr><td>DIV2K／50000点</td><td>GaussianImage++</td><td>33.75 dB</td><td>0.978</td><td>356.71秒</td><td>765 FPS</td></tr></tbody></table>

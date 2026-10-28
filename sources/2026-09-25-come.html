@@ -122,20 +122,34 @@
       
       <header class="article-header" data-motion="reveal">
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>CoMe：用置信度和方差约束从高斯提取网格</strong></nav>
-        <p class="eyebrow">来源笔记 · 更新于 2026-09-25</p>
+        <p class="eyebrow">来源笔记 · 更新于 2026-10-28</p>
         <h1><span class="title-main">CoMe</span><span class="title-subtitle">用置信度和方差约束从高斯提取网格</span></h1>
         
         <p class="article-actions"><a class="btn btn-primary" href="https://link.springer.com/chapter/10.1007/978-3-032-37435-6_17" target="_blank" rel="noopener noreferrer">阅读原论文<span aria-hidden="true"> ↗</span></a></p>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#3d-vision">#3d-vision</a><a class="tag" href="../tags.html#gaussian-splatting">#gaussian-splatting</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
       <div class="article-layout has-rail">
-        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ECCV 2026</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2026-09-12</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-09-25</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://link.springer.com/chapter/10.1007/978-3-032-37435-6_17" title="https://link.springer.com/chapter/10.1007/978-3-032-37435-6_17" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>link.springer.com · 978-3-032-37435-6_17</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2603.24725" title="https://arxiv.org/pdf/2603.24725" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2603.24725</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>目录</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#机制-实验与版本">机制、实验与版本</a></li><li><a href="#结果-成本与反证">结果、成本与反证</a></li></ol></details></aside>
+        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ECCV 2026</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2026-09-12</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-09-25</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://link.springer.com/chapter/10.1007/978-3-032-37435-6_17" title="https://link.springer.com/chapter/10.1007/978-3-032-37435-6_17" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>link.springer.com · 978-3-032-37435-6_17</strong></a><a class="source-link source-link-pdf" href="https://arxiv.org/pdf/2603.24725" title="https://arxiv.org/pdf/2603.24725" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>arxiv.org · 2603.24725</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>目录</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#先懂本页指标">先懂本页指标</a></li><li><a href="#机制-实验与版本">机制、实验与版本</a></li><li><a href="#结果-成本与反证">结果、成本与反证</a></li></ol></details></aside>
         <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
-<p>逐场有位姿多图重建中，CoMe把每高斯自监督置信度用于光度损失及密度控制，再约束逐高斯颜色/法线，减少假几何。作者同一重跑协议Tanks &amp; Temples六场F1 .521、RTX4090优化18min，对SOF .474/17min；抽网格另约6.6min，输入密度与场景评估边界仍关键（作者稿p.10 Table1、附录p.27）。</p>
+<p>CoMe根据高斯置信度和颜色、法线的一致性，减少表面重建中的虚假几何。它改善部分网格指标，但对照输入和预处理会改变结果，网格提取也需要额外时间。</p>
+<h2 id="先懂本页指标">先懂本页指标</h2>
+<table><thead><tr><th>指标</th><th>看什么</th><th>方向</th></tr></thead><tbody><tr><td>PSNR</td><td>像素重建质量；越高表示像素误差越小</td><td>↑</td></tr><tr><td>Chamfer距离</td><td>重建表面点与参考表面点之间的距离</td><td>↓</td></tr><tr><td>F1／F-score</td><td>同时考虑匹配是否正确和是否完整</td><td>↑</td></tr></tbody></table>
 <h2 id="机制-实验与版本">机制、实验与版本</h2>
-<p>在SOF 3D高斯底座上，alpha混合置信度抑制难解释区域光度梯度而保留几何损失；低置信度处提高高斯分裂阈值，亮度项使用单图appearance修正，D-SSIM结构/对比仍用原RGB。沿光线逐高斯颜色/法线方差项约束半透明前后重影，Marching Tetrahedra抽不受界限网格（作者稿pp.5–9 Eqs.8–15）。正式Springer DOI <code>10.1007/978-3-032-37435-6_17</code>；保存34页arXiv v2作者完整稿和17页官方补充，本文页码对应作者稿。</p>
+<p>在SOF 3D高斯底座上，alpha混合置信度抑制难解释区域光度梯度而保留几何损失；低置信度处提高高斯分裂阈值，亮度项使用单图appearance修正，D-SSIM结构/对比仍用原RGB。</p>
+<p>沿光线逐高斯颜色/法线方差项约束半透明前后重影，Marching Tetrahedra抽不受界限网格（作者稿pp.5–9 Eqs.8–15）。</p>
+<p>正式Springer DOI <code>10.1007/978-3-032-37435-6_17</code>；保存34页arXiv v2作者完整稿和17页官方补充，本文页码对应作者稿。</p>
 <h2 id="结果-成本与反证">结果、成本与反证</h2>
-<p>ScanNet++六选场F1 .668 vs SOF .615、PGSR .631；T&amp;T消融从SOF .474→appearance .493→confidence .509→color-var .519→normal-var .521（作者稿pp.10–11 Tables2–3）。官方作者附录p.20 Table5去置信度增密调整，图元1.27M→1.53M、F1 .521→.516。DTU十五场Chamfer .65高于PGSR .55，先验依赖GeoSVR同T&amp;T原评估F1 .546高于本法.521（作者稿附录pp.26、30 Tables6–7）；MIlo在Mip-NeRF360的mesh-NVS PSNR23.869也高于本法23.639（附录p.34 Table9）。Barn只换预处理本法F1 .534→.616，故论文间GT、体素和输入拆分决定可比性（附录p.21）。主实验均按作者4090优化计时，不含SfM、部分后处理；高峰显存未报。严重遮挡和远景缺细节，密采依赖见p.14；代码许可待核。独立逐页分析<code>raw/ingest/2026-09-25-come/analysis.md</code>。与<a class="wikilink" href="../sources/2026-09-25-2d-gaussian-splatting.html">2DGS</a>、<a class="wikilink" href="../sources/2026-09-25-metrogs.html">MetroGS</a>按训练卡、几何输出和尺度分账；总览见<a class="wikilink" href="../topics/3d-gaussian-splatting.html">高斯科研地图：表征、语义、建图与二维图像</a>。</p></section>
+<table><thead><tr><th>Tanks and Temples六场，RTX 4090</th><th>F1 ↑</th><th>优化时间 ↓</th></tr></thead><tbody><tr><td>CoMe</td><td>0.521</td><td>18分钟</td></tr><tr><td>SOF</td><td>0.474</td><td>17分钟</td></tr></tbody></table>
+<p>网格提取另需约6.6分钟，不能只报优化时间。依据：作者稿p.10 Table1和附录p.27。</p>
+<table><thead><tr><th>ScanNet++六个选定场景</th><th>表面F1 ↑</th></tr></thead><tbody><tr><td>CoMe</td><td>0.668</td></tr><tr><td>SOF</td><td>0.615</td></tr><tr><td>PGSR</td><td>0.631</td></tr></tbody></table>
+<table><thead><tr><th>Tanks and Temples逐项加入模块</th><th>F1 ↑</th></tr></thead><tbody><tr><td>SOF底座</td><td>0.474</td></tr><tr><td>加入外观修正</td><td>0.493</td></tr><tr><td>再加置信度</td><td>0.509</td></tr><tr><td>再加颜色方差约束</td><td>0.519</td></tr><tr><td>再加法线方差约束</td><td>0.521</td></tr></tbody></table>
+<p>依据：作者稿pp.10–11 Tables2–3。去掉置信度增密调整后，高斯由127万增至153万，F1从0.521降至0.516。依据：作者附录p.20 Table5。</p>
+<table><thead><tr><th>强反例</th><th>CoMe</th><th>对照</th><th>方向</th></tr></thead><tbody><tr><td>DTU十五场Chamfer距离</td><td>0.65</td><td>PGSR：0.55</td><td>↓</td></tr><tr><td>Tanks and Temples原评估F1</td><td>0.521</td><td>GeoSVR：0.546</td><td>↑</td></tr><tr><td>Mip360，网格新视角PSNR</td><td>23.639</td><td>MIlo：23.869</td><td>↑</td></tr></tbody></table>
+<p>输入先验和评测处理不同，分别保留这些反例。Barn仅更换预处理就使F1从0.534变成0.616，说明数据处理能显著改变结果。依据：作者附录pp.21、26、30、34，Tables6–7/9。</p>
+<p>主实验使用RTX 4090，优化时间不含SfM（从多张照片估计相机和稀疏三维点）及部分后处理，峰值显存未报告。</p>
+<p>严重遮挡和远景仍缺细节，效果依赖较密输入；代码许可待核，未做GPU复现。</p>
+<p>分析见<code>raw/ingest/2026-09-25-come/analysis.md</code>。</p>
+<p>相关：<a class="wikilink" href="../sources/2026-09-25-2d-gaussian-splatting.html">2DGS</a>、<a class="wikilink" href="../sources/2026-09-25-metrogs.html">MetroGS</a>、<a class="wikilink" href="../topics/3d-gaussian-splatting.html">高斯科研地图：表征、语义、建图与二维图像</a>。</p></section>
       </div>
       
       
@@ -147,7 +161,7 @@
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-09-25&quot;,
-  &quot;updated&quot;: &quot;2026-09-25&quot;,
+  &quot;updated&quot;: &quot;2026-10-28&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;venue&quot;: &quot;ECCV 2026&quot;,
   &quot;authors&quot;: &quot;[Lukas Radl, Felix Windisch, Andreas Kurz, Thomas Köhler, Michael Steiner, Markus Steinberger]&quot;,

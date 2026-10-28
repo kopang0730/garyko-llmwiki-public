@@ -122,32 +122,39 @@
       
       <header class="article-header" data-motion="reveal">
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>3D Gaussian Splatting：从稀疏点到实时新视角渲染</strong></nav>
-        <p class="eyebrow">Source note · Updated 2026-09-25</p>
+        <p class="eyebrow">Source note · Updated 2026-10-28</p>
         <h1 lang="zh-CN"><span class="title-main">3D Gaussian Splatting</span><span class="title-subtitle">从稀疏点到实时新视角渲染</span></h1>
         
         <p class="article-actions"><a class="btn btn-primary" href="https://dl.acm.org/doi/10.1145/3592433" target="_blank" rel="noopener noreferrer">Read the paper<span aria-hidden="true"> ↗</span></a></p>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#3d-vision">#3d-vision</a><a class="tag" href="../../en/tags.html#gaussian-splatting">#gaussian-splatting</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
       <div class="article-layout has-rail">
-        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ACM Transactions on Graphics 42(4) / SIGGRAPH 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2023-07-26</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-09-25</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://dl.acm.org/doi/10.1145/3592433" title="https://dl.acm.org/doi/10.1145/3592433" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>dl.acm.org · 3592433</strong></a><a class="source-link source-link-pdf" href="https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/3d_gaussian_splatting_low.pdf" title="https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/3d_gaussian_splatting_low.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>repo-sam.inria.fr · 3d_gaussian_splatting_low.pdf</strong></a><a class="source-link source-link-code" href="https://github.com/graphdeco-inria/gaussian-splatting" title="https://github.com/graphdeco-inria/gaussian-splatting" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · gaussian-splatting</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义与前提">问题定义与前提</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#关键发现与强反证">关键发现与强反证</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#证据与版本">证据与版本</a></li><li><a href="#证据关联">证据关联</a></li></ol></details></aside>
+        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ACM Transactions on Graphics 42(4) / SIGGRAPH 2023</dd></div><div class="source-fact"><dt>Published</dt><dd>2023-07-26</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-09-25</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://dl.acm.org/doi/10.1145/3592433" title="https://dl.acm.org/doi/10.1145/3592433" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>dl.acm.org · 3592433</strong></a><a class="source-link source-link-pdf" href="https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/3d_gaussian_splatting_low.pdf" title="https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/3d_gaussian_splatting_low.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>repo-sam.inria.fr · 3d_gaussian_splatting_low.pdf</strong></a><a class="source-link source-link-code" href="https://github.com/graphdeco-inria/gaussian-splatting" title="https://github.com/graphdeco-inria/gaussian-splatting" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · gaussian-splatting</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#先懂本页指标">先懂本页指标</a></li><li><a href="#问题定义与前提">问题定义与前提</a></li><li><a href="#方法概述">方法概述</a></li><li><a href="#关键发现与强反证">关键发现与强反证</a></li><li><a href="#局限或疑问">局限或疑问</a></li><li><a href="#证据与版本">证据与版本</a></li><li><a href="#证据关联">证据关联</a></li></ol></details></aside>
         <section class="article-content" lang="zh-CN"><p class="translation-notice" role="note">English translation pending — this page shows the Chinese original.</p><h2 id="一句话结论">一句话结论</h2>
-<p>从已标定静态多视图与SfM稀疏点出发，用可自适应增删的各向异性三维高斯配合可微tile渲染，实现作者报告的高画质实时新视角合成，同时以更高模型/显存成本换速度（正式作者copy pp.2–11，Table1）。</p>
+<p>3DGS把多张照片重建成一组带颜色的三维椭球，随后可以快速生成新视角图片。它需要预先求好的相机位置；实时渲染的代价是较大的模型和显存占用。</p>
+<h2 id="先懂本页指标">先懂本页指标</h2>
+<table><thead><tr><th>指标</th><th>看什么</th><th>方向</th></tr></thead><tbody><tr><td>PSNR</td><td>像素重建质量；越高表示像素误差越小</td><td>↑</td></tr><tr><td>SSIM</td><td>重建图与原图的结构相似性</td><td>↑</td></tr><tr><td>LPIPS</td><td>重建图与参考图的感知特征差异</td><td>↓</td></tr></tbody></table>
 <h2 id="问题定义与前提">问题定义与前提</h2>
-<p>输入为有内外参的多图像静态场景，相机由SfM先求，稀疏点是SfM副产物；合成场景可用随机点加真位姿。输出是RGB新视角，不是GT几何mesh。每第8张留测的真实场景评PSNR、SSIM、LPIPS；总成本还要计SfM（pp.2、4、8）。</p>
+<p>输入为有内外参的多图像静态场景，相机由SfM（从多张照片估计相机和稀疏三维点）先求，稀疏点是SfM副产物；合成场景可用随机点加真位姿。输出是RGB新视角，不是真值几何mesh。每第8张留测的真实场景评PSNR、SSIM、LPIPS；总成本还要计SfM（pp.2、4、8）。</p>
 <h2 id="方法概述">方法概述</h2>
-<p>中心/尺度/旋转表达3D协方差，球谐给视角颜色。投影局部Jacobian给2D椭圆足迹；深度排序α合成。对训练视图以L1+D-SSIM反传，视空间梯度触发clone/split增密，低opacity等删除，按16×16 tile排序和反向重遍历（pp.3–7 Eq.2–7、Fig.2/4；附录Algorithm1/2）。大高斯造成顺序切换时存在popping。该流水线把显式图元位置/可见性/渲染性能耦合。</p>
+<p>每个高斯记录位置、大小、方向、透明度，以及随观察方向变化的颜色。渲染时，把三维椭球近似投影成屏幕上的椭圆，再按前后顺序叠加。</p>
+<p>训练会调整这些参数，并在细节不足处复制或拆分高斯，删除贡献很小的高斯。图像被划成小块分别排序和渲染，以减少计算。原文使用的“协方差、球谐、Jacobian、α合成”分别对应形状、视角颜色、局部投影近似和透明度叠加。</p>
+<p>依据：主文pp.3–7，Eqs.2–7、Figs.2/4及附录Algorithms1/2；屏幕小块为16×16像素。大高斯的前后顺序突然变化时，画面可能出现跳变，原文称为popping。</p>
 <h2 id="关键发现与强反证">关键发现与强反证</h2>
-<ul>
-<li>真实Mip-NeRF360九场景作者Table1：30K平均PSNR27.21、SSIM.815、LPIPS.214，平均134FPS、训练41m33s、模型734MB；与Mip-NeRF360出版汇总27.69/.792/.237和.06FPS比较，PSNR仍低0.48dB，不能宣称所有画质维度领先（p.8 Table1）。</li>
-<li>同表7K仅25.60/.770/.279、160FPS、6m25s，显示训练短时质量取舍；对比Fast-INGP需考虑不同分辨率、模型大小和硬件（p.8）。</li>
-<li>附录三场消融full30K PSNR26.05；去split23.90、只用各向同性25.23、限制梯度带宽19.19。它支撑设计组件重要性，范围仍限三场（p.9 Table3）。</li>
-</ul>
+<p><strong>先看结论</strong>：完整训练后的3DGS能实时渲染，但并非所有画质指标都超过Mip-NeRF360。</p>
+<table><thead><tr><th>方法／训练设置</th><th>PSNR ↑</th><th>SSIM ↑</th><th>LPIPS ↓</th><th>渲染速度 ↑</th><th>训练时间 ↓</th><th>模型大小 ↓</th></tr></thead><tbody><tr><td>3DGS，30000步</td><td>27.21</td><td>0.815</td><td>0.214</td><td>134帧／秒</td><td>41分33秒</td><td>734 MB</td></tr><tr><td>Mip-NeRF360，原论文汇总</td><td>27.69</td><td>0.792</td><td>0.237</td><td>0.06帧／秒</td><td>—</td><td>—</td></tr></tbody></table>
+<p>条件：Mip-NeRF360九个真实场景，主文p.8 Table1。<strong>怎么读</strong>：3DGS渲染明显更快，结构和感知指标较好，但PSNR低了0.48 dB；不能据此说所有画质都更好。</p>
+<table><thead><tr><th>3DGS训练步数</th><th>PSNR ↑</th><th>SSIM ↑</th><th>LPIPS ↓</th><th>渲染速度 ↑</th><th>训练时间 ↓</th></tr></thead><tbody><tr><td>7000步</td><td>25.60</td><td>0.770</td><td>0.279</td><td>160帧／秒</td><td>6分25秒</td></tr><tr><td>30000步</td><td>27.21</td><td>0.815</td><td>0.214</td><td>134帧／秒</td><td>41分33秒</td></tr></tbody></table>
+<p><strong>怎么读</strong>：较短训练很快得到可用表示，但画质更低。比较Fast-INGP等方法时，还要固定分辨率、模型大小和硬件。依据：同一张Table1。</p>
+<table><thead><tr><th>消融设置</th><th>PSNR ↑</th></tr></thead><tbody><tr><td>完整方法</td><td>26.05</td></tr><tr><td>不拆分高斯</td><td>23.90</td></tr><tr><td>只用球形高斯</td><td>25.23</td></tr><tr><td>限制梯度带宽</td><td>19.19</td></tr></tbody></table>
+<p>这组实验说明这些设计会影响质量，评测范围只有三个场景。依据：附录p.9 Table3，完整方法训练30000步。</p>
 <h2 id="局限或疑问">局限或疑问</h2>
 <p>作者指出弱观察角漂浮/团块、popping、巨量高斯，训练峰值可超20GB且模型数百MB；主训练开销不含SfM。输入位姿误差、动态、网格/透明材质无法由该实验直接解决或评估（pp.10–11 §7.4–8）。</p>
 <h2 id="证据与版本">证据与版本</h2>
 <p>DOI <code>10.1145/3592433</code>的正式ACM记录与作者copy标题/作者匹配；该copy首页<code>2018/DOI XXXXX</code>为排版占位，真实正式日期/标识采用Crossref和ACM。全文与独立逐页审计：<code>raw/ingest/2026-09-25-3d-gaussian-splatting/analysis.md</code>。仓库license在API显示NOASSERTION，查具体许可时读原文件。</p>
 <h2 id="证据关联">证据关联</h2>
-<p><a class="wikilink" href="../../en/topics/3d-gaussian-splatting.html">3DGS研究专题</a>；<a class="wikilink" href="../../en/sources/2026-09-25-mip-splatting.html">Mip-Splatting：跨尺度采样与三维高斯抗混叠</a>、<a class="wikilink" href="../../en/sources/2026-09-25-2d-gaussian-splatting.html">2D Gaussian Splatting：用三维中的二维高斯圆盘重建表面</a>、<a class="wikilink" href="../../en/sources/2026-09-25-3dgs-as-mcmc.html">3DGS as MCMC：用高斯重定位改写密度控制</a>。逐页审计见<code>raw/ingest/2026-09-25-3d-gaussian-splatting/analysis.md</code>。</p></section>
+<p><a class="wikilink" href="../../en/topics/3d-gaussian-splatting.html">3DGS研究专题</a>；<a class="wikilink" href="../../en/sources/2026-09-25-mip-splatting.html">Mip-Splatting：跨尺度采样与三维高斯抗混叠</a>、<a class="wikilink" href="../../en/sources/2026-09-25-2d-gaussian-splatting.html">2D Gaussian Splatting：用三维中的二维高斯圆盘重建表面</a>、<a class="wikilink" href="../../en/sources/2026-09-25-3dgs-as-mcmc.html">3DGS as MCMC：用高斯重定位改写密度控制</a>。</p>
+<p>逐页审计见<code>raw/ingest/2026-09-25-3d-gaussian-splatting/analysis.md</code>。</p></section>
       </div>
       
       
@@ -159,7 +166,7 @@
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-09-25&quot;,
-  &quot;updated&quot;: &quot;2026-09-25&quot;,
+  &quot;updated&quot;: &quot;2026-10-28&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;venue&quot;: &quot;ACM Transactions on Graphics 42(4) / SIGGRAPH 2023&quot;,
   &quot;authors&quot;: &quot;[Bernhard Kerbl, Georgios Kopanas, Thomas Leimkühler, George Drettakis]&quot;,

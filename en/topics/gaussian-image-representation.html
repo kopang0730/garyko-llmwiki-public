@@ -122,7 +122,7 @@
       
       <header class="article-header" data-motion="reveal">
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Topic</span><span class="crumb-sep" aria-hidden="true">›</span><strong>2D Gaussian Image Representations: Parameters, Compression, and Vision</strong></nav>
-        <p class="eyebrow">Topic · Updated 2026-10-27</p>
+        <p class="eyebrow">Topic · Updated 2026-10-28</p>
         <h1><span class="title-main">2D Gaussian Image Representations: Parameters, Compression, and Vision</span></h1>
         <p class="article-summary">Evidence on compact Gaussian image representations, compression, adaptive allocation, and downstream vision.</p>
         <p class="article-actions"><a class="btn btn-primary" href="#先看结论">Choose a research entry<span aria-hidden="true"> →</span></a></p>
@@ -187,13 +187,13 @@
 <p><strong>注意</strong>：SGI核心大图评测只有九张；完整码流解码还包含熵解码。<a class="wikilink" href="../../en/sources/2026-10-27-instant-gaussianimage.html">Instant GaussianImage</a>则走快速初始化路线，两秒演示只包含三张样例，不能配上长时精修的质量数字。</p>
 <h3 id="5-好看的重建-不一定保留任务需要的信息">5. 好看的重建，不一定保留任务需要的信息</h3>
 <p><strong>为什么重要</strong>：高斯可以直接输入视觉模型，但感知指标、分类指标与文件大小可能朝不同方向变化。</p>
-<table><thead><tr><th>GaussianVision官方补充中的比较</th><th>结果</th><th>判断</th></tr></thead><tbody><tr><td>同耗时：MSE拟合改为LPIPS拟合</td><td>ImageNet准确率 ↑：16.90% → 8.37%</td><td>感知约束并未自动帮助分类</td></tr><tr><td>固定尺寸Kodak：JPEG Q95</td><td>文件大小 ↓：22.74 KB</td><td>传统编码器仍是必要对照</td></tr><tr><td>同上：原始FP16高斯，1600点</td><td>文件大小 ↓：25 KB</td><td>比原始RGB小不等于比JPEG小</td></tr><tr><td>同上：GI编码高斯</td><td>文件大小 ↓：11.4 KB</td><td>编码方式会改变存储结论</td></tr></tbody></table>
-<p>条件：<a class="wikilink" href="../../en/sources/2026-10-27-gaussianvision.html">GaussianVision</a>官方补充材料；不同压缩行未证明质量匹配。<strong>怎么读</strong>：任务需求应该进入信息保留的评测，而不能仅凭重建观感推断任务表现。</p>
+<table><thead><tr><th>GaussianVision官方补充中的比较</th><th>结果</th><th>判断</th></tr></thead><tbody><tr><td>同耗时：像素误差目标改为感知误差目标</td><td>ImageNet准确率 ↑：16.90% → 8.37%</td><td>感知约束并未自动帮助分类</td></tr><tr><td>固定尺寸Kodak：JPEG，质量设置95</td><td>文件大小 ↓：22.74 KB</td><td>传统编码器仍是必要对照</td></tr><tr><td>同上：1600个高斯，按16位浮点保存</td><td>文件大小 ↓：25 KB</td><td>比原始RGB小不等于比JPEG小</td></tr><tr><td>同上：GI编码高斯</td><td>文件大小 ↓：11.4 KB</td><td>编码方式会改变存储结论</td></tr></tbody></table>
+<p>条件：<a class="wikilink" href="../../en/sources/2026-10-27-gaussianvision.html">GaussianVision</a>官方补充材料。MSE用像素差异指导拟合，LPIPS用感知特征差异指导拟合；下方存储行没有保证相同画质。<strong>怎么读</strong>：重建看起来更像原图，并不能直接推断分类更准；需要单独测试下游任务。</p>
 <p><strong>注意</strong>：LPIPS更耗时，该实验也减少了迭代数；不能归因成单一损失的普遍效果。所读作者主文与正式版本有差异，最终视觉问答数字待核，上表也不证明同质量压缩胜出。</p>
 <h3 id="6-连续渲染适合复用-但首次输出仍有成本">6. 连续渲染适合复用，但首次输出仍有成本</h3>
 <p><strong>为什么重要</strong>：同一高斯场反复输出不同尺寸时，初始化成本可以摊薄；只请求一次图片时，不能使用摊薄后的速度。</p>
 <table><thead><tr><th>ContinuousSR速度口径</th><th>时间 ↓</th><th>所包含的工作</th></tr></thead><tbody><tr><td>一次高斯场构建示例</td><td>229毫秒</td><td>低分辨率图到高斯场</td></tr><tr><td>已有场的新增尺度</td><td>约1毫秒</td><td>仅后续尺度渲染</td></tr><tr><td>单尺度×4对齐比较</td><td>410 → 136毫秒</td><td>GSASR → ContinuousSR，完整单次输出</td></tr></tbody></table>
-<p>条件：<a class="wikilink" href="../../en/sources/2026-10-27-continuous-sr.html">ContinuousSR</a>不同实验分别列示，不能相互拼接。<strong>怎么读</strong>：多次使用同一表示是有价值的场景；“毫秒渲染”不能替代首次请求延迟。</p>
+<p>条件：<a class="wikilink" href="../../en/sources/2026-10-27-continuous-sr.html">ContinuousSR</a>不同实验分别列出，不能相互拼接。<strong>怎么读</strong>：多次使用同一表示是有价值的场景；“毫秒渲染”不能替代首次请求延迟。</p>
 <p><strong>注意</strong>：极大倍率下部分感知指标落后对照；预训练和高斯先验准备的成本也不在渲染时间里。</p>
 <h2 id="近五年演化-2022-2026">近五年演化（2022—2026）</h2>
 <p>核心回顾是近三年；更早阶段只交代背景，不为凑年限补入不相关论文。</p>
@@ -205,7 +205,7 @@
 <p>单纯减少参数数量、照搬自适应增密、加入分层或语义权重，都已有直接先例。可研究之处应来自明确失败：相同字节下什么信息先丢失、什么任务不能忍受这种丢失、修复是否比强替代方法更划算。</p>
 <h3 id="先看结论">先看结论</h3><div class="research-decision-grid" data-motion="reveal">
 <article class="research-decision-card research-decision-card--recommended" aria-labelledby="推荐-先诊断-再选择一个窄瓶颈"><p class="research-decision-kicker">Recommended</p><h4 id="推荐-先诊断-再选择一个窄瓶颈">先诊断，再选择一个窄瓶颈</h4><div class="research-decision-fields"><div class="research-decision-field"><strong>A｜优先做可复核诊断</strong><p>真实文件预算下，找出细节失真与图元分配之间的关系。</p></div><div class="research-decision-field"><strong>B｜有任务数据再推进</strong><p>研究重建质量与文字识别或分类质量的冲突，先证明冲突稳定存在。</p></div><div class="research-decision-field"><strong>C｜有现成模型再考虑</strong><p>研究重复缩放或多尺度输出的端到端成本，避免从头训练重模型。</p></div></div></article>
-<article class="research-decision-card research-decision-card--avoid" aria-labelledby="不建议-以技术名词代替问题"><p class="research-decision-kicker">Avoid first</p><h4 id="不建议-以技术名词代替问题">以技术名词代替问题</h4><div class="research-decision-fields"><div class="research-decision-field"><strong>继续删参就是创新</strong><p>先排除已有参数吸收、协方差约束和量化方案。</p></div><div class="research-decision-field"><strong>语义引导就是空白</strong><p>Image-GS与GaussianVision已提供直接先例。</p></div><div class="research-decision-field"><strong>只报FPS或参数量</strong><p>这不能证明压缩、任务质量或真实部署收益。</p></div></div></article>
+<article class="research-decision-card research-decision-card--avoid" aria-labelledby="不建议-以技术名词代替问题"><p class="research-decision-kicker">Avoid first</p><h4 id="不建议-以技术名词代替问题">以技术名词代替问题</h4><div class="research-decision-fields"><div class="research-decision-field"><strong>继续删参就是创新</strong><p>先排除已有参数吸收、椭圆形状约束和量化方案。</p></div><div class="research-decision-field"><strong>语义引导就是空白</strong><p>Image-GS与GaussianVision已提供直接先例。</p></div><div class="research-decision-field"><strong>只报FPS或参数量</strong><p>这不能证明压缩、任务质量或真实部署收益。</p></div></div></article>
 </div><h3 id="三个研究入口怎么选">三个研究入口怎么选</h3><div class="research-entry-grid" data-motion="reveal">
 <article class="research-entry-card research-entry-card--a" aria-labelledby="a-真实码率下的细节与预算分配-暂定优先"><div class="research-entry-card-top"><span class="research-entry-letter" aria-hidden="true">A</span><em class="research-entry-rank">暂定优先</em></div><h4 id="a-真实码率下的细节与预算分配-暂定优先">真实码率下的细节与预算分配</h4><div class="research-entry-facts"><div class="research-entry-fact"><strong>一句话</strong><p>找到相同可解码文件大小下，高斯最容易损失的局部信息。</p></div><div class="research-entry-fact"><strong>适合你</strong><p>希望从已有二维高斯代码切入，先做小规模诊断。</p></div><div class="research-entry-fact"><strong>第一步</strong><p>核对GI与GI++的独立文件解码，再建立统一图片与质量表。</p></div><div class="research-entry-fact"><strong>继续条件</strong><p>对齐编码细节后，失败模式仍可重复，简单分配基线不能解决。</p></div></div><div class="research-entry-action"><a href="#候选课题a-真实字节下的局部信息保留">候选课题A</a>。</div></article>
 <article class="research-entry-card research-entry-card--b" aria-labelledby="b-面向任务的信息保留-依赖明确任务"><div class="research-entry-card-top"><span class="research-entry-letter" aria-hidden="true">B</span><em class="research-entry-rank">依赖明确任务</em></div><h4 id="b-面向任务的信息保留-依赖明确任务">面向任务的信息保留</h4><div class="research-entry-facts"><div class="research-entry-fact"><strong>一句话</strong><p>在相同存储预算下保留对任务有用、但像素指标不敏感的信息。</p></div><div class="research-entry-fact"><strong>适合你</strong><p>已有文字识别或视觉分类任务和可靠标注。</p></div><div class="research-entry-fact"><strong>第一步</strong><p>冻结任务模型，用相同解码图比较PSNR与任务错误。</p></div><div class="research-entry-fact"><strong>继续条件</strong><p>任务收益不能被普通编码器、简单区域加权或更好重建完全解释。</p></div></div><div class="research-entry-action"><a href="#候选课题b-任务相关的信息保留">候选课题B任务相关的信息保留</a>。</div></article>
@@ -221,7 +221,7 @@
 <table><thead><tr><th>项目</th><th>第一阶段设计</th></tr></thead><tbody><tr><td>基线</td><td>GI、GI++；JPEG、WebP及可运行的强学习编码器；增加简单残差分配作为机制对照</td></tr><tr><td>数据</td><td>Kodak与预先固定的DIV2K子集；先分类标记细节，不按结果挑图</td></tr><tr><td>指标</td><td>实际bpp ↓、PSNR ↑、MS-SSIM ↑、LPIPS ↓、边缘误差 ↓；逐图列出失败</td></tr><tr><td>公平性</td><td>相同分辨率、文件预算、解码输出；量化器、头部和共享模型费用单列</td></tr><tr><td>资源</td><td>先CPU检查码流和统计；GPU拟合需另定时间上限，不假设已有空闲设备</td></tr><tr><td>交付物</td><td>可独立解码样本、逐图比较表、误差图、完整计时与失败类别</td></tr><tr><td>止损</td><td>优势只来自少计文件开销、额外优化时间或挑图；简单基线已消除问题则不扩展新模块</td></tr></tbody></table>
 <h3 id="候选课题b-任务相关的信息保留">候选课题B：任务相关的信息保留</h3>
 <p><strong>研究问题</strong>：当重建更像原图却让识别变差时，能否在固定字节预算下保护必要信息，同时避免依赖测试标签？</p>
-<table><thead><tr><th>项目</th><th>第一阶段设计</th></tr></thead><tbody><tr><td>基线</td><td>A的编码器；Image-GS的区域思路；GaussianVision；简单梯度或残差加权</td></tr><tr><td>数据</td><td>选择一个有独立训练／验证／测试划分的文字或分类数据集；不同时扩展多个任务</td></tr><tr><td>指标</td><td>任务准确率 ↑或字符错误率 ↓；真实bpp ↓、重建质量、总时延 ↓</td></tr><tr><td>公平性</td><td>冻结下游模型；教师、预训练数据和推理开销分账；测试标签仅用于评测</td></tr><tr><td>资源</td><td>优先只运行现成冻结任务模型，暂不重训视觉语言大模型</td></tr><tr><td>交付物</td><td>质量与任务冲突样本集、等字节曲线、教师依赖消融</td></tr><tr><td>止损</td><td>任务收益由更高码率、测试信息泄漏或普通区域编码完全解释</td></tr></tbody></table>
+<table><thead><tr><th>项目</th><th>第一阶段设计</th></tr></thead><tbody><tr><td>基线</td><td>A的编码器；Image-GS的区域思路；GaussianVision；简单梯度或残差加权</td></tr><tr><td>数据</td><td>选择一个有独立训练／验证／测试划分的文字或分类数据集；不同时扩展多个任务</td></tr><tr><td>指标</td><td>任务准确率 ↑或字符错误率 ↓；真实bpp ↓、重建质量、总时延 ↓</td></tr><tr><td>公平性</td><td>冻结下游模型；分别列出教师模型、预训练数据与推理的开销；测试标签仅用于评测</td></tr><tr><td>资源</td><td>优先只运行现成冻结任务模型，暂不重训视觉语言大模型</td></tr><tr><td>交付物</td><td>质量与任务冲突样本集、等字节曲线、教师依赖消融</td></tr><tr><td>止损</td><td>任务收益由更高码率、测试信息泄漏或普通区域编码完全解释</td></tr></tbody></table>
 <h3 id="候选课题c-多尺度复用与图元预算">候选课题C：多尺度复用与图元预算</h3>
 <p><strong>研究问题</strong>：在重复输出不同尺寸的真实场景中，空间自适应图元能否减少总成本，并保持跨倍率细节一致？</p>
 <table><thead><tr><th>项目</th><th>第一阶段设计</th></tr></thead><tbody><tr><td>基线</td><td>ContinuousSR固定图元配置；原方法的少核配置；同前端直接像素输出或既有超分对照</td></tr><tr><td>数据</td><td>固定DIV2K输入与预先设定的缩放请求序列，加入单次请求</td></tr><tr><td>指标</td><td>第一次输出与全部请求时间 ↓、峰值显存 ↓、PSNR ↑、感知距离 ↓、跨尺度一致性</td></tr><tr><td>公平性</td><td>对齐前端、精度和输入裁剪；构建成本单列；不把平均渲染冒充单次时延</td></tr><tr><td>资源</td><td>先确认权重可用；不默认复做大规模先验准备和多卡训练</td></tr><tr><td>交付物</td><td>延迟拆分表、单次到多次的收益转折点、纹理／平坦区错误分布</td></tr><tr><td>止损</td><td>无现成权重且成本不可承担，或优势仅来自输入尺寸和padding差别</td></tr></tbody></table>
@@ -262,7 +262,7 @@
   &quot;summary_en&quot;: &quot;Evidence on compact Gaussian image representations, compression, adaptive allocation, and downstream vision.&quot;,
   &quot;status&quot;: &quot;active&quot;,
   &quot;created&quot;: &quot;2026-10-27&quot;,
-  &quot;updated&quot;: &quot;2026-10-27&quot;,
+  &quot;updated&quot;: &quot;2026-10-28&quot;,
   &quot;research_stage&quot;: &quot;evidence_map&quot;,
   &quot;research_protocol&quot;: &quot;docs/research-protocols/gaussian-image-representation&quot;,
   &quot;evidence_window&quot;: &quot;2022–2026背景；核心检索2024–2026，截止2026-10-27；八篇正式发表论文，作者版本差异单独标注&quot;,

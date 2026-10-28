@@ -122,30 +122,40 @@
       
       <header class="article-header" data-motion="reveal">
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Image-GS：内容自适应图元分配与快速随机访问</strong></nav>
-        <p class="eyebrow">Source note · Updated 2026-10-27</p>
+        <p class="eyebrow">Source note · Updated 2026-10-28</p>
         <h1 lang="zh-CN"><span class="title-main">Image-GS</span><span class="title-subtitle">内容自适应图元分配与快速随机访问</span></h1>
         
         <p class="article-actions"><a class="btn btn-primary" href="https://doi.org/10.1145/3721238.3730596" target="_blank" rel="noopener noreferrer">Read the paper<span aria-hidden="true"> ↗</span></a></p>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#gaussian-splatting">#gaussian-splatting</a><a class="tag" href="../../en/tags.html#representation-learning">#representation-learning</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
       <div class="article-layout has-rail">
-        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>SIGGRAPH 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-07-27</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-10-27</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://doi.org/10.1145/3721238.3730596" title="https://doi.org/10.1145/3721238.3730596" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>doi.org · 3721238.3730596</strong></a><a class="source-link source-link-pdf" href="https://www.immersivecomputinglab.org/wp-content/uploads/2025/05/image-gs.pdf" title="https://www.immersivecomputinglab.org/wp-content/uploads/2025/05/image-gs.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>immersivecomputinglab.org · image-gs.pdf</strong></a><a class="source-link source-link-code" href="https://github.com/NYU-ICL/image-gs" title="https://github.com/NYU-ICL/image-gs" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · image-gs</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义与方法">问题定义与方法</a></li><li><a href="#关键效果">关键效果</a></li><li><a href="#已覆盖的语义方向">已覆盖的语义方向</a></li><li><a href="#局限与疑问">局限与疑问</a></li><li><a href="#所读版本与核验范围">所读版本与核验范围</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>SIGGRAPH 2025</dd></div><div class="source-fact"><dt>Published</dt><dd>2025-07-27</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-10-27</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://doi.org/10.1145/3721238.3730596" title="https://doi.org/10.1145/3721238.3730596" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>doi.org · 3721238.3730596</strong></a><a class="source-link source-link-pdf" href="https://www.immersivecomputinglab.org/wp-content/uploads/2025/05/image-gs.pdf" title="https://www.immersivecomputinglab.org/wp-content/uploads/2025/05/image-gs.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>immersivecomputinglab.org · image-gs.pdf</strong></a><a class="source-link source-link-code" href="https://github.com/NYU-ICL/image-gs" title="https://github.com/NYU-ICL/image-gs" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · image-gs</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#先懂本页指标">先懂本页指标</a></li><li><a href="#问题定义与方法">问题定义与方法</a></li><li><a href="#关键效果">关键效果</a></li><li><a href="#已覆盖的语义方向">已覆盖的语义方向</a></li><li><a href="#局限与疑问">局限与疑问</a></li><li><a href="#所读版本与核验范围">所读版本与核验范围</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
         <section class="article-content" lang="zh-CN"><p class="translation-notice" role="note">English translation pending — this page shows the Chinese original.</p><h2 id="一句话结论">一句话结论</h2>
 <p>Image-GS把内容自适应分配、归一化局部渲染与渐进质量控制做成图像表示；它在低码率图形素材上有优势，也已经试过显著性驱动的语义压缩。</p>
+<h2 id="先懂本页指标">先懂本页指标</h2>
+<table><thead><tr><th>指标</th><th>看什么</th><th>方向</th></tr></thead><tbody><tr><td>PSNR</td><td>像素重建质量；越高表示像素误差越小</td><td>↑</td></tr><tr><td>MS-SSIM</td><td>在多个尺度比较结构相似性</td><td>↑</td></tr><tr><td>LPIPS</td><td>重建图与参考图的感知特征差异</td><td>↓</td></tr></tbody></table>
 <h2 id="问题定义与方法">问题定义与方法</h2>
-<p>每个RGB高斯仍由位置2、旋转1、尺度2、颜色3共8参数构成，没有独立opacity。根据图像梯度加均匀覆盖初始化，优化中往高误差区域增加图元。每像素只取贡献最大的top-K高斯并归一化颜色，支持随机访问；属性FP16，不采用破坏局部性的熵编码。主文§3–4。</p>
+<p>每个高斯保存平面位置、椭圆方向、两个尺度和RGB颜色，共八个标量，没有单独的透明度参数。初始斑点既覆盖整张图，也照顾图像变化较大的位置；之后再往高误差区域增加斑点。</p>
+<p>渲染一个像素时，只选贡献最大的K个高斯，并把颜色权重归一化。这种局部计算支持随机访问，也就是无需还原整张图就能查询局部。参数以16位浮点数保存；为了保留局部访问能力，没有再使用熵编码。依据：主文§3–4。</p>
 <h2 id="关键效果">关键效果</h2>
 <p>主文§4.2（p.5），45张2K×2K RGB图，含照片、数字艺术、动漫、绘画和矢量风格：</p>
 <table><thead><tr><th>码率 ↓</th><th>PSNR ↑</th><th>MS-SSIM ↑</th><th>LPIPS ↓</th></tr></thead><tbody><tr><td>0.122 bpp</td><td>29.20 ± 4.57 dB</td><td>0.924 ± 0.042</td><td>0.173 ± 0.082</td></tr><tr><td>0.366 bpp</td><td>32.99 ± 4.49 dB</td><td>0.966 ± 0.020</td><td>0.083 ± 0.057</td></tr></tbody></table>
 <p>该混合素材集低码率曲线优于所列神经表示，低于0.244 bpp时也优于JPEG；同篇CLIC自然图表现下降，作者明确归因于微小细节、噪声和预算限制。不能把混合素材均值推广到普通照片。</p>
 <p>Table1（p.5）默认31.77 dB，去top-K归一化29.35 dB、随机初始化29.54 dB；增益来自优化及渲染设计，不是仅减少属性。</p>
-<p>主文§4.4（p.8），A6000、2K×2K：1万点1000步18.74秒，单次渲染3.7毫秒；5万点为26.32秒与4.5毫秒。单次渲染不包含加载文件及建立空间对应关系的全部成本。</p>
+<table><thead><tr><th>2K×2K图像，A6000</th><th>拟合1000步时间 ↓</th><th>单次渲染时间 ↓</th></tr></thead><tbody><tr><td>10000个图元</td><td>18.74秒</td><td>3.7毫秒</td></tr><tr><td>50000个图元</td><td>26.32秒</td><td>4.5毫秒</td></tr></tbody></table>
+<p><strong>怎么读</strong>：已有高斯表示后渲染很快，但事先拟合仍需时间。表中的单次渲染不包含加载文件及建立空间对应关系的全部成本。依据：主文p.8 §4.4。</p>
 <h2 id="已覆盖的语义方向">已覆盖的语义方向</h2>
-<p>主文§5.1（p.9）用现成显著性模型引导高斯位置，20张TJU-DHD图片配自定义问题，用BLIP-2比较压缩前后回答：0.2 bpp下本法12对回答与原图一致，JPEG为4对。这是小样本输出一致性演示，不能写成标准VQA准确率提升；但足以否定“首次用语义指导二维高斯分配”的宽泛新颖性。</p>
+<p>Image-GS已经尝试用显著性模型把更多高斯分给重要区域，再检查压缩是否改变问答模型的回答。</p>
+<table><thead><tr><th>约0.2 bpp的压缩方法</th><th>与原图回答一致的问答对数 ↑</th></tr></thead><tbody><tr><td>Image-GS</td><td>12／20</td></tr><tr><td>JPEG</td><td>4／20</td></tr></tbody></table>
+<p>条件：二十张TJU-DHD图片配自定义问题，由BLIP-2作答；主文p.9 §5.1。这里检查的是“压缩前后回答是否一样”，没有证明回答本身正确，也不是大规模标准问答准确率。但这已经是语义引导高斯分配的直接先例。</p>
 <h2 id="局限与疑问">局限与疑问</h2>
 <p>图元低通偏好可能丢失小文字、边缘和像素级纹理。纹理对照通过更高mipmap后上采样匹配极低码率，不是原生全分辨率同工作点比较。去噪实验的部分参考来自AI去噪输出，不能等同物理干净真值。应分别验证存储率失真、随机访问延迟和下游语义，而非只报高斯数。</p>
 <h2 id="所读版本与核验范围">所读版本与核验范围</h2>
-<p>ACM DOI10.1145/3721238.3730596与Crossref正式元数据核实SIGGRAPH2025 Conference Papers；online2025-07-27，print2025-08-10。所读为作者实验室提供的ACM格式20页PDF，含正文及参考11页、补充9页，全部核读。正文贡献与实验表原图已检查，未对ACM最终文件做字节一致性验证。 原始PDF、可搜索全文、分析及下载记录保存在同ID原始证据目录。未运行模型或复现论文数字。</p>
+<p>ACM DOI10.1145/3721238.3730596与Crossref正式元数据核实SIGGRAPH2025 Conference Papers；online2025-07-27，print2025-08-10。</p>
+<p>所读为作者实验室提供的ACM格式20页PDF，含正文及参考11页、补充9页，全部核读。</p>
+<p>正文贡献与实验表原图已检查，未对ACM最终文件做字节一致性验证。</p>
+<p> 原始PDF、可搜索全文、分析及下载记录保存在同ID原始证据目录。</p>
+<p>未运行模型或复现论文数字。</p>
 <h2 id="原始链接">原始链接</h2>
 <ul>
 <li><a href="https://doi.org/10.1145/3721238.3730596">正式出版记录</a></li>
@@ -165,7 +175,7 @@
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-10-27&quot;,
-  &quot;updated&quot;: &quot;2026-10-27&quot;,
+  &quot;updated&quot;: &quot;2026-10-28&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;venue&quot;: &quot;SIGGRAPH 2025&quot;,
   &quot;authors&quot;: [

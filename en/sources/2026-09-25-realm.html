@@ -122,7 +122,7 @@
       
       <header class="article-header" data-motion="reveal">
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>REALM:An MLLM-Agent Framework for Open World 3D Reasoning Segmentation and Editing on Gaussian Splatting</strong></nav>
-        <p class="eyebrow">Source note · Updated 2026-09-25</p>
+        <p class="eyebrow">Source note · Updated 2026-10-28</p>
         <h1><span class="title-main">REALM</span><span class="title-subtitle">An MLLM-Agent Framework for Open World 3D Reasoning Segmentation and Editing on Gaussian Splatting</span></h1>
         <p class="article-summary">Global-to-local MLLM grounding on prebuilt Gaussian scenes, with strong implicit-query scores and material preprocessing costs.</p>
         <p class="article-actions"><a class="btn btn-primary" href="https://openaccess.thecvf.com/content/CVPR2026/html/Shi_REALM_An_MLLM-Agent_Framework_for_Open_World_3D_Reasoning_Segmentation_CVPR_2026_paper.html" target="_blank" rel="noopener noreferrer">Read the paper<span aria-hidden="true"> ↗</span></a></p>
@@ -131,13 +131,19 @@
       <div class="article-layout has-rail">
         <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2026</dd></div><div class="source-fact"><dt>Published</dt><dd>2026-06-01</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-09-25</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2026/html/Shi_REALM_An_MLLM-Agent_Framework_for_Open_World_3D_Reasoning_Segmentation_CVPR_2026_paper.html" title="https://openaccess.thecvf.com/content/CVPR2026/html/Shi_REALM_An_MLLM-Agent_Framework_for_Open_World_3D_Reasoning_Segmentation_CVPR_2026_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Shi_REALM_An_MLLM-Agent_Framewo…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2026/papers/Shi_REALM_An_MLLM-Agent_Framework_for_Open_World_3D_Reasoning_Segmentation_CVPR_2026_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2026/papers/Shi_REALM_An_MLLM-Agent_Framework_for_Open_World_3D_Reasoning_Segmentation_CVPR_2026_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Shi_REALM_An_MLLM-Agent_Framewo…</strong></a><a class="source-link source-link-code" href="https://github.com/ChangyueShi/REALM" title="https://github.com/ChangyueShi/REALM" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · REALM</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#输入-机制与评测">输入、机制与评测</a></li><li><a href="#结果-反证与成本">结果、反证与成本</a></li><li><a href="#可用性与相关页面">可用性与相关页面</a></li></ol></details></aside>
         <section class="article-content" lang="zh-CN"><p class="translation-notice" role="note">English translation pending — this page shows the Chinese original.</p><h2 id="一句话结论">一句话结论</h2>
-<p>CVPR 2026在已有3DGS、训练相机和逐场实例特征场上，用Qwen2.5-VL+SAM跨全局与局部视角定位隐式语言所指物体；其高mIoU依赖大模型多次调用、视图选取与局部优化，8.68秒仅是单提示处理口径（主文pp.16782–16786 Tables1–4）。</p>
+<p>REALM让视觉语言模型从多个视角理解隐含描述，再在已有高斯场景中定位目标。它需要预先建好的场景和实例特征，多次大模型调用及局部优化也要计时；论文的8.68秒只覆盖单条提示的处理。</p>
 <h2 id="输入-机制与评测">输入、机制与评测</h2>
-<p>先由SAM训练视图掩码、跨视实例传播建立每高斯feature及分类器；全局阶段从24个相机簇选8个视角，经MLLM返回bbox、类别及理由、SAM出mask再投到ID场投票；局部阶段在目标可见视角做50步mask一致优化（主文Fig.3 Eq.1–8）。REALM3D有100场1444对提示掩码，Qwen2.5-VL生成隐式提示、SAM标注且人工过滤（主文Table2、补充pp.1–3）；同族MLLM对数据创建及解题有共因，需要独立人标场景级评测。</p>
+<p>先由SAM训练视图掩码、跨视实例传播建立每高斯feature及分类器；全局阶段从24个相机簇选8个视角，经MLLM返回bbox（包围框）、类别及理由、SAM出mask（区域掩码）再投到ID场投票；局部阶段在目标可见视角做50步mask一致优化（主文Fig.3 Eq.1–8）。</p>
+<p>REALM3D有100场1444对提示掩码，Qwen2.5-VL生成隐式提示、SAM标注且人工过滤（主文Table2、补充pp.1–3）；同族MLLM对数据创建及解题有共因，需要独立人标场景级评测。</p>
 <h2 id="结果-反证与成本">结果、反证与成本</h2>
+<table><thead><tr><th>隐式描述定位任务</th><th>REALM mIoU ↑</th><th>对照 mIoU ↑</th></tr></thead><tbody><tr><td>LERF</td><td>92.88</td><td>GS-Group：42.43</td></tr><tr><td>3D-OVS</td><td>93.68</td><td>GAGS：58.46</td></tr><tr><td>REALM3D</td><td>82.30</td><td>GS-Group：65.55</td></tr></tbody></table>
+<p>mIoU表示分割区域的平均重叠程度，越高越好。这些结果不能直接推广到完整原数据库：§4.1只说重标了LERF两场、3D-OVS五场，数据介绍却列五场与十场，主表实际样本范围仍需确认。</p>
+<p>显式描述的独立实验中，GAGS为84.18，REALM为93.62。显式与隐式描述应在相同场景下比较难度。定位：主文p.16784 Table1和Table2；补充p.3 Table S1。</p>
+<table><thead><tr><th>Figurines单场模块消融</th><th>mIoU ↑</th></tr></thead><tbody><tr><td>GS-Group</td><td>0.32</td></tr><tr><td>加入Qwen2.5-VL</td><td>0.78</td></tr><tr><td>再加全局处理</td><td>0.89</td></tr><tr><td>再加局部处理</td><td>0.95</td></tr></tbody></table>
+<p>局部优化五十步得0.95，增加到五百步反降至0.79，存在过拟合。</p>
+<table><thead><tr><th>单提示处理阶段</th><th>耗时 ↓</th></tr></thead><tbody><tr><td>全局推理</td><td>2.53秒</td></tr><tr><td>局部处理</td><td>2.48秒</td></tr><tr><td>局部优化</td><td>3.67秒</td></tr></tbody></table>
+<p>354.72帧／秒只指单通道掩码渲染，不是整条推理流程的速度。建图、实例特征场和大模型服务费还需另计。依据：主文p.16786 Tables3–4。</p>
 <ul>
-<li>主文p.16784 Table1隐式提示LERF本法mIoU92.88 vs GS-Group42.43；3D-OVS 93.68 vs GAGS58.46；REALM3D 82.30 vs GS-Group65.55。§4.1只称LERF选2场/3D-OVS选5场重标，Table2原库列5/10场，主表评测分母需核。补充p.3 Table S1显示同3D-OVS显式提示GAGS84.18、本法93.62，对隐式能力说明任务更难；两者须同场景对照。</li>
-<li>p.16786 Table3单一Figurines场：GS-Group mIoU.32，加Qwen2.5-VL .78，加全局 .89，加局部 .95；局部50步.95、500步.79，过拟合可见。Table4全局2.53秒+局部2.48秒+优化3.67秒；FPS354.72仅单通道掩码渲染，建图、实例场和LLM服务费另计。</li>
 <li>编辑Fig.7主要定性；补充pp.1–2：删除可接LaMa、替换接TRELLIS、风格化接InstructPix2Pix再优化1000步。成功率/保真度/墙钟及失败分母待独立核验。</li>
 </ul>
 <h2 id="可用性与相关页面">可用性与相关页面</h2>
@@ -155,7 +161,7 @@
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-09-25&quot;,
-  &quot;updated&quot;: &quot;2026-09-25&quot;,
+  &quot;updated&quot;: &quot;2026-10-28&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;venue&quot;: &quot;CVPR 2026&quot;,
   &quot;authors&quot;: &quot;[Changyue Shi, Minghao Chen, Yiping Mao, Chuxiao Yang, Xinyuan Hu, Jiajun Ding, Zhou Yu]&quot;,

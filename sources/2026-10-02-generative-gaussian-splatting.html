@@ -122,23 +122,31 @@
       
       <header class="article-header" data-motion="reveal">
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Generative Gaussian Splatting：视频先验与三维一致性的取舍</strong></nav>
-        <p class="eyebrow">来源笔记 · 更新于 2026-10-02</p>
+        <p class="eyebrow">来源笔记 · 更新于 2026-10-28</p>
         <h1><span class="title-main">Generative Gaussian Splatting</span><span class="title-subtitle">视频先验与三维一致性的取舍</span></h1>
         
         <p class="article-actions"><a class="btn btn-primary" href="https://api.crossref.org/works/10.1109/ICCV51701.2025.02554" target="_blank" rel="noopener noreferrer">阅读原论文<span aria-hidden="true"> ↗</span></a></p>
         <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#3d-vision">#3d-vision</a><a class="tag" href="../tags.html#gaussian-splatting">#gaussian-splatting</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
       </header>
       <div class="article-layout has-rail">
-        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2025-10-19</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-10-02</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://api.crossref.org/works/10.1109/ICCV51701.2025.02554" title="https://api.crossref.org/works/10.1109/ICCV51701.2025.02554" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>api.crossref.org · ICCV51701.2025.02554</strong></a><a class="source-link source-link-pdf" href="https://media.eventhosts.cc/Conferences/ICCV2025/iccv25_main_program.pdf" title="https://media.eventhosts.cc/Conferences/ICCV2025/iccv25_main_program.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>media.eventhosts.cc · iccv25_main_program.pdf</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>目录</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#身份与证据范围">身份与证据范围</a></li><li><a href="#问题定义与输入输出">问题定义与输入输出</a></li><li><a href="#方法与机制">方法与机制</a></li><li><a href="#主结果与比较条件">主结果与比较条件</a></li><li><a href="#数据-消融与反证">数据、消融与反证</a></li><li><a href="#成本与复现边界">成本与复现边界</a></li><li><a href="#相关页面与状态">相关页面与状态</a></li></ol></details></aside>
+        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2025-10-19</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-10-02</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://api.crossref.org/works/10.1109/ICCV51701.2025.02554" title="https://api.crossref.org/works/10.1109/ICCV51701.2025.02554" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>api.crossref.org · ICCV51701.2025.02554</strong></a><a class="source-link source-link-pdf" href="https://media.eventhosts.cc/Conferences/ICCV2025/iccv25_main_program.pdf" title="https://media.eventhosts.cc/Conferences/ICCV2025/iccv25_main_program.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>media.eventhosts.cc · iccv25_main_program.pdf</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>目录</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#先懂本页指标">先懂本页指标</a></li><li><a href="#身份与证据范围">身份与证据范围</a></li><li><a href="#问题定义与输入输出">问题定义与输入输出</a></li><li><a href="#方法与机制">方法与机制</a></li><li><a href="#主结果与比较条件">主结果与比较条件</a></li><li><a href="#数据-消融与反证">数据、消融与反证</a></li><li><a href="#成本与复现边界">成本与复现边界</a></li><li><a href="#相关页面与状态">相关页面与状态</a></li></ol></details></aside>
         <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
 <p>在有相机参数的单图/两图生成中，把高斯约束放入视频扩散的特征空间能改善跨视几何一致性，但图像分布质量可能下降；深度监督和逐场精修带来的额外收益需要分别计账。</p>
+<h2 id="先懂本页指标">先懂本页指标</h2>
+<table><thead><tr><th>指标</th><th>看什么</th><th>方向</th></tr></thead><tbody><tr><td>PSNR</td><td>像素重建质量；越高表示像素误差越小</td><td>↑</td></tr><tr><td>LPIPS</td><td>重建图与参考图的感知特征差异</td><td>↓</td></tr></tbody></table>
 <h2 id="身份与证据范围">身份与证据范围</h2>
-<p>正式题名为 *Generative Gaussian Splatting: Generating 3D Scenes with Video Diffusion Priors*。IEEE/Crossref DOI <code>10.1109/ICCV51701.2025.02554</code>记录ICCV2025 proceedings、三作者及pp.27510–27520；官方主会节目册PDF p.66 poster268与题名/作者相符。<code>published_at</code>为Crossref出版记录日期。</p>
+<p>正式题名为 *Generative Gaussian Splatting: Generating 3D Scenes with Video Diffusion Priors*。</p>
+<p>IEEE/Crossref DOI <code>10.1109/ICCV51701.2025.02554</code>记录ICCV2025 proceedings、三作者及pp.27510–27520；官方主会节目册PDF p.66 poster268与题名/作者相符。</p>
+<p><code>published_at</code>为Crossref出版记录日期。</p>
 <p>全文使用作者公开arXiv:2503.13272v1（2025-03-17），18页含参考文献和附录。以下页/表全部指这个版本，<strong>它与出版最终版的差异尚未核对</strong>。首次CVF入口HTTP403已保存且未重试；正式身份核验与作者全文阅读分开完成。项目图像仅为次级定性材料。</p>
 <h2 id="问题定义与输入输出">问题定义与输入输出</h2>
 <p>输入是单张或两张静态室内RGB参考图，参考与待生成视角均需要相机内参和外参。输出先是补视视频及特征高斯，再经图像空间decoder得到可从新视角渲染的RGB高斯场；它补全未观测内容，不能保证真实场景几何，也不是无位姿重建（pp.3–5，Fig.2）。</p>
 <h2 id="方法与机制">方法与机制</h2>
-<p>Plücker相机编码进入预训练I2V U-Net；参考latent无噪声、目标latent加噪。末段特征经极线注意力预测逐像素高斯，把三维约束放在特征空间以保留v-prediction。训练还监督六个额外新视图，深度可用时约束反投影中心。最后冻结骨干，在无噪声下训练图像空间3Ddecoder；可选Splatfacto精修5000步。自回归把累积高斯渲染作为后续条件，但五视示例仅属定性验证（pp.3–5、8、12–13，Figs2/6/11）。</p>
+<p>Plücker相机编码进入预训练I2V U-Net；参考latent（隐空间特征）无噪声、目标latent加噪。</p>
+<p>末段特征经极线注意力预测逐像素高斯，把三维约束放在特征空间以保留v-prediction。</p>
+<p>训练还监督六个额外新视图，深度可用时约束反投影中心。</p>
+<p>最后冻结骨干，在无噪声下训练图像空间3Ddecoder；可选Splatfacto精修5000步。</p>
+<p>自回归把累积高斯渲染作为后续条件，但五视示例仅属定性验证（pp.3–5、8、12–13，Figs2/6/11）。</p>
 <h2 id="主结果与比较条件">主结果与比较条件</h2>
 <p>这是作者同表自报值，没有GPU复现。单图视频评价通常256×256；TSED检查匹配点极线一致性，FID/FVD衡量图像/视频分布，两者都不等于真实表面误差。</p>
 <table><thead><tr><th>单图ScanNet++设置</th><th>PSNR ↑</th><th>LPIPS ↓</th><th>FID ↓</th><th>FVD ↓</th><th>TSED ↑</th><th>原文定位</th></tr></thead><tbody><tr><td>内部对照No3D</td><td>17.1</td><td>.351</td><td>80.4</td><td>436.4</td><td>.596</td><td>p.6 Table1</td></tr><tr><td>GGS</td><td>18.0</td><td>.317</td><td>81.8</td><td>455.5</td><td>.896</td><td>同表</td></tr><tr><td>GGS+depth</td><td>18.4</td><td>.309</td><td>81.9</td><td>441.9</td><td>.899</td><td>同表</td></tr><tr><td>ViewCrafter单次生成</td><td>18.3</td><td>.280</td><td>74.5</td><td>437.5</td><td>.871</td><td>同表</td></tr></tbody></table>
@@ -147,7 +155,7 @@
 <p>Table3标题为Single Image to3D，邻近段落讨论两图；按表题登记，两图结果另见附录Table5。较大FID改善包含深度监督和精修，不是高斯模块单项增益。两图RE10K精修FID57.4→47.6，同时FVD440.6→468.4退化（p.14 Table5）。</p>
 <h2 id="数据-消融与反证">数据、消融与反证</h2>
 <p>训练含10k RE10K视频、1513 ScanNet扫描和约95k内部合成场景；测试128 RE10K场景/50 ScanNet++扫描。ScanNet++用真值深度筛选至少50%重叠目标，困难低重叠情形不在该分母。3D输出评价改用576×320插入视角；不能与直接视频表混算。场景级区间、多种子显著性未完整提供（pp.5–6、13）。</p>
-<p>75k步消融中移除新视损失使RE10K插值PSNR22.5→19.6、TSED .977→.868，支持多视约束的作用；移除特征空间同时改为x0-prediction，不能单独证明预测参数化因果。图像空间decoder进一步提高TSED却恶化FID/LPIPS，约束强弱存在取舍（p.8 Table4）。长自回归、户外、反光和真实GT几何仍待系统验证。</p>
+<p>75k步消融中移除新视损失使RE10K插值PSNR22.5→19.6、TSED .977→.868，支持多视约束的作用；移除特征空间同时改为x0-prediction，不能单独证明预测参数化因果。图像空间decoder进一步提高TSED却恶化FID/LPIPS，约束强弱存在取舍（p.8 Table4）。长自回归、户外、反光和真实真值几何仍待系统验证。</p>
 <h2 id="成本与复现边界">成本与复现边界</h2>
 <p>专有约2B参数I2V骨干配约200M pose encoder和1.5M decoder。训练使用8张A10080GB，先100k步再800k步约两周；推断30 Euler步，另有可选逐场5000步精修。完整推断延迟、实际峰显存、骨干预训练和数据准备卡时未充分报告，卡容量不能当作最小显存要求（pp.12–13）。</p>
 <p>存档作者项目未见完整公开可运行仓库/权重入口，内部训练数据和专有骨干限制独立复现。arXiv公开稿标CC BY4.0，不能代替模型和数据许可。未下载权重、训练或调用付费服务。</p>
@@ -171,7 +179,7 @@
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-10-02&quot;,
-  &quot;updated&quot;: &quot;2026-10-02&quot;,
+  &quot;updated&quot;: &quot;2026-10-28&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;venue&quot;: &quot;ICCV 2025&quot;,
   &quot;authors&quot;: [
