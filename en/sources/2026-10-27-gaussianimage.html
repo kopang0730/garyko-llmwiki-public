@@ -122,26 +122,45 @@
       
       <header class="article-header" data-motion="reveal">
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>GaussianImage：用精简的二维高斯表示和压缩图像</strong></nav>
-        <p class="eyebrow">Source note · Updated 2026-10-27</p>
+        <p class="eyebrow">Source note · Updated 2026-10-28</p>
         <h1 lang="zh-CN"><span class="title-main">GaussianImage</span><span class="title-subtitle">用精简的二维高斯表示和压缩图像</span></h1>
         
         <p class="article-actions"><a class="btn btn-primary" href="https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/1421_ECCV_2024_paper.php" target="_blank" rel="noopener noreferrer">Read the paper<span aria-hidden="true"> ↗</span></a></p>
         <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#gaussian-splatting">#gaussian-splatting</a><a class="tag" href="../../en/tags.html#representation-learning">#representation-learning</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
       </header>
       <div class="article-layout has-rail">
-        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ECCV 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2024-10-22</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-10-27</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/1421_ECCV_2024_paper.php" title="https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/1421_ECCV_2024_paper.php" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>ecva.net · 1421_ECCV_2024_paper.php</strong></a><a class="source-link source-link-pdf" href="https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/01421.pdf" title="https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/01421.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>ecva.net · 01421.pdf</strong></a><a class="source-link source-link-code" href="https://github.com/Xinjie-Q/GaussianImage" title="https://github.com/Xinjie-Q/GaussianImage" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · GaussianImage</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义与方法">问题定义与方法</a></li><li><a href="#关键结果与消融">关键结果与消融</a></li><li><a href="#压缩与局限">压缩与局限</a></li><li><a href="#所读版本与核验范围">所读版本与核验范围</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>ECCV 2024</dd></div><div class="source-fact"><dt>Published</dt><dd>2024-10-22</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-10-27</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/1421_ECCV_2024_paper.php" title="https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/1421_ECCV_2024_paper.php" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>ecva.net · 1421_ECCV_2024_paper.php</strong></a><a class="source-link source-link-pdf" href="https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/01421.pdf" title="https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/01421.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>ecva.net · 01421.pdf</strong></a><a class="source-link source-link-code" href="https://github.com/Xinjie-Q/GaussianImage" title="https://github.com/Xinjie-Q/GaussianImage" target="_blank" rel="noopener noreferrer"><span>Code repository</span><strong>github.com · GaussianImage</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义与方法">问题定义与方法</a></li><li><a href="#关键结果与消融">关键结果与消融</a></li><li><a href="#压缩效果-还原快-文件大小与质量仍有差距">压缩效果：还原快，文件大小与质量仍有差距</a><ol><li class="toc-sub"><a href="#为什么还原很快-准备一张图却很慢">为什么还原很快，准备一张图却很慢？</a></li><li class="toc-sub"><a href="#额外压缩方案为什么要另看">额外压缩方案为什么要另看？</a></li></ol></li><li><a href="#局限与比较条件">局限与比较条件</a></li><li><a href="#所读版本与核验范围">所读版本与核验范围</a></li><li><a href="#原始链接">原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
         <section class="article-content" lang="zh-CN"><p class="translation-notice" role="note">English translation pending — this page shows the Chinese original.</p><h2 id="一句话结论">一句话结论</h2>
-<p>二维图像不需要完整三维场景参数；GaussianImage将投影、视角颜色与遮挡合成改成二维核累加，使图元更紧凑且渲染更快，但不是无损编码或率失真最优。</p>
+<p>GaussianImage用一组彩色椭圆斑点表示图片。它减少了从三维场景表示中沿用的多余参数，还原图片很快；但把原图转换成这种表示仍然较慢，压缩效果也还没有超过强图像编码器。</p>
 <h2 id="问题定义与方法">问题定义与方法</h2>
-<p>输入单张RGB图像，逐图优化位置、协方差和加权颜色，再量化编码。先将三维位置变二维、球谐颜色变RGB，得到9参数；累加模型把颜色与opacity的乘积作为幅值，得到8参数。二维对称协方差仍有3个自由度，删除角度会限制核的方向。主文pp.6–8 Eqs.1–7。</p>
-<p>普通alpha合成的透射率依赖前方图元与像素位置，因此上述改造不是对任意三维遮挡的无损代数等价。59参数是作者采用三阶球谐的3D对照配置；参数数比例不能当成图像压缩倍率。</p>
+<p>输入是一张彩色图片。方法反复调整斑点的位置、形状和颜色，直到叠加后的图像接近原图；随后再把这些参数量化、编码，形成可保存的表示。</p>
+<p>单张图片不需要记录三维深度，也不需要描述物体从不同方向观察时的颜色变化。因此，作者把三维高斯改成直接位于图像平面的二维高斯。</p>
+<table><thead><tr><th>每个二维高斯保存什么</th><th>标量数量</th><th>作用</th></tr></thead><tbody><tr><td>平面位置</td><td>2</td><td>决定斑点画在哪里</td></tr><tr><td>协方差</td><td>3</td><td>决定椭圆的大小、长短轴和方向</td></tr><tr><td>加权颜色</td><td>3</td><td>决定斑点对各颜色通道贡献多少</td></tr><tr><td>合计</td><td>8</td><td>构成最终的单个图元</td></tr></tbody></table>
+<p>最后一步精简来自合并透明度和颜色：在本文的累加渲染方式中，只需要它们的乘积，所以可以直接保存“加权颜色”。这不是把透明度设为零。若继续去掉椭圆方向等参数，就会限制能表达的形状，需要重新验证质量。</p>
+<p>三维场景还要处理物体之间的遮挡。本文改用了适合单张图片的合成方式，不能把它理解为对任意三维渲染都成立的无损替换。方法依据：主文pp.6–8，Eqs.1–7。</p>
 <h2 id="关键结果与消融">关键结果与消融</h2>
-<p>同篇Kodak、30000图元、50000步，Table3（PDF p.13）：</p>
+<p>下面比较使用相同的Kodak图片、图元数量和优化步数。PSNR衡量重建图与原图的像素差异，越高越好；FPS表示每秒能渲染多少张图，越高越快。</p>
 <table><thead><tr><th>设置</th><th>参数数 ↓</th><th>PSNR ↑</th><th>拟合时间 ↓</th><th>渲染速度 ↑</th></tr></thead><tbody><tr><td>3DGS＋L2</td><td>1770000</td><td>37.41 dB</td><td>197.90秒</td><td>1190 FPS</td></tr><tr><td>二维9参、不含累加合成</td><td>270000</td><td>37.89 dB</td><td>104.76秒</td><td>2340 FPS</td></tr><tr><td>二维9参＋累加</td><td>270000</td><td>38.69 dB</td><td>98.54秒</td><td>2555 FPS</td></tr><tr><td>二维8参＋累加</td><td>240000</td><td>38.57 dB</td><td>91.06秒</td><td>2565 FPS</td></tr></tbody></table>
-<p>最后一步PSNR下降0.12 dB，不应写成所有质量完全不变。主文Table1的Kodak对3DGS虽PSNR更高，MS-SSIM反而略低。</p>
-<h2 id="压缩与局限">压缩与局限</h2>
-<p>主文Table2（p.12）DIV2K：本法0.3221 bpp/25.6631 dB，Ballé18为0.2533 bpp/28.7548 dB；神经编码器用更少比特却画质更高。本法约1971 FPS解码，但0.00411 FPS编码意味着逐图拟合仍慢。不能用最快解码模式的数字替代可选bits-back编码成本。</p>
-<p>DIV2K使用二倍下采样验证集，硬件V100；传统编解码器用CPU。其原表不能与GaussianImage++的原2K/A30结果直接相减。量化含码本与元数据，真实文件和独立解码须另外验证。官方补充pp.6–7明确率失真仍落后传统和强神经编码器；语义对象、编辑或理解是进一步任务，非本篇结论。</p>
+<p><strong>怎么读</strong>：主要加速来自把三维表示改成二维表示，以及改变颜色合成方式。最后从九参数合并到八参数时，拟合时间进一步缩短，但PSNR也略有下降。因此它支持“精简参数可以改善效率”，并不支持“每一步精简都完全不影响质量”。</p>
+<p>实验条件：每张图30000个图元，优化50000步；主文Table3，PDF p.13。三维对照每点使用59个参数，其中包含三阶球谐颜色；减少参数的比例不能直接当作文件压缩倍数。主文Table1另显示，Kodak上的PSNR提高时，结构相似性指标MS-SSIM仍可能略降。</p>
+<h2 id="压缩效果-还原快-文件大小与质量仍有差距">压缩效果：还原快，文件大小与质量仍有差距</h2>
+<p><strong>先看结论</strong>：在下面这一组测试中，Ballé于2018年提出的神经图像编码器占用空间更少，重建图的像素误差也更小。GaussianImage的突出之处是还原图片的速度，而不是这组测试里的压缩质量。</p>
+<p>这里用两个指标比较：<strong>bpp</strong>表示平均每个像素占用多少比特，越低越省空间；<strong>PSNR</strong>越高，表示重建图与原图的像素差异越小。PSNR不是人眼观感评分。</p>
+<table><thead><tr><th>方法</th><th>每像素占用比特 ↓（bpp）</th><th>重建质量 ↑（PSNR）</th></tr></thead><tbody><tr><td>GaussianImage</td><td>0.3221</td><td>25.66 dB</td></tr><tr><td>Ballé 2018</td><td>0.2533</td><td>28.75 dB</td></tr></tbody></table>
+<p>条件：DIV2K验证集经二倍下采样，取论文的低码率工作点；主文Table2，PDF p.12。PSNR展示值已四舍五入，原始精度保留在<a class="wikilink" href="../../en/docs/research-matrices/gaussian-image-representation-evidence-matrix.html">证据矩阵</a>中。</p>
+<h3 id="为什么还原很快-准备一张图却很慢">为什么还原很快，准备一张图却很慢？</h3>
+<p>要分清两个步骤：<strong>编码</strong>是把原图转换成可保存的高斯表示，<strong>解码</strong>是把已有表示还原成图片。GaussianImage需要对每张图片反复优化，因此编码慢；表示准备好之后，只需叠加斑点，所以解码快。</p>
+<table><thead><tr><th>步骤</th><th>论文报告的处理速度 ↑</th><th>怎样理解</th></tr></thead><tbody><tr><td>编码</td><td>0.00411张／秒</td><td>按吞吐率折算，平均约4分钟才能准备一张图</td></tr><tr><td>解码</td><td>约1971张／秒</td><td>已有表示后，还原图片的吞吐量很高</td></tr></tbody></table>
+<p>这说明它更适合“预先准备好表示，再反复读取”的使用方式。上表不能理解为包含文件读取、初始化等全部开销的单张请求延迟。速度依据同一张Table2。</p>
+<h3 id="额外压缩方案为什么要另看">额外压缩方案为什么要另看？</h3>
+<p>论文还探索了bits-back编码，一种进一步节省存储空间的编码方案。作者明确说明它处理较慢，属于压缩效果的初步验证。因此，采用它之后，不能继续套用主方案最快的解码数字。依据：主文§3.2，PDF pp.8–9。</p>
+<h2 id="局限与比较条件">局限与比较条件</h2>
+<ul>
+<li><strong>与后续论文比较时要对齐条件</strong>：本篇使用下采样后的DIV2K和V100显卡；GaussianImage++使用原分辨率和另一种显卡。要判断后者改善多少，应优先看GI++论文中重新运行的GI对照。</li>
+<li><strong>文件大小需要完整计算</strong>：码本、量化参数等辅助信息也要占空间。本轮没有实际验证独立文件及从文件解码的完整流程。</li>
+<li><strong>不同任务要分别验证</strong>：官方补充承认压缩效果仍落后传统和强神经编码器；语义理解、编辑等应用是后续研究方向，本篇没有证明这些任务的收益。依据：官方补充pp.6–7。</li>
+</ul>
+<p>论文中的传统编码器使用CPU，神经方法使用GPU，因此其速度表也不能用于判断所有方法在相同设备上的快慢。</p>
 <h2 id="所读版本与核验范围">所读版本与核验范围</h2>
 <p>正式ECVA主文19页＋官方补充8页完整核读；关键主表页10、12、13视觉核对。DOI10.1007/978-3-031-72673-6_18；First Online 2024-10-22，纸本2025不改变ECCV2024身份；未比Springer最终排版字节。 原始PDF、可搜索全文、分析及下载记录保存在同ID原始证据目录。未运行模型或复现论文数字。</p>
 <h2 id="原始链接">原始链接</h2>
@@ -165,7 +184,7 @@
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-10-27&quot;,
-  &quot;updated&quot;: &quot;2026-10-27&quot;,
+  &quot;updated&quot;: &quot;2026-10-28&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;venue&quot;: &quot;ECCV 2024&quot;,
   &quot;authors&quot;: [

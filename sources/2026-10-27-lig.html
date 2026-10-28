@@ -122,7 +122,7 @@
       
       <header class="article-header" data-motion="reveal">
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>LIG：用分层二维高斯拟合高分辨率图像</strong></nav>
-        <p class="eyebrow">来源笔记 · 更新于 2026-10-27</p>
+        <p class="eyebrow">来源笔记 · 更新于 2026-10-28</p>
         <h1><span class="title-main">LIG</span><span class="title-subtitle">用分层二维高斯拟合高分辨率图像</span></h1>
         
         <p class="article-actions"><a class="btn btn-primary" href="https://ojs.aaai.org/index.php/AAAI/article/view/33193" target="_blank" rel="noopener noreferrer">阅读原论文<span aria-hidden="true"> ↗</span></a></p>
@@ -133,7 +133,11 @@
         <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
 <p>直接协方差优化加粗到细残差分层，缓解大图高斯越多越难优化的问题；提高拟合画质的同时可能降低渲染速度，也未证明真实压缩码流优于强基线。</p>
 <h2 id="问题定义与方法">问题定义与方法</h2>
-<p>逐图拟合RGB：15张约9K病理图、4张4K遥感图、100张2K DIV-HR图。每点仍8参数；直接优化协方差3个独立量，不是继续删参数。先拟合低分辨率L0并冻结，再拟合原图减上采样L0的归一化残差L1；残差min/max也须存储。主文pp.10980–10981。</p>
+<p>LIG把大图拆成“先画大轮廓，再补细节”两个阶段。先用一层高斯拟合缩小后的图片，并固定这一层；再把它放大，与原图相减，用另一层高斯表示尚未画好的细节。论文把这两层分别记为L0和L1。</p>
+<p>细节层保存的是两张图之间的差值，也叫残差。为便于优化，论文先调整这些差值的数值范围；还原时需要恢复原范围，因此差值的最小值和最大值也必须保存。</p>
+<p>它还直接优化控制椭圆形状的协方差。每个高斯仍使用八个标量参数；改进来自优化方式和分层，并没有继续删减单个图元的参数。</p>
+<table><thead><tr><th>评测图像</th><th>数量</th><th>分辨率量级</th></tr></thead><tbody><tr><td>病理图</td><td>15张</td><td>约9K</td></tr><tr><td>遥感图</td><td>4张</td><td>4K</td></tr><tr><td>DIV-HR彩色图</td><td>100张</td><td>2K</td></tr></tbody></table>
+<p>方法依据：主文pp.10980–10981。不同图像类别的结果应分别判断，不能只用某一类大图的改善推断所有图片都有收益。</p>
 <h2 id="关键发现">关键发现</h2>
 <p>正式Table1（p.10982），同DIV-HR、50万点：</p>
 <table><thead><tr><th>方法</th><th>PSNR ↑</th><th>训练显存 ↓</th><th>渲染速度 ↑</th></tr></thead><tbody><tr><td>GaussianImage</td><td>40.09 dB</td><td>1.03 GB</td><td>745.01 FPS</td></tr><tr><td>LIG</td><td>44.89 dB</td><td>1.01 GB</td><td>541.84 FPS</td></tr></tbody></table>
@@ -162,7 +166,7 @@
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-10-27&quot;,
-  &quot;updated&quot;: &quot;2026-10-27&quot;,
+  &quot;updated&quot;: &quot;2026-10-28&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;venue&quot;: &quot;AAAI 2025&quot;,
   &quot;authors&quot;: [

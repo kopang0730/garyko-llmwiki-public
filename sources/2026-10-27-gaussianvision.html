@@ -122,7 +122,7 @@
       
       <header class="article-header" data-motion="reveal">
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>GaussianVision：直接从二维高斯学习视觉语言对齐</strong></nav>
-        <p class="eyebrow">来源笔记 · 更新于 2026-10-27</p>
+        <p class="eyebrow">来源笔记 · 更新于 2026-10-28</p>
         <h1><span class="title-main">GaussianVision</span><span class="title-subtitle">直接从二维高斯学习视觉语言对齐</span></h1>
         
         <p class="article-actions"><a class="btn btn-primary" href="https://openaccess.thecvf.com/content/CVPR2026/html/Omri_GaussianVision_Vision-Language_Alignment_from_Compressed_Image_Representations_using_2D_Gaussian_CVPR_2026_paper.html" target="_blank" rel="noopener noreferrer">阅读原论文<span aria-hidden="true"> ↗</span></a></p>
@@ -144,7 +144,9 @@
 <table><thead><tr><th>拟合目标</th><th>蒸馏余弦相似度 ↑（原表尺度）</th><th>ImageNet-1K准确率 ↑</th></tr></thead><tbody><tr><td>MSE</td><td>93.17</td><td>16.90%</td></tr><tr><td>LPIPS</td><td>96.24</td><td>8.37%</td></tr><tr><td>MSE与LPIPS混合</td><td>94.57</td><td>16.76%</td></tr></tbody></table>
 <p>LPIPS拟合更慢，作者减少迭代数匹配时间。因此该实验支持“感知损失收益不自动转成语义收益”，不能进一步归因成单一损失的普遍因果结论。</p>
 <h2 id="实际字节与局限">实际字节与局限</h2>
-<p>正式补充Table9（p.16），Kodak缩至224×224：JPEG Q75平均9.69 KB，Q95为22.74 KB，WebP Q95为18.98 KB；1600点FP16为25.0 KB，剪一半为12.5 KB，GI编码为11.4 KB。没有匹配质量/下游任务的完整率失真比较，不能凭相对未压缩RGB倍率宣称优于成熟编码器。</p>
+<p><strong>先看结论</strong>：高斯列表比未压缩图片小，并不意味着它比JPEG文件更小。是否对高斯参数进一步编码，会显著改变存储结果。</p>
+<table><thead><tr><th>保存方式</th><th>平均大小 ↓</th><th>说明</th></tr></thead><tbody><tr><td>JPEG，质量设置75</td><td>9.69 KB</td><td>传统图像编码器</td></tr><tr><td>JPEG，质量设置95</td><td>22.74 KB</td><td>与上一行使用不同质量设置</td></tr><tr><td>WebP，质量设置95</td><td>18.98 KB</td><td>另一种图像编码器</td></tr><tr><td>直接保存1600个高斯</td><td>25.0 KB</td><td>每个数值以16位浮点数保存，尚未进一步压缩</td></tr><tr><td>剪掉约一半高斯</td><td>12.5 KB</td><td>减少图元数量后再保存</td></tr><tr><td>使用GaussianImage编码</td><td>11.4 KB</td><td>对高斯参数进一步压缩</td></tr></tbody></table>
+<p>条件：Kodak图片缩小至224×224；正式补充Table9，p.16。<strong>怎么读</strong>：直接保存的高斯列表比表中的JPEG高质量设置还大，剪枝和编码后才明显减小。但各行没有保证相同的重建质量或识别效果，所以这张表只能说明存储大小，不能据此判定哪种方式整体更好。</p>
 <p>离线拟合、RGB教师预训练与蒸馏、重新适配编码器的成本必须计入。正式补充Table3的全数据拟合GPU小时是由批吞吐推算值，不是完整任务计时收据；Table2的Speedup列与批时间比相符，不能直接视为吞吐提速。作者承认从头训练弱、分布偏移敏感。正式主文VQA数字尚待可访问最终全文核读。</p>
 <h2 id="所读版本与核验范围">所读版本与核验范围</h2>
 <p>CVPR2026正式记录已保存，刊页14926–14935。正式主文PDF访问受阻，未重试；完整核读作者arXiv2509.22615v2（2025-12-23）25页和正式CVF补充17页。正式摘要增加六项VQA评测，作者v2没有该部分，本笔记不将旧版CLIP结果冒充最终VQA结果；数值优先引用正式补充。日期仅核实至2026年。 原始PDF、可搜索全文、分析及下载记录保存在同ID原始证据目录。未运行模型或复现论文数字。</p>
@@ -168,7 +170,7 @@
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-10-27&quot;,
-  &quot;updated&quot;: &quot;2026-10-27&quot;,
+  &quot;updated&quot;: &quot;2026-10-28&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;venue&quot;: &quot;CVPR 2026&quot;,
   &quot;authors&quot;: [

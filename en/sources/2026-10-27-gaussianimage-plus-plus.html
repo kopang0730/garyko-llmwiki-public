@@ -122,7 +122,7 @@
       
       <header class="article-header" data-motion="reveal">
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>GaussianImage++：用图元分配、滤波和量化改进图像表示</strong></nav>
-        <p class="eyebrow">Source note · Updated 2026-10-27</p>
+        <p class="eyebrow">Source note · Updated 2026-10-28</p>
         <h1 lang="zh-CN"><span class="title-main">GaussianImage++</span><span class="title-subtitle">用图元分配、滤波和量化改进图像表示</span></h1>
         
         <p class="article-actions"><a class="btn btn-primary" href="https://ojs.aaai.org/index.php/AAAI/article/view/37572" target="_blank" rel="noopener noreferrer">Read the paper<span aria-hidden="true"> ↗</span></a></p>
@@ -138,7 +138,11 @@
 <p>正式p.7（刊页6448）Table1，A30，表示阶段50000步，同最大图元预算；实际剩余点数可能不同：</p>
 <table><thead><tr><th>数据与预算</th><th>方法</th><th>PSNR ↑</th><th>MS-SSIM ↑</th><th>拟合时间 ↓</th><th>渲染速度 ↑</th></tr></thead><tbody><tr><td>Kodak／5000点</td><td>GaussianImage</td><td>29.85 dB</td><td>0.962</td><td>93.49秒</td><td>2305 FPS</td></tr><tr><td>Kodak／5000点</td><td>GaussianImage++</td><td>31.83 dB</td><td>0.960</td><td>116.05秒</td><td>2365 FPS</td></tr><tr><td>DIV2K／50000点</td><td>GaussianImage</td><td>31.45 dB</td><td>0.977</td><td>192.61秒</td><td>662 FPS</td></tr><tr><td>DIV2K／50000点</td><td>GaussianImage++</td><td>33.75 dB</td><td>0.978</td><td>356.71秒</td><td>765 FPS</td></tr></tbody></table>
 <h2 id="压缩效果与反证">压缩效果与反证</h2>
-<p>同页Table2中Kodak低码率同为0.15 bpp，PSNR25.0→25.3 dB，但MS-SSIM0.854→0.834。DIV2K低码率0.28→0.25 bpp，PSNR26.7→27.6 dB，解码857→440 FPS。高低工作点通常不等码率，须用完整RD曲线，不能把单行变化写成等质量压缩倍率。作者承认高码率率失真仍落后强神经编码器。</p>
+<p><strong>先看结论</strong>：GI++能用较少存储改善像素重建质量，但结构相似性和解码速度可能下降。它没有让所有指标同时变好。</p>
+<p>下表箭头均为“GaussianImage → GaussianImage++”。bpp表示每像素占用的比特数，越低越省空间；PSNR反映像素误差，MS-SSIM反映结构相似性，两者都是越高越好。</p>
+<table><thead><tr><th>数据／工作点</th><th>存储 ↓（bpp）</th><th>像素质量 ↑（PSNR）</th><th>结构相似性 ↑（MS-SSIM）</th><th>解码速度 ↑</th></tr></thead><tbody><tr><td>Kodak，低码率</td><td>0.15 → 0.15</td><td>25.0 → 25.3 dB</td><td>0.854 → 0.834</td><td>1827 → 1839张／秒</td></tr><tr><td>DIV2K，低码率</td><td>0.28 → 0.25</td><td>26.7 → 27.6 dB</td><td>0.914 → 0.910</td><td>857 → 440张／秒</td></tr></tbody></table>
+<p><strong>怎么读</strong>：Kodak这一行占用空间相同，像素误差减小了，但结构相似性下降；DIV2K这一行更省空间、像素质量也更高，但解码变慢。</p>
+<p>依据：正式主文p.7，Table2。其他工作点通常不占用相同大小，不能只挑一行就计算“同质量下的压缩倍数”，需要同时查看文件大小与质量的整条变化曲线。作者也承认，高码率下的压缩效果仍落后强神经编码器。</p>
 <h2 id="实现与局限">实现与局限</h2>
 <p>正式Eq.6滤波公式排印与递减文字、当前代码有冲突；初始化对角下界并非半正定的充分条件，作者附录要求检查有效性。学习率文字、JPEG2000高码率表值也存在疑点，未擅自修数。</p>
 <p>当前作者代码的bpp路径按属性位宽与量化器元数据估算，解码测试使用内存字典；本轮未验证独立文件格式、新进程解码或完整IO成本。代码快照未冻结仓库commit，不据当前实现反推论文历史配方。原版GI用下采样DIV2K/V100，本篇用原2K/A30，应采用本篇重跑对照。</p>
@@ -165,7 +169,7 @@
   &quot;status&quot;: &quot;reviewed&quot;,
   &quot;note_status&quot;: &quot;reviewed&quot;,
   &quot;created&quot;: &quot;2026-10-27&quot;,
-  &quot;updated&quot;: &quot;2026-10-27&quot;,
+  &quot;updated&quot;: &quot;2026-10-28&quot;,
   &quot;source_type&quot;: &quot;paper&quot;,
   &quot;venue&quot;: &quot;AAAI 2026&quot;,
   &quot;authors&quot;: [
