@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="RI3D：先修已见区域，再生成未见区域">
+  <link rel="canonical" href="https://wiki.garyko.com/sources/2026-10-29-ri3d">
+  <link rel="alternate" hreflang="zh-CN" href="https://wiki.garyko.com/sources/2026-10-29-ri3d">
+  <link rel="alternate" hreflang="en" href="https://wiki.garyko.com/en/sources/2026-10-29-ri3d">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#f7f4ec" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1b1814" media="(prefers-color-scheme: dark)">
+  <meta property="og:site_name" content="llmwiki">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:title" content="RI3D：先修已见区域，再生成未见区域 · llmwiki">
+  <meta property="og:description" content="RI3D：先修已见区域，再生成未见区域">
+  <meta property="og:url" content="https://wiki.garyko.com/sources/2026-10-29-ri3d">
+  <meta property="og:image" content="https://wiki.garyko.com/assets/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="RI3D：先修已见区域，再生成未见区域 · llmwiki">
+  <meta name="twitter:description" content="RI3D：先修已见区域，再生成未见区域">
+  <meta name="twitter:image" content="https://wiki.garyko.com/assets/og-card.png">
+  <title>RI3D：先修已见区域，再生成未见区域 · llmwiki</title>
+  <script>try{var r=document.documentElement,t=localStorage.getItem('llmwiki.theme');if(t==='light'||t==='dark')r.dataset.theme=t;if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')r.classList.add('sidebar-collapsed')}catch(e){}</script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260927-theme-switch-v17">
+  <script defer src="../assets/wiki.js?v=20260927-theme-switch-v17"></script>
+  <noscript><style>.wiki-sidebar{position:static;transform:none;visibility:visible;width:auto;height:auto}.menu-toggle{display:none}</style></noscript>
+</head>
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-10-29-ri3d&quot;, &quot;title&quot;: &quot;RI3D：先修已见区域，再生成未见区域&quot;, &quot;title_en&quot;: &quot;RI3D: Few-Shot Gaussian Splatting With Repair and Inpainting Diffusion Priors&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;3d-vision&quot;, &quot;gaussian-splatting&quot;, &quot;diffusion&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260927-theme-switch-v17">
+  <a class="skip-link" href="#content">跳到正文</a>
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar" aria-label="菜单" title="菜单" data-menu-label="菜单" data-close-label="关闭菜单"><svg class="ui-icon menu-icon menu-icon--open" data-icon="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="ui-icon menu-icon menu-icon--close" data-icon="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="menu-toggle-label">菜单</span></button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
+    <button class="sidebar-collapse-toggle" type="button" aria-expanded="true" aria-controls="sidebar-panel" aria-label="折叠左侧导航" title="折叠左侧导航" data-collapse-label="折叠左侧导航" data-expand-label="展开左侧导航"><svg class="ui-icon sidebar-icon sidebar-icon--collapse" data-icon="panel-left-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/></svg><svg class="ui-icon sidebar-icon sidebar-icon--expand" data-icon="panel-left-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/></svg></button>
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
+    <div class="sidebar-panel" id="sidebar-panel">
+      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">搜索 llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results" class="search-results"></div><p id="search-status" class="visually-hidden" role="status" aria-live="polite"></p></form>
+      <nav class="sidebar-nav">
+<h2>入口</h2><ul>
+<li><a href="../catalog.html">完整论文目录</a></li>
+<li><a href="../index.html">研究地图</a></li>
+<li><a href="../llm-wiki.html">LLM Wiki</a></li>
+<li><a href="../main.html">阅读入口</a></li>
+<li><a href="../tags.html">标签</a></li>
+</ul>
+<h2>基础概念</h2><ul>
+<li><a href="../topics/computer-vision-overview.html"><span class="nav-title-primary">计算机视觉概览</span><span class="nav-title-translation" lang="en">（Computer Vision Overview）</span></a></li>
+<li><a href="../topics/datasets-metrics-and-benchmark-reliability.html"><span class="nav-title-primary">数据与评测基础</span><span class="nav-title-translation" lang="en">（Datasets &amp; Evaluation）</span></a></li>
+<li><a href="../topics/diffusion-models.html"><span class="nav-title-primary">扩散模型</span><span class="nav-title-translation" lang="en">（Diffusion Models）</span></a></li>
+<li><a href="../topics/video-representation-and-temporal-modeling.html"><span class="nav-title-primary">视频表示基础</span><span class="nav-title-translation" lang="en">（Video Representation）</span></a></li>
+<li><a href="../topics/vision-backbones.html"><span class="nav-title-primary">视觉主干</span><span class="nav-title-translation" lang="en">（Vision Backbones）</span></a></li>
+<li><a href="../topics/vision-language-foundations.html"><span class="nav-title-primary">视觉语言基础</span><span class="nav-title-translation" lang="en">（Vision-Language Foundations）</span></a></li>
+<li><a href="../topics/vision-task-foundations.html"><span class="nav-title-primary">核心视觉任务</span><span class="nav-title-translation" lang="en">（Core Vision Tasks）</span></a></li>
+<li><a href="../topics/visual-generation-foundations.html"><span class="nav-title-primary">视觉生成基础</span><span class="nav-title-translation" lang="en">（Visual Generation Foundations）</span></a></li>
+</ul>
+<h2>研究专题</h2><ul>
+<li><a href="../topics/3d-gaussian-splatting.html"><span class="nav-title-primary">三维高斯泼溅</span><span class="nav-title-translation" lang="en">（3D Gaussian Splatting）</span></a></li>
+<li><a href="../topics/diffusion-efficiency-engineering.html"><span class="nav-title-primary">扩散效率工程</span><span class="nav-title-translation" lang="en">（Diffusion Efficiency）</span></a></li>
+<li><a href="../topics/gaussian-image-representation.html"><span class="nav-title-primary">二维图像高斯表征</span><span class="nav-title-translation" lang="en">（Gaussian Image Representations）</span></a></li>
+<li><a href="../topics/generative-model-evaluation.html"><span class="nav-title-primary">生成模型评测</span><span class="nav-title-translation" lang="en">（Generative Model Evaluation）</span></a></li>
+<li><a href="../topics/image-editing.html"><span class="nav-title-primary">图像编辑</span><span class="nav-title-translation" lang="en">（Image Editing）</span></a></li>
+<li><a href="../topics/image-generation.html"><span class="nav-title-primary">图像生成</span><span class="nav-title-translation" lang="en">（Image Generation）</span></a></li>
+<li><a href="../topics/image-text-retrieval.html"><span class="nav-title-primary">图文检索</span><span class="nav-title-translation" lang="en">（Image-Text Retrieval）</span></a></li>
+<li><a href="../topics/sports-ai-video-understanding.html"><span class="nav-title-primary">体育视频理解</span><span class="nav-title-translation" lang="en">（Sports Video Understanding）</span></a></li>
+<li><a href="../topics/video-editing.html"><span class="nav-title-primary">视频编辑</span><span class="nav-title-translation" lang="en">（Video Editing）</span></a></li>
+<li><a href="../topics/video-generation.html"><span class="nav-title-primary">视频生成</span><span class="nav-title-translation" lang="en">（Video Generation）</span></a></li>
+<li><a href="../topics/video-understanding.html"><span class="nav-title-primary">视频理解</span><span class="nav-title-translation" lang="en">（Video Understanding）</span></a></li>
+<li><a href="../topics/vision-language.html"><span class="nav-title-primary">视觉语言</span><span class="nav-title-translation" lang="en">（Vision-Language）</span></a></li>
+</ul>
+<h2>应用路线</h2><ul>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI</a></li>
+</ul>
+<h2>实体</h2><ul>
+<li><a href="../entities/clip.html">CLIP 系列模型（CLIP Family）</a></li>
+<li><a href="../entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a></li>
+<li><a href="../entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a></li>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/dino-family.html">DINO 家族：自监督视觉表示与预训练骨干</a></li>
+<li><a href="../entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>判断</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-image-text-retrieval-baseline-and-specialization.html">双塔负责可扩展召回，细粒度模块负责精排与关系匹配</a></li>
+<li><a href="../claims/claim-image-text-retrieval-composed-query.html">组合式查询是图文检索中可落地且仍有缺口的研究切口</a></li>
+<li><a href="../claims/claim-image-text-retrieval-compositionality.html">标准图文检索分数不足以证明组合性理解</a></li>
+<li><a href="../claims/claim-image-text-retrieval-data-quality.html">图文检索的主要瓶颈仍包括数据质量、分布与概念覆盖</a></li>
+<li><a href="../claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
+</ul>
+<h2>问题</h2><ul>
+<li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-dino-features-for-3dgs-semantics.html">DINO 密集特征如何迁移到三维高斯语义分割？</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-gaussian-image-representation-research-cut.html">二维图像高斯表征应优先解决哪种信息与成本瓶颈？</a></li>
+<li><a href="../questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a></li>
+<li><a href="../questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a></li>
+<li><a href="../questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a></li>
+<li><a href="../questions/question-image-text-retrieval-research-cut.html">图文检索哪个子方向最适合中等算力的研究生项目？</a></li>
+<li><a href="../questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a></li>
+<li><a href="../questions/question-motion-defined-text-human-machine-gap.html">运动定义文字的人机差距</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
+</ul>
+</nav>
+    </div>
+  </aside>
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+  <main class="wiki-page" id="content" tabindex="-1">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="selected-lang" href="../sources/2026-10-29-ri3d.html">中文</a><a class="" href="../en/sources/2026-10-29-ri3d.html">English</a></nav><div class="theme-switch" role="group" aria-label="外观" hidden><button type="button" data-theme-choice="system" aria-pressed="false" aria-label="跟随系统" title="跟随系统"><svg class="ui-icon" data-icon="monitor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg></button><button type="button" data-theme-choice="light" aria-pressed="false" aria-label="浅色" title="浅色"><svg class="ui-icon" data-icon="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></button><button type="button" data-theme-choice="dark" aria-pressed="false" aria-label="深色" title="深色"><svg class="ui-icon" data-icon="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button></div><span class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>正文</span></span><a href="../index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>研究地图</span></a><a href="../main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>阅读入口</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></a></header>
+    <article class="article-shell">
+      
+      <header class="article-header" data-motion="reveal">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>RI3D：先修已见区域，再生成未见区域</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-10-29</p>
+        <h1><span class="title-main">RI3D</span><span class="title-subtitle">先修已见区域，再生成未见区域</span></h1>
+        
+        <p class="article-actions"><a class="btn btn-primary" href="https://openaccess.thecvf.com/content/ICCV2025/html/Paliwal_RI3D_Few-Shot_Gaussian_Splatting_With_Repair_and_Inpainting_Diffusion_Priors_ICCV_2025_paper.html" target="_blank" rel="noopener noreferrer">阅读原论文<span aria-hidden="true"> ↗</span></a></p>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#3d-vision">#3d-vision</a><a class="tag" href="../tags.html#gaussian-splatting">#gaussian-splatting</a><a class="tag" href="../tags.html#diffusion">#diffusion</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ICCV 2025</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2025-10-19</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-10-29</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/ICCV2025/html/Paliwal_RI3D_Few-Shot_Gaussian_Splatting_With_Repair_and_Inpainting_Diffusion_Priors_ICCV_2025_paper.html" title="https://openaccess.thecvf.com/content/ICCV2025/html/Paliwal_RI3D_Few-Shot_Gaussian_Splatting_With_Repair_and_Inpainting_Diffusion_Priors_ICCV_2025_paper.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>openaccess.thecvf.com · Paliwal_RI3D_Few-Shot_Gaussian_…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/ICCV2025/papers/Paliwal_RI3D_Few-Shot_Gaussian_Splatting_With_Repair_and_Inpainting_Diffusion_Priors_ICCV_2025_paper.pdf" title="https://openaccess.thecvf.com/content/ICCV2025/papers/Paliwal_RI3D_Few-Shot_Gaussian_Splatting_With_Repair_and_Inpainting_Diffusion_Priors_ICCV_2025_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Paliwal_RI3D_Few-Shot_Gaussian_…</strong></a><a class="source-link source-link-code" href="https://github.com/avinashpaliwal/ri3d" title="https://github.com/avinashpaliwal/ri3d" target="_blank" rel="noopener noreferrer"><span>代码仓库</span><strong>github.com · ri3d</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>目录</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义-少拍几张-哪些内容还能相信">问题定义：少拍几张，哪些内容还能相信</a><ol><li class="toc-sub"><a href="#先解释指标">先解释指标</a></li></ol></li><li><a href="#方法概述">方法概述</a><ol><li class="toc-sub"><a href="#先用两类深度初始化">先用两类深度初始化</a></li><li class="toc-sub"><a href="#两个扩散模型逐场景适配">两个扩散模型逐场景适配</a></li><li class="toc-sub"><a href="#两阶段高斯优化">两阶段高斯优化</a></li></ol></li><li><a href="#关键发现-细节改善伴随指标取舍">关键发现：细节改善伴随指标取舍</a><ol><li class="toc-sub"><a href="#mip-nerf-360少视图">Mip-NeRF 360少视图</a></li><li class="toc-sub"><a href="#co3d上的反证">CO3D上的反证</a></li><li class="toc-sub"><a href="#消融更支持分工-而非保证补全真实">消融更支持分工，而非保证补全真实</a></li></ol></li><li><a href="#资源与完整成本">资源与完整成本</a></li><li><a href="#失败模式与尚未闭合的细节">失败模式与尚未闭合的细节</a></li><li><a href="#正式来源与原始链接">正式来源与原始链接</a></li><li><a href="#相关页面">相关页面</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="一句话结论">一句话结论</h2>
+<p>RI3D把少照片重建中的“修复”和“补全”分开，能减少部分新视角的模糊与空洞，但生成的细节不等于真实场景；它需要已知相机、逐场景扩散微调，画质与成本都有边界。</p>
+<h2 id="问题定义-少拍几张-哪些内容还能相信">问题定义：少拍几张，哪些内容还能相信</h2>
+<p>三维高斯泼溅（3D Gaussian Splatting，3DGS）通常需要较密的照片。照片很少时，一类区域虽被拍到，却会因重建不稳而重影；另一类区域根本没被拍到，缺少直接证据。</p>
+<p>RI3D分别训练两个扩散模型：修复模型把有瑕疵的渲染图变清楚；补全模型为未观察区域生成内容。前者也可能改变细节，后者更不能被当作实测真值。两类结果都要通过后续多视优化接入场景。</p>
+<h3 id="先解释指标">先解释指标</h3>
+<table><thead><tr><th>指标或术语</th><th>用途</th><th>怎么读</th></tr></thead><tbody><tr><td>PSNR ↑</td><td>与留出照片比较像素误差</td><td>越高越好，不验证真实几何</td></tr><tr><td>SSIM ↑</td><td>比较图像结构相似度</td><td>越高越好；平滑图有时也能得高分</td></tr><tr><td>LPIPS ↓</td><td>比较学习特征中的感知差异</td><td>越低越好，不等于实物尺寸或生成内容真实</td></tr><tr><td>伪真值</td><td>用模型输出代替训练目标</td><td>提供额外约束，也会带入教师错误</td></tr><tr><td>留一法</td><td>暂时拿走一张输入，制造修复训练对</td><td>仍只使用本场景输入，但需额外优化多组高斯</td></tr></tbody></table>
+<h2 id="方法概述">方法概述</h2>
+<h3 id="先用两类深度初始化">先用两类深度初始化</h3>
+<p>多视几何模型DUSt3R在重叠可靠区域提供较一致的深度；单目模型Depth Anything V2提供更细的边缘，却只有相对尺度。RI3D先在高置信区域对齐单目深度，再用类似泊松融合的目标结合两者，最后双边滤波并把每个像素反投影成高斯。</p>
+<p>这个过程改善的是初始化，不能保证未观察区域的形状正确。论文明确输入带相机位姿，不能把使用DUSt3R解释成无标定重建。</p>
+<h3 id="两个扩散模型逐场景适配">两个扩散模型逐场景适配</h3>
+<p>修复模型以ControlNet为底座。作者对每个留一子集先优化高斯，再加入被排除的照片继续优化，收集不同劣化程度的渲染图与真实输入配对，训练修复器。</p>
+<p>补全模型以Stable Diffusion inpainting为底座，按RealFill思路用本场景输入和随机遮罩微调。补充说明使用了第三方RealFill实现。预训练模型带来的先验和逐场景适配都属于成本，不能写成只拟合一次高斯。</p>
+<h3 id="两阶段高斯优化">两阶段高斯优化</h3>
+<table><thead><tr><th>阶段</th><th>做什么</th><th>保留的限制</th></tr></thead><tbody><tr><td>修复已见区域</td><td>沿椭圆路径取新相机，用修复图作伪真值；压低缺失背景的透明度</td><td>可见性由渲染透明度阈值近似，背景由深度聚类估计，不是真实标注</td></tr><tr><td>补全未见区域</td><td>选部分新视图补全，用估计深度回投，再修复并继续优化</td><td>减少重叠视图独立补全的冲突，但没有证明所有视角严格一致</td></tr></tbody></table>
+<p>主文PDF4–6页，Figures2–5、Eqs2–4。第一阶段重建损失含原输入、修复图、感知距离与深度相关约束；第二阶段取消部分可见性限制，并保留补全区域的感知约束。深度仍来自估计，不能替代几何真值。</p>
+<h2 id="关键发现-细节改善伴随指标取舍">关键发现：细节改善伴随指标取舍</h2>
+<h3 id="mip-nerf-360少视图">Mip-NeRF 360少视图</h3>
+<p>主文PDF8页Table1。各行对应同篇列出的同一输入数量；CAT3D和ReconFusion数字转引文献，带†的三种高斯基线另用DUSt3R初始化，并非统一软件重跑全部方法。</p>
+<table><thead><tr><th>输入数量</th><th>方法</th><th>PSNR ↑</th><th>SSIM ↑</th><th>LPIPS ↓</th></tr></thead><tbody><tr><td>三视</td><td>FSGS†</td><td>13.14</td><td>0.288</td><td>0.578</td></tr><tr><td>三视</td><td>ReconFusion</td><td>15.50</td><td>0.358</td><td>0.585</td></tr><tr><td>三视</td><td>CAT3D</td><td>16.62</td><td>0.377</td><td>0.515</td></tr><tr><td>三视</td><td>RI3D</td><td>15.74</td><td>0.342</td><td>0.505</td></tr><tr><td>六视</td><td>FSGS†</td><td>14.64</td><td>0.348</td><td>0.515</td></tr><tr><td>六视</td><td>ReconFusion</td><td>16.93</td><td>0.401</td><td>0.544</td></tr><tr><td>六视</td><td>CAT3D</td><td>17.72</td><td>0.425</td><td>0.482</td></tr><tr><td>六视</td><td>RI3D</td><td>16.51</td><td>0.392</td><td>0.462</td></tr><tr><td>九视</td><td>FSGS†</td><td>16.00</td><td>0.397</td><td>0.470</td></tr><tr><td>九视</td><td>ReconFusion</td><td>18.19</td><td>0.432</td><td>0.511</td></tr><tr><td>九视</td><td>CAT3D</td><td>18.67</td><td>0.460</td><td>0.460</td></tr><tr><td>九视</td><td>RI3D</td><td>17.48</td><td>0.439</td><td>0.415</td></tr></tbody></table>
+<p><strong>怎么读</strong>：RI3D的LPIPS在这张主表中最低，PSNR和SSIM却仍低于CAT3D。作者将部分差异归因于对照更模糊；这是解释，并不是已隔离验证的唯一原因。不能把感知指标改善改写成全面胜出。</p>
+<h3 id="co3d上的反证">CO3D上的反证</h3>
+<p>补充PDF2页Table1；沿用ReconFusion提供的训练相机。物体近景、背景较简单时，补全的收益与长距离场景不同。</p>
+<table><thead><tr><th>输入数量</th><th>方法</th><th>PSNR ↑</th><th>SSIM ↑</th><th>LPIPS ↓</th></tr></thead><tbody><tr><td>三视</td><td>ReconFusion</td><td>19.59</td><td>0.662</td><td>0.398</td></tr><tr><td>三视</td><td>CAT3D</td><td>20.57</td><td>0.666</td><td>0.351</td></tr><tr><td>三视</td><td>RI3D</td><td>18.72</td><td>0.628</td><td>0.385</td></tr><tr><td>六视</td><td>ReconFusion</td><td>21.84</td><td>0.714</td><td>0.342</td></tr><tr><td>六视</td><td>CAT3D</td><td>22.79</td><td>0.726</td><td>0.292</td></tr><tr><td>六视</td><td>RI3D</td><td>20.53</td><td>0.673</td><td>0.311</td></tr><tr><td>九视</td><td>ReconFusion</td><td>22.95</td><td>0.736</td><td>0.318</td></tr><tr><td>九视</td><td>CAT3D</td><td>23.58</td><td>0.752</td><td>0.273</td></tr><tr><td>九视</td><td>RI3D</td><td>21.32</td><td>0.704</td><td>0.277</td></tr></tbody></table>
+<p><strong>怎么读</strong>：RI3D感知距离优于ReconFusion，但三种输入数量都没有超过CAT3D；不能把Mip-NeRF 360的LPIPS结论推广到所有数据域。原文没有给本轮独立复现或置信区间。</p>
+<h3 id="消融更支持分工-而非保证补全真实">消融更支持分工，而非保证补全真实</h3>
+<p>主文PDF8页Table2，三视Mip-NeRF 360。</p>
+<table><thead><tr><th>配置</th><th>PSNR ↑</th><th>SSIM ↑</th><th>LPIPS ↓</th></tr></thead><tbody><tr><td>无深度增强</td><td>15.61</td><td>0.336</td><td>0.513</td></tr><tr><td>单阶段，仅修复模型</td><td>14.92</td><td>0.309</td><td>0.527</td></tr><tr><td>不微调补全模型</td><td>15.64</td><td>0.341</td><td>0.508</td></tr><tr><td>完整RI3D</td><td>15.74</td><td>0.342</td><td>0.505</td></tr></tbody></table>
+<p><strong>怎么读</strong>：完整设置优于这几种删减方案，单阶段退化较明显。但单阶段同时改变模型分工与优化流程，不能单独证明某一种机制的因果贡献；补全微调的平均增益较小，也没有多次随机实验误差条。</p>
+<h2 id="资源与完整成本">资源与完整成本</h2>
+<p>补充PDF1页，所有步骤属于每个场景的处理，不是一次离线预训练后零成本使用。</p>
+<table><thead><tr><th>环节</th><th>原文给出的预算</th><th>解释边界</th></tr></thead><tbody><tr><td>留一训练对</td><td>每个子集先6000次，再加回图像到10000次</td><td>需多组高斯优化，不能从总账中删除</td></tr><tr><td>修复模型适配</td><td>1800次</td><td>还需预训练ControlNet</td></tr><tr><td>补全模型适配</td><td>2000次</td><td>还需预训练扩散模型和第三方实现</td></tr><tr><td>第一阶段</td><td>4000次；8个修复视图，每400次刷新</td><td>不包括前述适配与深度初始化</td></tr><tr><td>第二阶段</td><td>4000次；每200次采10视图，其中5视图依次补全；补全截至2800次</td><td>之后仅修复，不能把迭代数当固定图像生成次数或耗时</td></tr><tr><td>硬件</td><td>一般步骤单RTX A5000；第二阶段两张A5000</td><td>论文未给完整总耗时、峰值显存、模型存储或实测渲染FPS</td></tr></tbody></table>
+<p><strong>怎么读</strong>：已知训练卡数和迭代数，不足以承诺低显存单卡复现或实时建场。当前官方仓库入口存在，但本轮没有审计实现/许可、下载模型与数据，或运行任何GPU实验。</p>
+<h2 id="失败模式与尚未闭合的细节">失败模式与尚未闭合的细节</h2>
+<ul>
+<li><strong>深度错误会保留下来</strong>：主文PDF8页§6、补充PDF1–2页Figure3说明，DUSt3R在歧义场景失败时，后续优化不能完全消除错位和重影。</li>
+<li><strong>不能处理单图</strong>：主文明确留一训练策略限制单图输入；“少视图”不能扩大成任意单图生成。</li>
+<li><strong>生成正确性另验</strong>：没有真实网格、距离或遮挡区域事实核对。LPIPS较低、渲染完整，仍不证明补出的物体、背景或尺寸真实。</li>
+<li><strong>比较并非全部独立复现</strong>：部分基线取自先前论文，原文没有统一教师、数据预训练与完整计算预算；未报告逐场方差，不能做跨论文总榜。</li>
+<li><strong>公式排印疑点</strong>：主文PDF4页Eq2的原图写二范数但没有平方，PDF5页又称目标为二次式、可解线性系统。本笔记保留文字与公式差异，未审计代码前不自行修正或给出严格推导。</li>
+<li><strong>视频范围</strong>：官方ZIP内同时有补充PDF和视频；原ZIP完整保存。本轮完整阅读PDF和图注，核对关键原表/公式页，没有观看视频或逐像素验全部定性拼图。</li>
+</ul>
+<h2 id="正式来源与原始链接">正式来源与原始链接</h2>
+<table><thead><tr><th>项目</th><th>记录</th></tr></thead><tbody><tr><td>正式出版</td><td>2025 IEEE/CVF International Conference on Computer Vision（ICCV 2025）主会</td></tr><tr><td>页码</td><td>25094–25103</td></tr><tr><td>DOI</td><td><code>10.1109/ICCV51701.2025.02327</code></td></tr><tr><td>日期</td><td>Crossref出版日期2025-10-19</td></tr><tr><td>作者</td><td>Avinash Paliwal、Xilong Zhou、Wei Ye、Jinhui Xiong、Rakesh Ranjan、Nima Khademi Kalantari</td></tr><tr><td>核读版本</td><td>CVF接受稿主文10页＋官方ZIP内补充5页；未与IEEE最终字节比较</td></tr></tbody></table>
+<ul>
+<li><a href="https://openaccess.thecvf.com/content/ICCV2025/html/Paliwal_RI3D_Few-Shot_Gaussian_Splatting_With_Repair_and_Inpainting_Diffusion_Priors_ICCV_2025_paper.html">CVF正式记录</a></li>
+<li><a href="https://openaccess.thecvf.com/content/ICCV2025/papers/Paliwal_RI3D_Few-Shot_Gaussian_Splatting_With_Repair_and_Inpainting_Diffusion_Priors_ICCV_2025_paper.pdf">正式主文PDF</a></li>
+<li><a href="https://openaccess.thecvf.com/content/ICCV2025/supplemental/Paliwal_RI3D_Few-Shot_Gaussian_ICCV_2025_supplemental.zip">官方补充ZIP</a></li>
+<li><a href="https://people.engr.tamu.edu/nimak/Papers/RI3D/index.html">作者项目页</a>与<a href="https://github.com/avinashpaliwal/ri3d">实现入口</a>，作为实现线索，未审计或运行。</li>
+</ul>
+<h2 id="相关页面">相关页面</h2>
+<p><a class="wikilink" href="../topics/3d-gaussian-splatting.html">高斯科研地图：表征、语义、建图与二维图像</a>的生成分支应把已见区域修复和未见区域补全分开；<a class="wikilink" href="../sources/2026-10-08-generative-sparse-view-gaussian-splatting.html">GS-GS</a>同样依赖生成先验，但数据和设置不同，不直接比较分差。<a class="wikilink" href="../sources/2026-10-02-generative-gaussian-splatting.html">GGS</a>补充一致性与图像质量的另一种取舍。本次只增量扩充证据地图，没有新增已验证能力Claim或启动研究实验。</p></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../topics/3d-gaussian-splatting.html">高斯科研地图：表征、语义、建图与二维图像</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">3</span></h2><ul><li><a href="../docs/research-protocols/3d-gaussian-splatting.html">三维高斯泼溅：用户百篇定向证据协议</a><span>检索协议</span></li><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../topics/3d-gaussian-splatting.html">高斯科研地图：表征、语义、建图与二维图像</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary><span class="summary-label"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><pre>{
+  &quot;id&quot;: &quot;2026-10-29-ri3d&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;RI3D：先修已见区域，再生成未见区域&quot;,
+  &quot;title_en&quot;: &quot;RI3D: Few-Shot Gaussian Splatting With Repair and Inpainting Diffusion Priors&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-10-29&quot;,
+  &quot;updated&quot;: &quot;2026-10-29&quot;,
+  &quot;venue&quot;: &quot;ICCV 2025&quot;,
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Avinash Paliwal&quot;,
+    &quot;Xilong Zhou&quot;,
+    &quot;Wei Ye&quot;,
+    &quot;Jinhui Xiong&quot;,
+    &quot;Rakesh Ranjan&quot;,
+    &quot;Nima Khademi Kalantari&quot;
+  ],
+  &quot;published_at&quot;: &quot;2025-10-19&quot;,
+  &quot;ingested_at&quot;: &quot;2026-10-29&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/ICCV2025/html/Paliwal_RI3D_Few-Shot_Gaussian_Splatting_With_Repair_and_Inpainting_Diffusion_Priors_ICCV_2025_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/ICCV2025/papers/Paliwal_RI3D_Few-Shot_Gaussian_Splatting_With_Repair_and_Inpainting_Diffusion_Priors_ICCV_2025_paper.pdf&quot;,
+    &quot;https://openaccess.thecvf.com/content/ICCV2025/supplemental/Paliwal_RI3D_Few-Shot_Gaussian_ICCV_2025_supplemental.zip&quot;,
+    &quot;https://doi.org/10.1109/iccv51701.2025.02327&quot;,
+    &quot;https://people.engr.tamu.edu/nimak/Papers/RI3D/index.html&quot;,
+    &quot;https://github.com/avinashpaliwal/ri3d&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-10-29-ri3d/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/3d-gaussian-splatting&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: [],
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;3d-vision&quot;,
+    &quot;gaussian-splatting&quot;,
+    &quot;diffusion&quot;,
+    &quot;primary-source&quot;
+  ]
+}</pre></details>
+    </article>
+  </main>
+</body>
+</html>
