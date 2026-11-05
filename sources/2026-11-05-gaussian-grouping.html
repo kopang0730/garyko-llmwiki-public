@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Gaussian Grouping：先把高斯分成物体，再做局部编辑">
+  <link rel="canonical" href="https://wiki.garyko.com/sources/2026-11-05-gaussian-grouping">
+  <link rel="alternate" hreflang="zh-CN" href="https://wiki.garyko.com/sources/2026-11-05-gaussian-grouping">
+  <link rel="alternate" hreflang="en" href="https://wiki.garyko.com/en/sources/2026-11-05-gaussian-grouping">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#f7f4ec" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1b1814" media="(prefers-color-scheme: dark)">
+  <meta property="og:site_name" content="llmwiki">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:title" content="Gaussian Grouping：先把高斯分成物体，再做局部编辑 · llmwiki">
+  <meta property="og:description" content="Gaussian Grouping：先把高斯分成物体，再做局部编辑">
+  <meta property="og:url" content="https://wiki.garyko.com/sources/2026-11-05-gaussian-grouping">
+  <meta property="og:image" content="https://wiki.garyko.com/assets/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Gaussian Grouping：先把高斯分成物体，再做局部编辑 · llmwiki">
+  <meta name="twitter:description" content="Gaussian Grouping：先把高斯分成物体，再做局部编辑">
+  <meta name="twitter:image" content="https://wiki.garyko.com/assets/og-card.png">
+  <title>Gaussian Grouping：先把高斯分成物体，再做局部编辑 · llmwiki</title>
+  <script>try{var r=document.documentElement,t=localStorage.getItem('llmwiki.theme');if(t==='light'||t==='dark')r.dataset.theme=t;if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')r.classList.add('sidebar-collapsed')}catch(e){}</script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260927-theme-switch-v17">
+  <script defer src="../assets/wiki.js?v=20260927-theme-switch-v17"></script>
+  <noscript><style>.wiki-sidebar{position:static;transform:none;visibility:visible;width:auto;height:auto}.menu-toggle{display:none}</style></noscript>
+</head>
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-11-05-gaussian-grouping&quot;, &quot;title&quot;: &quot;Gaussian Grouping：先把高斯分成物体，再做局部编辑&quot;, &quot;title_en&quot;: &quot;Gaussian Grouping: Segment and Edit Anything in 3D Scenes&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;3d-vision&quot;, &quot;gaussian-splatting&quot;, &quot;evaluation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260927-theme-switch-v17">
+  <a class="skip-link" href="#content">跳到正文</a>
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar" aria-label="菜单" title="菜单" data-menu-label="菜单" data-close-label="关闭菜单"><svg class="ui-icon menu-icon menu-icon--open" data-icon="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="ui-icon menu-icon menu-icon--close" data-icon="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="menu-toggle-label">菜单</span></button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
+    <button class="sidebar-collapse-toggle" type="button" aria-expanded="true" aria-controls="sidebar-panel" aria-label="折叠左侧导航" title="折叠左侧导航" data-collapse-label="折叠左侧导航" data-expand-label="展开左侧导航"><svg class="ui-icon sidebar-icon sidebar-icon--collapse" data-icon="panel-left-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/></svg><svg class="ui-icon sidebar-icon sidebar-icon--expand" data-icon="panel-left-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/></svg></button>
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
+    <div class="sidebar-panel" id="sidebar-panel">
+      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">搜索 llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results" class="search-results"></div><p id="search-status" class="visually-hidden" role="status" aria-live="polite"></p></form>
+      <nav class="sidebar-nav">
+<h2>入口</h2><ul>
+<li><a href="../catalog.html">完整论文目录</a></li>
+<li><a href="../index.html">研究地图</a></li>
+<li><a href="../llm-wiki.html">LLM Wiki</a></li>
+<li><a href="../main.html">阅读入口</a></li>
+<li><a href="../tags.html">标签</a></li>
+</ul>
+<h2>基础概念</h2><ul>
+<li><a href="../topics/computer-vision-overview.html"><span class="nav-title-primary">计算机视觉概览</span><span class="nav-title-translation" lang="en">（Computer Vision Overview）</span></a></li>
+<li><a href="../topics/datasets-metrics-and-benchmark-reliability.html"><span class="nav-title-primary">数据与评测基础</span><span class="nav-title-translation" lang="en">（Datasets &amp; Evaluation）</span></a></li>
+<li><a href="../topics/diffusion-models.html"><span class="nav-title-primary">扩散模型</span><span class="nav-title-translation" lang="en">（Diffusion Models）</span></a></li>
+<li><a href="../topics/video-representation-and-temporal-modeling.html"><span class="nav-title-primary">视频表示基础</span><span class="nav-title-translation" lang="en">（Video Representation）</span></a></li>
+<li><a href="../topics/vision-backbones.html"><span class="nav-title-primary">视觉主干</span><span class="nav-title-translation" lang="en">（Vision Backbones）</span></a></li>
+<li><a href="../topics/vision-language-foundations.html"><span class="nav-title-primary">视觉语言基础</span><span class="nav-title-translation" lang="en">（Vision-Language Foundations）</span></a></li>
+<li><a href="../topics/vision-task-foundations.html"><span class="nav-title-primary">核心视觉任务</span><span class="nav-title-translation" lang="en">（Core Vision Tasks）</span></a></li>
+<li><a href="../topics/visual-generation-foundations.html"><span class="nav-title-primary">视觉生成基础</span><span class="nav-title-translation" lang="en">（Visual Generation Foundations）</span></a></li>
+</ul>
+<h2>研究专题</h2><ul>
+<li><a href="../topics/3d-gaussian-splatting.html"><span class="nav-title-primary">三维高斯泼溅</span><span class="nav-title-translation" lang="en">（3D Gaussian Splatting）</span></a></li>
+<li><a href="../topics/diffusion-efficiency-engineering.html"><span class="nav-title-primary">扩散效率工程</span><span class="nav-title-translation" lang="en">（Diffusion Efficiency）</span></a></li>
+<li><a href="../topics/gaussian-image-representation.html"><span class="nav-title-primary">二维图像高斯表征</span><span class="nav-title-translation" lang="en">（Gaussian Image Representations）</span></a></li>
+<li><a href="../topics/generative-model-evaluation.html"><span class="nav-title-primary">生成模型评测</span><span class="nav-title-translation" lang="en">（Generative Model Evaluation）</span></a></li>
+<li><a href="../topics/image-editing.html"><span class="nav-title-primary">图像编辑</span><span class="nav-title-translation" lang="en">（Image Editing）</span></a></li>
+<li><a href="../topics/image-generation.html"><span class="nav-title-primary">图像生成</span><span class="nav-title-translation" lang="en">（Image Generation）</span></a></li>
+<li><a href="../topics/image-text-retrieval.html"><span class="nav-title-primary">图文检索</span><span class="nav-title-translation" lang="en">（Image-Text Retrieval）</span></a></li>
+<li><a href="../topics/sports-ai-video-understanding.html"><span class="nav-title-primary">体育视频理解</span><span class="nav-title-translation" lang="en">（Sports Video Understanding）</span></a></li>
+<li><a href="../topics/video-editing.html"><span class="nav-title-primary">视频编辑</span><span class="nav-title-translation" lang="en">（Video Editing）</span></a></li>
+<li><a href="../topics/video-generation.html"><span class="nav-title-primary">视频生成</span><span class="nav-title-translation" lang="en">（Video Generation）</span></a></li>
+<li><a href="../topics/video-understanding.html"><span class="nav-title-primary">视频理解</span><span class="nav-title-translation" lang="en">（Video Understanding）</span></a></li>
+<li><a href="../topics/vision-language.html"><span class="nav-title-primary">视觉语言</span><span class="nav-title-translation" lang="en">（Vision-Language）</span></a></li>
+</ul>
+<h2>应用路线</h2><ul>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI</a></li>
+</ul>
+<h2>实体</h2><ul>
+<li><a href="../entities/clip.html">CLIP 系列模型（CLIP Family）</a></li>
+<li><a href="../entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a></li>
+<li><a href="../entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a></li>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/dino-family.html">DINO 家族：自监督视觉表示与预训练骨干</a></li>
+<li><a href="../entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>判断</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-image-text-retrieval-baseline-and-specialization.html">双塔负责可扩展召回，细粒度模块负责精排与关系匹配</a></li>
+<li><a href="../claims/claim-image-text-retrieval-composed-query.html">组合式查询是图文检索中可落地且仍有缺口的研究切口</a></li>
+<li><a href="../claims/claim-image-text-retrieval-compositionality.html">标准图文检索分数不足以证明组合性理解</a></li>
+<li><a href="../claims/claim-image-text-retrieval-data-quality.html">图文检索的主要瓶颈仍包括数据质量、分布与概念覆盖</a></li>
+<li><a href="../claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
+</ul>
+<h2>问题</h2><ul>
+<li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-dino-features-for-3dgs-semantics.html">DINO 密集特征如何迁移到三维高斯语义分割？</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-gaussian-image-representation-research-cut.html">二维图像高斯表征应优先解决哪种信息与成本瓶颈？</a></li>
+<li><a href="../questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a></li>
+<li><a href="../questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a></li>
+<li><a href="../questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a></li>
+<li><a href="../questions/question-image-text-retrieval-research-cut.html">图文检索哪个子方向最适合中等算力的研究生项目？</a></li>
+<li><a href="../questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a></li>
+<li><a href="../questions/question-motion-defined-text-human-machine-gap.html">运动定义文字的人机差距</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
+</ul>
+</nav>
+    </div>
+  </aside>
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+  <main class="wiki-page" id="content" tabindex="-1">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="selected-lang" href="../sources/2026-11-05-gaussian-grouping.html">中文</a><a class="" href="../en/sources/2026-11-05-gaussian-grouping.html">English</a></nav><div class="theme-switch" role="group" aria-label="外观" hidden><button type="button" data-theme-choice="system" aria-pressed="false" aria-label="跟随系统" title="跟随系统"><svg class="ui-icon" data-icon="monitor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg></button><button type="button" data-theme-choice="light" aria-pressed="false" aria-label="浅色" title="浅色"><svg class="ui-icon" data-icon="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></button><button type="button" data-theme-choice="dark" aria-pressed="false" aria-label="深色" title="深色"><svg class="ui-icon" data-icon="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button></div><span class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>正文</span></span><a href="../index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>研究地图</span></a><a href="../main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>阅读入口</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></a></header>
+    <article class="article-shell">
+      
+      <header class="article-header" data-motion="reveal">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>Gaussian Grouping：先把高斯分成物体，再做局部编辑</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-11-05</p>
+        <h1><span class="title-main">Gaussian Grouping</span><span class="title-subtitle">先把高斯分成物体，再做局部编辑</span></h1>
+        
+        <p class="article-actions"><a class="btn btn-primary" href="https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/4195_ECCV_2024_paper.php" target="_blank" rel="noopener noreferrer">阅读原论文<span aria-hidden="true"> ↗</span></a></p>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#3d-vision">#3d-vision</a><a class="tag" href="../tags.html#gaussian-splatting">#gaussian-splatting</a><a class="tag" href="../tags.html#evaluation">#evaluation</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>ECCV 2024</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2024-11-03</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-11-05</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/4195_ECCV_2024_paper.php" title="https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/4195_ECCV_2024_paper.php" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>ecva.net · 4195_ECCV_2024_paper.php</strong></a><a class="source-link source-link-pdf" href="https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/04195.pdf" title="https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/04195.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>ecva.net · 04195.pdf</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>目录</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#身份与版本">身份与版本</a></li><li><a href="#问题-输入和机制">问题、输入和机制</a></li><li><a href="#评测口径与结果">评测口径与结果</a></li><li><a href="#编辑能力与强反证">编辑能力与强反证</a></li><li><a href="#成本分账-复现及适用边界">成本分账、复现及适用边界</a></li><li><a href="#对现有综合的影响">对现有综合的影响</a></li><li><a href="#相关主题与证据">相关主题与证据</a></li></ol></details></aside>
+        <section class="article-content"><p><strong>一句话结论</strong>：Gaussian Grouping用跨视角关联的二维掩码学习三维物体身份，使静态高斯可分组编辑；分割更准仍依赖教师，背景保真和未见区域真实性需要另验。</p>
+<h2 id="身份与版本">身份与版本</h2>
+<p>ECCV 2024主会正式章节，Mingqiao Ye、Martin Danelljan、Fisher Yu、Lei Ke，LNCS 15087，pp.162–179，2024-11-03正式上线，DOI 10.1007/978-3-031-73397-0_10。ECVA正式记录、主文18页、补充9页及Crossref正常HTTPS200，四作者、题名、页码、出版日期相符。所读是ECVA会议稿；未将Springer付费排版字节与其逐字比较。arXiv2312.00732仅作原清单身份线索，未下载替代全文。代码在原文声称公开，未审固定提交/许可或运行。</p>
+<h2 id="问题-输入和机制">问题、输入和机制</h2>
+<p>主p2–8/Fig2/Eq1–4：输入静态场景的已知相机多视RGB、SfM点；逐场优化，不是任意照片即时理解。SAM逐帧生成无语义掩码，DEVA把渐变视角当视频双向传播、关联跨视ID；其结果是有噪声的伪标签，不是三维人工GT。每个高斯增加16维Identity Encoding，身份的SH阶数0；可微alpha合成得到每像素16维特征，再以共享线性分类器映射场景ID。二维交叉熵监督可见区域，三维欧氏近邻的类别分布KL约束帮助遮挡/内部高斯。</p>
+<p>主p7–9及补p7–8：总损失为原重建损失加二维/三维身份项。主文p9将两个系数都排为lambda2d，补p7明确lambda2d=1、lambda3d=2，保留排印差异，不能默默把主文当无歧义。k=5、m=1000；为计算正则下采样至300K点，不等于全场高斯上限。身份/分类器学习率0.0025/0.0005，16→256分类器；尽管推导用场景K，实装容量并非无界。原自适应密度控制继承3DGS。</p>
+<h2 id="评测口径与结果">评测口径与结果</h2>
+<p>主p9、12–13/T3，补p3–5/T2：LERF-Mask是作者重标的三个场景figurines/ramen/teatime、总23条文本提示，每场2–4新视图；用Roboflow并以SAM辅助标注渲染的新视图。不是23独立场景或真实三维点标签。mIoU为掩码交并比均值，mBIoU为边界交并比均值，越高越好；评测细节不足以推为跨域泛化。SAM不带文本语义，Gaussian Grouping与SA3D借Grounding DINO从二维目标选对应ID，不能把成绩归为模型自身开放词汇理解。</p>
+<table><thead><tr><th>同一主T3</th><th>Gaussian Grouping mIoU↑/mBIoU↑</th><th>LangSplat</th><th>LERF</th><th>SA3D</th><th>DEVA</th></tr></thead><tbody><tr><td>figurines</td><td>69.7/67.9</td><td>52.8/50.5</td><td>33.5/30.6</td><td>24.9/23.8</td><td>46.2/45.1</td></tr><tr><td>ramen</td><td>77.0/68.7</td><td>50.4/44.7</td><td>28.3/14.7</td><td>7.4/7.0</td><td>56.8/51.1</td></tr><tr><td>teatime</td><td>71.7/66.1</td><td>69.5/65.6</td><td>49.7/42.6</td><td>42.5/39.2</td><td>54.3/52.2</td></tr></tbody></table>
+<p>这里最后一场比LangSplat的边界差距很小，不能把“翻倍”扩展到所有场景、对照。主T4采用Mask-DINO语义标签比较Panoptic Lifting，输入教师不同于前表SAM链：Replica mIoU66.22→71.15、PQscene64.34→66.52；ScanNet mIoU67.01→68.70、PQscene60.74→61.83，均为渲染新视图口径，不是直接三维点云PQ。FPS约10→140/150，自报设置下渲染加速，不能跨硬件/任务排榜。</p>
+<p>主p10/T1：Mip360仅7公开场景，flowers/treehill未用。原3DGS→Gaussian Grouping的PSNR28.69→28.43 dB、SSIM0.870→0.863、LPIPS0.182→0.189、FPS约200→170。作者称重建基本保持，但四项均略退，不能写为无画质或速度代价。主T2 Kitchen去物准确率RAcc从k0的41.2%到k5的76.6%，k10为77.8%；k5折中并非所有指标最高，指标定义不足，不能当全数据集成功率。</p>
+<h2 id="编辑能力与强反证">编辑能力与强反证</h2>
+<p>主p8–9、11–14/Fig3/6/7/9–12，补p5–6：删除/换位直接操作已训练高斯组，不需额外优化，但完全遮挡背景会留孔；“删除”不等于“修复”。凸包后处理额外纳入内部点，能补残留也可能波及邻近背景。修复使用Grounding DINO找孔、DEVA关联、LaMa二维修复；新增200K附近高斯，冻结旧场，只训练新增点，区域外L1、框内LPIPS。未见区域是生成假设，不能验证真实背面。</p>
+<p>风格迁移用InstructPix2Pix动态更新监督，冻结无关组，物体掩码内L1和包围框内LPIPS。主p9说进一步解冻位置与尺寸，补p6却写冻结位置、优化颜色/方差/透明度等：明确保留主补不一致，未以未审代码裁决。局部参数冻结不意味着渲染像素严格不变，组误分/凸包/透明度与遮挡关系均可能改变背景；没有专门背景保持、跨视编辑一致性或人类偏好大样本统计。</p>
+<p>补p3/T1给三个任务各一个场景的CLIP文本图像方向相似度：Kitchen修复0.126→0.153（SPIn-NeRF），Bear风格0.171→0.178（Instruct-NeRF2NeRF），Truck删除0.166→0.183（DFF）。它只衡量编辑方向与文本关系，不是背景保真、真实三维几何或多次生成成功率，三行不能互相排名。图示比对可支持案例直观结果，不足支持“编辑任何物体”普遍保证。</p>
+<h2 id="成本分账-复现及适用边界">成本分账、复现及适用边界</h2>
+<p>主p9/10/13、补p1/2/7：单A100每场30K迭代；Fig4只比较2000步训练，线性匹配&gt;1小时、预关联输入16维约1分钟，32维约1.3分钟，不包括SAM/DEVA前处理、全30K训练与查询。“60倍”不能当端到端加速。补Fig1自报9分钟分全场物体，对照SA3D单物35分钟（约20训练+15渲染），单位不同，不外推同预算总耗时。主Fig10修复为先1小时训练再20分钟微调，对照SPIn-NeRF5小时；缺全部预处理、LaMa/扩散及峰值显存和存储分项。GPU与数据均未运行或下载。</p>
+<p>补p3/Fig4仅三视DEVA跟踪尚可，3DGS重建仍差；主p14仅静态，补p7说明复杂提示使Grounding DINO选错，DEVA关联也限制上限。研究贡献是把二维身份一致性和显式三维局部可操作性连接，不是无教师、动态或稀疏视图通解。</p>
+<h2 id="对现有综合的影响">对现有综合的影响</h2>
+<p>接LangSplat/B³-Seg/REALM：语言检索、实例分组与局部编辑分别验收。把同篇LERF-Mask改进与Mip重建小退化一起放进现有应用判断，不新开研究阶段，不据用户私人编辑设想新增实验。与PT-OVS、SceneSplat++的野外/直接三维评测严格分开；不跨篇均值排名。无充分理由新增独立Claim或Question页面，边界记录在Source和矩阵即可。</p>
+<h2 id="相关主题与证据">相关主题与证据</h2>
+<p><a class="wikilink" href="../topics/3d-gaussian-splatting.html">高斯科研地图：表征、语义、建图与二维图像</a>；相关已编译工作：<a class="wikilink" href="../sources/2026-09-25-langsplat.html">LangSplat</a>、<a class="wikilink" href="../sources/2026-09-25-b3-seg.html">B³-Seg</a>、<a class="wikilink" href="../sources/2026-09-25-realm.html">REALM</a>、<a class="wikilink" href="../sources/2026-10-24-scenesplat-plus-plus.html">SceneSplat++</a>。原始材料与逐页台账保存在同ID内部raw bundle，不公开原PDF或全文。</p></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../topics/3d-gaussian-splatting.html">高斯科研地图：表征、语义、建图与二维图像</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">3</span></h2><ul><li><a href="../docs/research-protocols/3d-gaussian-splatting.html">三维高斯泼溅：用户百篇定向证据协议</a><span>检索协议</span></li><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../topics/3d-gaussian-splatting.html">高斯科研地图：表征、语义、建图与二维图像</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary><span class="summary-label"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><pre>{
+  &quot;id&quot;: &quot;2026-11-05-gaussian-grouping&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;Gaussian Grouping：先把高斯分成物体，再做局部编辑&quot;,
+  &quot;title_en&quot;: &quot;Gaussian Grouping: Segment and Edit Anything in 3D Scenes&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-11-05&quot;,
+  &quot;updated&quot;: &quot;2026-11-05&quot;,
+  &quot;venue&quot;: &quot;ECCV 2024&quot;,
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Mingqiao Ye&quot;,
+    &quot;Martin Danelljan&quot;,
+    &quot;Fisher Yu&quot;,
+    &quot;Lei Ke&quot;
+  ],
+  &quot;published_at&quot;: &quot;2024-11-03&quot;,
+  &quot;ingested_at&quot;: &quot;2026-11-05&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/4195_ECCV_2024_paper.php&quot;,
+    &quot;https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/04195.pdf&quot;,
+    &quot;https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/04195-supp.pdf&quot;,
+    &quot;https://doi.org/10.1007/978-3-031-73397-0_10&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-11-05-gaussian-grouping/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/3d-gaussian-splatting&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: [],
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;3d-vision&quot;,
+    &quot;gaussian-splatting&quot;,
+    &quot;evaluation&quot;,
+    &quot;primary-source&quot;
+  ]
+}</pre></details>
+    </article>
+  </main>
+</body>
+</html>
