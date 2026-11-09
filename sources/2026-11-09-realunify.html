@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="RealUnify：统一模型的理解与生成，何时互相帮助？">
+  <link rel="canonical" href="https://wiki.garyko.com/sources/2026-11-09-realunify">
+  <link rel="alternate" hreflang="zh-CN" href="https://wiki.garyko.com/sources/2026-11-09-realunify">
+  <link rel="alternate" hreflang="en" href="https://wiki.garyko.com/en/sources/2026-11-09-realunify">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#f7f4ec" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1b1814" media="(prefers-color-scheme: dark)">
+  <meta property="og:site_name" content="llmwiki">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:title" content="RealUnify：统一模型的理解与生成，何时互相帮助？ · llmwiki">
+  <meta property="og:description" content="RealUnify：统一模型的理解与生成，何时互相帮助？">
+  <meta property="og:url" content="https://wiki.garyko.com/sources/2026-11-09-realunify">
+  <meta property="og:image" content="https://wiki.garyko.com/assets/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="RealUnify：统一模型的理解与生成，何时互相帮助？ · llmwiki">
+  <meta name="twitter:description" content="RealUnify：统一模型的理解与生成，何时互相帮助？">
+  <meta name="twitter:image" content="https://wiki.garyko.com/assets/og-card.png">
+  <title>RealUnify：统一模型的理解与生成，何时互相帮助？ · llmwiki</title>
+  <script>try{var r=document.documentElement,t=localStorage.getItem('llmwiki.theme');if(t==='light'||t==='dark')r.dataset.theme=t;if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')r.classList.add('sidebar-collapsed')}catch(e){}</script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260927-theme-switch-v17">
+  <script defer src="../assets/wiki.js?v=20260927-theme-switch-v17"></script>
+  <noscript><style>.wiki-sidebar{position:static;transform:none;visibility:visible;width:auto;height:auto}.menu-toggle{display:none}</style></noscript>
+</head>
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-11-09-realunify&quot;, &quot;title&quot;: &quot;RealUnify：统一模型的理解与生成，何时互相帮助？&quot;, &quot;title_en&quot;: &quot;RealUnify: Do Unified Models Truly Benefit from Unification? A Comprehensive Benchmark&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;vision-language&quot;, &quot;benchmarking&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260927-theme-switch-v17">
+  <a class="skip-link" href="#content">跳到正文</a>
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar" aria-label="菜单" title="菜单" data-menu-label="菜单" data-close-label="关闭菜单"><svg class="ui-icon menu-icon menu-icon--open" data-icon="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="ui-icon menu-icon menu-icon--close" data-icon="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="menu-toggle-label">菜单</span></button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
+    <button class="sidebar-collapse-toggle" type="button" aria-expanded="true" aria-controls="sidebar-panel" aria-label="折叠左侧导航" title="折叠左侧导航" data-collapse-label="折叠左侧导航" data-expand-label="展开左侧导航"><svg class="ui-icon sidebar-icon sidebar-icon--collapse" data-icon="panel-left-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/></svg><svg class="ui-icon sidebar-icon sidebar-icon--expand" data-icon="panel-left-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/></svg></button>
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
+    <div class="sidebar-panel" id="sidebar-panel">
+      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">搜索 llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results" class="search-results"></div><p id="search-status" class="visually-hidden" role="status" aria-live="polite"></p></form>
+      <nav class="sidebar-nav">
+<h2>入口</h2><ul>
+<li><a href="../catalog.html">完整论文目录</a></li>
+<li><a href="../index.html">研究地图</a></li>
+<li><a href="../llm-wiki.html">LLM Wiki</a></li>
+<li><a href="../main.html">阅读入口</a></li>
+<li><a href="../tags.html">标签</a></li>
+</ul>
+<h2>基础概念</h2><ul>
+<li><a href="../topics/computer-vision-overview.html"><span class="nav-title-primary">计算机视觉概览</span><span class="nav-title-translation" lang="en">（Computer Vision Overview）</span></a></li>
+<li><a href="../topics/datasets-metrics-and-benchmark-reliability.html"><span class="nav-title-primary">数据与评测基础</span><span class="nav-title-translation" lang="en">（Datasets &amp; Evaluation）</span></a></li>
+<li><a href="../topics/diffusion-models.html"><span class="nav-title-primary">扩散模型</span><span class="nav-title-translation" lang="en">（Diffusion Models）</span></a></li>
+<li><a href="../topics/video-representation-and-temporal-modeling.html"><span class="nav-title-primary">视频表示基础</span><span class="nav-title-translation" lang="en">（Video Representation）</span></a></li>
+<li><a href="../topics/vision-backbones.html"><span class="nav-title-primary">视觉主干</span><span class="nav-title-translation" lang="en">（Vision Backbones）</span></a></li>
+<li><a href="../topics/vision-language-foundations.html"><span class="nav-title-primary">视觉语言基础</span><span class="nav-title-translation" lang="en">（Vision-Language Foundations）</span></a></li>
+<li><a href="../topics/vision-task-foundations.html"><span class="nav-title-primary">核心视觉任务</span><span class="nav-title-translation" lang="en">（Core Vision Tasks）</span></a></li>
+<li><a href="../topics/visual-generation-foundations.html"><span class="nav-title-primary">视觉生成基础</span><span class="nav-title-translation" lang="en">（Visual Generation Foundations）</span></a></li>
+</ul>
+<h2>研究专题</h2><ul>
+<li><a href="../topics/3d-gaussian-splatting.html"><span class="nav-title-primary">三维高斯泼溅</span><span class="nav-title-translation" lang="en">（3D Gaussian Splatting）</span></a></li>
+<li><a href="../topics/diffusion-efficiency-engineering.html"><span class="nav-title-primary">扩散效率工程</span><span class="nav-title-translation" lang="en">（Diffusion Efficiency）</span></a></li>
+<li><a href="../topics/gaussian-image-representation.html"><span class="nav-title-primary">二维图像高斯表征</span><span class="nav-title-translation" lang="en">（Gaussian Image Representations）</span></a></li>
+<li><a href="../topics/generative-model-evaluation.html"><span class="nav-title-primary">生成模型评测</span><span class="nav-title-translation" lang="en">（Generative Model Evaluation）</span></a></li>
+<li><a href="../topics/image-editing.html"><span class="nav-title-primary">图像编辑</span><span class="nav-title-translation" lang="en">（Image Editing）</span></a></li>
+<li><a href="../topics/image-generation.html"><span class="nav-title-primary">图像生成</span><span class="nav-title-translation" lang="en">（Image Generation）</span></a></li>
+<li><a href="../topics/image-text-retrieval.html"><span class="nav-title-primary">图文检索</span><span class="nav-title-translation" lang="en">（Image-Text Retrieval）</span></a></li>
+<li><a href="../topics/sports-ai-video-understanding.html"><span class="nav-title-primary">体育视频理解</span><span class="nav-title-translation" lang="en">（Sports Video Understanding）</span></a></li>
+<li><a href="../topics/video-editing.html"><span class="nav-title-primary">视频编辑</span><span class="nav-title-translation" lang="en">（Video Editing）</span></a></li>
+<li><a href="../topics/video-generation.html"><span class="nav-title-primary">视频生成</span><span class="nav-title-translation" lang="en">（Video Generation）</span></a></li>
+<li><a href="../topics/video-understanding.html"><span class="nav-title-primary">视频理解</span><span class="nav-title-translation" lang="en">（Video Understanding）</span></a></li>
+<li><a href="../topics/vision-language.html"><span class="nav-title-primary">视觉语言</span><span class="nav-title-translation" lang="en">（Vision-Language）</span></a></li>
+</ul>
+<h2>应用路线</h2><ul>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI</a></li>
+</ul>
+<h2>实体</h2><ul>
+<li><a href="../entities/clip.html">CLIP 系列模型（CLIP Family）</a></li>
+<li><a href="../entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a></li>
+<li><a href="../entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a></li>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/dino-family.html">DINO 家族：自监督视觉表示与预训练骨干</a></li>
+<li><a href="../entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>判断</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-image-text-retrieval-baseline-and-specialization.html">双塔负责可扩展召回，细粒度模块负责精排与关系匹配</a></li>
+<li><a href="../claims/claim-image-text-retrieval-composed-query.html">组合式查询是图文检索中可落地且仍有缺口的研究切口</a></li>
+<li><a href="../claims/claim-image-text-retrieval-compositionality.html">标准图文检索分数不足以证明组合性理解</a></li>
+<li><a href="../claims/claim-image-text-retrieval-data-quality.html">图文检索的主要瓶颈仍包括数据质量、分布与概念覆盖</a></li>
+<li><a href="../claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
+</ul>
+<h2>问题</h2><ul>
+<li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-dino-features-for-3dgs-semantics.html">DINO 密集特征如何迁移到三维高斯语义分割？</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-gaussian-image-representation-research-cut.html">二维图像高斯表征应优先解决哪种信息与成本瓶颈？</a></li>
+<li><a href="../questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a></li>
+<li><a href="../questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a></li>
+<li><a href="../questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a></li>
+<li><a href="../questions/question-image-text-retrieval-research-cut.html">图文检索哪个子方向最适合中等算力的研究生项目？</a></li>
+<li><a href="../questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a></li>
+<li><a href="../questions/question-motion-defined-text-human-machine-gap.html">运动定义文字的人机差距</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
+</ul>
+</nav>
+    </div>
+  </aside>
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+  <main class="wiki-page" id="content" tabindex="-1">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="selected-lang" href="../sources/2026-11-09-realunify.html">中文</a><a class="" href="../en/sources/2026-11-09-realunify.html">English</a></nav><div class="theme-switch" role="group" aria-label="外观" hidden><button type="button" data-theme-choice="system" aria-pressed="false" aria-label="跟随系统" title="跟随系统"><svg class="ui-icon" data-icon="monitor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg></button><button type="button" data-theme-choice="light" aria-pressed="false" aria-label="浅色" title="浅色"><svg class="ui-icon" data-icon="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></button><button type="button" data-theme-choice="dark" aria-pressed="false" aria-label="深色" title="深色"><svg class="ui-icon" data-icon="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button></div><span class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>正文</span></span><a href="../index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>研究地图</span></a><a href="../main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>阅读入口</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></a></header>
+    <article class="article-shell">
+      
+      <header class="article-header" data-motion="reveal">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>RealUnify：统一模型的理解与生成，何时互相帮助？</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-11-09</p>
+        <h1><span class="title-main">RealUnify</span><span class="title-subtitle">统一模型的理解与生成，何时互相帮助？</span></h1>
+        
+        <p class="article-actions"><a class="btn btn-primary" href="https://openaccess.thecvf.com/content/CVPR2026/html/Shi_RealUnify_Do_Unified_Models_Truly_Benefit_from_Unification_A_Comprehensive_CVPR_2026_paper.html" target="_blank" rel="noopener noreferrer">阅读原论文<span aria-hidden="true"> ↗</span></a></p>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#vision-language">#vision-language</a><a class="tag" href="../tags.html#benchmarking">#benchmarking</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>CVPR 2026</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2026-06</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-11-09</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2026/html/Shi_RealUnify_Do_Unified_Models_Truly_Benefit_from_Unification_A_Comprehensive_CVPR_2026_paper.html" title="https://openaccess.thecvf.com/content/CVPR2026/html/Shi_RealUnify_Do_Unified_Models_Truly_Benefit_from_Unification_A_Comprehensive_CVPR_2026_paper.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>openaccess.thecvf.com · Shi_RealUnify_Do_Unified_Models…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2026/papers/Shi_RealUnify_Do_Unified_Models_Truly_Benefit_from_Unification_A_Comprehensive_CVPR_2026_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2026/papers/Shi_RealUnify_Do_Unified_Models_Truly_Benefit_from_Unification_A_Comprehensive_CVPR_2026_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Shi_RealUnify_Do_Unified_Models…</strong></a><a class="source-link source-link-code" href="https://github.com/FrankYang-17/RealUnify" title="https://github.com/FrankYang-17/RealUnify" target="_blank" rel="noopener noreferrer"><span>代码仓库</span><strong>github.com · RealUnify</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>目录</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义">问题定义</a></li><li><a href="#方法与证据构造">方法与证据构造</a></li><li><a href="#核心实验与结果">核心实验与结果</a></li><li><a href="#最强反证-改对中间步骤不等于已经学会协同">最强反证：改对中间步骤不等于已经学会协同</a></li><li><a href="#标注-裁判与印图疑点">标注、裁判与印图疑点</a></li><li><a href="#复现与成本边界">复现与成本边界</a></li><li><a href="#对当前-wiki-判断的影响">对当前 Wiki 判断的影响</a></li><li><a href="#原始链接与证据定位">原始链接与证据定位</a></li><li><a href="#sources">Sources</a></li></ol></details></aside>
+        <section class="article-content"><p>正式主会：CVPR 2026，22488–22497页，出版月份2026年6月。本文依据CVF接受版主文10页及官方补充9页；IEEE排版版本未逐字比对，未运行模型。[1]</p>
+<h2 id="一句话结论">一句话结论</h2>
+<p>统一接口不等于能力协同。RealUnify把“先理解再生成”与“先生成再理解”分开：显式推理通常帮助生成，但额外生成图像可能损坏理解所需信息；这些结果支持分阶段诊断，不足以证明架构统一本身的因果收益或损失。[2]</p>
+<h2 id="问题定义">问题定义</h2>
+<p><strong>理解帮助生成（UEG）</strong>输入包含隐含知识或推理的文字，输出满足约束的图像；覆盖世界知识、常识、数学、逻辑、科学和代码转图。<strong>生成帮助理解（GEU）</strong>输入图像与四选一问题，要求重组打乱图块、跟踪彩色线段、聚焦细节或导航，再回答问题。后者是作者设计的任务解释，不意味着生成步骤在数学上必不可少。[2]</p>
+<p>直接协议一次输出结果；分步协议先重写已解题的提示，或先编辑图像，再输出结果。它把中间失败显露出来，但同时改变提示、视觉输入与调用次数，不能当作等预算、只改变架构的实验。[2][3]</p>
+<h2 id="方法与证据构造">方法与证据构造</h2>
+<ul>
+<li>共1,000项、10类、32子任务：UEG六类各100项，共600；GEU四类各100项，共400。同一批题的直接与分步评测不构成2,000个独立样本。[2][3]</li>
+<li>10位AI领域标注者设计UEG任务，另3位审查者需一致确认正确、客观及答案唯一。GEU使用程序变换和人工过滤；聚焦任务来自BLINK/HRBench，地图经Google Search API检索。人工标注不等于源图未在训练中出现。[2][3]</li>
+<li>12个统一模型与6个专用模型。UEG用Gemini 2.5 Pro对问题列表逐项判断，GEU采用四选一准确率。补充含否定检查项，未仅凭问题清单推定“所有答案都应为yes”的计分实现。[2][3]</li>
+<li>表格缺项要保留：Nano Banana没有分步结果，若干模型缺GEU分步，不能把缺项当零分或全体模型的退化证据。[2]</li>
+</ul>
+<h2 id="核心实验与结果">核心实验与结果</h2>
+<p>以下均为原协议百分比分数，箭头为直接→分步；百分点差不是相对百分比。[2]</p>
+<table><thead><tr><th>对照</th><th>原文结果</th><th>怎么读</th></tr></thead><tbody><tr><td>BAGEL，UEG</td><td>32.7→47.7</td><td>先解题再画图提高15.0点，同时多一次调用</td></tr><tr><td>BAGEL，GEU</td><td>39.3→35.8</td><td>先改图再回答反而下降3.5点</td></tr><tr><td>BAGEL，全部任务</td><td>35.3→42.9</td><td>600/400样本加权，掩盖GEU下降</td></tr><tr><td>UniWorld-V1，全部任务</td><td>33.9→32.5</td><td>总分也可能下降，不能宣称分步必有益</td></tr><tr><td>专用理解→专用生成</td><td>UEG 72.7；Nano Banana直接63.0</td><td>强组件组合提供参考，不是受控架构消融</td></tr><tr><td>专用生成→专用理解</td><td>GEU 31.8；Gemini直接54.8</td><td>额外图像生成可能引入严重信息损失</td></tr></tbody></table>
+<p>定位：主文PDF第7页Tables 2–5。BAGEL在GEU的聚焦子任务50→52、重组37→38，但跟踪31→25、导航39→28；“均值下降”不等于“每个子任务下降”。Nano Banana的UEG63.0略高于GPT-Image-1的62.2；BAGEL的GEU39.3也高于GPT-4.1的38.5和Qwen2.5-VL的34.5，因此不能概括为统一模型总是不如专用模型。[2]</p>
+<h2 id="最强反证-改对中间步骤不等于已经学会协同">最强反证：改对中间步骤不等于已经学会协同</h2>
+<p>作者展示分步成功案例，也展示BAGEL分步仍失败、换成正确中间提示或图像后才成功的案例。这说明部分瓶颈来自基础理解或生成能力不足，而不是只缺少任务间通信。原文称强组件组合近似“上限”，这里只把它视为一个有限流水线参照；GEU组合本身明显弱于直接理解，不能当作理论上限。[2]</p>
+<p>补充的失败图展示属性混合、数量、奥运五环、空间位置、手指、文字与物理常识错误。漂亮图像不能替代约束正确性；选出的案例没有失败频率分母，不能估计总体发生率。[3]</p>
+<h2 id="标注-裁判与印图疑点">标注、裁判与印图疑点</h2>
+<p>主文Table 4用4位人类专家的平均分与两个模型裁判比较。Nano Banana的Gemini/Qwen/人评分为63.0/70.7/59.3；BAGEL分步为47.7/59.0/44.2。Gemini在这些聚合值上更接近人工，不等于逐项一致、无偏或全样本可靠性已证实。人评的完整样本量与一致性区间、训练重叠和源图独立性仍需额外证据。[2]</p>
+<p>Gemini同时作为裁判、专用基线和强组件组合伙伴；闭源统一模型也属同系列。角色重合提示应做独立裁判复核，但不能由此断言偏差已经发生。[2][3]</p>
+<p><strong>补充Figure 7(f)有一个可复算的示例冲突</strong>：印出的输入37，经“平方取模4，再加2”得到索引3；列表依次为pencils、pen、cats、dogs，按Python零起始索引应输出3只狗，图中重写提示及结果却标为3只猫。已核对原页并独立复算。它可能是示例排版或标签不一致，不足以证明整个代码子集标错；在取得原始逐项答案和评分代码前，保留疑点，不替作者改标。[3]</p>
+<h2 id="复现与成本边界">复现与成本边界</h2>
+<p>补充给出提示模板、默认/推荐配置及API名称：裁判为gemini-2.5-pro，被测闭源图像模型为gemini-2.5-flash-image-preview。未见完整的模型调用日期、随机种子、多次重复、总token/API费用、延迟与GPU账单。两步通常多一次模型调用，不能把分数提升换算成同成本收益。[3]</p>
+<p>作者提供代码仓库入口，本次未审固定commit、许可或数据再分发权，未调用付费API或执行GPU实验。合法CVF原文用于核验，不把PDF、抽取全文或内部运行材料公开。[1][2]</p>
+<h2 id="对当前-wiki-判断的影响">对当前 Wiki 判断的影响</h2>
+<p>在<a class="wikilink" href="../topics/vision-language.html">视觉语言</a>的统一接口章节，加入方向拆分、等预算和中间信息损失三个条件。与<a class="wikilink" href="../sources/2026-09-14-groundingme.html">GroundingME</a>的定位—拒答取舍相似，平均分会隐藏一类能力退化；两篇任务不同，不合并分数。</p>
+<p>可行的下一步是固定同一公开模型与题目，比较直接回答、文本推理、生成/编辑中间图、正确中间图四种条件，等总调用预算，按源图分组复核标签并报告置信区间、子任务和失败类型。先核验代码示例的真实标签；若收益仅来自更多调用或正确答案泄露，停止“统一架构产生协同”的结论。这是待检验方案，不是已证实的新颖空白。</p>
+<h2 id="原始链接与证据定位">原始链接与证据定位</h2>
+<ul>
+<li><a href="https://openaccess.thecvf.com/content/CVPR2026/html/Shi_RealUnify_Do_Unified_Models_Truly_Benefit_from_Unification_A_Comprehensive_CVPR_2026_paper.html">正式记录</a>：作者、会议、页码与版本。</li>
+<li>主文：PDF第3–5页任务与协议，第7页Tables 2–5，第8页Figures 5–6及讨论。</li>
+<li>补充：第1页标注与配置，第2页Figure 7，第6页Tables 6–9，第7页编辑模板，第8–9页失败图。</li>
+<li>arXiv:2509.24897由正式记录关联，仅作版本去重；DOI未在该记录列出，不补造。</li>
+</ul>
+<h2 id="sources">Sources</h2>
+<p>[1] https://openaccess.thecvf.com/content/CVPR2026/html/Shi_RealUnify_Do_Unified_Models_Truly_Benefit_from_Unification_A_Comprehensive_CVPR_2026_paper.html</p>
+<p>[2] https://openaccess.thecvf.com/content/CVPR2026/papers/Shi_RealUnify_Do_Unified_Models_Truly_Benefit_from_Unification_A_Comprehensive_CVPR_2026_paper.pdf</p>
+<p>[3] https://openaccess.thecvf.com/content/CVPR2026/supplemental/Shi_RealUnify_Do_Unified_CVPR_2026_supplemental.pdf</p>
+<p>[4] https://github.com/FrankYang-17/RealUnify</p></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../topics/vision-language.html">视觉语言</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">2</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../topics/vision-language.html">视觉语言</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary><span class="summary-label"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><pre>{
+  &quot;id&quot;: &quot;2026-11-09-realunify&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;RealUnify：统一模型的理解与生成，何时互相帮助？&quot;,
+  &quot;title_en&quot;: &quot;RealUnify: Do Unified Models Truly Benefit from Unification? A Comprehensive Benchmark&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-11-09&quot;,
+  &quot;updated&quot;: &quot;2026-11-09&quot;,
+  &quot;venue&quot;: &quot;CVPR 2026&quot;,
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;authors&quot;: [
+    &quot;Yang Shi&quot;,
+    &quot;Yuhao Dong&quot;,
+    &quot;Yue Ding&quot;,
+    &quot;Yuran Wang&quot;,
+    &quot;Xuanyu Zhu&quot;,
+    &quot;Sheng Zhou&quot;,
+    &quot;Wenting Liu&quot;,
+    &quot;Haochen Tian&quot;,
+    &quot;Rundong Wang&quot;,
+    &quot;Huanqian Wang&quot;,
+    &quot;Zuyan Liu&quot;,
+    &quot;Bohan Zeng&quot;,
+    &quot;Ruizhe Chen&quot;,
+    &quot;Qixun Wang&quot;,
+    &quot;Zhuoran Zhang&quot;,
+    &quot;Xinlong Chen&quot;,
+    &quot;Chengzhuo Tong&quot;,
+    &quot;Bozhou Li&quot;,
+    &quot;Qiang Liu&quot;,
+    &quot;Haotian Wang&quot;,
+    &quot;Wenjing Yang&quot;,
+    &quot;Yuanxing Zhang&quot;,
+    &quot;Pengfei Wan&quot;,
+    &quot;Yi-Fan Zhang&quot;,
+    &quot;Ziwei Liu&quot;
+  ],
+  &quot;published_at&quot;: &quot;2026-06&quot;,
+  &quot;ingested_at&quot;: &quot;2026-11-09&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/CVPR2026/html/Shi_RealUnify_Do_Unified_Models_Truly_Benefit_from_Unification_A_Comprehensive_CVPR_2026_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2026/papers/Shi_RealUnify_Do_Unified_Models_Truly_Benefit_from_Unification_A_Comprehensive_CVPR_2026_paper.pdf&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2026/supplemental/Shi_RealUnify_Do_Unified_CVPR_2026_supplemental.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-11-09-realunify/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/vision-language&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: [],
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;vision-language&quot;,
+    &quot;benchmarking&quot;,
+    &quot;primary-source&quot;
+  ]
+}</pre></details>
+    </article>
+  </main>
+</body>
+</html>
