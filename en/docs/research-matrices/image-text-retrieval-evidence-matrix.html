@@ -129,7 +129,7 @@
         <div class="tag-row"></div>
       </header>
       <div class="article-layout has-rail">
-        <aside class="article-rail"><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#矩阵状态">矩阵状态</a></li><li><a href="#a-底座-训练目标与数据">A. 底座、训练目标与数据</a></li><li><a href="#b-组合性-负例与评测可靠性">B. 组合性、负例与评测可靠性</a></li><li><a href="#c-组合式检索-关系建模与精排">C. 组合式检索、关系建模与精排</a></li><li><a href="#d-统一向量-多语言与跨任务泛化">D. 统一向量、多语言与跨任务泛化</a></li><li><a href="#e-视觉文档-细粒度证据与效率">E. 视觉文档、细粒度证据与效率</a></li><li><a href="#跨论文综合账本">跨论文综合账本</a></li><li><a href="#未完成项">未完成项</a></li></ol></details></aside>
+        <aside class="article-rail"><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#矩阵状态">矩阵状态</a></li><li><a href="#a-底座-训练目标与数据">A. 底座、训练目标与数据</a></li><li><a href="#b-组合性-负例与评测可靠性">B. 组合性、负例与评测可靠性</a></li><li><a href="#c-组合式检索-关系建模与精排">C. 组合式检索、关系建模与精排</a></li><li><a href="#d-统一向量-多语言与跨任务泛化">D. 统一向量、多语言与跨任务泛化</a></li><li><a href="#e-视觉文档-细粒度证据与效率">E. 视觉文档、细粒度证据与效率</a></li><li><a href="#跨论文综合账本">跨论文综合账本</a></li><li><a href="#未完成项">未完成项</a></li><li><a href="#2026-11-11独立增量-mcmr">2026-11-11独立增量：MCMR</a></li></ol></details></aside>
         <section class="article-content" lang="zh-CN"><p class="translation-notice" role="note">English translation pending — this page shows the Chinese original.</p><h2 id="矩阵状态">矩阵状态</h2>
 <ul>
 <li>对应 Topic：<a class="wikilink" href="../../../en/topics/image-text-retrieval.html">Image-Text Retrieval</a></li>
@@ -159,7 +159,11 @@
 <li>冻结检索协议首次执行后，新增候选必须先进入筛选日志，不能直接追加到矩阵；</li>
 <li>每次更新须重新核验 E5-V、SigLIP 2、MIRACL-VISION 三篇预印本的正式版本状态；</li>
 <li>进入 <code>systematic_review</code> 前，需补齐数据库返回数、去重数、E1—E7 排除分布及最终纳入流。</li>
-</ul></section>
+</ul>
+<h2 id="2026-11-11独立增量-mcmr">2026-11-11独立增量：MCMR</h2>
+<p>原40篇基线及历史比例不改；Topic现43篇，MuCo/RMIR仍见各自Source和日报，本段不冒充完整重审。</p>
+<table><thead><tr><th>来源/资格</th><th>任务与机制</th><th>同篇结果</th><th>反证与复现边界</th></tr></thead><tbody><tr><td><a class="wikilink" href="../../../en/sources/2026-11-11-mcmr.html">MCMR</a>；CVPR2026 pp9699–9709，主11＋补9页</td><td>文字多条件查图文商品；向量召回后逐点评分</td><td>主Table3 LLaVE R@50 72.01%；主Table4 lychee nDCG@1 82.51%；补Table4 CORAL R@10 22→57</td><td>不能直接合并两个评分总体；补Table2样例配对冲突，正文10400与主Table2候选104981待核；条件增多也增加信息；两张A10080GB但缺端到端成本</td></tr></tbody></table>
+<p>不改变scoped_review；代码文件一次超时，保留证据，未运行模型或补造数据解释。</p></section>
       </div>
       
       
