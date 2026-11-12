@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="HP-Edit:A Human-Preference Post-Training Framework for Image Editing">
+  <link rel="canonical" href="https://wiki.garyko.com/en/sources/2026-11-12-hp-edit">
+  <link rel="alternate" hreflang="zh-CN" href="https://wiki.garyko.com/sources/2026-11-12-hp-edit">
+  <link rel="alternate" hreflang="en" href="https://wiki.garyko.com/en/sources/2026-11-12-hp-edit">
+  <link rel="icon" href="../../favicon.ico" sizes="any">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#f7f4ec" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1b1814" media="(prefers-color-scheme: dark)">
+  <meta property="og:site_name" content="llmwiki">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="HP-Edit:A Human-Preference Post-Training Framework for Image Editing · llmwiki">
+  <meta property="og:description" content="HP-Edit:A Human-Preference Post-Training Framework for Image Editing">
+  <meta property="og:url" content="https://wiki.garyko.com/en/sources/2026-11-12-hp-edit">
+  <meta property="og:image" content="https://wiki.garyko.com/assets/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="HP-Edit:A Human-Preference Post-Training Framework for Image Editing · llmwiki">
+  <meta name="twitter:description" content="HP-Edit:A Human-Preference Post-Training Framework for Image Editing">
+  <meta name="twitter:image" content="https://wiki.garyko.com/assets/og-card.png">
+  <title>HP-Edit:A Human-Preference Post-Training Framework for Image Editing · llmwiki</title>
+  <script>try{var r=document.documentElement,t=localStorage.getItem('llmwiki.theme');if(t==='light'||t==='dark')r.dataset.theme=t;if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')r.classList.add('sidebar-collapsed')}catch(e){}</script>
+  <link rel="stylesheet" href="../../assets/wiki.css?v=20260927-theme-switch-v17">
+  <script defer src="../../assets/wiki.js?v=20260927-theme-switch-v17"></script>
+  <noscript><style>.wiki-sidebar{position:static;transform:none;visibility:visible;width:auto;height:auto}.menu-toggle{display:none}</style></noscript>
+</head>
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-11-12-hp-edit&quot;, &quot;title&quot;: &quot;HP-Edit：用任务化偏好评分改进图像编辑&quot;, &quot;title_en&quot;: &quot;HP-Edit: A Human-Preference Post-Training Framework for Image Editing&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;image-editing&quot;, &quot;evaluation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;en&quot;}" data-lang="en" data-asset-version="20260927-theme-switch-v17">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <header class="mobile-topbar">
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar" aria-label="Menu" title="Menu" data-menu-label="Menu" data-close-label="Close menu"><svg class="ui-icon menu-icon menu-icon--open" data-icon="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="ui-icon menu-icon menu-icon--close" data-icon="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="menu-toggle-label">Menu</span></button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
+    <button class="sidebar-collapse-toggle" type="button" aria-expanded="true" aria-controls="sidebar-panel" aria-label="Collapse sidebar" title="Collapse sidebar" data-collapse-label="Collapse sidebar" data-expand-label="Expand sidebar"><svg class="ui-icon sidebar-icon sidebar-icon--collapse" data-icon="panel-left-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/></svg><svg class="ui-icon sidebar-icon sidebar-icon--expand" data-icon="panel-left-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/></svg></button>
+    <a class="brand" href="../../en/index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>Research Encyclopedia</em></span></a>
+    <div class="sidebar-panel" id="sidebar-panel">
+      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">Search llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="Search llmwiki" autocomplete="off"><div id="search-results" class="search-results"></div><p id="search-status" class="visually-hidden" role="status" aria-live="polite"></p></form>
+      <nav class="sidebar-nav">
+<h2>Entry</h2><ul>
+<li><a href="../../en/catalog.html">Full paper catalog</a></li>
+<li><a href="../../en/index.html">Research map</a></li>
+<li><a href="../../en/llm-wiki.html">LLM Wiki Pattern</a></li>
+<li><a href="../../en/main.html">Reading portal</a></li>
+<li><a href="../../en/tags.html">Tags</a></li>
+</ul>
+<h2>Foundations</h2><ul>
+<li><a href="../../en/topics/computer-vision-overview.html">Computer Vision Overview</a></li>
+<li><a href="../../en/topics/datasets-metrics-and-benchmark-reliability.html">Datasets &amp; Evaluation</a></li>
+<li><a href="../../en/topics/diffusion-models.html">Diffusion Models</a></li>
+<li><a href="../../en/topics/video-representation-and-temporal-modeling.html">Video Representation</a></li>
+<li><a href="../../en/topics/vision-backbones.html">Vision Backbones</a></li>
+<li><a href="../../en/topics/vision-language-foundations.html">Vision-Language Foundations</a></li>
+<li><a href="../../en/topics/vision-task-foundations.html">Core Vision Tasks</a></li>
+<li><a href="../../en/topics/visual-generation-foundations.html">Visual Generation Foundations</a></li>
+</ul>
+<h2>Research topics</h2><ul>
+<li><a href="../../en/topics/3d-gaussian-splatting.html">3D Gaussian Splatting</a></li>
+<li><a href="../../en/topics/diffusion-efficiency-engineering.html">Diffusion Efficiency</a></li>
+<li><a href="../../en/topics/gaussian-image-representation.html">Gaussian Image Representations</a></li>
+<li><a href="../../en/topics/generative-model-evaluation.html">Generative Model Evaluation</a></li>
+<li><a href="../../en/topics/image-editing.html">Image Editing</a></li>
+<li><a href="../../en/topics/image-generation.html">Image Generation</a></li>
+<li><a href="../../en/topics/image-text-retrieval.html">Image-Text Retrieval</a></li>
+<li><a href="../../en/topics/sports-ai-video-understanding.html">Sports Video Understanding</a></li>
+<li><a href="../../en/topics/video-editing.html">Video Editing</a></li>
+<li><a href="../../en/topics/video-generation.html">Video Generation</a></li>
+<li><a href="../../en/topics/video-understanding.html">Video Understanding</a></li>
+<li><a href="../../en/topics/vision-language.html">Vision-Language</a></li>
+</ul>
+<h2>Roadmaps</h2><ul>
+<li><a href="../../en/topics/sports-ai-roadmap.html">Sports AI</a></li>
+</ul>
+<h2>Entities</h2><ul>
+<li><a href="../../en/entities/clip.html">CLIP 系列模型（CLIP Family）</a></li>
+<li><a href="../../en/entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a></li>
+<li><a href="../../en/entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a></li>
+<li><a href="../../en/entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../../en/entities/dino-family.html">DINO 家族：自监督视觉表示与预训练骨干</a></li>
+<li><a href="../../en/entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a></li>
+<li><a href="../../en/entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../../en/entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../../en/entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>Claims</h2><ul>
+<li><a href="../../en/claims/claim-current-models-still-struggle-to-understand-video-editing.html">General Vid-LLMs Still Struggle With Editing-Element Recognition, Reasoning, and Functional Judgment</a></li>
+<li><a href="../../en/claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT and Transformer-Style Denoisers Are Now Major Scalable Generative Backbones</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-baseline-and-specialization.html">双塔负责可扩展召回，细粒度模块负责精排与关系匹配</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-composed-query.html">组合式查询是图文检索中可落地且仍有缺口的研究切口</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-compositionality.html">标准图文检索分数不足以证明组合性理解</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-data-quality.html">图文检索的主要瓶颈仍包括数据质量、分布与概念覆盖</a></li>
+<li><a href="../../en/claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a></li>
+<li><a href="../../en/claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">Unified Image Models Show Multi-Task and Workflow Benefits; Overall Performance Leadership Remains Unverified</a></li>
+</ul>
+<h2>Questions</h2><ul>
+<li><a href="../../en/questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../../en/questions/question-dino-features-for-3dgs-semantics.html">DINO 密集特征如何迁移到三维高斯语义分割？</a></li>
+<li><a href="../../en/questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../../en/questions/question-gaussian-image-representation-research-cut.html">二维图像高斯表征应优先解决哪种信息与成本瓶颈？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-research-cut.html">图文检索哪个子方向最适合中等算力的研究生项目？</a></li>
+<li><a href="../../en/questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a></li>
+<li><a href="../../en/questions/question-motion-defined-text-human-machine-gap.html">Motion-Defined Text Gap</a></li>
+<li><a href="../../en/questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
+</ul>
+</nav>
+    </div>
+  </aside>
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+  <main class="wiki-page" id="content" tabindex="-1">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="" href="../../sources/2026-11-12-hp-edit.html">中文</a><a class="selected-lang" href="../../en/sources/2026-11-12-hp-edit.html">English</a></nav><div class="theme-switch" role="group" aria-label="Appearance" hidden><button type="button" data-theme-choice="system" aria-pressed="false" aria-label="Follow system" title="Follow system"><svg class="ui-icon" data-icon="monitor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg></button><button type="button" data-theme-choice="light" aria-pressed="false" aria-label="Light" title="Light"><svg class="ui-icon" data-icon="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></button><button type="button" data-theme-choice="dark" aria-pressed="false" aria-label="Dark" title="Dark"><svg class="ui-icon" data-icon="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button></div><span class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>Article</span></span><a href="../../en/index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>Research map</span></a><a href="../../en/main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>Reading portal</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>Metadata</span></a></header>
+    <article class="article-shell">
+      
+      <header class="article-header" data-motion="reveal">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../en/index.html">Main page</a><span class="crumb-sep" aria-hidden="true">›</span><span>Source note</span><span class="crumb-sep" aria-hidden="true">›</span><strong>HP-Edit:A Human-Preference Post-Training Framework for Image Editing</strong></nav>
+        <p class="eyebrow">Source note · Updated 2026-11-12</p>
+        <h1><span class="title-main">HP-Edit</span><span class="title-subtitle">A Human-Preference Post-Training Framework for Image Editing</span></h1>
+        
+        <p class="article-actions"><a class="btn btn-primary" href="https://openaccess.thecvf.com/content/CVPR2026/html/Li_HP-Edit_A_Human-Preference_Post-Training_Framework_for_Image_Editing_CVPR_2026_paper.html" target="_blank" rel="noopener noreferrer">Read the paper<span aria-hidden="true"> ↗</span></a></p>
+        <div class="tag-row"><a class="tag" href="../../en/tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../../en/tags.html#image-editing">#image-editing</a><a class="tag" href="../../en/tags.html#evaluation">#evaluation</a><a class="tag" href="../../en/tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>Venue / source</dt><dd>CVPR 2026</dd></div><div class="source-fact"><dt>Published</dt><dd>2026-06</dd></div><div class="source-fact"><dt>Ingested</dt><dd>2026-11-12</dd></div><div class="source-fact"><dt>Source type</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>Review depth</strong><div><span class="source-audit-badge">Source metadata reviewed</span><span class="source-audit-badge">Full text searchable</span><span class="source-audit-badge">Full-paper analysis</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://openaccess.thecvf.com/content/CVPR2026/html/Li_HP-Edit_A_Human-Preference_Post-Training_Framework_for_Image_Editing_CVPR_2026_paper.html" title="https://openaccess.thecvf.com/content/CVPR2026/html/Li_HP-Edit_A_Human-Preference_Post-Training_Framework_for_Image_Editing_CVPR_2026_paper.html" target="_blank" rel="noopener noreferrer"><span>Paper page</span><strong>openaccess.thecvf.com · Li_HP-Edit_A_Human-Preference_P…</strong></a><a class="source-link source-link-pdf" href="https://openaccess.thecvf.com/content/CVPR2026/papers/Li_HP-Edit_A_Human-Preference_Post-Training_Framework_for_Image_Editing_CVPR_2026_paper.pdf" title="https://openaccess.thecvf.com/content/CVPR2026/papers/Li_HP-Edit_A_Human-Preference_Post-Training_Framework_for_Image_Editing_CVPR_2026_paper.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>openaccess.thecvf.com · Li_HP-Edit_A_Human-Preference_P…</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>Contents</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#一句话结论">一句话结论</a></li><li><a href="#问题定义与方法">问题定义与方法</a></li><li><a href="#主要结果-总体有收益-不是每类都领先">主要结果：总体有收益，不是每类都领先</a></li><li><a href="#消融-数据与评分提示都有作用-仍不能完整归因">消融：数据与评分提示都有作用，仍不能完整归因</a></li><li><a href="#人评-图文冲突与评审边界">人评、图文冲突与评审边界</a></li><li><a href="#成本-复现与适用范围">成本、复现与适用范围</a></li><li><a href="#对研究方向的影响">对研究方向的影响</a></li><li><a href="#原始链接与核验定位">原始链接与核验定位</a></li></ol></details></aside>
+        <section class="article-content" lang="zh-CN"><p class="translation-notice" role="note">English translation pending — this page shows the Chinese original.</p><p>正式主会：CVPR 2026，43113–43123页，2026年6月。本笔记核读CVF主文11页及补充15页，另对主要表格、图6和补充定性页做原图核验；未运行训练、付费裁判或重新评测。[1][2][3]</p>
+<h2 id="一句话结论">一句话结论</h2>
+<p>HP-Edit在同一编辑底座上联合筛选困难样本、细化评分提示并进行强化学习，提升了论文所测的总体自动分和人评分；但不等于所有编辑类别都领先，也没有证明偏好分能完整覆盖非目标副作用或提供低成本复现。[2][3]</p>
+<h2 id="问题定义与方法">问题定义与方法</h2>
+<p>输入是原图与编辑指令，输出应改变目标内容并保留其他事实。论文关注添加、删除、对象替换、背景替换、换色、背景虚化、重照明、风格迁移。它不是新的反演算法，也不是从零训练的通用生成模型。[2，§4]</p>
+<p>HP-Scorer是视觉语言模型加任务专用评分提示。作者先为每类约50–100个编辑三元组人工打分，再迭代提示中的检查问题，直到评分接近这些标注。此步骤是提示优化，不能写成训练了一个新的评分网络。0–5分把指令正确性、自然度和审美合成一个序数等级。[2，§4.1]</p>
+<p>数据构造先从照片来源生成指令和编辑结果，用CLIP类别相似度组织常见COCO物体的覆盖，再删除评分为5的容易样本。RealPref-50K实际为55,795例，主要是评分器伪标注，不是五万份独立人工偏好标注。RealPref-Bench为1,638例，任务数量并非完全相等。[2，§4.2–4.3；3，S5及表S6]</p>
+<p>在线强化学习采用组相对策略优化（GRPO）：同一输入生成一组输出，以组内奖励差异更新策略。HP评分经sigmoid映射到奖励；论文设缩放为2、平移为5。底座Qwen-Image-Edit-2509多数参数冻结，只训练秩32的低秩适配（LoRA），AdamW学习率为0.0003。[2，§3–5.1]</p>
+<p><strong>训练与评测裁判须分开</strong>：在线奖励用Qwen3-VL-32B-Instruct，RealPref-Bench主表用GPT-4o版本的HP-Scorer。不同模型降低直接同裁判闭环的风险，但共享评分设计与样本分布，不能假定误差独立。[2，§5.1]</p>
+<h2 id="主要结果-总体有收益-不是每类都领先">主要结果：总体有收益，不是每类都领先</h2>
+<table><thead><tr><th>同篇对照</th><th>指标 ↑</th><th>底座</th><th>HP-Edit</th><th>怎么理解</th></tr></thead><tbody><tr><td>RealPref-Bench</td><td>HP-score，0–5</td><td>4.472</td><td>4.667</td><td>增加0.195分，不是成功率提高19.5个百分点</td></tr><tr><td>RealPref-Bench</td><td>人工均分，主表1</td><td>4.337</td><td>4.554</td><td>总体偏好方向一致；图6另有数值冲突</td></tr><tr><td>RealPref-Bench对象替换</td><td>HP-score</td><td>4.781</td><td>4.781</td><td>持平，没有提升</td></tr><tr><td>GEdit-Bench-EN</td><td>G_O，综合分</td><td>7.54</td><td>8.30</td><td>论文所列外部英语集有增益</td></tr><tr><td>GEdit-Bench-CN</td><td>G_O，综合分</td><td>8.12</td><td>8.30</td><td>中文指令集改善不等于中文文字编辑解决</td></tr><tr><td>DreamBench++</td><td>概念保持CP</td><td>0.617</td><td>0.654</td><td>参考概念保持的补充证据</td></tr><tr><td>DreamBench++</td><td>指令跟随PF</td><td>0.932</td><td>0.963</td><td>与CP一起读，不能只看单一相似度</td></tr></tbody></table>
+<p>定位：主文7页表1、8页表3；补充1页表S2、2页表S4。G_SC/G_PQ/G_O是GEdit的语义一致、感知质量和综合评分，不能和0–5的HP评分混为同一量尺。[2][3]</p>
+<p>主文声称八类都排名第一，但表1的风格迁移中，旧版Qwen-Image-Edit为4.875，高于HP-Edit的4.776；对象替换与2509底座持平。结论应收窄为所测总体改善，不能复述为逐类绝对优势。[2，7页表1]</p>
+<h2 id="消融-数据与评分提示都有作用-仍不能完整归因">消融：数据与评分提示都有作用，仍不能完整归因</h2>
+<table><thead><tr><th>同一RealPref-Bench设置</th><th>HP-score ↑</th></tr></thead><tbody><tr><td>原始底座</td><td>4.472</td></tr><tr><td>未筛数据＋简单评分提示</td><td>4.391</td></tr><tr><td>困难样本数据＋简单评分提示</td><td>4.577</td></tr><tr><td>困难样本数据＋任务化评分提示</td><td>4.667</td></tr></tbody></table>
+<p>主文8页表2表明，直接追加强化学习甚至可能退步；筛选和评分设计要联合验收。这不是“数据量越多越好”的证据。表2末行写AutoPref-Scorer，正文称HP-Scorer，本笔记按正文含义理解，保留命名不一致。[2]</p>
+<p>补充表S1的LoRA秩8、32、128分别为4.614、4.667、4.645，不能简单推论适配参数越多越好。补充表S5在每任务超过500例、每例5样本的子集上比较DPO与GRPO，但没有完整等算力预算；4.521、4.590、4.667的差距不能单独归因于优化算法。[3，1–2页]</p>
+<h2 id="人评-图文冲突与评审边界">人评、图文冲突与评审边界</h2>
+<p>主文5.4报告五位标注者、超过一千个编辑对，但未充分给出逐模型分配、盲评随机化、标注者一致性、源图级置信区间及独立测试划分细节。补充S3称在GEdit留出集得到平均Pearson相关0.89，图S1标题又写Total Pearson Correlation；高相关不等于评分绝对校准，也不等于副作用检出率。[2，8页；3，1–2页]</p>
+<p><strong>同一论文内人评分数尚未对齐</strong>：主表1给HP-Edit/2509底座4.554/4.337，图6标4.591/4.338。本次放大原图核实，非文本抽取误差；报告主表值并并列保留图值，不擅自选择“修正”答案。两处方向相同，但精确收益仍需原始标注解释。[2，7–8页]</p>
+<p>补充S1明确修正主文图4的指令标注，例如首列并不是“加一杯水”，而是添加站在草地、戴头盔并握控制线的人。定性图只能按补充纠正后的指令理解，不能按主图错误标签判定模型失败。[2，6页；3，1页]</p>
+<p>原图核读补充12–15页可见有意修改与背景/结构保持的不同情况，但这些是选择展示的案例，没有随机抽样分母，不能据此估计总体错误率。删除/添加的评分提示与换色/替换的保持检查详细程度不同；总分仍可能遮蔽特定副作用。[3，S2、S4]</p>
+<h2 id="成本-复现与适用范围">成本、复现与适用范围</h2>
+<ul>
+<li>主文给出底座、奖励模型、LoRA秩和学习率，但所核正文与补充未完整报告GPU数量/型号、GPU小时、峰值显存、训练总预算、统一分辨率/采样步数、端到端延迟或API花费。秩小不代表训练便宜，在线采样与32B裁判也需计费和计时。[2][3]</li>
+<li>本轮在官方记录、完整论文/补充和定向代码检索中未确认HP-Edit官方可执行仓库、权重或数据下载入口。不把作者“release”措辞当成已取得可复现资产；也不把引用的其他项目当作本方法代码。</li>
+<li>训练图像来自Pixabay、LSDIR、DIV2K等；未拿到样本级来源清单、授权及训练—测试近重复审计，不能推断所有照片都有相同许可或排除预训练污染。[2，§4.2；3，S5]</li>
+<li>论文明确承认中英混合文字编辑仍困难；中文指令集提高不解决图中文字翻译。主文声称适用于FLUX，但主要量化后训练结果围绕Qwen底座，不能扩大为已验证所有底座。[2，结论及实验]</li>
+<li>单次编辑偏好、困难样本筛选和组内奖励，不构成多轮可撤销性、错误累积或细微身份保持的直接证据。[2][3]</li>
+</ul>
+<h2 id="对研究方向的影响">对研究方向的影响</h2>
+<p>结合<a class="wikilink" href="../../en/sources/2026-09-22-augclip.html">AugCLIP</a>和<a class="wikilink" href="../../en/sources/2026-09-10-editinspector.html">EditInspector</a>，本轮更新<a class="wikilink" href="../../en/topics/image-editing.html">Image Editing</a>的判断：偏好优化、排序一致性和副作用检出是不同验收目标。研究者应冻结训练裁判与独立验收裁判，保留失败样本、按源图分组切分并分别报告编辑命中/非目标损坏，不直接用训练奖励作为最终成功证明。</p>
+<p>对<a class="wikilink" href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a>增加第三因素“目标函数与任务化评分”。同底座消融支持这一路线值得做，但缺少完整等预算和独立评分实验，问题保持开放；不新增普适优势Claim、不提升研究阶段。</p>
+<h2 id="原始链接与核验定位">原始链接与核验定位</h2>
+<p>[1] <a href="https://openaccess.thecvf.com/content/CVPR2026/html/Li_HP-Edit_A_Human-Preference_Post-Training_Framework_for_Image_Editing_CVPR_2026_paper.html">CVF正式论文记录</a></p>
+<p>[2] <a href="https://openaccess.thecvf.com/content/CVPR2026/papers/Li_HP-Edit_A_Human-Preference_Post-Training_Framework_for_Image_Editing_CVPR_2026_paper.pdf">正式主文PDF</a></p>
+<p>[3] <a href="https://openaccess.thecvf.com/content/CVPR2026/supplemental/Li_HP-Edit_A_Human-Preference_CVPR_2026_supplemental.pdf">官方补充PDF</a></p>
+<p>[4] <a href="https://arxiv.org/abs/2604.19406">预印本版本入口</a>，来自正式记录，仅作版本关联，不替代本次CVF全文。</p>
+<p>DOI：本轮未从官方记录确认，不猜测。作者顺序与CVF元数据、PDF首面一致。公开页只呈现综合笔记，原PDF、全文抽取、内部检查收据不公开。</p></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>Related pages</h2><div class="related-grid"><div class="related-group related-topics"><h3>Related topics<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/topics/image-editing.html">Image Editing</a></li></ul></div><div class="related-group related-questions"><h3>Related questions<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>Referenced by<span class="related-count">3</span></h2><ul><li><a href="../../en/index.html">Index</a><span>Entry</span></li><li><a href="../../en/questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a><span>Question</span></li><li><a href="../../en/topics/image-editing.html">Image Editing</a><span>Topic</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary><span class="summary-label"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>Metadata</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><pre>{
+  &quot;id&quot;: &quot;2026-11-12-hp-edit&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;HP-Edit：用任务化偏好评分改进图像编辑&quot;,
+  &quot;title_en&quot;: &quot;HP-Edit: A Human-Preference Post-Training Framework for Image Editing&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-11-12&quot;,
+  &quot;updated&quot;: &quot;2026-11-12&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;venue&quot;: &quot;CVPR 2026&quot;,
+  &quot;authors&quot;: [
+    &quot;Fan Li&quot;,
+    &quot;Chonghuinan Wang&quot;,
+    &quot;Lina Lei&quot;,
+    &quot;Yuping Qiu&quot;,
+    &quot;Jiaqi Xu&quot;,
+    &quot;Jiaxiu Jiang&quot;,
+    &quot;Xinran Qin&quot;,
+    &quot;Zhikai Chen&quot;,
+    &quot;Fenglong Song&quot;,
+    &quot;Zhixin Wang&quot;,
+    &quot;Renjing Pei&quot;,
+    &quot;Wangmeng Zuo&quot;
+  ],
+  &quot;published_at&quot;: &quot;2026-06&quot;,
+  &quot;ingested_at&quot;: &quot;2026-11-12&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://openaccess.thecvf.com/content/CVPR2026/html/Li_HP-Edit_A_Human-Preference_Post-Training_Framework_for_Image_Editing_CVPR_2026_paper.html&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2026/papers/Li_HP-Edit_A_Human-Preference_Post-Training_Framework_for_Image_Editing_CVPR_2026_paper.pdf&quot;,
+    &quot;https://openaccess.thecvf.com/content/CVPR2026/supplemental/Li_HP-Edit_A_Human-Preference_CVPR_2026_supplemental.pdf&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-11-12-hp-edit/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/image-editing&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: [
+    &quot;questions/question-data-vs-architecture-in-image-editing&quot;
+  ],
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;image-editing&quot;,
+    &quot;evaluation&quot;,
+    &quot;primary-source&quot;
+  ]
+}</pre></details>
+    </article>
+  </main>
+</body>
+</html>
