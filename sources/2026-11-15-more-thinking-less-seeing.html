@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="More Thinking, Less Seeing?：多想不一定更看得清">
+  <link rel="canonical" href="https://wiki.garyko.com/sources/2026-11-15-more-thinking-less-seeing">
+  <link rel="alternate" hreflang="zh-CN" href="https://wiki.garyko.com/sources/2026-11-15-more-thinking-less-seeing">
+  <link rel="alternate" hreflang="en" href="https://wiki.garyko.com/en/sources/2026-11-15-more-thinking-less-seeing">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#f7f4ec" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1b1814" media="(prefers-color-scheme: dark)">
+  <meta property="og:site_name" content="llmwiki">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:title" content="More Thinking, Less Seeing?：多想不一定更看得清 · llmwiki">
+  <meta property="og:description" content="More Thinking, Less Seeing?：多想不一定更看得清">
+  <meta property="og:url" content="https://wiki.garyko.com/sources/2026-11-15-more-thinking-less-seeing">
+  <meta property="og:image" content="https://wiki.garyko.com/assets/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="More Thinking, Less Seeing?：多想不一定更看得清 · llmwiki">
+  <meta name="twitter:description" content="More Thinking, Less Seeing?：多想不一定更看得清">
+  <meta name="twitter:image" content="https://wiki.garyko.com/assets/og-card.png">
+  <title>More Thinking, Less Seeing?：多想不一定更看得清 · llmwiki</title>
+  <script>try{var r=document.documentElement,t=localStorage.getItem('llmwiki.theme');if(t==='light'||t==='dark')r.dataset.theme=t;if(localStorage.getItem('llmwiki.sidebarCollapsed')==='true')r.classList.add('sidebar-collapsed')}catch(e){}</script>
+  <link rel="stylesheet" href="../assets/wiki.css?v=20260927-theme-switch-v17">
+  <script defer src="../assets/wiki.js?v=20260927-theme-switch-v17"></script>
+  <noscript><style>.wiki-sidebar{position:static;transform:none;visibility:visible;width:auto;height:auto}.menu-toggle{display:none}</style></noscript>
+</head>
+<body class="kind-source" data-page="{&quot;slug&quot;: &quot;sources/2026-11-15-more-thinking-less-seeing&quot;, &quot;title&quot;: &quot;More Thinking, Less Seeing?：多想不一定更看得清&quot;, &quot;title_en&quot;: &quot;More Thinking, Less Seeing? Assessing Amplified Hallucination in Multimodal&quot;, &quot;kind&quot;: &quot;source&quot;, &quot;tags&quot;: [&quot;near-cvpr-2025&quot;, &quot;multimodal&quot;, &quot;vision-language&quot;, &quot;evaluation&quot;, &quot;primary-source&quot;], &quot;lang&quot;: &quot;zh&quot;}" data-lang="zh" data-asset-version="20260927-theme-switch-v17">
+  <a class="skip-link" href="#content">跳到正文</a>
+  <header class="mobile-topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="wiki-sidebar" aria-label="菜单" title="菜单" data-menu-label="菜单" data-close-label="关闭菜单"><svg class="ui-icon menu-icon menu-icon--open" data-icon="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><svg class="ui-icon menu-icon menu-icon--close" data-icon="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="menu-toggle-label">菜单</span></button>
+  </header>
+  <aside class="wiki-sidebar" id="wiki-sidebar">
+    <button class="sidebar-collapse-toggle" type="button" aria-expanded="true" aria-controls="sidebar-panel" aria-label="折叠左侧导航" title="折叠左侧导航" data-collapse-label="折叠左侧导航" data-expand-label="展开左侧导航"><svg class="ui-icon sidebar-icon sidebar-icon--collapse" data-icon="panel-left-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/></svg><svg class="ui-icon sidebar-icon sidebar-icon--expand" data-icon="panel-left-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/></svg></button>
+    <a class="brand" href="../index.html"><span class="brand-mark">L</span><span><strong>LLMWIKI</strong><em>研究百科</em></span></a>
+    <div class="sidebar-panel" id="sidebar-panel">
+      <form class="search-box" role="search"><label class="visually-hidden" for="site-search">搜索 llmwiki</label><svg class="ui-icon search-icon" data-icon="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg><input id="site-search" type="search" placeholder="搜索 llmwiki" autocomplete="off"><div id="search-results" class="search-results"></div><p id="search-status" class="visually-hidden" role="status" aria-live="polite"></p></form>
+      <nav class="sidebar-nav">
+<h2>入口</h2><ul>
+<li><a href="../catalog.html">完整论文目录</a></li>
+<li><a href="../index.html">研究地图</a></li>
+<li><a href="../llm-wiki.html">LLM Wiki</a></li>
+<li><a href="../main.html">阅读入口</a></li>
+<li><a href="../tags.html">标签</a></li>
+</ul>
+<h2>基础概念</h2><ul>
+<li><a href="../topics/computer-vision-overview.html"><span class="nav-title-primary">计算机视觉概览</span><span class="nav-title-translation" lang="en">（Computer Vision Overview）</span></a></li>
+<li><a href="../topics/datasets-metrics-and-benchmark-reliability.html"><span class="nav-title-primary">数据与评测基础</span><span class="nav-title-translation" lang="en">（Datasets &amp; Evaluation）</span></a></li>
+<li><a href="../topics/diffusion-models.html"><span class="nav-title-primary">扩散模型</span><span class="nav-title-translation" lang="en">（Diffusion Models）</span></a></li>
+<li><a href="../topics/video-representation-and-temporal-modeling.html"><span class="nav-title-primary">视频表示基础</span><span class="nav-title-translation" lang="en">（Video Representation）</span></a></li>
+<li><a href="../topics/vision-backbones.html"><span class="nav-title-primary">视觉主干</span><span class="nav-title-translation" lang="en">（Vision Backbones）</span></a></li>
+<li><a href="../topics/vision-language-foundations.html"><span class="nav-title-primary">视觉语言基础</span><span class="nav-title-translation" lang="en">（Vision-Language Foundations）</span></a></li>
+<li><a href="../topics/vision-task-foundations.html"><span class="nav-title-primary">核心视觉任务</span><span class="nav-title-translation" lang="en">（Core Vision Tasks）</span></a></li>
+<li><a href="../topics/visual-generation-foundations.html"><span class="nav-title-primary">视觉生成基础</span><span class="nav-title-translation" lang="en">（Visual Generation Foundations）</span></a></li>
+</ul>
+<h2>研究专题</h2><ul>
+<li><a href="../topics/3d-gaussian-splatting.html"><span class="nav-title-primary">三维高斯泼溅</span><span class="nav-title-translation" lang="en">（3D Gaussian Splatting）</span></a></li>
+<li><a href="../topics/diffusion-efficiency-engineering.html"><span class="nav-title-primary">扩散效率工程</span><span class="nav-title-translation" lang="en">（Diffusion Efficiency）</span></a></li>
+<li><a href="../topics/gaussian-image-representation.html"><span class="nav-title-primary">二维图像高斯表征</span><span class="nav-title-translation" lang="en">（Gaussian Image Representations）</span></a></li>
+<li><a href="../topics/generative-model-evaluation.html"><span class="nav-title-primary">生成模型评测</span><span class="nav-title-translation" lang="en">（Generative Model Evaluation）</span></a></li>
+<li><a href="../topics/image-editing.html"><span class="nav-title-primary">图像编辑</span><span class="nav-title-translation" lang="en">（Image Editing）</span></a></li>
+<li><a href="../topics/image-generation.html"><span class="nav-title-primary">图像生成</span><span class="nav-title-translation" lang="en">（Image Generation）</span></a></li>
+<li><a href="../topics/image-text-retrieval.html"><span class="nav-title-primary">图文检索</span><span class="nav-title-translation" lang="en">（Image-Text Retrieval）</span></a></li>
+<li><a href="../topics/sports-ai-video-understanding.html"><span class="nav-title-primary">体育视频理解</span><span class="nav-title-translation" lang="en">（Sports Video Understanding）</span></a></li>
+<li><a href="../topics/video-editing.html"><span class="nav-title-primary">视频编辑</span><span class="nav-title-translation" lang="en">（Video Editing）</span></a></li>
+<li><a href="../topics/video-generation.html"><span class="nav-title-primary">视频生成</span><span class="nav-title-translation" lang="en">（Video Generation）</span></a></li>
+<li><a href="../topics/video-understanding.html"><span class="nav-title-primary">视频理解</span><span class="nav-title-translation" lang="en">（Video Understanding）</span></a></li>
+<li><a href="../topics/vision-language.html"><span class="nav-title-primary">视觉语言</span><span class="nav-title-translation" lang="en">（Vision-Language）</span></a></li>
+</ul>
+<h2>应用路线</h2><ul>
+<li><a href="../topics/sports-ai-roadmap.html">体育 AI</a></li>
+</ul>
+<h2>实体</h2><ul>
+<li><a href="../entities/clip.html">CLIP 系列模型（CLIP Family）</a></li>
+<li><a href="../entities/clip-retrieval-benchmarks.html">图文检索与组合性评测集（Image-Text Retrieval Benchmarks）</a></li>
+<li><a href="../entities/colpali.html">ColPali 与视觉文档检索（ColPali）</a></li>
+<li><a href="../entities/diffusion-transformer.html">扩散 Transformer</a></li>
+<li><a href="../entities/dino-family.html">DINO 家族：自监督视觉表示与预训练骨干</a></li>
+<li><a href="../entities/m-beir.html">M-BEIR 多模态检索评测（M-BEIR）</a></li>
+<li><a href="../entities/sportsmot.html">SportsMOT</a></li>
+<li><a href="../entities/unified-image-generation-editing.html">图像生成与编辑统一建模</a></li>
+<li><a href="../entities/video-editing-understanding.html">视频编辑理解</a></li>
+</ul>
+<h2>判断</h2><ul>
+<li><a href="../claims/claim-current-models-still-struggle-to-understand-video-editing.html">通用 Vid-LLM 在视频剪辑元素识别、推理与功能判断上仍明显不足</a></li>
+<li><a href="../claims/claim-dit-is-becoming-the-default-scalable-generation-backbone.html">DiT 与 Transformer 风格去噪器已成为主要可扩展生成主干之一</a></li>
+<li><a href="../claims/claim-image-text-retrieval-baseline-and-specialization.html">双塔负责可扩展召回，细粒度模块负责精排与关系匹配</a></li>
+<li><a href="../claims/claim-image-text-retrieval-composed-query.html">组合式查询是图文检索中可落地且仍有缺口的研究切口</a></li>
+<li><a href="../claims/claim-image-text-retrieval-compositionality.html">标准图文检索分数不足以证明组合性理解</a></li>
+<li><a href="../claims/claim-image-text-retrieval-data-quality.html">图文检索的主要瓶颈仍包括数据质量、分布与概念覆盖</a></li>
+<li><a href="../claims/claim-image-text-retrieval-unified-embedding.html">统一多模态向量需要同时验证任务意图、跨域泛化与检索成本</a></li>
+<li><a href="../claims/claim-unified-models-may-outcompete-specialized-image-pipelines.html">统一图像模型已显示多任务与工作流优势，整体性能优势仍待验证</a></li>
+</ul>
+<h2>问题</h2><ul>
+<li><a href="../questions/question-badminton-stroke-correction-demo.html">羽毛球挥拍动作纠正 demo 应如何定义</a></li>
+<li><a href="../questions/question-data-vs-architecture-in-image-editing.html">图像编辑的进步主要来自数据扩展还是架构升级</a></li>
+<li><a href="../questions/question-dino-features-for-3dgs-semantics.html">DINO 密集特征如何迁移到三维高斯语义分割？</a></li>
+<li><a href="../questions/question-do-benchmarks-track-real-video-editing-understanding.html">现有评测是否真的刻画了视频编辑理解能力</a></li>
+<li><a href="../questions/question-gaussian-image-representation-research-cut.html">二维图像高斯表征应优先解决哪种信息与成本瓶颈？</a></li>
+<li><a href="../questions/question-image-text-retrieval-data-contamination.html">如何审计图文检索中的预训练重叠、概念频率与 benchmark 污染？</a></li>
+<li><a href="../questions/question-image-text-retrieval-fine-grained-alignment.html">细粒度图文对齐如何兼顾索引效率？</a></li>
+<li><a href="../questions/question-image-text-retrieval-hard-negatives.html">怎样构造既难又不错误的图文检索负例？</a></li>
+<li><a href="../questions/question-image-text-retrieval-research-cut.html">图文检索哪个子方向最适合中等算力的研究生项目？</a></li>
+<li><a href="../questions/question-image-text-retrieval-unified-embedding.html">统一多模态向量是否真的能跨任务、跨语言泛化？</a></li>
+<li><a href="../questions/question-motion-defined-text-human-machine-gap.html">运动定义文字的人机差距</a></li>
+<li><a href="../questions/question-will-unified-image-models-sustain-their-advantage.html">统一图像模型与专用或模块化流水线如何分工</a></li>
+</ul>
+</nav>
+    </div>
+  </aside>
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+  <main class="wiki-page" id="content" tabindex="-1">
+    <header class="page-tabs"><nav class="language-switch" aria-label="Language"><span class="language-switch-icon"><svg class="ui-icon" data-icon="languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><a class="selected-lang" href="../sources/2026-11-15-more-thinking-less-seeing.html">中文</a><a class="" href="../en/sources/2026-11-15-more-thinking-less-seeing.html">English</a></nav><div class="theme-switch" role="group" aria-label="外观" hidden><button type="button" data-theme-choice="system" aria-pressed="false" aria-label="跟随系统" title="跟随系统"><svg class="ui-icon" data-icon="monitor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg></button><button type="button" data-theme-choice="light" aria-pressed="false" aria-label="浅色" title="浅色"><svg class="ui-icon" data-icon="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></button><button type="button" data-theme-choice="dark" aria-pressed="false" aria-label="深色" title="深色"><svg class="ui-icon" data-icon="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button></div><span class="selected" data-page-surface="article" aria-current="page"><svg class="ui-icon" data-icon="file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>正文</span></span><a href="../index.html" data-page-surface="graph"><svg class="ui-icon" data-icon="network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M12 8v8"/></svg><span>研究地图</span></a><a href="../main.html" data-page-surface="portal"><svg class="ui-icon" data-icon="layout-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>阅读入口</span></a><a href="#metadata"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></a></header>
+    <article class="article-shell">
+      
+      <header class="article-header" data-motion="reveal">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">首页</a><span class="crumb-sep" aria-hidden="true">›</span><span>来源笔记</span><span class="crumb-sep" aria-hidden="true">›</span><strong>More Thinking, Less Seeing?：多想不一定更看得清</strong></nav>
+        <p class="eyebrow">来源笔记 · 更新于 2026-11-15</p>
+        <h1><span class="title-main">More Thinking, Less Seeing?</span><span class="title-subtitle">多想不一定更看得清</span></h1>
+        
+        <p class="article-actions"><a class="btn btn-primary" href="https://proceedings.neurips.cc/paper_files/paper/2025/hash/777db387a5ccb131ba8c7cd155166b85-Abstract-Conference.html" target="_blank" rel="noopener noreferrer">阅读原论文<span aria-hidden="true"> ↗</span></a></p>
+        <div class="tag-row"><a class="tag" href="../tags.html#near-cvpr-2025">#near-cvpr-2025</a><a class="tag" href="../tags.html#multimodal">#multimodal</a><a class="tag" href="../tags.html#vision-language">#vision-language</a><a class="tag" href="../tags.html#evaluation">#evaluation</a><a class="tag" href="../tags.html#primary-source">#primary-source</a></div>
+      </header>
+      <div class="article-layout has-rail">
+        <aside class="article-rail"><section class="evidence-card source-panel" data-motion="reveal"><dl class="source-fact-grid"><div class="source-fact"><dt>会议 / 来源</dt><dd>NeurIPS 2025</dd></div><div class="source-fact"><dt>发表日期</dt><dd>2026-04-23</dd></div><div class="source-fact"><dt>资料加入日期</dt><dd>2026-11-15</dd></div><div class="source-fact"><dt>来源类型</dt><dd>paper</dd></div></dl><div class="source-audit"><strong>审核深度</strong><div><span class="source-audit-badge">来源元数据已核验</span><span class="source-audit-badge">全文文本可检索</span><span class="source-audit-badge">全文深分析</span></div></div><div class="source-link-row"><a class="source-link source-link-paper" href="https://proceedings.neurips.cc/paper_files/paper/2025/hash/777db387a5ccb131ba8c7cd155166b85-Abstract-Conference.html" title="https://proceedings.neurips.cc/paper_files/paper/2025/hash/777db387a5ccb131ba8c7cd155166b85-Abstract-Conference.html" target="_blank" rel="noopener noreferrer"><span>论文原文</span><strong>proceedings.neurips.cc · 777db387a5ccb131ba8c7cd155166b8…</strong></a><a class="source-link source-link-pdf" href="https://proceedings.neurips.cc/paper_files/paper/2025/file/777db387a5ccb131ba8c7cd155166b85-Paper-Conference.pdf" title="https://proceedings.neurips.cc/paper_files/paper/2025/file/777db387a5ccb131ba8c7cd155166b85-Paper-Conference.pdf" target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>proceedings.neurips.cc · 777db387a5ccb131ba8c7cd155166b8…</strong></a><a class="source-link source-link-code" href="https://github.com/MLRM-Halu/MLRM-Halu" title="https://github.com/MLRM-Halu/MLRM-Halu" target="_blank" rel="noopener noreferrer"><span>代码仓库</span><strong>github.com · MLRM-Halu</strong></a></div></section><details class="toc" open><summary><span class="summary-label"><svg class="ui-icon" data-icon="list-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></svg><span>目录</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><ol><li><a href="#先看结论">先看结论</a></li><li><a href="#正式身份与版本">正式身份与版本</a></li><li><a href="#方法和指标先解释">方法和指标先解释</a></li><li><a href="#核心证据与反例">核心证据与反例</a><ol><li class="toc-sub"><a href="#推理后训练常退化-但并非每个模型每项都退化">推理后训练常退化，但并非每个模型每项都退化</a></li><li class="toc-sub"><a href="#长度的好坏依赖任务-不是越短越好">长度的好坏依赖任务，不是越短越好</a></li><li class="toc-sub"><a href="#rh-auc补充曲线信息-但不替代原始分数">RH-AUC补充曲线信息，但不替代原始分数</a></li></ol></li><li><a href="#裁判和实现审计">裁判和实现审计</a></li><li><a href="#因果-版本和资源边界">因果、版本和资源边界</a></li><li><a href="#对本专题的增量">对本专题的增量</a></li><li><a href="#原始链接">原始链接</a></li></ol></details></aside>
+        <section class="article-content"><h2 id="先看结论">先看结论</h2>
+<p>这篇研究把“会推理”和“看得准”拆开测：在同一Qwen视觉语言模型家族里，推理后训练常伴随感知退化，延长回答也不保证收益。但它不能证明推理必然损害视觉，更不能仅凭注意力图把相关性当成因果。</p>
+<p>最有用的研究切口不是禁止长推理，而是画出同一模型的推理质量、视觉正确率与计算预算曲线，检查哪个任务在何处开始退化。论文新指标有归一化和裁判边界，不能单独当通用排行榜。</p>
+<h2 id="正式身份与版本">正式身份与版本</h2>
+<ul>
+<li>正式主会：NeurIPS 2025，卷38，页82878–82905；DOI：10.52202/085713-2777。官方记录的出版日期为2026-04-23，会议年份仍为2025。</li>
+<li>作者：Zhongxing Xu、Chengzhi Liu、Qingyue Wei、Juncheng Wu、James Zou、Xin Eric Wang、Yuyin Zhou、Sheng Liu；官方元数据将部分中间名简写，PDF作者行保留完整形式。</li>
+<li>正式PDF28页全部核读：方法与主实验、参考文献、清单及附录；官方补充ZIP中的独立Appendix.pdf另19页全部核读，其表格细于主PDF附录，不能当作完全重复文件跳过。</li>
+<li>arXiv版本标识2505.21523由作者项目页确认。正式PDF与补充代码是本笔记的依据，不以项目摘要替代原文。</li>
+</ul>
+<h2 id="方法和指标先解释">方法和指标先解释</h2>
+<table><thead><tr><th>名称</th><th>含义</th><th>不能代表什么</th></tr></thead><tbody><tr><td>RH-Bench</td><td>从既有数据集抽取的推理与感知题组，各500题</td><td>不是新采集、训练污染已排除的数据</td></tr><tr><td>感知准确率 ↑</td><td>选择题或开放题经裁判转为正确/错误</td><td>不等于逐像素视觉依据已核实</td></tr><tr><td>幻觉率 ↓</td><td>MMHalu等协议下的错误比例</td><td>不同任务的分数不能直接混加</td></tr><tr><td>RH-AUC ↑</td><td>多个推理长度下，将推理/感知分数配对、归一化后计算曲线面积</td><td>不是ROC-AUC，也不保留全部绝对准确率信息</td></tr><tr><td>潜状态引导</td><td>在解码器隐藏状态中添加长短回答差向量，调节生成长度</td><td>并非只改变token数量，内容本身也可能改变</td></tr></tbody></table>
+<p>主文§4比较硬token预算、追加Wait的延长策略、潜状态引导。后者从测试基准回答中提取长短轨迹，跨层施加差向量。这里有校准与测试隔离的审计需求，不能把同一基准提取向量后的结果直接称为跨域泛化；也不能仅因使用了测试回答就断言标签泄漏。</p>
+<h2 id="核心证据与反例">核心证据与反例</h2>
+<h3 id="推理后训练常退化-但并非每个模型每项都退化">推理后训练常退化，但并非每个模型每项都退化</h3>
+<p>独立补充p.1 Table1的同表对照如下。MMVP是感知准确率，MMHalu是幻觉率，方向不同。</p>
+<table><thead><tr><th>模型</th><th>规模</th><th>MMVP准确率 ↑</th><th>MMHalu幻觉率 ↓</th></tr></thead><tbody><tr><td>Qwen2.5-VL基座</td><td>3B</td><td>36.0%</td><td>0.43</td></tr><tr><td>Ocean-R1</td><td>3B</td><td>39.3%</td><td>0.46</td></tr><tr><td>Qwen2.5-VL基座</td><td>7B</td><td>47.3%</td><td>0.33</td></tr><tr><td>Ocean-R1</td><td>7B</td><td>52.3%</td><td>0.35</td></tr></tbody></table>
+<p>这两个Ocean对照都在MMVP更好、MMHalu更差。因此主文§2的“统一退化”应收窄为总体趋势，而不是逐项定律。不同后训练模型的数据、训练阶段和超参数没有完全匹配；主文§7也明确训练数据分析是观察性而非受控重训练。</p>
+<h3 id="长度的好坏依赖任务-不是越短越好">长度的好坏依赖任务，不是越短越好</h3>
+<p>独立补充p.8 Table2，R1-OneVision-7B的同一潜状态控制：</p>
+<table><thead><tr><th>引导系数</th><th>MathVista准确率 ↑</th><th>MMVP准确率 ↑</th><th>MMHalu幻觉率 ↓</th></tr></thead><tbody><tr><td>−0.10</td><td>58.4%</td><td>46.0%</td><td>0.45</td></tr><tr><td>0（未引导）</td><td>61.0%</td><td>43.04%</td><td>0.48</td></tr><tr><td>+0.10</td><td>63.2%</td><td>38.8%</td><td>0.54</td></tr></tbody></table>
+<p>增大引导可提升数学题而损害视觉题，统一最优长度并不存在。更强正向引导又使数学成绩回落。补充pp.8–12提供各模型硬预算和Wait扩展结果，零推理也常降低成绩；这些控制分别改动截断、提示或隐藏状态，不能把全部变化都归因于长度本身。</p>
+<h3 id="rh-auc补充曲线信息-但不替代原始分数">RH-AUC补充曲线信息，但不替代原始分数</h3>
+<p>主文p.7 Table1：</p>
+<table><thead><tr><th>模型</th><th>感知准确率 ↑</th><th>推理准确率 ↑</th><th>RH-AUC ↑</th></tr></thead><tbody><tr><td>R1-OneVision-7B</td><td>55.7%</td><td>44.2%</td><td>0.46</td></tr><tr><td>ThinkLite-VL-7B</td><td>63.3%</td><td>50.4%</td><td>0.52</td></tr><tr><td>Ocean-R1-7B</td><td>62.3%</td><td>51.8%</td><td>0.63</td></tr></tbody></table>
+<p>最高面积并不对应最高感知准确率。主文pp.7–8按推理分数排序后，分别min-max归一化两轴并做梯形积分；独立补充p.13用引导系数范围−0.1到0.1。论文没有充分明确跨模型归一化范围、常数曲线处理和取样密度的统一实现。</p>
+<p>若各模型各自归一化，则绝对水平的平移/正比例缩放可以被消去，这是数学上的条件性风险，不是已确认实现错误。应同时保留原始二维点、对应真实token数、共同归一化方案与预算；排序后的面积也不是按时间或token积分。</p>
+<h2 id="裁判和实现审计">裁判和实现审计</h2>
+<p>主文§5.1说开放感知打分范围0–6，主PDFp.28及独立补充p.17提示却为0–5。官方补充代码evaluation_rhbench_perception.py采用0–5并将大于2算通过，意味着评分3中允许的轻微错误仍可算“正例”。因此不能把感知准确率解释成完全无幻觉率。</p>
+<p>该代码的开放题与选择题都调用GPT-4o。开放题发送问题、参考答案、模型回答的纯文本，没有实际图像；image_contents变量设为Not provided且未加入消息。缺失或异常的裁判调用被计作失败，可能混入接口失败。以上是固定官方ZIP的静态检查，不声称已复现论文分数，也不假设线上仓库版本完全相同。</p>
+<p>主文只说选择题匹配选项，代码却也用模型裁判；论文承认人工检查，但没有给出充分的逐项一致性、裁判版本固定和失败排除统计。参考答案不完整时，纯文本裁判无法独立证实新视觉细节。</p>
+<h2 id="因果-版本和资源边界">因果、版本和资源边界</h2>
+<ul>
+<li>注意力与梯度加权信息流展示语言/视觉关注的变化，但不能单独证明视觉注意力下降是唯一原因。潜状态干预也不只影响长度，需要同图反事实、遮挡和匹配训练对照。</li>
+<li>正式PDF研究集中于Qwen2.5-VL系，不能外推所有闭源模型或新架构；训练范式和数据量不是随机分配的独立因素。</li>
+<li>独立补充p.11 Table11将Ocean-R1在+0.15的Bingo写为0.57，原图已核实，存在突兀值但未获勘误，不能擅改为3.57或用它支撑定量结论。</li>
+<li>清单称统计和计算资源充分，但所核表格未提供支持主要差异的置信区间定义或完整GPU时长/裁判费用总账。不要用清单Yes代替实证。</li>
+<li>官方补充ZIP含代码与数据文件；本轮仅静态读评测和引导代码，不执行代码、不下载模型、不调用付费裁判。重用数据仍需核对各原始数据集许可。</li>
+</ul>
+<h2 id="对本专题的增量">对本专题的增量</h2>
+<p>与<a class="wikilink" href="../sources/2026-11-09-realunify.html">RealUnify</a>的双向能力冲突、<a class="wikilink" href="../sources/2026-09-14-groundingme.html">GroundingME</a>的拒答/正例取舍互补：回答更长、拒答更多或流程更多，都不能只看总分判断视觉可靠性。</p>
+<p>下一步优先冻结同一模型和源图，把原始感知/推理分数、预算、可核验区域和裁判失败分开，独立校准后在留出集画曲线。若优势仅来自归一化、裁判变化或额外预算，停止泛化的能力提升结论。该工作支持评测协议研究，不支持直接部署安全承诺。</p>
+<h2 id="原始链接">原始链接</h2>
+<ul>
+<li><a href="https://proceedings.neurips.cc/paper_files/paper/2025/hash/777db387a5ccb131ba8c7cd155166b85-Abstract-Conference.html">正式论文记录</a></li>
+<li><a href="https://proceedings.neurips.cc/paper_files/paper/2025/file/777db387a5ccb131ba8c7cd155166b85-Paper-Conference.pdf">正式PDF</a></li>
+<li><a href="https://proceedings.neurips.cc/paper_files/paper/2025/file/777db387a5ccb131ba8c7cd155166b85-Supplemental-Conference.zip">官方补充材料</a></li>
+<li><a href="https://mlrm-halu.github.io/">作者项目</a></li>
+<li><a href="https://github.com/MLRM-Halu/MLRM-Halu">作者代码链接</a></li>
+<li>相关专题：<a class="wikilink" href="../topics/vision-language.html">视觉语言</a>。</li>
+</ul></section>
+      </div>
+      
+      <section class="related-box" id="related"><h2>关联页面</h2><div class="related-grid"><div class="related-group related-topics"><h3>相关主题<span class="related-count">1</span></h3><ul><li><a class="wikilink" href="../topics/vision-language.html">视觉语言</a></li></ul></div></div></section>
+      <section class="backlinks-box" id="referenced-by"><h2>被引用<span class="related-count">2</span></h2><ul><li><a href="../index.html">索引</a><span>入口</span></li><li><a href="../topics/vision-language.html">视觉语言</a><span>主题</span></li></ul></section>
+      <details class="metadata-box" id="metadata"><summary><span class="summary-label"><svg class="ui-icon" data-icon="database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><span>元数据</span></span><svg class="ui-icon summary-chevron" data-icon="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><pre>{
+  &quot;id&quot;: &quot;2026-11-15-more-thinking-less-seeing&quot;,
+  &quot;type&quot;: &quot;source&quot;,
+  &quot;title&quot;: &quot;More Thinking, Less Seeing?：多想不一定更看得清&quot;,
+  &quot;title_en&quot;: &quot;More Thinking, Less Seeing? Assessing Amplified Hallucination in Multimodal&quot;,
+  &quot;status&quot;: &quot;reviewed&quot;,
+  &quot;note_status&quot;: &quot;reviewed&quot;,
+  &quot;created&quot;: &quot;2026-11-15&quot;,
+  &quot;updated&quot;: &quot;2026-11-15&quot;,
+  &quot;source_type&quot;: &quot;paper&quot;,
+  &quot;venue&quot;: &quot;NeurIPS 2025&quot;,
+  &quot;authors&quot;: [
+    &quot;Zhongxing Xu&quot;,
+    &quot;Chengzhi Liu&quot;,
+    &quot;Qingyue Wei&quot;,
+    &quot;Juncheng Wu&quot;,
+    &quot;James Zou&quot;,
+    &quot;Xin Eric Wang&quot;,
+    &quot;Yuyin Zhou&quot;,
+    &quot;Sheng Liu&quot;
+  ],
+  &quot;published_at&quot;: &quot;2026-04-23&quot;,
+  &quot;ingested_at&quot;: &quot;2026-11-15&quot;,
+  &quot;canonical_links&quot;: [
+    &quot;https://proceedings.neurips.cc/paper_files/paper/2025/hash/777db387a5ccb131ba8c7cd155166b85-Abstract-Conference.html&quot;,
+    &quot;https://proceedings.neurips.cc/paper_files/paper/2025/file/777db387a5ccb131ba8c7cd155166b85-Paper-Conference.pdf&quot;,
+    &quot;https://proceedings.neurips.cc/paper_files/paper/2025/file/777db387a5ccb131ba8c7cd155166b85-Supplemental-Conference.zip&quot;,
+    &quot;https://github.com/MLRM-Halu/MLRM-Halu&quot;
+  ],
+  &quot;raw_entry&quot;: &quot;raw/ingest/2026-11-15-more-thinking-less-seeing/&quot;,
+  &quot;topics&quot;: [
+    &quot;topics/vision-language&quot;
+  ],
+  &quot;entities&quot;: [],
+  &quot;claims&quot;: [],
+  &quot;questions&quot;: [],
+  &quot;tags&quot;: [
+    &quot;near-cvpr-2025&quot;,
+    &quot;multimodal&quot;,
+    &quot;vision-language&quot;,
+    &quot;evaluation&quot;,
+    &quot;primary-source&quot;
+  ]
+}</pre></details>
+    </article>
+  </main>
+</body>
+</html>
